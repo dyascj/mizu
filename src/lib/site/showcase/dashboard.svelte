@@ -33,7 +33,20 @@
 	];
 
 	// Static bar-chart data (height % per month). Tallest month is highlighted.
-	const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	const months = [
+		'Jan',
+		'Feb',
+		'Mar',
+		'Apr',
+		'May',
+		'Jun',
+		'Jul',
+		'Aug',
+		'Sep',
+		'Oct',
+		'Nov',
+		'Dec'
+	];
 	const bars = [42, 55, 48, 63, 58, 71, 66, 82, 76, 90, 84, 97];
 	const peakIndex = bars.indexOf(Math.max(...bars));
 
@@ -47,10 +60,38 @@
 	};
 
 	const activity: Activity[] = [
-		{ name: 'Marina Wells', handle: 'marina', img: 'https://i.pravatar.cc/64?img=47', plan: 'Scale', status: 'active', mrr: '$1,290' },
-		{ name: 'Koa Rivers', handle: 'koa', img: 'https://i.pravatar.cc/64?img=12', plan: 'Pro', status: 'active', mrr: '$420' },
-		{ name: 'Delta Brooks', handle: 'delta', img: 'https://i.pravatar.cc/64?img=32', plan: 'Starter', status: 'trial', mrr: '$0' },
-		{ name: 'Sage Pond', handle: 'sage', img: 'https://i.pravatar.cc/64?img=5', plan: 'Pro', status: 'active', mrr: '$420' }
+		{
+			name: 'Marina Wells',
+			handle: 'marina',
+			img: 'https://i.pravatar.cc/64?img=47',
+			plan: 'Scale',
+			status: 'active',
+			mrr: '$1,290'
+		},
+		{
+			name: 'Koa Rivers',
+			handle: 'koa',
+			img: 'https://i.pravatar.cc/64?img=12',
+			plan: 'Pro',
+			status: 'active',
+			mrr: '$420'
+		},
+		{
+			name: 'Delta Brooks',
+			handle: 'delta',
+			img: 'https://i.pravatar.cc/64?img=32',
+			plan: 'Starter',
+			status: 'trial',
+			mrr: '$0'
+		},
+		{
+			name: 'Sage Pond',
+			handle: 'sage',
+			img: 'https://i.pravatar.cc/64?img=5',
+			plan: 'Pro',
+			status: 'active',
+			mrr: '$420'
+		}
 	];
 </script>
 
@@ -87,7 +128,9 @@
 						{#if s.trend === 'up'}
 							<Badge variant="success" class="gap-1"><TrendUp class="size-3" /> {s.delta}</Badge>
 						{:else}
-							<Badge variant="destructive" class="gap-1"><TrendDown class="size-3" /> {s.delta}</Badge>
+							<Badge variant="destructive" class="gap-1"
+								><TrendDown class="size-3" /> {s.delta}</Badge
+							>
 						{/if}
 					</div>
 					<Progress value={s.progress} class="mt-1 h-2" />
@@ -127,7 +170,9 @@
 					{/each}
 				</div>
 				<Separator />
-				<div class="flex justify-between text-[0.65rem] font-medium text-muted-foreground tabular-nums">
+				<div
+					class="flex justify-between text-[0.65rem] font-medium text-muted-foreground tabular-nums"
+				>
 					{#each months as m (m)}
 						<span class="flex-1 text-center">{m}</span>
 					{/each}

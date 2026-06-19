@@ -30,3 +30,16 @@
 		</div>
 	</div>
 </IconContext>
+
+<style>
+	/* App-shell: the document itself doesn't scroll; the wrapper above does, so
+	   overscroll-behavior fully removes the rubber-band bounce. Kept here (not in
+	   app.css) so the theme file stays portable for anyone installing Mizu. */
+	:global(html),
+	:global(body) {
+		height: 100%;
+	}
+	:global(body) {
+		overflow: hidden;
+	}
+</style>

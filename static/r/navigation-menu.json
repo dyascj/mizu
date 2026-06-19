@@ -9,7 +9,7 @@
     "bits-ui"
   ],
   "registryDependencies": [
-    "utils"
+    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
   ],
   "files": [
     {
@@ -28,7 +28,7 @@
       "path": "lib/components/ui/navigation-menu/navigation-menu-indicator.svelte",
       "type": "registry:ui",
       "target": "src/lib/components/ui/navigation-menu/navigation-menu-indicator.svelte",
-      "content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<NavigationMenuPrimitive.IndicatorProps> & { class?: string } = $props();\n</script>\n\n<NavigationMenuPrimitive.Indicator\n\tbind:ref\n\tclass={cn(\n\t\t'top-full z-[1] flex h-2 items-end justify-center overflow-hidden transition-[opacity,transform] duration-200 data-[state=hidden]:opacity-0 data-[state=visible]:opacity-100',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<div class=\"relative top-[60%] size-2 rotate-45 rounded-tl-sm border border-[color:var(--glass-border)] glass-strong shadow-glass\"></div>\n</NavigationMenuPrimitive.Indicator>\n"
+      "content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<NavigationMenuPrimitive.IndicatorProps> & { class?: string } = $props();\n</script>\n\n<NavigationMenuPrimitive.Indicator\n\tbind:ref\n\tclass={cn(\n\t\t'top-full z-[1] flex h-2 items-end justify-center overflow-hidden transition-[opacity,transform] duration-200 data-[state=hidden]:opacity-0 data-[state=visible]:opacity-100',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<div\n\t\tclass=\"relative top-[60%] size-2 rotate-45 rounded-tl-sm border border-[color:var(--glass-border)] glass-strong shadow-glass\"\n\t></div>\n</NavigationMenuPrimitive.Indicator>\n"
     },
     {
       "path": "lib/components/ui/navigation-menu/navigation-menu-item.svelte",

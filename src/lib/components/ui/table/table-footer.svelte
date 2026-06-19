@@ -8,7 +8,10 @@
 </script>
 
 <tfoot
-	class={cn('border-t border-border bg-secondary/50 font-semibold [&>tr]:last:border-b-0', className)}
+	class={cn(
+		'border-t border-border bg-secondary/50 font-semibold [&>tr]:last:border-b-0',
+		className
+	)}
 	{...rest}
 >
 	{@render children?.()}

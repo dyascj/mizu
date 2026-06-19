@@ -66,11 +66,34 @@
 
 	const messages: Message[] = [
 		{ from: 'them', text: 'Morning! Did the new component registry land yet?', time: '9:32' },
-		{ from: 'me', text: 'Yep — merged it last night. The whole showcase pulls from it now.', time: '9:34', read: true },
-		{ from: 'them', text: 'Amazing. The glass cards feel so much more alive with the gloss sheen on top 🫧', time: '9:36' },
-		{ from: 'me', text: 'Right? I tuned the highlight so it only sits on raised surfaces. Keeps text readable.', time: '9:38', read: true },
-		{ from: 'them', text: 'Pushed the new bubble sheen — take a look when you get a sec.', time: '9:41' },
-		{ from: 'me', text: 'On it now. Hopping into a call to walk through the radius system 👇', time: '9:42', read: false }
+		{
+			from: 'me',
+			text: 'Yep — merged it last night. The whole showcase pulls from it now.',
+			time: '9:34',
+			read: true
+		},
+		{
+			from: 'them',
+			text: 'Amazing. The glass cards feel so much more alive with the gloss sheen on top 🫧',
+			time: '9:36'
+		},
+		{
+			from: 'me',
+			text: 'Right? I tuned the highlight so it only sits on raised surfaces. Keeps text readable.',
+			time: '9:38',
+			read: true
+		},
+		{
+			from: 'them',
+			text: 'Pushed the new bubble sheen — take a look when you get a sec.',
+			time: '9:41'
+		},
+		{
+			from: 'me',
+			text: 'On it now. Hopping into a call to walk through the radius system 👇',
+			time: '9:42',
+			read: false
+		}
 	];
 </script>
 
@@ -87,9 +110,7 @@
 					<button
 						type="button"
 						class={'flex w-full items-center gap-3 rounded-lg px-2.5 py-2.5 text-left transition-[background-color,box-shadow] duration-150 ' +
-							(c.active
-								? 'bg-card shadow-bevel ring-1 ring-primary/40'
-								: 'hover:bg-accent/60')}
+							(c.active ? 'bg-card shadow-bevel ring-1 ring-primary/40' : 'hover:bg-accent/60')}
 					>
 						<div class="relative shrink-0">
 							<Avatar.Root class="size-10">
@@ -105,12 +126,15 @@
 						<div class="min-w-0 flex-1">
 							<div class="flex items-baseline justify-between gap-2">
 								<span class="truncate text-sm font-semibold">{c.name}</span>
-								<span class="shrink-0 text-[11px] text-muted-foreground tabular-nums">{c.time}</span>
+								<span class="shrink-0 text-[11px] text-muted-foreground tabular-nums">{c.time}</span
+								>
 							</div>
 							<div class="flex items-center justify-between gap-2">
 								<span class="truncate text-xs text-muted-foreground">{c.preview}</span>
 								{#if c.unread}
-									<Badge class="size-5 shrink-0 justify-center rounded-full p-0 text-[11px] tabular-nums">
+									<Badge
+										class="size-5 shrink-0 justify-center rounded-full p-0 text-[11px] tabular-nums"
+									>
 										{c.unread}
 									</Badge>
 								{/if}

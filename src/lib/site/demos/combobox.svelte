@@ -14,9 +14,7 @@
 	let search = $state('');
 
 	const filtered = $derived(
-		search
-			? sources.filter((s) => s.label.toLowerCase().includes(search.toLowerCase()))
-			: sources
+		search ? sources.filter((s) => s.label.toLowerCase().includes(search.toLowerCase())) : sources
 	);
 </script>
 

@@ -6,7 +6,7 @@
   "description": "A friendly empty state.",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
   ],
   "files": [
     {

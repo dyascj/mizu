@@ -48,13 +48,7 @@
 	style="width: {size}px; height: {size}px;"
 	{...rest}
 >
-	<svg
-		width={size}
-		height={size}
-		viewBox="0 0 {size} {size}"
-		class="-rotate-90"
-		aria-hidden="true"
-	>
+	<svg width={size} height={size} viewBox="0 0 {size} {size}" class="-rotate-90" aria-hidden="true">
 		<defs>
 			<linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
 				<stop offset="0%" stop-color="#5cd5ff" />
@@ -83,7 +77,9 @@
 			class="transition-[stroke-dashoffset] duration-700 ease-out [filter:drop-shadow(0_0_6px_rgba(1,178,255,0.5))]"
 		/>
 	</svg>
-	<div class="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-0.5">
+	<div
+		class="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-0.5"
+	>
 		{@render children?.()}
 		{#if showValue}
 			<span class="font-display text-2xl leading-none font-semibold tabular-nums text-foreground">
@@ -91,7 +87,9 @@
 			</span>
 		{/if}
 		{#if label}
-			<span class="text-[0.7rem] leading-none font-medium tracking-wide text-muted-foreground uppercase">
+			<span
+				class="text-[0.7rem] leading-none font-medium tracking-wide text-muted-foreground uppercase"
+			>
 				{label}
 			</span>
 		{/if}

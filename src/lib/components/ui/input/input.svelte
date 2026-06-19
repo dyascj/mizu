@@ -7,12 +7,7 @@
 		ref?: HTMLInputElement | null;
 		value?: string | number | null;
 	};
-	let {
-		class: className,
-		ref = $bindable(null),
-		value = $bindable(),
-		...rest
-	}: Props = $props();
+	let { class: className, ref = $bindable(null), value = $bindable(), ...rest }: Props = $props();
 </script>
 
 <input

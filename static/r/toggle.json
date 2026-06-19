@@ -9,7 +9,7 @@
     "tailwind-variants"
   ],
   "registryDependencies": [
-    "utils"
+    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
   ],
   "files": [
     {

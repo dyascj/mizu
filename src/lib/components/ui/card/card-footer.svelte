@@ -7,4 +7,6 @@
 	let { class: className, children, ...rest }: Props = $props();
 </script>
 
-<div class={cn('flex items-center gap-3 p-6 pt-0', className)} {...rest}>{@render children?.()}</div>
+<div class={cn('flex items-center gap-3 p-6 pt-0', className)} {...rest}>
+	{@render children?.()}
+</div>

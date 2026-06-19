@@ -9,8 +9,8 @@
     "bits-ui"
   ],
   "registryDependencies": [
-    "dialog",
-    "utils"
+    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/dialog.json",
+    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
   ],
   "files": [
     {
@@ -59,7 +59,7 @@
       "path": "lib/components/ui/command/command-shortcut.svelte",
       "type": "registry:ui",
       "target": "src/lib/components/ui/command/command-shortcut.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: HTMLAttributes<HTMLSpanElement> & { class?: string; children: Snippet } = $props();\n</script>\n\n<span\n\tclass={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: HTMLAttributes<HTMLSpanElement> & { class?: string; children: Snippet } = $props();\n</script>\n\n<span class={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)} {...restProps}>\n\t{@render children?.()}\n</span>\n"
     },
     {
       "path": "lib/components/ui/command/command.svelte",

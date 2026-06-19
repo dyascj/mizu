@@ -6,7 +6,7 @@
   "description": "Label, control, hint, and error, grouped.",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
   ],
   "files": [
     {

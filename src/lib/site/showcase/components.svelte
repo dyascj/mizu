@@ -94,7 +94,9 @@
 	</Card.Root>
 
 	<Card.Root>
-		<Card.Header class="pb-3"><Card.Title class="text-base">Slider &amp; progress</Card.Title></Card.Header>
+		<Card.Header class="pb-3"
+			><Card.Title class="text-base">Slider &amp; progress</Card.Title></Card.Header
+		>
 		<Card.Content class="flex flex-col gap-3">
 			<div class="flex items-center justify-between text-sm">
 				<span class="font-semibold">Clarity</span>

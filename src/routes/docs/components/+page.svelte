@@ -14,8 +14,8 @@
 <div>
 	<h1 class="font-display text-3xl font-extrabold">Components</h1>
 	<p class="mt-3 text-lg text-muted-foreground">
-		{components.length} glossy, accessible components. Pick a color up in the header and the whole
-		set recolors live.
+		{components.length} glossy, accessible components. Pick a color up in the header and the whole set
+		recolors live.
 	</p>
 
 	{#each groups as group (group.category)}
@@ -31,7 +31,7 @@
 					>
 						<div
 							class="relative flex h-40 items-center justify-center overflow-hidden rounded-2xl border border-[color:var(--glass-border)] glass p-5 transition-[transform,box-shadow] duration-200 group-hover:-translate-y-0.5 group-hover:shadow-glass group-focus-visible:ring-2 group-focus-visible:ring-ring"
-						data-no-toc
+							data-no-toc
 						>
 							<div class="pointer-events-none scale-90">
 								{#if demo.Component}

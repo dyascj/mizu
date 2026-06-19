@@ -1,0 +1,10 @@
+node_modules
+.svelte-kit
+build
+package
+.env
+.env.*
+pnpm-lock.yaml
+
+# Generated registry output
+static/r

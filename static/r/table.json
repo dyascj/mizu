@@ -6,7 +6,7 @@
   "description": "A clean, rounded data table.",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
   ],
   "files": [
     {
@@ -37,7 +37,7 @@
       "path": "lib/components/ui/table/table-footer.svelte",
       "type": "registry:ui",
       "target": "src/lib/components/ui/table/table-footer.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableSectionElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<tfoot\n\tclass={cn('border-t border-border bg-secondary/50 font-semibold [&>tr]:last:border-b-0', className)}\n\t{...rest}\n>\n\t{@render children?.()}\n</tfoot>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableSectionElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<tfoot\n\tclass={cn(\n\t\t'border-t border-border bg-secondary/50 font-semibold [&>tr]:last:border-b-0',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</tfoot>\n"
     },
     {
       "path": "lib/components/ui/table/table-head.svelte",

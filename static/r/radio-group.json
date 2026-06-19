@@ -8,7 +8,7 @@
     "bits-ui"
   ],
   "registryDependencies": [
-    "utils"
+    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
   ],
   "files": [
     {
@@ -27,7 +27,7 @@
       "path": "lib/components/ui/radio-group/radio-group.svelte",
       "type": "registry:ui",
       "target": "src/lib/components/ui/radio-group/radio-group.svelte",
-      "content": "<script lang=\"ts\">\n\timport { RadioGroup as RadioGroupPrimitive } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(''),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: RadioGroupPrimitive.RootProps & {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<RadioGroupPrimitive.Root\n\tbind:ref\n\tbind:value\n\tclass={cn('grid gap-2', className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</RadioGroupPrimitive.Root>\n"
+      "content": "<script lang=\"ts\">\n\timport { RadioGroup as RadioGroupPrimitive } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(''),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: RadioGroupPrimitive.RootProps & {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<RadioGroupPrimitive.Root bind:ref bind:value class={cn('grid gap-2', className)} {...restProps}>\n\t{@render children?.()}\n</RadioGroupPrimitive.Root>\n"
     }
   ]
 }

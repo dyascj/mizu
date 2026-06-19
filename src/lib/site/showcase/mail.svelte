@@ -38,7 +38,8 @@
 			img: 'https://i.pravatar.cc/80?img=47',
 			time: '9:41 AM',
 			subject: 'Registry is live for the whole team',
-			preview: 'The component registry shipped this morning. Pull the latest and let me know how the',
+			preview:
+				'The component registry shipped this morning. Pull the latest and let me know how the',
 			unread: true,
 			label: { text: 'Product', variant: 'primary' },
 			body: [
@@ -54,7 +55,8 @@
 			img: 'https://i.pravatar.cc/80?img=12',
 			time: '8:17 AM',
 			subject: 'Dark mode polish review',
-			preview: 'Pushed the contrast fixes for muted text and input wells. Looks much cleaner on OLED now.',
+			preview:
+				'Pushed the contrast fixes for muted text and input wells. Looks much cleaner on OLED now.',
 			unread: true,
 			body: [
 				'Pushed the contrast fixes for muted text and the recessed input wells. Everything reads much cleaner on OLED screens now.',
@@ -68,7 +70,8 @@
 			img: 'https://i.pravatar.cc/80?img=32',
 			time: 'Yesterday',
 			subject: 'Design sync notes',
-			preview: 'Recap from the sync: concentric radii everywhere, soft shadows over hard borders, and we',
+			preview:
+				'Recap from the sync: concentric radii everywhere, soft shadows over hard borders, and we',
 			unread: false,
 			label: { text: 'Design', variant: 'success' },
 			body: [
@@ -83,7 +86,8 @@
 			img: 'https://i.pravatar.cc/80?img=15',
 			time: 'Yesterday',
 			subject: 'Beta invites are out',
-			preview: 'First wave of beta invites went out to 200 builders. Early replies are very positive.',
+			preview:
+				'First wave of beta invites went out to 200 builders. Early replies are very positive.',
 			unread: false,
 			body: [
 				'First wave of beta invites went out to 200 builders this afternoon. Early replies are very positive, lots of excitement about the theming story.',
@@ -97,7 +101,8 @@
 			img: 'https://i.pravatar.cc/80?img=5',
 			time: 'Tue',
 			subject: 'Docs site deploy',
-			preview: 'The docs site is on the new framework now. Build times dropped by half and search is',
+			preview:
+				'The docs site is on the new framework now. Build times dropped by half and search is',
 			unread: false,
 			label: { text: 'Docs', variant: 'warning' },
 			body: [
@@ -112,7 +117,8 @@
 			img: 'https://i.pravatar.cc/80?img=68',
 			time: 'Mon',
 			subject: 'Welcome to the team',
-			preview: 'Glad to have you onboard. Here is a short list of repos and channels to get you started.',
+			preview:
+				'Glad to have you onboard. Here is a short list of repos and channels to get you started.',
 			unread: false,
 			body: [
 				'Glad to have you onboard. Here is a short list of repos and channels to get you started, plus a couple of intro docs.',
@@ -220,7 +226,13 @@
 						<Tooltip.Root>
 							<Tooltip.Trigger>
 								{#snippet child({ props })}
-									<Button {...props} variant="ghost" size="icon" class="size-9" aria-label="Archive">
+									<Button
+										{...props}
+										variant="ghost"
+										size="icon"
+										class="size-9"
+										aria-label="Archive"
+									>
 										<Archive class="size-4" />
 									</Button>
 								{/snippet}

@@ -7,9 +7,6 @@
 	let { class: className, children, ...rest }: Props = $props();
 </script>
 
-<div
-	class={cn('col-start-2 text-sm opacity-90 [&_p]:leading-relaxed', className)}
-	{...rest}
->
+<div class={cn('col-start-2 text-sm opacity-90 [&_p]:leading-relaxed', className)} {...rest}>
 	{@render children?.()}
 </div>

@@ -9,7 +9,9 @@
 		<Tabs.Trigger value="settings">Settings</Tabs.Trigger>
 	</Tabs.List>
 	<Tabs.Content value="overview">
-		<p class="text-sm text-muted-foreground">A calm summary of everything flowing through your space.</p>
+		<p class="text-sm text-muted-foreground">
+			A calm summary of everything flowing through your space.
+		</p>
 	</Tabs.Content>
 	<Tabs.Content value="activity">
 		<p class="text-sm text-muted-foreground">Recent ripples, sorted newest first.</p>

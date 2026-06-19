@@ -8,12 +8,7 @@
 	let { class: className, children, ...rest }: Props = $props();
 </script>
 
-<li
-	role="presentation"
-	aria-hidden="true"
-	class={cn('[&>svg]:size-3.5', className)}
-	{...rest}
->
+<li role="presentation" aria-hidden="true" class={cn('[&>svg]:size-3.5', className)} {...rest}>
 	{#if children}
 		{@render children()}
 	{:else}

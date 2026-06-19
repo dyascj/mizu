@@ -59,12 +59,12 @@ export function cn(...inputs: ClassValue[]) {
 Paste the Mizu token block into `src/app.css` after `@import 'tailwindcss';` (copy it from this repo's `src/app.css`, or see the Theming page in the docs). Then add components:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu.dev/r/button.json
+npx shadcn-svelte@latest add https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/button.json
 ```
 
-You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.
+This pulls the component, installs its npm dependencies, and adds the shared `cn` helper, in one command. You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.
 
-> The `mizu.dev` registry domain is a placeholder until the project is deployed. Update it in `src/lib/site/config.ts` and re-run `pnpm registry:build`.
+> The jsDelivr URL serves the registry straight from GitHub, so it works the moment the repo is public, no separate host required. Point `repo` and `registryBase` in `src/lib/site/config.ts` at your repo, then re-run `pnpm registry:build`.
 
 ## Usage
 
@@ -99,16 +99,16 @@ The site ships eight accent presets (Aqua, Sky, Violet, Pink, Rose, Sunset, Leaf
 
 ## Components
 
-| Group | Components |
-| --- | --- |
-| Actions | Button, Badge, Button Group |
-| Forms | Input, Textarea, Label, Checkbox, Radio Group, Switch, Slider, Select, Native Select, Combobox, Toggle, Toggle Group, Input OTP, Input Group, Field |
-| Surfaces | Card, Alert, Separator, Avatar, Aspect Ratio, Scroll Area, Table, Empty, Item, Kbd |
-| Overlays | Dialog, Alert Dialog, Sheet, Popover, Tooltip, Hover Card |
-| Menus | Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command |
-| Navigation | Tabs, Accordion, Collapsible, Breadcrumb, Pagination |
-| Feedback | Progress, Skeleton, Spinner, Circular Gauge |
-| Effects | Orb, Bubbles |
+| Group      | Components                                                                                                                                          |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Actions    | Button, Badge, Button Group                                                                                                                         |
+| Forms      | Input, Textarea, Label, Checkbox, Radio Group, Switch, Slider, Select, Native Select, Combobox, Toggle, Toggle Group, Input OTP, Input Group, Field |
+| Surfaces   | Card, Alert, Separator, Avatar, Aspect Ratio, Scroll Area, Table, Empty, Item, Kbd                                                                  |
+| Overlays   | Dialog, Alert Dialog, Sheet, Popover, Tooltip, Hover Card                                                                                           |
+| Menus      | Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command                                                                                      |
+| Navigation | Tabs, Accordion, Collapsible, Breadcrumb, Pagination                                                                                                |
+| Feedback   | Progress, Skeleton, Spinner, Circular Gauge                                                                                                         |
+| Effects    | Orb, Bubbles                                                                                                                                        |
 
 ## Develop
 

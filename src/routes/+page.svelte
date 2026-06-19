@@ -75,7 +75,12 @@
 		<div class="flex items-center gap-5">
 			<a href="/docs" class="transition-colors hover:text-foreground">Docs</a>
 			<a href="/docs/components" class="transition-colors hover:text-foreground">Components</a>
-			<a href={siteConfig.repo} target="_blank" rel="noreferrer" class="transition-colors hover:text-foreground">
+			<a
+				href={siteConfig.repo}
+				target="_blank"
+				rel="noreferrer"
+				class="transition-colors hover:text-foreground"
+			>
 				GitHub
 			</a>
 		</div>

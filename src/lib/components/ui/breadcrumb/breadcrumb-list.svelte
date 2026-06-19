@@ -7,6 +7,9 @@
 	let { class: className, children, ...rest }: Props = $props();
 </script>
 
-<ol class={cn('flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground', className)} {...rest}>
+<ol
+	class={cn('flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground', className)}
+	{...rest}
+>
 	{@render children?.()}
 </ol>

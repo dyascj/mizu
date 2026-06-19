@@ -8,7 +8,7 @@
     "bits-ui"
   ],
   "registryDependencies": [
-    "utils"
+    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
   ],
   "files": [
     {
@@ -21,7 +21,7 @@
       "path": "lib/components/ui/collapsible/collapsible-trigger.svelte",
       "type": "registry:ui",
       "target": "src/lib/components/ui/collapsible/collapsible-trigger.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Collapsible as CollapsiblePrimitive } from 'bits-ui';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: CollapsiblePrimitive.TriggerProps = $props();\n</script>\n\n<CollapsiblePrimitive.Trigger bind:ref {...restProps} />\n"
+      "content": "<script lang=\"ts\">\n\timport { Collapsible as CollapsiblePrimitive } from 'bits-ui';\n\n\tlet { ref = $bindable(null), ...restProps }: CollapsiblePrimitive.TriggerProps = $props();\n</script>\n\n<CollapsiblePrimitive.Trigger bind:ref {...restProps} />\n"
     },
     {
       "path": "lib/components/ui/collapsible/index.ts",

@@ -31,11 +31,11 @@
 		const out: Bubble[] = [];
 		for (let i = 0; i < count; i++) {
 			// simple integer hashes spread the values without RNG
-			const left = ((i * 6863) % 100) + ((i % 5) * 0.7);
+			const left = ((i * 6863) % 100) + (i % 5) * 0.7;
 			const size = 6 + ((i * 7919) % 16); // 6–21px
 			const duration = 6 + ((i * 4639) % 70) / 10; // 6.0–12.9s
 			const delay = ((i * 3203) % 80) / 10; // 0–7.9s
-			const drift = ((i % 2 === 0 ? 1 : -1) * (8 + ((i * 2741) % 14))); // ±8–21px
+			const drift = (i % 2 === 0 ? 1 : -1) * (8 + ((i * 2741) % 14)); // ±8–21px
 			out.push({
 				left: Math.min(left, 98),
 				size,

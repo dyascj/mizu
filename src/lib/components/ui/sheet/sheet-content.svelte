@@ -43,11 +43,7 @@
 
 <SheetPrimitive.Portal {...portalProps}>
 	<SheetOverlay />
-	<SheetPrimitive.Content
-		bind:ref
-		class={cn(sheetVariants({ side }), className)}
-		{...restProps}
-	>
+	<SheetPrimitive.Content bind:ref class={cn(sheetVariants({ side }), className)} {...restProps}>
 		{@render children?.()}
 		<SheetPrimitive.Close
 			class="absolute right-4 top-4 inline-flex size-7 items-center justify-center rounded-lg text-muted-foreground outline-none transition-[scale,background-color] duration-150 hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none"

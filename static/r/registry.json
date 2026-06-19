@@ -1,7 +1,7 @@
 {
   "$schema": "https://shadcn-svelte.com/schema/registry.json",
   "name": "mizu",
-  "homepage": "https://mizu.dev",
+  "homepage": "https://github.com/dyascj/mizu",
   "items": [
     {
       "name": "utils",

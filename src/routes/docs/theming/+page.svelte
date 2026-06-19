@@ -36,7 +36,10 @@
 		['glass / glass-strong', 'Frosted translucent surface + backdrop blur.'],
 		['gloss', 'The wet top sheen (a ::before highlight). Needs relative + overflow-hidden.'],
 		['gradient-primary / -surface / …', 'Glossy 180° gradients for fills.'],
-		['shadow-aqua / -glass / -bevel / -pressed', 'Layered elevation, from cyan glow to recessed wells.']
+		[
+			'shadow-aqua / -glass / -bevel / -pressed',
+			'Layered elevation, from cyan glow to recessed wells.'
+		]
 	];
 </script>
 
@@ -53,8 +56,12 @@
 
 	<h2 class="mt-10 mb-3 font-display text-xl font-bold">The token block</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
-		Add this to <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">src/app.css</code
-		> after <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">@import 'tailwindcss';</code
+		Add this to <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"
+			>src/app.css</code
+		>
+		after
+		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"
+			>@import 'tailwindcss';</code
 		>. Semantic tokens (<code class="font-mono text-[0.85em]">--background</code>,
 		<code class="font-mono text-[0.85em]">--primary</code>, …) are mapped with
 		<code class="font-mono text-[0.85em]">@theme inline</code> so utilities like
@@ -95,9 +102,10 @@
 
 	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Dark mode</h2>
 	<p class="mb-4 leading-relaxed text-muted-foreground">
-		Mizu uses a class strategy: add <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"
-			>dark</code
-		> to <code class="font-mono text-[0.85em]">&lt;html&gt;</code>. The included theme store handles
+		Mizu uses a class strategy: add <code
+			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">dark</code
+		>
+		to <code class="font-mono text-[0.85em]">&lt;html&gt;</code>. The included theme store handles
 		persistence and a no-flash inline script. Toggle it with the sun/moon button in the header.
 	</p>
 </article>

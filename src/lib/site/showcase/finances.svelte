@@ -36,10 +36,23 @@
 	};
 
 	const transactions: Txn[] = [
-		{ icon: HandCoins, merchant: 'Payroll · Mizu Inc', date: 'Jun 17', amount: '+$4,200.00', incoming: true, badge: { label: 'Deposit', variant: 'success' } },
+		{
+			icon: HandCoins,
+			merchant: 'Payroll · Mizu Inc',
+			date: 'Jun 17',
+			amount: '+$4,200.00',
+			incoming: true,
+			badge: { label: 'Deposit', variant: 'success' }
+		},
 		{ icon: ForkKnife, merchant: 'Blue Whale Cafe', date: 'Jun 16', amount: '-$18.40' },
 		{ icon: ShoppingCart, merchant: 'Reef Market', date: 'Jun 15', amount: '-$96.12' },
-		{ icon: House, merchant: 'Tidewater Rent', date: 'Jun 14', amount: '-$1,850.00', badge: { label: 'Pending', variant: 'warning' } },
+		{
+			icon: House,
+			merchant: 'Tidewater Rent',
+			date: 'Jun 14',
+			amount: '-$1,850.00',
+			badge: { label: 'Pending', variant: 'warning' }
+		},
 		{ icon: Lightning, merchant: 'Current Energy', date: 'Jun 13', amount: '-$74.30' }
 	];
 </script>
@@ -165,7 +178,9 @@
 		<Card.Content class="flex flex-col gap-1.5 pt-0">
 			{#each transactions as t (t.merchant)}
 				<Item.Root class="border-transparent px-2 py-2 hover:bg-accent">
-					<Item.Media class="gradient-surface gloss size-10 rounded-xl border border-border text-[color:var(--primary)]">
+					<Item.Media
+						class="gradient-surface gloss size-10 rounded-xl border border-border text-[color:var(--primary)]"
+					>
 						<t.icon class="relative z-10 size-5" />
 					</Item.Media>
 					<Item.Content>

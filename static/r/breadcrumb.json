@@ -8,7 +8,7 @@
     "@lucide/svelte"
   ],
   "registryDependencies": [
-    "utils"
+    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
   ],
   "files": [
     {
@@ -33,7 +33,7 @@
       "path": "lib/components/ui/breadcrumb/breadcrumb-list.svelte",
       "type": "registry:ui",
       "target": "src/lib/components/ui/breadcrumb/breadcrumb-list.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLOListElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<ol class={cn('flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground', className)} {...rest}>\n\t{@render children?.()}\n</ol>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLOListElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<ol\n\tclass={cn('flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground', className)}\n\t{...rest}\n>\n\t{@render children?.()}\n</ol>\n"
     },
     {
       "path": "lib/components/ui/breadcrumb/breadcrumb-page.svelte",
@@ -45,7 +45,7 @@
       "path": "lib/components/ui/breadcrumb/breadcrumb-separator.svelte",
       "type": "registry:ui",
       "target": "src/lib/components/ui/breadcrumb/breadcrumb-separator.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { ChevronRight } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLLIElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<li\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn('[&>svg]:size-3.5', className)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{:else}\n\t\t<ChevronRight />\n\t{/if}\n</li>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { ChevronRight } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLLIElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<li role=\"presentation\" aria-hidden=\"true\" class={cn('[&>svg]:size-3.5', className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{:else}\n\t\t<ChevronRight />\n\t{/if}\n</li>\n"
     },
     {
       "path": "lib/components/ui/breadcrumb/breadcrumb.svelte",

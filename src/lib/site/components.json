@@ -1,52 +1,325 @@
 [
-	{ "slug": "button", "name": "Button", "category": "Actions", "description": "Glossy aqua actions with seven variants and a tactile press." },
-	{ "slug": "badge", "name": "Badge", "category": "Actions", "description": "Compact status pills, from glossy primary to soft intents." },
-	{ "slug": "input", "name": "Input", "category": "Forms", "description": "A recessed glass text field with an aqua focus ring." },
-	{ "slug": "textarea", "name": "Textarea", "category": "Forms", "description": "Multi-line input matching the recessed field style." },
-	{ "slug": "label", "name": "Label", "category": "Forms", "description": "An accessible, selectable form label." },
-	{ "slug": "checkbox", "name": "Checkbox", "category": "Forms", "description": "A recessed tile that fills with a glossy aqua check.", "bits": true },
-	{ "slug": "radio-group", "name": "Radio Group", "category": "Forms", "description": "Single-select circles, each lighting up with an aqua dot.", "bits": true },
-	{ "slug": "switch", "name": "Switch", "category": "Forms", "description": "A glossy aqua toggle with a glassy thumb.", "bits": true },
-	{ "slug": "slider", "name": "Slider", "category": "Forms", "description": "A recessed track with an aqua range and a glassy thumb.", "bits": true },
-	{ "slug": "select", "name": "Select", "category": "Forms", "description": "A frosted-glass dropdown with highlighted items.", "bits": true },
-	{ "slug": "card", "name": "Card", "category": "Surfaces", "description": "The signature frosted-glass surface, with a wet top sheen." },
-	{ "slug": "alert", "name": "Alert", "category": "Surfaces", "description": "Glass callouts in four intents." },
-	{ "slug": "separator", "name": "Separator", "category": "Surfaces", "description": "A hairline divider for sections." },
-	{ "slug": "avatar", "name": "Avatar", "category": "Surfaces", "description": "A rounded image with a graceful fallback.", "bits": true },
-	{ "slug": "dialog", "name": "Dialog", "category": "Overlays", "description": "A glass modal floating over a blurred scrim.", "bits": true },
-	{ "slug": "popover", "name": "Popover", "category": "Overlays", "description": "A floating glass panel anchored to a trigger.", "bits": true },
-	{ "slug": "tooltip", "name": "Tooltip", "category": "Overlays", "description": "A small hint shown on hover or focus.", "bits": true },
-	{ "slug": "tabs", "name": "Tabs", "category": "Navigation", "description": "A segmented glass switcher with a raised active pill.", "bits": true },
-	{ "slug": "accordion", "name": "Accordion", "category": "Navigation", "description": "Collapsible sections with a smooth height transition.", "bits": true },
-	{ "slug": "progress", "name": "Progress", "category": "Feedback", "description": "A recessed track with a glossy aqua fill.", "bits": true },
-	{ "slug": "skeleton", "name": "Skeleton", "category": "Feedback", "description": "A pulsing placeholder for loading content." },
-	{ "slug": "spinner", "name": "Spinner", "category": "Feedback", "description": "A bright aqua loading spinner." },
-	{ "slug": "circular-gauge", "name": "Circular Gauge", "category": "Feedback", "description": "An animated ring gauge with an aqua glow." },
-	{ "slug": "orb", "name": "Orb", "category": "Effects", "description": "A soft, blooming aqua orb for hero backdrops." },
-	{ "slug": "bubbles", "name": "Bubbles", "category": "Effects", "description": "Rising water bubbles to overlay on glass." },
-	{ "slug": "alert-dialog", "name": "Alert Dialog", "category": "Overlays", "description": "A glass modal that interrupts for a confirmation.", "bits": true },
-	{ "slug": "sheet", "name": "Sheet", "category": "Overlays", "description": "A glass panel that slides in from any edge.", "bits": true },
-	{ "slug": "hover-card", "name": "Hover Card", "category": "Overlays", "description": "A glass card revealed on hover or focus.", "bits": true },
-	{ "slug": "dropdown-menu", "name": "Dropdown Menu", "category": "Menus", "description": "A frosted menu of actions, with submenus and checks.", "bits": true },
-	{ "slug": "context-menu", "name": "Context Menu", "category": "Menus", "description": "A right-click menu in frosted glass.", "bits": true },
-	{ "slug": "menubar", "name": "Menubar", "category": "Menus", "description": "A desktop-style bar of dropdown menus.", "bits": true },
-	{ "slug": "navigation-menu", "name": "Navigation Menu", "category": "Menus", "description": "Site navigation with glass dropdown panels.", "bits": true },
-	{ "slug": "command", "name": "Command", "category": "Menus", "description": "A searchable command palette.", "bits": true },
-	{ "slug": "combobox", "name": "Combobox", "category": "Forms", "description": "A searchable select in frosted glass.", "bits": true },
-	{ "slug": "toggle", "name": "Toggle", "category": "Forms", "description": "A two-state button with a raised pressed look.", "bits": true },
-	{ "slug": "toggle-group", "name": "Toggle Group", "category": "Forms", "description": "A segmented set of toggles in a glass rail.", "bits": true },
-	{ "slug": "input-otp", "name": "Input OTP", "category": "Forms", "description": "Recessed one-time-code cells.", "bits": true },
-	{ "slug": "input-group", "name": "Input Group", "category": "Forms", "description": "An input fused with leading or trailing add-ons." },
-	{ "slug": "field", "name": "Field", "category": "Forms", "description": "Label, control, hint, and error, grouped." },
-	{ "slug": "native-select", "name": "Native Select", "category": "Forms", "description": "A styled native select, no JS required." },
-	{ "slug": "collapsible", "name": "Collapsible", "category": "Navigation", "description": "A single open-and-close disclosure.", "bits": true },
-	{ "slug": "breadcrumb", "name": "Breadcrumb", "category": "Navigation", "description": "A path trail back to the top." },
-	{ "slug": "pagination", "name": "Pagination", "category": "Navigation", "description": "Page-by-page navigation controls.", "bits": true },
-	{ "slug": "scroll-area", "name": "Scroll Area", "category": "Surfaces", "description": "A scroll container with a slim glass bar.", "bits": true },
-	{ "slug": "aspect-ratio", "name": "Aspect Ratio", "category": "Surfaces", "description": "Hold content to a fixed ratio.", "bits": true },
-	{ "slug": "table", "name": "Table", "category": "Surfaces", "description": "A clean, rounded data table." },
-	{ "slug": "empty", "name": "Empty", "category": "Surfaces", "description": "A friendly empty state." },
-	{ "slug": "item", "name": "Item", "category": "Surfaces", "description": "A composable list row." },
+	{
+		"slug": "button",
+		"name": "Button",
+		"category": "Actions",
+		"description": "Glossy aqua actions with seven variants and a tactile press."
+	},
+	{
+		"slug": "badge",
+		"name": "Badge",
+		"category": "Actions",
+		"description": "Compact status pills, from glossy primary to soft intents."
+	},
+	{
+		"slug": "input",
+		"name": "Input",
+		"category": "Forms",
+		"description": "A recessed glass text field with an aqua focus ring."
+	},
+	{
+		"slug": "textarea",
+		"name": "Textarea",
+		"category": "Forms",
+		"description": "Multi-line input matching the recessed field style."
+	},
+	{
+		"slug": "label",
+		"name": "Label",
+		"category": "Forms",
+		"description": "An accessible, selectable form label."
+	},
+	{
+		"slug": "checkbox",
+		"name": "Checkbox",
+		"category": "Forms",
+		"description": "A recessed tile that fills with a glossy aqua check.",
+		"bits": true
+	},
+	{
+		"slug": "radio-group",
+		"name": "Radio Group",
+		"category": "Forms",
+		"description": "Single-select circles, each lighting up with an aqua dot.",
+		"bits": true
+	},
+	{
+		"slug": "switch",
+		"name": "Switch",
+		"category": "Forms",
+		"description": "A glossy aqua toggle with a glassy thumb.",
+		"bits": true
+	},
+	{
+		"slug": "slider",
+		"name": "Slider",
+		"category": "Forms",
+		"description": "A recessed track with an aqua range and a glassy thumb.",
+		"bits": true
+	},
+	{
+		"slug": "select",
+		"name": "Select",
+		"category": "Forms",
+		"description": "A frosted-glass dropdown with highlighted items.",
+		"bits": true
+	},
+	{
+		"slug": "card",
+		"name": "Card",
+		"category": "Surfaces",
+		"description": "The signature frosted-glass surface, with a wet top sheen."
+	},
+	{
+		"slug": "alert",
+		"name": "Alert",
+		"category": "Surfaces",
+		"description": "Glass callouts in four intents."
+	},
+	{
+		"slug": "separator",
+		"name": "Separator",
+		"category": "Surfaces",
+		"description": "A hairline divider for sections."
+	},
+	{
+		"slug": "avatar",
+		"name": "Avatar",
+		"category": "Surfaces",
+		"description": "A rounded image with a graceful fallback.",
+		"bits": true
+	},
+	{
+		"slug": "dialog",
+		"name": "Dialog",
+		"category": "Overlays",
+		"description": "A glass modal floating over a blurred scrim.",
+		"bits": true
+	},
+	{
+		"slug": "popover",
+		"name": "Popover",
+		"category": "Overlays",
+		"description": "A floating glass panel anchored to a trigger.",
+		"bits": true
+	},
+	{
+		"slug": "tooltip",
+		"name": "Tooltip",
+		"category": "Overlays",
+		"description": "A small hint shown on hover or focus.",
+		"bits": true
+	},
+	{
+		"slug": "tabs",
+		"name": "Tabs",
+		"category": "Navigation",
+		"description": "A segmented glass switcher with a raised active pill.",
+		"bits": true
+	},
+	{
+		"slug": "accordion",
+		"name": "Accordion",
+		"category": "Navigation",
+		"description": "Collapsible sections with a smooth height transition.",
+		"bits": true
+	},
+	{
+		"slug": "progress",
+		"name": "Progress",
+		"category": "Feedback",
+		"description": "A recessed track with a glossy aqua fill.",
+		"bits": true
+	},
+	{
+		"slug": "skeleton",
+		"name": "Skeleton",
+		"category": "Feedback",
+		"description": "A pulsing placeholder for loading content."
+	},
+	{
+		"slug": "spinner",
+		"name": "Spinner",
+		"category": "Feedback",
+		"description": "A bright aqua loading spinner."
+	},
+	{
+		"slug": "circular-gauge",
+		"name": "Circular Gauge",
+		"category": "Feedback",
+		"description": "An animated ring gauge with an aqua glow."
+	},
+	{
+		"slug": "orb",
+		"name": "Orb",
+		"category": "Effects",
+		"description": "A soft, blooming aqua orb for hero backdrops."
+	},
+	{
+		"slug": "bubbles",
+		"name": "Bubbles",
+		"category": "Effects",
+		"description": "Rising water bubbles to overlay on glass."
+	},
+	{
+		"slug": "alert-dialog",
+		"name": "Alert Dialog",
+		"category": "Overlays",
+		"description": "A glass modal that interrupts for a confirmation.",
+		"bits": true
+	},
+	{
+		"slug": "sheet",
+		"name": "Sheet",
+		"category": "Overlays",
+		"description": "A glass panel that slides in from any edge.",
+		"bits": true
+	},
+	{
+		"slug": "hover-card",
+		"name": "Hover Card",
+		"category": "Overlays",
+		"description": "A glass card revealed on hover or focus.",
+		"bits": true
+	},
+	{
+		"slug": "dropdown-menu",
+		"name": "Dropdown Menu",
+		"category": "Menus",
+		"description": "A frosted menu of actions, with submenus and checks.",
+		"bits": true
+	},
+	{
+		"slug": "context-menu",
+		"name": "Context Menu",
+		"category": "Menus",
+		"description": "A right-click menu in frosted glass.",
+		"bits": true
+	},
+	{
+		"slug": "menubar",
+		"name": "Menubar",
+		"category": "Menus",
+		"description": "A desktop-style bar of dropdown menus.",
+		"bits": true
+	},
+	{
+		"slug": "navigation-menu",
+		"name": "Navigation Menu",
+		"category": "Menus",
+		"description": "Site navigation with glass dropdown panels.",
+		"bits": true
+	},
+	{
+		"slug": "command",
+		"name": "Command",
+		"category": "Menus",
+		"description": "A searchable command palette.",
+		"bits": true
+	},
+	{
+		"slug": "combobox",
+		"name": "Combobox",
+		"category": "Forms",
+		"description": "A searchable select in frosted glass.",
+		"bits": true
+	},
+	{
+		"slug": "toggle",
+		"name": "Toggle",
+		"category": "Forms",
+		"description": "A two-state button with a raised pressed look.",
+		"bits": true
+	},
+	{
+		"slug": "toggle-group",
+		"name": "Toggle Group",
+		"category": "Forms",
+		"description": "A segmented set of toggles in a glass rail.",
+		"bits": true
+	},
+	{
+		"slug": "input-otp",
+		"name": "Input OTP",
+		"category": "Forms",
+		"description": "Recessed one-time-code cells.",
+		"bits": true
+	},
+	{
+		"slug": "input-group",
+		"name": "Input Group",
+		"category": "Forms",
+		"description": "An input fused with leading or trailing add-ons."
+	},
+	{
+		"slug": "field",
+		"name": "Field",
+		"category": "Forms",
+		"description": "Label, control, hint, and error, grouped."
+	},
+	{
+		"slug": "native-select",
+		"name": "Native Select",
+		"category": "Forms",
+		"description": "A styled native select, no JS required."
+	},
+	{
+		"slug": "collapsible",
+		"name": "Collapsible",
+		"category": "Navigation",
+		"description": "A single open-and-close disclosure.",
+		"bits": true
+	},
+	{
+		"slug": "breadcrumb",
+		"name": "Breadcrumb",
+		"category": "Navigation",
+		"description": "A path trail back to the top."
+	},
+	{
+		"slug": "pagination",
+		"name": "Pagination",
+		"category": "Navigation",
+		"description": "Page-by-page navigation controls.",
+		"bits": true
+	},
+	{
+		"slug": "scroll-area",
+		"name": "Scroll Area",
+		"category": "Surfaces",
+		"description": "A scroll container with a slim glass bar.",
+		"bits": true
+	},
+	{
+		"slug": "aspect-ratio",
+		"name": "Aspect Ratio",
+		"category": "Surfaces",
+		"description": "Hold content to a fixed ratio.",
+		"bits": true
+	},
+	{
+		"slug": "table",
+		"name": "Table",
+		"category": "Surfaces",
+		"description": "A clean, rounded data table."
+	},
+	{
+		"slug": "empty",
+		"name": "Empty",
+		"category": "Surfaces",
+		"description": "A friendly empty state."
+	},
+	{
+		"slug": "item",
+		"name": "Item",
+		"category": "Surfaces",
+		"description": "A composable list row."
+	},
 	{ "slug": "kbd", "name": "Kbd", "category": "Surfaces", "description": "A keyboard-key badge." },
-	{ "slug": "button-group", "name": "Button Group", "category": "Actions", "description": "Buttons joined into one segmented control." }
+	{
+		"slug": "button-group",
+		"name": "Button Group",
+		"category": "Actions",
+		"description": "Buttons joined into one segmented control."
+	}
 ]

@@ -1,8 +1,30 @@
 {
 	"name": "mizu",
+	"version": "0.1.0",
 	"private": true,
-	"version": "0.0.1",
 	"type": "module",
+	"description": "A Frutiger Aero design system for Svelte. Glossy, glassy components for SvelteKit, Svelte 5, and Tailwind v4.",
+	"keywords": [
+		"svelte",
+		"sveltekit",
+		"tailwindcss",
+		"design-system",
+		"component-library",
+		"ui",
+		"frutiger-aero",
+		"shadcn-svelte",
+		"bits-ui"
+	],
+	"homepage": "https://github.com/dyascj/mizu#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dyascj/mizu.git"
+	},
+	"bugs": {
+		"url": "https://github.com/dyascj/mizu/issues"
+	},
+	"author": "CJ Dyas",
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -10,6 +32,8 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"format": "prettier --write .",
+		"lint": "prettier --check .",
 		"registry:build": "node scripts/build-registry.mjs"
 	},
 	"devDependencies": {
@@ -17,6 +41,9 @@
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@tailwindcss/vite": "^4.3.1",
+		"prettier": "^3.8.4",
+		"prettier-plugin-svelte": "^4.1.1",
+		"prettier-plugin-tailwindcss": "^0.8.0",
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.3.1",

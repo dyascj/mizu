@@ -8,9 +8,11 @@ export const siteConfig = {
 	tagline: 'A Frutiger Aero design system for Svelte',
 	description:
 		'Glossy, glassy, gorgeously rounded components for SvelteKit. The optimism of early-2000s UI, rebuilt for Svelte 5 and Tailwind v4. Copy in what you need.',
-	// TODO(cj): point these at the real GitHub repo + deployed registry domain.
-	repo: 'https://github.com/cjdyas/mizu',
-	registryBase: 'https://mizu.dev/r'
+	// Point `repo` at the real GitHub repo. `registryBase` serves the registry
+	// JSON; the jsDelivr URL below works the moment the repo is public on GitHub
+	// (no separate deploy needed). Re-run `pnpm registry:build` after changing it.
+	repo: 'https://github.com/dyascj/mizu',
+	registryBase: 'https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r'
 };
 
 export type SiteConfig = typeof siteConfig;
