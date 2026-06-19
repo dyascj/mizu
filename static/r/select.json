@@ -1,0 +1,52 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "select",
+  "type": "registry:ui",
+  "title": "Select",
+  "description": "A frosted-glass dropdown with highlighted items.",
+  "dependencies": [
+    "@lucide/svelte",
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "lib/components/ui/select/index.ts",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/select/index.ts",
+      "content": "import { Select as SelectPrimitive } from 'bits-ui';\nimport Trigger from './select-trigger.svelte';\nimport Content from './select-content.svelte';\nimport Item from './select-item.svelte';\nimport Group from './select-group.svelte';\nimport Label from './select-label.svelte';\n\nconst Root = SelectPrimitive.Root;\n\nexport {\n\tRoot,\n\tTrigger,\n\tContent,\n\tItem,\n\tGroup,\n\tLabel,\n\t//\n\tRoot as Select,\n\tTrigger as SelectTrigger,\n\tContent as SelectContent,\n\tItem as SelectItem,\n\tGroup as SelectGroup,\n\tLabel as SelectLabel,\n\tLabel as SelectGroupHeading\n};\n"
+    },
+    {
+      "path": "lib/components/ui/select/select-content.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/select/select-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 6,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SelectPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<SelectPrimitive.Portal>\n\t<SelectPrimitive.Content\n\t\tbind:ref\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t'z-50 max-h-72 overflow-hidden rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:opacity-0 data-[state=closed]:scale-95 data-[state=open]:opacity-100 data-[state=open]:scale-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t<SelectPrimitive.Viewport class=\"w-full min-w-[var(--bits-select-anchor-width)]\">\n\t\t\t{@render children?.()}\n\t\t</SelectPrimitive.Viewport>\n\t</SelectPrimitive.Content>\n</SelectPrimitive.Portal>\n"
+    },
+    {
+      "path": "lib/components/ui/select/select-group.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/select/select-group.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SelectPrimitive.GroupProps & { class?: string } = $props();\n</script>\n\n<SelectPrimitive.Group bind:ref class={cn(className)} {...restProps} />\n"
+    },
+    {
+      "path": "lib/components/ui/select/select-item.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/select/select-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive, type WithoutChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { Check } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvalue,\n\t\tlabel,\n\t\tchildren: childrenProp,\n\t\t...restProps\n\t}: WithoutChild<SelectPrimitive.ItemProps> & {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<SelectPrimitive.Item\n\tbind:ref\n\t{value}\n\t{label}\n\tclass={cn(\n\t\t'relative flex cursor-pointer select-none items-center rounded-lg py-1.5 pr-2 pl-8 text-sm outline-none transition-colors duration-100 data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ selected })}\n\t\t{#if selected}\n\t\t\t<span class=\"absolute left-2 flex size-4 items-center justify-center\">\n\t\t\t\t<Check class=\"size-4 text-primary\" />\n\t\t\t</span>\n\t\t{/if}\n\t\t{#if childrenProp}\n\t\t\t{@render childrenProp()}\n\t\t{:else}\n\t\t\t{label ?? value}\n\t\t{/if}\n\t{/snippet}\n</SelectPrimitive.Item>\n"
+    },
+    {
+      "path": "lib/components/ui/select/select-label.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/select/select-label.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SelectPrimitive.GroupHeadingProps & { class?: string } = $props();\n</script>\n\n<SelectPrimitive.GroupHeading\n\tbind:ref\n\tclass={cn('px-2 py-1.5 text-xs font-semibold text-muted-foreground', className)}\n\t{...restProps}\n/>\n"
+    },
+    {
+      "path": "lib/components/ui/select/select-trigger.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/select/select-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { ChevronsUpDown } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SelectPrimitive.TriggerProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<SelectPrimitive.Trigger\n\tbind:ref\n\tclass={cn(\n\t\t'flex h-10 w-full items-center justify-between rounded-xl border border-input bg-card/70 px-3.5 py-2 text-sm shadow-pressed outline-none transition-[box-shadow,border-color] duration-150 focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring data-[placeholder]:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\t<ChevronsUpDown class=\"size-4 opacity-60\" />\n</SelectPrimitive.Trigger>\n"
+    }
+  ]
+}

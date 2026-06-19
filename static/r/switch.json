@@ -1,0 +1,27 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "switch",
+  "type": "registry:ui",
+  "title": "Switch",
+  "description": "A glossy aqua toggle with a glassy thumb.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "lib/components/ui/switch/index.ts",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/switch/index.ts",
+      "content": "export { default as Switch } from './switch.svelte';\n"
+    },
+    {
+      "path": "lib/components/ui/switch/switch.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/switch/switch.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Switch as SwitchPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchecked = $bindable(false),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SwitchPrimitive.RootProps> & { class?: string } = $props();\n</script>\n\n<SwitchPrimitive.Root\n\tbind:ref\n\tbind:checked\n\tclass={cn(\n\t\t'peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border border-border shadow-pressed outline-none transition-[background-image,background-color] duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:gradient-primary data-[state=unchecked]:bg-muted',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<SwitchPrimitive.Thumb\n\t\tclass=\"pointer-events-none block size-5 rounded-full bg-white shadow-bevel transition-transform duration-200 ease-out data-[state=checked]:translate-x-[1.375rem] data-[state=unchecked]:translate-x-0.5\"\n\t/>\n</SwitchPrimitive.Root>\n"
+    }
+  ]
+}

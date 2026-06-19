@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<meta name="theme-color" content="#01b2ff" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+		<script>
+			// No-flash theme: set the `dark` class before first paint.
+			(() => {
+				try {
+					const t = localStorage.getItem('mizu-theme') ?? 'system';
+					const dark =
+						t === 'dark' ||
+						(t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+					document.documentElement.classList.toggle('dark', dark);
+				} catch (e) {}
+			})();
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

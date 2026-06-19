@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:ui",
+  "title": "Spinner",
+  "description": "A bright aqua loading spinner.",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "lib/components/ui/spinner/index.ts",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/spinner/index.ts",
+      "content": "export { default as Spinner } from './spinner.svelte';\n"
+    },
+    {
+      "path": "lib/components/ui/spinner/spinner.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/spinner/spinner.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tsize = 20,\n\t\tclass: className,\n\t\t...rest\n\t}: HTMLAttributes<HTMLDivElement> & { size?: number; class?: string } = $props();\n</script>\n\n<div role=\"status\" class={cn('inline-flex text-primary', className)} {...rest}>\n\t<svg\n\t\tclass=\"animate-spin\"\n\t\twidth={size}\n\t\theight={size}\n\t\tviewBox=\"0 0 24 24\"\n\t\tfill=\"none\"\n\t\txmlns=\"http://www.w3.org/2000/svg\"\n\t\taria-hidden=\"true\"\n\t>\n\t\t<circle\n\t\t\tclass=\"opacity-20\"\n\t\t\tcx=\"12\"\n\t\t\tcy=\"12\"\n\t\t\tr=\"9\"\n\t\t\tstroke=\"currentColor\"\n\t\t\tstroke-width=\"3\"\n\t\t/>\n\t\t<path\n\t\t\tclass=\"stroke-current\"\n\t\t\td=\"M21 12a9 9 0 0 0-9-9\"\n\t\t\tstroke-width=\"3\"\n\t\t\tstroke-linecap=\"round\"\n\t\t/>\n\t</svg>\n\t<span class=\"sr-only\">Loading</span>\n</div>\n"
+    }
+  ]
+}

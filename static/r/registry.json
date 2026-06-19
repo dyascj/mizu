@@ -1,0 +1,163 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry.json",
+  "name": "mizu",
+  "homepage": "https://mizu.dev",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn utility",
+      "description": "Tailwind-aware className merge helper used by every component."
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Glossy aqua actions with seven variants and a tactile press."
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Compact status pills, from glossy primary to soft intents."
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A recessed glass text field with an aqua focus ring."
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Multi-line input matching the recessed field style."
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "An accessible, selectable form label."
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A recessed tile that fills with a glossy aqua check."
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Single-select circles, each lighting up with an aqua dot."
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A glossy aqua toggle with a glassy thumb."
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "A recessed track with an aqua range and a glassy thumb."
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "A frosted-glass dropdown with highlighted items."
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "The signature frosted-glass surface, with a wet top sheen."
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Glass callouts in four intents."
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "A hairline divider for sections."
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "A rounded image with a graceful fallback."
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A glass modal floating over a blurred scrim."
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "A floating glass panel anchored to a trigger."
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A small hint shown on hover or focus."
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "A segmented glass switcher with a raised active pill."
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Collapsible sections with a smooth height transition."
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "A recessed track with a glossy aqua fill."
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "A pulsing placeholder for loading content."
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "A bright aqua loading spinner."
+    },
+    {
+      "name": "circular-gauge",
+      "type": "registry:ui",
+      "title": "Circular Gauge",
+      "description": "An animated ring gauge with an aqua glow."
+    },
+    {
+      "name": "orb",
+      "type": "registry:ui",
+      "title": "Orb",
+      "description": "A soft, blooming aqua orb for hero backdrops."
+    },
+    {
+      "name": "bubbles",
+      "type": "registry:ui",
+      "title": "Bubbles",
+      "description": "Rising water bubbles to overlay on glass."
+    }
+  ]
+}

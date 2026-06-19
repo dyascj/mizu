@@ -1,0 +1,27 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "progress",
+  "type": "registry:ui",
+  "title": "Progress",
+  "description": "A recessed track with a glossy aqua fill.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "lib/components/ui/progress/index.ts",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/progress/index.ts",
+      "content": "export { default as Progress } from './progress.svelte';\n"
+    },
+    {
+      "path": "lib/components/ui/progress/progress.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/progress/progress.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Progress as ProgressPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(0),\n\t\tmax = 100,\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ProgressPrimitive.RootProps> & { class?: string } = $props();\n\n\tconst pct = $derived(max ? (100 * (value ?? 0)) / max : 0);\n</script>\n\n<ProgressPrimitive.Root\n\tbind:ref\n\t{value}\n\t{max}\n\tclass={cn(\n\t\t'relative h-3 w-full overflow-hidden rounded-full bg-muted shadow-pressed',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<div\n\t\tclass=\"gradient-primary gloss relative h-full overflow-hidden rounded-full transition-[width] duration-300 ease-out\"\n\t\tstyle=\"width: {pct}%\"\n\t></div>\n</ProgressPrimitive.Root>\n"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:ui",
+  "title": "Badge",
+  "description": "Compact status pills, from glossy primary to soft intents.",
+  "dependencies": [
+    "tailwind-variants"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "lib/components/ui/badge/badge.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/badge/badge.svelte",
+      "content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from 'tailwind-variants';\n\n\texport const badgeVariants = tv({\n\t\tbase: 'relative inline-flex items-center gap-1 overflow-hidden rounded-full border px-2.5 py-0.5 text-xs font-semibold whitespace-nowrap',\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tprimary: 'gradient-primary gloss border-transparent text-primary-foreground shadow-bevel',\n\t\t\t\tsecondary: 'border-border bg-secondary text-secondary-foreground',\n\t\t\t\tsuccess: 'border-transparent bg-success/15 text-[color:var(--success)]',\n\t\t\t\twarning: 'border-transparent bg-warning/15 text-[color:var(--warning)]',\n\t\t\t\tdestructive: 'border-transparent bg-destructive/15 text-destructive',\n\t\t\t\tinfo: 'border-transparent bg-info/15 text-[color:var(--info)]',\n\t\t\t\toutline: 'border-border bg-transparent text-foreground'\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: { variant: 'primary' }\n\t});\n\n\texport type BadgeVariant = VariantProps<typeof badgeVariants>['variant'];\n</script>\n\n<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLSpanElement> & {\n\t\tvariant?: BadgeVariant;\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t};\n\tlet { variant = 'primary', class: className, children, ...rest }: Props = $props();\n</script>\n\n<span class={cn(badgeVariants({ variant }), className)} {...rest}>\n\t<span class=\"relative z-10 inline-flex items-center gap-1\">{@render children?.()}</span>\n</span>\n"
+    },
+    {
+      "path": "lib/components/ui/badge/index.ts",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/badge/index.ts",
+      "content": "export { default as Badge, badgeVariants } from './badge.svelte';\nexport type { BadgeVariant } from './badge.svelte';\n"
+    }
+  ]
+}
