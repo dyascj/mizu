@@ -5,6 +5,7 @@ export const categories = [
 	'Forms',
 	'Surfaces',
 	'Overlays',
+	'Menus',
 	'Navigation',
 	'Feedback',
 	'Effects'

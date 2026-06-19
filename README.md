@@ -14,7 +14,7 @@ Mizu brings back the aesthetic of clear skies, water droplets, and wet glass: fr
 
 ## Highlights
 
-- **25 components**, from buttons and dialogs to a blooming orb and rising bubbles.
+- **50 components**, from buttons and dialogs to a command palette, a blooming orb, and rising bubbles.
 - **Physically honest.** Gloss, glass, and glow come from real CSS, never baked-in screenshots.
 - **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the glossy skin.
 - **Tailwind v4 tokens.** One theme file drives every surface, in a sunlit light mode and a deep-water dark mode.
@@ -79,11 +79,12 @@ You can also open any component page in the docs and copy its source straight in
 
 | Group | Components |
 | --- | --- |
-| Actions | Button, Badge |
-| Forms | Input, Textarea, Label, Checkbox, Radio Group, Switch, Slider, Select |
-| Surfaces | Card, Alert, Separator, Avatar |
-| Overlays | Dialog, Popover, Tooltip |
-| Navigation | Tabs, Accordion |
+| Actions | Button, Badge, Button Group |
+| Forms | Input, Textarea, Label, Checkbox, Radio Group, Switch, Slider, Select, Native Select, Combobox, Toggle, Toggle Group, Input OTP, Input Group, Field |
+| Surfaces | Card, Alert, Separator, Avatar, Aspect Ratio, Scroll Area, Table, Empty, Item, Kbd |
+| Overlays | Dialog, Alert Dialog, Sheet, Popover, Tooltip, Hover Card |
+| Menus | Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command |
+| Navigation | Tabs, Accordion, Collapsible, Breadcrumb, Pagination |
 | Feedback | Progress, Skeleton, Spinner, Circular Gauge |
 | Effects | Orb, Bubbles |
 

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "table",
+  "type": "registry:ui",
+  "title": "Table",
+  "description": "A clean, rounded data table.",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "lib/components/ui/table/index.ts",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/table/index.ts",
+      "content": "import Root from './table.svelte';\nimport Header from './table-header.svelte';\nimport Body from './table-body.svelte';\nimport Footer from './table-footer.svelte';\nimport Row from './table-row.svelte';\nimport Head from './table-head.svelte';\nimport Cell from './table-cell.svelte';\nimport Caption from './table-caption.svelte';\n\nexport {\n\tRoot,\n\tHeader,\n\tBody,\n\tFooter,\n\tRow,\n\tHead,\n\tCell,\n\tCaption,\n\t//\n\tRoot as Table,\n\tHeader as TableHeader,\n\tBody as TableBody,\n\tFooter as TableFooter,\n\tRow as TableRow,\n\tHead as TableHead,\n\tCell as TableCell,\n\tCaption as TableCaption\n};\n"
+    },
+    {
+      "path": "lib/components/ui/table/table-body.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/table/table-body.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableSectionElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<tbody class={cn('[&_tr:last-child]:border-0', className)} {...rest}>\n\t{@render children?.()}\n</tbody>\n"
+    },
+    {
+      "path": "lib/components/ui/table/table-caption.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/table/table-caption.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<caption class={cn('mt-3 text-sm text-muted-foreground', className)} {...rest}>\n\t{@render children?.()}\n</caption>\n"
+    },
+    {
+      "path": "lib/components/ui/table/table-cell.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/table/table-cell.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLTdAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLTdAttributes & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<td class={cn('p-3 align-middle [&:has([role=checkbox])]:pr-0', className)} {...rest}>\n\t{@render children?.()}\n</td>\n"
+    },
+    {
+      "path": "lib/components/ui/table/table-footer.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/table/table-footer.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableSectionElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<tfoot\n\tclass={cn('border-t border-border bg-secondary/50 font-semibold [&>tr]:last:border-b-0', className)}\n\t{...rest}\n>\n\t{@render children?.()}\n</tfoot>\n"
+    },
+    {
+      "path": "lib/components/ui/table/table-head.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/table/table-head.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLThAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLThAttributes & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<th\n\tclass={cn(\n\t\t'h-10 px-3 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</th>\n"
+    },
+    {
+      "path": "lib/components/ui/table/table-header.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/table/table-header.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableSectionElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<thead class={cn('[&_tr]:border-b [&_tr]:border-border', className)} {...rest}>\n\t{@render children?.()}\n</thead>\n"
+    },
+    {
+      "path": "lib/components/ui/table/table-row.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/table/table-row.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableRowElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<tr\n\tclass={cn(\n\t\t'border-b border-border transition-colors hover:bg-secondary/50 data-[state=selected]:bg-accent',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</tr>\n"
+    },
+    {
+      "path": "lib/components/ui/table/table.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/table/table.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLTableElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div class=\"relative w-full overflow-x-auto\">\n\t<table bind:this={ref} class={cn('w-full text-sm', className)} {...rest}>\n\t\t{@render children?.()}\n\t</table>\n</div>\n"
+    }
+  ]
+}

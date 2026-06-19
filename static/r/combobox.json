@@ -1,0 +1,58 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "combobox",
+  "type": "registry:ui",
+  "title": "Combobox",
+  "description": "A searchable select in frosted glass.",
+  "dependencies": [
+    "@lucide/svelte",
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "lib/components/ui/combobox/combobox-content.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/combobox/combobox-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 6,\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ComboboxPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tportalProps?: ComboboxPrimitive.PortalProps;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<ComboboxPrimitive.Portal {...portalProps}>\n\t<ComboboxPrimitive.Content\n\t\tbind:ref\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t'z-50 max-h-72 w-[var(--bits-combobox-anchor-width)] min-w-[var(--bits-combobox-anchor-width)] overflow-y-auto rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</ComboboxPrimitive.Content>\n</ComboboxPrimitive.Portal>\n"
+    },
+    {
+      "path": "lib/components/ui/combobox/combobox-group-heading.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/combobox/combobox-group-heading.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: ComboboxPrimitive.GroupHeadingProps & { class?: string } = $props();\n</script>\n\n<ComboboxPrimitive.GroupHeading\n\tbind:ref\n\tclass={cn('px-2 py-1.5 text-xs font-semibold text-muted-foreground', className)}\n\t{...restProps}\n/>\n"
+    },
+    {
+      "path": "lib/components/ui/combobox/combobox-group.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/combobox/combobox-group.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: ComboboxPrimitive.GroupProps & { class?: string } = $props();\n</script>\n\n<ComboboxPrimitive.Group bind:ref class={cn(className)} {...restProps} />\n"
+    },
+    {
+      "path": "lib/components/ui/combobox/combobox-input.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/combobox/combobox-input.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ComboboxPrimitive.InputProps> & {\n\t\tclass?: string;\n\t} = $props();\n</script>\n\n<ComboboxPrimitive.Input\n\tbind:ref\n\tclass={cn(\n\t\t'flex h-10 w-full items-center rounded-xl border border-input bg-card/70 px-3.5 py-2 text-sm shadow-pressed outline-none transition-[box-shadow,border-color] duration-150 placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+    },
+    {
+      "path": "lib/components/ui/combobox/combobox-item.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/combobox/combobox-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive, type WithoutChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport Check from '@lucide/svelte/icons/check';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvalue,\n\t\tlabel,\n\t\tchildren: childrenProp,\n\t\t...restProps\n\t}: WithoutChild<ComboboxPrimitive.ItemProps> & {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<ComboboxPrimitive.Item\n\tbind:ref\n\t{value}\n\t{label}\n\tclass={cn(\n\t\t'relative flex cursor-pointer select-none items-center rounded-lg py-1.5 pr-2 pl-8 text-sm outline-none transition-colors duration-100 data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ selected })}\n\t\t{#if selected}\n\t\t\t<span class=\"absolute left-2 flex size-4 items-center justify-center\">\n\t\t\t\t<Check class=\"size-4 text-primary\" />\n\t\t\t</span>\n\t\t{/if}\n\t\t{#if childrenProp}\n\t\t\t{@render childrenProp()}\n\t\t{:else}\n\t\t\t{label ?? value}\n\t\t{/if}\n\t{/snippet}\n</ComboboxPrimitive.Item>\n"
+    },
+    {
+      "path": "lib/components/ui/combobox/combobox-trigger.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/combobox/combobox-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ComboboxPrimitive.TriggerProps> & {\n\t\tclass?: string;\n\t} = $props();\n</script>\n\n<ComboboxPrimitive.Trigger\n\tbind:ref\n\tclass={cn(\n\t\t'absolute right-2 top-1/2 inline-flex size-6 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground outline-none transition-[scale] duration-150 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<ChevronsUpDown class=\"size-4 opacity-60\" />\n</ComboboxPrimitive.Trigger>\n"
+    },
+    {
+      "path": "lib/components/ui/combobox/index.ts",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/combobox/index.ts",
+      "content": "import { Combobox as ComboboxPrimitive } from 'bits-ui';\n\nimport Input from './combobox-input.svelte';\nimport Trigger from './combobox-trigger.svelte';\nimport Content from './combobox-content.svelte';\nimport Item from './combobox-item.svelte';\nimport Group from './combobox-group.svelte';\nimport GroupHeading from './combobox-group-heading.svelte';\n\nconst Root = ComboboxPrimitive.Root;\nconst Portal = ComboboxPrimitive.Portal;\n\nexport {\n\tRoot,\n\tInput,\n\tTrigger,\n\tPortal,\n\tContent,\n\tItem,\n\tGroup,\n\tGroupHeading,\n\t//\n\tRoot as Combobox,\n\tInput as ComboboxInput,\n\tTrigger as ComboboxTrigger,\n\tPortal as ComboboxPortal,\n\tContent as ComboboxContent,\n\tItem as ComboboxItem,\n\tGroup as ComboboxGroup,\n\tGroupHeading as ComboboxGroupHeading\n};\n"
+    }
+  ]
+}

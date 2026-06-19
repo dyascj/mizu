@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { componentsByCategory } from '$lib/site/catalog';
+	import TableOfContents from '$lib/site/table-of-contents.svelte';
+	import DocsPager from '$lib/site/docs-pager.svelte';
 	import { cn } from '$lib/utils.js';
 
 	let { children } = $props();
@@ -15,48 +17,44 @@
 	function isActive(href: string) {
 		return page.url.pathname === href;
 	}
+	const linkClass = (active: boolean) =>
+		cn(
+			'rounded-lg px-3 py-1.5 text-sm transition-colors',
+			active
+				? 'bg-accent font-semibold text-accent-foreground'
+				: 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+		);
 </script>
 
-<div class="mx-auto flex w-full max-w-6xl gap-10 px-5 py-10 sm:px-6">
-	<aside class="hidden w-56 shrink-0 lg:block">
-		<nav class="sticky top-24 flex max-h-[calc(100dvh-7rem)] flex-col gap-6 overflow-y-auto pb-10">
+<div class="mx-auto flex w-full max-w-6xl gap-8 px-5 py-10 sm:px-6">
+	<aside
+		class="sticky top-16 hidden h-[calc(100dvh-4rem)] w-56 shrink-0 overflow-y-auto py-8 lg:block [overscroll-behavior:contain] [scrollbar-gutter:stable]"
+	>
+		<nav class="flex flex-col gap-6">
 			<div class="flex flex-col gap-1">
 				<p class="px-3 pb-1 text-xs font-bold tracking-wide text-muted-foreground uppercase">
 					Getting Started
 				</p>
-				{#each gettingStarted as link}
-					<a
-						href={link.href}
-						class={cn(
-							'rounded-lg px-3 py-1.5 text-sm transition-colors',
-							isActive(link.href)
-								? 'bg-accent font-semibold text-accent-foreground'
-								: 'text-muted-foreground hover:bg-secondary hover:text-foreground'
-						)}
-					>
-						{link.label}
-					</a>
+				{#each gettingStarted as link (link.href)}
+					<a href={link.href} class={linkClass(isActive(link.href))}>{link.label}</a>
 				{/each}
 			</div>
 
-			{#each groups as group}
+			<div class="flex flex-col gap-1">
+				<p class="px-3 pb-1 text-xs font-bold tracking-wide text-muted-foreground uppercase">
+					Components
+				</p>
+				<a href="/docs/components" class={linkClass(isActive('/docs/components'))}>Overview</a>
+			</div>
+
+			{#each groups as group (group.category)}
 				<div class="flex flex-col gap-1">
 					<p class="px-3 pb-1 text-xs font-bold tracking-wide text-muted-foreground uppercase">
 						{group.category}
 					</p>
-					{#each group.items as item}
+					{#each group.items as item (item.slug)}
 						{@const href = `/docs/components/${item.slug}`}
-						<a
-							{href}
-							class={cn(
-								'rounded-lg px-3 py-1.5 text-sm transition-colors',
-								isActive(href)
-									? 'bg-accent font-semibold text-accent-foreground'
-									: 'text-muted-foreground hover:bg-secondary hover:text-foreground'
-							)}
-						>
-							{item.name}
-						</a>
+						<a {href} class={linkClass(isActive(href))}>{item.name}</a>
 					{/each}
 				</div>
 			{/each}
@@ -64,6 +62,13 @@
 	</aside>
 
 	<main class="min-w-0 flex-1 pb-16">
-		{@render children()}
+		<div id="doc-content">
+			{@render children()}
+		</div>
+		<DocsPager />
 	</main>
+
+	<aside class="hidden w-56 shrink-0 xl:block">
+		<TableOfContents />
+	</aside>
 </div>

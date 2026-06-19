@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+	ssr: { noExternal: ['phosphor-svelte'] },
 	plugins: [
 		tailwindcss(),
 		sveltekit({

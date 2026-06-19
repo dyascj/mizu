@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Moon, Sun } from '@lucide/svelte';
+	import Moon from 'phosphor-svelte/lib/Moon';
+	import Sun from 'phosphor-svelte/lib/Sun';
 	import { Button } from '$lib/components/ui/button';
 	import { toggleTheme } from '$lib/theme.svelte';
 </script>

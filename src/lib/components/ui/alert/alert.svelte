@@ -2,13 +2,13 @@
 	import { tv, type VariantProps } from 'tailwind-variants';
 
 	export const alertVariants = tv({
-		base: 'relative grid w-full grid-cols-[0_1fr] items-start gap-x-3 gap-y-1 overflow-hidden rounded-xl border px-4 py-3.5 text-sm shadow-bevel glass-strong has-[>svg]:grid-cols-[1.25rem_1fr] [&>svg]:size-5 [&>svg]:translate-y-0.5',
+		base: 'relative grid w-full grid-cols-[0_1fr] items-start gap-x-3 gap-y-1 rounded-xl border px-4 py-3.5 text-sm shadow-bevel has-[>svg]:grid-cols-[1.25rem_1fr] [&>svg]:size-5 [&>svg]:translate-y-0.5 [&>svg]:text-[color:var(--alert)] border-[color:color-mix(in_oklab,var(--alert)_32%,transparent)] bg-[image:linear-gradient(180deg,color-mix(in_oklab,var(--alert)_17%,var(--card))_0%,color-mix(in_oklab,var(--alert)_9%,var(--card))_100%)] text-[color:color-mix(in_oklab,var(--alert)_62%,var(--foreground))]',
 		variants: {
 			variant: {
-				info: 'border-info/30 text-foreground [&>svg]:text-[color:var(--info)]',
-				success: 'border-success/40 text-foreground [&>svg]:text-[color:var(--success)]',
-				warning: 'border-warning/40 text-foreground [&>svg]:text-[color:var(--warning)]',
-				destructive: 'border-destructive/40 text-destructive [&>svg]:text-destructive'
+				info: '[--alert:var(--info)]',
+				success: '[--alert:var(--success)]',
+				warning: '[--alert:var(--warning)]',
+				destructive: '[--alert:var(--destructive)]'
 			}
 		},
 		defaultVariants: { variant: 'info' }

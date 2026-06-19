@@ -1,0 +1,31 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "button-group",
+  "type": "registry:ui",
+  "title": "Button Group",
+  "description": "Buttons joined into one segmented control.",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "lib/components/ui/button-group/button-group-text.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/button-group/button-group-text.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLSpanElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<span\n\tclass={cn(\n\t\t'inline-flex h-10 items-center border border-border bg-secondary px-3.5 text-sm font-medium text-secondary-foreground',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</span>\n"
+    },
+    {
+      "path": "lib/components/ui/button-group/button-group.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/button-group/button-group.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\trole=\"group\"\n\tclass={cn(\n\t\t'inline-flex items-center [&>*]:rounded-none [&>*:first-child]:rounded-l-xl [&>*:last-child]:rounded-r-xl [&>*:not(:first-child)]:-ml-px',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
+    },
+    {
+      "path": "lib/components/ui/button-group/index.ts",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/button-group/index.ts",
+      "content": "import Root from './button-group.svelte';\nimport Text from './button-group-text.svelte';\n\nexport {\n\tRoot,\n\tText,\n\t//\n\tRoot as ButtonGroup,\n\tText as ButtonGroupText\n};\n"
+    }
+  ]
+}

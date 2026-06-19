@@ -1,28 +1,70 @@
 <script lang="ts">
-	import { Droplet } from '@lucide/svelte';
-	import { Button } from '$lib/components/ui/button';
+	import Drop from 'phosphor-svelte/lib/Drop';
+	import MagnifyingGlass from 'phosphor-svelte/lib/MagnifyingGlass';
+	import Palette from 'phosphor-svelte/lib/Palette';
+	import { Button, buttonVariants } from '$lib/components/ui/button';
+	import { Kbd } from '$lib/components/ui/kbd';
+	import * as Popover from '$lib/components/ui/popover';
 	import ModeToggle from './mode-toggle.svelte';
+	import ThemeSwatches from './theme-swatches.svelte';
+	import CommandPalette from './command-palette.svelte';
+	import { search } from './search.svelte';
 	import { siteConfig } from './config';
+
+	const navLinks = [
+		{ href: '/docs', label: 'Docs' },
+		{ href: '/docs/components', label: 'Components' },
+		{ href: '/docs/theming', label: 'Themes' }
+	];
 </script>
 
-<header
-	class="sticky top-0 z-40 border-b border-[color:var(--glass-border)] glass-strong"
->
-	<div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-6">
-		<a href="/" class="group flex items-center gap-2.5">
-			<span
-				class="gradient-primary gloss relative inline-flex size-8 items-center justify-center overflow-hidden rounded-lg shadow-aqua"
-			>
-				<Droplet class="relative z-10 size-[1.1rem] text-white" />
-			</span>
-			<span class="font-display text-lg font-extrabold tracking-tight">{siteConfig.name}</span>
-		</a>
+<header class="sticky top-0 z-40 border-b border-[color:var(--glass-border)] glass-strong">
+	<div class="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 sm:px-6">
+		<!-- Left: logo + nav -->
+		<div class="flex items-center gap-6">
+			<a href="/" class="flex items-center gap-2.5">
+				<span
+					class="gradient-primary gloss relative inline-flex size-8 items-center justify-center overflow-hidden rounded-lg shadow-aqua"
+				>
+					<Drop class="relative z-10 size-[1.1rem] text-white" />
+				</span>
+				<span class="font-display text-lg font-extrabold tracking-tight">{siteConfig.name}</span>
+			</a>
+			<nav class="hidden items-center gap-5 md:flex">
+				{#each navLinks as l (l.href)}
+					<a
+						href={l.href}
+						class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+					>
+						{l.label}
+					</a>
+				{/each}
+			</nav>
+		</div>
 
-		<nav class="flex items-center gap-1">
-			<Button href="/docs" variant="ghost" size="sm" class="hidden sm:inline-flex">Docs</Button>
-			<Button href="/docs/components/button" variant="ghost" size="sm" class="hidden sm:inline-flex">
-				Components
-			</Button>
+		<!-- Right: search + theme + repo -->
+		<div class="ml-auto flex items-center gap-1.5">
+			<button
+				onclick={() => (search.open = true)}
+				aria-label="Search"
+				class="inline-flex items-center gap-2 rounded-xl border border-input bg-card/60 px-2.5 py-1.5 text-sm text-muted-foreground shadow-pressed transition-colors hover:text-foreground sm:w-48 sm:px-3"
+			>
+				<MagnifyingGlass class="size-4 shrink-0" />
+				<span class="hidden flex-1 text-left sm:inline">Search…</span>
+				<Kbd class="hidden sm:inline-flex">⌘K</Kbd>
+			</button>
+			<Popover.Root>
+				<Popover.Trigger
+					class={buttonVariants({ variant: 'ghost', size: 'icon' })}
+					aria-label="Accent color"
+				>
+					<Palette class="size-5" />
+				</Popover.Trigger>
+				<Popover.Content class="w-auto">
+					<p class="mb-2.5 text-xs font-semibold text-muted-foreground">Accent color</p>
+					<ThemeSwatches class="max-w-[12rem]" />
+				</Popover.Content>
+			</Popover.Root>
 			<Button
 				href={siteConfig.repo}
 				target="_blank"
@@ -38,6 +80,8 @@
 				</svg>
 			</Button>
 			<ModeToggle />
-		</nav>
+		</div>
 	</div>
 </header>
+
+<CommandPalette />

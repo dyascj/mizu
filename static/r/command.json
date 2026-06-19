@@ -1,0 +1,77 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "command",
+  "type": "registry:ui",
+  "title": "Command",
+  "description": "A searchable command palette.",
+  "dependencies": [
+    "@lucide/svelte",
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "dialog",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "lib/components/ui/command/command-dialog.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/command/command-dialog.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport * as Dialog from '$lib/components/ui/dialog';\n\timport Command from './command.svelte';\n\n\tlet {\n\t\topen = $bindable(false),\n\t\tvalue = $bindable(''),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CommandPrimitive.RootProps> & {\n\t\topen?: boolean;\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<Dialog.Root {open} onOpenChange={(o) => (open = o)}>\n\t<Dialog.Content class=\"max-w-xl overflow-hidden p-0\">\n\t\t<Command bind:value class={className} {...restProps}>\n\t\t\t{@render children?.()}\n\t\t</Command>\n\t</Dialog.Content>\n</Dialog.Root>\n"
+    },
+    {
+      "path": "lib/components/ui/command/command-empty.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/command/command-empty.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CommandPrimitive.EmptyProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<CommandPrimitive.Empty\n\tbind:ref\n\tclass={cn('py-6 text-center text-sm text-muted-foreground', className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</CommandPrimitive.Empty>\n"
+    },
+    {
+      "path": "lib/components/ui/command/command-group.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/command/command-group.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\theading,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CommandPrimitive.GroupProps> & {\n\t\tclass?: string;\n\t\theading?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<CommandPrimitive.Group bind:ref class={cn('overflow-hidden', className)} {...restProps}>\n\t{#if heading}\n\t\t<CommandPrimitive.GroupHeading class=\"px-2 py-1.5 text-xs font-semibold text-muted-foreground\">\n\t\t\t{heading}\n\t\t</CommandPrimitive.GroupHeading>\n\t{/if}\n\t<CommandPrimitive.GroupItems>\n\t\t{@render children?.()}\n\t</CommandPrimitive.GroupItems>\n</CommandPrimitive.Group>\n"
+    },
+    {
+      "path": "lib/components/ui/command/command-input.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/command/command-input.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport Search from '@lucide/svelte/icons/search';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(''),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CommandPrimitive.InputProps> & {\n\t\tclass?: string;\n\t} = $props();\n</script>\n\n<div class=\"flex items-center gap-2 border-b border-border px-3\">\n\t<Search class=\"size-4 shrink-0 text-muted-foreground\" />\n\t<CommandPrimitive.Input\n\t\tbind:ref\n\t\tbind:value\n\t\tclass={cn(\n\t\t\t'h-11 w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</div>\n"
+    },
+    {
+      "path": "lib/components/ui/command/command-item.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/command/command-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CommandPrimitive.ItemProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<CommandPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\t'flex cursor-pointer items-center gap-2 rounded-lg px-2 py-2 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</CommandPrimitive.Item>\n"
+    },
+    {
+      "path": "lib/components/ui/command/command-list.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/command/command-list.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CommandPrimitive.ListProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<CommandPrimitive.List\n\tbind:ref\n\tclass={cn('max-h-80 overflow-y-auto p-1', className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</CommandPrimitive.List>\n"
+    },
+    {
+      "path": "lib/components/ui/command/command-separator.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/command/command-separator.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CommandPrimitive.SeparatorProps & { class?: string } = $props();\n</script>\n\n<CommandPrimitive.Separator\n\tbind:ref\n\tclass={cn('-mx-1 my-1 h-px bg-border', className)}\n\t{...restProps}\n/>\n"
+    },
+    {
+      "path": "lib/components/ui/command/command-shortcut.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/command/command-shortcut.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: HTMLAttributes<HTMLSpanElement> & { class?: string; children: Snippet } = $props();\n</script>\n\n<span\n\tclass={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n"
+    },
+    {
+      "path": "lib/components/ui/command/command.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/command/command.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(''),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CommandPrimitive.RootProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<CommandPrimitive.Root\n\tbind:ref\n\tbind:value\n\tclass={cn(\n\t\t'flex h-full w-full flex-col overflow-hidden rounded-xl glass-strong text-popover-foreground',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</CommandPrimitive.Root>\n"
+    },
+    {
+      "path": "lib/components/ui/command/index.ts",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/command/index.ts",
+      "content": "import Root from './command.svelte';\nimport Input from './command-input.svelte';\nimport List from './command-list.svelte';\nimport Empty from './command-empty.svelte';\nimport Group from './command-group.svelte';\nimport Item from './command-item.svelte';\nimport Separator from './command-separator.svelte';\nimport Shortcut from './command-shortcut.svelte';\nimport Dialog from './command-dialog.svelte';\n\nexport {\n\tRoot,\n\tInput,\n\tList,\n\tEmpty,\n\tGroup,\n\tItem,\n\tSeparator,\n\tShortcut,\n\tDialog,\n\t//\n\tRoot as Command,\n\tInput as CommandInput,\n\tList as CommandList,\n\tEmpty as CommandEmpty,\n\tGroup as CommandGroup,\n\tItem as CommandItem,\n\tSeparator as CommandSeparator,\n\tShortcut as CommandShortcut,\n\tDialog as CommandDialog\n};\n"
+    }
+  ]
+}

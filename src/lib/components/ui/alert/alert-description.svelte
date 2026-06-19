@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class={cn('col-start-2 text-sm text-muted-foreground [&_p]:leading-relaxed', className)}
+	class={cn('col-start-2 text-sm opacity-90 [&_p]:leading-relaxed', className)}
 	{...rest}
 >
 	{@render children?.()}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "pagination",
+  "type": "registry:ui",
+  "title": "Pagination",
+  "description": "Page-by-page navigation controls.",
+  "dependencies": [
+    "@lucide/svelte",
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "lib/components/ui/pagination/index.ts",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/pagination/index.ts",
+      "content": "import Root from './pagination.svelte';\nimport Content from './pagination-content.svelte';\nimport Item from './pagination-item.svelte';\nimport Page from './pagination-page.svelte';\nimport PrevButton from './pagination-prev-button.svelte';\nimport NextButton from './pagination-next-button.svelte';\nimport Ellipsis from './pagination-ellipsis.svelte';\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tPage,\n\tPrevButton,\n\tNextButton,\n\tEllipsis,\n\t//\n\tRoot as Pagination,\n\tContent as PaginationContent,\n\tItem as PaginationItem,\n\tPage as PaginationPage,\n\tPrevButton as PaginationPrevButton,\n\tNextButton as PaginationNextButton,\n\tEllipsis as PaginationEllipsis\n};\n"
+    },
+    {
+      "path": "lib/components/ui/pagination/pagination-content.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/pagination/pagination-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: HTMLAttributes<HTMLUListElement> & {\n\t\tref?: HTMLUListElement | null;\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<ul bind:this={ref} class={cn('flex flex-row items-center gap-1', className)} {...restProps}>\n\t{@render children?.()}\n</ul>\n"
+    },
+    {
+      "path": "lib/components/ui/pagination/pagination-ellipsis.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/pagination/pagination-ellipsis.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { Ellipsis } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: HTMLAttributes<HTMLSpanElement> & {\n\t\tref?: HTMLSpanElement | null;\n\t\tclass?: string;\n\t} = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\taria-hidden=\"true\"\n\tclass={cn('flex size-9 items-center justify-center text-muted-foreground', className)}\n\t{...restProps}\n>\n\t<Ellipsis class=\"size-4\" />\n\t<span class=\"sr-only\">More pages</span>\n</span>\n"
+    },
+    {
+      "path": "lib/components/ui/pagination/pagination-item.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/pagination/pagination-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLLiAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: HTMLLiAttributes & {\n\t\tref?: HTMLLIElement | null;\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<li bind:this={ref} class={cn('', className)} {...restProps}>\n\t{@render children?.()}\n</li>\n"
+    },
+    {
+      "path": "lib/components/ui/pagination/pagination-next-button.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/pagination/pagination-next-button.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive, type WithoutChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { ChevronRight } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChild<PaginationPrimitive.NextButtonProps> & {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<PaginationPrimitive.NextButton\n\tbind:ref\n\tclass={cn(\n\t\t'relative inline-flex h-9 shrink-0 select-none items-center justify-center gap-1 overflow-hidden rounded-lg border border-input bg-transparent px-3 text-sm font-semibold text-foreground outline-none transition-[background-color,scale] duration-150 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{:else}\n\t\t<span>Next</span>\n\t\t<ChevronRight class=\"size-4\" aria-hidden=\"true\" />\n\t{/if}\n</PaginationPrimitive.NextButton>\n"
+    },
+    {
+      "path": "lib/components/ui/pagination/pagination-page.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/pagination/pagination-page.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tpage,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChild<PaginationPrimitive.PageProps> & { class?: string } = $props();\n</script>\n\n<PaginationPrimitive.Page\n\tbind:ref\n\t{page}\n\tclass={cn(\n\t\t'relative inline-flex size-9 shrink-0 select-none items-center justify-center overflow-hidden rounded-lg border border-input bg-transparent text-sm font-semibold text-foreground outline-none transition-[background-color,scale,box-shadow] duration-150 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96]',\n\t\t'data-[selected]:gradient-primary data-[selected]:gloss data-[selected]:border-transparent data-[selected]:text-primary-foreground data-[selected]:shadow-aqua data-[selected]:hover:gradient-primary-hover',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t<span class=\"relative z-10\">{@render children()}</span>\n\t{:else}\n\t\t<span class=\"relative z-10\">{page.value}</span>\n\t{/if}\n</PaginationPrimitive.Page>\n"
+    },
+    {
+      "path": "lib/components/ui/pagination/pagination-prev-button.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/pagination/pagination-prev-button.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive, type WithoutChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { ChevronLeft } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChild<PaginationPrimitive.PrevButtonProps> & {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<PaginationPrimitive.PrevButton\n\tbind:ref\n\tclass={cn(\n\t\t'relative inline-flex h-9 shrink-0 select-none items-center justify-center gap-1 overflow-hidden rounded-lg border border-input bg-transparent px-3 text-sm font-semibold text-foreground outline-none transition-[background-color,scale] duration-150 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{:else}\n\t\t<ChevronLeft class=\"size-4\" aria-hidden=\"true\" />\n\t\t<span>Previous</span>\n\t{/if}\n</PaginationPrimitive.PrevButton>\n"
+    },
+    {
+      "path": "lib/components/ui/pagination/pagination.svelte",
+      "type": "registry:ui",
+      "target": "src/lib/components/ui/pagination/pagination.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tpage = $bindable(1),\n\t\tclass: className,\n\t\t...restProps\n\t}: PaginationPrimitive.RootProps & { class?: string } = $props();\n</script>\n\n<PaginationPrimitive.Root\n\tbind:ref\n\tbind:page\n\tclass={cn('mx-auto flex w-full flex-col items-center gap-3', className)}\n\t{...restProps}\n/>\n"
+    }
+  ]
+}

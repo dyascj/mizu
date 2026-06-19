@@ -16,27 +16,27 @@
 ---------------------------------------------------------------------------- */
 :root {
 	/* Surfaces */
-	--background: #e9f2f8;
-	--foreground: #14303f;
+	--background: #f6f6f7;
+	--foreground: #18181b;
 
 	--card: #ffffff;
-	--card-foreground: #14303f;
+	--card-foreground: #18181b;
 
 	--popover: #ffffff;
-	--popover-foreground: #14303f;
+	--popover-foreground: #18181b;
 
-	--muted: #d8e7f1;
-	--muted-foreground: #587688;
+	--muted: #ececef;
+	--muted-foreground: #6a6a73;
 
 	/* Brand + intents */
 	--primary: #01b2ff;
 	--primary-foreground: #ffffff;
 
-	--secondary: #eaf3f9;
-	--secondary-foreground: #1d3c4d;
+	--secondary: #f1f1f3;
+	--secondary-foreground: #27272a;
 
-	--accent: #d6f1ff;
-	--accent-foreground: #075985;
+	--accent: #ededf0;
+	--accent-foreground: #18181b;
 
 	--success: #22c55e;
 	--success-foreground: #052e16;
@@ -48,9 +48,9 @@
 	--info-foreground: #ffffff;
 
 	/* Lines + focus */
-	--border: #c3d9e7;
-	--input: #bcd3e3;
-	--ring: #38bdf8;
+	--border: #e4e4e7;
+	--input: #d6d6db;
+	--ring: var(--primary);
 
 	/* Glass material */
 	--glass: rgba(255, 255, 255, 0.6);
@@ -60,16 +60,31 @@
 	--sheen: rgba(255, 255, 255, 0.55);
 
 	/* Glossy gradients */
-	--gradient-primary: linear-gradient(180deg, #5cd5ff 0%, #01b2ff 48%, #0090d9 100%);
-	--gradient-primary-hover: linear-gradient(180deg, #7ee0ff 0%, #18bcff 48%, #00a0ef 100%);
-	--gradient-surface: linear-gradient(180deg, #ffffff 0%, #eef5fa 100%);
-	--gradient-surface-hover: linear-gradient(180deg, #ffffff 0%, #e3eef7 100%);
+	/* Derived from --primary so the whole brand recolors from one token. */
+	--gradient-primary: linear-gradient(
+		180deg,
+		color-mix(in oklab, var(--primary) 58%, #ffffff) 0%,
+		var(--primary) 50%,
+		color-mix(in oklab, var(--primary) 80%, #000000) 100%
+	);
+	--gradient-primary-hover: linear-gradient(
+		180deg,
+		color-mix(in oklab, var(--primary) 44%, #ffffff) 0%,
+		color-mix(in oklab, var(--primary) 92%, #ffffff) 50%,
+		var(--primary) 100%
+	);
+	--gradient-surface: linear-gradient(180deg, #ffffff 0%, #f0f0f2 100%);
+	--gradient-surface-hover: linear-gradient(180deg, #ffffff 0%, #e9e9ec 100%);
 	--gradient-destructive: linear-gradient(180deg, #ff8a8a 0%, #ef4444 50%, #dc2626 100%);
 	--gradient-success: linear-gradient(180deg, #69e58c 0%, #22c55e 50%, #16a34a 100%);
+	/* Neutral light base with only a whisper of the accent up top (no fixed blue). */
 	--gradient-page:
-		radial-gradient(115% 80% at 50% -8%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 56%),
-		radial-gradient(90% 70% at 50% 116%, rgba(120, 213, 255, 0.4) 0%, rgba(120, 213, 255, 0) 60%),
-		linear-gradient(180deg, #eaf4fb 0%, #dceefa 100%);
+		radial-gradient(
+			115% 75% at 50% -10%,
+			color-mix(in oklab, var(--primary) 6%, transparent) 0%,
+			transparent 55%
+		),
+		linear-gradient(180deg, #fafafb 0%, #f1f1f3 100%);
 
 	/* Elevation — layered, transparent, background-adaptive (shadows over borders) */
 	--elevation-bevel:
@@ -85,40 +100,40 @@
 		0 30px 60px -24px rgba(13, 42, 61, 0.35);
 	--elevation-aqua:
 		inset 0 1px 0 rgba(255, 255, 255, 0.5),
-		0 4px 12px rgba(1, 178, 255, 0.35),
+		0 4px 12px color-mix(in srgb, var(--primary) 36%, transparent),
 		0 2px 4px rgba(13, 42, 61, 0.12);
 	--elevation-aqua-lg:
 		inset 0 1px 0 rgba(255, 255, 255, 0.6),
-		0 6px 18px rgba(1, 178, 255, 0.45),
+		0 6px 18px color-mix(in srgb, var(--primary) 46%, transparent),
 		0 3px 6px rgba(13, 42, 61, 0.14);
 	--elevation-pressed: inset 0 2px 5px rgba(13, 42, 61, 0.16);
-	--elevation-glow: 0 0 22px rgba(1, 178, 255, 0.45);
+	--elevation-glow: 0 0 22px color-mix(in srgb, var(--primary) 45%, transparent);
 }
 
 /* ----------------------------------------------------------------------------
    Semantic tokens — dark ("deep water", not pure black)
 ---------------------------------------------------------------------------- */
 .dark {
-	--background: #061520;
-	--foreground: #e3f1fa;
+	--background: #0a0a0a;
+	--foreground: #fafafa;
 
-	--card: #0c2030;
-	--card-foreground: #e3f1fa;
+	--card: #171717;
+	--card-foreground: #fafafa;
 
-	--popover: #0c2030;
-	--popover-foreground: #e3f1fa;
+	--popover: #1c1c1c;
+	--popover-foreground: #fafafa;
 
-	--muted: #13293a;
-	--muted-foreground: #87a8bd;
+	--muted: #262626;
+	--muted-foreground: #a3a3a3;
 
 	--primary: #29c7ff;
 	--primary-foreground: #03283a;
 
-	--secondary: #14293b;
-	--secondary-foreground: #d2e9f6;
+	--secondary: #262626;
+	--secondary-foreground: #fafafa;
 
-	--accent: #0e3a52;
-	--accent-foreground: #bdebff;
+	--accent: #2a2a2a;
+	--accent-foreground: #fafafa;
 
 	--success: #34d27e;
 	--success-foreground: #052e16;
@@ -129,25 +144,24 @@
 	--info: #60a5fa;
 	--info-foreground: #06203f;
 
-	--border: #1f3b4f;
-	--input: #244257;
-	--ring: #38bdf8;
+	--border: #2a2a2a;
+	--input: #333333;
+	--ring: var(--primary);
 
-	--glass: rgba(12, 28, 42, 0.6);
-	--glass-strong: rgba(12, 28, 42, 0.82);
-	--glass-border: rgba(255, 255, 255, 0.1);
-	--sheen: rgba(255, 255, 255, 0.16);
+	--glass: rgba(23, 23, 23, 0.62);
+	--glass-strong: rgba(23, 23, 23, 0.84);
+	--glass-border: rgba(255, 255, 255, 0.08);
+	--sheen: rgba(255, 255, 255, 0.14);
 
-	--gradient-primary: linear-gradient(180deg, #56d7ff 0%, #1ab6f5 48%, #0497d6 100%);
-	--gradient-primary-hover: linear-gradient(180deg, #79e2ff 0%, #2ec2ff 48%, #10a6e6 100%);
-	--gradient-surface: linear-gradient(180deg, #163148 0%, #0c2030 100%);
-	--gradient-surface-hover: linear-gradient(180deg, #1b3a54 0%, #102739 100%);
+	/* gradient-primary + hover derive from --primary (defined once in :root). */
+	--gradient-surface: linear-gradient(180deg, #2a2a2a 0%, #171717 100%);
+	--gradient-surface-hover: linear-gradient(180deg, #333333 0%, #1f1f1f 100%);
 	--gradient-destructive: linear-gradient(180deg, #fb8585 0%, #ef4444 50%, #c62f2f 100%);
 	--gradient-success: linear-gradient(180deg, #5be08a 0%, #22c55e 50%, #15873f 100%);
 	--gradient-page:
-		radial-gradient(115% 80% at 50% -8%, rgba(41, 199, 255, 0.14) 0%, rgba(41, 199, 255, 0) 56%),
-		radial-gradient(90% 70% at 50% 116%, rgba(3, 105, 161, 0.4) 0%, rgba(3, 105, 161, 0) 60%),
-		linear-gradient(180deg, #07182400 0%, #030f18 100%), linear-gradient(180deg, #061520, #03101a);
+		radial-gradient(115% 80% at 50% -8%, rgba(41, 199, 255, 0.1) 0%, rgba(41, 199, 255, 0) 55%),
+		radial-gradient(90% 70% at 50% 118%, rgba(41, 199, 255, 0.05) 0%, rgba(41, 199, 255, 0) 60%),
+		linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
 
 	--elevation-bevel:
 		0 1px 2px rgba(0, 0, 0, 0.45),
@@ -162,14 +176,14 @@
 		0 30px 60px -24px rgba(0, 0, 0, 0.8);
 	--elevation-aqua:
 		inset 0 1px 0 rgba(255, 255, 255, 0.25),
-		0 4px 12px rgba(1, 178, 255, 0.4),
+		0 4px 12px color-mix(in srgb, var(--primary) 42%, transparent),
 		0 2px 4px rgba(0, 0, 0, 0.4);
 	--elevation-aqua-lg:
 		inset 0 1px 0 rgba(255, 255, 255, 0.3),
-		0 6px 18px rgba(1, 178, 255, 0.5),
+		0 6px 18px color-mix(in srgb, var(--primary) 52%, transparent),
 		0 3px 6px rgba(0, 0, 0, 0.45);
 	--elevation-pressed: inset 0 2px 5px rgba(0, 0, 0, 0.55);
-	--elevation-glow: 0 0 22px rgba(41, 199, 255, 0.5);
+	--elevation-glow: 0 0 22px color-mix(in srgb, var(--primary) 50%, transparent);
 }
 
 /* ----------------------------------------------------------------------------
@@ -309,11 +323,15 @@
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizeLegibility;
 		color-scheme: light dark;
-		scroll-behavior: smooth;
+		/* App-shell: scrolling happens in a nested container (see +layout.svelte) so
+		   overscroll-behavior actually stops the rubber-band bounce in every browser. */
+		height: 100%;
+		overscroll-behavior: none;
 	}
 
 	body {
-		min-height: 100dvh;
+		height: 100%;
+		overflow: hidden;
 		background-color: var(--background);
 		color: var(--foreground);
 		font-family: var(--font-sans);
@@ -338,6 +356,7 @@
 		font-family: var(--font-display);
 		text-wrap: balance;
 		letter-spacing: -0.01em;
+		scroll-margin-top: 5.5rem;
 	}
 
 	p {

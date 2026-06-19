@@ -20,6 +20,12 @@
 						t === 'dark' ||
 						(t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 					document.documentElement.classList.toggle('dark', dark);
+					const accents = { Sky: '#3b82f6', Violet: '#8b5cf6', Pink: '#ec4899', Rose: '#f43f5e', Sunset: '#f97316', Leaf: '#22c55e', Teal: '#14b8a6' };
+					const a = localStorage.getItem('mizu-accent');
+					if (a && accents[a]) {
+						document.documentElement.style.setProperty('--primary', accents[a]);
+						document.documentElement.style.setProperty('--primary-foreground', '#ffffff');
+					}
 				} catch (e) {}
 			})();
 		</script>

@@ -23,6 +23,7 @@
 				'relative flex min-h-60 flex-wrap items-center gap-5 overflow-hidden rounded-2xl border border-[color:var(--glass-border)] glass p-8',
 				center && 'justify-center'
 			)}
+			data-no-toc
 		>
 			{@render children()}
 		</div>
