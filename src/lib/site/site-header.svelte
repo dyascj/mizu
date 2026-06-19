@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Drop from 'phosphor-svelte/lib/Drop';
 	import MagnifyingGlass from 'phosphor-svelte/lib/MagnifyingGlass';
+	import MizuLogo from './mizu-logo.svelte';
 	import Palette from 'phosphor-svelte/lib/Palette';
 	import { Button, buttonVariants } from '$lib/components/ui/button';
 	import { Kbd } from '$lib/components/ui/kbd';
@@ -23,11 +23,9 @@
 		<!-- Left: logo + nav -->
 		<div class="flex items-center gap-6">
 			<a href="/" class="flex items-center gap-2.5">
-				<span
-					class="gradient-primary gloss relative inline-flex size-8 items-center justify-center overflow-hidden rounded-lg shadow-aqua"
-				>
-					<Drop class="relative z-10 size-[1.1rem] text-white" />
-				</span>
+				<MizuLogo
+					class="size-8 drop-shadow-[0_2px_5px_color-mix(in_srgb,var(--primary)_35%,transparent)]"
+				/>
 				<span class="font-display text-lg font-extrabold tracking-tight">{siteConfig.name}</span>
 			</a>
 			<nav class="hidden items-center gap-5 md:flex">

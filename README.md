@@ -1,23 +1,34 @@
 <div align="center">
 
+<img src="./static/mizu-mark.svg" width="88" height="88" alt="Mizu logo" />
+
 # Mizu 水
 
 **A Frutiger Aero design system for Svelte.**
 
 Glossy, glassy, gorgeously rounded components for SvelteKit. The optimism of early-2000s UI, rebuilt for Svelte 5 and Tailwind v4. Copy in what you need.
 
+<p>
+	<img alt="Svelte 5" src="https://img.shields.io/badge/Svelte-5-FF3E00?logo=svelte&logoColor=white" />
+	<img alt="Tailwind CSS v4" src="https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white" />
+	<img alt="bits-ui" src="https://img.shields.io/badge/bits--ui-headless-0EA5E9" />
+	<img alt="50 components" src="https://img.shields.io/badge/components-50-01B2FF" />
+	<img alt="MIT" src="https://img.shields.io/badge/license-MIT-22C55E" />
+</p>
+
 </div>
 
 ---
 
-Mizu brings back the aesthetic of clear skies, water droplets, and wet glass: frosted surfaces, a real top sheen, layered light, bright aqua, and generous rounding, applied with restraint so it feels polished instead of busy. It is built the way [shadcn-svelte](https://www.shadcn-svelte.com) is: you do not install a black box, you copy the source into your project and own it.
+Mizu brings back the aesthetic of clear skies, water droplets, and wet glass: frosted surfaces, a real top sheen, layered light, and generous rounding, applied with restraint so it feels polished instead of busy. It ships the way [shadcn-svelte](https://www.shadcn-svelte.com) does. You do not install a black box, you copy the source into your project and own it.
 
 ## Highlights
 
 - **50 components**, from buttons and dialogs to a command palette, a blooming orb, and rising bubbles.
+- **Recolor the whole system from one token.** The gloss gradients, glow, focus ring, and logo all derive from `--primary`. Drop in an accent and everything updates live (try the swatches in the header).
 - **Physically honest.** Gloss, glass, and glow come from real CSS, never baked-in screenshots.
 - **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the glossy skin.
-- **Tailwind v4 tokens.** One theme file drives every surface, in a sunlit light mode and a deep-water dark mode.
+- **Light and deep water.** A clean neutral light theme and a neutral deep-dark theme, both with the aqua accent on top.
 - **Copy in, own it.** A shadcn-svelte-compatible registry, plus full source on every component page.
 
 ## Quick start
@@ -31,7 +42,7 @@ cd my-app
 npx sv add tailwindcss
 
 # 2. dependencies
-pnpm add bits-ui @lucide/svelte clsx tailwind-merge tailwind-variants
+pnpm add bits-ui phosphor-svelte clsx tailwind-merge tailwind-variants
 ```
 
 Add the `cn` helper at `src/lib/utils.ts`:
@@ -45,10 +56,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-Paste the Mizu token block into `src/app.css` after `@import 'tailwindcss';` (see the Theming page in the docs, or copy it from this repo's `src/app.css`). Then add components:
+Paste the Mizu token block into `src/app.css` after `@import 'tailwindcss';` (copy it from this repo's `src/app.css`, or see the Theming page in the docs). Then add components:
 
 ```bash
-# via the shadcn-svelte CLI from the Mizu registry
 npx shadcn-svelte@latest add https://mizu.dev/r/button.json
 ```
 
@@ -75,6 +85,18 @@ You can also open any component page in the docs and copy its source straight in
 </Card.Root>
 ```
 
+## Theming
+
+The brand is one token. Change `--primary` and the gloss gradients, glow, and focus ring follow, derived with `color-mix`:
+
+```css
+:root {
+	--primary: #01b2ff; /* aqua, the default */
+}
+```
+
+The site ships eight accent presets (Aqua, Sky, Violet, Pink, Rose, Sunset, Leaf, Teal) wired to a swatch switcher, and a light + dark mode driven entirely by CSS variables. Recolor without touching a single component.
+
 ## Components
 
 | Group | Components |
@@ -97,11 +119,11 @@ pnpm check            # type-check
 pnpm registry:build   # regenerate static/r/*.json from the component source
 ```
 
-The docs site lives in `src/routes`, the components in `src/lib/components/ui`, and the design tokens in `src/app.css`. The registry generator (`scripts/build-registry.mjs`) scans the components and emits the install JSON, so adding a component is: build it, list it in `src/lib/site/components.json`, write a demo in `src/lib/site/demos`, and re-run the build.
+The docs site lives in `src/routes`, components in `src/lib/components/ui`, the design tokens in `src/app.css`, and the site chrome (landing showcase, theming, command palette) in `src/lib/site`. To add a component: build it, list it in `src/lib/site/components.json`, write a demo in `src/lib/site/demos`, and re-run the registry build.
 
 ## Built with
 
-Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide. Inspired by shadcn-svelte and the Frutiger Aero era.
+Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Phosphor icons. Inspired by shadcn-svelte and HeroUI, and the Frutiger Aero era.
 
 ## License
 

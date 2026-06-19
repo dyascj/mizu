@@ -2,7 +2,6 @@
 	import '../app.css';
 	import { afterNavigate } from '$app/navigation';
 	import IconContext from 'phosphor-svelte/lib/IconContext';
-	import favicon from '$lib/assets/favicon.svg';
 	import SiteHeader from '$lib/site/site-header.svelte';
 
 	let { children } = $props();
@@ -18,7 +17,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href="/mizu-mark.svg" />
 </svelte:head>
 
 <IconContext values={{ weight: 'fill' }}>
