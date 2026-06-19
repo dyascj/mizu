@@ -10,51 +10,43 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/field/field-description.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/field/field-description.svelte",
+      "type": "registry:file",
+      "target": "field/field-description.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLParagraphElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<p class={cn('text-sm text-muted-foreground', className)} {...rest}>\n\t{@render children?.()}\n</p>\n"
     },
     {
-      "path": "lib/components/ui/field/field-error.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/field/field-error.svelte",
+      "type": "registry:file",
+      "target": "field/field-error.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLParagraphElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<p class={cn('text-sm text-[color:var(--destructive)]', className)} {...rest}>\n\t{@render children?.()}\n</p>\n"
     },
     {
-      "path": "lib/components/ui/field/field-group.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/field/field-group.svelte",
+      "type": "registry:file",
+      "target": "field/field-group.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn('flex flex-col gap-4', className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
     },
     {
-      "path": "lib/components/ui/field/field-label.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/field/field-label.svelte",
+      "type": "registry:file",
+      "target": "field/field-label.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLLabelAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLLabelAttributes & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<label class={cn('text-sm font-semibold', className)} {...rest}>\n\t{@render children?.()}\n</label>\n"
     },
     {
-      "path": "lib/components/ui/field/field-legend.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/field/field-legend.svelte",
+      "type": "registry:file",
+      "target": "field/field-legend.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLLegendElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<legend class={cn('font-display font-bold', className)} {...rest}>\n\t{@render children?.()}\n</legend>\n"
     },
     {
-      "path": "lib/components/ui/field/field-set.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/field/field-set.svelte",
+      "type": "registry:file",
+      "target": "field/field-set.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLFieldsetAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLFieldsetAttributes & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<fieldset class={cn('flex flex-col gap-4', className)} {...rest}>\n\t{@render children?.()}\n</fieldset>\n"
     },
     {
-      "path": "lib/components/ui/field/field.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/field/field.svelte",
+      "type": "registry:file",
+      "target": "field/field.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn('flex flex-col gap-1.5', className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
     },
     {
-      "path": "lib/components/ui/field/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/field/index.ts",
+      "type": "registry:file",
+      "target": "field/index.ts",
       "content": "import Root from './field.svelte';\nimport Label from './field-label.svelte';\nimport Description from './field-description.svelte';\nimport Error from './field-error.svelte';\nimport Group from './field-group.svelte';\nimport Set from './field-set.svelte';\nimport Legend from './field-legend.svelte';\n\nexport {\n\tRoot,\n\tLabel,\n\tDescription,\n\tError,\n\tGroup,\n\tSet,\n\tLegend,\n\t//\n\tRoot as Field,\n\tLabel as FieldLabel,\n\tDescription as FieldDescription,\n\tError as FieldError,\n\tGroup as FieldGroup,\n\tSet as FieldSet,\n\tLegend as FieldLegend\n};\n"
     }
   ]

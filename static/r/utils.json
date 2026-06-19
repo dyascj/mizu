@@ -11,9 +11,8 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "lib/utils.ts",
       "type": "registry:lib",
-      "target": "src/lib/utils.ts",
+      "target": "utils.ts",
       "content": "import { type ClassValue, clsx } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merge class names with Tailwind-aware conflict resolution.\n * The standard helper every Mizu component uses to compose `class` props.\n */\nexport function cn(...inputs: ClassValue[]) {\n\treturn twMerge(clsx(inputs));\n}\n\n/** Convenience alias for `T | null | undefined`. */\nexport type Maybe<T> = T | null | undefined;\n"
     }
   ]

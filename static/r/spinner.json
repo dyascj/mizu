@@ -10,15 +10,13 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/spinner/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/spinner/index.ts",
+      "type": "registry:file",
+      "target": "spinner/index.ts",
       "content": "export { default as Spinner } from './spinner.svelte';\n"
     },
     {
-      "path": "lib/components/ui/spinner/spinner.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/spinner/spinner.svelte",
+      "type": "registry:file",
+      "target": "spinner/spinner.svelte",
       "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tsize = 20,\n\t\tclass: className,\n\t\t...rest\n\t}: HTMLAttributes<HTMLDivElement> & { size?: number; class?: string } = $props();\n</script>\n\n<div role=\"status\" class={cn('inline-flex text-primary', className)} {...rest}>\n\t<svg\n\t\tclass=\"animate-spin\"\n\t\twidth={size}\n\t\theight={size}\n\t\tviewBox=\"0 0 24 24\"\n\t\tfill=\"none\"\n\t\txmlns=\"http://www.w3.org/2000/svg\"\n\t\taria-hidden=\"true\"\n\t>\n\t\t<circle class=\"opacity-20\" cx=\"12\" cy=\"12\" r=\"9\" stroke=\"currentColor\" stroke-width=\"3\" />\n\t\t<path class=\"stroke-current\" d=\"M21 12a9 9 0 0 0-9-9\" stroke-width=\"3\" stroke-linecap=\"round\" />\n\t</svg>\n\t<span class=\"sr-only\">Loading</span>\n</div>\n"
     }
   ]

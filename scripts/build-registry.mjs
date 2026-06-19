@@ -82,10 +82,10 @@ for (const c of meta) {
 			.filter((d) => d !== c.slug)
 			.sort()
 			.map(depUrl),
+		// `target` is relative to the project's `ui` alias (e.g. button/button.svelte).
 		files: relFiles.map((f, i) => ({
-			path: `lib/components/ui/${c.slug}/${f}`,
-			type: 'registry:ui',
-			target: `src/lib/components/ui/${c.slug}/${f}`,
+			type: 'registry:file',
+			target: `${c.slug}/${f}`,
 			content: contents[i]
 		}))
 	};
@@ -104,9 +104,8 @@ const utils = {
 	registryDependencies: [],
 	files: [
 		{
-			path: 'lib/utils.ts',
 			type: 'registry:lib',
-			target: 'src/lib/utils.ts',
+			target: 'utils.ts',
 			content: readFileSync(join(root, 'src/lib/utils.ts'), 'utf8')
 		}
 	]

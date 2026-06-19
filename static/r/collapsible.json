@@ -12,21 +12,18 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/collapsible/collapsible-content.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/collapsible/collapsible-content.svelte",
+      "type": "registry:file",
+      "target": "collapsible/collapsible-content.svelte",
       "content": "<script lang=\"ts\">\n\timport { Collapsible as CollapsiblePrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CollapsiblePrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<CollapsiblePrimitive.Content\n\tbind:ref\n\tclass=\"overflow-hidden text-sm transition-[height] duration-200 ease-out data-[state=closed]:h-0 data-[state=open]:h-[var(--bits-collapsible-content-height)]\"\n\t{...restProps}\n>\n\t<div class={cn('pt-2', className)}>\n\t\t{@render children?.()}\n\t</div>\n</CollapsiblePrimitive.Content>\n"
     },
     {
-      "path": "lib/components/ui/collapsible/collapsible-trigger.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/collapsible/collapsible-trigger.svelte",
+      "type": "registry:file",
+      "target": "collapsible/collapsible-trigger.svelte",
       "content": "<script lang=\"ts\">\n\timport { Collapsible as CollapsiblePrimitive } from 'bits-ui';\n\n\tlet { ref = $bindable(null), ...restProps }: CollapsiblePrimitive.TriggerProps = $props();\n</script>\n\n<CollapsiblePrimitive.Trigger bind:ref {...restProps} />\n"
     },
     {
-      "path": "lib/components/ui/collapsible/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/collapsible/index.ts",
+      "type": "registry:file",
+      "target": "collapsible/index.ts",
       "content": "import { Collapsible as CollapsiblePrimitive } from 'bits-ui';\nimport Trigger from './collapsible-trigger.svelte';\nimport Content from './collapsible-content.svelte';\n\nconst Root = CollapsiblePrimitive.Root;\n\nexport {\n\tRoot,\n\tTrigger,\n\tContent,\n\t//\n\tRoot as Collapsible,\n\tTrigger as CollapsibleTrigger,\n\tContent as CollapsibleContent\n};\n"
     }
   ]

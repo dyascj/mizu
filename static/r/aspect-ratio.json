@@ -10,15 +10,13 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "lib/components/ui/aspect-ratio/aspect-ratio.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/aspect-ratio/aspect-ratio.svelte",
+      "type": "registry:file",
+      "target": "aspect-ratio/aspect-ratio.svelte",
       "content": "<script lang=\"ts\">\n\timport { AspectRatio as AspectRatioPrimitive } from 'bits-ui';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tratio = 1,\n\t\tchildren,\n\t\t...restProps\n\t}: AspectRatioPrimitive.RootProps = $props();\n</script>\n\n<AspectRatioPrimitive.Root bind:ref {ratio} {...restProps}>\n\t{@render children?.()}\n</AspectRatioPrimitive.Root>\n"
     },
     {
-      "path": "lib/components/ui/aspect-ratio/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/aspect-ratio/index.ts",
+      "type": "registry:file",
+      "target": "aspect-ratio/index.ts",
       "content": "export { default as AspectRatio } from './aspect-ratio.svelte';\n"
     }
   ]

@@ -12,15 +12,13 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/button/button.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/button/button.svelte",
+      "type": "registry:file",
+      "target": "button/button.svelte",
       "content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from 'tailwind-variants';\n\n\texport const buttonVariants = tv({\n\t\tbase: 'relative inline-flex shrink-0 select-none items-center justify-center gap-2 overflow-hidden whitespace-nowrap font-semibold outline-none transition-[scale,box-shadow,filter] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50',\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tprimary:\n\t\t\t\t\t'gradient-primary gloss text-primary-foreground shadow-aqua hover:gradient-primary-hover hover:shadow-aqua-lg',\n\t\t\t\tsecondary:\n\t\t\t\t\t'gradient-surface gloss border border-border text-foreground shadow-bevel hover:gradient-surface-hover',\n\t\t\t\tdestructive: 'gradient-destructive gloss text-white shadow-bevel hover:brightness-[1.06]',\n\t\t\t\tsuccess: 'gradient-success gloss text-white shadow-bevel hover:brightness-[1.06]',\n\t\t\t\toutline: 'border border-input bg-transparent text-foreground hover:bg-secondary',\n\t\t\t\tghost: 'bg-transparent text-foreground hover:bg-secondary',\n\t\t\t\tlink: 'bg-transparent text-primary underline-offset-4 hover:underline'\n\t\t\t},\n\t\t\tsize: {\n\t\t\t\tsm: 'h-8 rounded-lg px-3 text-sm',\n\t\t\t\tmd: 'h-10 rounded-xl px-5 text-sm',\n\t\t\t\tlg: 'h-12 rounded-xl px-6 text-base',\n\t\t\t\ticon: 'size-10 rounded-xl'\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: { variant: 'primary', size: 'md' }\n\t});\n\n\texport type ButtonVariant = VariantProps<typeof buttonVariants>['variant'];\n\texport type ButtonSize = VariantProps<typeof buttonVariants>['size'];\n</script>\n\n<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = {\n\t\tvariant?: ButtonVariant;\n\t\tsize?: ButtonSize;\n\t\tclass?: string;\n\t\thref?: string;\n\t\tref?: HTMLElement | null;\n\t\tchildren?: Snippet;\n\t} & HTMLButtonAttributes &\n\t\tHTMLAnchorAttributes;\n\n\tlet {\n\t\tvariant = 'primary',\n\t\tsize = 'md',\n\t\tclass: className,\n\t\thref = undefined,\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...rest\n\t}: Props = $props();\n</script>\n\n{#if href}\n\t<a bind:this={ref} {href} class={cn(buttonVariants({ variant, size }), className)} {...rest}>\n\t\t<span class=\"relative z-10 inline-flex items-center gap-2\">{@render children?.()}</span>\n\t</a>\n{:else}\n\t<button bind:this={ref} class={cn(buttonVariants({ variant, size }), className)} {...rest}>\n\t\t<span class=\"relative z-10 inline-flex items-center gap-2\">{@render children?.()}</span>\n\t</button>\n{/if}\n"
     },
     {
-      "path": "lib/components/ui/button/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/button/index.ts",
+      "type": "registry:file",
+      "target": "button/index.ts",
       "content": "export { default as Button, buttonVariants } from './button.svelte';\nexport type { ButtonVariant, ButtonSize } from './button.svelte';\n"
     }
   ]

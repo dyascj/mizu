@@ -13,57 +13,48 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/navigation-menu/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/navigation-menu/index.ts",
+      "type": "registry:file",
+      "target": "navigation-menu/index.ts",
       "content": "import Root from './navigation-menu.svelte';\nimport List from './navigation-menu-list.svelte';\nimport Item from './navigation-menu-item.svelte';\nimport Trigger from './navigation-menu-trigger.svelte';\nimport Content from './navigation-menu-content.svelte';\nimport Link from './navigation-menu-link.svelte';\nimport Indicator from './navigation-menu-indicator.svelte';\nimport Viewport from './navigation-menu-viewport.svelte';\n\nexport {\n\tRoot,\n\tList,\n\tItem,\n\tTrigger,\n\tContent,\n\tLink,\n\tIndicator,\n\tViewport,\n\t//\n\tRoot as NavigationMenu,\n\tList as NavigationMenuList,\n\tItem as NavigationMenuItem,\n\tTrigger as NavigationMenuTrigger,\n\tContent as NavigationMenuContent,\n\tLink as NavigationMenuLink,\n\tIndicator as NavigationMenuIndicator,\n\tViewport as NavigationMenuViewport\n};\n"
     },
     {
-      "path": "lib/components/ui/navigation-menu/navigation-menu-content.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/navigation-menu/navigation-menu-content.svelte",
+      "type": "registry:file",
+      "target": "navigation-menu/navigation-menu-content.svelte",
       "content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<NavigationMenuPrimitive.ContentProps> & { class?: string } = $props();\n</script>\n\n<NavigationMenuPrimitive.Content\n\tbind:ref\n\tclass={cn(\n\t\t'glass-strong left-0 top-0 w-full rounded-xl border border-[color:var(--glass-border)] p-2 text-popover-foreground shadow-glass md:absolute md:w-auto',\n\t\t'transition-[opacity,transform] duration-200 ease-out',\n\t\t'data-[motion=from-start]:-translate-x-2 data-[motion=from-end]:translate-x-2 data-[motion=from-start]:opacity-0 data-[motion=from-end]:opacity-0',\n\t\t'data-[motion=to-start]:-translate-x-2 data-[motion=to-end]:translate-x-2 data-[motion=to-start]:opacity-0 data-[motion=to-end]:opacity-0',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
     },
     {
-      "path": "lib/components/ui/navigation-menu/navigation-menu-indicator.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/navigation-menu/navigation-menu-indicator.svelte",
+      "type": "registry:file",
+      "target": "navigation-menu/navigation-menu-indicator.svelte",
       "content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<NavigationMenuPrimitive.IndicatorProps> & { class?: string } = $props();\n</script>\n\n<NavigationMenuPrimitive.Indicator\n\tbind:ref\n\tclass={cn(\n\t\t'top-full z-[1] flex h-2 items-end justify-center overflow-hidden transition-[opacity,transform] duration-200 data-[state=hidden]:opacity-0 data-[state=visible]:opacity-100',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<div\n\t\tclass=\"relative top-[60%] size-2 rotate-45 rounded-tl-sm border border-[color:var(--glass-border)] glass-strong shadow-glass\"\n\t></div>\n</NavigationMenuPrimitive.Indicator>\n"
     },
     {
-      "path": "lib/components/ui/navigation-menu/navigation-menu-item.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/navigation-menu/navigation-menu-item.svelte",
+      "type": "registry:file",
+      "target": "navigation-menu/navigation-menu-item.svelte",
       "content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: NavigationMenuPrimitive.ItemProps & { class?: string } = $props();\n</script>\n\n<NavigationMenuPrimitive.Item bind:ref class={cn('relative', className)} {...restProps} />\n"
     },
     {
-      "path": "lib/components/ui/navigation-menu/navigation-menu-link.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/navigation-menu/navigation-menu-link.svelte",
+      "type": "registry:file",
+      "target": "navigation-menu/navigation-menu-link.svelte",
       "content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: NavigationMenuPrimitive.LinkProps & { class?: string } = $props();\n</script>\n\n<NavigationMenuPrimitive.Link\n\tbind:ref\n\tclass={cn(\n\t\t'block select-none space-y-1 rounded-lg p-3 text-sm leading-none no-underline outline-none transition-[background-color] duration-150 hover:bg-secondary focus-visible:bg-secondary data-[active]:bg-accent',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
     },
     {
-      "path": "lib/components/ui/navigation-menu/navigation-menu-list.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/navigation-menu/navigation-menu-list.svelte",
+      "type": "registry:file",
+      "target": "navigation-menu/navigation-menu-list.svelte",
       "content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<NavigationMenuPrimitive.ListProps> & { class?: string } = $props();\n</script>\n\n<NavigationMenuPrimitive.List\n\tbind:ref\n\tclass={cn('group flex flex-1 list-none items-center justify-center gap-1', className)}\n\t{...restProps}\n/>\n"
     },
     {
-      "path": "lib/components/ui/navigation-menu/navigation-menu-trigger.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/navigation-menu/navigation-menu-trigger.svelte",
+      "type": "registry:file",
+      "target": "navigation-menu/navigation-menu-trigger.svelte",
       "content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { ChevronDown } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<NavigationMenuPrimitive.TriggerProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<NavigationMenuPrimitive.Trigger\n\tbind:ref\n\tclass={cn(\n\t\t'group inline-flex h-9 w-max items-center justify-center gap-1 rounded-lg px-3 text-sm font-medium text-foreground outline-none transition-[background-color,scale] duration-150 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] data-[state=open]:bg-accent disabled:pointer-events-none disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\t<ChevronDown\n\t\tclass=\"relative top-px size-3.5 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180\"\n\t\taria-hidden=\"true\"\n\t/>\n</NavigationMenuPrimitive.Trigger>\n"
     },
     {
-      "path": "lib/components/ui/navigation-menu/navigation-menu-viewport.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/navigation-menu/navigation-menu-viewport.svelte",
+      "type": "registry:file",
+      "target": "navigation-menu/navigation-menu-viewport.svelte",
       "content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<NavigationMenuPrimitive.ViewportProps> & { class?: string } = $props();\n</script>\n\n<div class=\"absolute left-0 top-full isolate z-50 flex justify-center\">\n\t<NavigationMenuPrimitive.Viewport\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t'glass-strong relative mt-2 h-[var(--bits-navigation-menu-viewport-height)] w-full origin-top overflow-hidden rounded-xl border border-[color:var(--glass-border)] text-popover-foreground shadow-glass transition-[width,height] duration-200 ease-out md:w-[var(--bits-navigation-menu-viewport-width)]',\n\t\t\t'data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</div>\n"
     },
     {
-      "path": "lib/components/ui/navigation-menu/navigation-menu.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/navigation-menu/navigation-menu.svelte",
+      "type": "registry:file",
+      "target": "navigation-menu/navigation-menu.svelte",
       "content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive, type WithoutChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\timport Viewport from './navigation-menu-viewport.svelte';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(''),\n\t\tclass: className,\n\t\tviewport = true,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChild<NavigationMenuPrimitive.RootProps> & {\n\t\tclass?: string;\n\t\tviewport?: boolean;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<NavigationMenuPrimitive.Root\n\tbind:ref\n\tbind:value\n\tclass={cn('relative z-10 flex max-w-max flex-1 items-center justify-center', className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\t{#if viewport}\n\t\t<Viewport />\n\t{/if}\n</NavigationMenuPrimitive.Root>\n"
     }
   ]

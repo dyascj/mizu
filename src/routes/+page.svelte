@@ -70,7 +70,15 @@
 	>
 		<p>
 			<span class="font-display font-bold text-foreground">{siteConfig.name}</span>
-			{siteConfig.wordmark} · A Frutiger Aero design system for Svelte.
+			{siteConfig.wordmark} · A Frutiger Aero design system for Svelte. By
+			<a
+				href={siteConfig.authorUrl}
+				target="_blank"
+				rel="noreferrer"
+				class="font-medium text-foreground transition-colors hover:text-[color:var(--primary)]"
+			>
+				{siteConfig.author}
+			</a>.
 		</p>
 		<div class="flex items-center gap-5">
 			<a href="/docs" class="transition-colors hover:text-foreground">Docs</a>

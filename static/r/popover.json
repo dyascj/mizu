@@ -12,33 +12,28 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/popover/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/popover/index.ts",
+      "type": "registry:file",
+      "target": "popover/index.ts",
       "content": "import Root from './popover.svelte';\nimport Trigger from './popover-trigger.svelte';\nimport Content from './popover-content.svelte';\nimport Close from './popover-close.svelte';\n\nexport {\n\tRoot,\n\tTrigger,\n\tContent,\n\tClose,\n\t//\n\tRoot as Popover,\n\tTrigger as PopoverTrigger,\n\tContent as PopoverContent,\n\tClose as PopoverClose\n};\n"
     },
     {
-      "path": "lib/components/ui/popover/popover-close.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/popover/popover-close.svelte",
+      "type": "registry:file",
+      "target": "popover/popover-close.svelte",
       "content": "<script lang=\"ts\">\n\timport { Popover as PopoverPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<PopoverPrimitive.CloseProps> & { class?: string } = $props();\n</script>\n\n<PopoverPrimitive.Close bind:ref class={cn(className)} {...restProps} />\n"
     },
     {
-      "path": "lib/components/ui/popover/popover-content.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/popover/popover-content.svelte",
+      "type": "registry:file",
+      "target": "popover/popover-content.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { Popover as PopoverPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 8,\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<PopoverPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tportalProps?: PopoverPrimitive.PortalProps;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<PopoverPrimitive.Portal {...portalProps}>\n\t<PopoverPrimitive.Content\n\t\tbind:ref\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t'glass-strong z-50 w-72 rounded-xl border border-[color:var(--glass-border)] p-4 text-popover-foreground shadow-glass outline-none transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</PopoverPrimitive.Content>\n</PopoverPrimitive.Portal>\n"
     },
     {
-      "path": "lib/components/ui/popover/popover-trigger.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/popover/popover-trigger.svelte",
+      "type": "registry:file",
+      "target": "popover/popover-trigger.svelte",
       "content": "<script lang=\"ts\">\n\timport { Popover as PopoverPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<PopoverPrimitive.TriggerProps> & { class?: string } = $props();\n</script>\n\n<PopoverPrimitive.Trigger bind:ref class={cn(className)} {...restProps} />\n"
     },
     {
-      "path": "lib/components/ui/popover/popover.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/popover/popover.svelte",
+      "type": "registry:file",
+      "target": "popover/popover.svelte",
       "content": "<script lang=\"ts\">\n\timport { Popover as PopoverPrimitive } from 'bits-ui';\n\n\tlet { ...restProps }: PopoverPrimitive.RootProps = $props();\n</script>\n\n<PopoverPrimitive.Root {...restProps} />\n"
     }
   ]

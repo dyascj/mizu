@@ -10,45 +10,38 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/card/card-content.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/card/card-content.svelte",
+      "type": "registry:file",
+      "target": "card/card-content.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn('p-6 pt-0', className)} {...rest}>{@render children?.()}</div>\n"
     },
     {
-      "path": "lib/components/ui/card/card-description.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/card/card-description.svelte",
+      "type": "registry:file",
+      "target": "card/card-description.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLParagraphElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<p class={cn('text-sm text-muted-foreground', className)} {...rest}>{@render children?.()}</p>\n"
     },
     {
-      "path": "lib/components/ui/card/card-footer.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/card/card-footer.svelte",
+      "type": "registry:file",
+      "target": "card/card-footer.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn('flex items-center gap-3 p-6 pt-0', className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
     },
     {
-      "path": "lib/components/ui/card/card-header.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/card/card-header.svelte",
+      "type": "registry:file",
+      "target": "card/card-header.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn('flex flex-col gap-1.5 p-6', className)} {...rest}>{@render children?.()}</div>\n"
     },
     {
-      "path": "lib/components/ui/card/card-title.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/card/card-title.svelte",
+      "type": "registry:file",
+      "target": "card/card-title.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLHeadingElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<h3 class={cn('font-display text-lg leading-none font-bold tracking-tight', className)} {...rest}>\n\t{@render children?.()}\n</h3>\n"
     },
     {
-      "path": "lib/components/ui/card/card.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/card/card.svelte",
+      "type": "registry:file",
+      "target": "card/card.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\n\t\t'glass-strong gloss relative overflow-hidden rounded-2xl border border-[color:var(--glass-border)] text-card-foreground shadow-glass',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t<div class=\"relative z-10 flex flex-col\">{@render children?.()}</div>\n</div>\n"
     },
     {
-      "path": "lib/components/ui/card/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/card/index.ts",
+      "type": "registry:file",
+      "target": "card/index.ts",
       "content": "import Root from './card.svelte';\nimport Header from './card-header.svelte';\nimport Title from './card-title.svelte';\nimport Description from './card-description.svelte';\nimport Content from './card-content.svelte';\nimport Footer from './card-footer.svelte';\n\nexport {\n\tRoot,\n\tHeader,\n\tTitle,\n\tDescription,\n\tContent,\n\tFooter,\n\t//\n\tRoot as Card,\n\tHeader as CardHeader,\n\tTitle as CardTitle,\n\tDescription as CardDescription,\n\tContent as CardContent,\n\tFooter as CardFooter\n};\n"
     }
   ]

@@ -13,15 +13,13 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/toggle/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/toggle/index.ts",
+      "type": "registry:file",
+      "target": "toggle/index.ts",
       "content": "export { default as Toggle, toggleVariants } from './toggle.svelte';\nexport type { ToggleVariant, ToggleSize } from './toggle.svelte';\n"
     },
     {
-      "path": "lib/components/ui/toggle/toggle.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/toggle/toggle.svelte",
+      "type": "registry:file",
+      "target": "toggle/toggle.svelte",
       "content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from 'tailwind-variants';\n\n\texport const toggleVariants = tv({\n\t\tbase: 'relative inline-flex shrink-0 select-none items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-xl font-semibold text-foreground outline-none transition-[scale,background-color,box-shadow] duration-150 ease-out hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[state=on]:gradient-surface data-[state=on]:gloss data-[state=on]:shadow-bevel data-[state=on]:text-foreground',\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: 'bg-transparent',\n\t\t\t\toutline: 'border border-input bg-transparent'\n\t\t\t},\n\t\t\tsize: {\n\t\t\t\tsm: 'h-8 px-2.5 text-sm',\n\t\t\t\tmd: 'h-10 px-3 text-sm',\n\t\t\t\tlg: 'h-12 px-4 text-base'\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: { variant: 'default', size: 'md' }\n\t});\n\n\texport type ToggleVariant = VariantProps<typeof toggleVariants>['variant'];\n\texport type ToggleSize = VariantProps<typeof toggleVariants>['size'];\n</script>\n\n<script lang=\"ts\">\n\timport { Toggle as TogglePrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tpressed = $bindable(false),\n\t\tvariant = 'default',\n\t\tsize = 'md',\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TogglePrimitive.RootProps> & {\n\t\tvariant?: ToggleVariant;\n\t\tsize?: ToggleSize;\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<TogglePrimitive.Root\n\tbind:ref\n\tbind:pressed\n\tclass={cn(toggleVariants({ variant, size }), className)}\n\t{...restProps}\n>\n\t<span class=\"relative z-10 inline-flex items-center gap-2\">{@render children?.()}</span>\n</TogglePrimitive.Root>\n"
     }
   ]

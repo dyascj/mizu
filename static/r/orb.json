@@ -10,15 +10,13 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/orb/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/orb/index.ts",
+      "type": "registry:file",
+      "target": "orb/index.ts",
       "content": "export { default as Orb } from './orb.svelte';\n"
     },
     {
-      "path": "lib/components/ui/orb/orb.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/orb/orb.svelte",
+      "type": "registry:file",
+      "target": "orb/orb.svelte",
       "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {\n\t\tsize?: number;\n\t\tspin?: boolean;\n\t\tactive?: boolean;\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t};\n\n\tlet {\n\t\tsize = 280,\n\t\tspin = true,\n\t\tactive = true,\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...rest\n\t}: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\taria-hidden=\"true\"\n\tclass={cn(\n\t\t'pointer-events-none relative transition-transform duration-700 ease-out',\n\t\tactive ? 'scale-100' : 'scale-90 opacity-70',\n\t\tclassName\n\t)}\n\tstyle=\"width: {size}px; height: {size}px;\"\n\t{...rest}\n>\n\t<!-- rotating layer holding the offset blobs -->\n\t<div class=\"absolute inset-0\" class:mizu-orb-spin={spin}>\n\t\t<!-- base bloom -->\n\t\t<div\n\t\t\tclass=\"absolute inset-[8%] rounded-full bg-mizu-400 opacity-80 blur-2xl mix-blend-normal dark:mix-blend-screen\"\n\t\t></div>\n\t\t<!-- pulsing cyan blob A (offset up-left) -->\n\t\t<div\n\t\t\tclass=\"mizu-orb-pulse-a absolute top-[6%] left-[10%] h-[60%] w-[60%] rounded-full bg-mizu-300 blur-3xl mix-blend-normal dark:mix-blend-screen\"\n\t\t></div>\n\t\t<!-- pulsing cyan blob B (offset down-right) -->\n\t\t<div\n\t\t\tclass=\"mizu-orb-pulse-b absolute right-[8%] bottom-[8%] h-[55%] w-[55%] rounded-full bg-mizu-500 blur-3xl mix-blend-normal dark:mix-blend-screen\"\n\t\t></div>\n\t</div>\n\t<!-- crisp rim, not rotated so the highlight stays steady -->\n\t<div\n\t\tclass=\"absolute inset-[10%] rounded-full border border-white/30\"\n\t\tstyle=\"box-shadow: 0 0 60px rgba(1,178,255,0.7);\"\n\t></div>\n\t<!-- top wet highlight -->\n\t<div\n\t\tclass=\"absolute top-[14%] left-1/2 h-[26%] w-[40%] -translate-x-1/2 rounded-[50%] bg-white/40 blur-2xl\"\n\t></div>\n</div>\n\n<style>\n\t@keyframes spin-slow {\n\t\tfrom {\n\t\t\ttransform: rotate(0deg);\n\t\t}\n\t\tto {\n\t\t\ttransform: rotate(360deg);\n\t\t}\n\t}\n\n\t@keyframes orb-pulse-a {\n\t\t0%,\n\t\t100% {\n\t\t\ttransform: translate(0, 0) scale(1);\n\t\t\topacity: 0.55;\n\t\t}\n\t\t50% {\n\t\t\ttransform: translate(6%, 4%) scale(1.12);\n\t\t\topacity: 0.85;\n\t\t}\n\t}\n\n\t@keyframes orb-pulse-b {\n\t\t0%,\n\t\t100% {\n\t\t\ttransform: translate(0, 0) scale(1.08);\n\t\t\topacity: 0.7;\n\t\t}\n\t\t50% {\n\t\t\ttransform: translate(-5%, -6%) scale(0.95);\n\t\t\topacity: 0.4;\n\t\t}\n\t}\n\n\t.mizu-orb-spin {\n\t\tanimation: spin-slow 22s linear infinite;\n\t}\n\n\t.mizu-orb-pulse-a {\n\t\tanimation: orb-pulse-a 7s ease-in-out infinite;\n\t}\n\n\t.mizu-orb-pulse-b {\n\t\tanimation: orb-pulse-b 9s ease-in-out infinite;\n\t}\n</style>\n"
     }
   ]

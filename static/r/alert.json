@@ -12,27 +12,23 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/alert/alert-description.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/alert/alert-description.svelte",
+      "type": "registry:file",
+      "target": "alert/alert-description.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn('col-start-2 text-sm opacity-90 [&_p]:leading-relaxed', className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
     },
     {
-      "path": "lib/components/ui/alert/alert-title.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/alert/alert-title.svelte",
+      "type": "registry:file",
+      "target": "alert/alert-title.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn('col-start-2 font-semibold tracking-tight', className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
     },
     {
-      "path": "lib/components/ui/alert/alert.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/alert/alert.svelte",
+      "type": "registry:file",
+      "target": "alert/alert.svelte",
       "content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from 'tailwind-variants';\n\n\texport const alertVariants = tv({\n\t\tbase: 'relative grid w-full grid-cols-[0_1fr] items-start gap-x-3 gap-y-1 rounded-xl border px-4 py-3.5 text-sm shadow-bevel has-[>svg]:grid-cols-[1.25rem_1fr] [&>svg]:size-5 [&>svg]:translate-y-0.5 [&>svg]:text-[color:var(--alert)] border-[color:color-mix(in_oklab,var(--alert)_32%,transparent)] bg-[image:linear-gradient(180deg,color-mix(in_oklab,var(--alert)_17%,var(--card))_0%,color-mix(in_oklab,var(--alert)_9%,var(--card))_100%)] text-[color:color-mix(in_oklab,var(--alert)_62%,var(--foreground))]',\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tinfo: '[--alert:var(--info)]',\n\t\t\t\tsuccess: '[--alert:var(--success)]',\n\t\t\t\twarning: '[--alert:var(--warning)]',\n\t\t\t\tdestructive: '[--alert:var(--destructive)]'\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: { variant: 'info' }\n\t});\n\n\texport type AlertVariant = VariantProps<typeof alertVariants>['variant'];\n</script>\n\n<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tvariant?: AlertVariant;\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t};\n\tlet { variant = 'info', class: className, children, ...rest }: Props = $props();\n</script>\n\n<div role=\"alert\" class={cn(alertVariants({ variant }), className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
     },
     {
-      "path": "lib/components/ui/alert/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/alert/index.ts",
+      "type": "registry:file",
+      "target": "alert/index.ts",
       "content": "import Root from './alert.svelte';\nimport Title from './alert-title.svelte';\nimport Description from './alert-description.svelte';\n\nexport { alertVariants } from './alert.svelte';\nexport type { AlertVariant } from './alert.svelte';\n\nexport {\n\tRoot,\n\tTitle,\n\tDescription,\n\t//\n\tRoot as Alert,\n\tTitle as AlertTitle,\n\tDescription as AlertDescription\n};\n"
     }
   ]

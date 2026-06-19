@@ -10,21 +10,18 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/kbd/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/kbd/index.ts",
+      "type": "registry:file",
+      "target": "kbd/index.ts",
       "content": "export { default as Kbd } from './kbd.svelte';\nexport { default as KbdGroup } from './kbd-group.svelte';\n"
     },
     {
-      "path": "lib/components/ui/kbd/kbd-group.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/kbd/kbd-group.svelte",
+      "type": "registry:file",
+      "target": "kbd/kbd-group.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<kbd class={cn('inline-flex items-center gap-1', className)} {...rest}>\n\t{@render children?.()}\n</kbd>\n"
     },
     {
-      "path": "lib/components/ui/kbd/kbd.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/kbd/kbd.svelte",
+      "type": "registry:file",
+      "target": "kbd/kbd.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<kbd\n\tclass={cn(\n\t\t'inline-flex h-5 min-w-5 items-center justify-center rounded-md border border-border bg-muted px-1.5 font-mono text-[0.7rem] font-medium text-muted-foreground shadow-bevel',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</kbd>\n"
     }
   ]

@@ -9,6 +9,8 @@ export const siteConfig = {
 	description:
 		'Glossy, glassy, gorgeously rounded components for SvelteKit. The optimism of early-2000s UI, rebuilt for Svelte 5 and Tailwind v4. Copy in what you need.',
 	url: 'https://mizu-ui.com',
+	author: 'Charles J. (CJ) Dyas',
+	authorUrl: 'https://www.cjdyas.design',
 	repo: 'https://github.com/dyascj/mizu',
 	// The registry is served from the deployed site (static/r → /r). Re-run
 	// `pnpm registry:build` if you change this.

@@ -13,27 +13,23 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/accordion/accordion-content.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/accordion/accordion-content.svelte",
+      "type": "registry:file",
+      "target": "accordion/accordion-content.svelte",
       "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<AccordionPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<AccordionPrimitive.Content\n\tbind:ref\n\tclass=\"overflow-hidden text-sm transition-[height] duration-200 ease-out data-[state=closed]:h-0 data-[state=open]:h-[var(--bits-accordion-content-height)]\"\n\t{...restProps}\n>\n\t<div class={cn('pb-4 text-muted-foreground', className)}>\n\t\t{@render children?.()}\n\t</div>\n</AccordionPrimitive.Content>\n"
     },
     {
-      "path": "lib/components/ui/accordion/accordion-item.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/accordion/accordion-item.svelte",
+      "type": "registry:file",
+      "target": "accordion/accordion-item.svelte",
       "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AccordionPrimitive.ItemProps & { class?: string } = $props();\n</script>\n\n<AccordionPrimitive.Item bind:ref class={cn('border-b border-border', className)} {...restProps} />\n"
     },
     {
-      "path": "lib/components/ui/accordion/accordion-trigger.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/accordion/accordion-trigger.svelte",
+      "type": "registry:file",
+      "target": "accordion/accordion-trigger.svelte",
       "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { ChevronDown } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<AccordionPrimitive.TriggerProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<AccordionPrimitive.Header class=\"flex\">\n\t<AccordionPrimitive.Trigger\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t'flex w-full items-center justify-between py-4 text-left font-semibold outline-none transition-colors duration-150 hover:text-primary focus-visible:text-primary [&[data-state=open]>svg]:rotate-180',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t\t<ChevronDown class=\"size-4 shrink-0 transition-transform duration-200\" />\n\t</AccordionPrimitive.Trigger>\n</AccordionPrimitive.Header>\n"
     },
     {
-      "path": "lib/components/ui/accordion/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/accordion/index.ts",
+      "type": "registry:file",
+      "target": "accordion/index.ts",
       "content": "import { Accordion as AccordionPrimitive } from 'bits-ui';\nimport Item from './accordion-item.svelte';\nimport Trigger from './accordion-trigger.svelte';\nimport Content from './accordion-content.svelte';\n\nconst Root = AccordionPrimitive.Root;\n\nexport {\n\tRoot,\n\tItem,\n\tTrigger,\n\tContent,\n\t//\n\tRoot as Accordion,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n\tContent as AccordionContent\n};\n"
     }
   ]

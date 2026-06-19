@@ -35,34 +35,41 @@ Mizu brings back the aesthetic of clear skies, water droplets, and wet glass: fr
 
 Mizu runs on SvelteKit, Svelte 5, and Tailwind v4.
 
+**1. Create the app:**
+
 ```bash
-# 1. a SvelteKit app with Tailwind v4
 npx sv create my-app
 cd my-app
 npx sv add tailwindcss
-
-# 2. dependencies
-pnpm add bits-ui phosphor-svelte clsx tailwind-merge tailwind-variants
 ```
 
-Add the `cn` helper at `src/lib/utils.ts`:
+**2. Add a `components.json`** so the CLI knows where to place files (or run `npx shadcn-svelte@latest init` to generate it):
 
-```ts
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-export function cn(...inputs: ClassValue[]) {
-	return twMerge(clsx(inputs));
+```json
+{
+	"$schema": "https://shadcn-svelte.com/schema.json",
+	"tailwind": { "css": "src/app.css", "baseColor": "neutral" },
+	"aliases": {
+		"lib": "$lib",
+		"utils": "$lib/utils",
+		"components": "$lib/components",
+		"ui": "$lib/components/ui",
+		"hooks": "$lib/hooks"
+	},
+	"typescript": true,
+	"registry": "https://shadcn-svelte.com/registry"
 }
 ```
 
-Paste the Mizu token block into `src/app.css` after `@import 'tailwindcss';` (copy it from this repo's `src/app.css`, or see the Theming page in the docs). Then add components:
+**3. Add the theme:** paste Mizu's `src/app.css` (this repo's) into your `src/app.css`, right after `@import 'tailwindcss';`.
+
+**4. Add components** with the one-liner. It pulls the component, installs its npm dependencies, and adds the shared `cn` helper automatically:
 
 ```bash
 npx shadcn-svelte@latest add https://mizu-ui.com/r/button.json
 ```
 
-This pulls the component, installs its npm dependencies, and adds the shared `cn` helper, in one command. You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.
+You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.
 
 > The registry is served from [mizu-ui.com](https://mizu-ui.com). If you fork Mizu, point `repo` and `registryBase` in `src/lib/site/config.ts` at your own deployment and re-run `pnpm registry:build`.
 

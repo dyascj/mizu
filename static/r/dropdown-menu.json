@@ -13,63 +13,53 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
+      "type": "registry:file",
+      "target": "dropdown-menu/dropdown-menu-checkbox-item.svelte",
       "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { Check } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchecked = $bindable(false),\n\t\tindeterminate = $bindable(false),\n\t\tclass: className,\n\t\tchildren: childrenProp,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<DropdownMenuPrimitive.CheckboxItemProps> & {\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<DropdownMenuPrimitive.CheckboxItem\n\tbind:ref\n\tbind:checked\n\tbind:indeterminate\n\tclass={cn(\n\t\t'relative flex cursor-pointer select-none items-center rounded-lg py-1.5 pr-2 pl-8 text-sm outline-none transition-colors duration-100 data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked, indeterminate })}\n\t\t<span class=\"absolute left-2 flex size-4 items-center justify-center\">\n\t\t\t{#if indeterminate}\n\t\t\t\t<div class=\"size-2 rounded-sm bg-primary\"></div>\n\t\t\t{:else if checked}\n\t\t\t\t<Check class=\"size-4 text-primary\" />\n\t\t\t{/if}\n\t\t</span>\n\t\t{@render childrenProp?.()}\n\t{/snippet}\n</DropdownMenuPrimitive.CheckboxItem>\n"
     },
     {
-      "path": "lib/components/ui/dropdown-menu/dropdown-menu-content.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/dropdown-menu/dropdown-menu-content.svelte",
+      "type": "registry:file",
+      "target": "dropdown-menu/dropdown-menu-content.svelte",
       "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 6,\n\t\tportalProps,\n\t\t...restProps\n\t}: WithoutChild<DropdownMenuPrimitive.ContentProps> & {\n\t\tportalProps?: DropdownMenuPrimitive.PortalProps;\n\t} = $props();\n</script>\n\n<DropdownMenuPrimitive.Portal {...portalProps}>\n\t<DropdownMenuPrimitive.Content\n\t\tbind:ref\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t'z-50 max-h-[var(--bits-dropdown-menu-content-available-height)] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</DropdownMenuPrimitive.Portal>\n"
     },
     {
-      "path": "lib/components/ui/dropdown-menu/dropdown-menu-item.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/dropdown-menu/dropdown-menu-item.svelte",
+      "type": "registry:file",
+      "target": "dropdown-menu/dropdown-menu-item.svelte",
       "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tinset,\n\t\t...restProps\n\t}: WithoutChild<DropdownMenuPrimitive.ItemProps> & {\n\t\tinset?: boolean;\n\t} = $props();\n</script>\n\n<DropdownMenuPrimitive.Item\n\tbind:ref\n\tdata-inset={inset ? '' : undefined}\n\tclass={cn(\n\t\t'relative flex cursor-pointer select-none items-center gap-2 rounded-lg px-2 py-1.5 text-sm outline-none transition-colors duration-100 data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:size-4 [&_svg]:shrink-0',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
     },
     {
-      "path": "lib/components/ui/dropdown-menu/dropdown-menu-label.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/dropdown-menu/dropdown-menu-label.svelte",
+      "type": "registry:file",
+      "target": "dropdown-menu/dropdown-menu-label.svelte",
       "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tinset,\n\t\t...restProps\n\t}: DropdownMenuPrimitive.GroupHeadingProps & {\n\t\tinset?: boolean;\n\t} = $props();\n</script>\n\n<DropdownMenuPrimitive.GroupHeading\n\tbind:ref\n\tdata-inset={inset ? '' : undefined}\n\tclass={cn('px-2 py-1.5 text-xs font-semibold text-muted-foreground data-[inset]:pl-8', className)}\n\t{...restProps}\n/>\n"
     },
     {
-      "path": "lib/components/ui/dropdown-menu/dropdown-menu-radio-item.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/dropdown-menu/dropdown-menu-radio-item.svelte",
+      "type": "registry:file",
+      "target": "dropdown-menu/dropdown-menu-radio-item.svelte",
       "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { Circle } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren: childrenProp,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<DropdownMenuPrimitive.RadioItemProps> & {\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<DropdownMenuPrimitive.RadioItem\n\tbind:ref\n\tclass={cn(\n\t\t'relative flex cursor-pointer select-none items-center rounded-lg py-1.5 pr-2 pl-8 text-sm outline-none transition-colors duration-100 data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<span class=\"absolute left-2 flex size-4 items-center justify-center\">\n\t\t\t{#if checked}\n\t\t\t\t<Circle class=\"size-2 fill-primary text-primary\" />\n\t\t\t{/if}\n\t\t</span>\n\t\t{@render childrenProp?.()}\n\t{/snippet}\n</DropdownMenuPrimitive.RadioItem>\n"
     },
     {
-      "path": "lib/components/ui/dropdown-menu/dropdown-menu-separator.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/dropdown-menu/dropdown-menu-separator.svelte",
+      "type": "registry:file",
+      "target": "dropdown-menu/dropdown-menu-separator.svelte",
       "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DropdownMenuPrimitive.SeparatorProps = $props();\n</script>\n\n<DropdownMenuPrimitive.Separator\n\tbind:ref\n\tclass={cn('-mx-1 my-1 h-px bg-[color:var(--glass-border)]', className)}\n\t{...restProps}\n/>\n"
     },
     {
-      "path": "lib/components/ui/dropdown-menu/dropdown-menu-shortcut.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/dropdown-menu/dropdown-menu-shortcut.svelte",
+      "type": "registry:file",
+      "target": "dropdown-menu/dropdown-menu-shortcut.svelte",
       "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: HTMLAttributes<HTMLSpanElement> & {\n\t\tref?: HTMLSpanElement | null;\n\t} = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tclass={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)}\n\t{...restProps}\n></span>\n"
     },
     {
-      "path": "lib/components/ui/dropdown-menu/dropdown-menu-sub-content.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/dropdown-menu/dropdown-menu-sub-content.svelte",
+      "type": "registry:file",
+      "target": "dropdown-menu/dropdown-menu-sub-content.svelte",
       "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DropdownMenuPrimitive.SubContentProps = $props();\n</script>\n\n<DropdownMenuPrimitive.SubContent\n\tbind:ref\n\tclass={cn(\n\t\t'z-50 min-w-[8rem] overflow-hidden rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
     },
     {
-      "path": "lib/components/ui/dropdown-menu/dropdown-menu-sub-trigger.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/dropdown-menu/dropdown-menu-sub-trigger.svelte",
+      "type": "registry:file",
+      "target": "dropdown-menu/dropdown-menu-sub-trigger.svelte",
       "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive, type WithoutChild } from 'bits-ui';\n\timport { ChevronRight } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tinset,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChild<DropdownMenuPrimitive.SubTriggerProps> & {\n\t\tinset?: boolean;\n\t} = $props();\n</script>\n\n<DropdownMenuPrimitive.SubTrigger\n\tbind:ref\n\tdata-inset={inset ? '' : undefined}\n\tclass={cn(\n\t\t'relative flex cursor-pointer select-none items-center gap-2 rounded-lg px-2 py-1.5 text-sm outline-none transition-colors duration-100 data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:size-4 [&_svg]:shrink-0',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\t<ChevronRight class=\"ml-auto size-4\" />\n</DropdownMenuPrimitive.SubTrigger>\n"
     },
     {
-      "path": "lib/components/ui/dropdown-menu/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/dropdown-menu/index.ts",
+      "type": "registry:file",
+      "target": "dropdown-menu/index.ts",
       "content": "import { DropdownMenu as DropdownMenuPrimitive } from 'bits-ui';\nimport Content from './dropdown-menu-content.svelte';\nimport Item from './dropdown-menu-item.svelte';\nimport CheckboxItem from './dropdown-menu-checkbox-item.svelte';\nimport RadioItem from './dropdown-menu-radio-item.svelte';\nimport Separator from './dropdown-menu-separator.svelte';\nimport Label from './dropdown-menu-label.svelte';\nimport SubTrigger from './dropdown-menu-sub-trigger.svelte';\nimport SubContent from './dropdown-menu-sub-content.svelte';\nimport Shortcut from './dropdown-menu-shortcut.svelte';\n\nconst Root = DropdownMenuPrimitive.Root;\nconst Trigger = DropdownMenuPrimitive.Trigger;\nconst Group = DropdownMenuPrimitive.Group;\nconst Sub = DropdownMenuPrimitive.Sub;\nconst RadioGroup = DropdownMenuPrimitive.RadioGroup;\nconst Portal = DropdownMenuPrimitive.Portal;\n\nexport {\n\tRoot,\n\tTrigger,\n\tPortal,\n\tContent,\n\tGroup,\n\tItem,\n\tCheckboxItem,\n\tRadioGroup,\n\tRadioItem,\n\tSeparator,\n\tLabel,\n\tSub,\n\tSubTrigger,\n\tSubContent,\n\tShortcut,\n\t//\n\tRoot as DropdownMenu,\n\tTrigger as DropdownMenuTrigger,\n\tPortal as DropdownMenuPortal,\n\tContent as DropdownMenuContent,\n\tGroup as DropdownMenuGroup,\n\tItem as DropdownMenuItem,\n\tCheckboxItem as DropdownMenuCheckboxItem,\n\tRadioGroup as DropdownMenuRadioGroup,\n\tRadioItem as DropdownMenuRadioItem,\n\tSeparator as DropdownMenuSeparator,\n\tLabel as DropdownMenuLabel,\n\tSub as DropdownMenuSub,\n\tSubTrigger as DropdownMenuSubTrigger,\n\tSubContent as DropdownMenuSubContent,\n\tShortcut as DropdownMenuShortcut\n};\n"
     }
   ]

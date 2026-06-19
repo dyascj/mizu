@@ -12,21 +12,18 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/toggle-group/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/toggle-group/index.ts",
+      "type": "registry:file",
+      "target": "toggle-group/index.ts",
       "content": "import Root from './toggle-group.svelte';\nimport Item from './toggle-group-item.svelte';\n\nexport {\n\tRoot,\n\tItem,\n\t//\n\tRoot as ToggleGroup,\n\tItem as ToggleGroupItem\n};\n"
     },
     {
-      "path": "lib/components/ui/toggle-group/toggle-group-item.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/toggle-group/toggle-group-item.svelte",
+      "type": "registry:file",
+      "target": "toggle-group/toggle-group-item.svelte",
       "content": "<script lang=\"ts\">\n\timport { ToggleGroup as ToggleGroupPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\timport { toggleVariants, type ToggleVariant, type ToggleSize } from '../toggle/toggle.svelte';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvariant = 'default',\n\t\tsize = 'md',\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ToggleGroupPrimitive.ItemProps> & {\n\t\tvariant?: ToggleVariant;\n\t\tsize?: ToggleSize;\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<ToggleGroupPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\ttoggleVariants({ variant, size }),\n\t\t'hover:bg-secondary/70 data-[state=on]:gradient-surface data-[state=on]:gloss data-[state=on]:shadow-bevel',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<span class=\"relative z-10 inline-flex items-center gap-2\">{@render children?.()}</span>\n</ToggleGroupPrimitive.Item>\n"
     },
     {
-      "path": "lib/components/ui/toggle-group/toggle-group.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/toggle-group/toggle-group.svelte",
+      "type": "registry:file",
+      "target": "toggle-group/toggle-group.svelte",
       "content": "<script lang=\"ts\">\n\timport { ToggleGroup as ToggleGroupPrimitive } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\t// Styled single-select segmented group (the common case). For multi-select,\n\t// use bits-ui's ToggleGroup directly.\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(''),\n\t\ttype = 'single',\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: {\n\t\tref?: HTMLElement | null;\n\t\tvalue?: string;\n\t\ttype?: 'single';\n\t\tdisabled?: boolean;\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<ToggleGroupPrimitive.Root\n\tbind:ref\n\t{type}\n\tbind:value\n\tclass={cn(\n\t\t'flex items-center gap-1 rounded-xl glass p-1 border border-[color:var(--glass-border)]',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ToggleGroupPrimitive.Root>\n"
     }
   ]

@@ -12,33 +12,28 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/tabs/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/tabs/index.ts",
+      "type": "registry:file",
+      "target": "tabs/index.ts",
       "content": "import Root from './tabs.svelte';\nimport List from './tabs-list.svelte';\nimport Trigger from './tabs-trigger.svelte';\nimport Content from './tabs-content.svelte';\n\nexport {\n\tRoot,\n\tList,\n\tTrigger,\n\tContent,\n\t//\n\tRoot as Tabs,\n\tList as TabsList,\n\tTrigger as TabsTrigger,\n\tContent as TabsContent\n};\n"
     },
     {
-      "path": "lib/components/ui/tabs/tabs-content.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/tabs/tabs-content.svelte",
+      "type": "registry:file",
+      "target": "tabs/tabs-content.svelte",
       "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.Content bind:ref class={cn('mt-3 outline-none', className)} {...restProps}>\n\t{@render children?.()}\n</TabsPrimitive.Content>\n"
     },
     {
-      "path": "lib/components/ui/tabs/tabs-list.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/tabs/tabs-list.svelte",
+      "type": "registry:file",
+      "target": "tabs/tabs-list.svelte",
       "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.ListProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.List\n\tbind:ref\n\tclass={cn(\n\t\t'inline-flex items-center gap-1 rounded-xl glass p-1 border border-[color:var(--glass-border)] shadow-pressed',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</TabsPrimitive.List>\n"
     },
     {
-      "path": "lib/components/ui/tabs/tabs-trigger.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/tabs/tabs-trigger.svelte",
+      "type": "registry:file",
+      "target": "tabs/tabs-trigger.svelte",
       "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.TriggerProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.Trigger\n\tbind:ref\n\tclass={cn(\n\t\t'relative overflow-hidden rounded-lg px-3 py-1.5 text-sm font-semibold text-muted-foreground outline-none transition-[background-image,color,box-shadow] duration-150 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 data-[state=active]:gradient-surface data-[state=active]:gloss data-[state=active]:text-foreground data-[state=active]:shadow-bevel',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<span class=\"relative z-10 inline-flex items-center gap-2\">{@render children?.()}</span>\n</TabsPrimitive.Trigger>\n"
     },
     {
-      "path": "lib/components/ui/tabs/tabs.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/tabs/tabs.svelte",
+      "type": "registry:file",
+      "target": "tabs/tabs.svelte",
       "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.RootProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.Root bind:ref bind:value class={cn('flex flex-col', className)} {...restProps}>\n\t{@render children?.()}\n</TabsPrimitive.Root>\n"
     }
   ]

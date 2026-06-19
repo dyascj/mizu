@@ -10,45 +10,38 @@
   ],
   "files": [
     {
-      "path": "lib/components/ui/item/index.ts",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/item/index.ts",
+      "type": "registry:file",
+      "target": "item/index.ts",
       "content": "import Root from './item.svelte';\nimport Media from './item-media.svelte';\nimport Content from './item-content.svelte';\nimport Title from './item-title.svelte';\nimport Description from './item-description.svelte';\nimport Actions from './item-actions.svelte';\n\nexport {\n\tRoot,\n\tMedia,\n\tContent,\n\tTitle,\n\tDescription,\n\tActions,\n\t//\n\tRoot as Item,\n\tMedia as ItemMedia,\n\tContent as ItemContent,\n\tTitle as ItemTitle,\n\tDescription as ItemDescription,\n\tActions as ItemActions\n};\n"
     },
     {
-      "path": "lib/components/ui/item/item-actions.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/item/item-actions.svelte",
+      "type": "registry:file",
+      "target": "item/item-actions.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn('ml-auto flex items-center gap-2', className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
     },
     {
-      "path": "lib/components/ui/item/item-content.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/item/item-content.svelte",
+      "type": "registry:file",
+      "target": "item/item-content.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn('flex flex-1 flex-col gap-0.5', className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
     },
     {
-      "path": "lib/components/ui/item/item-description.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/item/item-description.svelte",
+      "type": "registry:file",
+      "target": "item/item-description.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLParagraphElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<p class={cn('text-sm text-muted-foreground', className)} {...rest}>\n\t{@render children?.()}\n</p>\n"
     },
     {
-      "path": "lib/components/ui/item/item-media.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/item/item-media.svelte",
+      "type": "registry:file",
+      "target": "item/item-media.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div\n\tclass={cn(\n\t\t'flex size-10 shrink-0 items-center justify-center rounded-lg glass-strong shadow-bevel text-muted-foreground [&>svg]:size-5',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
     },
     {
-      "path": "lib/components/ui/item/item-title.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/item/item-title.svelte",
+      "type": "registry:file",
+      "target": "item/item-title.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLParagraphElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<p class={cn('font-semibold', className)} {...rest}>\n\t{@render children?.()}\n</p>\n"
     },
     {
-      "path": "lib/components/ui/item/item.svelte",
-      "type": "registry:ui",
-      "target": "src/lib/components/ui/item/item.svelte",
+      "type": "registry:file",
+      "target": "item/item.svelte",
       "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\n\t\t'flex items-center gap-3 rounded-xl border border-border p-3 transition-colors',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
     }
   ]
