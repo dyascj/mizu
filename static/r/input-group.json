@@ -6,7 +6,7 @@
   "description": "An input fused with leading or trailing add-ons.",
   "dependencies": [],
   "registryDependencies": [
-    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
+    "https://mizu-ui.com/r/utils.json"
   ],
   "files": [
     {

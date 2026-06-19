@@ -59,12 +59,12 @@ export function cn(...inputs: ClassValue[]) {
 Paste the Mizu token block into `src/app.css` after `@import 'tailwindcss';` (copy it from this repo's `src/app.css`, or see the Theming page in the docs). Then add components:
 
 ```bash
-npx shadcn-svelte@latest add https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/button.json
 ```
 
 This pulls the component, installs its npm dependencies, and adds the shared `cn` helper, in one command. You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.
 
-> The jsDelivr URL serves the registry straight from GitHub, so it works the moment the repo is public, no separate host required. Point `repo` and `registryBase` in `src/lib/site/config.ts` at your repo, then re-run `pnpm registry:build`.
+> The registry is served from [mizu-ui.com](https://mizu-ui.com). If you fork Mizu, point `repo` and `registryBase` in `src/lib/site/config.ts` at your own deployment and re-run `pnpm registry:build`.
 
 ## Usage
 

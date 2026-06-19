@@ -43,12 +43,11 @@
 
 	<Alert.Root variant="info" class="mt-6">
 		<Info />
-		<Alert.Title>Set your registry URL</Alert.Title>
+		<Alert.Title>Forking Mizu?</Alert.Title>
 		<Alert.Description>
-			The URL above points at this project's repo via jsDelivr, so it works the moment the repo is
-			public on GitHub, no separate host needed. Set <code class="font-mono">repo</code> and
-			<code class="font-mono">registryBase</code> in
-			<code class="font-mono">src/lib/site/config.ts</code>, then re-run
+			The registry is served from <code class="font-mono">mizu-ui.com</code>. If you fork it, point
+			<code class="font-mono">repo</code> and <code class="font-mono">registryBase</code> in
+			<code class="font-mono">src/lib/site/config.ts</code> at your own deployment, then re-run
 			<code class="font-mono">pnpm registry:build</code>.
 		</Alert.Description>
 	</Alert.Root>

@@ -3,6 +3,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import IconContext from 'phosphor-svelte/lib/IconContext';
 	import SiteHeader from '$lib/site/site-header.svelte';
+	import { siteConfig } from '$lib/site/config';
 
 	let { children } = $props();
 	let scroller = $state<HTMLDivElement | null>(null);
@@ -18,6 +19,16 @@
 
 <svelte:head>
 	<link rel="icon" href="/mizu-mark.svg" />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content={siteConfig.name} />
+	<meta property="og:title" content={`${siteConfig.name} — ${siteConfig.tagline}`} />
+	<meta property="og:description" content={siteConfig.description} />
+	<meta property="og:url" content={siteConfig.url} />
+	<meta property="og:image" content={`${siteConfig.url}/og.png`} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={`${siteConfig.name} — ${siteConfig.tagline}`} />
+	<meta name="twitter:description" content={siteConfig.description} />
+	<meta name="twitter:image" content={`${siteConfig.url}/og.png`} />
 </svelte:head>
 
 <IconContext values={{ weight: 'fill' }}>

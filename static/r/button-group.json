@@ -6,7 +6,7 @@
   "description": "Buttons joined into one segmented control.",
   "dependencies": [],
   "registryDependencies": [
-    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
+    "https://mizu-ui.com/r/utils.json"
   ],
   "files": [
     {

@@ -6,7 +6,7 @@
   "description": "A recessed glass text field with an aqua focus ring.",
   "dependencies": [],
   "registryDependencies": [
-    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
+    "https://mizu-ui.com/r/utils.json"
   ],
   "files": [
     {

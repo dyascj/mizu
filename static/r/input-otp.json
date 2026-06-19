@@ -9,7 +9,7 @@
     "bits-ui"
   ],
   "registryDependencies": [
-    "https://cdn.jsdelivr.net/gh/dyascj/mizu@main/static/r/utils.json"
+    "https://mizu-ui.com/r/utils.json"
   ],
   "files": [
     {
