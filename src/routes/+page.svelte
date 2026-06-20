@@ -31,12 +31,13 @@
 		</Badge>
 
 		<h1 class="font-display text-4xl leading-[1.04] font-extrabold sm:text-6xl">
-			<span class="block">Glossy by default.</span>
-			<span class="block text-muted-foreground">Customizable by design.</span>
+			<span class="block">Frutiger Aero is back.</span>
+			<span class="block text-muted-foreground">Glossy, glassy, built for Svelte.</span>
 		</h1>
 
 		<p class="max-w-xl text-balance text-muted-foreground sm:text-lg">
-			{siteConfig.description}
+			Clear skies, water droplets, and wet glass — the optimistic UI of the mid-2000s, rebuilt as
+			copy-in components for SvelteKit, Svelte 5, and Tailwind v4.
 		</p>
 
 		<div class="flex flex-wrap items-center justify-center gap-3">
