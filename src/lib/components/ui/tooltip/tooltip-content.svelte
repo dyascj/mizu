@@ -22,7 +22,7 @@
 		bind:ref
 		{sideOffset}
 		class={cn(
-			'z-50 rounded-lg border border-border bg-popover px-3 py-1.5 text-xs font-medium text-popover-foreground shadow-bevel transition-[opacity,transform] duration-100 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=delayed-open]:scale-100 data-[state=delayed-open]:opacity-100 data-[state=instant-open]:scale-100 data-[state=instant-open]:opacity-100',
+			'glass-strong z-50 rounded-xl border border-[color:var(--glass-border)] px-3 py-1.5 text-xs font-medium text-popover-foreground shadow-glass outline-none transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=delayed-open]:scale-100 data-[state=delayed-open]:opacity-100 data-[state=instant-open]:scale-100 data-[state=instant-open]:opacity-100',
 			className
 		)}
 		{...restProps}
