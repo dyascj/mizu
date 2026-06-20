@@ -109,4 +109,13 @@
 			opacity: 0;
 		}
 	}
+
+	/* Self-contained: these bubbles are purely decorative (aria-hidden), so when
+	   motion is reduced we drop them rather than freeze them mid-rise. Works even
+	   without Mizu's global app.css reset. */
+	@media (prefers-reduced-motion: reduce) {
+		.mizu-bubble {
+			display: none;
+		}
+	}
 </style>
