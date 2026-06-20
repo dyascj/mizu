@@ -43,12 +43,12 @@ cd my-app
 npx sv add tailwindcss
 ```
 
-**2. Add a `components.json`** so the CLI knows where to place files (or run `npx shadcn-svelte@latest init` to generate it):
+**2. Add a `components.json`** so the CLI knows where to place files (or run `npx shadcn-svelte@latest init` to generate it). Point `tailwind.css` at **your** Tailwind entry — the file that holds `@import 'tailwindcss';`. Recent `sv add tailwindcss` creates `src/routes/layout.css`; older setups use `src/app.css`. Use whichever you have:
 
 ```json
 {
 	"$schema": "https://shadcn-svelte.com/schema.json",
-	"tailwind": { "css": "src/app.css", "baseColor": "neutral" },
+	"tailwind": { "css": "src/routes/layout.css", "baseColor": "neutral" },
 	"aliases": {
 		"lib": "$lib",
 		"utils": "$lib/utils",
@@ -61,7 +61,7 @@ npx sv add tailwindcss
 }
 ```
 
-**3. Add the theme:** paste Mizu's `src/app.css` (this repo's) into your `src/app.css`, right after `@import 'tailwindcss';`.
+**3. Add the theme:** paste Mizu's `src/app.css` (this repo's) into that same Tailwind entry file, right after `@import 'tailwindcss';`.
 
 **4. Add components** with the one-liner. It pulls the component, installs its npm dependencies, and adds the shared `cn` helper automatically:
 

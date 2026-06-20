@@ -18,4 +18,13 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm check
+      - name: Registry is in sync with component source
+        run: |
+          pnpm registry:build
+          if [ -n "$(git status --porcelain static/r)" ]; then
+            echo "::error::static/r is stale — run 'pnpm registry:build' and commit the result."
+            git status --porcelain static/r
+            git diff -- static/r
+            exit 1
+          fi
       - run: pnpm build
