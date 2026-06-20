@@ -11,9 +11,10 @@
 	// The app scrolls inside `scroller` (not the document), so we reset it to the
 	// top on real page navigations. Hash links (in-page anchors) are left alone.
 	afterNavigate((nav) => {
-		if (scroller && (!nav.to || nav.to.url.hash === '')) {
-			scroller.scrollTo({ top: 0 });
-		}
+		if (nav.to?.url.hash) return;
+		scroller?.scrollTo({ top: 0, left: 0 });
+		// Fallback in case the document itself is the scroll container.
+		window.scrollTo(0, 0);
 	});
 </script>
 

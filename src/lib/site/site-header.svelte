@@ -1,6 +1,7 @@
 <script lang="ts">
 	import MagnifyingGlass from 'phosphor-svelte/lib/MagnifyingGlass';
 	import MizuLogo from './mizu-logo.svelte';
+	import MobileNav from './mobile-nav.svelte';
 	import Palette from 'phosphor-svelte/lib/Palette';
 	import { Button, buttonVariants } from '$lib/components/ui/button';
 	import { Kbd } from '$lib/components/ui/kbd';
@@ -20,8 +21,9 @@
 
 <header class="sticky top-0 z-40 border-b border-[color:var(--glass-border)] glass-strong">
 	<div class="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 sm:px-6">
-		<!-- Left: logo + nav -->
-		<div class="flex items-center gap-6">
+		<!-- Left: mobile menu + logo + nav -->
+		<div class="flex items-center gap-2 sm:gap-6">
+			<MobileNav />
 			<a href="/" class="flex items-center gap-2.5">
 				<MizuLogo
 					class="size-8 drop-shadow-[0_2px_5px_color-mix(in_srgb,var(--primary)_35%,transparent)]"
