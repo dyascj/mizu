@@ -27,7 +27,7 @@
 	{type}
 	bind:value
 	class={cn(
-		'flex items-center gap-1 rounded-xl glass p-1 border border-[color:var(--glass-border)]',
+		'flex items-center gap-1 rounded-xl glass p-1.5 border border-[color:var(--glass-border)]',
 		className
 	)}
 	{...restProps}

@@ -56,7 +56,7 @@
     {
       "type": "registry:file",
       "target": "command/command.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(''),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CommandPrimitive.RootProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<CommandPrimitive.Root\n\tbind:ref\n\tbind:value\n\tclass={cn(\n\t\t'flex h-full w-full flex-col overflow-hidden rounded-xl glass-strong text-popover-foreground',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</CommandPrimitive.Root>\n"
+      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(''),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CommandPrimitive.RootProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<CommandPrimitive.Root\n\tbind:ref\n\tbind:value\n\tclass={cn(\n\t\t'gloss flex h-full w-full flex-col overflow-hidden rounded-xl glass-strong text-popover-foreground shadow-[inset_0_1px_0_color-mix(in_srgb,white_55%,transparent)]',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</CommandPrimitive.Root>\n"
     },
     {
       "type": "registry:file",

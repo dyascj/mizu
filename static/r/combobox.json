@@ -30,7 +30,7 @@
     {
       "type": "registry:file",
       "target": "combobox/combobox-input.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ComboboxPrimitive.InputProps> & {\n\t\tclass?: string;\n\t} = $props();\n</script>\n\n<ComboboxPrimitive.Input\n\tbind:ref\n\tclass={cn(\n\t\t'flex h-10 w-full items-center rounded-xl border border-input bg-card/70 px-3.5 py-2 text-sm shadow-pressed outline-none transition-[box-shadow,border-color] duration-150 placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ComboboxPrimitive.InputProps> & {\n\t\tclass?: string;\n\t} = $props();\n</script>\n\n<ComboboxPrimitive.Input\n\tbind:ref\n\tclass={cn(\n\t\t'flex h-10 w-full items-center rounded-xl border border-input bg-card/70 px-3.5 py-2 text-sm shadow-pressed outline-none transition-[box-shadow,border-color] duration-150 placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
     },
     {
       "type": "registry:file",

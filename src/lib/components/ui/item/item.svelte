@@ -14,7 +14,7 @@
 <div
 	bind:this={ref}
 	class={cn(
-		'flex items-center gap-3 rounded-xl border border-border p-3 transition-colors',
+		'glass gloss relative flex items-center gap-3 rounded-xl border border-[color:var(--glass-border)] p-3 shadow-bevel transition-colors',
 		className
 	)}
 	{...rest}

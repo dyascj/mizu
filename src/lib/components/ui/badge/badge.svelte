@@ -9,7 +9,7 @@
 				secondary: 'border-border bg-secondary text-secondary-foreground',
 				success: 'border-transparent bg-success/15 text-[color:var(--success)]',
 				warning: 'border-transparent bg-warning/15 text-[color:var(--warning)]',
-				destructive: 'border-transparent bg-destructive/15 text-destructive',
+				destructive: 'border-transparent bg-destructive/15 text-[color:var(--destructive)]',
 				info: 'border-transparent bg-info/15 text-[color:var(--info)]',
 				outline: 'border-border bg-transparent text-foreground'
 			}
