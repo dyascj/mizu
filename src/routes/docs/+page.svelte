@@ -10,6 +10,11 @@
 </svelte:head>
 
 <article class="max-w-2xl">
+	<img
+		src="/brand/mizu-side-by-side.png"
+		alt="Mizu — Design System"
+		class="mb-8 h-12 w-auto sm:h-14"
+	/>
 	<h1 class="font-display text-3xl font-extrabold">Introduction</h1>
 	<p class="mt-3 text-lg text-muted-foreground">
 		Mizu is a Frutiger Aero design system for Svelte. Glossy, glassy, gorgeously rounded components

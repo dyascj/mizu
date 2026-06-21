@@ -1,13 +1,9 @@
 <script lang="ts">
 	import MagnifyingGlass from 'phosphor-svelte/lib/MagnifyingGlass';
-	import MizuLogo from './mizu-logo.svelte';
 	import MobileNav from './mobile-nav.svelte';
-	import Palette from 'phosphor-svelte/lib/Palette';
-	import { Button, buttonVariants } from '$lib/components/ui/button';
+	import { Button } from '$lib/components/ui/button';
 	import { Kbd } from '$lib/components/ui/kbd';
-	import * as Popover from '$lib/components/ui/popover';
 	import ModeToggle from './mode-toggle.svelte';
-	import ThemeSwatches from './theme-swatches.svelte';
 	import CommandPalette from './command-palette.svelte';
 	import { search } from './search.svelte';
 	import { siteConfig } from './config';
@@ -24,11 +20,12 @@
 		<!-- Left: mobile menu + logo + nav -->
 		<div class="flex items-center gap-2 sm:gap-6">
 			<MobileNav />
-			<a href="/" class="flex items-center gap-2.5">
-				<MizuLogo
-					class="size-8 drop-shadow-[0_2px_5px_color-mix(in_srgb,var(--primary)_35%,transparent)]"
+			<a href="/" class="flex items-center" aria-label="{siteConfig.name} home">
+				<img
+					src="/brand/mizu-side-by-side.png"
+					alt="{siteConfig.name} — Design System"
+					class="h-7 w-auto sm:h-8"
 				/>
-				<span class="font-display text-lg font-extrabold tracking-tight">{siteConfig.name}</span>
 			</a>
 			<nav class="hidden items-center gap-5 md:flex">
 				{#each navLinks as l (l.href)}
@@ -53,18 +50,6 @@
 				<span class="hidden flex-1 text-left sm:inline">Search…</span>
 				<Kbd class="hidden sm:inline-flex">⌘K</Kbd>
 			</button>
-			<Popover.Root>
-				<Popover.Trigger
-					class={buttonVariants({ variant: 'ghost', size: 'icon' })}
-					aria-label="Accent color"
-				>
-					<Palette class="size-5" />
-				</Popover.Trigger>
-				<Popover.Content class="w-auto">
-					<p class="mb-2.5 text-xs font-semibold text-muted-foreground">Accent color</p>
-					<ThemeSwatches class="max-w-[12rem]" />
-				</Popover.Content>
-			</Popover.Root>
 			<Button
 				href={siteConfig.repo}
 				target="_blank"

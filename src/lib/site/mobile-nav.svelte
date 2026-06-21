@@ -41,7 +41,7 @@
 	<Sheet.Content side="left" class="flex w-[19rem] max-w-[85vw] flex-col gap-0 overflow-y-auto">
 		<Sheet.Header class="pb-2">
 			<Sheet.Title class="flex items-center gap-2">
-				<MizuLogo class="size-6" /> Mizu
+				<MizuLogo class="h-6 w-auto" /> Mizu
 			</Sheet.Title>
 		</Sheet.Header>
 

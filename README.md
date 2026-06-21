@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./static/mizu-mark.svg" width="88" height="88" alt="Mizu logo" />
+<img src="./static/brand/mizu-side-by-side.png" width="440" alt="Mizu — Design System" />
 
 # Mizu 水
 
@@ -25,7 +25,7 @@ Mizu brings back the aesthetic of clear skies, water droplets, and wet glass: fr
 ## Highlights
 
 - **50 components**, from buttons and dialogs to a command palette, a blooming orb, and rising bubbles.
-- **Recolor the whole system from one token.** The gloss gradients, glow, focus ring, and logo all derive from `--primary`. Drop in an accent and everything updates live (try the swatches in the header).
+- **Recolor from one token.** The gloss gradients, glow, and focus ring all derive from `--primary` — change it once and the whole system follows.
 - **Physically honest.** Gloss, glass, and glow come from real CSS, never baked-in screenshots.
 - **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the glossy skin.
 - **Light and deep water.** A clean neutral light theme and a neutral deep-dark theme, both with the aqua accent on top.
@@ -102,7 +102,7 @@ The brand is one token. Change `--primary` and the gloss gradients, glow, and fo
 }
 ```
 
-The site ships eight accent presets (Aqua, Sky, Violet, Pink, Rose, Sunset, Leaf, Teal) wired to a swatch switcher, and a light + dark mode driven entirely by CSS variables. Recolor without touching a single component.
+Everything is driven by CSS variables — a clean light mode and a deep-water dark mode out of the box, plus a single `--primary` token (the default is aqua `#01b2ff`) that recolors the whole system without touching a component.
 
 ## Components
 

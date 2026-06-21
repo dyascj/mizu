@@ -19,7 +19,8 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/mizu-mark.svg" />
+	<link rel="icon" href="/brand/mizu-icon.png" />
+	<link rel="apple-touch-icon" href="/brand/mizu-icon.png" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content={siteConfig.name} />
 	<meta property="og:title" content={`${siteConfig.name} — ${siteConfig.tagline}`} />
