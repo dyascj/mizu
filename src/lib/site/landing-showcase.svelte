@@ -1,9 +1,5 @@
 <script lang="ts">
-	import Gear from 'phosphor-svelte/lib/Gear';
 	import * as Tabs from '$lib/components/ui/tabs';
-	import * as Popover from '$lib/components/ui/popover';
-	import { buttonVariants } from '$lib/components/ui/button';
-	import ThemeSwatches from './theme-swatches.svelte';
 	import Components from './showcase/components.svelte';
 	import Game from './showcase/game.svelte';
 	import Dive from './showcase/dive.svelte';
@@ -19,9 +15,7 @@
 	];
 </script>
 
-<div
-	class="overflow-hidden rounded-3xl border border-[color:var(--glass-border)] glass shadow-glass-lg"
->
+<div class="rounded-3xl border border-[color:var(--glass-border)] glass shadow-glass-lg">
 	<Tabs.Root value="components">
 		<div class="flex items-center justify-between gap-3 border-b border-border p-3 sm:px-4">
 			<Tabs.List
@@ -31,21 +25,6 @@
 					<Tabs.Trigger value={t.value} class="shrink-0 whitespace-nowrap">{t.label}</Tabs.Trigger>
 				{/each}
 			</Tabs.List>
-			<div class="flex shrink-0 items-center gap-2">
-				<ThemeSwatches class="hidden lg:flex" />
-				<Popover.Root>
-					<Popover.Trigger
-						class={buttonVariants({ variant: 'ghost', size: 'icon' })}
-						aria-label="Theme settings"
-					>
-						<Gear class="size-5" />
-					</Popover.Trigger>
-					<Popover.Content class="w-auto">
-						<p class="mb-2.5 text-xs font-semibold text-muted-foreground">Accent color</p>
-						<ThemeSwatches class="max-w-[12rem]" />
-					</Popover.Content>
-				</Popover.Root>
-			</div>
 		</div>
 
 		<div class="p-4 sm:p-6">

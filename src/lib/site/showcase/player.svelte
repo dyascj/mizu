@@ -32,7 +32,7 @@
 <div class="grid gap-4 lg:grid-cols-[1.1fr_1fr]">
 	<!-- Now playing -->
 	<section
-		class="relative overflow-hidden rounded-2xl border border-[color:var(--glass-border)] glass-strong gloss p-5"
+		class="relative rounded-2xl border border-[color:var(--glass-border)] glass-strong gloss p-5"
 	>
 		<div class="flex items-center justify-between">
 			<p class="font-display text-xs font-bold tracking-[0.2em] text-muted-foreground uppercase">
