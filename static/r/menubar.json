@@ -25,7 +25,7 @@
     {
       "type": "registry:file",
       "target": "menubar/menubar-content.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 8,\n\t\talign = 'start',\n\t\tportalProps,\n\t\t...restProps\n\t}: WithoutChild<MenubarPrimitive.ContentProps> & {\n\t\tportalProps?: MenubarPrimitive.PortalProps;\n\t} = $props();\n</script>\n\n<MenubarPrimitive.Portal {...portalProps}>\n\t<MenubarPrimitive.Content\n\t\tbind:ref\n\t\t{sideOffset}\n\t\t{align}\n\t\tclass={cn(\n\t\t\t'z-50 min-w-[12rem] overflow-hidden rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</MenubarPrimitive.Portal>\n"
+      "content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 8,\n\t\talign = 'start',\n\t\tportalProps,\n\t\t...restProps\n\t}: WithoutChild<MenubarPrimitive.ContentProps> & {\n\t\tportalProps?: MenubarPrimitive.PortalProps;\n\t} = $props();\n</script>\n\n<MenubarPrimitive.Portal {...portalProps}>\n\t<MenubarPrimitive.Content\n\t\tbind:ref\n\t\t{sideOffset}\n\t\t{align}\n\t\tclass={cn(\n\t\t\t'z-50 min-w-[12rem] rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</MenubarPrimitive.Portal>\n"
     },
     {
       "type": "registry:file",
@@ -35,7 +35,7 @@
     {
       "type": "registry:file",
       "target": "menubar/menubar-label.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tinset,\n\t\t...restProps\n\t}: MenubarPrimitive.GroupHeadingProps & {\n\t\tinset?: boolean;\n\t} = $props();\n</script>\n\n<MenubarPrimitive.GroupHeading\n\tbind:ref\n\tdata-inset={inset ? '' : undefined}\n\tclass={cn('px-2 py-1.5 text-xs font-semibold text-muted-foreground data-[inset]:pl-8', className)}\n\t{...restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tinset,\n\t\tchildren,\n\t\t...restProps\n\t}: HTMLAttributes<HTMLDivElement> & {\n\t\tref?: HTMLDivElement | null;\n\t\tinset?: boolean;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"menubar-label\"\n\tdata-inset={inset ? '' : undefined}\n\tclass={cn('px-2 py-1.5 text-xs font-semibold text-muted-foreground data-[inset]:pl-8', className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
     },
     {
       "type": "registry:file",
@@ -55,7 +55,7 @@
     {
       "type": "registry:file",
       "target": "menubar/menubar-sub-content.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: MenubarPrimitive.SubContentProps = $props();\n</script>\n\n<MenubarPrimitive.SubContent\n\tbind:ref\n\tclass={cn(\n\t\t'z-50 min-w-[8rem] overflow-hidden rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: MenubarPrimitive.SubContentProps = $props();\n</script>\n\n<MenubarPrimitive.SubContent\n\tbind:ref\n\tclass={cn(\n\t\t'z-50 min-w-[8rem] rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
     },
     {
       "type": "registry:file",

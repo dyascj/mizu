@@ -1,14 +1,11 @@
 <script lang="ts">
 	import ArrowRight from 'phosphor-svelte/lib/ArrowRight';
-	import Star from 'phosphor-svelte/lib/Star';
 	import { Button } from '$lib/components/ui/button';
-	import { Badge } from '$lib/components/ui/badge';
 	import { Bubbles } from '$lib/components/ui/bubbles';
 	import LandingCards from '$lib/site/landing-cards.svelte';
 	import CopyCommand from '$lib/site/copy-command.svelte';
 	import Seo from '$lib/site/seo.svelte';
 	import { siteConfig } from '$lib/site/config';
-	import { components } from '$lib/site/catalog';
 
 	const installCmd = `npx shadcn-svelte@latest add ${siteConfig.registryBase}/button.json`;
 
@@ -63,11 +60,6 @@
 			></div>
 		</div>
 
-		<Badge variant="secondary" class="gap-1.5">
-			<span class="size-1.5 rounded-full bg-[color:var(--primary)]"></span>
-			Frutiger Aero · Svelte 5 · {components.length} components
-		</Badge>
-
 		<h1
 			class="hero-title font-display text-5xl leading-[0.95] font-extrabold tracking-tight text-balance sm:text-7xl"
 		>
@@ -88,35 +80,12 @@
 		</div>
 
 		<CopyCommand command={installCmd} class="mt-1 w-full max-w-sm" />
-
-		<a
-			href={siteConfig.repo}
-			target="_blank"
-			rel="noreferrer"
-			class="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-		>
-			<Star class="size-4 text-[color:var(--primary)]" />
-			Open source on GitHub
-		</a>
 	</div>
 </section>
 
 <!-- The components: a shadcn-style wall of real, interactive cards that
      dissolves into the footer at the bottom -->
 <section class="mx-auto max-w-6xl px-4 pb-0 sm:px-6">
-	<div class="mx-auto mb-10 max-w-2xl text-center">
-		<Badge variant="secondary" class="gap-1.5">
-			<span class="size-1.5 rounded-full bg-[color:var(--primary)]"></span>
-			The components
-		</Badge>
-		<h2 class="mt-4 font-display text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">
-			{components.length} components. One glossy system.
-		</h2>
-		<p class="mt-3 text-balance text-muted-foreground sm:text-lg">
-			Real, interactive components — every one copy-paste, accessible, and recolored from a single
-			token. Poke at them.
-		</p>
-	</div>
 	<div class="cards-fade">
 		<LandingCards />
 	</div>

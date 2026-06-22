@@ -10,7 +10,8 @@
 	const gettingStarted = [
 		{ href: '/docs', label: 'Introduction' },
 		{ href: '/docs/installation', label: 'Installation' },
-		{ href: '/docs/theming', label: 'Theming' }
+		{ href: '/docs/theming', label: 'Theming' },
+		{ href: '/docs/usage', label: 'Usage' }
 	];
 	const groups = componentsByCategory();
 

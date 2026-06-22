@@ -7,6 +7,7 @@ export const docsNav: DocLink[] = [
 	{ href: '/docs', title: 'Introduction' },
 	{ href: '/docs/installation', title: 'Installation' },
 	{ href: '/docs/theming', title: 'Theming' },
+	{ href: '/docs/usage', title: 'Usage' },
 	...components.map((c) => ({ href: `/docs/components/${c.slug}`, title: c.name }))
 ];
 

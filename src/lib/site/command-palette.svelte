@@ -8,7 +8,8 @@
 	const gettingStarted = [
 		{ href: '/docs', label: 'Introduction' },
 		{ href: '/docs/installation', label: 'Installation' },
-		{ href: '/docs/theming', label: 'Theming' }
+		{ href: '/docs/theming', label: 'Theming' },
+		{ href: '/docs/usage', label: 'Usage' }
 	];
 
 	function onWindowKeydown(e: KeyboardEvent) {
@@ -27,7 +28,7 @@
 <svelte:window onkeydown={onWindowKeydown} />
 
 <Command.Dialog bind:open={search.open}>
-	<Command.Input placeholder="Search components and docs…" />
+	<Command.Input placeholder="Search components and docs" />
 	<Command.List>
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Getting Started">

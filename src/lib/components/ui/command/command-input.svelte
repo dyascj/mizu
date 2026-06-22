@@ -19,7 +19,7 @@
 		bind:ref
 		bind:value
 		class={cn(
-			'h-11 w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground',
+			'h-11 w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground dark:placeholder:text-foreground/60',
 			className
 		)}
 		{...restProps}

@@ -47,7 +47,7 @@
 				class="inline-flex items-center gap-2 rounded-xl border border-input bg-card/60 px-2.5 py-1.5 text-sm text-muted-foreground shadow-pressed transition-colors hover:text-foreground sm:w-48 sm:px-3"
 			>
 				<MagnifyingGlass class="size-4 shrink-0" />
-				<span class="hidden flex-1 text-left sm:inline">Search…</span>
+				<span class="hidden flex-1 text-left sm:inline">Search</span>
 				<Kbd class="hidden sm:inline-flex">⌘K</Kbd>
 			</button>
 			<Button

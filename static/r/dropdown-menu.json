@@ -30,7 +30,7 @@
     {
       "type": "registry:file",
       "target": "dropdown-menu/dropdown-menu-label.svelte",
-      "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tinset,\n\t\t...restProps\n\t}: DropdownMenuPrimitive.GroupHeadingProps & {\n\t\tinset?: boolean;\n\t} = $props();\n</script>\n\n<DropdownMenuPrimitive.GroupHeading\n\tbind:ref\n\tdata-inset={inset ? '' : undefined}\n\tclass={cn('px-2 py-1.5 text-xs font-semibold text-muted-foreground data-[inset]:pl-8', className)}\n\t{...restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tinset,\n\t\tchildren,\n\t\t...restProps\n\t}: HTMLAttributes<HTMLDivElement> & {\n\t\tref?: HTMLDivElement | null;\n\t\tinset?: boolean;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"dropdown-menu-label\"\n\tdata-inset={inset ? '' : undefined}\n\tclass={cn('px-2 py-1.5 text-xs font-semibold text-muted-foreground data-[inset]:pl-8', className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
     },
     {
       "type": "registry:file",
@@ -50,7 +50,7 @@
     {
       "type": "registry:file",
       "target": "dropdown-menu/dropdown-menu-sub-content.svelte",
-      "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DropdownMenuPrimitive.SubContentProps = $props();\n</script>\n\n<DropdownMenuPrimitive.SubContent\n\tbind:ref\n\tclass={cn(\n\t\t'z-50 min-w-[8rem] overflow-hidden rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DropdownMenuPrimitive.SubContentProps = $props();\n</script>\n\n<DropdownMenuPrimitive.SubContent\n\tbind:ref\n\tclass={cn(\n\t\t'z-50 min-w-[8rem] rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
     },
     {
       "type": "registry:file",
