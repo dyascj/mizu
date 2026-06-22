@@ -296,6 +296,30 @@
 	--shadow-glow: var(--elevation-glow);
 }
 
+/* Accordion open/close animation. Keyframes (not a height transition) so bits-ui
+   can measure the content's natural height; a forced h-0 would measure to zero. */
+@theme {
+	--animate-accordion-down: accordion-down 0.2s ease-out;
+	--animate-accordion-up: accordion-up 0.2s ease-out;
+
+	@keyframes accordion-down {
+		from {
+			height: 0;
+		}
+		to {
+			height: var(--bits-accordion-content-height);
+		}
+	}
+	@keyframes accordion-up {
+		from {
+			height: var(--bits-accordion-content-height);
+		}
+		to {
+			height: 0;
+		}
+	}
+}
+
 /* ----------------------------------------------------------------------------
    Material utilities — the signature Frutiger Aero surfaces.
    `glass` = frosted translucency, `gloss` = the top-edge wet sheen.

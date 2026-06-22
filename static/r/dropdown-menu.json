@@ -50,7 +50,7 @@
     {
       "type": "registry:file",
       "target": "dropdown-menu/dropdown-menu-sub-content.svelte",
-      "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DropdownMenuPrimitive.SubContentProps = $props();\n</script>\n\n<DropdownMenuPrimitive.SubContent\n\tbind:ref\n\tclass={cn(\n\t\t'z-50 min-w-[8rem] rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DropdownMenuPrimitive.SubContentProps = $props();\n</script>\n\n<DropdownMenuPrimitive.Portal>\n\t<DropdownMenuPrimitive.SubContent\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t'z-50 min-w-[8rem] rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</DropdownMenuPrimitive.Portal>\n"
     },
     {
       "type": "registry:file",

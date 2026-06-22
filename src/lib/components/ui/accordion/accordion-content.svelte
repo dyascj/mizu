@@ -16,7 +16,7 @@
 
 <AccordionPrimitive.Content
 	bind:ref
-	class="overflow-hidden text-sm transition-[height] duration-200 ease-out data-[state=closed]:h-0 data-[state=open]:h-[var(--bits-accordion-content-height)]"
+	class="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
 	{...restProps}
 >
 	<div class={cn('pb-4 text-muted-foreground', className)}>
