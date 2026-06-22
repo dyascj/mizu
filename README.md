@@ -130,7 +130,7 @@ The docs site lives in `src/routes`, components in `src/lib/components/ui`, the 
 
 ## Built with
 
-Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Phosphor icons. Inspired by shadcn-svelte and HeroUI, and the Frutiger Aero era.
+Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide icons (with Phosphor in the docs site). Inspired by shadcn-svelte and HeroUI, and the Frutiger Aero era.
 
 ## License
 

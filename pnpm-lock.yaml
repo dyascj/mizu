@@ -17,9 +17,6 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      phosphor-svelte:
-        specifier: ^3.1.0
-        version: 3.1.0(svelte@5.56.3)(vite@8.0.16(esbuild@0.28.1)(jiti@2.7.0))
       tailwind-merge:
         specifier: ^3.6.0
         version: 3.6.0
@@ -39,6 +36,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.3.1
         version: 4.3.1(vite@8.0.16(esbuild@0.28.1)(jiti@2.7.0))
+      phosphor-svelte:
+        specifier: ^3.1.0
+        version: 3.1.0(svelte@5.56.3)(vite@8.0.16(esbuild@0.28.1)(jiti@2.7.0))
       prettier:
         specifier: ^3.8.4
         version: 3.8.4

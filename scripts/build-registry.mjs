@@ -28,9 +28,9 @@ const config = readFileSync(join(root, 'src/lib/site/config.ts'), 'utf8');
 const BASE = (
 	process.env.MIZU_REGISTRY_BASE ||
 	config.match(/registryBase:\s*'([^']+)'/)?.[1] ||
-	'https://mizu.dev/r'
+	'https://mizu-ui.com/r'
 ).replace(/\/$/, '');
-const HOMEPAGE = config.match(/repo:\s*'([^']+)'/)?.[1] ?? 'https://mizu.dev';
+const HOMEPAGE = config.match(/repo:\s*'([^']+)'/)?.[1] ?? 'https://mizu-ui.com';
 
 const meta = JSON.parse(readFileSync(join(root, 'src/lib/site/components.json'), 'utf8'));
 

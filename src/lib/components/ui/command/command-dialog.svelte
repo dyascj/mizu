@@ -7,11 +7,15 @@
 	let {
 		open = $bindable(false),
 		value = $bindable(''),
+		title = 'Command menu',
+		description = 'Search for a command to run.',
 		class: className,
 		children,
 		...restProps
 	}: WithoutChildrenOrChild<CommandPrimitive.RootProps> & {
 		open?: boolean;
+		title?: string;
+		description?: string;
 		class?: string;
 		children: Snippet;
 	} = $props();
@@ -19,6 +23,10 @@
 
 <Dialog.Root {open} onOpenChange={(o) => (open = o)}>
 	<Dialog.Content class="max-w-xl overflow-hidden p-0">
+		<Dialog.Header class="sr-only">
+			<Dialog.Title>{title}</Dialog.Title>
+			<Dialog.Description>{description}</Dialog.Description>
+		</Dialog.Header>
 		<Command bind:value class={className} {...restProps}>
 			{@render children?.()}
 		</Command>
