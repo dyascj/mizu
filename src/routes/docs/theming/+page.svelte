@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CodeBlock from '$lib/site/code-block.svelte';
 	import { siteConfig } from '$lib/site/config';
+	import Seo from '$lib/site/seo.svelte';
 
 	const ramp = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
 
@@ -43,9 +44,10 @@
 	];
 </script>
 
-<svelte:head>
-	<title>Theming — {siteConfig.name}</title>
-</svelte:head>
+<Seo
+	title="Theming — {siteConfig.name}"
+	description="Theme Mizu with a single token. Change --primary to recolor the entire Frutiger Aero system, with light and dark modes, glass materials, and glossy gradients built in for Tailwind v4."
+/>
 
 <article class="max-w-2xl">
 	<h1 class="font-display text-3xl font-extrabold">Theming</h1>

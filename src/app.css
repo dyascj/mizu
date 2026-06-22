@@ -68,19 +68,31 @@
 		rgba(13, 42, 61, 0.06) 80%,
 		rgba(13, 42, 61, 0.11) 100%
 	);
+	/* A whisper of oil-on-water iridescence over glass — cyan → lavender → mint.
+	   Kept low-opacity so it reads as a pearlescent edge, never a rainbow. */
+	--glass-iridescence: linear-gradient(
+		125deg,
+		color-mix(in oklab, #74e0ff 16%, transparent) 0%,
+		transparent 32%,
+		color-mix(in oklab, #cbb6ff 11%, transparent) 56%,
+		transparent 74%,
+		color-mix(in oklab, #a6ffd6 13%, transparent) 100%
+	);
 
 	/* Glossy gradients */
 	/* Derived from --primary so the whole brand recolors from one token. */
 	--gradient-primary: linear-gradient(
 		180deg,
-		color-mix(in oklab, var(--primary) 58%, #ffffff) 0%,
-		var(--primary) 50%,
-		color-mix(in oklab, var(--primary) 80%, #000000) 100%
+		color-mix(in oklab, var(--primary) 26%, #ffffff) 0%,
+		color-mix(in oklab, var(--primary) 60%, #ffffff) 16%,
+		var(--primary) 52%,
+		color-mix(in oklab, var(--primary) 84%, #000000) 100%
 	);
 	--gradient-primary-hover: linear-gradient(
 		180deg,
-		color-mix(in oklab, var(--primary) 44%, #ffffff) 0%,
-		color-mix(in oklab, var(--primary) 92%, #ffffff) 50%,
+		color-mix(in oklab, var(--primary) 16%, #ffffff) 0%,
+		color-mix(in oklab, var(--primary) 50%, #ffffff) 16%,
+		color-mix(in oklab, var(--primary) 96%, #ffffff) 54%,
 		var(--primary) 100%
 	);
 	--gradient-surface: linear-gradient(180deg, #ffffff 0%, #f0f0f2 100%);
@@ -98,18 +110,24 @@
 
 	/* Elevation — layered, transparent, background-adaptive (shadows over borders) */
 	--elevation-bevel: 0 1px 2px rgba(13, 42, 61, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	/* Liquid glass: a bright top rim plus a faint inner light along the bottom
+	   edge, so the surface reads like a lensed bead of water (refs). */
 	--elevation-glass:
-		inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 4px rgba(13, 42, 61, 0.06),
-		0 12px 28px -10px rgba(13, 42, 61, 0.18);
+		inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1.5px 2px rgba(255, 255, 255, 0.55),
+		0 2px 4px rgba(13, 42, 61, 0.06), 0 12px 28px -10px rgba(13, 42, 61, 0.18);
 	--elevation-glass-lg:
-		inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 8px 16px rgba(13, 42, 61, 0.08),
-		0 30px 60px -24px rgba(13, 42, 61, 0.35);
+		inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1.5px 3px rgba(255, 255, 255, 0.6),
+		0 8px 16px rgba(13, 42, 61, 0.08), 0 30px 60px -24px rgba(13, 42, 61, 0.35);
+	/* Aqua gel: bright top rim + an inner cyan reflection rising from the foot,
+	   the signature wet-button look. */
 	--elevation-aqua:
-		inset 0 1px 0 rgba(255, 255, 255, 0.5),
-		0 4px 12px color-mix(in srgb, var(--primary) 36%, transparent), 0 2px 4px rgba(13, 42, 61, 0.12);
+		inset 0 1.5px 0 rgba(255, 255, 255, 0.7),
+		inset 0 -3px 6px -2px color-mix(in srgb, var(--primary) 55%, #ffffff),
+		0 5px 14px color-mix(in srgb, var(--primary) 40%, transparent), 0 2px 4px rgba(13, 42, 61, 0.12);
 	--elevation-aqua-lg:
-		inset 0 1px 0 rgba(255, 255, 255, 0.6),
-		0 6px 18px color-mix(in srgb, var(--primary) 46%, transparent), 0 3px 6px rgba(13, 42, 61, 0.14);
+		inset 0 1.5px 0 rgba(255, 255, 255, 0.8),
+		inset 0 -4px 8px -2px color-mix(in srgb, var(--primary) 58%, #ffffff),
+		0 7px 20px color-mix(in srgb, var(--primary) 50%, transparent), 0 3px 6px rgba(13, 42, 61, 0.14);
 	--elevation-pressed: inset 0 2px 5px rgba(13, 42, 61, 0.16);
 	--elevation-glow: 0 0 22px color-mix(in srgb, var(--primary) 45%, transparent);
 }
@@ -118,26 +136,28 @@
    Semantic tokens — dark ("deep water", not pure black)
 ---------------------------------------------------------------------------- */
 .dark {
-	--background: #0a0a0a;
-	--foreground: #fafafa;
+	/* "Deep water" — cool teal-navy, never pure black, so the aqua brand and glass
+	   have something luminous to sit in. */
+	--background: #061319;
+	--foreground: #e9f4fa;
 
-	--card: #171717;
-	--card-foreground: #fafafa;
+	--card: #0d2230;
+	--card-foreground: #e9f4fa;
 
-	--popover: #1c1c1c;
-	--popover-foreground: #fafafa;
+	--popover: #102835;
+	--popover-foreground: #e9f4fa;
 
-	--muted: #262626;
-	--muted-foreground: #a3a3a3;
+	--muted: #16303d;
+	--muted-foreground: #8fb0bd;
 
 	--primary: #29c7ff;
 	--primary-foreground: #03283a;
 
-	--secondary: #262626;
-	--secondary-foreground: #fafafa;
+	--secondary: #173541;
+	--secondary-foreground: #e9f4fa;
 
-	--accent: #2a2a2a;
-	--accent-foreground: #fafafa;
+	--accent: #1b3d4b;
+	--accent-foreground: #e9f4fa;
 
 	--success: #34d27e;
 	--success-foreground: #052e16;
@@ -148,40 +168,60 @@
 	--info: #60a5fa;
 	--info-foreground: #06203f;
 
-	--border: #2a2a2a;
-	--input: #333333;
+	--border: #1e3f4d;
+	--input: #244a59;
 	--ring: var(--primary);
 
-	--glass: rgba(23, 23, 23, 0.62);
-	--glass-strong: rgba(23, 23, 23, 0.84);
-	--glass-border: rgba(255, 255, 255, 0.08);
-	--sheen: rgba(255, 255, 255, 0.2);
-	/* Dark glass already reads as Vista glass — keep it untouched. */
-	--glass-sheen: none;
+	/* Luminous deep-water glass: tinted teal body, a cyan-lit rim, and a cool
+	   sheen so dark panels glow from the edges instead of going flat. */
+	--glass: rgba(13, 36, 48, 0.58);
+	--glass-strong: rgba(14, 38, 50, 0.82);
+	--glass-border: rgba(120, 224, 255, 0.16);
+	--sheen: rgba(190, 242, 255, 0.22);
+	--glass-sheen: linear-gradient(
+		180deg,
+		rgba(150, 230, 255, 0.16) 0%,
+		rgba(150, 230, 255, 0.04) 40%,
+		rgba(3, 18, 26, 0.1) 100%
+	);
+	--glass-iridescence: linear-gradient(
+		125deg,
+		color-mix(in oklab, #4fd6ff 14%, transparent) 0%,
+		transparent 36%,
+		color-mix(in oklab, #b89bff 10%, transparent) 60%,
+		transparent 78%,
+		color-mix(in oklab, #74ffce 12%, transparent) 100%
+	);
 
 	/* gradient-primary + hover derive from --primary (defined once in :root). */
-	--gradient-surface: linear-gradient(180deg, #2a2a2a 0%, #171717 100%);
-	--gradient-surface-hover: linear-gradient(180deg, #333333 0%, #1f1f1f 100%);
+	--gradient-surface: linear-gradient(180deg, #1d404f 0%, #102733 100%);
+	--gradient-surface-hover: linear-gradient(180deg, #244b5c 0%, #14313e 100%);
 	--gradient-destructive: linear-gradient(180deg, #fb8585 0%, #ef4444 50%, #c62f2f 100%);
 	--gradient-success: linear-gradient(180deg, #5be08a 0%, #22c55e 50%, #15873f 100%);
+	/* Stronger aqua bloom + a whisper of mint, so the backdrop reads as lit water. */
 	--gradient-page:
-		radial-gradient(115% 80% at 50% -8%, rgba(41, 199, 255, 0.1) 0%, rgba(41, 199, 255, 0) 55%),
-		radial-gradient(90% 70% at 50% 118%, rgba(41, 199, 255, 0.05) 0%, rgba(41, 199, 255, 0) 60%),
-		linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+		radial-gradient(115% 80% at 50% -8%, rgba(41, 199, 255, 0.18) 0%, rgba(41, 199, 255, 0) 55%),
+		radial-gradient(90% 70% at 50% 118%, rgba(41, 199, 255, 0.11) 0%, rgba(41, 199, 255, 0) 60%),
+		radial-gradient(55% 45% at 84% 16%, rgba(116, 255, 214, 0.07) 0%, transparent 60%),
+		linear-gradient(180deg, #07161e 0%, #030c12 100%);
 
-	--elevation-bevel: 0 1px 2px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	--elevation-bevel: 0 1px 2px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(180, 240, 255, 0.12);
 	--elevation-glass:
-		inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 2px 4px rgba(0, 0, 0, 0.4),
-		0 12px 28px -10px rgba(0, 0, 0, 0.6);
+		inset 0 1px 0 rgba(180, 240, 255, 0.16), inset 0 -1.5px 3px rgba(80, 200, 255, 0.1),
+		0 2px 4px rgba(0, 0, 0, 0.4), 0 12px 28px -10px rgba(0, 0, 0, 0.6),
+		0 0 24px -6px color-mix(in srgb, var(--primary) 18%, transparent);
 	--elevation-glass-lg:
-		inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 8px 16px rgba(0, 0, 0, 0.45),
-		0 30px 60px -24px rgba(0, 0, 0, 0.8);
+		inset 0 1px 0 rgba(180, 240, 255, 0.18), inset 0 -2px 4px rgba(80, 200, 255, 0.12),
+		0 8px 16px rgba(0, 0, 0, 0.45), 0 30px 60px -24px rgba(0, 0, 0, 0.8),
+		0 0 34px -6px color-mix(in srgb, var(--primary) 22%, transparent);
 	--elevation-aqua:
-		inset 0 1px 0 rgba(255, 255, 255, 0.25),
-		0 4px 12px color-mix(in srgb, var(--primary) 42%, transparent), 0 2px 4px rgba(0, 0, 0, 0.4);
+		inset 0 1.5px 0 rgba(255, 255, 255, 0.4),
+		inset 0 -3px 6px -2px color-mix(in srgb, var(--primary) 48%, #ffffff),
+		0 5px 14px color-mix(in srgb, var(--primary) 46%, transparent), 0 2px 4px rgba(0, 0, 0, 0.4);
 	--elevation-aqua-lg:
-		inset 0 1px 0 rgba(255, 255, 255, 0.3),
-		0 6px 18px color-mix(in srgb, var(--primary) 52%, transparent), 0 3px 6px rgba(0, 0, 0, 0.45);
+		inset 0 1.5px 0 rgba(255, 255, 255, 0.45),
+		inset 0 -4px 8px -2px color-mix(in srgb, var(--primary) 52%, #ffffff),
+		0 7px 20px color-mix(in srgb, var(--primary) 56%, transparent), 0 3px 6px rgba(0, 0, 0, 0.45);
 	--elevation-pressed: inset 0 2px 5px rgba(0, 0, 0, 0.55);
 	--elevation-glow: 0 0 22px color-mix(in srgb, var(--primary) 50%, transparent);
 }
@@ -262,15 +302,15 @@
 ---------------------------------------------------------------------------- */
 @utility glass {
 	background-color: var(--glass);
-	background-image: var(--glass-sheen);
-	backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
-	-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+	background-image: var(--glass-iridescence), var(--glass-sheen);
+	backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
+	-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
 }
 @utility glass-strong {
 	background-color: var(--glass-strong);
-	background-image: var(--glass-sheen);
-	backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
-	-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+	background-image: var(--glass-iridescence), var(--glass-sheen);
+	backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
+	-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.7);
 }
 @utility gradient-primary {
 	background-image: var(--gradient-primary);
@@ -300,16 +340,24 @@
 		position: absolute;
 		inset: 0;
 		border-radius: inherit;
-		/* A wet, Windows-Vista-style gloss: a bright highlight along the very top
-		   edge that falls off fast into a soft sheen — reads on buttons, badges,
-		   and large glass surfaces alike. */
-		background: linear-gradient(
-			180deg,
-			color-mix(in oklab, white 34%, var(--sheen)) 0%,
-			var(--sheen) 9%,
-			color-mix(in oklab, var(--sheen) 28%, transparent) 42%,
-			transparent 60%
-		);
+		/* Wet gel gloss, layered top to bottom:
+		   1. a bright specular glint in the top-left corner (the light source),
+		   2. the Vista-style sheen along the top edge that falls off fast,
+		   3. a faint reflection rising from the foot — the aqua-button shine. */
+		background:
+			radial-gradient(
+				58% 48% at 24% 2%,
+				color-mix(in oklab, white 60%, var(--sheen)) 0%,
+				transparent 60%
+			),
+			linear-gradient(
+				180deg,
+				color-mix(in oklab, white 42%, var(--sheen)) 0%,
+				var(--sheen) 8%,
+				color-mix(in oklab, var(--sheen) 26%, transparent) 44%,
+				transparent 58%
+			),
+			linear-gradient(0deg, color-mix(in oklab, white 16%, var(--sheen)) 0%, transparent 20%);
 		pointer-events: none;
 		z-index: 1;
 	}

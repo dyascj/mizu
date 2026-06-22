@@ -4,15 +4,38 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Bubbles } from '$lib/components/ui/bubbles';
-	import LandingShowcase from '$lib/site/landing-showcase.svelte';
+	import LandingCards from '$lib/site/landing-cards.svelte';
+	import CopyCommand from '$lib/site/copy-command.svelte';
+	import Seo from '$lib/site/seo.svelte';
 	import { siteConfig } from '$lib/site/config';
 	import { components } from '$lib/site/catalog';
+
+	const installCmd = `npx shadcn-svelte@latest add ${siteConfig.registryBase}/button.json`;
+
+	const softwareJsonLd = {
+		'@context': 'https://schema.org',
+		'@type': 'SoftwareApplication',
+		name: siteConfig.name,
+		applicationCategory: 'DeveloperApplication',
+		applicationSubCategory: 'UI component library',
+		operatingSystem: 'Web',
+		description: siteConfig.description,
+		url: siteConfig.url,
+		image: `${siteConfig.url}/og.png`,
+		softwareRequirements: 'SvelteKit, Svelte 5, Tailwind CSS v4',
+		programmingLanguage: 'Svelte',
+		license: `${siteConfig.repo}/blob/main/LICENSE`,
+		isAccessibleForFree: true,
+		offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+		author: { '@type': 'Person', name: siteConfig.author, url: siteConfig.authorUrl }
+	};
 </script>
 
-<svelte:head>
-	<title>{siteConfig.name} — {siteConfig.tagline}</title>
-	<meta name="description" content={siteConfig.description} />
-</svelte:head>
+<Seo
+	title="{siteConfig.name} — {siteConfig.tagline}"
+	description={siteConfig.description}
+	jsonLd={softwareJsonLd}
+/>
 
 <!-- Hero — a glossy 2008 daydream -->
 <section class="relative overflow-hidden">
@@ -64,6 +87,8 @@
 			<Button href="/docs/components" variant="secondary" size="lg">Browse components</Button>
 		</div>
 
+		<CopyCommand command={installCmd} class="mt-1 w-full max-w-sm" />
+
 		<a
 			href={siteConfig.repo}
 			target="_blank"
@@ -76,12 +101,28 @@
 	</div>
 </section>
 
-<!-- Showcase: framed, tabbed, recolorable -->
-<section class="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
-	<LandingShowcase />
+<!-- The components: a shadcn-style wall of real, interactive cards that
+     dissolves into the footer at the bottom -->
+<section class="mx-auto max-w-6xl px-4 pb-0 sm:px-6">
+	<div class="mx-auto mb-10 max-w-2xl text-center">
+		<Badge variant="secondary" class="gap-1.5">
+			<span class="size-1.5 rounded-full bg-[color:var(--primary)]"></span>
+			The components
+		</Badge>
+		<h2 class="mt-4 font-display text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">
+			{components.length} components. One glossy system.
+		</h2>
+		<p class="mt-3 text-balance text-muted-foreground sm:text-lg">
+			Real, interactive components — every one copy-paste, accessible, and recolored from a single
+			token. Poke at them.
+		</p>
+	</div>
+	<div class="cards-fade">
+		<LandingCards />
+	</div>
 </section>
 
-<footer class="border-t border-border">
+<footer class="-mt-4">
 	<div
 		class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-7 text-sm text-muted-foreground sm:flex-row"
 	>
@@ -113,6 +154,13 @@
 </footer>
 
 <style>
+	/* The masonry dissolves into the footer: balanced columns fade to transparent
+	   over the last stretch, revealing the page background beneath. */
+	.cards-fade {
+		-webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 180px), transparent 100%);
+		mask-image: linear-gradient(to bottom, #000 calc(100% - 180px), transparent 100%);
+	}
+
 	/* Bright aqua sky-bloom behind the orb. */
 	.hero-bloom {
 		background: radial-gradient(

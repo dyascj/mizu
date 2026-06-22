@@ -4,6 +4,7 @@
 	import * as Alert from '$lib/components/ui/alert';
 	import Info from 'phosphor-svelte/lib/Info';
 	import { siteConfig } from '$lib/site/config';
+	import Seo from '$lib/site/seo.svelte';
 
 	const base = siteConfig.registryBase;
 	const addOne = `npx shadcn-svelte@latest add ${base}/button.json`;
@@ -24,9 +25,10 @@
 }`;
 </script>
 
-<svelte:head>
-	<title>Installation — {siteConfig.name}</title>
-</svelte:head>
+<Seo
+	title="Installation — {siteConfig.name}"
+	description="Set up Mizu in your SvelteKit project: configure Tailwind v4 and components.json, then add glossy Frutiger Aero components with the shadcn-svelte CLI and own the source."
+/>
 
 <article class="max-w-2xl">
 	<h1 class="font-display text-3xl font-extrabold">Installation</h1>

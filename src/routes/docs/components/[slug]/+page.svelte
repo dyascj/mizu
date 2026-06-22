@@ -6,6 +6,7 @@
 	import { getDemo } from '$lib/site/demos';
 	import { getComponentApi, getComponentSource } from '$lib/site/component-api';
 	import { siteConfig } from '$lib/site/config';
+	import Seo from '$lib/site/seo.svelte';
 
 	let { data } = $props();
 
@@ -17,12 +18,28 @@
 	const installCmd = $derived(
 		`npx shadcn-svelte@latest add ${siteConfig.registryBase}/${meta.slug}.json`
 	);
+
+	// Richer than the catalog blurb so search/social snippets read as a real
+	// answer to "Svelte <component>" queries.
+	const seoDescription = $derived(
+		`${meta.description} A copy-paste ${meta.name} component for SvelteKit — accessible, themeable, and yours to own. Built with Svelte 5 and Tailwind v4.`
+	);
+
+	const jsonLd = $derived({
+		'@context': 'https://schema.org',
+		'@type': 'SoftwareSourceCode',
+		name: `${meta.name} — ${siteConfig.name}`,
+		description: meta.description,
+		url: `${siteConfig.url}/docs/components/${meta.slug}`,
+		codeRepository: siteConfig.repo,
+		programmingLanguage: 'Svelte',
+		runtimePlatform: 'SvelteKit',
+		isPartOf: { '@type': 'WebSite', name: siteConfig.name, url: siteConfig.url },
+		author: { '@type': 'Person', name: siteConfig.author, url: siteConfig.authorUrl }
+	});
 </script>
 
-<svelte:head>
-	<title>{meta.name} — {siteConfig.name}</title>
-	<meta name="description" content={meta.description} />
-</svelte:head>
+<Seo title="{meta.name} — {siteConfig.name}" description={seoDescription} {jsonLd} />
 
 <article class="max-w-3xl">
 	<div class="flex flex-wrap items-center gap-3">

@@ -8,6 +8,19 @@
 	let { children } = $props();
 	let scroller = $state<HTMLDivElement | null>(null);
 
+	// Sitewide structured data (Schema.org). Page-specific titles/descriptions
+	// and the homepage's SoftwareApplication node live in <Seo> on each route.
+	const websiteJsonLd = {
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: siteConfig.name,
+		alternateName: `${siteConfig.name} — ${siteConfig.tagline}`,
+		url: siteConfig.url,
+		description: siteConfig.description,
+		inLanguage: 'en',
+		author: { '@type': 'Person', name: siteConfig.author, url: siteConfig.authorUrl }
+	};
+
 	// The app scrolls inside `scroller` (not the document), so we reset it to the
 	// top on real page navigations. Hash links (in-page anchors) are left alone.
 	afterNavigate((nav) => {
@@ -21,16 +34,19 @@
 <svelte:head>
 	<link rel="icon" href="/brand/mizu-icon.png" />
 	<link rel="apple-touch-icon" href="/brand/mizu-icon.png" />
+	<meta name="author" content={siteConfig.author} />
+
+	<!-- Global Open Graph / Twitter. Per-page title, description, url, and image
+	     are set by <Seo> on each route. -->
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content={siteConfig.name} />
-	<meta property="og:title" content={`${siteConfig.name} — ${siteConfig.tagline}`} />
-	<meta property="og:description" content={siteConfig.description} />
-	<meta property="og:url" content={siteConfig.url} />
-	<meta property="og:image" content={`${siteConfig.url}/og.png`} />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="2400" />
+	<meta property="og:image:height" content="1260" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={`${siteConfig.name} — ${siteConfig.tagline}`} />
-	<meta name="twitter:description" content={siteConfig.description} />
-	<meta name="twitter:image" content={`${siteConfig.url}/og.png`} />
+
+	<!-- eslint-disable-next-line svelte/no-at-html-tags — static, app-generated JSON -->
+	{@html `<script type="application/ld+json">${JSON.stringify(websiteJsonLd)}<\/script>`}
 </svelte:head>
 
 <IconContext values={{ weight: 'fill' }}>

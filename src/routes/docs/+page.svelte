@@ -3,11 +3,13 @@
 	import { Button } from '$lib/components/ui/button';
 	import { components } from '$lib/site/catalog';
 	import { siteConfig } from '$lib/site/config';
+	import Seo from '$lib/site/seo.svelte';
 </script>
 
-<svelte:head>
-	<title>Introduction — {siteConfig.name}</title>
-</svelte:head>
+<Seo
+	title="Introduction — {siteConfig.name}"
+	description="Mizu is an open-source Frutiger Aero component library for SvelteKit — glossy, glassy, accessible components you copy into your project and own. Built on Svelte 5 runes, Tailwind v4, and bits-ui."
+/>
 
 <article class="max-w-2xl">
 	<img

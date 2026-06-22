@@ -2,14 +2,15 @@
 	import { components, componentsByCategory } from '$lib/site/catalog';
 	import { getDemo } from '$lib/site/demos';
 	import { siteConfig } from '$lib/site/config';
+	import Seo from '$lib/site/seo.svelte';
 
 	const groups = componentsByCategory();
 </script>
 
-<svelte:head>
-	<title>Components — {siteConfig.name}</title>
-	<meta name="description" content={`All ${components.length} Mizu components.`} />
-</svelte:head>
+<Seo
+	title="Components — {siteConfig.name}"
+	description={`Browse all ${components.length} Mizu components for SvelteKit — buttons, inputs, dialogs, command palettes, data tables and more. Each has a live demo, props table, and copy-paste source.`}
+/>
 
 <div>
 	<h1 class="font-display text-3xl font-extrabold">Components</h1>
