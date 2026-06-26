@@ -308,6 +308,120 @@
       "type": "registry:ui",
       "title": "Button Group",
       "description": "Buttons joined into one segmented control."
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Transient glass notifications that bloom in and stack."
+    },
+    {
+      "name": "meter",
+      "type": "registry:ui",
+      "title": "Meter",
+      "description": "A semantic gauge whose glossy fill shifts across thresholds."
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "A glassy month grid with an aqua-gel selected day."
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "A recessed glass date field with a popover calendar."
+    },
+    {
+      "name": "rating",
+      "type": "registry:ui",
+      "title": "Rating",
+      "description": "Fillable aqua droplets for a quick, glossy score."
+    },
+    {
+      "name": "tags-input",
+      "type": "registry:ui",
+      "title": "Tags Input",
+      "description": "A glass field that collects entries as glossy aqua chips."
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "A swipeable slider with glossy aqua prev/next controls."
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Draggable panes split by a glassy aqua handle."
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "title": "Data Table",
+      "description": "A sortable, selectable, paginated table on glass."
+    },
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "title": "Timeline",
+      "description": "A vertical history with glowing aqua markers."
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "A collapsible app sidebar that folds to a glassy rail."
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "title": "Stepper",
+      "description": "A multi-step progress trail with glossy aqua nodes."
+    },
+    {
+      "name": "tree",
+      "type": "registry:ui",
+      "title": "Tree",
+      "description": "A nested, keyboard-navigable file-style tree."
+    },
+    {
+      "name": "ripple",
+      "type": "registry:ui",
+      "title": "Ripple",
+      "description": "A water ripple that blooms from every pointer press."
+    },
+    {
+      "name": "dock",
+      "type": "registry:ui",
+      "title": "Dock",
+      "description": "An Aqua-style dock that magnifies icons under the cursor."
+    },
+    {
+      "name": "aurora",
+      "type": "registry:ui",
+      "title": "Aurora",
+      "description": "A slow, drifting aurora-gradient backdrop."
+    },
+    {
+      "name": "caustics",
+      "type": "registry:ui",
+      "title": "Caustics",
+      "description": "Rippling pool-light caustics for any surface."
+    },
+    {
+      "name": "lens-flare",
+      "type": "registry:ui",
+      "title": "Lens Flare",
+      "description": "A sunlit lens flare and bloom accent."
+    },
+    {
+      "name": "liquid-divider",
+      "type": "registry:ui",
+      "title": "Liquid Divider",
+      "description": "A separator that ripples like the surface of water."
     }
   ]
 }

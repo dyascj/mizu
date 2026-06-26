@@ -12,7 +12,7 @@ Glossy, glassy, gorgeously rounded components for SvelteKit. The optimism of ear
 	<img alt="Svelte 5" src="https://img.shields.io/badge/Svelte-5-FF3E00?logo=svelte&logoColor=white" />
 	<img alt="Tailwind CSS v4" src="https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white" />
 	<img alt="bits-ui" src="https://img.shields.io/badge/bits--ui-headless-0EA5E9" />
-	<img alt="50 components" src="https://img.shields.io/badge/components-50-01B2FF" />
+	<img alt="69 components" src="https://img.shields.io/badge/components-69-01B2FF" />
 	<img alt="MIT" src="https://img.shields.io/badge/license-MIT-22C55E" />
 </p>
 
@@ -24,7 +24,7 @@ Mizu brings back the aesthetic of clear skies, water droplets, and wet glass: fr
 
 ## Highlights
 
-- **50 components**, from buttons and dialogs to a command palette, a blooming orb, and rising bubbles.
+- **69 components**, from buttons and dialogs to a command palette, a date picker, a data table, a magnifying dock, drifting aurora, and rising bubbles.
 - **Recolor from one token.** The gloss gradients, glow, and focus ring all derive from `--primary` — change it once and the whole system follows.
 - **Physically honest.** Gloss, glass, and glow come from real CSS, never baked-in screenshots.
 - **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the glossy skin.

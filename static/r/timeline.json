@@ -1,0 +1,50 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "timeline",
+  "type": "registry:ui",
+  "title": "Timeline",
+  "description": "A vertical history with glowing aqua markers.",
+  "dependencies": [
+    "@lucide/svelte"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "timeline/index.ts",
+      "content": "import Root from './timeline.svelte';\nimport Item from './timeline-item.svelte';\nimport Marker from './timeline-marker.svelte';\nimport Title from './timeline-title.svelte';\nimport Description from './timeline-description.svelte';\nimport Time from './timeline-time.svelte';\n\nexport {\n\tRoot,\n\tItem,\n\tMarker,\n\tTitle,\n\tDescription,\n\tTime,\n\t//\n\tRoot as Timeline,\n\tItem as TimelineItem,\n\tMarker as TimelineMarker,\n\tTitle as TimelineTitle,\n\tDescription as TimelineDescription,\n\tTime as TimelineTime\n};\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline-description.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...rest\n\t}: HTMLAttributes<HTMLParagraphElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLParagraphElement | null;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<p bind:this={ref} class={cn('text-sm text-muted-foreground', className)} {...rest}>\n\t{@render children?.()}\n</p>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLLiAttributes } from 'svelte/elements';\n\timport type { Component } from 'svelte';\n\timport type { LucideProps } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\timport Marker from './timeline-marker.svelte';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\ticon,\n\t\tlast = false,\n\t\tchildren,\n\t\t...rest\n\t}: HTMLLiAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLLIElement | null;\n\t\t/** Optional lucide icon shown inside a glass node instead of the plain dot. */\n\t\ticon?: Component<LucideProps>;\n\t\t/** Hide the connector line below this item (set on the final event). */\n\t\tlast?: boolean;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<li bind:this={ref} class={cn('relative pl-9 pb-6 last:pb-0', className)} {...rest}>\n\t<!-- The vertical rail this item's marker sits on. -->\n\t{#if !last}\n\t\t<span\n\t\t\taria-hidden=\"true\"\n\t\t\tclass=\"pointer-events-none absolute top-3 bottom-0 left-[0.4375rem] w-px -translate-x-1/2 bg-border\"\n\t\t></span>\n\t{/if}\n\t<Marker {icon} />\n\t<div class=\"flex flex-col gap-0.5\">\n\t\t{@render children?.()}\n\t</div>\n</li>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline-marker.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Component } from 'svelte';\n\timport type { LucideProps } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tclass: className,\n\t\ticon\n\t}: {\n\t\tclass?: string;\n\t\t/** When set, renders a slightly larger glass node holding the icon. */\n\t\ticon?: Component<LucideProps>;\n\t} = $props();\n</script>\n\n{#if icon}\n\t{@const Icon = icon}\n\t<span\n\t\taria-hidden=\"true\"\n\t\tclass={cn(\n\t\t\t'glass absolute top-0.5 left-[0.4375rem] z-10 flex size-[1.375rem] -translate-x-1/2 items-center justify-center rounded-full border border-[color:var(--glass-border)] text-primary shadow-glow ring-4 ring-background',\n\t\t\tclassName\n\t\t)}\n\t>\n\t\t<Icon class=\"size-3\" />\n\t</span>\n{:else}\n\t<span\n\t\taria-hidden=\"true\"\n\t\tclass={cn(\n\t\t\t'gradient-primary absolute top-1 left-[0.4375rem] z-10 size-3 -translate-x-1/2 rounded-full shadow-glow ring-4 ring-background',\n\t\t\tclassName\n\t\t)}\n\t></span>\n{/if}\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline-time.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLTimeAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...rest\n\t}: HTMLTimeAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLTimeElement | null;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<time\n\tbind:this={ref}\n\tclass={cn('text-xs font-medium tracking-wide text-muted-foreground tabular-nums', className)}\n\t{...rest}\n>\n\t{@render children?.()}\n</time>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline-title.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...rest\n\t}: HTMLAttributes<HTMLParagraphElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLParagraphElement | null;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<p bind:this={ref} class={cn('text-sm font-semibold text-foreground', className)} {...rest}>\n\t{@render children?.()}\n</p>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLOlAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...rest\n\t}: HTMLOlAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLOListElement | null;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<ol bind:this={ref} class={cn('relative flex flex-col', className)} {...rest}>\n\t{@render children?.()}\n</ol>\n"
+    }
+  ]
+}

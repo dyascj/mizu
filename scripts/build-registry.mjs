@@ -54,6 +54,10 @@ function inferDeps(contents) {
 	if (/from ['"]phosphor-svelte/.test(text)) deps.add('phosphor-svelte');
 	if (/from ['"]@lucide\/svelte/.test(text)) deps.add('@lucide/svelte');
 	if (/from ['"]tailwind-variants['"]/.test(text)) deps.add('tailwind-variants');
+	if (/from ['"]@internationalized\/date['"]/.test(text)) deps.add('@internationalized/date');
+	if (/from ['"]embla-carousel-svelte['"]/.test(text)) deps.add('embla-carousel-svelte');
+	if (/from ['"]embla-carousel['"]/.test(text)) deps.add('embla-carousel');
+	if (/from ['"]paneforge['"]/.test(text)) deps.add('paneforge');
 	if (/\$lib\/utils/.test(text)) registryDeps.add('utils');
 	for (const m of text.matchAll(/\$lib\/components\/ui\/([a-z-]+)/g)) registryDeps.add(m[1]);
 	return { deps: [...deps].sort(), registryDeps: [...registryDeps] };

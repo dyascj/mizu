@@ -1,0 +1,28 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "ripple",
+  "type": "registry:ui",
+  "title": "Ripple",
+  "description": "A water ripple that blooms from every pointer press.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "ripple/index.ts",
+      "content": "export { default as Ripple } from './ripple.svelte';\nexport { ripple, type RippleOptions } from './ripple.svelte.js';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "ripple/ripple.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\timport { ripple as rippleAction, type RippleOptions } from './ripple.svelte.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> &\n\t\tRippleOptions & {\n\t\t\tclass?: string;\n\t\t\tref?: HTMLDivElement | null;\n\t\t\tchildren?: Snippet;\n\t\t};\n\n\tlet {\n\t\tcolor,\n\t\tduration,\n\t\tdisabled = false,\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...rest\n\t}: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn('relative overflow-hidden', className)}\n\tuse:rippleAction={{ color, duration, disabled }}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "ripple/ripple.svelte.ts",
+      "content": "/**\n * `use:ripple` — a water ripple that blooms from the pointer on press.\n *\n * Drop it on any surface; it composes without markup changes:\n *   <button use:ripple>Tap me</button>\n *   <div class=\"rounded-2xl\" use:ripple={{ color: 'rgba(120,224,255,0.5)' }}>…</div>\n *\n * The host is made `position: relative` (if static) and `overflow: hidden`, and\n * the ripple inherits its border-radius so it clips to the surface.\n */\nimport type { Action } from 'svelte/action';\n\nexport type RippleOptions = {\n\t/** Ripple color. Defaults to a watery white that reads on aqua and glass alike. */\n\tcolor?: string;\n\t/** Bloom duration in ms. */\n\tduration?: number;\n\t/** Turn the effect off without removing the action. */\n\tdisabled?: boolean;\n};\n\nconst REDUCE = () =>\n\ttypeof window !== 'undefined' &&\n\twindow.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;\n\nexport const ripple: Action<HTMLElement, RippleOptions | undefined> = (node, options) => {\n\tlet opts: RippleOptions = { color: 'rgba(255,255,255,0.45)', duration: 620, ...options };\n\n\tconst cs = getComputedStyle(node);\n\tif (cs.position === 'static') node.style.position = 'relative';\n\tif (cs.overflow === 'visible') node.style.overflow = 'hidden';\n\n\tfunction spawn(event: PointerEvent) {\n\t\tif (opts.disabled) return;\n\t\tconst rect = node.getBoundingClientRect();\n\t\tconst x = event.clientX - rect.left;\n\t\tconst y = event.clientY - rect.top;\n\t\t// Diameter that always reaches the farthest corner from the press point.\n\t\tconst size =\n\t\t\t2 *\n\t\t\tMath.max(\n\t\t\t\tMath.hypot(x, y),\n\t\t\t\tMath.hypot(rect.width - x, y),\n\t\t\t\tMath.hypot(x, rect.height - y),\n\t\t\t\tMath.hypot(rect.width - x, rect.height - y)\n\t\t\t);\n\n\t\tconst dot = document.createElement('span');\n\t\tdot.setAttribute('aria-hidden', 'true');\n\t\tdot.style.cssText = `position:absolute; left:${x}px; top:${y}px; width:${size}px; height:${size}px; border-radius:9999px; pointer-events:none; z-index:0; will-change:transform,opacity; background:radial-gradient(circle, ${opts.color} 0%, ${opts.color} 36%, transparent 70%);`;\n\t\tnode.appendChild(dot);\n\n\t\tconst reduce = REDUCE();\n\t\tconst anim = dot.animate(\n\t\t\treduce\n\t\t\t\t? [\n\t\t\t\t\t\t{ transform: 'translate(-50%,-50%) scale(1)', opacity: 0.4 },\n\t\t\t\t\t\t{ transform: 'translate(-50%,-50%) scale(1)', opacity: 0 }\n\t\t\t\t\t]\n\t\t\t\t: [\n\t\t\t\t\t\t{ transform: 'translate(-50%,-50%) scale(0)', opacity: 0.5 },\n\t\t\t\t\t\t{ transform: 'translate(-50%,-50%) scale(1)', opacity: 0 }\n\t\t\t\t\t],\n\t\t\t{ duration: reduce ? 220 : opts.duration, easing: 'cubic-bezier(0.2, 0, 0, 1)' }\n\t\t);\n\t\tanim.onfinish = () => dot.remove();\n\t\tanim.oncancel = () => dot.remove();\n\t}\n\n\tnode.addEventListener('pointerdown', spawn);\n\n\treturn {\n\t\tupdate(next) {\n\t\t\topts = { color: 'rgba(255,255,255,0.45)', duration: 620, ...next };\n\t\t},\n\t\tdestroy() {\n\t\t\tnode.removeEventListener('pointerdown', spawn);\n\t\t}\n\t};\n};\n"
+    }
+  ]
+}

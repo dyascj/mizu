@@ -1,0 +1,53 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "carousel",
+  "type": "registry:ui",
+  "title": "Carousel",
+  "description": "A swipeable slider with glossy aqua prev/next controls.",
+  "dependencies": [
+    "@lucide/svelte",
+    "embla-carousel",
+    "embla-carousel-svelte"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/button.json",
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "carousel/carousel-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport emblaCarouselSvelte from 'embla-carousel-svelte';\n\timport { cn } from '$lib/utils.js';\n\timport { getCarouselContext } from './context.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n\n\tconst ctx = getCarouselContext();\n</script>\n\n<div\n\tclass=\"overflow-hidden\"\n\tuse:emblaCarouselSvelte={{ options: ctx.options, plugins: ctx.plugins }}\n\tonemblaInit={ctx.onInit}\n>\n\t<div\n\t\tbind:this={ref}\n\t\tclass={cn('flex', ctx.orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col', className)}\n\t\t{...rest}\n\t>\n\t\t{@render children?.()}\n\t</div>\n</div>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "carousel/carousel-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\timport { getCarouselContext } from './context.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n\n\tconst ctx = getCarouselContext();\n</script>\n\n<div\n\tbind:this={ref}\n\trole=\"group\"\n\taria-roledescription=\"slide\"\n\tclass={cn(\n\t\t'min-w-0 shrink-0 grow-0 basis-full',\n\t\tctx.orientation === 'horizontal' ? 'pl-4' : 'pt-4',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "carousel/carousel-next.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLButtonAttributes } from 'svelte/elements';\n\timport ArrowRightIcon from '@lucide/svelte/icons/arrow-right';\n\timport { buttonVariants, type ButtonVariant } from '$lib/components/ui/button';\n\timport { cn } from '$lib/utils.js';\n\timport { getCarouselContext } from './context.js';\n\n\ttype Props = HTMLButtonAttributes & {\n\t\tvariant?: ButtonVariant;\n\t\tclass?: string;\n\t\tref?: HTMLButtonElement | null;\n\t};\n\n\tlet { variant = 'secondary', class: className, ref = $bindable(null), ...rest }: Props = $props();\n\n\tconst ctx = getCarouselContext();\n</script>\n\n<button\n\tbind:this={ref}\n\tclass={cn(\n\t\tbuttonVariants({ variant, size: 'icon' }),\n\t\t'absolute z-20 size-9 rounded-full disabled:pointer-events-none disabled:opacity-50',\n\t\tctx.orientation === 'horizontal'\n\t\t\t? '-right-4 top-1/2 -translate-y-1/2'\n\t\t\t: '-bottom-4 left-1/2 -translate-x-1/2 rotate-90',\n\t\tclassName\n\t)}\n\tdisabled={!ctx.canScrollNext}\n\tonclick={ctx.scrollNext}\n\t{...rest}\n>\n\t<ArrowRightIcon class=\"relative z-10 size-4\" />\n\t<span class=\"sr-only\">Next slide</span>\n</button>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "carousel/carousel-previous.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLButtonAttributes } from 'svelte/elements';\n\timport ArrowLeftIcon from '@lucide/svelte/icons/arrow-left';\n\timport { buttonVariants, type ButtonVariant } from '$lib/components/ui/button';\n\timport { cn } from '$lib/utils.js';\n\timport { getCarouselContext } from './context.js';\n\n\ttype Props = HTMLButtonAttributes & {\n\t\tvariant?: ButtonVariant;\n\t\tclass?: string;\n\t\tref?: HTMLButtonElement | null;\n\t};\n\n\tlet { variant = 'secondary', class: className, ref = $bindable(null), ...rest }: Props = $props();\n\n\tconst ctx = getCarouselContext();\n</script>\n\n<button\n\tbind:this={ref}\n\tclass={cn(\n\t\tbuttonVariants({ variant, size: 'icon' }),\n\t\t'absolute z-20 size-9 rounded-full disabled:pointer-events-none disabled:opacity-50',\n\t\tctx.orientation === 'horizontal'\n\t\t\t? '-left-4 top-1/2 -translate-y-1/2'\n\t\t\t: '-top-4 left-1/2 -translate-x-1/2 rotate-90',\n\t\tclassName\n\t)}\n\tdisabled={!ctx.canScrollPrev}\n\tonclick={ctx.scrollPrev}\n\t{...rest}\n>\n\t<ArrowLeftIcon class=\"relative z-10 size-4\" />\n\t<span class=\"sr-only\">Previous slide</span>\n</button>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "carousel/carousel.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\timport {\n\t\tsetCarouselContext,\n\t\ttype CarouselApi,\n\t\ttype CarouselOptions,\n\t\ttype CarouselOrientation,\n\t\ttype CarouselPlugins\n\t} from './context.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\topts?: CarouselOptions;\n\t\tplugins?: CarouselPlugins[];\n\t\torientation?: CarouselOrientation;\n\t\tsetApi?: (api: CarouselApi | undefined) => void;\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\n\tlet {\n\t\topts = {},\n\t\tplugins = [],\n\t\torientation = 'horizontal',\n\t\tsetApi = () => {},\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...rest\n\t}: Props = $props();\n\n\tlet api = $state<CarouselApi>();\n\tlet canScrollPrev = $state(false);\n\tlet canScrollNext = $state(false);\n\tlet scrollSnaps = $state<number[]>([]);\n\tlet selectedIndex = $state(0);\n\n\tconst options = $derived<CarouselOptions>({\n\t\t...opts,\n\t\taxis: orientation === 'horizontal' ? 'x' : 'y'\n\t});\n\n\tfunction onSelect(emblaApi: CarouselApi) {\n\t\tcanScrollPrev = emblaApi.canScrollPrev();\n\t\tcanScrollNext = emblaApi.canScrollNext();\n\t\tselectedIndex = emblaApi.selectedScrollSnap();\n\t}\n\n\tfunction onInit(event: CustomEvent<CarouselApi>) {\n\t\tapi = event.detail;\n\t\tscrollSnaps = api.scrollSnapList();\n\t\tonSelect(api);\n\t\tapi.on('select', onSelect);\n\t\tapi.on('reInit', (emblaApi) => {\n\t\t\tscrollSnaps = emblaApi.scrollSnapList();\n\t\t\tonSelect(emblaApi);\n\t\t});\n\t\tsetApi(api);\n\t}\n\n\tfunction scrollPrev() {\n\t\tapi?.scrollPrev();\n\t}\n\tfunction scrollNext() {\n\t\tapi?.scrollNext();\n\t}\n\tfunction scrollTo(index: number, jump?: boolean) {\n\t\tapi?.scrollTo(index, jump);\n\t}\n\n\tfunction handleKeyDown(e: KeyboardEvent) {\n\t\tif (e.key === 'ArrowLeft') {\n\t\t\te.preventDefault();\n\t\t\tscrollPrev();\n\t\t} else if (e.key === 'ArrowRight') {\n\t\t\te.preventDefault();\n\t\t\tscrollNext();\n\t\t}\n\t}\n\n\tsetCarouselContext({\n\t\tget api() {\n\t\t\treturn api;\n\t\t},\n\t\tget orientation() {\n\t\t\treturn orientation;\n\t\t},\n\t\tget canScrollPrev() {\n\t\t\treturn canScrollPrev;\n\t\t},\n\t\tget canScrollNext() {\n\t\t\treturn canScrollNext;\n\t\t},\n\t\tget options() {\n\t\t\treturn options;\n\t\t},\n\t\tget plugins() {\n\t\t\treturn plugins;\n\t\t},\n\t\tget scrollSnaps() {\n\t\t\treturn scrollSnaps;\n\t\t},\n\t\tget selectedIndex() {\n\t\t\treturn selectedIndex;\n\t\t},\n\t\tscrollPrev,\n\t\tscrollNext,\n\t\tscrollTo,\n\t\thandleKeyDown,\n\t\tonInit\n\t});\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn('relative', className)}\n\trole=\"region\"\n\taria-roledescription=\"carousel\"\n\tonkeydown={handleKeyDown}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "carousel/context.ts",
+      "content": "import { getContext, hasContext, setContext } from 'svelte';\nimport type {\n\tEmblaCarouselType as CarouselApi,\n\tEmblaOptionsType as CarouselOptions,\n\tEmblaPluginType as CarouselPlugins\n} from 'embla-carousel';\n\nexport type { CarouselApi, CarouselOptions, CarouselPlugins };\n\nexport type CarouselOrientation = 'horizontal' | 'vertical';\n\nexport type CarouselState = {\n\tapi: CarouselApi | undefined;\n\torientation: CarouselOrientation;\n\tscrollPrev: () => void;\n\tscrollNext: () => void;\n\tcanScrollPrev: boolean;\n\tcanScrollNext: boolean;\n\thandleKeyDown: (e: KeyboardEvent) => void;\n\toptions: CarouselOptions;\n\tplugins: CarouselPlugins[];\n\tonInit: (event: CustomEvent<CarouselApi>) => void;\n\tscrollSnaps: number[];\n\tselectedIndex: number;\n\tscrollTo: (index: number, jump?: boolean) => void;\n};\n\nconst CAROUSEL_KEY = Symbol('mizu-carousel');\n\nexport function setCarouselContext(config: CarouselState) {\n\tsetContext(CAROUSEL_KEY, config);\n}\n\nexport function getCarouselContext(): CarouselState {\n\tif (!hasContext(CAROUSEL_KEY)) {\n\t\tthrow new Error('A carousel part must be used within a <Carousel.Root> component.');\n\t}\n\treturn getContext(CAROUSEL_KEY);\n}\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "carousel/index.ts",
+      "content": "import Root from './carousel.svelte';\nimport Content from './carousel-content.svelte';\nimport Item from './carousel-item.svelte';\nimport Previous from './carousel-previous.svelte';\nimport Next from './carousel-next.svelte';\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tPrevious,\n\tNext,\n\t//\n\tRoot as Carousel,\n\tContent as CarouselContent,\n\tItem as CarouselItem,\n\tPrevious as CarouselPrevious,\n\tNext as CarouselNext\n};\n\nexport type {\n\tCarouselApi,\n\tCarouselOptions,\n\tCarouselPlugins,\n\tCarouselOrientation\n} from './context.js';\n"
+    }
+  ]
+}

@@ -321,5 +321,122 @@
 		"name": "Button Group",
 		"category": "Actions",
 		"description": "Buttons joined into one segmented control."
+	},
+	{
+		"slug": "toast",
+		"name": "Toast",
+		"category": "Feedback",
+		"description": "Transient glass notifications that bloom in and stack."
+	},
+	{
+		"slug": "meter",
+		"name": "Meter",
+		"category": "Feedback",
+		"description": "A semantic gauge whose glossy fill shifts across thresholds."
+	},
+	{
+		"slug": "calendar",
+		"name": "Calendar",
+		"category": "Forms",
+		"description": "A glassy month grid with an aqua-gel selected day.",
+		"bits": true
+	},
+	{
+		"slug": "date-picker",
+		"name": "Date Picker",
+		"category": "Forms",
+		"description": "A recessed glass date field with a popover calendar.",
+		"bits": true
+	},
+	{
+		"slug": "rating",
+		"name": "Rating",
+		"category": "Forms",
+		"description": "Fillable aqua droplets for a quick, glossy score."
+	},
+	{
+		"slug": "tags-input",
+		"name": "Tags Input",
+		"category": "Forms",
+		"description": "A glass field that collects entries as glossy aqua chips."
+	},
+	{
+		"slug": "carousel",
+		"name": "Carousel",
+		"category": "Surfaces",
+		"description": "A swipeable slider with glossy aqua prev/next controls."
+	},
+	{
+		"slug": "resizable",
+		"name": "Resizable",
+		"category": "Surfaces",
+		"description": "Draggable panes split by a glassy aqua handle."
+	},
+	{
+		"slug": "data-table",
+		"name": "Data Table",
+		"category": "Surfaces",
+		"description": "A sortable, selectable, paginated table on glass."
+	},
+	{
+		"slug": "timeline",
+		"name": "Timeline",
+		"category": "Surfaces",
+		"description": "A vertical history with glowing aqua markers."
+	},
+	{
+		"slug": "sidebar",
+		"name": "Sidebar",
+		"category": "Navigation",
+		"description": "A collapsible app sidebar that folds to a glassy rail.",
+		"bits": true
+	},
+	{
+		"slug": "stepper",
+		"name": "Stepper",
+		"category": "Navigation",
+		"description": "A multi-step progress trail with glossy aqua nodes."
+	},
+	{
+		"slug": "tree",
+		"name": "Tree",
+		"category": "Navigation",
+		"description": "A nested, keyboard-navigable file-style tree."
+	},
+	{
+		"slug": "ripple",
+		"name": "Ripple",
+		"category": "Effects",
+		"description": "A water ripple that blooms from every pointer press."
+	},
+	{
+		"slug": "dock",
+		"name": "Dock",
+		"category": "Effects",
+		"description": "An Aqua-style dock that magnifies icons under the cursor."
+	},
+	{
+		"slug": "aurora",
+		"name": "Aurora",
+		"category": "Effects",
+		"description": "A slow, drifting aurora-gradient backdrop."
+	},
+	{
+		"slug": "caustics",
+		"name": "Caustics",
+		"category": "Effects",
+		"description": "Rippling pool-light caustics for any surface."
+	},
+	{
+		"slug": "lens-flare",
+		"name": "Lens Flare",
+		"category": "Effects",
+		"description": "A sunlit lens flare and bloom accent."
+	},
+	{
+		"slug": "liquid-divider",
+		"name": "Liquid Divider",
+		"category": "Effects",
+		"description": "A separator that ripples like the surface of water."
 	}
 ]
