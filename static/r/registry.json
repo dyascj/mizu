@@ -160,6 +160,12 @@
       "description": "A panel that slides in from any edge."
     },
     {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "A bottom sheet that slides up for quick actions, vaul under the hood."
+    },
+    {
       "name": "hover-card",
       "type": "registry:ui",
       "title": "Hover Card",
@@ -316,6 +322,12 @@
       "description": "A clean month grid with a solid blue selected day."
     },
     {
+      "name": "range-calendar",
+      "type": "registry:ui",
+      "title": "Range Calendar",
+      "description": "Pick a span of dates with a clean month grid."
+    },
+    {
       "name": "date-picker",
       "type": "registry:ui",
       "title": "Date Picker",
@@ -349,7 +361,7 @@
       "name": "data-table",
       "type": "registry:ui",
       "title": "Data Table",
-      "description": "A sortable, selectable, paginated table."
+      "description": "TanStack-powered tables: sorting, filtering, and pagination you own."
     },
     {
       "name": "timeline",

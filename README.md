@@ -12,7 +12,7 @@ Clean, airy components for AI products and the designers building them. Chat, vo
 	<img alt="Svelte 5" src="https://img.shields.io/badge/Svelte-5-FF3E00?logo=svelte&logoColor=white" />
 	<img alt="Tailwind CSS v4" src="https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white" />
 	<img alt="bits-ui" src="https://img.shields.io/badge/bits--ui-headless-0EA5E9" />
-	<img alt="77 components" src="https://img.shields.io/badge/components-77-00B2FF" />
+	<img alt="79 components" src="https://img.shields.io/badge/components-79-00B2FF" />
 	<img alt="MIT" src="https://img.shields.io/badge/license-MIT-22C55E" />
 </p>
 
@@ -24,7 +24,7 @@ Mizu is built for AI products: chat, voice, reasoning, and streaming components 
 
 ## Highlights
 
-- **77 components**, from buttons and dialogs to streaming text, visible reasoning, tool calls, a voice orb, and a drifting pastel aurora.
+- **79 components**, from buttons and dialogs to streaming text, visible reasoning, tool calls, a voice orb, and a drifting pastel aurora.
 - **Recolor from one token.** The accent, glow, and focus ring all derive from `--primary`. Change it once and the whole system follows.
 - **Quiet by default.** Hierarchy comes from space, hairlines, and type. The accent and the glow are reserved for what matters.
 - **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the quiet skin.
@@ -109,7 +109,7 @@ Everything is driven by CSS variables: an airy light mode and a pure-black dark 
 | Group      | Components                                                                                                                                          |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Actions    | Button, Badge, Button Group                                                                                                                         |
-| Forms      | Input, Textarea, Label, Checkbox, Radio Group, Switch, Slider, Select, Native Select, Combobox, Toggle, Toggle Group, Input OTP, Input Group, Field |
+| Forms      | Input, Textarea, Label, Checkbox, Radio Group, Switch, Slider, Select, Native Select, Combobox, Toggle, Toggle Group, Input OTP, Input Group, Field, Calendar, Range Calendar, Date Picker |
 | Surfaces   | Card, Alert, Separator, Avatar, Aspect Ratio, Scroll Area, Table, Empty, Item, Kbd                                                                  |
 | Overlays   | Dialog, Alert Dialog, Sheet, Popover, Tooltip, Hover Card                                                                                           |
 | Menus      | Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command                                                                                      |

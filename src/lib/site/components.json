@@ -164,6 +164,13 @@
 		"bits": true
 	},
 	{
+		"slug": "drawer",
+		"name": "Drawer",
+		"category": "Overlays",
+		"description": "A bottom sheet that slides up for quick actions, vaul under the hood.",
+		"bits": false
+	},
+	{
 		"slug": "hover-card",
 		"name": "Hover Card",
 		"category": "Overlays",
@@ -335,6 +342,12 @@
 		"bits": true
 	},
 	{
+		"slug": "range-calendar",
+		"name": "Range Calendar",
+		"category": "Forms",
+		"description": "Pick a span of dates with a clean month grid."
+	},
+	{
 		"slug": "date-picker",
 		"name": "Date Picker",
 		"category": "Forms",
@@ -369,7 +382,7 @@
 		"slug": "data-table",
 		"name": "Data Table",
 		"category": "Surfaces",
-		"description": "A sortable, selectable, paginated table."
+		"description": "TanStack-powered tables: sorting, filtering, and pagination you own."
 	},
 	{
 		"slug": "timeline",
