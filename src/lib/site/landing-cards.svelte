@@ -1,12 +1,11 @@
 <script lang="ts">
-	// A shadcn-style "wall of cards": self-contained Mizu component compositions
-	// in a masonry, so the landing shows real, interactive components (wearing the
-	// gel + glass) instead of a generic feature grid.
+	// A shadcn-style "wall of cards": every card is an agentic scenario built
+	// from real, interactive components, the same way the blocks are. No generic
+	// SaaS filler; this is what the system is for.
 	import { Bell, Search, Droplets, Check } from '@lucide/svelte';
 	import * as Card from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import { Switch } from '$lib/components/ui/switch';
 	import { Slider } from '$lib/components/ui/slider';
@@ -26,10 +25,25 @@
 	import { Reasoning } from '$lib/components/ui/reasoning';
 	import { ToolCall } from '$lib/components/ui/tool-call';
 	import { MessageActions } from '$lib/components/ui/message-actions';
+	import { Plan, type PlanStep } from '$lib/components/ui/plan';
 
 	// Live state so the wall is actually interactive.
-	let volume = $state(70);
-	let plan = $state('pro');
+	let autonomy = $state(65);
+	const autonomyLabel = $derived(
+		autonomy < 40 ? 'Asks first' : autonomy < 80 ? 'Confirms big steps' : 'Acts alone'
+	);
+	let brain = $state('fjord-3');
+	const brains = [
+		{ v: 'era-3', t: 'Era 3.0', tag: 'Fast', s: 'Quick and warm, for everyday' },
+		{ v: 'fjord-3', t: 'Fjord 3.0', tag: 'Deep', s: 'Slow thinking for hard problems' },
+		{ v: 'super-2', t: 'Super 2.4', tag: 'Agentic', s: 'Tool-happy, loves long tasks' }
+	];
+	const runSteps: PlanStep[] = [
+		{ label: 'Read the brief', state: 'done' },
+		{ label: 'Compare 14 flights', detail: 'Nonstop first', state: 'done' },
+		{ label: 'Hold the best two fares', state: 'active' },
+		{ label: 'Draft the itinerary', state: 'pending' }
+	];
 	let ai = $state({ speech: true, memory: true, personalization: false });
 
 	const agents = [
@@ -52,10 +66,10 @@
 		{ title: 'Sorted 86 receipts', detail: 'Tax season, handled', time: '8:47 AM' }
 	];
 	const commands = [
-		{ name: 'Ask Mizu anything', keys: ['⌘', 'K'] },
-		{ name: 'Toggle theme', keys: ['⌘', 'J'] },
-		{ name: 'Copy install command', keys: ['⌘', 'C'] },
-		{ name: 'Go to docs', keys: ['G', 'D'] }
+		{ name: 'Start voice mode', keys: ['⌘', 'V'] },
+		{ name: 'New agent', keys: ['⌘', 'N'] },
+		{ name: 'Summarize my inbox', keys: ['⌘', 'I'] },
+		{ name: 'Search her memories', keys: ['⌘', 'M'] }
 	];
 </script>
 
@@ -91,33 +105,19 @@
 		</Card.Footer>
 	</Card.Root>
 
-	<!-- Create account -->
+	<!-- Live agent run -->
 	<Card.Root class="break-inside-avoid">
-		<Card.Header>
-			<Card.Title>Create your account</Card.Title>
-			<Card.Description>Dive in. It takes a few seconds.</Card.Description>
+		<Card.Header class="flex-row items-center gap-3">
+			<VoiceOrb state="thinking" size={32} />
+			<div class="flex flex-col gap-0.5">
+				<Card.Title>Era is working</Card.Title>
+				<Card.Description>Tokyo, four nights in October.</Card.Description>
+			</div>
 		</Card.Header>
 		<Card.Content class="flex flex-col gap-3">
-			<div class="flex flex-col gap-1.5">
-				<Label for="lc-email">Email</Label>
-				<Input id="lc-email" type="email" placeholder="you@water.com" />
-			</div>
-			<div class="flex flex-col gap-1.5">
-				<Label for="lc-pass">Password</Label>
-				<Input id="lc-pass" type="password" placeholder="••••••••" />
-			</div>
+			<Plan steps={runSteps} />
+			<ToolCall name="Comparing fares" detail="HND, Oct 12 to 16" state="running" />
 		</Card.Content>
-		<Card.Footer class="flex-col gap-2">
-			<Button class="w-full">Create account</Button>
-			<Button variant="ghost" class="w-full">
-				<svg viewBox="0 0 24 24" fill="currentColor" class="size-4" aria-hidden="true"
-					><path
-						d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.5 18 4.8 18 4.8c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"
-					/></svg
-				>
-				Continue with GitHub
-			</Button>
-		</Card.Footer>
 	</Card.Root>
 
 	<!-- Agent activity -->
@@ -144,38 +144,34 @@
 		</Card.Content>
 	</Card.Root>
 
-	<!-- Choose a plan -->
+	<!-- Model picker -->
 	<Card.Root class="break-inside-avoid">
 		<Card.Header>
-			<Card.Title>Choose a plan</Card.Title>
-			<Card.Description>Switch or cancel any time.</Card.Description>
+			<Card.Title>Choose her brain</Card.Title>
+			<Card.Description>Swap models any time, memory stays.</Card.Description>
 		</Card.Header>
 		<Card.Content>
-			<RadioGroup.Root bind:value={plan} class="grid gap-2.5">
-				{#each [{ v: 'free', t: 'Free', p: '$0', s: 'Chat, 50 messages a day' }, { v: 'pro', t: 'Pro', p: '$9', s: 'Voice mode and memory' }, { v: 'team', t: 'Team', p: '$29', s: 'Shared agents' }] as o (o.v)}
+			<RadioGroup.Root bind:value={brain} class="grid gap-2.5">
+				{#each brains as o (o.v)}
 					<Label
-						for="plan-{o.v}"
-						class="flex cursor-pointer items-center gap-3 rounded-xl p-3 font-normal transition-colors {plan ===
+						for="brain-{o.v}"
+						class="flex cursor-pointer items-center gap-3 rounded-xl p-3 font-normal transition-colors {brain ===
 						o.v
 							? 'bg-primary-muted'
 							: 'bg-secondary/60 hover:bg-secondary'}"
 					>
-						<RadioGroup.Item value={o.v} id="plan-{o.v}" />
+						<RadioGroup.Item value={o.v} id="brain-{o.v}" />
 						<span class="flex-1">
 							<span class="block font-semibold text-foreground">{o.t}</span>
 							<span class="block text-xs text-muted-foreground">{o.s}</span>
 						</span>
-						<span class="font-display font-semibold tabular-nums"
-							>{o.p}<span class="text-xs font-normal text-muted-foreground">/mo</span></span
-						>
+						<Badge variant={brain === o.v ? 'primary' : 'secondary'}>{o.tag}</Badge>
 					</Label>
 				{/each}
 			</RadioGroup.Root>
 		</Card.Content>
 		<Card.Footer>
-			<Button class="w-full"
-				>Upgrade to {plan === 'free' ? 'Pro' : plan.charAt(0).toUpperCase() + plan.slice(1)}</Button
-			>
+			<Button class="w-full">Run on {brains.find((b) => b.v === brain)?.t}</Button>
 		</Card.Footer>
 	</Card.Root>
 
@@ -257,7 +253,7 @@
 		<Card.Content class="flex flex-col gap-3 pt-6">
 			<div class="flex items-center gap-2 rounded-full bg-secondary px-3.5 py-2">
 				<Search class="size-4 text-muted-foreground" />
-				<span class="flex-1 text-sm text-muted-foreground">Type a command…</span>
+				<span class="flex-1 text-sm text-muted-foreground">Ask, or command...</span>
 				<KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>
 			</div>
 			<div class="flex flex-col">
@@ -321,29 +317,26 @@
 		</Card.Content>
 	</Card.Root>
 
-	<!-- Volume / quick control -->
+	<!-- Autonomy dial -->
 	<Card.Root class="break-inside-avoid">
 		<Card.Header>
-			<Card.Title>One token, your color</Card.Title>
-			<Card.Description
-				>Every control recolors from <code class="font-mono text-foreground">--primary</code
-				>.</Card.Description
-			>
+			<Card.Title>Autonomy</Card.Title>
+			<Card.Description>How much she does before asking you.</Card.Description>
 		</Card.Header>
 		<Card.Content class="flex flex-col gap-4">
 			<div class="flex flex-wrap gap-2">
-				<Badge>Primary</Badge>
-				<Badge variant="secondary">Secondary</Badge>
-				<Badge variant="outline">Outline</Badge>
-				<Badge variant="success"><Check class="size-3" />Live</Badge>
+				<Badge>Chat</Badge>
+				<Badge variant="secondary">Browse</Badge>
+				<Badge variant="success"><Check class="size-3" />Calendar</Badge>
+				<Badge variant="outline">Purchases off</Badge>
 			</div>
 			<div class="flex flex-col gap-1.5">
 				<div class="flex justify-between text-sm">
-					<span class="text-muted-foreground">Volume</span><span class="tabular-nums"
-						>{volume}%</span
+					<span class="text-muted-foreground">{autonomyLabel}</span><span
+						class="text-muted-foreground tabular-nums">{autonomy}%</span
 					>
 				</div>
-				<Slider type="single" bind:value={volume} max={100} />
+				<Slider type="single" bind:value={autonomy} max={100} />
 			</div>
 		</Card.Content>
 	</Card.Root>
