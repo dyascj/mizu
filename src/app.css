@@ -77,6 +77,16 @@
 	--aurora-iris: linear-gradient(135deg, #feefff 0%, #effcff 49%, #f9fae9 100%);
 	--aurora-mint: linear-gradient(135deg, #dffdf1 0%, #fcfddd 100%);
 
+	/* App sidebar family: quiet gray fill in light */
+	--sidebar: #f7f8fa;
+	--sidebar-foreground: #1c2b33;
+	--sidebar-primary: #00b2ff;
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #eaeef2;
+	--sidebar-accent-foreground: #1c2b33;
+	--sidebar-border: #eceef1;
+	--sidebar-ring: var(--ring);
+
 	/* Elevation: soft ambient only; never bevels, never rims */
 	--elevation-xs: 0 0 6px rgba(28, 43, 51, 0.04);
 	--elevation-sm: 0 0 10px rgba(28, 43, 51, 0.06);
@@ -151,6 +161,16 @@
 	);
 	--aurora-mint: linear-gradient(135deg, rgba(45, 212, 191, 0.16) 0%, rgba(255, 203, 51, 0.1) 100%);
 
+	/* App sidebar family: the card rung in dark */
+	--sidebar: #0c1116;
+	--sidebar-foreground: #f6f8f9;
+	--sidebar-primary: #00b2ff;
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #1d262e;
+	--sidebar-accent-foreground: #f6f8f9;
+	--sidebar-border: #1b242b;
+	--sidebar-ring: var(--ring);
+
 	--elevation-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
 	--elevation-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
 	--elevation-md: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -191,6 +211,14 @@
 	--color-info: var(--info);
 	--color-info-foreground: var(--info-foreground);
 	--color-border: var(--border);
+	--color-sidebar: var(--sidebar);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-ring: var(--sidebar-ring);
 	--color-border-strong: var(--border-strong);
 	--color-input: var(--input);
 	--color-ring: var(--ring);

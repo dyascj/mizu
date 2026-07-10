@@ -1,87 +1,103 @@
-<script lang="ts">
-	import type { Snippet } from 'svelte';
-	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
-	import * as Tooltip from '$lib/components/ui/tooltip';
-	import { getSidebar } from './sidebar-context.svelte.js';
-	import { cn } from '$lib/utils.js';
+<script lang="ts" module>
+	import { tv, type VariantProps } from "tailwind-variants";
 
-	type Props = {
-		class?: string;
-		href?: string;
-		isActive?: boolean;
-		/** Label shown as a tooltip when the rail is collapsed to icons. */
-		tooltip?: string;
-		ref?: HTMLElement | null;
-		children?: Snippet;
-	} & HTMLButtonAttributes &
-		HTMLAnchorAttributes;
+	export const sidebarMenuButtonVariants = tv({
+		base: "peer/menu-button ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground data-[active=true]:bg-primary-muted data-[active=true]:text-primary data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground flex w-full items-center gap-2 overflow-clip rounded-md p-2 text-start text-sm outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pe-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:font-medium [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+		variants: {
+			variant: {
+				default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+				outline:
+					"bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground shadow-[0_0_0_1px_var(--sidebar-border)] hover:shadow-[0_0_0_1px_var(--sidebar-accent)]",
+			},
+			size: {
+				default: "h-8 text-sm",
+				sm: "h-7 text-xs",
+				lg: "h-12 text-sm group-data-[collapsible=icon]:p-0!",
+			},
+		},
+		defaultVariants: {
+			variant: "default",
+			size: "default",
+		},
+	});
 
-	let {
-		class: className,
-		href = undefined,
-		isActive = false,
-		tooltip = undefined,
-		ref = $bindable(null),
-		children,
-		...rest
-	}: Props = $props();
-
-	const sidebar = getSidebar();
-
-	const showTooltip = $derived(!!tooltip && !sidebar.isMobile && sidebar.state === 'collapsed');
-
-	const buttonClass = $derived(
-		cn(
-			// Icon stays put; label fades out as the rail folds. The marker is a left
-			// aqua bar that fades in when the item is active.
-			'group/menu-button relative flex h-10 w-full items-center gap-3 overflow-hidden rounded-xl px-2.5 text-left text-sm font-medium text-foreground outline-none transition-[background-color,box-shadow,color] duration-150 ease-out hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50',
-			'[&>svg]:size-5 [&>svg]:shrink-0',
-			// Label text: hidden + faded when collapsed to the icon rail.
-			'[&>span]:truncate [&>span]:transition-[opacity] [&>span]:duration-200 group-data-[state=collapsed]/sidebar:[&>span]:pointer-events-none group-data-[state=collapsed]/sidebar:[&>span]:opacity-0',
-			isActive &&
-				'bg-[color:color-mix(in_oklab,var(--primary)_14%,transparent)] text-foreground shadow-xs before:absolute before:inset-y-2.5 before:left-0.5 before:w-1 before:rounded-full before:bg-primary',
-			className
-		)
-	);
+	export type SidebarMenuButtonVariant = VariantProps<
+		typeof sidebarMenuButtonVariants
+	>["variant"];
+	export type SidebarMenuButtonSize = VariantProps<typeof sidebarMenuButtonVariants>["size"];
 </script>
 
-{#snippet content(extra: Record<string, unknown> = {})}
-	{#if href}
-		<a
-			bind:this={ref}
-			{href}
-			data-slot="sidebar-menu-button"
-			data-active={isActive}
-			class={buttonClass}
-			{...rest}
-			{...extra}
-		>
-			{@render children?.()}
-		</a>
+<script lang="ts">
+	import * as Tooltip from "$lib/components/ui/tooltip/index.js";
+	import { cn, type WithElementRef, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import { mergeProps } from "bits-ui";
+	import type { ComponentProps, Snippet } from "svelte";
+	import type { HTMLAttributes } from "svelte/elements";
+	import { useSidebar } from "./context.svelte.js";
+
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		child,
+		variant = "default",
+		size = "default",
+		isActive = false,
+		tooltipContent,
+		tooltipContentProps,
+		...restProps
+	}: WithElementRef<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
+		isActive?: boolean;
+		variant?: SidebarMenuButtonVariant;
+		size?: SidebarMenuButtonSize;
+		tooltipContent?: Snippet | string;
+		tooltipContentProps?: WithoutChildrenOrChild<ComponentProps<typeof Tooltip.Content>>;
+		child?: Snippet<[{ props: Record<string, unknown> }]>;
+	} = $props();
+
+	const sidebar = useSidebar();
+
+	const buttonProps = $derived({
+		class: cn(sidebarMenuButtonVariants({ variant, size }), className),
+		"data-slot": "sidebar-menu-button",
+		"data-sidebar": "menu-button",
+		"data-size": size,
+		"data-active": isActive,
+		...restProps,
+	});
+</script>
+
+{#snippet Button({ props }: { props?: Record<string, unknown> })}
+	{@const mergedProps = mergeProps(buttonProps, props)}
+	{#if child}
+		{@render child({ props: mergedProps })}
 	{:else}
-		<button
-			bind:this={ref}
-			type="button"
-			data-slot="sidebar-menu-button"
-			data-active={isActive}
-			class={buttonClass}
-			{...rest}
-			{...extra}
-		>
+		<button bind:this={ref} {...mergedProps}>
 			{@render children?.()}
 		</button>
 	{/if}
 {/snippet}
 
-{#if showTooltip}
+{#if !tooltipContent}
+	{@render Button({})}
+{:else}
 	<Tooltip.Root>
 		<Tooltip.Trigger>
 			{#snippet child({ props })}
-				{@render content(props)}
+				{@render Button({ props })}
 			{/snippet}
 		</Tooltip.Trigger>
-		<Tooltip.Content side="right">{tooltip}</Tooltip.Content>
+		<Tooltip.Content
+			side="right"
+			align="center"
+			hidden={sidebar.state !== "collapsed" || sidebar.isMobile}
+			{...tooltipContentProps}
+		>
+			{#if typeof tooltipContent === "string"}
+				{tooltipContent}
+			{:else if tooltipContent}
+				{@render tooltipContent()}
+			{/if}
+		</Tooltip.Content>
 	</Tooltip.Root>
-{:else}
-	{@render content()}
 {/if}

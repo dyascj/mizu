@@ -2,18 +2,18 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/utils.js';
 
-	type Props = HTMLAttributes<HTMLDivElement> & {
-		class?: string;
-		ref?: HTMLDivElement | null;
-	};
-
-	let { class: className, ref = $bindable(null), ...rest }: Props = $props();
+	let {
+		ref = $bindable(null),
+		class: className,
+		...restProps
+	}: HTMLAttributes<HTMLDivElement> & { ref?: HTMLDivElement | null } = $props();
 </script>
 
 <div
 	bind:this={ref}
 	role="none"
 	data-slot="sidebar-separator"
-	class={cn('mx-2 h-px shrink-0 bg-border', className)}
-	{...rest}
+	data-sidebar="separator"
+	class={cn('bg-sidebar-border mx-2 h-px w-auto shrink-0', className)}
+	{...restProps}
 ></div>

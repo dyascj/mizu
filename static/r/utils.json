@@ -13,7 +13,7 @@
     {
       "type": "registry:lib",
       "target": "utils.ts",
-      "content": "import { type ClassValue, clsx } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merge class names with Tailwind-aware conflict resolution.\n * The standard helper every Mizu component uses to compose `class` props.\n */\nexport function cn(...inputs: ClassValue[]) {\n\treturn twMerge(clsx(inputs));\n}\n\n/** Convenience alias for `T | null | undefined`. */\nexport type Maybe<T> = T | null | undefined;\n"
+      "content": "import { type ClassValue, clsx } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merge class names with Tailwind-aware conflict resolution.\n * The standard helper every Mizu component uses to compose `class` props.\n */\nexport function cn(...inputs: ClassValue[]) {\n\treturn twMerge(clsx(inputs));\n}\n\n/** Convenience alias for `T | null | undefined`. */\nexport type Maybe<T> = T | null | undefined;\n\n/** shadcn-svelte helper types used by lifted components. */\nexport type WithElementRef<T, U extends HTMLElement = HTMLElement> = T & { ref?: U | null };\nexport type WithoutChildren<T> = Omit<T, 'children'>;\nexport type WithoutChild<T> = Omit<T, 'child'>;\nexport type WithoutChildrenOrChild<T> = Omit<T, 'children' | 'child'>;\n"
     }
   ]
 }
