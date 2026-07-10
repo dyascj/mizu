@@ -36,6 +36,9 @@ export function GET() {
 		`- [Installation](${base}/docs/installation): set up SvelteKit + Tailwind + components.json`
 	);
 	out.push(`- [Theming](${base}/docs/theming): the one-token brand system and light/dark modes`);
+	out.push(
+		`- [Build a chat](${base}/docs/build-a-chat): compose the AI components into a full assistant screen`
+	);
 	out.push(`- [Components](${base}/docs/components): browse all components`);
 	out.push(`- [Blocks](${base}/blocks): whole AI screens with full copyable source`);
 	out.push('');
