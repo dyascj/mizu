@@ -19,7 +19,9 @@
 	}
 </script>
 
-<div class={cn('group relative overflow-hidden rounded-xl bg-popover', className)}>
+<div
+	class={cn('group relative overflow-hidden rounded-xl bg-secondary dark:bg-popover', className)}
+>
 	<button
 		onclick={copy}
 		aria-label="Copy code"
