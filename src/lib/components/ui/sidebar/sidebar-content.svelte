@@ -15,7 +15,7 @@
 <div
 	bind:this={ref}
 	data-slot="sidebar-content"
-	class={cn('flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden p-2', className)}
+	class={cn('flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden p-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden', className)}
 	{...rest}
 >
 	{@render children?.()}

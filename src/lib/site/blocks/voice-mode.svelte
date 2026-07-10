@@ -12,11 +12,11 @@
 <div
 	class="relative mx-auto flex h-[30rem] w-full max-w-xl flex-col items-center justify-center overflow-hidden rounded-3xl bg-card shadow-md"
 >
-	<Aurora speed={22} />
+	<Aurora speed={22} class="dark:opacity-35" />
 
 	<div class="relative flex flex-col items-center gap-5">
 		<VoiceOrb state={muted ? 'idle' : 'listening'} size={128} />
-		<p class="text-sm text-muted-foreground">
+		<p class="text-sm font-medium text-foreground/75">
 			{muted ? 'Muted. Tap the mic when you are ready.' : "I'm listening..."}
 		</p>
 		<Waveform bars={9} active={!muted} class="h-8" />

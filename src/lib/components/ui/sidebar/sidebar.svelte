@@ -28,7 +28,7 @@
 
 	const sidebar = getSidebar();
 
-	const surface = 'bg-card border-r border-border text-foreground';
+	const surface = 'bg-secondary/50 text-foreground dark:bg-card';
 </script>
 
 {#if sidebar.isMobile}

@@ -6,7 +6,7 @@
 	import CalendarIcon from '@lucide/svelte/icons/calendar';
 	import WavesIcon from '@lucide/svelte/icons/waves';
 	import SettingsIcon from '@lucide/svelte/icons/settings';
-	import DropletIcon from '@lucide/svelte/icons/droplet';
+	import { AuraTile } from '$lib/components/ui/aura-tile';
 
 	const items = [
 		{ title: 'Overview', icon: HouseIcon, active: true },
@@ -18,18 +18,14 @@
 </script>
 
 <Tooltip.Provider>
-	<div class="h-80 w-full overflow-hidden rounded-2xl">
+	<div class="h-80 w-full overflow-hidden rounded-2xl bg-background shadow-md">
 		<Sidebar.Provider class="h-full">
 			<Sidebar.Root>
 				<Sidebar.Header>
 					<div class="flex items-center gap-2 px-1.5 py-1">
+						<AuraTile seed="Mizu" class="size-8 shrink-0 rounded-full" />
 						<span
-							class="bg-primary flex size-8 shrink-0 items-center justify-center rounded-xl text-primary-foreground shadow-sm"
-						>
-							<DropletIcon class="size-4" />
-						</span>
-						<span
-							class="font-display text-lg font-semibold leading-none text-foreground transition-[opacity] duration-200 group-data-[state=collapsed]/sidebar:pointer-events-none group-data-[state=collapsed]/sidebar:opacity-0"
+							class="text-base font-semibold leading-none tracking-tight text-foreground transition-[opacity] duration-200 group-data-[state=collapsed]/sidebar:pointer-events-none group-data-[state=collapsed]/sidebar:opacity-0"
 						>
 							Mizu
 						</span>
@@ -52,7 +48,6 @@
 					</Sidebar.Group>
 				</Sidebar.Content>
 
-				<Sidebar.Separator />
 				<Sidebar.Footer>
 					<div class="flex items-center gap-2 rounded-xl px-1.5 py-1">
 						<span
@@ -73,27 +68,26 @@
 			</Sidebar.Root>
 
 			<Sidebar.Inset>
-				<header class="flex h-14 shrink-0 items-center gap-3 border-b border-border px-4">
+				<header class="flex h-14 shrink-0 items-center gap-3 px-4">
 					<Sidebar.Trigger />
-					<Sidebar.Separator class="mx-0 h-5 w-px" />
-					<h2 class="font-display text-base font-semibold text-foreground">Overview</h2>
+					<h2 class="text-base font-semibold tracking-tight text-foreground">Overview</h2>
 				</header>
 
 				<div class="flex-1 overflow-auto p-4">
 					<div class="grid grid-cols-2 gap-3">
 						<div
-							class="bg-popover rounded-xl p-3 shadow-lg"
+							class="rounded-xl bg-secondary/60 p-3"
 						>
 							<p class="text-xs text-muted-foreground">Flow rate</p>
-							<p class="mt-1 font-display text-2xl font-semibold tabular-nums text-foreground">
+							<p class="mt-1 text-2xl font-semibold tabular-nums text-foreground">
 								42 L/s
 							</p>
 						</div>
 						<div
-							class="bg-popover rounded-xl p-3 shadow-lg"
+							class="rounded-xl bg-secondary/60 p-3"
 						>
 							<p class="text-xs text-muted-foreground">Clarity</p>
-							<p class="mt-1 font-display text-2xl font-semibold tabular-nums text-foreground">98%</p>
+							<p class="mt-1 text-2xl font-semibold tabular-nums text-foreground">98%</p>
 						</div>
 					</div>
 					<div class="mt-3 space-y-2">

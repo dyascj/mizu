@@ -25,10 +25,10 @@
 	const active = (href: string) => page.url.pathname === href;
 	const linkClass = (isActive: boolean) =>
 		cn(
-			'rounded-lg px-3 py-2 text-sm transition-colors',
+			'rounded-md px-2 py-1.5 text-[0.8rem] leading-snug transition-colors',
 			isActive
-				? 'bg-accent font-semibold text-accent-foreground'
-				: 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+				? 'bg-primary-muted font-medium text-primary'
+				: 'text-muted-foreground hover:text-foreground'
 		);
 </script>
 
@@ -39,23 +39,26 @@
 	>
 		<Menu class="size-5" />
 	</Sheet.Trigger>
-	<Sheet.Content side="left" class="flex w-[19rem] max-w-[85vw] flex-col gap-0 overflow-y-auto">
+	<Sheet.Content
+		side="left"
+		class="flex w-[19rem] max-w-[85vw] flex-col gap-0 overflow-y-auto [mask-image:linear-gradient(to_bottom,black_calc(100%-3rem),transparent_100%)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+	>
 		<Sheet.Header class="pb-2">
-			<Sheet.Title class="flex items-center gap-2">
-				<MizuLogo class="h-6 w-auto" /> Mizu
+			<Sheet.Title class="flex items-center">
+				<MizuLogo />
 			</Sheet.Title>
 		</Sheet.Header>
 
-		<nav class="flex flex-col gap-6 py-2">
-			<div class="flex flex-col gap-0.5">
+		<nav class="flex flex-col gap-5 py-2 pb-10">
+			<div class="flex flex-col gap-px">
 				{#each main as l (l.href)}
 					<a href={l.href} class={linkClass(active(l.href))}>{l.label}</a>
 				{/each}
 			</div>
 
 			{#each groups as group (group.category)}
-				<div class="flex flex-col gap-0.5">
-					<p class="px-3 pb-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+				<div class="flex flex-col gap-px">
+					<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">
 						{group.category}
 					</p>
 					{#each group.items as item (item.slug)}
