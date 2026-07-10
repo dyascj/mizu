@@ -13,7 +13,7 @@
 	--muted-foreground: #70767d;
 	--primary: #00b2ff; /* the one accent */
 	--primary-foreground: #ffffff;
-	--border: #eceef1; /* hairlines everywhere */
+	--border: #eceef1; /* semantic strokes only */
 	--ring: var(--primary);
 
 	/* Soft ambient elevation — never bevels */
@@ -43,7 +43,7 @@
 
 <Seo
 	title="Theming — {siteConfig.name}"
-	description="Theme Mizu with a handful of tokens. White surfaces, hairline borders, soft shadows, and pastel auras, with an airy light mode and a pure-black dark mode, built for Tailwind v4."
+	description="Theme Mizu with a handful of tokens. White surfaces, soft shadows, a tonal dark ladder, and pastel auras, with an airy light mode and a pure-black dark mode, built for Tailwind v4."
 />
 
 <article class="max-w-2xl">
@@ -108,4 +108,32 @@
 		surfaces lift to slate. The included theme store handles persistence and a no-flash inline
 		script. Toggle it with the sun/moon button in the header.
 	</p>
+
+	<h2 class="mt-10 mb-3 text-xl font-semibold">The surface ladder</h2>
+	<p class="mb-4 leading-relaxed text-muted-foreground">
+		Depth never comes from strokes. In light mode, shadows carry the layers; in dark mode, each
+		surface is one tonal rung above the one beneath it.
+	</p>
+	<div class="grid gap-4 sm:grid-cols-2" data-no-toc>
+		<div class="rounded-2xl bg-white p-5 shadow-sm">
+			<p class="mb-3 text-xs font-medium text-[#70767d]">Light — shadow carries depth</p>
+			<div class="rounded-xl bg-white p-4 shadow-md">
+				<p class="text-xs text-[#70767d]">Card</p>
+				<div class="mt-2.5 rounded-lg bg-white p-3 shadow-lg">
+					<p class="text-xs text-[#70767d]">Floating panel</p>
+					<div class="mt-2.5 rounded-md bg-[#f2f4f7] px-3 py-2 text-xs text-[#1c2b33]">Hover</div>
+				</div>
+			</div>
+		</div>
+		<div class="rounded-2xl bg-[#000000] p-5">
+			<p class="mb-3 text-xs font-medium text-[#9da9b7]">Dark — tone carries depth</p>
+			<div class="rounded-xl bg-[#0c1116] p-4">
+				<p class="text-xs text-[#9da9b7]">Card</p>
+				<div class="mt-2.5 rounded-lg bg-[#141b21] p-3">
+					<p class="text-xs text-[#9da9b7]">Floating panel</p>
+					<div class="mt-2.5 rounded-md bg-[#1d262e] px-3 py-2 text-xs text-[#f6f8f9]">Hover</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </article>

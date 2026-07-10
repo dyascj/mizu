@@ -29,7 +29,7 @@
 
 <div class="mx-auto flex w-full max-w-6xl gap-8 px-5 py-10 sm:px-6">
 	<aside
-		class="sticky top-16 hidden h-[calc(100dvh-4rem)] w-52 shrink-0 overflow-y-auto py-8 lg:block [overscroll-behavior:contain] [scrollbar-width:none] [mask-image:linear-gradient(to_bottom,transparent_0,black_2rem,black_calc(100%-3.5rem),transparent_100%)] [&::-webkit-scrollbar]:hidden"
+		class="sticky top-24 hidden h-[calc(100dvh-8.5rem)] w-52 shrink-0 overflow-y-auto py-6 lg:block [overscroll-behavior:contain] [scrollbar-width:none] [mask-image:linear-gradient(to_bottom,transparent_0,black_1.5rem,black_calc(100%-3rem),transparent_100%)] [&::-webkit-scrollbar]:hidden"
 	>
 		<nav class="flex flex-col gap-5">
 			<div class="flex flex-col gap-px">
