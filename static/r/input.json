@@ -17,7 +17,7 @@
     {
       "type": "registry:file",
       "target": "input/input.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { HTMLInputAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLInputAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLInputElement | null;\n\t\tvalue?: string | number | null;\n\t};\n\tlet { class: className, ref = $bindable(null), value = $bindable(), ...rest }: Props = $props();\n</script>\n\n<input\n\tbind:this={ref}\n\tbind:value\n\tclass={cn(\n\t\t'flex h-10 w-full rounded-full border border-input bg-card px-4 py-2 text-sm text-foreground outline-none transition-[box-shadow,border-color] duration-150 placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...rest}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport type { HTMLInputAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLInputAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLInputElement | null;\n\t\tvalue?: string | number | null;\n\t};\n\tlet { class: className, ref = $bindable(null), value = $bindable(), ...rest }: Props = $props();\n</script>\n\n<input\n\tbind:this={ref}\n\tbind:value\n\tclass={cn(\n\t\t'flex h-10 w-full rounded-full bg-secondary px-4 py-2 text-sm text-foreground outline-none transition-[box-shadow,border-color] duration-150 placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...rest}\n/>\n"
     }
   ]
 }

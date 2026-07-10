@@ -392,6 +392,42 @@
       "type": "registry:ui",
       "title": "Aurora",
       "description": "A slow, drifting pastel-aura backdrop."
+    },
+    {
+      "name": "chat-input",
+      "type": "registry:ui",
+      "title": "Chat Input",
+      "description": "A pill composer with attach, voice, and send, ready for a companion."
+    },
+    {
+      "name": "chat-bubble",
+      "type": "registry:ui",
+      "title": "Chat Bubble",
+      "description": "User and assistant message bubbles, flat and quiet."
+    },
+    {
+      "name": "voice-orb",
+      "type": "registry:ui",
+      "title": "Voice Orb",
+      "description": "The assistant's presence: a pastel orb that listens, thinks, and speaks."
+    },
+    {
+      "name": "waveform",
+      "type": "registry:ui",
+      "title": "Waveform",
+      "description": "Animated voice bars for listening and speaking states."
+    },
+    {
+      "name": "prompt-suggestions",
+      "type": "registry:ui",
+      "title": "Prompt Suggestions",
+      "description": "Starter prompt chips that invite the first message."
+    },
+    {
+      "name": "thinking",
+      "type": "registry:ui",
+      "title": "Thinking",
+      "description": "Shimmer and typing-dot indicators for a working assistant."
     }
   ]
 }

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "chat-input",
+  "type": "registry:ui",
+  "title": "Chat Input",
+  "description": "A pill composer with attach, voice, and send, ready for a companion.",
+  "dependencies": [
+    "@lucide/svelte"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "chat-input/chat-input.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport Paperclip from '@lucide/svelte/icons/paperclip';\n\timport Mic from '@lucide/svelte/icons/mic';\n\timport ArrowUp from '@lucide/svelte/icons/arrow-up';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = {\n\t\tvalue?: string;\n\t\tplaceholder?: string;\n\t\tdisabled?: boolean;\n\t\t/** Called with the trimmed message when the user submits. */\n\t\tonSubmit?: (message: string) => void;\n\t\t/** Replaces the leading attach button. */\n\t\tleading?: Snippet;\n\t\t/** Replaces the trailing mic button (the send button always renders). */\n\t\ttrailing?: Snippet;\n\t\tclass?: string;\n\t\tref?: HTMLInputElement | null;\n\t};\n\n\tlet {\n\t\tvalue = $bindable(''),\n\t\tplaceholder = 'Type a message...',\n\t\tdisabled = false,\n\t\tonSubmit,\n\t\tleading,\n\t\ttrailing,\n\t\tclass: className,\n\t\tref = $bindable(null)\n\t}: Props = $props();\n\n\tfunction submit(e: SubmitEvent) {\n\t\te.preventDefault();\n\t\tconst message = value.trim();\n\t\tif (!message || disabled) return;\n\t\tonSubmit?.(message);\n\t\tvalue = '';\n\t}\n\n\tconst iconBtn =\n\t\t'inline-flex size-9 shrink-0 items-center justify-center rounded-full text-muted-foreground outline-none transition-colors hover:bg-secondary hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50';\n</script>\n\n<form\n\tonsubmit={submit}\n\tclass={cn(\n\t\t'flex w-full items-center gap-1 rounded-full bg-card p-1.5 pl-2 shadow-lg dark:border dark:border-border',\n\t\tclassName\n\t)}\n>\n\t{#if leading}\n\t\t{@render leading()}\n\t{:else}\n\t\t<button type=\"button\" class={iconBtn} {disabled} aria-label=\"Attach\">\n\t\t\t<Paperclip class=\"size-4\" />\n\t\t</button>\n\t{/if}\n\n\t<input\n\t\tbind:this={ref}\n\t\tbind:value\n\t\t{placeholder}\n\t\t{disabled}\n\t\tclass=\"h-9 min-w-0 flex-1 bg-transparent px-1.5 text-sm text-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed\"\n\t/>\n\n\t{#if trailing}\n\t\t{@render trailing()}\n\t{:else}\n\t\t<button type=\"button\" class={iconBtn} {disabled} aria-label=\"Voice input\">\n\t\t\t<Mic class=\"size-4\" />\n\t\t</button>\n\t{/if}\n\n\t<button\n\t\ttype=\"submit\"\n\t\tdisabled={disabled || !value.trim()}\n\t\taria-label=\"Send\"\n\t\tclass=\"inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm outline-none transition-[background-color,scale] hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none disabled:opacity-40\"\n\t>\n\t\t<ArrowUp class=\"size-4\" />\n\t</button>\n</form>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "chat-input/index.ts",
+      "content": "export { default as ChatInput } from './chat-input.svelte';\n"
+    }
+  ]
+}

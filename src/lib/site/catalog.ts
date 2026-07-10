@@ -8,7 +8,7 @@ export const categories = [
 	'Menus',
 	'Navigation',
 	'Feedback',
-	'Effects'
+	'AI'
 ] as const;
 
 export type Category = (typeof categories)[number];

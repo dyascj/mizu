@@ -152,7 +152,7 @@
 	{
 		"slug": "orb",
 		"name": "Orb",
-		"category": "Effects",
+		"category": "AI",
 		"description": "A soft pastel glow orb for AI moments and hero backdrops."
 	},
 	{
@@ -405,13 +405,49 @@
 	{
 		"slug": "dock",
 		"name": "Dock",
-		"category": "Effects",
+		"category": "AI",
 		"description": "A dock that magnifies icons under the cursor."
 	},
 	{
 		"slug": "aurora",
 		"name": "Aurora",
-		"category": "Effects",
+		"category": "AI",
 		"description": "A slow, drifting pastel-aura backdrop."
+	},
+	{
+		"slug": "chat-input",
+		"name": "Chat Input",
+		"category": "AI",
+		"description": "A pill composer with attach, voice, and send, ready for a companion."
+	},
+	{
+		"slug": "chat-bubble",
+		"name": "Chat Bubble",
+		"category": "AI",
+		"description": "User and assistant message bubbles, flat and quiet."
+	},
+	{
+		"slug": "voice-orb",
+		"name": "Voice Orb",
+		"category": "AI",
+		"description": "The assistant's presence: a pastel orb that listens, thinks, and speaks."
+	},
+	{
+		"slug": "waveform",
+		"name": "Waveform",
+		"category": "AI",
+		"description": "Animated voice bars for listening and speaking states."
+	},
+	{
+		"slug": "prompt-suggestions",
+		"name": "Prompt Suggestions",
+		"category": "AI",
+		"description": "Starter prompt chips that invite the first message."
+	},
+	{
+		"slug": "thinking",
+		"name": "Thinking",
+		"category": "AI",
+		"description": "Shimmer and typing-dot indicators for a working assistant."
 	}
 ]

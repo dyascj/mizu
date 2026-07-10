@@ -70,7 +70,7 @@
 
 <div
 	class={cn(
-		'flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-full border border-input bg-card px-2 py-1.5 text-sm outline-none transition-[box-shadow,border-color] duration-150 focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/35',
+		'flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-full bg-secondary px-2 py-1.5 text-sm outline-none transition-[box-shadow,border-color] duration-150 focus-within:ring-2 focus-within:ring-ring/35',
 		disabled && 'cursor-not-allowed opacity-50',
 		className
 	)}

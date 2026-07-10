@@ -22,7 +22,7 @@
 		cn(
 			'rounded-lg px-3 py-1.5 text-sm transition-colors',
 			active
-				? 'bg-accent font-semibold text-accent-foreground'
+				? 'bg-primary-muted font-semibold text-primary'
 				: 'text-muted-foreground hover:bg-secondary hover:text-foreground'
 		);
 </script>

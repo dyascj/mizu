@@ -28,6 +28,10 @@
 	import * as RadioGroup from '$lib/components/ui/radio-group';
 	import * as ButtonGroup from '$lib/components/ui/button-group';
 	import * as Avatar from '$lib/components/ui/avatar';
+	import { ChatBubble } from '$lib/components/ui/chat-bubble';
+	import { ChatInput } from '$lib/components/ui/chat-input';
+	import { Thinking } from '$lib/components/ui/thinking';
+	import { VoiceOrb } from '$lib/components/ui/voice-orb';
 
 	// Live state so the wall is actually interactive.
 	let playing = $state(true);
@@ -56,6 +60,29 @@
 </script>
 
 <div class="columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
+	<!-- Companion chat -->
+	<Card.Root class="break-inside-avoid">
+		<Card.Header class="flex-row items-center gap-3">
+			<VoiceOrb state="idle" size={36} />
+			<div class="flex flex-col gap-0.5">
+				<Card.Title>Luna</Card.Title>
+				<Card.Description>Online now</Card.Description>
+			</div>
+		</Card.Header>
+		<Card.Content class="flex flex-col gap-2">
+			<ChatBubble role="user">Good morning! Anything on my plate today?</ChatBubble>
+			<ChatBubble role="assistant">
+				Two things: standup at ten, and you promised yourself a walk. I can remind you at three.
+			</ChatBubble>
+			<div class="pl-3 pt-1">
+				<Thinking variant="dots" label="Typing" />
+			</div>
+		</Card.Content>
+		<Card.Footer>
+			<ChatInput placeholder="Message Luna..." />
+		</Card.Footer>
+	</Card.Root>
+
 	<!-- Create account -->
 	<Card.Root class="break-inside-avoid">
 		<Card.Header>

@@ -12,7 +12,7 @@
     {
       "type": "registry:file",
       "target": "button-group/button-group-text.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLSpanElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<span\n\tclass={cn(\n\t\t'inline-flex h-10 items-center border border-border bg-secondary px-3.5 text-sm font-medium text-secondary-foreground',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</span>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLSpanElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<span\n\tclass={cn(\n\t\t'inline-flex h-10 items-center dark:border dark:border-border bg-secondary px-3.5 text-sm font-medium text-secondary-foreground',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</span>\n"
     },
     {
       "type": "registry:file",

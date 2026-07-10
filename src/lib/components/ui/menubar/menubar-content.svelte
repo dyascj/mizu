@@ -20,7 +20,7 @@
 		{sideOffset}
 		{align}
 		class={cn(
-			'z-50 min-w-[12rem] rounded-xl bg-popover border border-border p-1 text-popover-foreground shadow-lg transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
+			'z-50 min-w-[12rem] rounded-xl bg-popover dark:border dark:border-border p-1 text-popover-foreground shadow-lg transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
 			className
 		)}
 		{...restProps}

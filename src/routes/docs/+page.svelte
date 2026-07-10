@@ -54,12 +54,9 @@
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">How it ships</h2>
 	<p class="mb-4 leading-relaxed text-muted-foreground">
-		Mizu is distributed as a <span
-			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em] text-foreground"
-			>shadcn-svelte</span
-		>-compatible registry. Real developers install components with tooling they already know; AI
-		agents get clean per-component JSON; and every component page here shows the full source to copy
-		by hand. {components.length} components are ready today.
+		Every component is source you copy into your project and own. Add one with a single command
+		using the CLI you already have, point an AI agent at the clean per-component JSON, or copy the
+		code straight from any component page. {components.length} components are ready today.
 	</p>
 
 	<div class="mt-8 flex flex-wrap gap-3">

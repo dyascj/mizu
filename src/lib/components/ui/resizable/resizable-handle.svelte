@@ -30,7 +30,7 @@
 >
 	{#if withHandle}
 		<div
-			class="bg-popover relative z-10 flex h-7 w-3.5 items-center justify-center overflow-hidden rounded-sm border border-border shadow-xs group-data-[direction=vertical]:h-3.5 group-data-[direction=vertical]:w-7"
+			class="bg-popover relative z-10 flex h-7 w-3.5 items-center justify-center overflow-hidden rounded-sm dark:border dark:border-border shadow-xs group-data-[direction=vertical]:h-3.5 group-data-[direction=vertical]:w-7"
 		>
 			<GripVerticalIcon
 				class="relative z-10 size-3 text-muted-foreground group-data-[direction=vertical]:rotate-90"

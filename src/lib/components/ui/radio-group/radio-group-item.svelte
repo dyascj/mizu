@@ -12,7 +12,7 @@
 <RadioGroupPrimitive.Item
 	bind:ref
 	class={cn(
-		'relative flex size-5 shrink-0 items-center justify-center rounded-full border border-input bg-card outline-none transition-[background-color,box-shadow] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:shadow-sm',
+		'relative flex size-5 shrink-0 items-center justify-center rounded-full bg-secondary outline-none transition-[background-color,box-shadow] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:shadow-sm',
 		className
 	)}
 	{...restProps}

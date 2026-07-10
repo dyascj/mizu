@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "voice-orb",
+  "type": "registry:ui",
+  "title": "Voice Orb",
+  "description": "The assistant's presence: a pastel orb that listens, thinks, and speaks.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "voice-orb/index.ts",
+      "content": "export { default as VoiceOrb } from './voice-orb.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "voice-orb/voice-orb.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {\n\t\t/** What the assistant is doing; drives the animation. */\n\t\tstate?: 'idle' | 'listening' | 'thinking' | 'speaking';\n\t\tsize?: number;\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t};\n\n\tlet {\n\t\tstate = 'idle',\n\t\tsize = 96,\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...rest\n\t}: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\trole=\"status\"\n\taria-label={state}\n\tclass={cn('voice-orb relative select-none', `is-${state}`, className)}\n\tstyle=\"width: {size}px; height: {size}px;\"\n\t{...rest}\n>\n\t<span class=\"orb-halo\"></span>\n\t<span class=\"orb-body\">\n\t\t<span class=\"orb-aura\"></span>\n\t</span>\n</div>\n\n<style>\n\t.voice-orb {\n\t\tpointer-events: none;\n\t}\n\n\t.orb-body {\n\t\tposition: absolute;\n\t\tinset: 0;\n\t\tborder-radius: 9999px;\n\t\toverflow: hidden;\n\t\tbackground: #ffffff;\n\t\ttransition: transform 0.4s ease;\n\t}\n\n\t.orb-aura {\n\t\tposition: absolute;\n\t\tinset: -30%;\n\t\tborder-radius: 9999px;\n\t\tbackground:\n\t\t\tradial-gradient(60% 60% at 30% 25%, #ffc4dd 0%, transparent 62%),\n\t\t\tradial-gradient(55% 55% at 76% 28%, #dcc8ff 0%, transparent 64%),\n\t\t\tradial-gradient(65% 65% at 68% 80%, #bcdfff 0%, transparent 66%),\n\t\t\tradial-gradient(45% 45% at 26% 74%, #ffe4c2 0%, transparent 62%);\n\t\tfilter: blur(6px) saturate(1.15);\n\t\tanimation: orb-turn 24s linear infinite;\n\t\twill-change: transform;\n\t}\n\n\t.orb-halo {\n\t\tposition: absolute;\n\t\tinset: -16%;\n\t\tborder-radius: 9999px;\n\t\tbackground: radial-gradient(\n\t\t\tcircle,\n\t\t\trgba(230, 217, 255, 0.55) 0%,\n\t\t\trgba(255, 217, 232, 0.3) 45%,\n\t\t\ttransparent 70%\n\t\t);\n\t\tfilter: blur(8px);\n\t\ttransition: opacity 0.4s ease;\n\t}\n\n\t/* listening: a slow, attentive breath */\n\t.is-listening .orb-body {\n\t\tanimation: orb-breathe 2.4s ease-in-out infinite;\n\t}\n\t.is-listening .orb-aura {\n\t\tanimation-duration: 14s;\n\t}\n\n\t/* thinking: the aura churns faster, the halo dims */\n\t.is-thinking .orb-aura {\n\t\tanimation-duration: 6s;\n\t\tfilter: blur(6px) saturate(1.5);\n\t}\n\t.is-thinking .orb-halo {\n\t\topacity: 0.6;\n\t}\n\n\t/* speaking: quick, voice-like pulses */\n\t.is-speaking .orb-body {\n\t\tanimation: orb-speak 0.9s ease-in-out infinite;\n\t}\n\t.is-speaking .orb-aura {\n\t\tanimation-duration: 10s;\n\t}\n\n\t@keyframes orb-turn {\n\t\tto {\n\t\t\ttransform: rotate(360deg);\n\t\t}\n\t}\n\t@keyframes orb-breathe {\n\t\t0%,\n\t\t100% {\n\t\t\ttransform: scale(1);\n\t\t}\n\t\t50% {\n\t\t\ttransform: scale(1.06);\n\t\t}\n\t}\n\t@keyframes orb-speak {\n\t\t0%,\n\t\t100% {\n\t\t\ttransform: scale(1);\n\t\t}\n\t\t30% {\n\t\t\ttransform: scale(1.09);\n\t\t}\n\t\t60% {\n\t\t\ttransform: scale(1.03);\n\t\t}\n\t}\n\n\t@media (prefers-reduced-motion: reduce) {\n\t\t.orb-aura,\n\t\t.is-listening .orb-body,\n\t\t.is-speaking .orb-body {\n\t\t\tanimation: none;\n\t\t}\n\t}\n</style>\n"
+    }
+  ]
+}

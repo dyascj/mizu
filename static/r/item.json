@@ -42,7 +42,7 @@
     {
       "type": "registry:file",
       "target": "item/item.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\n\t\t'bg-popover relative flex items-center gap-3 rounded-xl border border-border p-3 shadow-xs transition-colors',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\n\t\t'bg-popover relative flex items-center gap-3 rounded-xl dark:border dark:border-border p-3 shadow-xs transition-colors',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
     }
   ]
 }

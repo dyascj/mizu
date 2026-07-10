@@ -17,7 +17,7 @@
     {
       "type": "registry:file",
       "target": "textarea/textarea.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { HTMLTextareaAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLTextareaAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLTextAreaElement | null;\n\t\tvalue?: string | null;\n\t};\n\tlet { class: className, ref = $bindable(null), value = $bindable(), ...rest }: Props = $props();\n</script>\n\n<textarea\n\tbind:this={ref}\n\tbind:value\n\tclass={cn(\n\t\t'flex min-h-20 w-full rounded-xl border border-input bg-card px-3.5 py-2.5 text-sm text-foreground outline-none transition-[box-shadow,border-color] duration-150 placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...rest}></textarea>\n"
+      "content": "<script lang=\"ts\">\n\timport type { HTMLTextareaAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLTextareaAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLTextAreaElement | null;\n\t\tvalue?: string | null;\n\t};\n\tlet { class: className, ref = $bindable(null), value = $bindable(), ...rest }: Props = $props();\n</script>\n\n<textarea\n\tbind:this={ref}\n\tbind:value\n\tclass={cn(\n\t\t'flex min-h-20 w-full rounded-xl bg-secondary px-3.5 py-2.5 text-sm text-foreground outline-none transition-[box-shadow,border-color] duration-150 placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...rest}></textarea>\n"
     }
   ]
 }

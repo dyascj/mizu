@@ -20,7 +20,7 @@ Clean, airy components for SvelteKit. White surfaces, soft shadows, pill control
 
 ---
 
-Mizu is built for the interfaces we make now: white on white with hairline borders, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for the moments where the AI is present. Quiet surfaces, generous rounding, and restraint everywhere else. It ships the way [shadcn-svelte](https://www.shadcn-svelte.com) does. You do not install a black box, you copy the source into your project and own it.
+Mizu is built for the interfaces we make now: white on white with hairline borders, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for the moments where the AI is present. Quiet surfaces, generous rounding, and restraint everywhere else. Everything ships as source you copy into your project and own — no black box, no version lock. One command adds a component (the registry works with the shadcn-svelte CLI you already have), or copy from any docs page.
 
 ## Highlights
 

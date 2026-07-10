@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "chat-bubble",
+  "type": "registry:ui",
+  "title": "Chat Bubble",
+  "description": "User and assistant message bubbles, flat and quiet.",
+  "dependencies": [
+    "tailwind-variants"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "chat-bubble/chat-bubble.svelte",
+      "content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from 'tailwind-variants';\n\n\texport const chatBubbleVariants = tv({\n\t\tbase: 'w-fit max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed break-words',\n\t\tvariants: {\n\t\t\trole: {\n\t\t\t\tuser: 'ml-auto rounded-br-md bg-primary text-primary-foreground',\n\t\t\t\tassistant: 'mr-auto rounded-bl-md bg-secondary text-foreground'\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: { role: 'assistant' }\n\t});\n\n\texport type ChatBubbleRole = VariantProps<typeof chatBubbleVariants>['role'];\n</script>\n\n<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\trole?: ChatBubbleRole;\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\n\tlet {\n\t\trole = 'assistant',\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...rest\n\t}: Props = $props();\n</script>\n\n<div bind:this={ref} class={cn(chatBubbleVariants({ role }), className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "chat-bubble/index.ts",
+      "content": "export { default as ChatBubble } from './chat-bubble.svelte';\nexport { chatBubbleVariants, type ChatBubbleRole } from './chat-bubble.svelte';\n"
+    }
+  ]
+}

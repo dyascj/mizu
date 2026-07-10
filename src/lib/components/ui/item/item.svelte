@@ -14,7 +14,7 @@
 <div
 	bind:this={ref}
 	class={cn(
-		'bg-popover relative flex items-center gap-3 rounded-xl border border-border p-3 shadow-xs transition-colors',
+		'bg-popover relative flex items-center gap-3 rounded-xl dark:border dark:border-border p-3 shadow-xs transition-colors',
 		className
 	)}
 	{...rest}
