@@ -33,7 +33,7 @@
 	>
 		<nav class="flex flex-col gap-6">
 			<div class="flex flex-col gap-1">
-				<p class="px-3 pb-1 text-xs font-bold tracking-wide text-muted-foreground uppercase">
+				<p class="px-3 pb-1.5 text-[0.6875rem] font-semibold tracking-[0.08em] text-muted-foreground/70 uppercase">
 					Getting Started
 				</p>
 				{#each gettingStarted as link (link.href)}
@@ -42,7 +42,7 @@
 			</div>
 
 			<div class="flex flex-col gap-1">
-				<p class="px-3 pb-1 text-xs font-bold tracking-wide text-muted-foreground uppercase">
+				<p class="px-3 pb-1.5 text-[0.6875rem] font-semibold tracking-[0.08em] text-muted-foreground/70 uppercase">
 					Components
 				</p>
 				<a href="/docs/components" class={linkClass(isActive('/docs/components'))}>Overview</a>
@@ -50,7 +50,7 @@
 
 			{#each groups as group (group.category)}
 				<div class="flex flex-col gap-1">
-					<p class="px-3 pb-1 text-xs font-bold tracking-wide text-muted-foreground uppercase">
+					<p class="px-3 pb-1.5 text-[0.6875rem] font-semibold tracking-[0.08em] text-muted-foreground/70 uppercase">
 						{group.category}
 					</p>
 					{#each group.items as item (item.slug)}

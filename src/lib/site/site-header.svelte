@@ -16,8 +16,10 @@
 	];
 </script>
 
-<header class="sticky top-0 z-40 border-b border-border bg-popover">
-	<div class="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 sm:px-6">
+<header class="sticky top-3 z-40 px-3 sm:px-5">
+	<div
+		class="glass mx-auto flex h-14 max-w-6xl items-center gap-4 rounded-full px-4 shadow-md sm:px-5 dark:border"
+	>
 		<!-- Left: mobile menu + logo + nav -->
 		<div class="flex items-center gap-2 sm:gap-6">
 			<MobileNav />
@@ -41,7 +43,7 @@
 			<button
 				onclick={() => (search.open = true)}
 				aria-label="Search"
-				class="inline-flex items-center gap-2 rounded-xl border border-input bg-card/60 px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground sm:w-48 sm:px-3"
+				class="inline-flex items-center gap-2 rounded-full bg-secondary px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground sm:w-48 sm:px-3.5"
 			>
 				<MagnifyingGlass class="size-4 shrink-0" />
 				<span class="hidden flex-1 text-left sm:inline">Search</span>
