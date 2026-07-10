@@ -20,20 +20,20 @@
 	}
 	const linkClass = (active: boolean) =>
 		cn(
-			'rounded-lg px-3 py-1.5 text-sm transition-colors',
+			'rounded-md px-2 py-1 text-[0.8rem] leading-snug transition-colors',
 			active
-				? 'bg-primary-muted font-semibold text-primary'
-				: 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+				? 'bg-primary-muted font-medium text-primary'
+				: 'text-muted-foreground hover:text-foreground'
 		);
 </script>
 
 <div class="mx-auto flex w-full max-w-6xl gap-8 px-5 py-10 sm:px-6">
 	<aside
-		class="sticky top-16 hidden h-[calc(100dvh-4rem)] w-56 shrink-0 overflow-y-auto py-8 lg:block [overscroll-behavior:contain] [scrollbar-gutter:stable]"
+		class="sticky top-16 hidden h-[calc(100dvh-4rem)] w-52 shrink-0 overflow-y-auto py-8 lg:block [overscroll-behavior:contain] [scrollbar-width:none] [mask-image:linear-gradient(to_bottom,transparent_0,black_2rem,black_calc(100%-3.5rem),transparent_100%)] [&::-webkit-scrollbar]:hidden"
 	>
-		<nav class="flex flex-col gap-6">
-			<div class="flex flex-col gap-1">
-				<p class="px-3 pb-1.5 text-[0.6875rem] font-semibold tracking-[0.08em] text-muted-foreground/70 uppercase">
+		<nav class="flex flex-col gap-5">
+			<div class="flex flex-col gap-px">
+				<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">
 					Getting Started
 				</p>
 				{#each gettingStarted as link (link.href)}
@@ -41,16 +41,16 @@
 				{/each}
 			</div>
 
-			<div class="flex flex-col gap-1">
-				<p class="px-3 pb-1.5 text-[0.6875rem] font-semibold tracking-[0.08em] text-muted-foreground/70 uppercase">
+			<div class="flex flex-col gap-px">
+				<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">
 					Components
 				</p>
 				<a href="/docs/components" class={linkClass(isActive('/docs/components'))}>Overview</a>
 			</div>
 
 			{#each groups as group (group.category)}
-				<div class="flex flex-col gap-1">
-					<p class="px-3 pb-1.5 text-[0.6875rem] font-semibold tracking-[0.08em] text-muted-foreground/70 uppercase">
+				<div class="flex flex-col gap-px">
+					<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">
 						{group.category}
 					</p>
 					{#each group.items as item (item.slug)}
