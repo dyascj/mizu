@@ -24,7 +24,7 @@
 	import * as Tooltip from '$lib/components/ui/tooltip';
 
 	let agree = $state(true);
-	let glossy = $state(true);
+	let glow = $state(true);
 	let plan = $state('pro');
 	let level = $state(64);
 	let align = $state('center');
@@ -117,7 +117,7 @@
 			<div class="flex flex-col gap-5">
 				<div class="flex flex-col gap-3">
 					<label class="flex items-center justify-between text-sm font-semibold">
-						Glossy surfaces <Switch bind:checked={glossy} />
+						Aura glow <Switch bind:checked={glow} />
 					</label>
 					<label class="flex items-center gap-2 text-sm font-semibold">
 						<Checkbox bind:checked={agree} /> Accept terms

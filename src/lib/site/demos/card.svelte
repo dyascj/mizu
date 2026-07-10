@@ -6,7 +6,7 @@
 <Card.Root class="w-full max-w-sm">
 	<Card.Header>
 		<Card.Title>Clear skies</Card.Title>
-		<Card.Description>A frosted-glass surface with a wet top sheen.</Card.Description>
+		<Card.Description>A white surface with a hairline border and a soft shadow.</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<p class="text-sm text-muted-foreground">

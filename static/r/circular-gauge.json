@@ -3,7 +3,7 @@
   "name": "circular-gauge",
   "type": "registry:ui",
   "title": "Circular Gauge",
-  "description": "An animated ring gauge with an aqua glow.",
+  "description": "An animated ring gauge with a soft glow.",
   "dependencies": [],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

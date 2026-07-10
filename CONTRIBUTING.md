@@ -14,7 +14,7 @@ pnpm format   # prettier write
 
 ## Adding a component
 
-1. Build it in `src/lib/components/ui/<name>/` (`<name>.svelte` plus an `index.ts`), following the existing patterns: `tailwind-variants` for variants, bits-ui for behavior, the `cn` helper, and the `glass` / `gloss` / `gradient-*` / `shadow-*` tokens from `src/app.css`.
+1. Build it in `src/lib/components/ui/<name>/` (`<name>.svelte` plus an `index.ts`), following the existing patterns: `tailwind-variants` for variants, bits-ui for behavior, the `cn` helper, and the `glass` / `orb-*` / `aurora-*` / `shadow-*` tokens from `src/app.css`.
 2. List it in `src/lib/site/components.json` (slug, name, category, description).
 3. Add a demo in `src/lib/site/demos/<name>.svelte`.
 4. Run `pnpm registry:build` to regenerate `static/r`.

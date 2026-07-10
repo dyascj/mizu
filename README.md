@@ -4,15 +4,15 @@
 
 # Mizu 水
 
-**A Frutiger Aero design system for Svelte.**
+**A clean, airy design system for Svelte.**
 
-Glossy, glassy, gorgeously rounded components for SvelteKit. The optimism of early-2000s UI, rebuilt for Svelte 5 and Tailwind v4. Copy in what you need.
+Clean, airy components for SvelteKit. White surfaces, soft shadows, pill controls, and a pastel glow where intelligence lives. Built for Svelte 5 and Tailwind v4. Copy in what you need.
 
 <p>
 	<img alt="Svelte 5" src="https://img.shields.io/badge/Svelte-5-FF3E00?logo=svelte&logoColor=white" />
 	<img alt="Tailwind CSS v4" src="https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white" />
 	<img alt="bits-ui" src="https://img.shields.io/badge/bits--ui-headless-0EA5E9" />
-	<img alt="69 components" src="https://img.shields.io/badge/components-69-01B2FF" />
+	<img alt="64 components" src="https://img.shields.io/badge/components-64-00B2FF" />
 	<img alt="MIT" src="https://img.shields.io/badge/license-MIT-22C55E" />
 </p>
 
@@ -20,15 +20,15 @@ Glossy, glassy, gorgeously rounded components for SvelteKit. The optimism of ear
 
 ---
 
-Mizu brings back the aesthetic of clear skies, water droplets, and wet glass: frosted surfaces, a real top sheen, layered light, and generous rounding, applied with restraint so it feels polished instead of busy. It ships the way [shadcn-svelte](https://www.shadcn-svelte.com) does. You do not install a black box, you copy the source into your project and own it.
+Mizu is built for the interfaces we make now: white on white with hairline borders, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for the moments where the AI is present. Quiet surfaces, generous rounding, and restraint everywhere else. It ships the way [shadcn-svelte](https://www.shadcn-svelte.com) does. You do not install a black box, you copy the source into your project and own it.
 
 ## Highlights
 
-- **69 components**, from buttons and dialogs to a command palette, a date picker, a data table, a magnifying dock, drifting aurora, and rising bubbles.
-- **Recolor from one token.** The gloss gradients, glow, and focus ring all derive from `--primary` — change it once and the whole system follows.
-- **Physically honest.** Gloss, glass, and glow come from real CSS, never baked-in screenshots.
-- **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the glossy skin.
-- **Light and deep water.** A clean neutral light theme and a neutral deep-dark theme, both with the aqua accent on top.
+- **64 components**, from buttons and dialogs to a command palette, a date picker, a data table, a magnifying dock, a drifting pastel aurora, and a glow orb.
+- **Recolor from one token.** The accent, glow, and focus ring all derive from `--primary` — change it once and the whole system follows.
+- **Quiet by default.** Hierarchy comes from space, hairlines, and type. The accent and the glow are reserved for what matters.
+- **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the quiet skin.
+- **Airy light, pure-black dark.** A white light theme and a pure-black dark theme with slate surfaces, both with the blue accent on top.
 - **Copy in, own it.** A shadcn-svelte-compatible registry, plus full source on every component page.
 
 ## Quick start
@@ -83,8 +83,8 @@ You can also open any component page in the docs and copy its source straight in
 
 <Card.Root class="max-w-sm">
 	<Card.Header>
-		<Card.Title>Clear skies</Card.Title>
-		<Card.Description>A frosted-glass surface with a wet top sheen.</Card.Description>
+		<Card.Title>Clear morning</Card.Title>
+		<Card.Description>A white surface with a hairline border and a soft shadow.</Card.Description>
 	</Card.Header>
 	<Card.Footer>
 		<Button class="w-full">Continue</Button>
@@ -94,15 +94,15 @@ You can also open any component page in the docs and copy its source straight in
 
 ## Theming
 
-The brand is one token. Change `--primary` and the gloss gradients, glow, and focus ring follow, derived with `color-mix`:
+The brand is one token. Change `--primary` and the accent, glow, and focus ring follow:
 
 ```css
 :root {
-	--primary: #01b2ff; /* aqua, the default */
+	--primary: #00b2ff; /* the default */
 }
 ```
 
-Everything is driven by CSS variables — a clean light mode and a deep-water dark mode out of the box, plus a single `--primary` token (the default is aqua `#01b2ff`) that recolors the whole system without touching a component.
+Everything is driven by CSS variables — an airy light mode and a pure-black dark mode out of the box, plus a single `--primary` token (the default is `#00b2ff`) that recolors the whole system without touching a component.
 
 ## Components
 
@@ -115,7 +115,7 @@ Everything is driven by CSS variables — a clean light mode and a deep-water da
 | Menus      | Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command                                                                                      |
 | Navigation | Tabs, Accordion, Collapsible, Breadcrumb, Pagination                                                                                                |
 | Feedback   | Progress, Skeleton, Spinner, Circular Gauge                                                                                                         |
-| Effects    | Orb, Bubbles                                                                                                                                        |
+| Effects    | Orb, Aurora                                                                                                                                        |
 
 ## Develop
 
@@ -130,7 +130,7 @@ The docs site lives in `src/routes`, components in `src/lib/components/ui`, the 
 
 ## Built with
 
-Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide icons (with Phosphor in the docs site). Inspired by shadcn-svelte and HeroUI, and the Frutiger Aero era.
+Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide icons (with Phosphor in the docs site). Inspired by shadcn-svelte and the quiet confidence of modern AI interfaces.
 
 ## License
 

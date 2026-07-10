@@ -6,6 +6,6 @@
 </script>
 
 <div class="flex items-center gap-3">
-	<Switch id="glossy" bind:checked />
-	<Label for="glossy">Glossy surfaces</Label>
+	<Switch id="glow" bind:checked />
+	<Label for="glow">Aura glow</Label>
 </div>

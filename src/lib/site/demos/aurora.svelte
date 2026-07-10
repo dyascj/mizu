@@ -11,7 +11,7 @@
 		<div
 			class="bg-popover rounded-xl border border-border px-6 py-4 text-center shadow-lg"
 		>
-			<p class="relative z-10 font-display text-lg font-semibold text-foreground">Frutiger skies</p>
+			<p class="relative z-10 font-display text-lg font-semibold text-foreground">Pastel skies</p>
 			<p class="relative z-10 mt-1 text-sm text-muted-foreground">
 				A drifting aurora behind glass.
 			</p>

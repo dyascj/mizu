@@ -27,7 +27,7 @@
 
 <Seo
 	title="Installation — {siteConfig.name}"
-	description="Set up Mizu in your SvelteKit project: configure Tailwind v4 and components.json, then add glossy Frutiger Aero components with the shadcn-svelte CLI and own the source."
+	description="Set up Mizu in your SvelteKit project: configure Tailwind v4 and components.json, then add clean, airy components with the shadcn-svelte CLI and own the source."
 />
 
 <article class="max-w-2xl">
@@ -73,7 +73,7 @@
 		<a
 			href="/docs/theming"
 			class="font-medium text-[color:var(--primary)] underline-offset-4 hover:underline">Theming</a
-		> page). It defines the palette, glass and utilities, gradients, elevation, and fonts.
+		> page). It defines the palette, surface utilities, pastel auras, elevation, and fonts.
 	</p>
 
 	<h2 class="mt-10 mb-3 font-display text-xl font-bold">4. Add components</h2>

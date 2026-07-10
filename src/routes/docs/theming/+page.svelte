@@ -6,57 +6,54 @@
 	const ramp = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
 
 	const tokenSnippet = `:root {
-	--background: #e9f2f8;
-	--foreground: #14303f;
+	--background: #ffffff;
+	--foreground: #1c2b33;
 	--card: #ffffff;
-	--muted: #d8e7f1;
-	--muted-foreground: #587688;
-	--primary: #01b2ff; /* aqua hero */
+	--muted: #f2f4f7;
+	--muted-foreground: #70767d;
+	--primary: #00b2ff; /* the one accent */
 	--primary-foreground: #ffffff;
-	--border: #c3d9e7;
-	--ring: #38bdf8;
+	--border: #eceef1; /* hairlines everywhere */
+	--ring: var(--primary);
 
-	/* Glass + materials */
-	--glass: rgba(255, 255, 255, 0.6);
-	--glass-border: rgba(255, 255, 255, 0.7);
-	--sheen: rgba(255, 255, 255, 0.55);
+	/* Soft ambient elevation — never bevels */
+	--elevation-sm: 0 0 10px rgba(28, 43, 51, 0.06);
+	--elevation-lg: 0 8px 24px rgba(28, 43, 51, 0.1);
 
-	/* Glossy gradients + elevation (abbreviated) */
-	--bg-primary: linear-gradient(180deg, #5cd5ff, #01b2ff 48%, #0090d9);
-	--elevation-aqua: inset 0 1px 0 rgba(255,255,255,.5), 0 4px 12px rgba(1,178,255,.35);
+	/* Pastel auras for AI moments */
+	--orb-pink: radial-gradient(circle, rgba(253, 221, 222, 0.85) 0%, transparent 70%);
+	--aurora: linear-gradient(135deg, #f4e7ff 0%, #fdddde 100%);
 }
 
 .dark {
-	--background: #061520; /* deep water */
-	--foreground: #e3f1fa;
-	--primary: #29c7ff;
+	--background: #000000; /* pure black */
+	--foreground: #f6f8f9;
+	--card: #0c1116; /* slate lifted from the ink */
+	--primary: #00b2ff;
 	/* …each token gets a dark variant… */
 }`;
 
 	const utilities = [
-		['glass / bg-popover', 'Frosted translucent surface + backdrop blur.'],
-		['', 'The wet top sheen (a ::before highlight). Needs relative + overflow-hidden.'],
-		['bg-primary / -surface / …', 'Glossy 180° gradients for fills.'],
-		[
-			'shadow-sm / -glass / -bevel / -pressed',
-			'Layered elevation, from cyan glow to recessed wells.'
-		]
+		['glass / glass-subtle', 'Flat frosted translucency + backdrop blur, for floating panels.'],
+		['orb-pink / -blue / -purple / -peach', 'Soft radial pastel auras. Pair with blur for glow.'],
+		['aurora / -cool / -iris / -mint', 'Pastel linear washes for surfaces and art.'],
+		['shadow-xs … shadow-xl / shadow-glow', 'Soft ambient elevation, plus a blue glow.']
 	];
 </script>
 
 <Seo
 	title="Theming — {siteConfig.name}"
-	description="Theme Mizu with a single token. Change --primary to recolor the entire Frutiger Aero system, with light and dark modes, glass materials, and glossy gradients built in for Tailwind v4."
+	description="Theme Mizu with a handful of tokens. White surfaces, hairline borders, soft shadows, and pastel auras, with an airy light mode and a pure-black dark mode, built for Tailwind v4."
 />
 
 <article class="max-w-2xl">
-	<h1 class="font-display text-3xl font-extrabold">Theming</h1>
+	<h1 class="text-3xl font-semibold">Theming</h1>
 	<p class="mt-3 text-lg text-muted-foreground">
 		One file drives everything. Mizu's look lives in CSS custom properties, mapped to Tailwind v4
 		utilities. Recolor the system by changing a handful of tokens.
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">The token block</h2>
+	<h2 class="mt-10 mb-3 text-xl font-semibold">The token block</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
 		Add this to <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"
 			>src/app.css</code
@@ -71,10 +68,10 @@
 	</p>
 	<CodeBlock code={tokenSnippet} />
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">The aqua ramp</h2>
+	<h2 class="mt-10 mb-3 text-xl font-semibold">The brand ramp</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
 		<code class="font-mono text-[0.85em]">mizu-50</code> through
-		<code class="font-mono text-[0.85em]">mizu-950</code>. The hero is
+		<code class="font-mono text-[0.85em]">mizu-950</code>. The accent is
 		<code class="font-mono text-[0.85em]">mizu-500</code>. Swap these to re-tint the whole system.
 	</p>
 	<div class="mb-2 grid grid-cols-11 overflow-hidden rounded-xl border border-border shadow-xs">
@@ -86,9 +83,9 @@
 		{#each ramp as step}<span>{step}</span>{/each}
 	</div>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Material utilities</h2>
+	<h2 class="mt-10 mb-3 text-xl font-semibold">Material utilities</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
-		Beyond colors, Mizu adds a small set of Frutiger Aero surface utilities you can use anywhere.
+		Beyond colors, Mizu adds a small set of surface utilities you can use anywhere.
 	</p>
 	<div class="overflow-hidden rounded-xl border border-border">
 		{#each utilities as [name, desc], i}
@@ -96,18 +93,19 @@
 				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
 					(i % 2 ? 'bg-muted/40' : '')}
 			>
-				<code class="shrink-0 font-mono text-sm text-[color:var(--primary)] sm:w-72">{name}</code>
+				<code class="shrink-0 font-mono text-sm text-primary sm:w-72">{name}</code>
 				<span class="text-sm text-muted-foreground">{desc}</span>
 			</div>
 		{/each}
 	</div>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Dark mode</h2>
+	<h2 class="mt-10 mb-3 text-xl font-semibold">Dark mode</h2>
 	<p class="mb-4 leading-relaxed text-muted-foreground">
 		Mizu uses a class strategy: add <code
 			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">dark</code
 		>
-		to <code class="font-mono text-[0.85em]">&lt;html&gt;</code>. The included theme store handles
-		persistence and a no-flash inline script. Toggle it with the sun/moon button in the header.
+		to <code class="font-mono text-[0.85em]">&lt;html&gt;</code>. The page goes pure black and
+		surfaces lift to slate. The included theme store handles persistence and a no-flash inline
+		script. Toggle it with the sun/moon button in the header.
 	</p>
 </article>

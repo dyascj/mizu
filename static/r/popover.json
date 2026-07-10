@@ -3,7 +3,7 @@
   "name": "popover",
   "type": "registry:ui",
   "title": "Popover",
-  "description": "A floating glass panel anchored to a trigger.",
+  "description": "A floating panel anchored to a trigger.",
   "dependencies": [
     "bits-ui"
   ],
@@ -24,7 +24,7 @@
     {
       "type": "registry:file",
       "target": "popover/popover-content.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { Popover as PopoverPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 8,\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<PopoverPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tportalProps?: PopoverPrimitive.PortalProps;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<PopoverPrimitive.Portal {...portalProps}>\n\t<PopoverPrimitive.Content\n\t\tbind:ref\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t'glass-strong z-50 w-72 rounded-xl border border-[color:var(--glass-border)] p-4 text-popover-foreground shadow-glass outline-none transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</PopoverPrimitive.Content>\n</PopoverPrimitive.Portal>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { Popover as PopoverPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 8,\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<PopoverPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tportalProps?: PopoverPrimitive.PortalProps;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<PopoverPrimitive.Portal {...portalProps}>\n\t<PopoverPrimitive.Content\n\t\tbind:ref\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t'bg-popover z-50 w-72 rounded-xl border border-border p-4 text-popover-foreground shadow-lg outline-none transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</PopoverPrimitive.Content>\n</PopoverPrimitive.Portal>\n"
     },
     {
       "type": "registry:file",

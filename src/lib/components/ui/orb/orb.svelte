@@ -103,7 +103,7 @@
 		animation: orb-pulse-b 9s ease-in-out infinite;
 	}
 
-	/* Self-contained: a static (but still glossy) orb when motion is reduced,
+	/* Self-contained: a static (but still glowing) orb when motion is reduced,
 	   even if this component is copied in without Mizu's global app.css reset. */
 	@media (prefers-reduced-motion: reduce) {
 		.mizu-orb-spin,

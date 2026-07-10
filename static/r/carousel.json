@@ -3,7 +3,7 @@
   "name": "carousel",
   "type": "registry:ui",
   "title": "Carousel",
-  "description": "A swipeable slider with glossy aqua prev/next controls.",
+  "description": "A swipeable slider with pill prev/next controls.",
   "dependencies": [
     "@lucide/svelte",
     "embla-carousel",

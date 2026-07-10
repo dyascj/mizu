@@ -2,7 +2,7 @@
 	import * as ContextMenu from '$lib/components/ui/context-menu';
 	import { Copy, Droplets, WavesLadder, Trash2 } from '@lucide/svelte';
 
-	let frosted = $state(true);
+	let showGlow = $state(true);
 	let depth = $state('shallow');
 </script>
 
@@ -24,7 +24,7 @@
 			Refill
 		</ContextMenu.Item>
 		<ContextMenu.Separator />
-		<ContextMenu.CheckboxItem bind:checked={frosted}>Frosted glass</ContextMenu.CheckboxItem>
+		<ContextMenu.CheckboxItem bind:checked={showGlow}>Aura glow</ContextMenu.CheckboxItem>
 		<ContextMenu.Separator />
 		<ContextMenu.RadioGroup bind:value={depth}>
 			<ContextMenu.RadioItem value="shallow">Shallow</ContextMenu.RadioItem>

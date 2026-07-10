@@ -4,8 +4,8 @@
 
 	const principles = [
 		[
-			'Physically honest',
-			'Gloss, glass, and glow are real CSS, never baked into a screenshot. If it looks wet, it is wet.'
+			'Quiet by default',
+			'Hierarchy comes from space, hairlines, and type. White surfaces and soft shadows carry the structure; nothing shines.'
 		],
 		[
 			'You own the code',
@@ -21,20 +21,20 @@
 		],
 		[
 			'Restraint over decoration',
-			'The does the talking. Stop layering effects before the edges turn to mud.'
+			'The content does the talking. One blue accent, one glow, and generous space go further than any effect.'
 		]
 	];
 
 	const doList = [
 		'Theme by editing tokens in app.css, not hex values in markup',
-		'Keep one glass surface per layer',
+		'Reserve the pastel auras for AI moments, not chrome',
 		'Compose with the exported parts (Dialog.Root, Dialog.Trigger, …)',
 		'Label dialogs, inputs, and icon-only buttons',
 		'Match a child radius to its parent minus padding'
 	];
 	const dontList = [
 		'Hard-code colors that ignore the theme',
-		'Nest glass inside glass, or on ',
+		'Stack heavy shadows where a hairline would do',
 		'Remove focus rings to make it look cleaner',
 		'Ship an icon-only control with no accessible name',
 		'Animate without honoring prefers-reduced-motion'
@@ -108,21 +108,19 @@
 
 	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Composition</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
-		Mizu ships a few Frutiger Aero surfaces: <code
+		Mizu ships a few surface utilities: <code
 			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">glass</code
 		>
-		for frosted translucency and
-		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"></code> for the wet
-		top sheen (it needs a
-		<code class="font-mono text-[0.85em]">relative</code>,
-		<code class="font-mono text-[0.85em]">overflow-hidden</code> parent). Two rules keep them looking
-		right:
+		for flat frosted panels that float above content, and the
+		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">orb-*</code> and
+		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">aurora-*</code> pastel washes
+		for the moments where the AI is present. Two rules keep them looking right:
 	</p>
 	<ul class="mb-2 ml-5 list-disc space-y-1.5 leading-relaxed text-muted-foreground">
 		<li>
-			<span class="font-semibold text-foreground">One glass per layer.</span> Stacking two frosted, glossy
-			surfaces doubles the borders and sheens and muddies the edges. Pick a single surface and let the
-			content sit on it.
+			<span class="font-semibold text-foreground">One frost per layer.</span> Translucency is for the
+			single floating panel above the page, never for panels stacked on panels. Everything else is solid
+			white or slate.
 		</li>
 		<li>
 			<span class="font-semibold text-foreground">Concentric radius.</span> A child's corner radius should

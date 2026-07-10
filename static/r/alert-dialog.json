@@ -3,7 +3,7 @@
   "name": "alert-dialog",
   "type": "registry:ui",
   "title": "Alert Dialog",
-  "description": "A glass modal that interrupts for a confirmation.",
+  "description": "A clean modal that interrupts for a confirmation.",
   "dependencies": [
     "bits-ui"
   ],
@@ -25,7 +25,7 @@
     {
       "type": "registry:file",
       "target": "alert-dialog/alert-dialog-content.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { AlertDialog as AlertDialogPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport AlertDialogOverlay from './alert-dialog-overlay.svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<AlertDialogPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tportalProps?: AlertDialogPrimitive.PortalProps;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<AlertDialogPrimitive.Portal {...portalProps}>\n\t<AlertDialogOverlay />\n\t<AlertDialogPrimitive.Content\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t'glass-strong gloss fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-[color:var(--glass-border)] p-6 shadow-glass-lg transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t<div class=\"relative z-10 flex flex-col gap-4\">\n\t\t\t{@render children?.()}\n\t\t</div>\n\t</AlertDialogPrimitive.Content>\n</AlertDialogPrimitive.Portal>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { AlertDialog as AlertDialogPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport AlertDialogOverlay from './alert-dialog-overlay.svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<AlertDialogPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tportalProps?: AlertDialogPrimitive.PortalProps;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<AlertDialogPrimitive.Portal {...portalProps}>\n\t<AlertDialogOverlay />\n\t<AlertDialogPrimitive.Content\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t'bg-popover fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-border p-6 shadow-xl transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t<div class=\"relative z-10 flex flex-col gap-4\">\n\t\t\t{@render children?.()}\n\t\t</div>\n\t</AlertDialogPrimitive.Content>\n</AlertDialogPrimitive.Portal>\n"
     },
     {
       "type": "registry:file",

@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"packageManager": "pnpm@10.28.2",
-	"description": "A Frutiger Aero design system for Svelte. Glossy, glassy components for SvelteKit, Svelte 5, and Tailwind v4.",
+	"description": "A clean, airy design system for Svelte. White surfaces, soft shadows, and pastel glow for SvelteKit, Svelte 5, and Tailwind v4.",
 	"keywords": [
 		"svelte",
 		"sveltekit",
@@ -12,9 +12,10 @@
 		"design-system",
 		"component-library",
 		"ui",
-		"frutiger-aero",
 		"shadcn-svelte",
-		"bits-ui"
+		"bits-ui",
+		"clean-ui",
+		"ai-ui"
 	],
 	"homepage": "https://github.com/dyascj/mizu#readme",
 	"repository": {
