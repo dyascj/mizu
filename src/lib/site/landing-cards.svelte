@@ -20,10 +20,13 @@
 	import * as Avatar from '$lib/components/ui/avatar';
 	import { ChatBubble } from '$lib/components/ui/chat-bubble';
 	import { ChatInput } from '$lib/components/ui/chat-input';
-	import { Thinking } from '$lib/components/ui/thinking';
 	import { VoiceOrb } from '$lib/components/ui/voice-orb';
 	import { Waveform } from '$lib/components/ui/waveform';
 	import { PromptSuggestions } from '$lib/components/ui/prompt-suggestions';
+	import { StreamingText } from '$lib/components/ui/streaming-text';
+	import { Reasoning } from '$lib/components/ui/reasoning';
+	import { ToolCall } from '$lib/components/ui/tool-call';
+	import { MessageActions } from '$lib/components/ui/message-actions';
 
 	// Live state so the wall is actually interactive.
 	let volume = $state(70);
@@ -40,6 +43,10 @@
 		{ value: 'fjord-3', label: 'Fjord 3.0' },
 		{ value: 'super-2', label: 'Super 2.4' }
 	];
+	let lunaRun = $state(0);
+	const lunaReply =
+		'Two things: standup at ten, and you promised yourself a walk. I can remind you at three.';
+
 	const activity = [
 		{ title: 'Finished the research doc', detail: 'Sources cited and summarized', time: '9:41 AM' },
 		{ title: 'Rescheduled your standup', detail: 'Moved to 10:30 with a note', time: '9:12 AM' },
@@ -64,13 +71,21 @@
 			</div>
 		</Card.Header>
 		<Card.Content class="flex flex-col gap-2">
-			<ChatBubble role="user">Good morning! Anything on my plate today?</ChatBubble>
-			<ChatBubble role="assistant">
-				Two things: standup at ten, and you promised yourself a walk. I can remind you at three.
+			<ChatBubble role="user" animate={false}>Good morning! Anything on my plate today?</ChatBubble>
+			<Reasoning summary="Thought for 2 seconds" class="pl-1">
+				They asked about today. Calendar shows one meeting, and the walk they planned yesterday
+				is still unscheduled. Lead with the meeting, nudge the walk.
+			</Reasoning>
+			<ChatBubble role="assistant" animate={false} class="min-h-16 w-full max-w-[85%]">
+				{#key lunaRun}
+					<StreamingText
+						text={lunaReply}
+						speed={80}
+						onComplete={() => setTimeout(() => (lunaRun += 1), 3600)}
+					/>
+				{/key}
 			</ChatBubble>
-			<div class="pl-3 pt-1">
-				<Thinking variant="dots" label="Typing" />
-			</div>
+			<MessageActions text={lunaReply} class="pl-1" />
 		</Card.Content>
 		<Card.Footer>
 			<ChatInput placeholder="Message Luna..." />
@@ -112,6 +127,7 @@
 			<Card.Description>Your agent kept going.</Card.Description>
 		</Card.Header>
 		<Card.Content class="flex flex-col gap-3">
+			<ToolCall name="Summarizing your inbox" detail="12 unread" state="running" />
 			{#each activity as a (a.title)}
 				<div class="flex items-start gap-3 rounded-xl bg-secondary/60 p-3">
 					<VoiceOrb state="idle" size={22} class="mt-0.5" />
