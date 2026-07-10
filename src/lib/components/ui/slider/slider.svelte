@@ -42,7 +42,7 @@
 		{#each thumbItems as { index } (index)}
 			<SliderPrimitive.Thumb
 				{index}
-				class="block size-5 shrink-0 rounded-full border border-mizu-200 bg-white shadow-xs outline-none transition-[scale] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none"
+				class="block size-5 shrink-0 rounded-full bg-white shadow-sm outline-none transition-[scale] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none"
 			/>
 		{/each}
 	{/snippet}

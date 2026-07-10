@@ -199,10 +199,10 @@
 				{#each [{ v: 'free', t: 'Free', p: '$0', s: 'Chat, 50 messages a day' }, { v: 'pro', t: 'Pro', p: '$9', s: 'Voice mode and memory' }, { v: 'team', t: 'Team', p: '$29', s: 'Shared agents' }] as o (o.v)}
 					<Label
 						for="plan-{o.v}"
-						class="flex cursor-pointer items-center gap-3 rounded-xl border p-3 font-normal transition-colors {plan ===
+						class="flex cursor-pointer items-center gap-3 rounded-xl p-3 font-normal transition-colors {plan ===
 						o.v
-							? 'border-[color:var(--primary)] bg-[color-mix(in_srgb,var(--primary)_8%,transparent)]'
-							: 'border-border'}"
+							? 'bg-primary-muted'
+							: 'bg-secondary/60 hover:bg-secondary'}"
 					>
 						<RadioGroup.Item value={o.v} id="plan-{o.v}" />
 						<span class="flex-1">
@@ -284,7 +284,7 @@
 	<Card.Root class="break-inside-avoid">
 		<Card.Content class="flex flex-col gap-3 pt-6">
 			<div
-				class="flex items-center gap-2 rounded-xl border border-input bg-card/70 px-3 py-2 "
+				class="flex items-center gap-2 rounded-full bg-secondary px-3.5 py-2"
 			>
 				<Search class="size-4 text-muted-foreground" />
 				<span class="flex-1 text-sm text-muted-foreground">Type a command…</span>
