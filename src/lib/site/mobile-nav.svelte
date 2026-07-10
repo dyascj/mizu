@@ -54,7 +54,7 @@
 
 			{#each groups as group (group.category)}
 				<div class="flex flex-col gap-0.5">
-					<p class="px-3 pb-1 text-xs font-bold tracking-wide text-muted-foreground uppercase">
+					<p class="px-3 pb-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
 						{group.category}
 					</p>
 					{#each group.items as item (item.slug)}

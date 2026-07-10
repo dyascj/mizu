@@ -7,6 +7,6 @@
 	let { class: className, children, ...rest }: Props = $props();
 </script>
 
-<legend class={cn('font-display font-bold', className)} {...rest}>
+<legend class={cn('font-display font-semibold', className)} {...rest}>
 	{@render children?.()}
 </legend>

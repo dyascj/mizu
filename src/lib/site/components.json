@@ -405,7 +405,7 @@
 	{
 		"slug": "dock",
 		"name": "Dock",
-		"category": "AI",
+		"category": "Navigation",
 		"description": "A dock that magnifies icons under the cursor."
 	},
 	{

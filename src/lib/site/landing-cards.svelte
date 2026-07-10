@@ -2,16 +2,7 @@
 	// A shadcn-style "wall of cards": self-contained Mizu component compositions
 	// in a masonry, so the landing shows real, interactive components (wearing the
 	// gel + glass) instead of a generic feature grid.
-	import {
-		Play,
-		Pause,
-		SkipBack,
-		SkipForward,
-		Bell,
-		Search,
-		Droplets,
-		Check
-	} from '@lucide/svelte';
+	import { Bell, Search, Droplets, Check } from '@lucide/svelte';
 	import GithubLogo from 'phosphor-svelte/lib/GithubLogo';
 	import * as Card from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
@@ -26,7 +17,6 @@
 	import { Separator } from '$lib/components/ui/separator';
 	import * as Select from '$lib/components/ui/select';
 	import * as RadioGroup from '$lib/components/ui/radio-group';
-	import * as ButtonGroup from '$lib/components/ui/button-group';
 	import * as Avatar from '$lib/components/ui/avatar';
 	import { ChatBubble } from '$lib/components/ui/chat-bubble';
 	import { ChatInput } from '$lib/components/ui/chat-input';
@@ -36,8 +26,6 @@
 	import { PromptSuggestions } from '$lib/components/ui/prompt-suggestions';
 
 	// Live state so the wall is actually interactive.
-	let playing = $state(true);
-	let scrub = $state(38);
 	let volume = $state(70);
 	let plan = $state('pro');
 	let ai = $state({ speech: true, memory: true, personalization: false });
@@ -114,57 +102,6 @@
 		</Card.Footer>
 	</Card.Root>
 
-	<!-- Now playing -->
-	<Card.Root class="break-inside-avoid">
-		<Card.Content class="flex flex-col gap-4 pt-6">
-			<div class="flex items-center gap-3">
-				<div
-					class="grid size-14 shrink-0 place-items-center rounded-2xl bg-primary text-2xl shadow-sm"
-				>
-					🌊
-				</div>
-				<div class="min-w-0 flex-1">
-					<p class="truncate font-display font-bold">真夜中のドライブ</p>
-					<p class="truncate text-sm text-muted-foreground">Midnight Drive · Mizu</p>
-				</div>
-				<Badge variant="secondary">FLAC</Badge>
-			</div>
-			<Slider type="single" bind:value={scrub} max={100} />
-			<div class="flex items-center justify-between">
-				<span class="text-xs text-muted-foreground tabular-nums">1:24</span>
-				<ButtonGroup.Root>
-					<Button variant="secondary" size="icon" aria-label="Previous">
-						<SkipBack class="size-4" />
-					</Button>
-					<Button
-						size="icon"
-						aria-label={playing ? 'Pause' : 'Play'}
-						onclick={() => (playing = !playing)}
-					>
-						{#if playing}<Pause class="size-4" />{:else}<Play class="size-4" />{/if}
-					</Button>
-					<Button variant="secondary" size="icon" aria-label="Next">
-						<SkipForward class="size-4" />
-					</Button>
-				</ButtonGroup.Root>
-				<span class="text-xs text-muted-foreground tabular-nums">3:42</span>
-			</div>
-		</Card.Content>
-	</Card.Root>
-
-	<!-- Voice mode -->
-	<Card.Root class="break-inside-avoid">
-		<Card.Content class="flex flex-col items-center gap-4 pt-8 pb-6">
-			<VoiceOrb state="listening" size={88} />
-			<p class="text-sm text-muted-foreground">I'm listening...</p>
-			<Waveform bars={7} class="h-6" />
-			<div class="flex gap-2">
-				<Button variant="secondary" size="sm">Cancel</Button>
-				<Button size="sm">Done</Button>
-			</div>
-		</Card.Content>
-	</Card.Root>
-
 	<!-- Agent activity -->
 	<Card.Root class="break-inside-avoid">
 		<Card.Header>
@@ -209,7 +146,7 @@
 							<span class="block font-semibold text-foreground">{o.t}</span>
 							<span class="block text-xs text-muted-foreground">{o.s}</span>
 						</span>
-						<span class="font-display font-bold tabular-nums"
+						<span class="font-display font-semibold tabular-nums"
 							>{o.p}<span class="text-xs font-normal text-muted-foreground">/mo</span></span
 						>
 					</Label>
@@ -276,6 +213,19 @@
 					</div>
 					<Progress value={61} />
 				</div>
+			</div>
+		</Card.Content>
+	</Card.Root>
+
+	<!-- Voice mode -->
+	<Card.Root class="break-inside-avoid">
+		<Card.Content class="flex flex-col items-center gap-4 pt-8 pb-6">
+			<VoiceOrb state="listening" size={88} />
+			<p class="text-sm text-muted-foreground">I'm listening...</p>
+			<Waveform bars={7} class="h-6" />
+			<div class="flex gap-2">
+				<Button variant="secondary" size="sm">Cancel</Button>
+				<Button size="sm">Done</Button>
 			</div>
 		</Card.Content>
 	</Card.Root>

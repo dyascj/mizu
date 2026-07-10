@@ -2,16 +2,16 @@
 	import { tv, type VariantProps } from 'tailwind-variants';
 
 	export const badgeVariants = tv({
-		base: 'relative inline-flex items-center gap-1 overflow-hidden rounded-full border px-2.5 py-0.5 text-xs font-semibold whitespace-nowrap',
+		base: 'relative inline-flex items-center gap-1 overflow-hidden rounded-full px-2.5 py-0.5 text-xs font-medium whitespace-nowrap',
 		variants: {
 			variant: {
-				primary: 'bg-primary border-transparent text-primary-foreground shadow-xs',
-				secondary: 'border-border bg-secondary text-secondary-foreground',
-				success: 'border-transparent bg-success/15 text-[color:var(--success)]',
-				warning: 'border-transparent bg-warning/15 text-[color:var(--warning)]',
-				destructive: 'border-transparent bg-destructive/15 text-[color:var(--destructive)]',
-				info: 'border-transparent bg-info/15 text-[color:var(--info)]',
-				outline: 'border-border bg-transparent text-foreground'
+				primary: 'bg-primary text-primary-foreground shadow-xs',
+				secondary: 'bg-secondary text-secondary-foreground',
+				success: 'bg-success/15 text-[color:var(--success)]',
+				warning: 'bg-warning/15 text-[color:var(--warning)]',
+				destructive: 'bg-destructive/15 text-[color:var(--destructive)]',
+				info: 'bg-info/15 text-[color:var(--info)]',
+				outline: 'border border-border bg-transparent text-foreground'
 			}
 		},
 		defaultVariants: { variant: 'primary' }

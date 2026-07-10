@@ -5,10 +5,7 @@
 
 <div class="flex w-full max-w-md flex-col gap-2">
 	<ChatBubble role="user">Morning! What should I cook tonight?</ChatBubble>
-	<ChatBubble role="assistant">
-		Something cozy. You have salmon and miso in the fridge, so a quick miso-glazed salmon with rice
-		would land perfectly.
-	</ChatBubble>
+	<ChatBubble role="assistant">Something cozy. Miso-glazed salmon over rice, twenty minutes.</ChatBubble>
 	<div class="pl-4">
 		<Thinking variant="dots" label="Typing" />
 	</div>

@@ -51,7 +51,7 @@
     {
       "type": "registry:file",
       "target": "sheet/sheet-title.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<SheetPrimitive.TitleProps> & { class?: string } = $props();\n</script>\n\n<SheetPrimitive.Title\n\tbind:ref\n\tclass={cn('font-display text-lg font-bold text-foreground', className)}\n\t{...restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<SheetPrimitive.TitleProps> & { class?: string } = $props();\n</script>\n\n<SheetPrimitive.Title\n\tbind:ref\n\tclass={cn('font-display text-lg font-semibold text-foreground', className)}\n\t{...restProps}\n/>\n"
     },
     {
       "type": "registry:file",

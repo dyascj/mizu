@@ -31,19 +31,19 @@
 />
 
 <article class="max-w-2xl">
-	<h1 class="font-display text-3xl font-extrabold">Installation</h1>
+	<h1 class="font-display text-3xl font-semibold">Installation</h1>
 	<p class="mt-3 text-lg text-muted-foreground">
 		Mizu is a shadcn-svelte-compatible registry. After a one-time setup, add any component with a
 		single command; the source lands in your project and is yours to edit.
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">1. Create a SvelteKit + Tailwind v4 app</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">1. Create a SvelteKit + Tailwind v4 app</h2>
 	<div class="flex flex-col gap-2">
 		<CopyCommand command="npx sv create my-app" />
 		<CopyCommand command="npx sv add tailwindcss" />
 	</div>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">2. Add a components.json</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">2. Add a components.json</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
 		This tells the CLI where to place files. Create <code
 			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">components.json</code
@@ -57,7 +57,7 @@
 		> to generate one interactively (pick any base color, you'll replace its theme next).
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">3. Add the theme</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">3. Add the theme</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
 		Paste the Mizu theme into your <code
 			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">src/app.css</code
@@ -76,7 +76,7 @@
 		> page). It defines the palette, surface utilities, pastel auras, elevation, and fonts.
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">4. Add components</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">4. Add components</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
 		Now the one-liner. It pulls the component, installs its npm dependencies, and adds the shared
 		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">cn</code> helper automatically:

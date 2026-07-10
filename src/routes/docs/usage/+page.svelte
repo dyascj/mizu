@@ -62,13 +62,13 @@
 />
 
 <article class="max-w-2xl">
-	<h1 class="font-display text-3xl font-extrabold">Usage</h1>
+	<h1 class="font-display text-3xl font-semibold">Usage</h1>
 	<p class="mt-3 text-lg text-muted-foreground">
 		The principles behind Mizu, how to drop components in and make them yours, and how to keep
 		things coherent as you compose. The components are the vocabulary; this is the grammar.
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Principles</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Principles</h2>
 	<p class="mb-4 leading-relaxed text-muted-foreground">
 		Five ideas hold the whole system together. When a decision is unclear, these break the tie.
 	</p>
@@ -78,13 +78,13 @@
 				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
 					(i % 2 ? 'bg-muted/40' : '')}
 			>
-				<span class="shrink-0 font-display text-sm font-bold text-foreground sm:w-44">{name}</span>
+				<span class="shrink-0 font-display text-sm font-semibold text-foreground sm:w-44">{name}</span>
 				<span class="text-sm text-muted-foreground">{desc}</span>
 			</div>
 		{/each}
 	</div>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Using a component</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Using a component</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
 		Add a component with the CLI, or copy the source straight from its page. Either way the files
 		land in <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"
@@ -106,7 +106,7 @@
 		<li>Delete the components you do not use. Nothing is loaded that you did not add.</li>
 	</ul>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Composition</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Composition</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
 		Mizu ships a few surface utilities: <code
 			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">glass</code
@@ -128,12 +128,12 @@
 		</li>
 	</ul>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Do and don't</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Do and don't</h2>
 	<div class="grid gap-4 sm:grid-cols-2">
 		<div
-			class="rounded-xl border border-[color:color-mix(in_srgb,var(--success)_45%,var(--border))] p-4"
+			class="rounded-xl bg-[color:color-mix(in_srgb,var(--success)_8%,var(--card))] p-4"
 		>
-			<p class="mb-2 font-display text-sm font-bold text-[color:var(--success)]">Do</p>
+			<p class="mb-2 font-display text-sm font-semibold text-[color:var(--success)]">Do</p>
 			<ul class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
 				{#each doList as item}
 					<li class="flex gap-2"><span class="text-[color:var(--success)]">✓</span>{item}</li>
@@ -141,9 +141,9 @@
 			</ul>
 		</div>
 		<div
-			class="rounded-xl border border-[color:color-mix(in_srgb,var(--destructive)_40%,var(--border))] p-4"
+			class="rounded-xl bg-[color:color-mix(in_srgb,var(--destructive)_7%,var(--card))] p-4"
 		>
-			<p class="mb-2 font-display text-sm font-bold text-[color:var(--destructive)]">Don't</p>
+			<p class="mb-2 font-display text-sm font-semibold text-[color:var(--destructive)]">Don't</p>
 			<ul class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
 				{#each dontList as item}
 					<li class="flex gap-2"><span class="text-[color:var(--destructive)]">✕</span>{item}</li>
@@ -152,7 +152,7 @@
 		</div>
 	</div>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Accessibility</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Accessibility</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
 		Behavior is delegated to bits-ui, so focus traps, roving focus, escape handling, and ARIA wiring
 		are handled for you. Your job is to keep the names and contrast intact.
@@ -172,7 +172,7 @@
 		<li>On light surfaces, use mizu-600 or darker for small text to keep contrast comfortable.</li>
 	</ul>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Choosing the right component</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Choosing the right component</h2>
 	<p class="mb-3 leading-relaxed text-muted-foreground">
 		A few pairings come up constantly. When two components could work, this is the default call.
 	</p>
@@ -182,7 +182,7 @@
 				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
 					(i % 2 ? 'bg-muted/40' : '')}
 			>
-				<span class="shrink-0 font-display text-sm font-bold text-foreground sm:w-52">{name}</span>
+				<span class="shrink-0 font-display text-sm font-semibold text-foreground sm:w-52">{name}</span>
 				<span class="text-sm text-muted-foreground">{desc}</span>
 			</div>
 		{/each}

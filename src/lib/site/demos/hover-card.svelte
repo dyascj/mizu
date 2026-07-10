@@ -17,7 +17,7 @@
 				<Avatar.Fallback>RV</Avatar.Fallback>
 			</Avatar.Root>
 			<div class="flex flex-col gap-1">
-				<h4 class="font-display text-sm font-bold text-foreground">River Vale</h4>
+				<h4 class="font-display text-sm font-semibold text-foreground">River Vale</h4>
 				<p class="text-sm text-muted-foreground">Charting clear streams and quiet tide pools.</p>
 				<div class="flex items-center gap-1.5 pt-1 text-xs text-muted-foreground">
 					<Droplets class="size-3.5 text-primary" />

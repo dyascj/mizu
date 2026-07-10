@@ -43,13 +43,13 @@
 
 <article class="max-w-3xl">
 	<div class="flex flex-wrap items-center gap-3">
-		<h1 class="font-display text-3xl font-extrabold">{meta.name}</h1>
+		<h1 class="font-display text-3xl font-semibold">{meta.name}</h1>
 		<Badge variant="outline">{meta.category}</Badge>
 		{#if meta.bits}<Badge variant="secondary">bits-ui</Badge>{/if}
 	</div>
 	<p class="mt-3 text-lg text-muted-foreground">{meta.description}</p>
 
-	<h2 class="mt-8 mb-4 font-display text-xl font-bold">Example</h2>
+	<h2 class="mt-8 mb-4 font-display text-xl font-semibold">Example</h2>
 	{#if demo.Component}
 		{@const Demo = demo.Component}
 		<ComponentPreview code={demo.source}>
@@ -64,7 +64,7 @@
 	{/if}
 
 	{#if api.length}
-		<h2 class="mt-10 mb-2 font-display text-xl font-bold">
+		<h2 class="mt-10 mb-2 font-display text-xl font-semibold">
 			{multiPart ? 'API reference' : 'Props'}
 		</h2>
 		<p class="mb-4 text-sm text-muted-foreground">
@@ -121,11 +121,11 @@
 		{/each}
 	{/if}
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Installation</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Installation</h2>
 	<CopyCommand command={installCmd} />
 
 	{#if source.length}
-		<h2 class="mt-10 mb-3 font-display text-xl font-bold">Source</h2>
+		<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Source</h2>
 		<p class="mb-4 text-sm text-muted-foreground">
 			The full source you own once you copy it in — no black box.
 		</p>

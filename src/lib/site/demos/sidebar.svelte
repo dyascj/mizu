@@ -29,7 +29,7 @@
 							<DropletIcon class="size-4" />
 						</span>
 						<span
-							class="font-display text-lg font-bold leading-none text-foreground transition-[opacity] duration-200 group-data-[state=collapsed]/sidebar:pointer-events-none group-data-[state=collapsed]/sidebar:opacity-0"
+							class="font-display text-lg font-semibold leading-none text-foreground transition-[opacity] duration-200 group-data-[state=collapsed]/sidebar:pointer-events-none group-data-[state=collapsed]/sidebar:opacity-0"
 						>
 							Mizu
 						</span>
@@ -76,7 +76,7 @@
 				<header class="flex h-14 shrink-0 items-center gap-3 border-b border-border px-4">
 					<Sidebar.Trigger />
 					<Sidebar.Separator class="mx-0 h-5 w-px" />
-					<h2 class="font-display text-base font-bold text-foreground">Overview</h2>
+					<h2 class="font-display text-base font-semibold text-foreground">Overview</h2>
 				</header>
 
 				<div class="flex-1 overflow-auto p-4">
@@ -85,7 +85,7 @@
 							class="bg-popover rounded-xl p-3 shadow-lg"
 						>
 							<p class="text-xs text-muted-foreground">Flow rate</p>
-							<p class="mt-1 font-display text-2xl font-bold tabular-nums text-foreground">
+							<p class="mt-1 font-display text-2xl font-semibold tabular-nums text-foreground">
 								42 L/s
 							</p>
 						</div>
@@ -93,7 +93,7 @@
 							class="bg-popover rounded-xl p-3 shadow-lg"
 						>
 							<p class="text-xs text-muted-foreground">Clarity</p>
-							<p class="mt-1 font-display text-2xl font-bold tabular-nums text-foreground">98%</p>
+							<p class="mt-1 font-display text-2xl font-semibold tabular-nums text-foreground">98%</p>
 						</div>
 					</div>
 					<div class="mt-3 space-y-2">
