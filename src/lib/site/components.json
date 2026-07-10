@@ -156,12 +156,6 @@
 		"description": "A soft, blooming aqua orb for hero backdrops."
 	},
 	{
-		"slug": "bubbles",
-		"name": "Bubbles",
-		"category": "Effects",
-		"description": "Rising water bubbles to overlay on glass."
-	},
-	{
 		"slug": "alert-dialog",
 		"name": "Alert Dialog",
 		"category": "Overlays",
@@ -315,7 +309,12 @@
 		"category": "Surfaces",
 		"description": "A composable list row."
 	},
-	{ "slug": "kbd", "name": "Kbd", "category": "Surfaces", "description": "A keyboard-key badge." },
+	{
+		"slug": "kbd",
+		"name": "Kbd",
+		"category": "Surfaces",
+		"description": "A keyboard-key badge."
+	},
 	{
 		"slug": "button-group",
 		"name": "Button Group",
@@ -404,12 +403,6 @@
 		"description": "A nested, keyboard-navigable file-style tree."
 	},
 	{
-		"slug": "ripple",
-		"name": "Ripple",
-		"category": "Effects",
-		"description": "A water ripple that blooms from every pointer press."
-	},
-	{
 		"slug": "dock",
 		"name": "Dock",
 		"category": "Effects",
@@ -420,23 +413,5 @@
 		"name": "Aurora",
 		"category": "Effects",
 		"description": "A slow, drifting aurora-gradient backdrop."
-	},
-	{
-		"slug": "caustics",
-		"name": "Caustics",
-		"category": "Effects",
-		"description": "Rippling pool-light caustics for any surface."
-	},
-	{
-		"slug": "lens-flare",
-		"name": "Lens Flare",
-		"category": "Effects",
-		"description": "A sunlit lens flare and bloom accent."
-	},
-	{
-		"slug": "liquid-divider",
-		"name": "Liquid Divider",
-		"category": "Effects",
-		"description": "A separator that ripples like the surface of water."
 	}
 ]

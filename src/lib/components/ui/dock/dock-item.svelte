@@ -5,7 +5,7 @@
 	import { getDockContext } from './context.js';
 
 	type Props = {
-		/** Optional caption shown in a glass bubble above the tile on hover/focus. */
+		/** Optional caption shown in a floating bubble above the tile on hover/focus. */
 		label?: string;
 		/** Render as a link instead of a button. */
 		href?: string;
@@ -72,7 +72,7 @@
 	const tileClass = $derived(
 		cn(
 			'mizu-dock-item group relative flex size-11 shrink-0 origin-bottom items-center justify-center rounded-xl text-foreground outline-none',
-			// glassy tile surface with a wet sheen
+			// tile surface
 			'bg-secondary border border-border shadow-lg',
 			// springy settle when the pointer leaves; magnify itself stays pointer-reactive
 			'transition-[scale,translate,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]',
@@ -91,7 +91,7 @@
 	</span>
 
 	{#if label}
-		<!-- glass caption bubble; appears on hover/focus, lifts with the tile -->
+		<!-- caption bubble; appears on hover/focus, lifts with the tile -->
 		<span
 			class="mizu-dock-label bg-popover pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 translate-y-1 scale-95 rounded-lg border border-border px-2.5 py-1 text-xs font-medium whitespace-nowrap text-popover-foreground opacity-0 shadow-lg transition-[opacity,scale,translate] duration-150 ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:scale-100 group-focus-visible:opacity-100"
 		>
@@ -128,7 +128,7 @@
 
 <style>
 	/* Self-contained reduced-motion guard: freeze the lens and bubble so the
-	   dock is a static glassy row, even when copied out without app.css. */
+	   dock is a static row, even when copied out without app.css. */
 	@media (prefers-reduced-motion: reduce) {
 		.mizu-dock-item {
 			scale: 1 !important;

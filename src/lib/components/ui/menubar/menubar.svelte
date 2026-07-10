@@ -14,7 +14,7 @@
 	bind:ref
 	bind:value
 	class={cn(
-		'flex h-10 items-center gap-1 rounded-xl glass border border-border p-1 shadow-xs',
+		'flex h-10 items-center gap-1 rounded-full bg-card border border-border p-1 shadow-xs',
 		className
 	)}
 	{...restProps}

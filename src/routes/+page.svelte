@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ArrowRight from 'phosphor-svelte/lib/ArrowRight';
 	import { Button } from '$lib/components/ui/button';
-	import { Bubbles } from '$lib/components/ui/bubbles';
 	import LandingCards from '$lib/site/landing-cards.svelte';
 	import CopyCommand from '$lib/site/copy-command.svelte';
+	import OrbMark from '$lib/site/orb-mark.svelte';
 	import Seo from '$lib/site/seo.svelte';
 	import { siteConfig } from '$lib/site/config';
 
@@ -34,41 +34,28 @@
 	jsonLd={softwareJsonLd}
 />
 
-<!-- Hero — a glossy 2008 daydream -->
+<!-- Hero: a quiet white field lit by pastel auras, the orb at its center -->
 <section class="relative overflow-hidden">
 	<div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-		<div
-			class="hero-bloom absolute top-[-16%] left-1/2 h-[560px] w-[920px] max-w-[160vw] -translate-x-1/2 rounded-full blur-3xl"
-		></div>
-		<span class="hero-bokeh hero-bokeh-1"></span>
-		<span class="hero-bokeh hero-bokeh-2"></span>
-		<span class="hero-bokeh hero-bokeh-3"></span>
-		<Bubbles count={18} />
+		<div class="hero-aura orb-pink absolute top-[-22%] left-[8%] size-[520px]"></div>
+		<div class="hero-aura orb-purple absolute top-[-14%] right-[6%] size-[560px]"></div>
+		<div class="hero-aura orb-blue absolute top-[24%] left-1/2 size-[640px] -translate-x-1/2"></div>
 	</div>
 
 	<div
-		class="mx-auto flex max-w-3xl flex-col items-center gap-5 px-6 pt-14 pb-16 text-center sm:pt-20"
+		class="mx-auto flex max-w-3xl flex-col items-center gap-5 px-6 pt-16 pb-16 text-center sm:pt-24"
 	>
-		<div class="relative">
-			<img
-				src="/brand/mizu-icon.png"
-				alt="Mizu"
-				class="hero-orb relative z-10 h-32 w-auto drop-shadow-[0_18px_55px_color-mix(in_srgb,var(--primary)_50%,transparent)] sm:h-44"
-			/>
-			<div
-				class="absolute inset-x-0 top-[80%] mx-auto h-6 w-2/3 rounded-[50%] bg-[color:var(--primary)] opacity-25 blur-xl"
-			></div>
+		<div class="hero-orb relative">
+			<OrbMark class="size-28 sm:size-36" />
 		</div>
 
-		<h1
-			class="hero-title font-display text-5xl leading-[0.95] font-extrabold tracking-tight text-balance sm:text-7xl"
-		>
-			Frutiger Aero is back.
+		<h1 class="max-w-xl text-5xl leading-[1.02] font-semibold tracking-tight text-balance sm:text-6xl">
+			Interfaces that feel light.
 		</h1>
 
 		<p class="max-w-md text-balance text-muted-foreground sm:text-lg">
-			Glossy, glassy components for Svelte — the optimism of 2008, rebuilt for Svelte 5 and Tailwind
-			v4.
+			Clean, airy components for Svelte 5 and Tailwind v4. White surfaces, soft shadows, and a
+			glow where intelligence lives.
 		</p>
 
 		<div class="mt-1 flex flex-wrap items-center justify-center gap-3">
@@ -76,7 +63,7 @@
 				Get started
 				<ArrowRight class="size-4" />
 			</Button>
-			<Button href="/docs/components" variant="secondary" size="lg">Browse components</Button>
+			<Button href="/docs/components" variant="outline" size="lg">Browse components</Button>
 		</div>
 
 		<CopyCommand command={installCmd} class="mt-1 w-full max-w-sm" />
@@ -96,13 +83,13 @@
 		class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-7 text-sm text-muted-foreground sm:flex-row"
 	>
 		<div class="flex items-center gap-2.5">
-			<img src="/brand/mizu-side-by-side.png" alt="Mizu Design System" class="h-7 w-auto" />
+			<OrbMark class="size-5" />
 			<span
-				>· by <a
+				>Mizu · by <a
 					href={siteConfig.authorUrl}
 					target="_blank"
 					rel="noreferrer"
-					class="font-medium text-foreground transition-colors hover:text-[color:var(--primary)]"
+					class="font-medium text-foreground transition-colors hover:text-primary"
 					>{siteConfig.author}</a
 				></span
 			>
@@ -130,75 +117,16 @@
 		mask-image: linear-gradient(to bottom, #000 calc(100% - 180px), transparent 100%);
 	}
 
-	/* Bright aqua sky-bloom behind the orb. */
-	.hero-bloom {
-		background: radial-gradient(
-			closest-side,
-			color-mix(in oklab, var(--primary) 60%, white),
-			color-mix(in oklab, var(--primary) 42%, transparent) 45%,
-			transparent 72%
-		);
-		opacity: 0.5;
-	}
-
-	/* Drifting glossy bokeh orbs. */
-	.hero-bokeh {
-		position: absolute;
+	/* Big soft pastel washes behind the hero; the orb utilities supply the color. */
+	.hero-aura {
 		border-radius: 9999px;
-		background: radial-gradient(
-			circle at 35% 30%,
-			rgba(255, 255, 255, 0.95),
-			color-mix(in oklab, var(--primary) 55%, transparent) 62%,
-			transparent 78%
-		);
-		filter: blur(1px);
-		will-change: transform;
-	}
-	.hero-bokeh-1 {
-		width: 84px;
-		height: 84px;
-		left: 12%;
-		top: 30%;
-		opacity: 0.55;
-		animation: hero-drift 14s ease-in-out infinite;
-	}
-	.hero-bokeh-2 {
-		width: 46px;
-		height: 46px;
-		right: 17%;
-		top: 22%;
-		opacity: 0.5;
-		animation: hero-drift 18s ease-in-out infinite 1.5s;
-	}
-	.hero-bokeh-3 {
-		width: 120px;
-		height: 120px;
-		right: 8%;
-		bottom: 12%;
-		opacity: 0.32;
-		animation: hero-drift 22s ease-in-out infinite 0.6s;
+		filter: blur(40px);
 	}
 
-	/* The brand orb floats. */
+	/* The orb floats, barely. */
 	.hero-orb {
-		animation: hero-bob 6s ease-in-out infinite;
+		animation: hero-bob 7s ease-in-out infinite;
 		will-change: transform;
-	}
-
-	/* Glossy, wet aqua title — gradient fill with a Web 2.0 bevel + glow. */
-	.hero-title {
-		background-image: linear-gradient(
-			180deg,
-			color-mix(in oklab, var(--primary) 52%, white),
-			var(--primary) 52%,
-			color-mix(in oklab, var(--primary) 74%, black)
-		);
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
-		padding-bottom: 0.08em;
-		filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.55))
-			drop-shadow(0 8px 22px color-mix(in srgb, var(--primary) 30%, transparent));
 	}
 
 	@keyframes hero-bob {
@@ -207,21 +135,12 @@
 			transform: translateY(0);
 		}
 		50% {
-			transform: translateY(-12px);
+			transform: translateY(-8px);
 		}
 	}
-	@keyframes hero-drift {
-		0%,
-		100% {
-			transform: translate(0, 0);
-		}
-		50% {
-			transform: translate(-14px, -26px);
-		}
-	}
+
 	@media (prefers-reduced-motion: reduce) {
-		.hero-orb,
-		.hero-bokeh {
+		.hero-orb {
 			animation: none;
 		}
 	}

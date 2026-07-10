@@ -3,7 +3,7 @@
 	import { cn } from '$lib/utils.js';
 
 	type Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
-		/** Override the drifting blob colors (defaults to the Frutiger aqua/mint/lavender/sky palette). */
+		/** Override the drifting blob colors (defaults to the pastel aura palette). */
 		colors?: string[];
 		/** Seconds for the base drift loop. Larger = slower and dreamier. */
 		speed?: number;
@@ -14,10 +14,10 @@
 	};
 
 	const defaultColors = [
-		'#5cd5ff', // aqua
-		'#a6ffd6', // mint
-		'#cbb6ff', // lavender
-		'#74e0ff' // sky
+		'#ffd9e8', // pink
+		'#e6d9ff', // lavender
+		'#cfe9ff', // blue
+		'#ffedd6' // peach
 	];
 
 	let {

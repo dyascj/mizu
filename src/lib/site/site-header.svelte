@@ -1,6 +1,7 @@
 <script lang="ts">
 	import MagnifyingGlass from 'phosphor-svelte/lib/MagnifyingGlass';
 	import MobileNav from './mobile-nav.svelte';
+	import MizuLogo from './mizu-logo.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Kbd } from '$lib/components/ui/kbd';
 	import ModeToggle from './mode-toggle.svelte';
@@ -21,11 +22,7 @@
 		<div class="flex items-center gap-2 sm:gap-6">
 			<MobileNav />
 			<a href="/" class="flex items-center" aria-label="{siteConfig.name} home">
-				<img
-					src="/brand/mizu-side-by-side.png"
-					alt="{siteConfig.name} — Design System"
-					class="h-7 w-auto sm:h-8"
-				/>
+				<MizuLogo />
 			</a>
 			<nav class="hidden items-center gap-5 md:flex">
 				{#each navLinks as l (l.href)}
