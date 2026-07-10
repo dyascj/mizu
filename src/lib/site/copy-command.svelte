@@ -19,7 +19,12 @@
 	}
 </script>
 
-<div class={cn('flex items-center gap-3 rounded-xl bg-popover px-4 py-2.5 shadow-xs', className)}>
+<div
+	class={cn(
+		'flex items-center gap-3 rounded-xl bg-secondary px-4 py-2.5 shadow-xs dark:bg-popover',
+		className
+	)}
+>
 	<Terminal class="size-4 shrink-0 text-[color:var(--primary)]" />
 	<code class="flex-1 truncate font-mono text-sm">{command}</code>
 	<button

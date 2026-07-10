@@ -18,6 +18,7 @@
 		{ href: '/docs/installation', label: 'Installation' },
 		{ href: '/docs/theming', label: 'Theming' },
 		{ href: '/docs/build-a-chat', label: 'Build a chat' },
+		{ href: '/docs/agents', label: 'UI for Agents' },
 		{ href: '/docs/components', label: 'Components' },
 		{ href: '/blocks', label: 'Blocks' }
 	];
