@@ -2,7 +2,7 @@
 	import CodeBlock from '$lib/site/code-block.svelte';
 	import CopyCommand from '$lib/site/copy-command.svelte';
 	import * as Alert from '$lib/components/ui/alert';
-	import Info from 'phosphor-svelte/lib/Info';
+	import Info from '@lucide/svelte/icons/info';
 	import { siteConfig } from '$lib/site/config';
 	import Seo from '$lib/site/seo.svelte';
 

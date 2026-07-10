@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ArrowRight from 'phosphor-svelte/lib/ArrowRight';
+	import ArrowRight from '@lucide/svelte/icons/arrow-right';
 	import { Button } from '$lib/components/ui/button';
 	import LandingCards from '$lib/site/landing-cards.svelte';
 	import CopyCommand from '$lib/site/copy-command.svelte';

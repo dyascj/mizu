@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import ArrowLeft from 'phosphor-svelte/lib/ArrowLeft';
-	import ArrowRight from 'phosphor-svelte/lib/ArrowRight';
+	import ArrowLeft from '@lucide/svelte/icons/arrow-left';
+	import ArrowRight from '@lucide/svelte/icons/arrow-right';
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { pagerFor } from './docs-nav';
 

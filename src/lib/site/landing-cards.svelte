@@ -3,7 +3,6 @@
 	// in a masonry, so the landing shows real, interactive components (wearing the
 	// gel + glass) instead of a generic feature grid.
 	import { Bell, Search, Droplets, Check } from '@lucide/svelte';
-	import GithubLogo from 'phosphor-svelte/lib/GithubLogo';
 	import * as Card from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
@@ -111,7 +110,7 @@
 		<Card.Footer class="flex-col gap-2">
 			<Button class="w-full">Create account</Button>
 			<Button variant="ghost" class="w-full">
-				<GithubLogo class="size-4" />
+				<svg viewBox="0 0 24 24" fill="currentColor" class="size-4" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.5 18 4.8 18 4.8c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
 				Continue with GitHub
 			</Button>
 		</Card.Footer>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MagnifyingGlass from 'phosphor-svelte/lib/MagnifyingGlass';
+	import SearchIcon from '@lucide/svelte/icons/search';
 	import MobileNav from './mobile-nav.svelte';
 	import MizuLogo from './mizu-logo.svelte';
 	import { Button } from '$lib/components/ui/button';
@@ -45,7 +45,7 @@
 				aria-label="Search"
 				class="inline-flex items-center gap-2 rounded-full bg-secondary px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground sm:w-48 sm:px-3.5"
 			>
-				<MagnifyingGlass class="size-4 shrink-0" />
+				<SearchIcon class="size-4 shrink-0" />
 				<span class="hidden flex-1 text-left sm:inline">Search</span>
 				<Kbd class="hidden sm:inline-flex">⌘K</Kbd>
 			</button>

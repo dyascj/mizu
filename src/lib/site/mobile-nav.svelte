@@ -1,5 +1,5 @@
 <script lang="ts">
-	import List from 'phosphor-svelte/lib/List';
+	import Menu from '@lucide/svelte/icons/menu';
 	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/state';
 	import * as Sheet from '$lib/components/ui/sheet';
@@ -36,7 +36,7 @@
 		class={cn(buttonVariants({ variant: 'ghost', size: 'icon' }), 'lg:hidden')}
 		aria-label="Open navigation menu"
 	>
-		<List class="size-5" />
+		<Menu class="size-5" />
 	</Sheet.Trigger>
 	<Sheet.Content side="left" class="flex w-[19rem] max-w-[85vw] flex-col gap-0 overflow-y-auto">
 		<Sheet.Header class="pb-2">

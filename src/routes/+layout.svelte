@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.css';
 	import { afterNavigate } from '$app/navigation';
-	import IconContext from 'phosphor-svelte/lib/IconContext';
 	import SiteHeader from '$lib/site/site-header.svelte';
 	import { siteConfig } from '$lib/site/config';
 
@@ -49,7 +48,6 @@
 	{@html `<script type="application/ld+json">${JSON.stringify(websiteJsonLd)}<\/script>`}
 </svelte:head>
 
-<IconContext values={{ weight: 'fill' }}>
 	<div bind:this={scroller} class="h-dvh overflow-y-auto [overscroll-behavior:none]">
 		<div class="flex min-h-dvh flex-col">
 			<SiteHeader />
@@ -58,7 +56,6 @@
 			</div>
 		</div>
 	</div>
-</IconContext>
 
 <style>
 	/* App-shell: the document itself doesn't scroll; the wrapper above does, so
