@@ -13,9 +13,6 @@
 <MenubarPrimitive.Root
 	bind:ref
 	bind:value
-	class={cn(
-		'flex h-10 items-center gap-1 rounded-xl glass border border-[color:var(--glass-border)] p-1 shadow-bevel',
-		className
-	)}
+	class={cn('flex h-10 items-center gap-1 rounded-full bg-card p-1 shadow-xs', className)}
 	{...restProps}
 />

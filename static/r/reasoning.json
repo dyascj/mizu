@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "reasoning",
+  "type": "registry:ui",
+  "title": "Reasoning",
+  "description": "A collapsible chain of thought: shimmers while thinking, folds away when done.",
+  "dependencies": [
+    "@lucide/svelte"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "reasoning/index.ts",
+      "content": "export { default as Reasoning } from './reasoning.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "reasoning/reasoning.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport ChevronDown from '@lucide/svelte/icons/chevron-down';\n\timport Sparkles from '@lucide/svelte/icons/sparkles';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = {\n\t\t/** Still thinking: the header shimmers and the body stays closed. */\n\t\tstreaming?: boolean;\n\t\t/** Label while streaming. */\n\t\tlabel?: string;\n\t\t/** Summary once done, e.g. \"Thought for 6 seconds\". */\n\t\tsummary?: string;\n\t\topen?: boolean;\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t};\n\n\tlet {\n\t\tstreaming = false,\n\t\tlabel = 'Thinking...',\n\t\tsummary = 'Thought about it',\n\t\topen = $bindable(false),\n\t\tclass: className,\n\t\tchildren\n\t}: Props = $props();\n</script>\n\n<div class={cn('flex w-fit max-w-full flex-col text-sm', className)}>\n\t<button\n\t\ttype=\"button\"\n\t\tdisabled={streaming}\n\t\tonclick={() => (open = !open)}\n\t\taria-expanded={open}\n\t\tclass=\"flex w-fit items-center gap-1.5 rounded-full py-1 text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none\"\n\t>\n\t\t<Sparkles class=\"size-3.5\" />\n\t\t{#if streaming}\n\t\t\t<span class=\"reasoning-shimmer\">{label}</span>\n\t\t{:else}\n\t\t\t<span>{summary}</span>\n\t\t\t<ChevronDown class={cn('size-3.5 transition-transform duration-200', open && 'rotate-180')} />\n\t\t{/if}\n\t</button>\n\t{#if open && !streaming}\n\t\t<div\n\t\t\tclass=\"reasoning-body mt-1.5 rounded-xl bg-secondary/60 px-4 py-3 leading-relaxed text-muted-foreground\"\n\t\t>\n\t\t\t{@render children?.()}\n\t\t</div>\n\t{/if}\n</div>\n\n<style>\n\t.reasoning-shimmer {\n\t\tbackground: linear-gradient(\n\t\t\t90deg,\n\t\t\tvar(--muted-foreground) 0%,\n\t\t\tvar(--muted-foreground) 35%,\n\t\t\tvar(--foreground) 50%,\n\t\t\tvar(--muted-foreground) 65%,\n\t\t\tvar(--muted-foreground) 100%\n\t\t);\n\t\tbackground-size: 200% 100%;\n\t\t-webkit-background-clip: text;\n\t\tbackground-clip: text;\n\t\tcolor: transparent;\n\t\tanimation: reasoning-sweep 2s linear infinite;\n\t}\n\n\t.reasoning-body {\n\t\tanimation: reasoning-open 200ms ease-out both;\n\t}\n\n\t@keyframes reasoning-sweep {\n\t\tfrom {\n\t\t\tbackground-position: 200% 0;\n\t\t}\n\t\tto {\n\t\t\tbackground-position: -200% 0;\n\t\t}\n\t}\n\n\t@keyframes reasoning-open {\n\t\tfrom {\n\t\t\topacity: 0;\n\t\t\ttransform: translateY(-3px);\n\t\t}\n\t\tto {\n\t\t\topacity: 1;\n\t\t\ttransform: translateY(0);\n\t\t}\n\t}\n\n\t@media (prefers-reduced-motion: reduce) {\n\t\t.reasoning-shimmer,\n\t\t.reasoning-body {\n\t\t\tanimation: none;\n\t\t}\n\t}\n</style>\n"
+    }
+  ]
+}

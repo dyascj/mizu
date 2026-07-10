@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "waveform",
+  "type": "registry:ui",
+  "title": "Waveform",
+  "description": "Animated voice bars for listening and speaking states.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "waveform/index.ts",
+      "content": "export { default as Waveform } from './waveform.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "waveform/waveform.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {\n\t\t/** Animate the bars (a live voice) or hold them still. */\n\t\tactive?: boolean;\n\t\tbars?: number;\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t};\n\n\tlet {\n\t\tactive = true,\n\t\tbars = 5,\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...rest\n\t}: Props = $props();\n\n\t// resting heights arc toward the middle so the idle state still reads as voice\n\tconst heights = $derived(\n\t\tArray.from({ length: bars }, (_, i) => {\n\t\t\tconst t = bars === 1 ? 1 : i / (bars - 1);\n\t\t\treturn 0.35 + 0.65 * Math.sin(Math.PI * t);\n\t\t})\n\t);\n</script>\n\n<div\n\tbind:this={ref}\n\trole=\"img\"\n\taria-label={active ? 'Voice level' : 'Voice idle'}\n\tclass={cn('flex h-8 items-center justify-center gap-1', className)}\n\t{...rest}\n>\n\t{#each heights as h, i (i)}\n\t\t<span\n\t\t\tclass={cn('w-1 rounded-full bg-primary', active && 'wave-bar')}\n\t\t\tstyle=\"height: {Math.round(h * 100)}%; animation-delay: {i * 120}ms;\"\n\t\t></span>\n\t{/each}\n</div>\n\n<style>\n\t.wave-bar {\n\t\tanimation: wave 1s ease-in-out infinite;\n\t\ttransform-origin: center;\n\t\twill-change: transform;\n\t}\n\n\t@keyframes wave {\n\t\t0%,\n\t\t100% {\n\t\t\ttransform: scaleY(0.5);\n\t\t}\n\t\t50% {\n\t\t\ttransform: scaleY(1);\n\t\t}\n\t}\n\n\t@media (prefers-reduced-motion: reduce) {\n\t\t.wave-bar {\n\t\t\tanimation: none;\n\t\t}\n\t}\n</style>\n"
+    }
+  ]
+}

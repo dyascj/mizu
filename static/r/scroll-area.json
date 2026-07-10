@@ -3,7 +3,7 @@
   "name": "scroll-area",
   "type": "registry:ui",
   "title": "Scroll Area",
-  "description": "A scroll container with a slim glass bar.",
+  "description": "A scroll container with a slim, quiet bar.",
   "dependencies": [
     "bits-ui"
   ],

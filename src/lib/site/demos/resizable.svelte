@@ -2,9 +2,7 @@
 	import * as Resizable from '$lib/components/ui/resizable';
 </script>
 
-<div
-	class="glass-strong gloss relative h-48 w-full max-w-md overflow-hidden rounded-2xl border border-[color:var(--glass-border)] shadow-glass"
->
+<div class="bg-popover relative h-48 w-full max-w-md overflow-hidden rounded-2xl shadow-lg">
 	<Resizable.PaneGroup direction="horizontal" class="relative z-10">
 		<Resizable.Pane defaultSize={30} minSize={20}>
 			<div class="flex h-full flex-col gap-1 p-4">

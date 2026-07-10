@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "prompt-suggestions",
+  "type": "registry:ui",
+  "title": "Prompt Suggestions",
+  "description": "Starter prompt chips that invite the first message.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "prompt-suggestions/index.ts",
+      "content": "export { default as PromptSuggestions } from './prompt-suggestions.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "prompt-suggestions/prompt-suggestions.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {\n\t\t/** Starter prompts to offer. */\n\t\titems: string[];\n\t\tonSelect?: (item: string) => void;\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t};\n\n\tlet { items, onSelect, class: className, ref = $bindable(null), ...rest }: Props = $props();\n</script>\n\n<div bind:this={ref} class={cn('flex flex-wrap gap-2', className)} {...rest}>\n\t{#each items as item (item)}\n\t\t<button\n\t\t\ttype=\"button\"\n\t\t\tonclick={() => onSelect?.(item)}\n\t\t\tclass=\"rounded-full bg-card px-3.5 py-2 text-sm text-foreground shadow-xs outline-none transition-[background-color,scale] hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring active:scale-[0.98]\"\n\t\t>\n\t\t\t{item}\n\t\t</button>\n\t{/each}\n</div>\n"
+    }
+  ]
+}

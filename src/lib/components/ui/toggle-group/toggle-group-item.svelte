@@ -23,7 +23,7 @@
 	bind:ref
 	class={cn(
 		toggleVariants({ variant, size }),
-		'hover:bg-secondary/70 data-[state=on]:gradient-surface data-[state=on]:gloss data-[state=on]:shadow-bevel',
+		'hover:bg-secondary/70 data-[state=on]:bg-secondary data-[state=on]:shadow-xs',
 		className
 	)}
 	{...restProps}

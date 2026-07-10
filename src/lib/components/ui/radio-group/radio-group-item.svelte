@@ -12,7 +12,7 @@
 <RadioGroupPrimitive.Item
 	bind:ref
 	class={cn(
-		'relative flex size-5 shrink-0 items-center justify-center rounded-full border border-input bg-card/70 shadow-pressed outline-none transition-[background-color,box-shadow] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:shadow-aqua',
+		'relative flex size-5 shrink-0 items-center justify-center rounded-full bg-secondary outline-none transition-[background-color,box-shadow] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:shadow-sm',
 		className
 	)}
 	{...restProps}
@@ -20,7 +20,7 @@
 	{#snippet children({ checked })}
 		<div
 			class={cn(
-				'size-2.5 rounded-full gradient-primary transition-[scale] duration-150 ease-out',
+				'size-2.5 rounded-full bg-primary transition-[scale] duration-150 ease-out',
 				checked ? 'scale-100' : 'scale-0'
 			)}
 		></div>

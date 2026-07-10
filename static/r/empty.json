@@ -22,12 +22,12 @@
     {
       "type": "registry:file",
       "target": "empty/empty-media.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div\n\tclass={cn(\n\t\t'flex size-12 items-center justify-center rounded-2xl glass-strong shadow-bevel text-muted-foreground [&>svg]:size-6',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div\n\tclass={cn(\n\t\t'flex size-12 items-center justify-center rounded-2xl bg-popover shadow-xs text-muted-foreground [&>svg]:size-6',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
     },
     {
       "type": "registry:file",
       "target": "empty/empty-title.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLHeadingElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<h3 class={cn('font-display font-bold', className)} {...rest}>\n\t{@render children?.()}\n</h3>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLHeadingElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<h3 class={cn('font-display font-semibold', className)} {...rest}>\n\t{@render children?.()}\n</h3>\n"
     },
     {
       "type": "registry:file",

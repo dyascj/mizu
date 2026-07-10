@@ -3,7 +3,7 @@
   "name": "rating",
   "type": "registry:ui",
   "title": "Rating",
-  "description": "Fillable aqua droplets for a quick, glossy score.",
+  "description": "Fillable symbols for a quick score.",
   "dependencies": [
     "@lucide/svelte"
   ],

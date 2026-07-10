@@ -17,7 +17,7 @@
 	bind:checked
 	bind:indeterminate
 	class={cn(
-		'relative flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-md border border-input bg-card/70 shadow-pressed outline-none transition-[background-color,box-shadow] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:gradient-primary data-[state=checked]:gloss data-[state=checked]:border-transparent data-[state=checked]:text-primary-foreground data-[state=checked]:shadow-aqua data-[state=indeterminate]:gradient-primary data-[state=indeterminate]:gloss data-[state=indeterminate]:border-transparent data-[state=indeterminate]:text-primary-foreground data-[state=indeterminate]:shadow-aqua',
+		'relative flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-md bg-secondary outline-none transition-[background-color,box-shadow] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:border-transparent data-[state=checked]:text-primary-foreground data-[state=checked]:shadow-sm data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-transparent data-[state=indeterminate]:text-primary-foreground data-[state=indeterminate]:shadow-sm',
 		className
 	)}
 	{...restProps}

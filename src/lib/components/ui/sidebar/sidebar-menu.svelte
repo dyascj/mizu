@@ -1,22 +1,21 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
+	import { cn, type WithElementRef } from '$lib/utils.js';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import { cn } from '$lib/utils.js';
 
-	type Props = HTMLAttributes<HTMLUListElement> & {
-		class?: string;
-		ref?: HTMLUListElement | null;
-		children?: Snippet;
-	};
-
-	let { class: className, ref = $bindable(null), children, ...rest }: Props = $props();
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: WithElementRef<HTMLAttributes<HTMLUListElement>, HTMLUListElement> = $props();
 </script>
 
 <ul
 	bind:this={ref}
 	data-slot="sidebar-menu"
+	data-sidebar="menu"
 	class={cn('flex w-full min-w-0 flex-col gap-1', className)}
-	{...rest}
+	{...restProps}
 >
 	{@render children?.()}
 </ul>

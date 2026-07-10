@@ -1,56 +1,94 @@
 <script lang="ts">
-	import { DataTable, type DataTableColumn } from '$lib/components/ui/data-table';
-	import { Badge } from '$lib/components/ui/badge';
+	import { createSvelteTable, FlexRender } from '$lib/components/ui/data-table';
+	import * as Table from '$lib/components/ui/table';
+	import { Button } from '$lib/components/ui/button';
+	import ArrowUpDown from '@lucide/svelte/icons/arrow-up-down';
+	import {
+		getCoreRowModel,
+		getSortedRowModel,
+		type ColumnDef,
+		type SortingState
+	} from '@tanstack/table-core';
 
-	type Source = {
-		id: number;
-		name: string;
-		volume: number;
-		status: 'Clear' | 'Filtering' | 'Standby';
-		updated: string;
-	};
+	type Run = { agent: string; task: string; status: string; tokens: number };
 
-	const sources: Source[] = [
-		{ id: 1, name: 'Rainfall Basin', volume: 1240, status: 'Clear', updated: '2m ago' },
-		{ id: 2, name: 'Highland Spring', volume: 860, status: 'Clear', updated: '8m ago' },
-		{ id: 3, name: 'North Reservoir', volume: 3500, status: 'Filtering', updated: '14m ago' },
-		{ id: 4, name: 'Coastal Intake', volume: 2110, status: 'Standby', updated: '31m ago' },
-		{ id: 5, name: 'Glacier Melt', volume: 540, status: 'Clear', updated: '1h ago' },
-		{ id: 6, name: 'Aquifer Well', volume: 1780, status: 'Filtering', updated: '2h ago' },
-		{ id: 7, name: 'Mist Collector', volume: 320, status: 'Standby', updated: '3h ago' }
+	const runs: Run[] = [
+		{ agent: 'Era', task: 'Trip itinerary', status: 'Done', tokens: 4210 },
+		{ agent: 'Fjord', task: 'Blog draft', status: 'Running', tokens: 12930 },
+		{ agent: 'Super', task: 'Inbox digest', status: 'Done', tokens: 980 },
+		{ agent: 'Era', task: 'Fare watch', status: 'Queued', tokens: 0 },
+		{ agent: 'Fjord', task: 'Release notes', status: 'Done', tokens: 3105 }
 	];
 
-	const statusVariant = {
-		Clear: 'success',
-		Filtering: 'info',
-		Standby: 'warning'
-	} as const;
-
-	let selected = $state<(string | number)[]>([1, 3]);
-
-	const columns: DataTableColumn<Source>[] = [
-		{ key: 'name', header: 'Source', sortable: true },
-		{ key: 'volume', header: 'Volume', sortable: true, align: 'right', cell: volumeCell },
-		{ key: 'status', header: 'Status', cell: statusCell },
-		{ key: 'updated', header: 'Updated', align: 'right', class: 'text-muted-foreground' }
+	const columns: ColumnDef<Run>[] = [
+		{ accessorKey: 'agent', header: 'Agent' },
+		{ accessorKey: 'task', header: 'Task' },
+		{ accessorKey: 'status', header: 'Status' },
+		{
+			accessorKey: 'tokens',
+			header: 'Tokens',
+			cell: ({ getValue }) => (getValue<number>() ? getValue<number>().toLocaleString() : '·')
+		}
 	];
+
+	let sorting = $state<SortingState>([]);
+
+	const table = createSvelteTable({
+		get data() {
+			return runs;
+		},
+		columns,
+		state: {
+			get sorting() {
+				return sorting;
+			}
+		},
+		onSortingChange: (updater) => {
+			sorting = typeof updater === 'function' ? updater(sorting) : updater;
+		},
+		getCoreRowModel: getCoreRowModel(),
+		getSortedRowModel: getSortedRowModel()
+	});
 </script>
 
-{#snippet volumeCell(row: Source)}
-	<span class="font-medium tabular-nums">{row.volume.toLocaleString()} L</span>
-{/snippet}
-
-{#snippet statusCell(row: Source)}
-	<Badge variant={statusVariant[row.status]}>{row.status}</Badge>
-{/snippet}
-
-<div class="w-full max-w-2xl">
-	<DataTable
-		data={sources}
-		{columns}
-		pageSize={5}
-		selectable
-		bind:selected
-		caption="Water sources monitored across the network."
-	/>
+<div class="w-full max-w-lg overflow-hidden rounded-2xl bg-card shadow-md">
+	<Table.Root>
+		<Table.Header>
+			{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+				<Table.Row>
+					{#each headerGroup.headers as header (header.id)}
+						<Table.Head>
+							{#if header.column.id === 'tokens'}
+								<Button
+									variant="ghost"
+									size="sm"
+									class="-ml-3 h-8"
+									onclick={() => header.column.toggleSorting(header.column.getIsSorted() === 'asc')}
+								>
+									Tokens
+									<ArrowUpDown class="size-3.5" />
+								</Button>
+							{:else if !header.isPlaceholder}
+								<FlexRender
+									content={header.column.columnDef.header}
+									context={header.getContext()}
+								/>
+							{/if}
+						</Table.Head>
+					{/each}
+				</Table.Row>
+			{/each}
+		</Table.Header>
+		<Table.Body>
+			{#each table.getRowModel().rows as row (row.id)}
+				<Table.Row>
+					{#each row.getVisibleCells() as cell (cell.id)}
+						<Table.Cell>
+							<FlexRender content={cell.column.columnDef.cell} context={cell.getContext()} />
+						</Table.Cell>
+					{/each}
+				</Table.Row>
+			{/each}
+		</Table.Body>
+	</Table.Root>
 </div>

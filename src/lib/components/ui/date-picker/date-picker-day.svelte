@@ -15,7 +15,7 @@
 		'relative inline-flex size-9 select-none items-center justify-center overflow-hidden rounded-lg text-sm font-medium text-foreground outline-none transition-[background-color,box-shadow,scale] duration-150 ease-out',
 		'hover:bg-accent',
 		'data-[today]:ring-1 data-[today]:ring-[color:var(--primary)]',
-		'data-[selected]:gradient-primary data-[selected]:gloss data-[selected]:text-primary-foreground data-[selected]:shadow-aqua data-[selected]:hover:bg-transparent data-[selected]:ring-0',
+		'data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:shadow-sm data-[selected]:hover:bg-transparent data-[selected]:ring-0',
 		'data-[outside-month]:pointer-events-none data-[outside-month]:text-muted-foreground/45',
 		'data-[unavailable]:text-muted-foreground/50 data-[unavailable]:line-through',
 		'data-[disabled]:pointer-events-none data-[disabled]:text-muted-foreground/40',

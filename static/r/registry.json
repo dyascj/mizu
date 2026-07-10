@@ -13,25 +13,25 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Glossy aqua actions with seven variants and a tactile press."
+      "description": "Pill-shaped actions with seven flat, quiet variants."
     },
     {
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
-      "description": "Compact status pills, from glossy primary to soft intents."
+      "description": "Compact status pills in soft intent colors."
     },
     {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
-      "description": "A recessed glass text field with an aqua focus ring."
+      "description": "A pill text field with a hairline border and a blue focus ring."
     },
     {
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
-      "description": "Multi-line input matching the recessed field style."
+      "description": "Multi-line input matching the field style."
     },
     {
       "name": "label",
@@ -43,43 +43,43 @@
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
-      "description": "A recessed tile that fills with a glossy aqua check."
+      "description": "A rounded tile that fills solid blue with a check."
     },
     {
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",
-      "description": "Single-select circles, each lighting up with an aqua dot."
+      "description": "Single-select circles that light up with a blue dot."
     },
     {
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
-      "description": "A glossy aqua toggle with a glassy thumb."
+      "description": "A flat iOS-style toggle with a white thumb."
     },
     {
       "name": "slider",
       "type": "registry:ui",
       "title": "Slider",
-      "description": "A recessed track with an aqua range and a glassy thumb."
+      "description": "A quiet track with a blue range and a white thumb."
     },
     {
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "A frosted-glass dropdown with highlighted items."
+      "description": "A clean dropdown with highlighted items."
     },
     {
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "The signature frosted-glass surface, with a wet top sheen."
+      "description": "The signature surface: white, hairline border, soft shadow."
     },
     {
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
-      "description": "Glass callouts in four intents."
+      "description": "Quiet callouts in four intents."
     },
     {
       "name": "separator",
@@ -97,13 +97,13 @@
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
-      "description": "A glass modal floating over a blurred scrim."
+      "description": "A clean modal floating over a blurred scrim."
     },
     {
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",
-      "description": "A floating glass panel anchored to a trigger."
+      "description": "A floating panel anchored to a trigger."
     },
     {
       "name": "tooltip",
@@ -115,7 +115,7 @@
       "name": "tabs",
       "type": "registry:ui",
       "title": "Tabs",
-      "description": "A segmented glass switcher with a raised active pill."
+      "description": "A segmented pill switcher with a raised active tab."
     },
     {
       "name": "accordion",
@@ -127,7 +127,7 @@
       "name": "progress",
       "type": "registry:ui",
       "title": "Progress",
-      "description": "A recessed track with a glossy aqua fill."
+      "description": "A quiet track with a solid blue fill."
     },
     {
       "name": "skeleton",
@@ -139,55 +139,49 @@
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
-      "description": "A bright aqua loading spinner."
+      "description": "A minimal loading spinner."
     },
     {
       "name": "circular-gauge",
       "type": "registry:ui",
       "title": "Circular Gauge",
-      "description": "An animated ring gauge with an aqua glow."
-    },
-    {
-      "name": "orb",
-      "type": "registry:ui",
-      "title": "Orb",
-      "description": "A soft, blooming aqua orb for hero backdrops."
-    },
-    {
-      "name": "bubbles",
-      "type": "registry:ui",
-      "title": "Bubbles",
-      "description": "Rising water bubbles to overlay on glass."
+      "description": "An animated ring gauge with a soft glow."
     },
     {
       "name": "alert-dialog",
       "type": "registry:ui",
       "title": "Alert Dialog",
-      "description": "A glass modal that interrupts for a confirmation."
+      "description": "A clean modal that interrupts for a confirmation."
     },
     {
       "name": "sheet",
       "type": "registry:ui",
       "title": "Sheet",
-      "description": "A glass panel that slides in from any edge."
+      "description": "A panel that slides in from any edge."
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "A bottom sheet that slides up for quick actions, vaul under the hood."
     },
     {
       "name": "hover-card",
       "type": "registry:ui",
       "title": "Hover Card",
-      "description": "A glass card revealed on hover or focus."
+      "description": "A card revealed on hover or focus."
     },
     {
       "name": "dropdown-menu",
       "type": "registry:ui",
       "title": "Dropdown Menu",
-      "description": "A frosted menu of actions, with submenus and checks."
+      "description": "A crisp menu of actions, with submenus and checks."
     },
     {
       "name": "context-menu",
       "type": "registry:ui",
       "title": "Context Menu",
-      "description": "A right-click menu in frosted glass."
+      "description": "A right-click menu, clean and quiet."
     },
     {
       "name": "menubar",
@@ -199,7 +193,7 @@
       "name": "navigation-menu",
       "type": "registry:ui",
       "title": "Navigation Menu",
-      "description": "Site navigation with glass dropdown panels."
+      "description": "Site navigation with floating dropdown panels."
     },
     {
       "name": "command",
@@ -211,25 +205,25 @@
       "name": "combobox",
       "type": "registry:ui",
       "title": "Combobox",
-      "description": "A searchable select in frosted glass."
+      "description": "A searchable select in a clean popover."
     },
     {
       "name": "toggle",
       "type": "registry:ui",
       "title": "Toggle",
-      "description": "A two-state button with a raised pressed look."
+      "description": "A two-state button with a soft pressed look."
     },
     {
       "name": "toggle-group",
       "type": "registry:ui",
       "title": "Toggle Group",
-      "description": "A segmented set of toggles in a glass rail."
+      "description": "A segmented set of toggles in a pill rail."
     },
     {
       "name": "input-otp",
       "type": "registry:ui",
       "title": "Input OTP",
-      "description": "Recessed one-time-code cells."
+      "description": "Minimal one-time-code cells."
     },
     {
       "name": "input-group",
@@ -271,7 +265,7 @@
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "Scroll Area",
-      "description": "A scroll container with a slim glass bar."
+      "description": "A scroll container with a slim, quiet bar."
     },
     {
       "name": "aspect-ratio",
@@ -313,73 +307,79 @@
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
-      "description": "Transient glass notifications that bloom in and stack."
+      "description": "Transient notifications that slide in and stack."
     },
     {
       "name": "meter",
       "type": "registry:ui",
       "title": "Meter",
-      "description": "A semantic gauge whose glossy fill shifts across thresholds."
+      "description": "A semantic gauge whose fill shifts across thresholds."
     },
     {
       "name": "calendar",
       "type": "registry:ui",
       "title": "Calendar",
-      "description": "A glassy month grid with an aqua-gel selected day."
+      "description": "A clean month grid with a solid blue selected day."
+    },
+    {
+      "name": "range-calendar",
+      "type": "registry:ui",
+      "title": "Range Calendar",
+      "description": "Pick a span of dates with a clean month grid."
     },
     {
       "name": "date-picker",
       "type": "registry:ui",
       "title": "Date Picker",
-      "description": "A recessed glass date field with a popover calendar."
+      "description": "A pill date field with a popover calendar."
     },
     {
       "name": "rating",
       "type": "registry:ui",
       "title": "Rating",
-      "description": "Fillable aqua droplets for a quick, glossy score."
+      "description": "Fillable symbols for a quick score."
     },
     {
       "name": "tags-input",
       "type": "registry:ui",
       "title": "Tags Input",
-      "description": "A glass field that collects entries as glossy aqua chips."
+      "description": "A field that collects entries as soft pill chips."
     },
     {
       "name": "carousel",
       "type": "registry:ui",
       "title": "Carousel",
-      "description": "A swipeable slider with glossy aqua prev/next controls."
+      "description": "A swipeable slider with pill prev/next controls."
     },
     {
       "name": "resizable",
       "type": "registry:ui",
       "title": "Resizable",
-      "description": "Draggable panes split by a glassy aqua handle."
+      "description": "Draggable panes split by a quiet handle."
     },
     {
       "name": "data-table",
       "type": "registry:ui",
       "title": "Data Table",
-      "description": "A sortable, selectable, paginated table on glass."
+      "description": "TanStack-powered tables: sorting, filtering, and pagination you own."
     },
     {
       "name": "timeline",
       "type": "registry:ui",
       "title": "Timeline",
-      "description": "A vertical history with glowing aqua markers."
+      "description": "A vertical history with softly glowing markers."
     },
     {
       "name": "sidebar",
       "type": "registry:ui",
       "title": "Sidebar",
-      "description": "A collapsible app sidebar that folds to a glassy rail."
+      "description": "A collapsible app sidebar that folds to a slim rail."
     },
     {
       "name": "stepper",
       "type": "registry:ui",
       "title": "Stepper",
-      "description": "A multi-step progress trail with glossy aqua nodes."
+      "description": "A multi-step progress trail with quiet nodes."
     },
     {
       "name": "tree",
@@ -388,40 +388,154 @@
       "description": "A nested, keyboard-navigable file-style tree."
     },
     {
-      "name": "ripple",
-      "type": "registry:ui",
-      "title": "Ripple",
-      "description": "A water ripple that blooms from every pointer press."
-    },
-    {
       "name": "dock",
       "type": "registry:ui",
       "title": "Dock",
-      "description": "An Aqua-style dock that magnifies icons under the cursor."
+      "description": "A dock that magnifies icons under the cursor."
     },
     {
       "name": "aurora",
       "type": "registry:ui",
       "title": "Aurora",
-      "description": "A slow, drifting aurora-gradient backdrop."
+      "description": "A slow, drifting pastel-aura backdrop."
     },
     {
-      "name": "caustics",
+      "name": "chat-input",
       "type": "registry:ui",
-      "title": "Caustics",
-      "description": "Rippling pool-light caustics for any surface."
+      "title": "Chat Input",
+      "description": "A pill composer with attach, voice, and send, ready for a companion."
     },
     {
-      "name": "lens-flare",
+      "name": "chat-bubble",
       "type": "registry:ui",
-      "title": "Lens Flare",
-      "description": "A sunlit lens flare and bloom accent."
+      "title": "Chat Bubble",
+      "description": "User and assistant message bubbles, flat and quiet."
     },
     {
-      "name": "liquid-divider",
+      "name": "streaming-text",
       "type": "registry:ui",
-      "title": "Liquid Divider",
-      "description": "A separator that ripples like the surface of water."
+      "title": "Streaming Text",
+      "description": "Token-by-token text that types itself in, caret and all."
+    },
+    {
+      "name": "reasoning",
+      "type": "registry:ui",
+      "title": "Reasoning",
+      "description": "A collapsible chain of thought: shimmers while thinking, folds away when done."
+    },
+    {
+      "name": "tool-call",
+      "type": "registry:ui",
+      "title": "Tool Call",
+      "description": "Live status for a tool the assistant is using, with an expandable result."
+    },
+    {
+      "name": "sources",
+      "type": "registry:ui",
+      "title": "Sources",
+      "description": "Numbered citation chips that ground an answer."
+    },
+    {
+      "name": "message-actions",
+      "type": "registry:ui",
+      "title": "Message Actions",
+      "description": "Copy, regenerate, and feedback beneath a reply."
+    },
+    {
+      "name": "plan",
+      "type": "registry:ui",
+      "title": "Plan",
+      "description": "The agent's step list: shimmer while working, checks as it lands."
+    },
+    {
+      "name": "nudge",
+      "type": "registry:ui",
+      "title": "Nudge",
+      "description": "A proactive suggestion from the assistant, easy to act on or dismiss."
+    },
+    {
+      "name": "aura-tile",
+      "type": "registry:ui",
+      "title": "Aura Tile",
+      "description": "Seeded pastel cover art for anything the AI generates."
+    },
+    {
+      "name": "voice-orb",
+      "type": "registry:ui",
+      "title": "Voice Orb",
+      "description": "The assistant's presence: a pastel orb that listens, thinks, and speaks."
+    },
+    {
+      "name": "waveform",
+      "type": "registry:ui",
+      "title": "Waveform",
+      "description": "Animated voice bars for listening and speaking states."
+    },
+    {
+      "name": "prompt-suggestions",
+      "type": "registry:ui",
+      "title": "Prompt Suggestions",
+      "description": "Starter prompt chips that invite the first message."
+    },
+    {
+      "name": "thinking",
+      "type": "registry:ui",
+      "title": "Thinking",
+      "description": "Shimmer and typing-dot indicators for a working assistant."
+    },
+    {
+      "name": "assistant-chat",
+      "type": "registry:block",
+      "title": "Assistant chat",
+      "description": "The full conversation screen: reasoning, a tool call, a streaming reply with sources and actions, starter prompts, and the composer."
+    },
+    {
+      "name": "voice-mode",
+      "type": "registry:block",
+      "title": "Voice mode",
+      "description": "A fullscreen listening surface on a drifting aurora: the orb, a live waveform, and mute and done controls."
+    },
+    {
+      "name": "personalize",
+      "type": "registry:block",
+      "title": "Personalize",
+      "description": "Onboarding for a companion: pick a style from aura tiles, set the conversation tone, grant permissions, and create."
+    },
+    {
+      "name": "agent-dashboard",
+      "type": "registry:block",
+      "title": "Agent dashboard",
+      "description": "A working session at a glance: your agents, a live plan with a running tool, focus for the day, and a proactive nudge."
+    },
+    {
+      "name": "agent-run",
+      "type": "registry:block",
+      "title": "Agent run",
+      "description": "A single run up close: the plan advancing, a live tool call, streaming findings, and pause and stop controls."
+    },
+    {
+      "name": "sidebar-layout",
+      "type": "registry:block",
+      "title": "Sidebar layout",
+      "description": "The full app shell: an icon-collapsible sidebar with chats and a group action, and a conversation in the inset."
+    },
+    {
+      "name": "login",
+      "type": "registry:block",
+      "title": "Login",
+      "description": "A quiet sign-in card with the orb, email and password, and GitHub."
+    },
+    {
+      "name": "signup",
+      "type": "registry:block",
+      "title": "Sign up",
+      "description": "Account creation ending in the gradient create button."
+    },
+    {
+      "name": "otp",
+      "type": "registry:block",
+      "title": "Verify code",
+      "description": "Six-digit email verification with resend."
     }
   ]
 }

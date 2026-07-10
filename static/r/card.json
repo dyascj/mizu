@@ -3,7 +3,7 @@
   "name": "card",
   "type": "registry:ui",
   "title": "Card",
-  "description": "The signature frosted-glass surface, with a wet top sheen.",
+  "description": "The signature surface: white, hairline border, soft shadow.",
   "dependencies": [],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"
@@ -32,12 +32,12 @@
     {
       "type": "registry:file",
       "target": "card/card-title.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLHeadingElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<h3 class={cn('font-display text-lg leading-none font-bold tracking-tight', className)} {...rest}>\n\t{@render children?.()}\n</h3>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLHeadingElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<h3 class={cn('text-base leading-none font-semibold tracking-tight', className)} {...rest}>\n\t{@render children?.()}\n</h3>\n"
     },
     {
       "type": "registry:file",
       "target": "card/card.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\n\t\t'glass-strong gloss relative overflow-hidden rounded-2xl border border-[color:var(--glass-border)] text-card-foreground shadow-glass',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t<div class=\"relative z-10 flex flex-col\">{@render children?.()}</div>\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn('flex flex-col rounded-2xl bg-card text-card-foreground shadow-md', className)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
     },
     {
       "type": "registry:file",

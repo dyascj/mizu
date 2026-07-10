@@ -2,7 +2,7 @@
 	import { tv, type VariantProps } from 'tailwind-variants';
 
 	export const sheetVariants = tv({
-		base: 'glass-strong gloss fixed z-50 flex flex-col gap-4 border-[color:var(--glass-border)] p-6 shadow-glass-lg transition-[transform,opacity] duration-150 ease-out',
+		base: 'bg-popover fixed z-50 flex flex-col gap-4 border-border p-6 shadow-xl transition-[transform,opacity] duration-150 ease-out',
 		variants: {
 			side: {
 				top: 'inset-x-0 top-0 h-3/4 max-h-screen w-full border-b data-[state=closed]:-translate-y-full data-[state=open]:translate-y-0',

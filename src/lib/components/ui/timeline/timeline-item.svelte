@@ -16,7 +16,7 @@
 	}: HTMLLiAttributes & {
 		class?: string;
 		ref?: HTMLLIElement | null;
-		/** Optional lucide icon shown inside a glass node instead of the plain dot. */
+		/** Optional lucide icon shown inside a card node instead of the plain dot. */
 		icon?: Component<LucideProps>;
 		/** Hide the connector line below this item (set on the final event). */
 		last?: boolean;

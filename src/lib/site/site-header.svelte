@@ -1,6 +1,7 @@
 <script lang="ts">
-	import MagnifyingGlass from 'phosphor-svelte/lib/MagnifyingGlass';
+	import SearchIcon from '@lucide/svelte/icons/search';
 	import MobileNav from './mobile-nav.svelte';
+	import MizuLogo from './mizu-logo.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Kbd } from '$lib/components/ui/kbd';
 	import ModeToggle from './mode-toggle.svelte';
@@ -11,21 +12,20 @@
 	const navLinks = [
 		{ href: '/docs', label: 'Docs' },
 		{ href: '/docs/components', label: 'Components' },
+		{ href: '/blocks', label: 'Blocks' },
 		{ href: '/docs/theming', label: 'Themes' }
 	];
 </script>
 
-<header class="sticky top-0 z-40 border-b border-[color:var(--glass-border)] glass-strong">
-	<div class="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 sm:px-6">
+<header class="sticky top-3 z-40 px-3 sm:px-5">
+	<div
+		class="glass mx-auto flex h-14 max-w-6xl items-center gap-4 rounded-full px-4 shadow-md sm:px-5"
+	>
 		<!-- Left: mobile menu + logo + nav -->
 		<div class="flex items-center gap-2 sm:gap-6">
 			<MobileNav />
 			<a href="/" class="flex items-center" aria-label="{siteConfig.name} home">
-				<img
-					src="/brand/mizu-side-by-side.png"
-					alt="{siteConfig.name} — Design System"
-					class="h-7 w-auto sm:h-8"
-				/>
+				<MizuLogo />
 			</a>
 			<nav class="hidden items-center gap-5 md:flex">
 				{#each navLinks as l (l.href)}
@@ -44,9 +44,9 @@
 			<button
 				onclick={() => (search.open = true)}
 				aria-label="Search"
-				class="inline-flex items-center gap-2 rounded-xl border border-input bg-card/60 px-2.5 py-1.5 text-sm text-muted-foreground shadow-pressed transition-colors hover:text-foreground sm:w-48 sm:px-3"
+				class="inline-flex items-center gap-2 rounded-full bg-secondary px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground sm:w-48 sm:px-3.5"
 			>
-				<MagnifyingGlass class="size-4 shrink-0" />
+				<SearchIcon class="size-4 shrink-0" />
 				<span class="hidden flex-1 text-left sm:inline">Search</span>
 				<Kbd class="hidden sm:inline-flex">⌘K</Kbd>
 			</button>

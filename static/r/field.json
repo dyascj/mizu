@@ -32,7 +32,7 @@
     {
       "type": "registry:file",
       "target": "field/field-legend.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLLegendElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<legend class={cn('font-display font-bold', className)} {...rest}>\n\t{@render children?.()}\n</legend>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLLegendElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<legend class={cn('font-display font-semibold', className)} {...rest}>\n\t{@render children?.()}\n</legend>\n"
     },
     {
       "type": "registry:file",

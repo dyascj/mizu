@@ -1,13 +1,13 @@
 /**
  * Site-wide configuration. Update `repo` and `registryBase` once the project
- * is published. No secrets here — this file ships publicly.
+ * is published. No secrets here; this file ships publicly.
  */
 export const siteConfig = {
 	name: 'Mizu',
 	wordmark: '水',
-	tagline: 'A Frutiger Aero design system for Svelte',
+	tagline: 'The design system for AI products',
 	description:
-		'Glossy, glassy, gorgeously rounded components for SvelteKit. The optimism of early-2000s UI, rebuilt for Svelte 5 and Tailwind v4. Copy in what you need.',
+		'A clean, airy design system for AI products and the designers building them. Chat, voice, reasoning, and streaming components for Svelte 5 and Tailwind v4. Copy in what you need.',
 	url: 'https://mizu-ui.com',
 	author: 'Charles J. (CJ) Dyas',
 	authorUrl: 'https://www.cjdyas.design',

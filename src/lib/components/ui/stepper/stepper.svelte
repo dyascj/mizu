@@ -59,7 +59,7 @@
 					aria-hidden="true"
 					class={cn(
 						'pointer-events-none absolute transition-[background] duration-300 ease-out',
-						completed ? 'gradient-primary' : 'bg-border',
+						completed ? 'bg-primary' : 'bg-border',
 						isVertical
 							? 'top-10 bottom-1 left-[1.125rem] w-0.5 -translate-x-1/2'
 							: 'top-[1.125rem] left-1/2 h-0.5 w-full -translate-y-1/2'
@@ -76,9 +76,9 @@
 						aria-label={step.label}
 						class={cn(
 							'relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm font-semibold outline-none transition-[background,color,box-shadow] duration-200 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96]',
-							completed && 'gradient-primary gloss text-primary-foreground shadow-aqua',
+							completed && 'bg-primary text-primary-foreground shadow-sm',
 							active &&
-								'gradient-primary gloss text-primary-foreground shadow-glow ring-2 ring-[color:var(--primary)] ring-offset-2 ring-offset-background',
+								'bg-primary text-primary-foreground shadow-glow ring-2 ring-[color:var(--primary)] ring-offset-2 ring-offset-background',
 							!completed && !active && 'bg-secondary text-muted-foreground hover:bg-accent'
 						)}
 					>
@@ -93,9 +93,9 @@
 						aria-hidden="true"
 						class={cn(
 							'relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm font-semibold transition-[background,color,box-shadow] duration-200 ease-out',
-							completed && 'gradient-primary gloss text-primary-foreground shadow-aqua',
+							completed && 'bg-primary text-primary-foreground shadow-sm',
 							active &&
-								'gradient-primary gloss text-primary-foreground shadow-glow ring-2 ring-[color:var(--primary)] ring-offset-2 ring-offset-background',
+								'bg-primary text-primary-foreground shadow-glow ring-2 ring-[color:var(--primary)] ring-offset-2 ring-offset-background',
 							!completed && !active && 'bg-secondary text-muted-foreground'
 						)}
 					>

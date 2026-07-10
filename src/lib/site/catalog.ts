@@ -1,14 +1,14 @@
 import data from './components.json';
 
 export const categories = [
+	'AI',
 	'Actions',
 	'Forms',
 	'Surfaces',
 	'Overlays',
 	'Menus',
 	'Navigation',
-	'Feedback',
-	'Effects'
+	'Feedback'
 ] as const;
 
 export type Category = (typeof categories)[number];

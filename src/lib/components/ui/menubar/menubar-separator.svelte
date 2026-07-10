@@ -11,6 +11,6 @@
 
 <MenubarPrimitive.Separator
 	bind:ref
-	class={cn('-mx-1 my-1 h-px bg-[color:var(--glass-border)]', className)}
+	class={cn('-mx-1 my-1 h-px bg-border', className)}
 	{...restProps}
 />

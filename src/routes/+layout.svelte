@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.css';
 	import { afterNavigate } from '$app/navigation';
-	import IconContext from 'phosphor-svelte/lib/IconContext';
 	import SiteHeader from '$lib/site/site-header.svelte';
 	import { siteConfig } from '$lib/site/config';
 
@@ -14,7 +13,7 @@
 		'@context': 'https://schema.org',
 		'@type': 'WebSite',
 		name: siteConfig.name,
-		alternateName: `${siteConfig.name} — ${siteConfig.tagline}`,
+		alternateName: `${siteConfig.name} · ${siteConfig.tagline}`,
 		url: siteConfig.url,
 		description: siteConfig.description,
 		inLanguage: 'en',
@@ -45,20 +44,18 @@
 	<meta property="og:image:height" content="1260" />
 	<meta name="twitter:card" content="summary_large_image" />
 
-	<!-- eslint-disable-next-line svelte/no-at-html-tags — static, app-generated JSON -->
+	<!-- eslint-disable-next-line svelte/no-at-html-tags: static, app-generated JSON -->
 	{@html `<script type="application/ld+json">${JSON.stringify(websiteJsonLd)}<\/script>`}
 </svelte:head>
 
-<IconContext values={{ weight: 'fill' }}>
-	<div bind:this={scroller} class="h-dvh overflow-y-auto [overscroll-behavior:none]">
-		<div class="flex min-h-dvh flex-col">
-			<SiteHeader />
-			<div class="flex-1">
-				{@render children()}
-			</div>
+<div bind:this={scroller} class="h-dvh overflow-y-auto [overscroll-behavior:none]">
+	<div class="flex min-h-dvh flex-col">
+		<SiteHeader />
+		<div class="flex-1">
+			{@render children()}
 		</div>
 	</div>
-</IconContext>
+</div>
 
 <style>
 	/* App-shell: the document itself doesn't scroll; the wrapper above does, so

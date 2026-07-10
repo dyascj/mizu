@@ -1,0 +1,26 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "plan",
+  "type": "registry:ui",
+  "title": "Plan",
+  "description": "The agent's step list: shimmer while working, checks as it lands.",
+  "dependencies": [
+    "@lucide/svelte"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/spinner.json",
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "plan/index.ts",
+      "content": "export { default as Plan } from './plan.svelte';\nexport type { PlanStep } from './plan.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "plan/plan.svelte",
+      "content": "<script lang=\"ts\" module>\n\texport type PlanStep = {\n\t\tlabel: string;\n\t\tdetail?: string;\n\t\tstate: 'pending' | 'active' | 'done';\n\t};\n</script>\n\n<script lang=\"ts\">\n\timport Check from '@lucide/svelte/icons/check';\n\timport { Spinner } from '$lib/components/ui/spinner';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = {\n\t\t/** The agent's steps, in order. */\n\t\tsteps: PlanStep[];\n\t\tclass?: string;\n\t};\n\n\tlet { steps, class: className }: Props = $props();\n</script>\n\n<ol class={cn('flex w-fit flex-col gap-1 text-sm', className)}>\n\t{#each steps as step (step.label)}\n\t\t<li\n\t\t\tclass={cn(\n\t\t\t\t'flex items-center gap-2.5 rounded-lg py-1 transition-colors duration-300',\n\t\t\t\tstep.state === 'pending' && 'text-muted-foreground/60'\n\t\t\t)}\n\t\t>\n\t\t\t{#if step.state === 'done'}\n\t\t\t\t<span\n\t\t\t\t\tclass=\"plan-check grid size-4 shrink-0 place-items-center rounded-full bg-success text-success-foreground\"\n\t\t\t\t>\n\t\t\t\t\t<Check class=\"size-3\" strokeWidth={3} />\n\t\t\t\t</span>\n\t\t\t{:else if step.state === 'active'}\n\t\t\t\t<Spinner size={16} class=\"shrink-0\" />\n\t\t\t{:else}\n\t\t\t\t<span class=\"grid size-4 shrink-0 place-items-center\">\n\t\t\t\t\t<span class=\"size-1.5 rounded-full bg-muted-foreground/40\"></span>\n\t\t\t\t</span>\n\t\t\t{/if}\n\t\t\t<span class=\"min-w-0\">\n\t\t\t\t<span class={cn('block truncate', step.state === 'active' && 'plan-shimmer font-medium')}\n\t\t\t\t\t>{step.label}</span\n\t\t\t\t>\n\t\t\t\t{#if step.detail}\n\t\t\t\t\t<span class=\"block truncate text-xs text-muted-foreground\">{step.detail}</span>\n\t\t\t\t{/if}\n\t\t\t</span>\n\t\t</li>\n\t{/each}\n</ol>\n\n<style>\n\t.plan-check {\n\t\tanimation: plan-pop 240ms ease-out both;\n\t}\n\n\t.plan-shimmer {\n\t\tbackground: linear-gradient(\n\t\t\t90deg,\n\t\t\tvar(--foreground) 0%,\n\t\t\tvar(--foreground) 35%,\n\t\t\tvar(--muted-foreground) 50%,\n\t\t\tvar(--foreground) 65%,\n\t\t\tvar(--foreground) 100%\n\t\t);\n\t\tbackground-size: 200% 100%;\n\t\t-webkit-background-clip: text;\n\t\tbackground-clip: text;\n\t\tcolor: transparent;\n\t\tanimation: plan-sweep 2s linear infinite;\n\t}\n\n\t@keyframes plan-pop {\n\t\tfrom {\n\t\t\ttransform: scale(0.5);\n\t\t\topacity: 0;\n\t\t}\n\t\tto {\n\t\t\ttransform: scale(1);\n\t\t\topacity: 1;\n\t\t}\n\t}\n\n\t@keyframes plan-sweep {\n\t\tfrom {\n\t\t\tbackground-position: 200% 0;\n\t\t}\n\t\tto {\n\t\t\tbackground-position: -200% 0;\n\t\t}\n\t}\n\n\t@media (prefers-reduced-motion: reduce) {\n\t\t.plan-check,\n\t\t.plan-shimmer {\n\t\t\tanimation: none;\n\t\t}\n\t}\n</style>\n"
+    }
+  ]
+}

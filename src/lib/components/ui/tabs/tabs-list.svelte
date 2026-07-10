@@ -16,10 +16,7 @@
 
 <TabsPrimitive.List
 	bind:ref
-	class={cn(
-		'inline-flex items-center gap-1 rounded-xl glass p-1 border border-[color:var(--glass-border)] shadow-pressed',
-		className
-	)}
+	class={cn('inline-flex items-center gap-1 rounded-full bg-secondary p-1', className)}
 	{...restProps}
 >
 	{@render children?.()}

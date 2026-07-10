@@ -18,14 +18,12 @@
 		<Tabs.Trigger value="code">Code</Tabs.Trigger>
 	</Tabs.List>
 	<Tabs.Content value="preview">
-		<div
-			class={cn(
-				'relative flex min-h-60 flex-wrap items-center gap-5 rounded-2xl border border-[color:var(--glass-border)] glass p-8',
-				center && 'justify-center'
-			)}
-			data-no-toc
-		>
-			{@render children()}
+		<div class="min-h-60 rounded-2xl bg-card p-8 shadow-sm" data-no-toc>
+			<div
+				class={cn('flex min-h-44 w-full flex-wrap items-center gap-5', center && 'justify-center')}
+			>
+				{@render children()}
+			</div>
 		</div>
 	</Tabs.Content>
 	<Tabs.Content value="code">

@@ -1,18 +1,18 @@
 <div align="center">
 
-<img src="./static/brand/mizu-side-by-side.png" width="440" alt="Mizu — Design System" />
+<img src="./static/brand/mizu-side-by-side.png" width="440" alt="Mizu · The design system for AI products" />
 
 # Mizu 水
 
-**A Frutiger Aero design system for Svelte.**
+**The design system for AI products.**
 
-Glossy, glassy, gorgeously rounded components for SvelteKit. The optimism of early-2000s UI, rebuilt for Svelte 5 and Tailwind v4. Copy in what you need.
+Clean, airy components for AI products and the designers building them. Chat, voice, reasoning, and streaming for Svelte 5 and Tailwind v4. Copy in what you need.
 
 <p>
 	<img alt="Svelte 5" src="https://img.shields.io/badge/Svelte-5-FF3E00?logo=svelte&logoColor=white" />
 	<img alt="Tailwind CSS v4" src="https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white" />
 	<img alt="bits-ui" src="https://img.shields.io/badge/bits--ui-headless-0EA5E9" />
-	<img alt="69 components" src="https://img.shields.io/badge/components-69-01B2FF" />
+	<img alt="79 components" src="https://img.shields.io/badge/components-79-00B2FF" />
 	<img alt="MIT" src="https://img.shields.io/badge/license-MIT-22C55E" />
 </p>
 
@@ -20,15 +20,15 @@ Glossy, glassy, gorgeously rounded components for SvelteKit. The optimism of ear
 
 ---
 
-Mizu brings back the aesthetic of clear skies, water droplets, and wet glass: frosted surfaces, a real top sheen, layered light, and generous rounding, applied with restraint so it feels polished instead of busy. It ships the way [shadcn-svelte](https://www.shadcn-svelte.com) does. You do not install a black box, you copy the source into your project and own it.
+Mizu is built for AI products: chat, voice, reasoning, and streaming components in a language of white on white, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for the moments where the AI is present. Quiet surfaces, generous rounding, and restraint everywhere else. Everything ships as source you copy into your project and own. No black box, no version lock. One command adds a component (the registry works with the shadcn-svelte CLI you already have), or copy from any docs page.
 
 ## Highlights
 
-- **69 components**, from buttons and dialogs to a command palette, a date picker, a data table, a magnifying dock, drifting aurora, and rising bubbles.
-- **Recolor from one token.** The gloss gradients, glow, and focus ring all derive from `--primary` — change it once and the whole system follows.
-- **Physically honest.** Gloss, glass, and glow come from real CSS, never baked-in screenshots.
-- **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the glossy skin.
-- **Light and deep water.** A clean neutral light theme and a neutral deep-dark theme, both with the aqua accent on top.
+- **79 components**, from buttons and dialogs to streaming text, visible reasoning, tool calls, a voice orb, and a drifting pastel aurora.
+- **Recolor from one token.** The accent, glow, and focus ring all derive from `--primary`. Change it once and the whole system follows.
+- **Quiet by default.** Hierarchy comes from space, hairlines, and type. The accent and the glow are reserved for what matters.
+- **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the quiet skin.
+- **Airy light, pure-black dark.** A white light theme and a pure-black dark theme with slate surfaces, both with the blue accent on top.
 - **Copy in, own it.** A shadcn-svelte-compatible registry, plus full source on every component page.
 
 ## Quick start
@@ -43,7 +43,7 @@ cd my-app
 npx sv add tailwindcss
 ```
 
-**2. Add a `components.json`** so the CLI knows where to place files (or run `npx shadcn-svelte@latest init` to generate it). Point `tailwind.css` at **your** Tailwind entry — the file that holds `@import 'tailwindcss';`. Recent `sv add tailwindcss` creates `src/routes/layout.css`; older setups use `src/app.css`. Use whichever you have:
+**2. Add a `components.json`** so the CLI knows where to place files (or run `npx shadcn-svelte@latest init` to generate it). Point `tailwind.css` at **your** Tailwind entry, the file that holds `@import 'tailwindcss';`. Recent `sv add tailwindcss` creates `src/routes/layout.css`; older setups use `src/app.css`. Use whichever you have:
 
 ```json
 {
@@ -83,8 +83,8 @@ You can also open any component page in the docs and copy its source straight in
 
 <Card.Root class="max-w-sm">
 	<Card.Header>
-		<Card.Title>Clear skies</Card.Title>
-		<Card.Description>A frosted-glass surface with a wet top sheen.</Card.Description>
+		<Card.Title>Clear morning</Card.Title>
+		<Card.Description>A white surface with a hairline border and a soft shadow.</Card.Description>
 	</Card.Header>
 	<Card.Footer>
 		<Button class="w-full">Continue</Button>
@@ -94,28 +94,28 @@ You can also open any component page in the docs and copy its source straight in
 
 ## Theming
 
-The brand is one token. Change `--primary` and the gloss gradients, glow, and focus ring follow, derived with `color-mix`:
+The brand is one token. Change `--primary` and the accent, glow, and focus ring follow:
 
 ```css
 :root {
-	--primary: #01b2ff; /* aqua, the default */
+	--primary: #00b2ff; /* the default */
 }
 ```
 
-Everything is driven by CSS variables — a clean light mode and a deep-water dark mode out of the box, plus a single `--primary` token (the default is aqua `#01b2ff`) that recolors the whole system without touching a component.
+Everything is driven by CSS variables: an airy light mode and a pure-black dark mode out of the box, plus a single `--primary` token (the default is `#00b2ff`) that recolors the whole system without touching a component.
 
 ## Components
 
-| Group      | Components                                                                                                                                          |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Actions    | Button, Badge, Button Group                                                                                                                         |
-| Forms      | Input, Textarea, Label, Checkbox, Radio Group, Switch, Slider, Select, Native Select, Combobox, Toggle, Toggle Group, Input OTP, Input Group, Field |
-| Surfaces   | Card, Alert, Separator, Avatar, Aspect Ratio, Scroll Area, Table, Empty, Item, Kbd                                                                  |
-| Overlays   | Dialog, Alert Dialog, Sheet, Popover, Tooltip, Hover Card                                                                                           |
-| Menus      | Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command                                                                                      |
-| Navigation | Tabs, Accordion, Collapsible, Breadcrumb, Pagination                                                                                                |
-| Feedback   | Progress, Skeleton, Spinner, Circular Gauge                                                                                                         |
-| Effects    | Orb, Bubbles                                                                                                                                        |
+| Group      | Components                                                                                                                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Actions    | Button, Badge, Button Group                                                                                                                                                                |
+| Forms      | Input, Textarea, Label, Checkbox, Radio Group, Switch, Slider, Select, Native Select, Combobox, Toggle, Toggle Group, Input OTP, Input Group, Field, Calendar, Range Calendar, Date Picker |
+| Surfaces   | Card, Alert, Separator, Avatar, Aspect Ratio, Scroll Area, Table, Empty, Item, Kbd                                                                                                         |
+| Overlays   | Dialog, Alert Dialog, Sheet, Popover, Tooltip, Hover Card                                                                                                                                  |
+| Menus      | Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command                                                                                                                             |
+| Navigation | Tabs, Accordion, Collapsible, Breadcrumb, Pagination                                                                                                                                       |
+| Feedback   | Progress, Skeleton, Spinner, Circular Gauge                                                                                                                                                |
+| AI         | Aurora, Chat Input, Chat Bubble, Streaming Text, Reasoning, Tool Call, Sources, Message Actions, Plan, Nudge, Aura Tile, Voice Orb, Waveform, Prompt Suggestions, Thinking                 |
 
 ## Develop
 
@@ -130,7 +130,7 @@ The docs site lives in `src/routes`, components in `src/lib/components/ui`, the 
 
 ## Built with
 
-Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide icons (with Phosphor in the docs site). Inspired by shadcn-svelte and HeroUI, and the Frutiger Aero era.
+Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide icons (with Phosphor in the docs site). Inspired by shadcn-svelte and the quiet confidence of modern AI interfaces.
 
 ## License
 

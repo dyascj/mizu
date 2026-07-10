@@ -1,7 +1,7 @@
 import { components } from '$lib/site/catalog';
 import { siteConfig } from '$lib/site/config';
 
-// Static file — generated from the same catalog the nav uses, so it never
+// Static file, generated from the same catalog the nav uses, so it never
 // drifts from the real set of component pages.
 export const prerender = true;
 

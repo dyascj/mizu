@@ -1,34 +1,36 @@
 <script lang="ts">
-	import type { HTMLButtonAttributes } from 'svelte/elements';
-	import PanelLeftIcon from '@lucide/svelte/icons/panel-left';
-	import { getSidebar } from './sidebar-context.svelte.js';
+	import { Button } from '$lib/components/ui/button/index.js';
 	import { cn } from '$lib/utils.js';
+	import PanelLeftIcon from '@lucide/svelte/icons/panel-left';
+	import type { ComponentProps } from 'svelte';
+	import { useSidebar } from './context.svelte.js';
 
-	type Props = HTMLButtonAttributes & {
-		class?: string;
-		ref?: HTMLButtonElement | null;
-	};
+	let {
+		ref = $bindable(null),
+		class: className,
+		onclick,
+		...restProps
+	}: ComponentProps<typeof Button> & {
+		onclick?: (e: MouseEvent) => void;
+	} = $props();
 
-	let { class: className, ref = $bindable(null), onclick, ...rest }: Props = $props();
-
-	const sidebar = getSidebar();
+	const sidebar = useSidebar();
 </script>
 
-<button
-	bind:this={ref}
-	type="button"
+<Button
+	bind:ref
+	data-sidebar="trigger"
 	data-slot="sidebar-trigger"
-	aria-label="Toggle sidebar"
+	variant="ghost"
+	size="icon"
+	class={cn('size-7', className)}
+	type="button"
 	onclick={(e) => {
 		onclick?.(e);
 		sidebar.toggle();
 	}}
-	class={cn(
-		'inline-flex size-10 shrink-0 items-center justify-center rounded-xl text-muted-foreground outline-none transition-[scale,background-color,color] duration-150 ease-out hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96]',
-		className
-	)}
-	{...rest}
+	{...restProps}
 >
-	<PanelLeftIcon class="size-5" />
-	<span class="sr-only">Toggle sidebar</span>
-</button>
+	<PanelLeftIcon />
+	<span class="sr-only">Toggle Sidebar</span>
+</Button>

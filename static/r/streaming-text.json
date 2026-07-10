@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "streaming-text",
+  "type": "registry:ui",
+  "title": "Streaming Text",
+  "description": "Token-by-token text that types itself in, caret and all.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "streaming-text/index.ts",
+      "content": "export { default as StreamingText } from './streaming-text.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "streaming-text/streaming-text.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = Omit<HTMLAttributes<HTMLSpanElement>, 'children'> & {\n\t\t/** The full text to stream in, token by token. */\n\t\ttext: string;\n\t\t/** Milliseconds between words. */\n\t\tspeed?: number;\n\t\t/** Show the blinking caret while streaming. */\n\t\tcursor?: boolean;\n\t\tonComplete?: () => void;\n\t\tclass?: string;\n\t\tref?: HTMLSpanElement | null;\n\t};\n\n\tlet {\n\t\ttext,\n\t\tspeed = 60,\n\t\tcursor = true,\n\t\tonComplete,\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...rest\n\t}: Props = $props();\n\n\tconst words = $derived(text.split(/(\\s+)/).filter(Boolean));\n\tlet shown = $state(0);\n\tconst done = $derived(shown >= words.length);\n\n\t$effect(() => {\n\t\t// restart whenever the text changes\n\t\tvoid text;\n\t\tshown = 0;\n\t\tconst timer = setInterval(() => {\n\t\t\tshown += 1;\n\t\t\tif (shown >= words.length) {\n\t\t\t\tclearInterval(timer);\n\t\t\t\tonComplete?.();\n\t\t\t}\n\t\t}, speed);\n\t\treturn () => clearInterval(timer);\n\t});\n</script>\n\n<span bind:this={ref} class={cn('whitespace-pre-wrap', className)} {...rest}>\n\t{#each words.slice(0, shown) as word, i (i)}\n\t\t<span class=\"stream-word\">{word}</span>\n\t{/each}\n\t{#if cursor && !done}\n\t\t<span class=\"stream-caret\" aria-hidden=\"true\"></span>\n\t{/if}\n</span>\n\n<style>\n\t.stream-word {\n\t\tanimation: stream-in 240ms ease-out both;\n\t}\n\n\t.stream-caret {\n\t\tdisplay: inline-block;\n\t\twidth: 2px;\n\t\theight: 1em;\n\t\tmargin-left: 1px;\n\t\tvertical-align: text-bottom;\n\t\tborder-radius: 1px;\n\t\tbackground: currentColor;\n\t\tanimation: stream-blink 1s steps(2, start) infinite;\n\t}\n\n\t@keyframes stream-in {\n\t\tfrom {\n\t\t\topacity: 0;\n\t\t}\n\t\tto {\n\t\t\topacity: 1;\n\t\t}\n\t}\n\n\t@keyframes stream-blink {\n\t\t50% {\n\t\t\topacity: 0;\n\t\t}\n\t}\n\n\t@media (prefers-reduced-motion: reduce) {\n\t\t.stream-word {\n\t\t\tanimation: none;\n\t\t}\n\t}\n</style>\n"
+    }
+  ]
+}

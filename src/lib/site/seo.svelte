@@ -10,7 +10,7 @@
 		title,
 		description = siteConfig.description,
 		image,
-		imageAlt = `${siteConfig.name} — ${siteConfig.tagline}`,
+		imageAlt = `${siteConfig.name} · ${siteConfig.tagline}`,
 		jsonLd
 	}: {
 		title: string;
@@ -43,7 +43,7 @@
 	<meta name="twitter:image:alt" content={imageAlt} />
 
 	{#if jsonLd}
-		<!-- eslint-disable-next-line svelte/no-at-html-tags — static, app-generated JSON -->
+		<!-- eslint-disable-next-line svelte/no-at-html-tags: static, app-generated JSON -->
 		{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>`}
 	{/if}
 </svelte:head>

@@ -3,7 +3,7 @@
   "name": "combobox",
   "type": "registry:ui",
   "title": "Combobox",
-  "description": "A searchable select in frosted glass.",
+  "description": "A searchable select in a clean popover.",
   "dependencies": [
     "@lucide/svelte",
     "bits-ui"
@@ -15,7 +15,7 @@
     {
       "type": "registry:file",
       "target": "combobox/combobox-content.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 6,\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ComboboxPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tportalProps?: ComboboxPrimitive.PortalProps;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<ComboboxPrimitive.Portal {...portalProps}>\n\t<ComboboxPrimitive.Content\n\t\tbind:ref\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t'z-50 max-h-72 w-[var(--bits-combobox-anchor-width)] min-w-[var(--bits-combobox-anchor-width)] overflow-y-auto rounded-xl glass-strong border border-[color:var(--glass-border)] p-1 text-popover-foreground shadow-glass transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</ComboboxPrimitive.Content>\n</ComboboxPrimitive.Portal>\n"
+      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 6,\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ComboboxPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tportalProps?: ComboboxPrimitive.PortalProps;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<ComboboxPrimitive.Portal {...portalProps}>\n\t<ComboboxPrimitive.Content\n\t\tbind:ref\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t'z-50 max-h-72 w-[var(--bits-combobox-anchor-width)] min-w-[var(--bits-combobox-anchor-width)] overflow-y-auto rounded-xl bg-popover p-1 text-popover-foreground shadow-lg transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</ComboboxPrimitive.Content>\n</ComboboxPrimitive.Portal>\n"
     },
     {
       "type": "registry:file",
@@ -30,7 +30,7 @@
     {
       "type": "registry:file",
       "target": "combobox/combobox-input.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ComboboxPrimitive.InputProps> & {\n\t\tclass?: string;\n\t} = $props();\n</script>\n\n<ComboboxPrimitive.Input\n\tbind:ref\n\tclass={cn(\n\t\t'flex h-10 w-full items-center rounded-xl border border-input bg-card/70 px-3.5 py-2 text-sm shadow-pressed outline-none transition-[box-shadow,border-color] duration-150 placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ComboboxPrimitive.InputProps> & {\n\t\tclass?: string;\n\t} = $props();\n</script>\n\n<ComboboxPrimitive.Input\n\tbind:ref\n\tclass={cn(\n\t\t'flex h-10 w-full items-center rounded-full bg-secondary px-3.5 py-2 text-sm outline-none transition-[box-shadow,border-color] duration-150 placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
     },
     {
       "type": "registry:file",

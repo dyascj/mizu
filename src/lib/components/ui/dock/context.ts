@@ -5,7 +5,7 @@ export type DockState = {
 	readonly pointerX: number | null;
 	/** Max scale applied to the item directly under the pointer. */
 	readonly magnification: number;
-	/** Influence radius in px — how far the magnify falls off either side. */
+	/** Influence radius in px: how far the magnify falls off either side. */
 	readonly distance: number;
 };
 

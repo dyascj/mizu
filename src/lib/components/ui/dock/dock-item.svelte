@@ -5,7 +5,7 @@
 	import { getDockContext } from './context.js';
 
 	type Props = {
-		/** Optional caption shown in a glass bubble above the tile on hover/focus. */
+		/** Optional caption shown in a floating bubble above the tile on hover/focus. */
 		label?: string;
 		/** Render as a link instead of a button. */
 		href?: string;
@@ -27,10 +27,10 @@
 	const dock = getDockContext();
 
 	// Resting tile size; the lens scales up from this, never the layout box.
-	const BASE = 44; // px — matches size-11
+	const BASE = 44; // px, matches size-11
 
 	// The tile's resting horizontal center, in viewport px. Measured at rest (on
-	// mount + resize) so every item — not just the hovered one — has a stable
+	// mount + resize) so every item, not just the hovered one, has a stable
 	// center and the whole row swells together. Measuring while scaled would
 	// drift the center, so we never sample mid-magnify.
 	let center = $state<number | null>(null);
@@ -45,7 +45,7 @@
 		// Runs only in the browser; SSR renders at rest (scale 1).
 		measure();
 		window.addEventListener('resize', measure);
-		// Layout settles a tick after fonts/icons paint — catch that too.
+		// Layout settles a tick after fonts/icons paint; catch that too.
 		const id = requestAnimationFrame(measure);
 		return () => {
 			window.removeEventListener('resize', measure);
@@ -54,7 +54,7 @@
 	});
 
 	// Magnify factor in [1, magnification], falling off with a cosine curve so
-	// neighbors ease up too and the row reads as one continuous swell — no jitter.
+	// neighbors ease up too and the row reads as one continuous swell, no jitter.
 	const scale = $derived.by(() => {
 		const x = dock.pointerX;
 		if (x === null || center === null) return 1;
@@ -72,11 +72,11 @@
 	const tileClass = $derived(
 		cn(
 			'mizu-dock-item group relative flex size-11 shrink-0 origin-bottom items-center justify-center rounded-xl text-foreground outline-none',
-			// glassy tile surface with a wet sheen
-			'gradient-surface gloss border border-[color:var(--glass-border)] shadow-glass',
+			// tile surface
+			'bg-secondary shadow-lg',
 			// springy settle when the pointer leaves; magnify itself stays pointer-reactive
 			'transition-[scale,translate,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]',
-			'hover:shadow-aqua active:scale-[0.96]',
+			'hover:shadow-sm active:scale-[0.96]',
 			'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
 			className
 		)
@@ -85,15 +85,15 @@
 </script>
 
 {#snippet inner()}
-	<!-- icon, above the gloss sheen -->
+	<!-- icon, above the sheen -->
 	<span class="relative z-10 flex items-center justify-center text-mizu-700 dark:text-mizu-100">
 		{@render children?.()}
 	</span>
 
 	{#if label}
-		<!-- glass caption bubble; appears on hover/focus, lifts with the tile -->
+		<!-- caption bubble; appears on hover/focus, lifts with the tile -->
 		<span
-			class="mizu-dock-label glass-strong pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 translate-y-1 scale-95 rounded-lg border border-[color:var(--glass-border)] px-2.5 py-1 text-xs font-medium whitespace-nowrap text-popover-foreground opacity-0 shadow-glass transition-[opacity,scale,translate] duration-150 ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:scale-100 group-focus-visible:opacity-100"
+			class="mizu-dock-label bg-popover pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 translate-y-1 scale-95 rounded-lg px-2.5 py-1 text-xs font-medium whitespace-nowrap text-popover-foreground opacity-0 shadow-lg transition-[opacity,scale,translate] duration-150 ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:scale-100 group-focus-visible:opacity-100"
 		>
 			{label}
 		</span>
@@ -128,7 +128,7 @@
 
 <style>
 	/* Self-contained reduced-motion guard: freeze the lens and bubble so the
-	   dock is a static glassy row, even when copied out without app.css. */
+	   dock is a static row, even when copied out without app.css. */
 	@media (prefers-reduced-motion: reduce) {
 		.mizu-dock-item {
 			scale: 1 !important;

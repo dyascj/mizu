@@ -1,49 +1,46 @@
 <script lang="ts">
-	import { ArrowRight, Droplets } from '@lucide/svelte';
+	import { ArrowRight, Sparkles } from '@lucide/svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { components } from '$lib/site/catalog';
 	import { siteConfig } from '$lib/site/config';
+	import MizuLogo from '$lib/site/mizu-logo.svelte';
 	import Seo from '$lib/site/seo.svelte';
 </script>
 
 <Seo
-	title="Introduction — {siteConfig.name}"
-	description="Mizu is an open-source Frutiger Aero component library for SvelteKit — glossy, glassy, accessible components you copy into your project and own. Built on Svelte 5 runes, Tailwind v4, and bits-ui."
+	title="Introduction · {siteConfig.name}"
+	description="Mizu is an open-source design system for AI products. Clean, airy, accessible components for chat, voice, and reasoning that you copy into your project and own. Built on Svelte 5 runes, Tailwind v4, and bits-ui."
 />
 
 <article class="max-w-2xl">
-	<img
-		src="/brand/mizu-side-by-side.png"
-		alt="Mizu — Design System"
-		class="mb-8 h-12 w-auto sm:h-14"
-	/>
-	<h1 class="font-display text-3xl font-extrabold">Introduction</h1>
+	<MizuLogo class="mb-8 scale-125" />
+	<h1 class="text-3xl font-semibold">Introduction</h1>
 	<p class="mt-3 text-lg text-muted-foreground">
-		Mizu is a Frutiger Aero design system for Svelte. Glossy, glassy, gorgeously rounded components
-		that bring back the optimism of early-2000s UI, built honestly for Svelte 5 and Tailwind v4.
+		Mizu is a clean, airy design system for AI products and the designers building them. White
+		surfaces, soft shadows, pill controls, and the components a modern assistant needs, built
+		honestly for Svelte 5 and Tailwind v4.
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Why Frutiger Aero</h2>
+	<h2 class="mt-10 mb-3 text-xl font-semibold">The language</h2>
 	<p class="mb-4 leading-relaxed text-muted-foreground">
-		The aesthetic of clear skies, water droplets, and wet glass had a confidence we lost somewhere
-		in the flat years. Mizu (<span class="font-display">水</span>, "water") leans all the way in:
-		frosted glass, a real top sheen, layered light, bright aqua, and generous rounding, applied with
-		restraint so it feels polished instead of busy.
+		Interfaces built for AI deserve calm. Mizu (<span class="font-medium">水</span>, "water") keeps
+		every surface quiet so the content and the intelligence can speak: white on white with hairline
+		lines, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for the
+		moments where the AI is present. Nothing shines, nothing shouts.
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">Principles</h2>
+	<h2 class="mt-10 mb-3 text-xl font-semibold">Principles</h2>
 	<ul class="mb-4 ml-5 list-disc space-y-2 text-muted-foreground">
 		<li>
-			<span class="font-semibold text-foreground">Physically honest.</span> Gloss, glass, and glow come
-			from real CSS, never baked-in screenshots.
+			<span class="font-semibold text-foreground">Quiet by default.</span> Hierarchy comes from space,
+			hairlines, and type, not decoration. The accent is for what matters.
 		</li>
 		<li>
 			<span class="font-semibold text-foreground">Accessible underneath.</span> Interactive
 			components wrap
 			<a
 				href="https://bits-ui.com"
-				class="font-medium text-[color:var(--primary)] underline-offset-4 hover:underline"
-				>bits-ui</a
+				class="font-medium text-primary underline-offset-4 hover:underline">bits-ui</a
 			> primitives, so keyboard and screen-reader behavior is handled.
 		</li>
 		<li>
@@ -52,18 +49,15 @@
 		</li>
 		<li>
 			<span class="font-semibold text-foreground">Tokens all the way down.</span> One theme file drives
-			every surface, in a sunlit light mode and a deep-water dark mode.
+			every surface, in an airy light mode and a pure-black dark mode.
 		</li>
 	</ul>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-bold">How it ships</h2>
+	<h2 class="mt-10 mb-3 text-xl font-semibold">How it ships</h2>
 	<p class="mb-4 leading-relaxed text-muted-foreground">
-		Mizu is distributed as a <span
-			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em] text-foreground"
-			>shadcn-svelte</span
-		>-compatible registry. Real developers install components with tooling they already know; AI
-		agents get clean per-component JSON; and every component page here shows the full source to copy
-		by hand. {components.length} components are ready today.
+		Every component is source you copy into your project and own. Add one with a single command
+		using the CLI you already have, point an AI agent at the clean per-component JSON, or copy the
+		code straight from any component page. {components.length} components are ready today.
 	</p>
 
 	<div class="mt-8 flex flex-wrap gap-3">
@@ -72,7 +66,7 @@
 			<ArrowRight class="size-4" />
 		</Button>
 		<Button href="/docs/components/button" variant="secondary">
-			<Droplets class="size-4" />
+			<Sparkles class="size-4" />
 			See the components
 		</Button>
 	</div>
