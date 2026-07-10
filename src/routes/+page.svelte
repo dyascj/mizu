@@ -51,7 +51,7 @@
 		</div>
 
 		<h1 class="max-w-xl text-5xl leading-[1.02] font-semibold tracking-tight text-balance sm:text-6xl">
-			Interfaces that feel light.
+			Intelligence that feels light.
 		</h1>
 
 		<p class="max-w-md text-balance text-muted-foreground sm:text-lg">
