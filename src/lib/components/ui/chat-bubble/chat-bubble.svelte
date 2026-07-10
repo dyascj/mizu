@@ -22,6 +22,8 @@
 
 	type Props = HTMLAttributes<HTMLDivElement> & {
 		role?: ChatBubbleRole;
+		/** Rise-and-fade entrance as the message arrives. */
+		animate?: boolean;
 		class?: string;
 		ref?: HTMLDivElement | null;
 		children?: Snippet;
@@ -29,6 +31,7 @@
 
 	let {
 		role = 'assistant',
+		animate = true,
 		class: className,
 		ref = $bindable(null),
 		children,
@@ -36,6 +39,33 @@
 	}: Props = $props();
 </script>
 
-<div bind:this={ref} class={cn(chatBubbleVariants({ role }), className)} {...rest}>
+<div
+	bind:this={ref}
+	class={cn(chatBubbleVariants({ role }), animate && 'bubble-in', className)}
+	{...rest}
+>
 	{@render children?.()}
 </div>
+
+<style>
+	:global(.bubble-in) {
+		animation: bubble-in 220ms ease-out both;
+	}
+
+	@keyframes bubble-in {
+		from {
+			opacity: 0;
+			transform: translateY(4px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(.bubble-in) {
+			animation: none;
+		}
+	}
+</style>

@@ -406,6 +406,36 @@
       "description": "User and assistant message bubbles, flat and quiet."
     },
     {
+      "name": "streaming-text",
+      "type": "registry:ui",
+      "title": "Streaming Text",
+      "description": "Token-by-token text that types itself in, caret and all."
+    },
+    {
+      "name": "reasoning",
+      "type": "registry:ui",
+      "title": "Reasoning",
+      "description": "A collapsible chain of thought: shimmers while thinking, folds away when done."
+    },
+    {
+      "name": "tool-call",
+      "type": "registry:ui",
+      "title": "Tool Call",
+      "description": "Live status for a tool the assistant is using, with an expandable result."
+    },
+    {
+      "name": "sources",
+      "type": "registry:ui",
+      "title": "Sources",
+      "description": "Numbered citation chips that ground an answer."
+    },
+    {
+      "name": "message-actions",
+      "type": "registry:ui",
+      "title": "Message Actions",
+      "description": "Copy, regenerate, and feedback beneath a reply."
+    },
+    {
       "name": "voice-orb",
       "type": "registry:ui",
       "title": "Voice Orb",

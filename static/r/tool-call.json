@@ -1,0 +1,26 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "tool-call",
+  "type": "registry:ui",
+  "title": "Tool Call",
+  "description": "Live status for a tool the assistant is using, with an expandable result.",
+  "dependencies": [
+    "@lucide/svelte"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/spinner.json",
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "tool-call/index.ts",
+      "content": "export { default as ToolCall } from './tool-call.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "tool-call/tool-call.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport Check from '@lucide/svelte/icons/check';\n\timport X from '@lucide/svelte/icons/x';\n\timport ChevronDown from '@lucide/svelte/icons/chevron-down';\n\timport { Spinner } from '$lib/components/ui/spinner';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = {\n\t\t/** What the assistant is doing, e.g. \"Searching the web\". */\n\t\tname: string;\n\t\tstate?: 'running' | 'done' | 'error';\n\t\t/** Optional detail line, e.g. the query or file name. */\n\t\tdetail?: string;\n\t\topen?: boolean;\n\t\tclass?: string;\n\t\t/** Expandable result content. */\n\t\tchildren?: Snippet;\n\t};\n\n\tlet {\n\t\tname,\n\t\tstate = 'running',\n\t\tdetail,\n\t\topen = $bindable(false),\n\t\tclass: className,\n\t\tchildren\n\t}: Props = $props();\n</script>\n\n<div class={cn('w-full max-w-full text-sm', className)}>\n\t<button\n\t\ttype=\"button\"\n\t\tdisabled={!children || state === 'running'}\n\t\tonclick={() => (open = !open)}\n\t\taria-expanded={open}\n\t\tclass=\"flex w-full items-center gap-2.5 rounded-xl bg-secondary/60 px-3.5 py-2.5 text-left outline-none transition-colors enabled:hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-default\"\n\t>\n\t\t{#if state === 'running'}\n\t\t\t<Spinner size={16} />\n\t\t{:else if state === 'done'}\n\t\t\t<span class=\"grid size-4 shrink-0 place-items-center rounded-full bg-success text-success-foreground\">\n\t\t\t\t<Check class=\"size-3\" strokeWidth={3} />\n\t\t\t</span>\n\t\t{:else}\n\t\t\t<span\n\t\t\t\tclass=\"grid size-4 shrink-0 place-items-center rounded-full bg-destructive text-destructive-foreground\"\n\t\t\t>\n\t\t\t\t<X class=\"size-3\" strokeWidth={3} />\n\t\t\t</span>\n\t\t{/if}\n\t\t<span class=\"min-w-0 flex-1\">\n\t\t\t<span class={cn('block truncate font-medium', state === 'running' && 'tool-shimmer')}\n\t\t\t\t>{name}</span\n\t\t\t>\n\t\t\t{#if detail}\n\t\t\t\t<span class=\"block truncate text-xs text-muted-foreground\">{detail}</span>\n\t\t\t{/if}\n\t\t</span>\n\t\t{#if children && state !== 'running'}\n\t\t\t<ChevronDown\n\t\t\t\tclass={cn(\n\t\t\t\t\t'size-3.5 shrink-0 text-muted-foreground transition-transform duration-200',\n\t\t\t\t\topen && 'rotate-180'\n\t\t\t\t)}\n\t\t\t/>\n\t\t{/if}\n\t</button>\n\t{#if open && children && state !== 'running'}\n\t\t<div class=\"tool-result mt-1.5 rounded-xl bg-secondary/40 px-4 py-3 leading-relaxed text-muted-foreground\">\n\t\t\t{@render children()}\n\t\t</div>\n\t{/if}\n</div>\n\n<style>\n\t.tool-shimmer {\n\t\tbackground: linear-gradient(\n\t\t\t90deg,\n\t\t\tvar(--foreground) 0%,\n\t\t\tvar(--foreground) 35%,\n\t\t\tvar(--muted-foreground) 50%,\n\t\t\tvar(--foreground) 65%,\n\t\t\tvar(--foreground) 100%\n\t\t);\n\t\tbackground-size: 200% 100%;\n\t\t-webkit-background-clip: text;\n\t\tbackground-clip: text;\n\t\tcolor: transparent;\n\t\tanimation: tool-sweep 2s linear infinite;\n\t}\n\n\t.tool-result {\n\t\tanimation: tool-open 200ms ease-out both;\n\t}\n\n\t@keyframes tool-sweep {\n\t\tfrom {\n\t\t\tbackground-position: 200% 0;\n\t\t}\n\t\tto {\n\t\t\tbackground-position: -200% 0;\n\t\t}\n\t}\n\n\t@keyframes tool-open {\n\t\tfrom {\n\t\t\topacity: 0;\n\t\t\ttransform: translateY(-3px);\n\t\t}\n\t\tto {\n\t\t\topacity: 1;\n\t\t\ttransform: translateY(0);\n\t\t}\n\t}\n\n\t@media (prefers-reduced-motion: reduce) {\n\t\t.tool-shimmer,\n\t\t.tool-result {\n\t\t\tanimation: none;\n\t\t}\n\t}\n</style>\n"
+    }
+  ]
+}

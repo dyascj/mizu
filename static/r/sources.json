@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "sources",
+  "type": "registry:ui",
+  "title": "Sources",
+  "description": "Numbered citation chips that ground an answer.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "sources/index.ts",
+      "content": "export { default as Sources } from './sources.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "sources/sources.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Source = { label: string; url?: string };\n\n\ttype Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {\n\t\t/** Citations backing the answer, in order. */\n\t\titems: Source[];\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t};\n\n\tlet { items, class: className, ref = $bindable(null), ...rest }: Props = $props();\n</script>\n\n<div bind:this={ref} class={cn('flex flex-wrap items-center gap-1.5', className)} {...rest}>\n\t{#each items as source, i (source.label)}\n\t\t<svelte:element\n\t\t\tthis={source.url ? 'a' : 'span'}\n\t\t\thref={source.url}\n\t\t\ttarget={source.url ? '_blank' : undefined}\n\t\t\trel={source.url ? 'noreferrer' : undefined}\n\t\t\tclass=\"inline-flex items-center gap-1.5 rounded-full bg-secondary py-1 pr-2.5 pl-1 text-xs text-muted-foreground outline-none transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring\"\n\t\t>\n\t\t\t<span\n\t\t\t\tclass=\"grid size-4 place-items-center rounded-full bg-card text-[0.625rem] font-medium text-foreground shadow-xs tabular-nums\"\n\t\t\t>\n\t\t\t\t{i + 1}\n\t\t\t</span>\n\t\t\t{source.label}\n\t\t</svelte:element>\n\t{/each}\n</div>\n"
+    }
+  ]
+}

@@ -427,6 +427,36 @@
 		"description": "User and assistant message bubbles, flat and quiet."
 	},
 	{
+		"slug": "streaming-text",
+		"name": "Streaming Text",
+		"category": "AI",
+		"description": "Token-by-token text that types itself in, caret and all."
+	},
+	{
+		"slug": "reasoning",
+		"name": "Reasoning",
+		"category": "AI",
+		"description": "A collapsible chain of thought: shimmers while thinking, folds away when done."
+	},
+	{
+		"slug": "tool-call",
+		"name": "Tool Call",
+		"category": "AI",
+		"description": "Live status for a tool the assistant is using, with an expandable result."
+	},
+	{
+		"slug": "sources",
+		"name": "Sources",
+		"category": "AI",
+		"description": "Numbered citation chips that ground an answer."
+	},
+	{
+		"slug": "message-actions",
+		"name": "Message Actions",
+		"category": "AI",
+		"description": "Copy, regenerate, and feedback beneath a reply."
+	},
+	{
 		"slug": "voice-orb",
 		"name": "Voice Orb",
 		"category": "AI",
