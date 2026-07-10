@@ -39,6 +39,9 @@ export function GET() {
 	out.push(
 		`- [Build a chat](${base}/docs/build-a-chat): compose the AI components into a full assistant screen`
 	);
+	out.push(
+		`- [UI for Agents](${base}/docs/agents): set up AI coding agents to build with Mizu; drop-in agent guidance lives at ${base}/AGENTS.md`
+	);
 	out.push(`- [Components](${base}/docs/components): browse all components`);
 	out.push(`- [Blocks](${base}/blocks): whole AI screens with full copyable source`);
 	out.push('');
