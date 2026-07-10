@@ -1,0 +1,24 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "personalize",
+  "type": "registry:block",
+  "title": "Personalize",
+  "description": "Onboarding for a companion: pick a style from aura tiles, set the conversation tone, grant permissions, and create.",
+  "dependencies": [
+    "@lucide/svelte"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/aura-tile.json",
+    "https://mizu-ui.com/r/button.json",
+    "https://mizu-ui.com/r/label.json",
+    "https://mizu-ui.com/r/switch.json",
+    "https://mizu-ui.com/r/toggle-group.json"
+  ],
+  "files": [
+    {
+      "type": "registry:component",
+      "target": "blocks/personalize.svelte",
+      "content": "<script lang=\"ts\">\n\timport Sparkles from '@lucide/svelte/icons/sparkles';\n\timport { AuraTile } from '$lib/components/ui/aura-tile';\n\timport { Button } from '$lib/components/ui/button';\n\timport { Label } from '$lib/components/ui/label';\n\timport { Switch } from '$lib/components/ui/switch';\n\timport * as ToggleGroup from '$lib/components/ui/toggle-group';\n\n\tconst styles = ['Aura Waves', 'Neon Dreams', 'Riptide', 'Golden Hour'];\n\tlet style = $state('Aura Waves');\n\tlet tone = $state('balanced');\n\tlet speech = $state(true);\n\tlet memory = $state(true);\n</script>\n\n<div class=\"mx-auto flex w-full max-w-md flex-col gap-7 rounded-3xl bg-card p-7 shadow-md\">\n\t<div>\n\t\t<h2 class=\"text-lg font-semibold tracking-tight\">Make it yours</h2>\n\t\t<p class=\"mt-1 text-sm text-muted-foreground\">\n\t\t\tPick a look and a voice. You can change all of this later.\n\t\t</p>\n\t</div>\n\n\t<div class=\"flex flex-col gap-2.5\">\n\t\t<p class=\"text-sm font-medium\">Style</p>\n\t\t<div class=\"grid grid-cols-4 gap-3\">\n\t\t\t{#each styles as s (s)}\n\t\t\t\t<button\n\t\t\t\t\ttype=\"button\"\n\t\t\t\t\tclass=\"rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring\"\n\t\t\t\t\tonclick={() => (style = s)}\n\t\t\t\t\taria-pressed={style === s}\n\t\t\t\t\taria-label={s}\n\t\t\t\t>\n\t\t\t\t\t<AuraTile seed={s} selected={style === s} class=\"w-full\" />\n\t\t\t\t</button>\n\t\t\t{/each}\n\t\t</div>\n\t</div>\n\n\t<div class=\"flex flex-col gap-2.5\">\n\t\t<p class=\"text-sm font-medium\">Conversation style</p>\n\t\t<ToggleGroup.Root type=\"single\" bind:value={tone} class=\"w-fit\">\n\t\t\t<ToggleGroup.Item value=\"creative\">Creative</ToggleGroup.Item>\n\t\t\t<ToggleGroup.Item value=\"balanced\">Balanced</ToggleGroup.Item>\n\t\t\t<ToggleGroup.Item value=\"precise\">Precise</ToggleGroup.Item>\n\t\t</ToggleGroup.Root>\n\t</div>\n\n\t<div class=\"flex flex-col gap-4\">\n\t\t<div class=\"flex items-center justify-between gap-4\">\n\t\t\t<div>\n\t\t\t\t<Label for=\"p-speech\" class=\"font-medium\">Speech recognition</Label>\n\t\t\t\t<p class=\"text-xs text-muted-foreground\">Talk instead of typing.</p>\n\t\t\t</div>\n\t\t\t<Switch id=\"p-speech\" bind:checked={speech} />\n\t\t</div>\n\t\t<div class=\"flex items-center justify-between gap-4\">\n\t\t\t<div>\n\t\t\t\t<Label for=\"p-memory\" class=\"font-medium\">Long-term memory</Label>\n\t\t\t\t<p class=\"text-xs text-muted-foreground\">Remembers across sessions.</p>\n\t\t\t</div>\n\t\t\t<Switch id=\"p-memory\" bind:checked={memory} />\n\t\t</div>\n\t</div>\n\n\t<Button variant=\"ai\" size=\"lg\" class=\"w-full\">\n\t\t<Sparkles class=\"size-4\" />\n\t\tCreate my companion\n\t</Button>\n</div>\n"
+    }
+  ]
+}

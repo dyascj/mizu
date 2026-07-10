@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "agent-dashboard",
+  "type": "registry:block",
+  "title": "Agent dashboard",
+  "description": "A working session at a glance: your agents, a live plan with a running tool, focus for the day, and a proactive nudge.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/button.json",
+    "https://mizu-ui.com/r/card.json",
+    "https://mizu-ui.com/r/circular-gauge.json",
+    "https://mizu-ui.com/r/nudge.json",
+    "https://mizu-ui.com/r/plan.json",
+    "https://mizu-ui.com/r/progress.json",
+    "https://mizu-ui.com/r/tool-call.json",
+    "https://mizu-ui.com/r/voice-orb.json"
+  ],
+  "files": [
+    {
+      "type": "registry:component",
+      "target": "blocks/agent-dashboard.svelte",
+      "content": "<script lang=\"ts\">\n\timport * as Card from '$lib/components/ui/card';\n\timport { Button } from '$lib/components/ui/button';\n\timport { CircularGauge } from '$lib/components/ui/circular-gauge';\n\timport { Nudge } from '$lib/components/ui/nudge';\n\timport { Plan, type PlanStep } from '$lib/components/ui/plan';\n\timport { Progress } from '$lib/components/ui/progress';\n\timport { ToolCall } from '$lib/components/ui/tool-call';\n\timport { VoiceOrb } from '$lib/components/ui/voice-orb';\n\n\tconst agents = [\n\t\t{ name: 'Era', task: 'Planning your trip', state: 'thinking' as const },\n\t\t{ name: 'Fjord', task: 'Drafting the blog post', state: 'idle' as const },\n\t\t{ name: 'Super', task: 'Watching the inbox', state: 'idle' as const }\n\t];\n\n\tconst steps: PlanStep[] = [\n\t\t{ label: 'Understanding the brief', state: 'done' },\n\t\t{ label: 'Comparing 14 flights', detail: 'Nonstop first', state: 'done' },\n\t\t{ label: 'Holding the best two fares', state: 'active' },\n\t\t{ label: 'Drafting the itinerary', state: 'pending' }\n\t];\n\n\tlet nudgeVisible = $state(true);\n</script>\n\n<div class=\"mx-auto grid w-full max-w-4xl gap-4 lg:grid-cols-3\">\n\t<!-- roster -->\n\t<Card.Root>\n\t\t<Card.Header>\n\t\t\t<Card.Title>Your agents</Card.Title>\n\t\t\t<Card.Description>Three at work right now.</Card.Description>\n\t\t</Card.Header>\n\t\t<Card.Content class=\"flex flex-col gap-4\">\n\t\t\t{#each agents as agent (agent.name)}\n\t\t\t\t<div class=\"flex items-center gap-3\">\n\t\t\t\t\t<VoiceOrb state={agent.state} size={32} />\n\t\t\t\t\t<div class=\"min-w-0 flex-1\">\n\t\t\t\t\t\t<p class=\"truncate text-sm font-semibold\">{agent.name}</p>\n\t\t\t\t\t\t<p class=\"truncate text-xs text-muted-foreground\">{agent.task}</p>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t{/each}\n\t\t</Card.Content>\n\t\t<Card.Footer>\n\t\t\t<Button variant=\"secondary\" size=\"sm\" class=\"w-full\">New agent</Button>\n\t\t</Card.Footer>\n\t</Card.Root>\n\n\t<!-- live plan -->\n\t<Card.Root>\n\t\t<Card.Header>\n\t\t\t<Card.Title>Era's plan</Card.Title>\n\t\t\t<Card.Description>Tokyo, four nights in October.</Card.Description>\n\t\t</Card.Header>\n\t\t<Card.Content class=\"flex flex-col gap-4\">\n\t\t\t<Plan {steps} />\n\t\t\t<ToolCall name=\"Searching fares\" detail=\"HND, Oct 12 to 16\" state=\"running\" />\n\t\t</Card.Content>\n\t</Card.Root>\n\n\t<!-- today -->\n\t<div class=\"flex flex-col gap-4\">\n\t\t<Card.Root>\n\t\t\t<Card.Header>\n\t\t\t\t<Card.Title>Today</Card.Title>\n\t\t\t</Card.Header>\n\t\t\t<Card.Content class=\"flex items-center gap-5\">\n\t\t\t\t<CircularGauge value={72} label=\"Focus\" />\n\t\t\t\t<div class=\"flex flex-1 flex-col gap-3\">\n\t\t\t\t\t<div class=\"flex flex-col gap-1.5\">\n\t\t\t\t\t\t<div class=\"flex justify-between text-xs\">\n\t\t\t\t\t\t\t<span class=\"text-muted-foreground\">Tasks done</span><span class=\"tabular-nums\"\n\t\t\t\t\t\t\t\t>84%</span\n\t\t\t\t\t\t\t>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<Progress value={84} />\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</Card.Content>\n\t\t</Card.Root>\n\n\t\t{#if nudgeVisible}\n\t\t\t<Nudge\n\t\t\t\ttitle=\"Fares drop Tuesday\"\n\t\t\t\tdescription=\"Era suggests booking then. Want a reminder?\"\n\t\t\t\tonDismiss={() => (nudgeVisible = false)}\n\t\t\t>\n\t\t\t\t{#snippet actions()}\n\t\t\t\t\t<Button size=\"sm\">Remind me</Button>\n\t\t\t\t{/snippet}\n\t\t\t</Nudge>\n\t\t{/if}\n\t</div>\n</div>\n"
+    }
+  ]
+}

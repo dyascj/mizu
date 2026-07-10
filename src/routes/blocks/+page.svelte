@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as Tabs from '$lib/components/ui/tabs';
 	import CodeBlock from '$lib/site/code-block.svelte';
+	import CopyCommand from '$lib/site/copy-command.svelte';
 	import Seo from '$lib/site/seo.svelte';
 	import { blockCategories, blocks, getBlock, type BlockCategory } from '$lib/site/blocks';
 	import { siteConfig } from '$lib/site/config';
@@ -46,9 +47,15 @@
 		{#each visible as block (block.slug)}
 			{@const b = getBlock(block.slug)}
 			<section id={block.slug}>
-				<div class="mb-4 max-w-2xl">
-					<h2 class="text-xl font-semibold tracking-tight">{block.name}</h2>
-					<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{block.description}</p>
+				<div class="mb-4 flex flex-wrap items-end justify-between gap-4">
+					<div class="max-w-xl">
+						<h2 class="text-xl font-semibold tracking-tight">{block.name}</h2>
+						<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{block.description}</p>
+					</div>
+					<CopyCommand
+						command={`npx shadcn-svelte@latest add ${siteConfig.registryBase}/${block.slug}.json`}
+						class="w-full max-w-xs"
+					/>
 				</div>
 				<Tabs.Root value="preview">
 					<Tabs.List>
@@ -56,7 +63,7 @@
 						<Tabs.Trigger value="code">Code</Tabs.Trigger>
 					</Tabs.List>
 					<Tabs.Content value="preview">
-						<div class="rounded-3xl bg-secondary/50 p-4 sm:p-10">
+						<div class="rounded-3xl bg-secondary/50 p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-10">
 							{#if b.Component}
 								{@const Block = b.Component}
 								<Block />

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "signup",
+  "type": "registry:block",
+  "title": "Sign up",
+  "description": "Account creation ending in the gradient create button.",
+  "dependencies": [
+    "@lucide/svelte"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/button.json",
+    "https://mizu-ui.com/r/checkbox.json",
+    "https://mizu-ui.com/r/input.json",
+    "https://mizu-ui.com/r/label.json"
+  ],
+  "files": [
+    {
+      "type": "registry:component",
+      "target": "blocks/signup.svelte",
+      "content": "<script lang=\"ts\">\n\timport Sparkles from '@lucide/svelte/icons/sparkles';\n\timport { Button } from '$lib/components/ui/button';\n\timport { Checkbox } from '$lib/components/ui/checkbox';\n\timport { Input } from '$lib/components/ui/input';\n\timport { Label } from '$lib/components/ui/label';\n\n\tlet name = $state('');\n\tlet email = $state('');\n\tlet password = $state('');\n\tlet agreed = $state(false);\n</script>\n\n<div class=\"mx-auto flex w-full max-w-sm flex-col gap-6 rounded-3xl bg-card p-8 shadow-md\">\n\t<div>\n\t\t<h2 class=\"text-lg font-semibold tracking-tight\">Create your account</h2>\n\t\t<p class=\"mt-1 text-sm text-muted-foreground\">\n\t\t\tA companion of your own, in about a minute.\n\t\t</p>\n\t</div>\n\n\t<div class=\"flex flex-col gap-4\">\n\t\t<div class=\"flex flex-col gap-1.5\">\n\t\t\t<Label for=\"signup-name\">Name</Label>\n\t\t\t<Input id=\"signup-name\" placeholder=\"Ada Rivers\" bind:value={name} />\n\t\t</div>\n\t\t<div class=\"flex flex-col gap-1.5\">\n\t\t\t<Label for=\"signup-email\">Email</Label>\n\t\t\t<Input id=\"signup-email\" type=\"email\" placeholder=\"you@water.com\" bind:value={email} />\n\t\t</div>\n\t\t<div class=\"flex flex-col gap-1.5\">\n\t\t\t<Label for=\"signup-password\">Password</Label>\n\t\t\t<Input id=\"signup-password\" type=\"password\" placeholder=\"8+ characters\" bind:value={password} />\n\t\t</div>\n\t\t<div class=\"flex items-center gap-2.5\">\n\t\t\t<Checkbox id=\"signup-terms\" bind:checked={agreed} />\n\t\t\t<Label for=\"signup-terms\" class=\"text-xs font-normal text-muted-foreground\">\n\t\t\t\tI agree to the terms and the privacy policy.\n\t\t\t</Label>\n\t\t</div>\n\t</div>\n\n\t<Button variant=\"ai\" class=\"w-full\" disabled={!agreed}>\n\t\t<Sparkles class=\"size-4\" />\n\t\tCreate my companion\n\t</Button>\n</div>\n"
+    }
+  ]
+}

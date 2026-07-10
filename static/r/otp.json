@@ -1,0 +1,19 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "otp",
+  "type": "registry:block",
+  "title": "Verify code",
+  "description": "Six-digit email verification with resend.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/button.json",
+    "https://mizu-ui.com/r/input-otp.json"
+  ],
+  "files": [
+    {
+      "type": "registry:component",
+      "target": "blocks/otp.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Button } from '$lib/components/ui/button';\n\timport * as InputOTP from '$lib/components/ui/input-otp';\n\n\tlet value = $state('');\n</script>\n\n<div class=\"mx-auto flex w-full max-w-sm flex-col items-center gap-6 rounded-3xl bg-card p-8 text-center shadow-md\">\n\t<div>\n\t\t<h2 class=\"text-lg font-semibold tracking-tight\">Check your email</h2>\n\t\t<p class=\"mt-1 text-sm text-balance text-muted-foreground\">\n\t\t\tWe sent a six-digit code to <span class=\"font-medium text-foreground\">you@water.com</span>.\n\t\t</p>\n\t</div>\n\n\t<InputOTP.Root maxlength={6} bind:value>\n\t\t{#snippet children({ cells })}\n\t\t\t<div class=\"flex items-center gap-1.5\">\n\t\t\t\t{#each cells.slice(0, 3) as cell (cell)}\n\t\t\t\t\t<InputOTP.Slot {cell} />\n\t\t\t\t{/each}\n\t\t\t</div>\n\t\t\t<InputOTP.Separator />\n\t\t\t<div class=\"flex items-center gap-1.5\">\n\t\t\t\t{#each cells.slice(3, 6) as cell (cell)}\n\t\t\t\t\t<InputOTP.Slot {cell} />\n\t\t\t\t{/each}\n\t\t\t</div>\n\t\t{/snippet}\n\t</InputOTP.Root>\n\n\t<div class=\"flex w-full flex-col gap-2\">\n\t\t<Button class=\"w-full\" disabled={value.length < 6}>Verify</Button>\n\t\t<Button variant=\"ghost\" size=\"sm\" class=\"w-full text-muted-foreground\">Resend code</Button>\n\t</div>\n</div>\n"
+    }
+  ]
+}

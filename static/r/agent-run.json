@@ -1,0 +1,24 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "agent-run",
+  "type": "registry:block",
+  "title": "Agent run",
+  "description": "A single run up close: the plan advancing, a live tool call, streaming findings, and pause and stop controls.",
+  "dependencies": [
+    "@lucide/svelte"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/button.json",
+    "https://mizu-ui.com/r/plan.json",
+    "https://mizu-ui.com/r/streaming-text.json",
+    "https://mizu-ui.com/r/tool-call.json",
+    "https://mizu-ui.com/r/voice-orb.json"
+  ],
+  "files": [
+    {
+      "type": "registry:component",
+      "target": "blocks/agent-run.svelte",
+      "content": "<script lang=\"ts\">\n\timport Pause from '@lucide/svelte/icons/pause';\n\timport Square from '@lucide/svelte/icons/square';\n\timport { Button } from '$lib/components/ui/button';\n\timport { Plan, type PlanStep } from '$lib/components/ui/plan';\n\timport { StreamingText } from '$lib/components/ui/streaming-text';\n\timport { ToolCall } from '$lib/components/ui/tool-call';\n\timport { VoiceOrb } from '$lib/components/ui/voice-orb';\n\n\tconst steps: PlanStep[] = [\n\t\t{ label: 'Read the brief', state: 'done' },\n\t\t{ label: 'Research venues', detail: '14 sources', state: 'done' },\n\t\t{ label: 'Draft the shortlist', state: 'active' },\n\t\t{ label: 'Book the winner', state: 'pending' }\n\t];\n\n\tlet run = $state(0);\n</script>\n\n<div class=\"mx-auto flex w-full max-w-xl flex-col gap-4 rounded-3xl bg-card p-6 shadow-md\">\n\t<header class=\"flex items-center gap-3\">\n\t\t<VoiceOrb state=\"thinking\" size={36} />\n\t\t<div class=\"min-w-0 flex-1\">\n\t\t\t<p class=\"text-sm font-semibold\">Era is working</p>\n\t\t\t<p class=\"text-xs text-muted-foreground\">Venue shortlist for the offsite</p>\n\t\t</div>\n\t\t<div class=\"flex items-center gap-1\">\n\t\t\t<Button variant=\"ghost\" size=\"icon\" aria-label=\"Pause run\">\n\t\t\t\t<Pause class=\"size-4\" />\n\t\t\t</Button>\n\t\t\t<Button variant=\"ghost\" size=\"icon\" aria-label=\"Stop run\">\n\t\t\t\t<Square class=\"size-4\" />\n\t\t\t</Button>\n\t\t</div>\n\t</header>\n\n\t<Plan {steps} />\n\n\t<ToolCall name=\"Comparing availability\" detail=\"3 venues, Oct 12 to 14\" state=\"running\" />\n\n\t<div class=\"rounded-2xl bg-secondary/60 px-4 py-3 text-sm leading-relaxed\">\n\t\t{#key run}\n\t\t\t<StreamingText\n\t\t\t\ttext=\"Front-runner so far: the boathouse on the east shore. Fits twenty, has the quiet morning light you asked for, and comes in under budget with room for the dinner.\"\n\t\t\t\tspeed={75}\n\t\t\t\tonComplete={() => setTimeout(() => (run += 1), 4000)}\n\t\t\t/>\n\t\t{/key}\n\t</div>\n</div>\n"
+    }
+  ]
+}

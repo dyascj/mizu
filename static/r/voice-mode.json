@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "voice-mode",
+  "type": "registry:block",
+  "title": "Voice mode",
+  "description": "A fullscreen listening surface on a drifting aurora: the orb, a live waveform, and mute and done controls.",
+  "dependencies": [
+    "@lucide/svelte"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/aurora.json",
+    "https://mizu-ui.com/r/button.json",
+    "https://mizu-ui.com/r/voice-orb.json",
+    "https://mizu-ui.com/r/waveform.json"
+  ],
+  "files": [
+    {
+      "type": "registry:component",
+      "target": "blocks/voice-mode.svelte",
+      "content": "<script lang=\"ts\">\n\timport Mic from '@lucide/svelte/icons/mic';\n\timport X from '@lucide/svelte/icons/x';\n\timport { Aurora } from '$lib/components/ui/aurora';\n\timport { Button } from '$lib/components/ui/button';\n\timport { VoiceOrb } from '$lib/components/ui/voice-orb';\n\timport { Waveform } from '$lib/components/ui/waveform';\n\n\tlet muted = $state(false);\n</script>\n\n<div\n\tclass=\"relative mx-auto flex h-[30rem] w-full max-w-xl flex-col items-center justify-center overflow-hidden rounded-3xl bg-card shadow-md\"\n>\n\t<Aurora speed={22} class=\"dark:opacity-35\" />\n\n\t<div class=\"relative flex flex-col items-center gap-5\">\n\t\t<VoiceOrb state={muted ? 'idle' : 'listening'} size={128} />\n\t\t<p class=\"text-sm font-medium text-foreground/75\">\n\t\t\t{muted ? 'Muted. Tap the mic when you are ready.' : \"I'm listening...\"}\n\t\t</p>\n\t\t<Waveform bars={9} active={!muted} class=\"h-8\" />\n\t</div>\n\n\t<div class=\"relative mt-10 flex items-center gap-3\">\n\t\t<Button\n\t\t\tvariant={muted ? 'primary' : 'outline'}\n\t\t\tsize=\"icon\"\n\t\t\taria-label={muted ? 'Unmute' : 'Mute'}\n\t\t\taria-pressed={muted}\n\t\t\tonclick={() => (muted = !muted)}\n\t\t>\n\t\t\t<Mic class=\"size-4\" />\n\t\t</Button>\n\t\t<Button variant=\"secondary\" size=\"lg\">Done</Button>\n\t\t<Button variant=\"ghost\" size=\"icon\" aria-label=\"Close voice mode\">\n\t\t\t<X class=\"size-4\" />\n\t\t</Button>\n\t</div>\n</div>\n"
+    }
+  ]
+}

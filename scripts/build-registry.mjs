@@ -33,6 +33,8 @@ const BASE = (
 const HOMEPAGE = config.match(/repo:\s*'([^']+)'/)?.[1] ?? 'https://mizu-ui.com';
 
 const meta = JSON.parse(readFileSync(join(root, 'src/lib/site/components.json'), 'utf8'));
+const blocksMeta = JSON.parse(readFileSync(join(root, 'src/lib/site/blocks.json'), 'utf8'));
+const BLOCKS_DIR = join(root, 'src/lib/site/blocks');
 
 /** Recursively list files under a directory, relative to it. */
 function listFiles(dir, base = dir) {
@@ -95,6 +97,32 @@ for (const c of meta) {
 	};
 	writeFileSync(join(OUT_DIR, `${c.slug}.json`), JSON.stringify(item, null, 2) + '\n');
 	items.push({ name: c.slug, type: 'registry:ui', title: c.name, description: c.description });
+}
+
+// Blocks: whole screens as registry:block items. Their sources import
+// $lib/components/ui/* directly, so registry dependencies resolve the same
+// way component items do and the file lands beside the user's components.
+for (const b of blocksMeta) {
+	const content = readFileSync(join(BLOCKS_DIR, `${b.slug}.svelte`), 'utf8');
+	const { deps, registryDeps } = inferDeps([content]);
+	const item = {
+		$schema: ITEM_SCHEMA,
+		name: b.slug,
+		type: 'registry:block',
+		title: b.name,
+		description: b.description,
+		dependencies: deps,
+		registryDependencies: registryDeps.sort().map(depUrl),
+		files: [
+			{
+				type: 'registry:component',
+				target: `blocks/${b.slug}.svelte`,
+				content
+			}
+		]
+	};
+	writeFileSync(join(OUT_DIR, `${b.slug}.json`), JSON.stringify(item, null, 2) + '\n');
+	items.push({ name: b.slug, type: 'registry:block', title: b.name, description: b.description });
 }
 
 // The shared `cn` helper as its own registry:lib item.
