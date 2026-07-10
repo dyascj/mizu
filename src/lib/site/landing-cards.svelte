@@ -32,27 +32,33 @@
 	import { ChatInput } from '$lib/components/ui/chat-input';
 	import { Thinking } from '$lib/components/ui/thinking';
 	import { VoiceOrb } from '$lib/components/ui/voice-orb';
+	import { Waveform } from '$lib/components/ui/waveform';
+	import { PromptSuggestions } from '$lib/components/ui/prompt-suggestions';
 
 	// Live state so the wall is actually interactive.
 	let playing = $state(true);
 	let scrub = $state(38);
 	let volume = $state(70);
 	let plan = $state('pro');
-	let notif = $state({ launches: true, mentions: true, digest: false });
-	let cookies = $state({ necessary: true, analytics: true, marketing: false });
+	let ai = $state({ speech: true, memory: true, personalization: false });
 
-	const team = [
-		{ name: 'Suiren', email: 'suiren@mizu.dev', role: 'owner', img: 32 },
-		{ name: 'Kaito', email: 'kaito@mizu.dev', role: 'editor', img: 13 },
-		{ name: 'Nami', email: 'nami@mizu.dev', role: 'viewer', img: 45 }
+	const agents = [
+		{ name: 'Era', task: 'Researching your trip', model: 'era-3' },
+		{ name: 'Fjord', task: 'Drafting the blog post', model: 'fjord-3' },
+		{ name: 'Super', task: 'Watching the inbox', model: 'super-2' }
 	];
-	const roles = [
-		{ value: 'owner', label: 'Owner' },
-		{ value: 'editor', label: 'Editor' },
-		{ value: 'viewer', label: 'Viewer' }
+	const models = [
+		{ value: 'era-3', label: 'Era 3.0' },
+		{ value: 'fjord-3', label: 'Fjord 3.0' },
+		{ value: 'super-2', label: 'Super 2.4' }
+	];
+	const activity = [
+		{ title: 'Finished the research doc', detail: 'Sources cited and summarized', time: '9:41 AM' },
+		{ title: 'Rescheduled your standup', detail: 'Moved to 10:30 with a note', time: '9:12 AM' },
+		{ title: 'Sorted 86 receipts', detail: 'Tax season, handled', time: '8:47 AM' }
 	];
 	const commands = [
-		{ name: 'Search components', keys: ['⌘', 'K'] },
+		{ name: 'Ask Mizu anything', keys: ['⌘', 'K'] },
 		{ name: 'Toggle theme', keys: ['⌘', 'J'] },
 		{ name: 'Copy install command', keys: ['⌘', 'C'] },
 		{ name: 'Go to docs', keys: ['G', 'D'] }
@@ -146,28 +152,39 @@
 		</Card.Content>
 	</Card.Root>
 
-	<!-- Notifications -->
+	<!-- Voice mode -->
+	<Card.Root class="break-inside-avoid">
+		<Card.Content class="flex flex-col items-center gap-4 pt-8 pb-6">
+			<VoiceOrb state="listening" size={88} />
+			<p class="text-sm text-muted-foreground">I'm listening...</p>
+			<Waveform bars={7} class="h-6" />
+			<div class="flex gap-2">
+				<Button variant="secondary" size="sm">Cancel</Button>
+				<Button size="sm">Done</Button>
+			</div>
+		</Card.Content>
+	</Card.Root>
+
+	<!-- Agent activity -->
 	<Card.Root class="break-inside-avoid">
 		<Card.Header>
 			<Card.Title class="flex items-center gap-2">
-				<Bell class="size-4 text-[color:var(--primary)]" />
-				Notifications
+				<Bell class="size-4 text-primary" />
+				While you were away
 			</Card.Title>
-			<Card.Description>Choose what reaches you.</Card.Description>
+			<Card.Description>Your agent kept going.</Card.Description>
 		</Card.Header>
-		<Card.Content class="flex flex-col gap-4">
-			<div class="flex items-center justify-between gap-4">
-				<Label for="n-launches" class="font-normal">New releases</Label>
-				<Switch id="n-launches" bind:checked={notif.launches} />
-			</div>
-			<div class="flex items-center justify-between gap-4">
-				<Label for="n-mentions" class="font-normal">Mentions &amp; replies</Label>
-				<Switch id="n-mentions" bind:checked={notif.mentions} />
-			</div>
-			<div class="flex items-center justify-between gap-4">
-				<Label for="n-digest" class="font-normal">Weekly digest</Label>
-				<Switch id="n-digest" bind:checked={notif.digest} />
-			</div>
+		<Card.Content class="flex flex-col gap-3">
+			{#each activity as a (a.title)}
+				<div class="flex items-start gap-3 rounded-xl bg-secondary/60 p-3">
+					<VoiceOrb state="idle" size={22} class="mt-0.5" />
+					<div class="min-w-0 flex-1">
+						<p class="truncate text-sm font-medium">{a.title}</p>
+						<p class="truncate text-xs text-muted-foreground">{a.detail}</p>
+					</div>
+					<span class="text-[0.6875rem] text-muted-foreground tabular-nums">{a.time}</span>
+				</div>
+			{/each}
 		</Card.Content>
 	</Card.Root>
 
@@ -179,7 +196,7 @@
 		</Card.Header>
 		<Card.Content>
 			<RadioGroup.Root bind:value={plan} class="grid gap-2.5">
-				{#each [{ v: 'free', t: 'Free', p: '$0', s: 'For side projects' }, { v: 'pro', t: 'Pro', p: '$9', s: 'For indie makers' }, { v: 'team', t: 'Team', p: '$29', s: 'For studios' }] as o (o.v)}
+				{#each [{ v: 'free', t: 'Free', p: '$0', s: 'Chat, 50 messages a day' }, { v: 'pro', t: 'Pro', p: '$9', s: 'Voice mode and memory' }, { v: 'team', t: 'Team', p: '$29', s: 'Shared agents' }] as o (o.v)}
 					<Label
 						for="plan-{o.v}"
 						class="flex cursor-pointer items-center gap-3 rounded-xl border p-3 font-normal transition-colors {plan ===
@@ -206,29 +223,26 @@
 		</Card.Footer>
 	</Card.Root>
 
-	<!-- Team members -->
+	<!-- Your agents -->
 	<Card.Root class="break-inside-avoid">
 		<Card.Header>
-			<Card.Title>Team members</Card.Title>
-			<Card.Description>Invite collaborators to your tide pool.</Card.Description>
+			<Card.Title>Your agents</Card.Title>
+			<Card.Description>Each one on its own model.</Card.Description>
 		</Card.Header>
 		<Card.Content class="flex flex-col gap-4">
-			{#each team as m (m.email)}
+			{#each agents as m (m.name)}
 				<div class="flex items-center gap-3">
-					<Avatar.Root>
-						<Avatar.Image src="https://i.pravatar.cc/80?img={m.img}" alt={m.name} />
-						<Avatar.Fallback>{m.name.slice(0, 2)}</Avatar.Fallback>
-					</Avatar.Root>
+					<VoiceOrb state="idle" size={32} />
 					<div class="min-w-0 flex-1">
 						<p class="truncate text-sm font-semibold">{m.name}</p>
-						<p class="truncate text-xs text-muted-foreground">{m.email}</p>
+						<p class="truncate text-xs text-muted-foreground">{m.task}</p>
 					</div>
-					<Select.Root type="single" value={m.role}>
-						<Select.Trigger class="h-8 w-24 text-xs">
-							{roles.find((r) => r.value === m.role)?.label}
+					<Select.Root type="single" value={m.model}>
+						<Select.Trigger class="h-8 w-28 text-xs">
+							{models.find((r) => r.value === m.model)?.label}
 						</Select.Trigger>
 						<Select.Content>
-							{#each roles as r (r.value)}
+							{#each models as r (r.value)}
 								<Select.Item value={r.value} label={r.label}>{r.label}</Select.Item>
 							{/each}
 						</Select.Content>
@@ -241,24 +255,24 @@
 	<!-- System status -->
 	<Card.Root class="break-inside-avoid">
 		<Card.Header>
-			<Card.Title>Reservoir</Card.Title>
-			<Card.Description>Live system health.</Card.Description>
+			<Card.Title>Today</Card.Title>
+			<Card.Description>Your assistant's day at a glance.</Card.Description>
 		</Card.Header>
 		<Card.Content class="flex items-center gap-5">
-			<CircularGauge value={72} label="Capacity">
+			<CircularGauge value={72} label="Focus">
 				<Droplets class="size-5 text-primary" />
 			</CircularGauge>
 			<div class="flex flex-1 flex-col gap-3">
 				<div class="flex flex-col gap-1.5">
 					<div class="flex justify-between text-xs">
-						<span class="text-muted-foreground">Flow rate</span><span class="tabular-nums">84%</span
+						<span class="text-muted-foreground">Tasks done</span><span class="tabular-nums">84%</span
 						>
 					</div>
 					<Progress value={84} />
 				</div>
 				<div class="flex flex-col gap-1.5">
 					<div class="flex justify-between text-xs">
-						<span class="text-muted-foreground">Clarity</span><span class="tabular-nums">61%</span>
+						<span class="text-muted-foreground">Memory used</span><span class="tabular-nums">61%</span>
 					</div>
 					<Progress value={61} />
 				</div>
@@ -290,38 +304,51 @@
 		</Card.Content>
 	</Card.Root>
 
-	<!-- Cookie settings -->
+	<!-- AI permissions -->
 	<Card.Root class="break-inside-avoid">
 		<Card.Header>
-			<Card.Title>Cookie settings</Card.Title>
-			<Card.Description>Manage your preferences.</Card.Description>
+			<Card.Title>AI permissions</Card.Title>
+			<Card.Description>You decide what it can do.</Card.Description>
 		</Card.Header>
 		<Card.Content class="flex flex-col gap-4">
 			<div class="flex items-start justify-between gap-4">
 				<div>
-					<p class="text-sm font-medium">Strictly necessary</p>
-					<p class="text-xs text-muted-foreground">Required for the site to work.</p>
+					<p class="text-sm font-medium">Speech recognition</p>
+					<p class="text-xs text-muted-foreground">Talk instead of typing.</p>
 				</div>
-				<Switch checked disabled />
+				<Switch bind:checked={ai.speech} />
 			</div>
 			<div class="flex items-start justify-between gap-4">
 				<div>
-					<p class="text-sm font-medium">Analytics</p>
-					<p class="text-xs text-muted-foreground">Help us improve Mizu.</p>
+					<p class="text-sm font-medium">Long-term memory</p>
+					<p class="text-xs text-muted-foreground">Remembers across sessions.</p>
 				</div>
-				<Switch bind:checked={cookies.analytics} />
+				<Switch bind:checked={ai.memory} />
 			</div>
 			<div class="flex items-start justify-between gap-4">
 				<div>
-					<p class="text-sm font-medium">Marketing</p>
-					<p class="text-xs text-muted-foreground">Personalized content.</p>
+					<p class="text-sm font-medium">Personalization</p>
+					<p class="text-xs text-muted-foreground">Learns your preferences.</p>
 				</div>
-				<Switch bind:checked={cookies.marketing} />
+				<Switch bind:checked={ai.personalization} />
 			</div>
 		</Card.Content>
 		<Card.Footer>
 			<Button variant="secondary" class="w-full">Save preferences</Button>
 		</Card.Footer>
+	</Card.Root>
+
+	<!-- Starter prompts -->
+	<Card.Root class="break-inside-avoid">
+		<Card.Header>
+			<Card.Title>Good morning</Card.Title>
+			<Card.Description>Pick up where you left off.</Card.Description>
+		</Card.Header>
+		<Card.Content>
+			<PromptSuggestions
+				items={['Plan a cozy weekend', 'Summarize my inbox', 'What should I cook tonight?']}
+			/>
+		</Card.Content>
 	</Card.Root>
 
 	<!-- Volume / quick control -->
