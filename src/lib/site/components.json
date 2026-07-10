@@ -150,12 +150,6 @@
 		"description": "An animated ring gauge with a soft glow."
 	},
 	{
-		"slug": "orb",
-		"name": "Orb",
-		"category": "AI",
-		"description": "A soft pastel glow orb for AI moments and hero backdrops."
-	},
-	{
 		"slug": "alert-dialog",
 		"name": "Alert Dialog",
 		"category": "Overlays",
