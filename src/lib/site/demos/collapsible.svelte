@@ -14,9 +14,9 @@
 			<span class="sr-only">Toggle</span>
 		</Collapsible.Trigger>
 	</div>
-	<div class="rounded-lg border border-border px-4 py-3 text-sm">Mountain spring</div>
+	<div class="rounded-lg bg-secondary/60 px-4 py-3 text-sm">Mountain spring</div>
 	<Collapsible.Content class="space-y-2">
-		<div class="rounded-lg border border-border px-4 py-3 text-sm">Glacial melt</div>
-		<div class="rounded-lg border border-border px-4 py-3 text-sm">Artesian well</div>
+		<div class="rounded-lg bg-secondary/60 px-4 py-3 text-sm">Glacial melt</div>
+		<div class="rounded-lg bg-secondary/60 px-4 py-3 text-sm">Artesian well</div>
 	</Collapsible.Content>
 </Collapsible.Root>

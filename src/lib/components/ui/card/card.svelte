@@ -14,7 +14,7 @@
 <div
 	bind:this={ref}
 	class={cn(
-		'flex flex-col rounded-2xl dark:border dark:border-border bg-card text-card-foreground shadow-md',
+		'flex flex-col rounded-2xl bg-card text-card-foreground shadow-md',
 		className
 	)}
 	{...rest}

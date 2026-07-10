@@ -18,7 +18,7 @@
 </script>
 
 <Tooltip.Provider>
-	<div class="h-80 w-full overflow-hidden rounded-2xl border border-border">
+	<div class="h-80 w-full overflow-hidden rounded-2xl">
 		<Sidebar.Provider class="h-full">
 			<Sidebar.Root>
 				<Sidebar.Header>
@@ -82,7 +82,7 @@
 				<div class="flex-1 overflow-auto p-4">
 					<div class="grid grid-cols-2 gap-3">
 						<div
-							class="bg-popover rounded-xl border border-border p-3 shadow-lg"
+							class="bg-popover rounded-xl p-3 shadow-lg"
 						>
 							<p class="text-xs text-muted-foreground">Flow rate</p>
 							<p class="mt-1 font-display text-2xl font-bold tabular-nums text-foreground">
@@ -90,7 +90,7 @@
 							</p>
 						</div>
 						<div
-							class="bg-popover rounded-xl border border-border p-3 shadow-lg"
+							class="bg-popover rounded-xl p-3 shadow-lg"
 						>
 							<p class="text-xs text-muted-foreground">Clarity</p>
 							<p class="mt-1 font-display text-2xl font-bold tabular-nums text-foreground">98%</p>

@@ -4,7 +4,7 @@
 	// The icon tint + bar color all derive from one `--toast` channel per variant,
 	// mirroring how alert.svelte themes itself from `--alert`.
 	export const toastVariants = tv({
-		base: 'group bg-popover pointer-events-auto relative flex w-full items-start gap-3 overflow-hidden rounded-2xl dark:border dark:border-border py-3.5 pl-4 pr-10 shadow-xl',
+		base: 'group bg-popover pointer-events-auto relative flex w-full items-start gap-3 overflow-hidden rounded-2xl py-3.5 pl-4 pr-10 shadow-xl',
 		variants: {
 			variant: {
 				info: '[--toast:var(--info)]',

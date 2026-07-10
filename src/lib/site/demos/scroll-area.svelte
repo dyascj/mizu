@@ -20,7 +20,7 @@
 	];
 </script>
 
-<ScrollArea class="h-56 w-56 rounded-xl border border-border glass">
+<ScrollArea class="h-56 w-56 rounded-xl bg-card shadow-sm">
 	<div class="p-4">
 		<h4 class="mb-3 text-sm font-semibold">Clear waters</h4>
 		<ul class="space-y-2 text-sm text-muted-foreground">

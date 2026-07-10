@@ -126,7 +126,7 @@
 
 <div
 	class={cn(
-		'bg-card overflow-hidden rounded-2xl dark:border dark:border-border',
+		'bg-card overflow-hidden rounded-2xl',
 		className
 	)}
 >

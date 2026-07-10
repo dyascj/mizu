@@ -87,7 +87,9 @@
 }
 
 /* ----------------------------------------------------------------------------
-   Semantic tokens — dark (pure black page, slate surfaces lifted from the ink)
+   Semantic tokens — dark: a ladder of slate lifted from pure black.
+   No strokes; each layer is one tonal rung above the one beneath it
+   (#000 page, #0c1116 card, #141b21 floating panel, #1d262e hover). 
 ---------------------------------------------------------------------------- */
 .dark {
 	--background: #000000;
@@ -96,7 +98,7 @@
 	--card: #0c1116;
 	--card-foreground: #f6f8f9;
 
-	--popover: #0c1116;
+	--popover: #141b21;
 	--popover-foreground: #f6f8f9;
 
 	--muted: #141b21;
@@ -109,7 +111,7 @@
 	--secondary: #141b21;
 	--secondary-foreground: #f6f8f9;
 
-	--accent: #141b21;
+	--accent: #1d262e;
 	--accent-foreground: #f6f8f9;
 
 	--success: #4ade80;

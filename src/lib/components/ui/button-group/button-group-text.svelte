@@ -9,7 +9,7 @@
 
 <span
 	class={cn(
-		'inline-flex h-10 items-center dark:border dark:border-border bg-secondary px-3.5 text-sm font-medium text-secondary-foreground',
+		'inline-flex h-10 items-center bg-secondary px-3.5 text-sm font-medium text-secondary-foreground',
 		className
 	)}
 	{...rest}

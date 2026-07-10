@@ -19,7 +19,7 @@
 	</Tabs.List>
 	<Tabs.Content value="preview">
 		<div
-			class="relative min-h-60 overflow-hidden rounded-2xl bg-card p-8 shadow-sm dark:border dark:border-border"
+			class="relative min-h-60 overflow-hidden rounded-2xl bg-card p-8 shadow-sm"
 			data-no-toc
 		>
 			<!-- a whisper of aura in the corners; the components float above it -->

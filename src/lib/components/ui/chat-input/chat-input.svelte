@@ -45,7 +45,7 @@
 <form
 	onsubmit={submit}
 	class={cn(
-		'flex w-full items-center gap-1 rounded-full bg-card p-1.5 pl-2 shadow-lg dark:border dark:border-border',
+		'flex w-full items-center gap-1 rounded-full bg-card p-1.5 pl-2 shadow-lg',
 		className
 	)}
 >

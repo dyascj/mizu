@@ -21,7 +21,7 @@
 
 <div
 	class={cn(
-		'flex items-center gap-3 rounded-xl border border-border bg-popover px-4 py-2.5 shadow-xs',
+		'flex items-center gap-3 rounded-xl bg-popover px-4 py-2.5 shadow-xs',
 		className
 	)}
 >

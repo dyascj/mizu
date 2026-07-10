@@ -18,7 +18,7 @@
 
 <header class="sticky top-3 z-40 px-3 sm:px-5">
 	<div
-		class="glass mx-auto flex h-14 max-w-6xl items-center gap-4 rounded-full px-4 shadow-md sm:px-5 dark:border"
+		class="glass mx-auto flex h-14 max-w-6xl items-center gap-4 rounded-full px-4 shadow-md sm:px-5"
 	>
 		<!-- Left: mobile menu + logo + nav -->
 		<div class="flex items-center gap-2 sm:gap-6">

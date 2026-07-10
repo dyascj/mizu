@@ -8,7 +8,7 @@
 </script>
 
 <div class="w-full max-w-md">
-	<Command.Root class="bg-popover border border-border shadow-lg">
+	<Command.Root class="bg-popover shadow-lg">
 		<Command.Input placeholder="Search sources..." />
 		<Command.List>
 			<Command.Empty>No results found.</Command.Empty>
