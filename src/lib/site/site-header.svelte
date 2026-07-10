@@ -12,6 +12,7 @@
 	const navLinks = [
 		{ href: '/docs', label: 'Docs' },
 		{ href: '/docs/components', label: 'Components' },
+		{ href: '/blocks', label: 'Blocks' },
 		{ href: '/docs/theming', label: 'Themes' }
 	];
 </script>

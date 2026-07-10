@@ -17,7 +17,8 @@
 		{ href: '/docs', label: 'Introduction' },
 		{ href: '/docs/installation', label: 'Installation' },
 		{ href: '/docs/theming', label: 'Theming' },
-		{ href: '/docs/components', label: 'Components' }
+		{ href: '/docs/components', label: 'Components' },
+		{ href: '/blocks', label: 'Blocks' }
 	];
 	const groups = componentsByCategory();
 

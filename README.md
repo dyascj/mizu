@@ -12,7 +12,7 @@ Clean, airy components for AI products and the designers building them. Chat, vo
 	<img alt="Svelte 5" src="https://img.shields.io/badge/Svelte-5-FF3E00?logo=svelte&logoColor=white" />
 	<img alt="Tailwind CSS v4" src="https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white" />
 	<img alt="bits-ui" src="https://img.shields.io/badge/bits--ui-headless-0EA5E9" />
-	<img alt="74 components" src="https://img.shields.io/badge/components-74-00B2FF" />
+	<img alt="77 components" src="https://img.shields.io/badge/components-77-00B2FF" />
 	<img alt="MIT" src="https://img.shields.io/badge/license-MIT-22C55E" />
 </p>
 
@@ -24,7 +24,7 @@ Mizu is built for AI products: chat, voice, reasoning, and streaming components 
 
 ## Highlights
 
-- **74 components**, from buttons and dialogs to streaming text, visible reasoning, tool calls, a voice orb, and a drifting pastel aurora.
+- **77 components**, from buttons and dialogs to streaming text, visible reasoning, tool calls, a voice orb, and a drifting pastel aurora.
 - **Recolor from one token.** The accent, glow, and focus ring all derive from `--primary`. Change it once and the whole system follows.
 - **Quiet by default.** Hierarchy comes from space, hairlines, and type. The accent and the glow are reserved for what matters.
 - **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the quiet skin.
@@ -115,7 +115,7 @@ Everything is driven by CSS variables: an airy light mode and a pure-black dark 
 | Menus      | Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command                                                                                      |
 | Navigation | Tabs, Accordion, Collapsible, Breadcrumb, Pagination                                                                                                |
 | Feedback   | Progress, Skeleton, Spinner, Circular Gauge                                                                                                         |
-| AI         | Aurora, Chat Input, Chat Bubble, Streaming Text, Reasoning, Tool Call, Sources, Message Actions, Voice Orb, Waveform, Prompt Suggestions, Thinking                                                                                                                                        |
+| AI         | Aurora, Chat Input, Chat Bubble, Streaming Text, Reasoning, Tool Call, Sources, Message Actions, Plan, Nudge, Aura Tile, Voice Orb, Waveform, Prompt Suggestions, Thinking |
 
 ## Develop
 

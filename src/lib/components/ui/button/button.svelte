@@ -11,6 +11,7 @@
 				success: 'bg-success text-success-foreground shadow-sm hover:opacity-90',
 				outline: 'border border-input bg-card text-foreground shadow-xs hover:bg-secondary',
 				ghost: 'bg-transparent text-foreground hover:bg-secondary',
+				ai: 'aurora text-foreground shadow-sm transition-[filter] hover:brightness-[1.03] dark:text-foreground',
 				link: 'bg-transparent text-primary underline-offset-4 hover:underline'
 			},
 			size: {

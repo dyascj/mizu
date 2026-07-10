@@ -430,6 +430,24 @@
       "description": "Copy, regenerate, and feedback beneath a reply."
     },
     {
+      "name": "plan",
+      "type": "registry:ui",
+      "title": "Plan",
+      "description": "The agent's step list: shimmer while working, checks as it lands."
+    },
+    {
+      "name": "nudge",
+      "type": "registry:ui",
+      "title": "Nudge",
+      "description": "A proactive suggestion from the assistant, easy to act on or dismiss."
+    },
+    {
+      "name": "aura-tile",
+      "type": "registry:ui",
+      "title": "Aura Tile",
+      "description": "Seeded pastel cover art for anything the AI generates."
+    },
+    {
       "name": "voice-orb",
       "type": "registry:ui",
       "title": "Voice Orb",
