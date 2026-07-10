@@ -75,10 +75,10 @@
 				<h3 class="mt-6 mb-3 font-mono text-base font-semibold text-foreground">{part.title}</h3>
 			{/if}
 			{#if part.props.length}
-				<div class="overflow-x-auto rounded-2xl border border-[color:var(--glass-border)] glass">
+				<div class="overflow-x-auto rounded-2xl border border-border glass">
 					<table class="w-full border-collapse text-left text-sm">
 						<thead>
-							<tr class="border-b border-[color:var(--glass-border)] text-muted-foreground">
+							<tr class="border-b border-border text-muted-foreground">
 								<th class="px-4 py-2.5 font-medium">Prop</th>
 								<th class="px-4 py-2.5 font-medium">Type</th>
 								<th class="px-4 py-2.5 font-medium">Default</th>
@@ -86,7 +86,7 @@
 						</thead>
 						<tbody>
 							{#each part.props as p (p.name)}
-								<tr class="border-b border-[color:var(--glass-border)] last:border-0 align-top">
+								<tr class="border-b border-border last:border-0 align-top">
 									<td class="px-4 py-2.5 whitespace-nowrap">
 										<code class="font-mono text-foreground">{p.name}</code>
 										{#if !p.optional}<span
@@ -131,7 +131,7 @@
 		</p>
 		<div class="flex flex-col gap-2">
 			{#each source as f (f.file)}
-				<details class="group rounded-2xl border border-[color:var(--glass-border)] glass">
+				<details class="group rounded-2xl border border-border glass">
 					<summary
 						class="flex cursor-pointer items-center justify-between px-4 py-3 font-mono text-sm text-foreground select-none"
 					>

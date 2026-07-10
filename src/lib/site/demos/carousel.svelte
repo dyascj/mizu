@@ -15,7 +15,7 @@
 		{#each drops as drop, i (drop.label)}
 			<Carousel.Item>
 				<div
-					class="glass-strong gloss relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-2xl border border-[color:var(--glass-border)] shadow-glass"
+					class="bg-popover relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-2xl border border-border shadow-lg"
 				>
 					<div class="relative z-10 flex flex-col items-center gap-1">
 						<span class="font-display text-5xl font-bold tabular-nums text-primary">{i + 1}</span>

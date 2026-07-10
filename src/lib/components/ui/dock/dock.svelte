@@ -55,7 +55,7 @@
 	{onpointermove}
 	{onpointerleave}
 	class={cn(
-		'glass-strong gloss flex items-end gap-2 rounded-2xl border border-[color:var(--glass-border)] px-3 pt-2 pb-2.5 shadow-glass-lg',
+		'bg-popover flex items-end gap-2 rounded-2xl border border-border px-3 pt-2 pb-2.5 shadow-xl',
 		className
 	)}
 	{...rest}

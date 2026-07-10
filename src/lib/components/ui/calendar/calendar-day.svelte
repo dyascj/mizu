@@ -17,8 +17,8 @@
 		'hover:bg-accent',
 		// today: aqua ring
 		'data-[today]:ring-1 data-[today]:ring-[color:var(--primary)]',
-		// selected: aqua gel (the gloss sheen sits in ::before, day number lifted above)
-		'data-[selected]:gradient-primary data-[selected]:gloss data-[selected]:text-primary-foreground data-[selected]:shadow-aqua data-[selected]:hover:bg-transparent data-[selected]:ring-0',
+		// selected: aqua gel (the sheen sits in ::before, day number lifted above)
+		'data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:shadow-sm data-[selected]:hover:bg-transparent data-[selected]:ring-0',
 		// outside month
 		'data-[outside-month]:pointer-events-none data-[outside-month]:text-muted-foreground/45',
 		// unavailable + disabled

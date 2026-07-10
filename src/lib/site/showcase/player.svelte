@@ -32,7 +32,7 @@
 <div class="grid gap-4 lg:grid-cols-[1.1fr_1fr]">
 	<!-- Now playing -->
 	<section
-		class="relative rounded-2xl border border-[color:var(--glass-border)] glass-strong gloss p-5"
+		class="relative rounded-2xl border border-border bg-popover p-5"
 	>
 		<div class="flex items-center justify-between">
 			<p class="font-display text-xs font-bold tracking-[0.2em] text-muted-foreground uppercase">
@@ -43,7 +43,7 @@
 
 		<div class="mt-4 flex items-center gap-4">
 			<div
-				class="relative grid size-20 shrink-0 place-items-center overflow-hidden rounded-2xl gradient-primary gloss shadow-aqua"
+				class="relative grid size-20 shrink-0 place-items-center overflow-hidden rounded-2xl bg-primary shadow-sm"
 			>
 				<MusicNotes weight="fill" class="size-8 text-primary-foreground/90" />
 			</div>
@@ -102,7 +102,7 @@
 
 	<!-- EQ + playlist -->
 	<div class="flex flex-col gap-4">
-		<section class="rounded-2xl border border-[color:var(--glass-border)] glass p-4">
+		<section class="rounded-2xl border border-border glass p-4">
 			<h4 class="mb-3 text-sm font-bold">Equalizer</h4>
 			<div class="flex items-end justify-between gap-2">
 				{#each eq as _, i (i)}
@@ -124,7 +124,7 @@
 			</div>
 		</section>
 
-		<section class="rounded-2xl border border-[color:var(--glass-border)] glass p-4">
+		<section class="rounded-2xl border border-border glass p-4">
 			<h4 class="mb-3 text-sm font-bold">Up next</h4>
 			<div class="flex flex-col gap-1">
 				{#each playlist as t, i (i)}

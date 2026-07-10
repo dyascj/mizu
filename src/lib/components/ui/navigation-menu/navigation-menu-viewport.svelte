@@ -13,7 +13,7 @@
 	<NavigationMenuPrimitive.Viewport
 		bind:ref
 		class={cn(
-			'glass-strong relative mt-2 h-[var(--bits-navigation-menu-viewport-height)] w-full origin-top overflow-hidden rounded-xl border border-[color:var(--glass-border)] text-popover-foreground shadow-glass transition-[width,height] duration-200 ease-out md:w-[var(--bits-navigation-menu-viewport-width)]',
+			'bg-popover relative mt-2 h-[var(--bits-navigation-menu-viewport-height)] w-full origin-top overflow-hidden rounded-xl border border-border text-popover-foreground shadow-lg transition-[width,height] duration-200 ease-out md:w-[var(--bits-navigation-menu-viewport-width)]',
 			'data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
 			className
 		)}

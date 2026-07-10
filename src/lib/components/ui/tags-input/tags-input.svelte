@@ -70,7 +70,7 @@
 
 <div
 	class={cn(
-		'flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-xl border border-input bg-card/70 px-2 py-1.5 text-sm shadow-pressed outline-none transition-[box-shadow,border-color] duration-150 focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/35',
+		'flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-xl border border-input bg-card/70 px-2 py-1.5 text-sm outline-none transition-[box-shadow,border-color] duration-150 focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/35',
 		disabled && 'cursor-not-allowed opacity-50',
 		className
 	)}
@@ -82,7 +82,7 @@
 	<ul class="contents">
 		{#each value as tag, i (tag + i)}
 			<li
-				class="gradient-primary gloss relative inline-flex items-center gap-1 overflow-hidden rounded-full border border-transparent py-0.5 pr-1 pl-2.5 text-xs font-semibold text-primary-foreground shadow-bevel"
+				class="bg-primary relative inline-flex items-center gap-1 overflow-hidden rounded-full border border-transparent py-0.5 pr-1 pl-2.5 text-xs font-semibold text-primary-foreground shadow-xs"
 			>
 				<span class="relative z-10">{tag}</span>
 				<button

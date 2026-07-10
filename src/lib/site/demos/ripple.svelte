@@ -6,14 +6,14 @@
 	<!-- The action drops onto any surface — here a glass tile and an aqua one. -->
 	<button
 		use:ripple
-		class="glass gloss flex h-32 w-44 items-center justify-center rounded-2xl border border-[color:var(--glass-border)] text-sm font-semibold text-foreground shadow-glass"
+		class="bg-popover flex h-32 w-44 items-center justify-center rounded-2xl border border-border text-sm font-semibold text-foreground shadow-lg"
 	>
 		<span class="relative z-10">Press anywhere</span>
 	</button>
 
 	<button
 		use:ripple={{ color: 'rgba(255,255,255,0.55)' }}
-		class="gradient-primary gloss flex h-32 w-44 items-center justify-center rounded-2xl text-sm font-semibold text-primary-foreground shadow-aqua"
+		class="bg-primary flex h-32 w-44 items-center justify-center rounded-2xl text-sm font-semibold text-primary-foreground shadow-sm"
 	>
 		<span class="relative z-10">Aqua surface</span>
 	</button>

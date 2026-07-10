@@ -16,7 +16,7 @@
 	{page}
 	class={cn(
 		'relative inline-flex size-9 shrink-0 select-none items-center justify-center overflow-hidden rounded-lg border border-input bg-transparent text-sm font-semibold text-foreground outline-none transition-[background-color,scale,box-shadow] duration-150 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96]',
-		'data-[selected]:gradient-primary data-[selected]:gloss data-[selected]:border-transparent data-[selected]:text-primary-foreground data-[selected]:shadow-aqua data-[selected]:hover:gradient-primary-hover',
+		'data-[selected]:bg-primary data-[selected]:border-transparent data-[selected]:text-primary-foreground data-[selected]:shadow-sm data-[selected]:hover:bg-primary-hover',
 		className
 	)}
 	{...restProps}

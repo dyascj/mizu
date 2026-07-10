@@ -21,14 +21,14 @@
 
 <div
 	class={cn(
-		'group relative overflow-hidden rounded-xl border border-[color:var(--glass-border)] glass-strong',
+		'group relative overflow-hidden rounded-xl border border-border bg-popover',
 		className
 	)}
 >
 	<button
 		onclick={copy}
 		aria-label="Copy code"
-		class="absolute top-2.5 right-2.5 z-10 inline-flex size-8 items-center justify-center rounded-lg border border-border bg-card/70 text-muted-foreground shadow-bevel transition-[scale,color] duration-150 hover:text-foreground active:scale-[0.96]"
+		class="absolute top-2.5 right-2.5 z-10 inline-flex size-8 items-center justify-center rounded-lg border border-border bg-card/70 text-muted-foreground shadow-xs transition-[scale,color] duration-150 hover:text-foreground active:scale-[0.96]"
 	>
 		{#if copied}
 			<Check class="size-4 text-[color:var(--success)]" />

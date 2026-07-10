@@ -18,6 +18,6 @@
 	{...restProps}
 >
 	<div
-		class="relative top-[60%] size-2 rotate-45 rounded-tl-sm border border-[color:var(--glass-border)] glass-strong shadow-glass"
+		class="relative top-[60%] size-2 rotate-45 rounded-tl-sm border border-border bg-popover shadow-lg"
 	></div>
 </NavigationMenuPrimitive.Indicator>

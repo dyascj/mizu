@@ -32,7 +32,7 @@
 <div class="grid gap-4 lg:grid-cols-[1fr_1.1fr]">
 	<!-- Status + sonar -->
 	<section
-		class="relative rounded-2xl border border-[color:var(--glass-border)] glass-strong gloss p-5"
+		class="relative rounded-2xl border border-border bg-popover p-5"
 	>
 		<div class="flex items-center justify-between">
 			<p class="font-display text-xs font-bold tracking-[0.2em] text-muted-foreground uppercase">
@@ -58,17 +58,17 @@
 
 		<div class="mt-4 flex justify-center">
 			<div
-				class="sonar relative grid size-44 place-items-center rounded-full border border-[color:var(--glass-border)] bg-[color:var(--card)]/40"
+				class="sonar relative grid size-44 place-items-center rounded-full border border-border bg-[color:var(--card)]/40"
 			>
-				<div class="absolute size-2/3 rounded-full border border-[color:var(--glass-border)]"></div>
-				<div class="absolute size-1/3 rounded-full border border-[color:var(--glass-border)]"></div>
+				<div class="absolute size-2/3 rounded-full border border-border"></div>
+				<div class="absolute size-1/3 rounded-full border border-border"></div>
 				<div class="absolute h-px w-full bg-[color:var(--glass-border)]"></div>
 				<div class="absolute h-full w-px bg-[color:var(--glass-border)]"></div>
 				{#if sonar}
 					<div class="sonar-sweep absolute inset-0 rounded-full"></div>
 					{#each blips as b, i (i)}
 						<span
-							class="sonar-blip absolute size-1.5 rounded-full bg-[color:var(--primary)] shadow-aqua"
+							class="sonar-blip absolute size-1.5 rounded-full bg-[color:var(--primary)] shadow-sm"
 							style="left: {b.x}%; top: {b.y}%; animation-delay: {i * 0.6}s;"
 						></span>
 					{/each}
@@ -88,7 +88,7 @@
 
 	<!-- Gauges + systems + controls -->
 	<div class="flex flex-col gap-4">
-		<section class="rounded-2xl border border-[color:var(--glass-border)] glass p-4">
+		<section class="rounded-2xl border border-border glass p-4">
 			<div class="flex items-center justify-around">
 				<CircularGauge value={72} size={92} label="O₂" />
 				<CircularGauge value={88} size={92} label="Power" />
@@ -111,7 +111,7 @@
 		</section>
 
 		<section
-			class="grid grid-cols-2 gap-2.5 rounded-2xl border border-[color:var(--glass-border)] glass p-4"
+			class="grid grid-cols-2 gap-2.5 rounded-2xl border border-border glass p-4"
 		>
 			<label class="flex items-center justify-between gap-2 text-sm font-semibold">
 				<span class="flex items-center gap-2"><Lightbulb class="size-4" /> Lights</span>

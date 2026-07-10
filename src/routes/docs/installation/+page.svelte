@@ -73,7 +73,7 @@
 		<a
 			href="/docs/theming"
 			class="font-medium text-[color:var(--primary)] underline-offset-4 hover:underline">Theming</a
-		> page). It defines the palette, glass and gloss utilities, gradients, elevation, and fonts.
+		> page). It defines the palette, glass and utilities, gradients, elevation, and fonts.
 	</p>
 
 	<h2 class="mt-10 mb-3 font-display text-xl font-bold">4. Add components</h2>

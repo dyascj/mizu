@@ -39,7 +39,7 @@
 			// Label text: hidden + faded when collapsed to the icon rail.
 			'[&>span]:truncate [&>span]:transition-[opacity] [&>span]:duration-200 group-data-[state=collapsed]/sidebar:[&>span]:pointer-events-none group-data-[state=collapsed]/sidebar:[&>span]:opacity-0',
 			isActive &&
-				'bg-[color:color-mix(in_oklab,var(--primary)_14%,transparent)] text-foreground shadow-bevel before:absolute before:inset-y-2.5 before:left-0.5 before:w-1 before:rounded-full before:bg-primary',
+				'bg-[color:color-mix(in_oklab,var(--primary)_14%,transparent)] text-foreground shadow-xs before:absolute before:inset-y-2.5 before:left-0.5 before:w-1 before:rounded-full before:bg-primary',
 			className
 		)
 	);

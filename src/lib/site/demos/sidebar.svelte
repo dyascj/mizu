@@ -24,7 +24,7 @@
 				<Sidebar.Header>
 					<div class="flex items-center gap-2 px-1.5 py-1">
 						<span
-							class="gradient-primary gloss flex size-8 shrink-0 items-center justify-center rounded-xl text-primary-foreground shadow-aqua"
+							class="bg-primary flex size-8 shrink-0 items-center justify-center rounded-xl text-primary-foreground shadow-sm"
 						>
 							<DropletIcon class="size-4" />
 						</span>
@@ -82,7 +82,7 @@
 				<div class="flex-1 overflow-auto p-4">
 					<div class="grid grid-cols-2 gap-3">
 						<div
-							class="glass gloss rounded-xl border border-[color:var(--glass-border)] p-3 shadow-glass"
+							class="bg-popover rounded-xl border border-border p-3 shadow-lg"
 						>
 							<p class="text-xs text-muted-foreground">Flow rate</p>
 							<p class="mt-1 font-display text-2xl font-bold tabular-nums text-foreground">
@@ -90,7 +90,7 @@
 							</p>
 						</div>
 						<div
-							class="glass gloss rounded-xl border border-[color:var(--glass-border)] p-3 shadow-glass"
+							class="bg-popover rounded-xl border border-border p-3 shadow-lg"
 						>
 							<p class="text-xs text-muted-foreground">Clarity</p>
 							<p class="mt-1 font-display text-2xl font-bold tabular-nums text-foreground">98%</p>

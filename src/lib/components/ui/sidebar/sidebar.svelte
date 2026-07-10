@@ -28,7 +28,7 @@
 
 	const sidebar = getSidebar();
 
-	const surface = 'glass border-r border-[color:var(--glass-border)] shadow-glass text-foreground';
+	const surface = 'glass border-r border-border shadow-lg text-foreground';
 </script>
 
 {#if sidebar.isMobile}

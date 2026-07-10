@@ -21,7 +21,7 @@
 		],
 		[
 			'Restraint over decoration',
-			'The gloss does the talking. Stop layering effects before the edges turn to mud.'
+			'The does the talking. Stop layering effects before the edges turn to mud.'
 		]
 	];
 
@@ -34,7 +34,7 @@
 	];
 	const dontList = [
 		'Hard-code colors that ignore the theme',
-		'Nest glass inside glass, or gloss on gloss',
+		'Nest glass inside glass, or on ',
 		'Remove focus rings to make it look cleaner',
 		'Ship an icon-only control with no accessible name',
 		'Animate without honoring prefers-reduced-motion'
@@ -102,7 +102,7 @@
 			<code class="font-mono text-[0.85em]">Dialog.Trigger</code>, and
 			<code class="font-mono text-[0.85em]">Dialog.Content</code>.
 		</li>
-		<li>Prefer tokens and utilities (bg-primary, shadow-aqua, rounded-lg) over raw values.</li>
+		<li>Prefer tokens and utilities (bg-primary, shadow-sm, rounded-lg) over raw values.</li>
 		<li>Delete the components you do not use. Nothing is loaded that you did not add.</li>
 	</ul>
 
@@ -112,7 +112,7 @@
 			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">glass</code
 		>
 		for frosted translucency and
-		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">gloss</code> for the wet
+		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"></code> for the wet
 		top sheen (it needs a
 		<code class="font-mono text-[0.85em]">relative</code>,
 		<code class="font-mono text-[0.85em]">overflow-hidden</code> parent). Two rules keep them looking

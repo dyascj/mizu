@@ -11,34 +11,34 @@
 	--card: #ffffff;
 	--muted: #d8e7f1;
 	--muted-foreground: #587688;
-	--primary: #01b2ff;          /* aqua hero */
+	--primary: #01b2ff; /* aqua hero */
 	--primary-foreground: #ffffff;
 	--border: #c3d9e7;
 	--ring: #38bdf8;
 
-	/* Glass + gloss materials */
+	/* Glass + materials */
 	--glass: rgba(255, 255, 255, 0.6);
 	--glass-border: rgba(255, 255, 255, 0.7);
 	--sheen: rgba(255, 255, 255, 0.55);
 
 	/* Glossy gradients + elevation (abbreviated) */
-	--gradient-primary: linear-gradient(180deg, #5cd5ff, #01b2ff 48%, #0090d9);
+	--bg-primary: linear-gradient(180deg, #5cd5ff, #01b2ff 48%, #0090d9);
 	--elevation-aqua: inset 0 1px 0 rgba(255,255,255,.5), 0 4px 12px rgba(1,178,255,.35);
 }
 
 .dark {
-	--background: #061520;       /* deep water */
+	--background: #061520; /* deep water */
 	--foreground: #e3f1fa;
 	--primary: #29c7ff;
 	/* …each token gets a dark variant… */
 }`;
 
 	const utilities = [
-		['glass / glass-strong', 'Frosted translucent surface + backdrop blur.'],
-		['gloss', 'The wet top sheen (a ::before highlight). Needs relative + overflow-hidden.'],
-		['gradient-primary / -surface / …', 'Glossy 180° gradients for fills.'],
+		['glass / bg-popover', 'Frosted translucent surface + backdrop blur.'],
+		['', 'The wet top sheen (a ::before highlight). Needs relative + overflow-hidden.'],
+		['bg-primary / -surface / …', 'Glossy 180° gradients for fills.'],
 		[
-			'shadow-aqua / -glass / -bevel / -pressed',
+			'shadow-sm / -glass / -bevel / -pressed',
 			'Layered elevation, from cyan glow to recessed wells.'
 		]
 	];
@@ -77,7 +77,7 @@
 		<code class="font-mono text-[0.85em]">mizu-950</code>. The hero is
 		<code class="font-mono text-[0.85em]">mizu-500</code>. Swap these to re-tint the whole system.
 	</p>
-	<div class="mb-2 grid grid-cols-11 overflow-hidden rounded-xl border border-border shadow-bevel">
+	<div class="mb-2 grid grid-cols-11 overflow-hidden rounded-xl border border-border shadow-xs">
 		{#each ramp as step}
 			<div class="h-12" style={`background-color: var(--color-mizu-${step})`}></div>
 		{/each}

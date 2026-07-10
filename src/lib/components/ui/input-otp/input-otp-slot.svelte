@@ -14,7 +14,7 @@
 	bind:ref
 	{cell}
 	class={cn(
-		'relative flex size-11 items-center justify-center rounded-xl border border-input bg-card/70 text-lg text-foreground shadow-pressed outline-none transition-[border-color,box-shadow] duration-150 data-[active=true]:border-ring data-[active=true]:ring-2 data-[active=true]:ring-ring/35',
+		'relative flex size-11 items-center justify-center rounded-xl border border-input bg-card/70 text-lg text-foreground outline-none transition-[border-color,box-shadow] duration-150 data-[active=true]:border-ring data-[active=true]:ring-2 data-[active=true]:ring-ring/35',
 		className
 	)}
 	{...restProps}

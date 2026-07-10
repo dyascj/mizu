@@ -86,7 +86,7 @@
 		<Card.Content class="flex flex-col gap-4 pt-6">
 			<div class="flex items-center gap-3">
 				<div
-					class="grid size-14 shrink-0 place-items-center rounded-2xl gradient-primary gloss text-2xl shadow-aqua"
+					class="grid size-14 shrink-0 place-items-center rounded-2xl bg-primary text-2xl shadow-sm"
 				>
 					🌊
 				</div>
@@ -243,7 +243,7 @@
 	<Card.Root class="break-inside-avoid">
 		<Card.Content class="flex flex-col gap-3 pt-6">
 			<div
-				class="flex items-center gap-2 rounded-xl border border-input bg-card/70 px-3 py-2 shadow-pressed"
+				class="flex items-center gap-2 rounded-xl border border-input bg-card/70 px-3 py-2 "
 			>
 				<Search class="size-4 text-muted-foreground" />
 				<span class="flex-1 text-sm text-muted-foreground">Type a command…</span>

@@ -31,7 +31,7 @@
 						aria-label={c.name}
 					>
 						<div
-							class="relative flex h-40 items-center justify-center overflow-hidden rounded-2xl border border-[color:var(--glass-border)] glass p-5 transition-[transform,box-shadow] duration-200 group-hover:-translate-y-0.5 group-hover:shadow-glass group-focus-visible:ring-2 group-focus-visible:ring-ring"
+							class="relative flex h-40 items-center justify-center overflow-hidden rounded-2xl border border-border glass p-5 transition-[transform,box-shadow] duration-200 group-hover:-translate-y-0.5 group-hover:shadow-lg group-focus-visible:ring-2 group-focus-visible:ring-ring"
 							data-no-toc
 						>
 							<div class="pointer-events-none scale-90">

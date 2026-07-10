@@ -8,7 +8,7 @@
 
 <ContextMenu.Root>
 	<ContextMenu.Trigger
-		class="flex h-36 w-72 select-none items-center justify-center rounded-xl glass border border-dashed border-[color:var(--glass-border)] text-sm text-muted-foreground"
+		class="flex h-36 w-72 select-none items-center justify-center rounded-xl glass border border-dashed border-border text-sm text-muted-foreground"
 	>
 		Right-click the pool
 	</ContextMenu.Trigger>

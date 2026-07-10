@@ -15,7 +15,7 @@
 	bind:ref
 	bind:loadingStatus
 	class={cn(
-		'relative flex size-10 shrink-0 overflow-hidden rounded-full border border-[color:var(--glass-border)] shadow-bevel',
+		'relative flex size-10 shrink-0 overflow-hidden rounded-full border border-border shadow-xs',
 		className
 	)}
 	{...restProps}

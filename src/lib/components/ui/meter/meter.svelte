@@ -58,10 +58,10 @@
 
 	const fillGradient = $derived(
 		{
-			success: 'gradient-success',
+			success: 'bg-success',
 			warning: 'bg-warning',
-			destructive: 'gradient-destructive',
-			primary: 'gradient-primary'
+			destructive: 'bg-destructive',
+			primary: 'bg-primary'
 		}[zone]
 	);
 
@@ -86,11 +86,11 @@
 		aria-valuemin={min}
 		aria-valuemax={max}
 		aria-label={label}
-		class="relative h-2.5 w-full overflow-hidden rounded-full bg-secondary shadow-pressed"
+		class="relative h-2.5 w-full overflow-hidden rounded-full bg-secondary "
 	>
 		<div
 			class={cn(
-				'gloss relative h-full overflow-hidden rounded-full transition-[width] duration-300 ease-out',
+				' relative h-full overflow-hidden rounded-full transition-[width] duration-300 ease-out',
 				fillGradient
 			)}
 			style="width: {pct}%"

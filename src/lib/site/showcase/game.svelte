@@ -45,7 +45,7 @@
 	<div class="grid gap-4 lg:grid-cols-[1.15fr_1fr]">
 		<!-- Hero -->
 		<section
-			class="relative rounded-2xl border border-[color:var(--glass-border)] glass-strong gloss p-5"
+			class="relative rounded-2xl border border-border bg-popover p-5"
 		>
 			<div class="flex items-center justify-between">
 				<p class="font-display text-xs font-bold tracking-[0.2em] text-muted-foreground uppercase">
@@ -61,7 +61,7 @@
 						<Avatar.Fallback>MZ</Avatar.Fallback>
 					</Avatar.Root>
 					<span
-						class="absolute -right-1 -bottom-1 rounded-full bg-[color:var(--primary)] px-1.5 py-0.5 font-mono text-[0.6rem] font-bold text-primary-foreground shadow-aqua"
+						class="absolute -right-1 -bottom-1 rounded-full bg-[color:var(--primary)] px-1.5 py-0.5 font-mono text-[0.6rem] font-bold text-primary-foreground shadow-sm"
 						>27</span
 					>
 				</div>
@@ -117,7 +117,7 @@
 
 		<!-- Party · inventory · quests -->
 		<div class="flex flex-col gap-4">
-			<section class="rounded-2xl border border-[color:var(--glass-border)] glass p-4">
+			<section class="rounded-2xl border border-border glass p-4">
 				<div class="mb-3 flex items-center justify-between">
 					<h4 class="text-sm font-bold">Party</h4>
 					<CircularGauge value={68} size={44} strokeWidth={6} label="XP" showValue={false} />
@@ -141,13 +141,13 @@
 				</div>
 			</section>
 
-			<section class="rounded-2xl border border-[color:var(--glass-border)] glass p-4">
+			<section class="rounded-2xl border border-border glass p-4">
 				<h4 class="mb-3 text-sm font-bold">Inventory</h4>
 				<div class="grid grid-cols-4 gap-2">
 					{#each inventory as it (it.name)}
 						<Tooltip.Root>
 							<Tooltip.Trigger
-								class="relative flex aspect-square items-center justify-center rounded-xl border border-border bg-secondary/40 shadow-bevel transition-[scale] duration-150 hover:bg-secondary active:scale-[0.95]"
+								class="relative flex aspect-square items-center justify-center rounded-xl border border-border bg-secondary/40 shadow-xs transition-[scale] duration-150 hover:bg-secondary active:scale-[0.95]"
 							>
 								{@const Icon = it.icon}
 								<Icon
@@ -169,7 +169,7 @@
 				</div>
 			</section>
 
-			<section class="rounded-2xl border border-[color:var(--glass-border)] glass p-4">
+			<section class="rounded-2xl border border-border glass p-4">
 				<h4 class="mb-3 flex items-center gap-2 text-sm font-bold">
 					<Scroll class="size-4 text-[color:var(--primary)]" /> Quest log
 				</h4>

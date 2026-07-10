@@ -17,11 +17,11 @@
 	bind:ref
 	{value}
 	{max}
-	class={cn('relative h-3 w-full overflow-hidden rounded-full bg-muted shadow-pressed', className)}
+	class={cn('relative h-3 w-full overflow-hidden rounded-full bg-muted ', className)}
 	{...restProps}
 >
 	<div
-		class="gradient-primary gloss relative h-full overflow-hidden rounded-full transition-[width] duration-300 ease-out"
+		class="bg-primary relative h-full overflow-hidden rounded-full transition-[width] duration-300 ease-out"
 		style="width: {pct}%"
 	></div>
 </ProgressPrimitive.Root>

@@ -33,16 +33,16 @@
 >
 	{#snippet children({ thumbItems })}
 		<span
-			class="relative h-2 w-full grow overflow-hidden rounded-full bg-muted shadow-pressed data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2"
+			class="relative h-2 w-full grow overflow-hidden rounded-full bg-muted data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2"
 		>
 			<SliderPrimitive.Range
-				class="absolute h-full gradient-primary data-[orientation=vertical]:h-auto data-[orientation=vertical]:w-full"
+				class="absolute h-full bg-primary data-[orientation=vertical]:h-auto data-[orientation=vertical]:w-full"
 			/>
 		</span>
 		{#each thumbItems as { index } (index)}
 			<SliderPrimitive.Thumb
 				{index}
-				class="block size-5 shrink-0 rounded-full border border-mizu-200 bg-white shadow-bevel outline-none transition-[scale] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none"
+				class="block size-5 shrink-0 rounded-full border border-mizu-200 bg-white shadow-xs outline-none transition-[scale] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none"
 			/>
 		{/each}
 	{/snippet}

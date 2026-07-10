@@ -126,7 +126,7 @@
 
 <div
 	class={cn(
-		'glass overflow-hidden rounded-2xl border border-[color:var(--glass-border)]',
+		'glass overflow-hidden rounded-2xl border border-border',
 		className
 	)}
 >
@@ -218,7 +218,7 @@
 	</Table.Root>
 
 	<div
-		class="flex items-center justify-between border-t border-[color:var(--glass-border)] px-4 py-2.5 text-sm text-muted-foreground"
+		class="flex items-center justify-between border-t border-border px-4 py-2.5 text-sm text-muted-foreground"
 	>
 		<span class="tabular-nums">
 			{#if selectable && selected.length > 0}

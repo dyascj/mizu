@@ -5,7 +5,7 @@
 		base: 'relative inline-flex items-center gap-1 overflow-hidden rounded-full border px-2.5 py-0.5 text-xs font-semibold whitespace-nowrap',
 		variants: {
 			variant: {
-				primary: 'gradient-primary gloss border-transparent text-primary-foreground shadow-bevel',
+				primary: 'bg-primary border-transparent text-primary-foreground shadow-xs',
 				secondary: 'border-border bg-secondary text-secondary-foreground',
 				success: 'border-transparent bg-success/15 text-[color:var(--success)]',
 				warning: 'border-transparent bg-warning/15 text-[color:var(--warning)]',

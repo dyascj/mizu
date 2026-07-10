@@ -14,10 +14,10 @@
 <div
 	bind:this={ref}
 	class={cn(
-		'glass-strong gloss relative overflow-hidden rounded-2xl border border-[color:var(--glass-border)] text-card-foreground shadow-glass',
+		'flex flex-col rounded-2xl border border-border bg-card text-card-foreground shadow-sm',
 		className
 	)}
 	{...rest}
 >
-	<div class="relative z-10 flex flex-col">{@render children?.()}</div>
+	{@render children?.()}
 </div>

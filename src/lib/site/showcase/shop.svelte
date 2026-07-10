@@ -46,7 +46,7 @@
 <div class="grid gap-4 lg:grid-cols-[1.2fr_1fr]">
 	<!-- Menu -->
 	<section
-		class="relative rounded-2xl border border-[color:var(--glass-border)] glass-strong gloss p-5"
+		class="relative rounded-2xl border border-border bg-popover p-5"
 	>
 		<div class="flex items-center justify-between">
 			<p
@@ -61,7 +61,7 @@
 			{#each menu as m, i (m.name)}
 				<div class="flex items-center gap-3 rounded-2xl border border-border bg-secondary/30 p-3">
 					<div
-						class="grid size-12 shrink-0 place-items-center rounded-xl bg-[color:var(--card)] text-2xl shadow-bevel"
+						class="grid size-12 shrink-0 place-items-center rounded-xl bg-[color:var(--card)] text-2xl shadow-xs"
 					>
 						{m.emoji}
 					</div>
@@ -137,7 +137,7 @@
 
 	<!-- Order + gacha -->
 	<div class="flex flex-col gap-4">
-		<section class="rounded-2xl border border-[color:var(--glass-border)] glass p-4">
+		<section class="rounded-2xl border border-border glass p-4">
 			<h4 class="mb-3 text-sm font-bold">Your order</h4>
 			<div class="flex flex-col gap-1.5 text-sm">
 				{#each menu as m, i (m.name)}
@@ -167,7 +167,7 @@
 		</section>
 
 		<section
-			class="rounded-2xl border border-[color:var(--glass-border)] glass-strong gloss p-4 text-center"
+			class="rounded-2xl border border-border bg-popover p-4 text-center"
 		>
 			<p class="flex items-center justify-center gap-1.5 font-display text-sm font-bold">
 				<Sparkle weight="fill" class="size-4 text-[color:var(--primary)]" /> Lucky Bowl Gacha
@@ -183,7 +183,7 @@
 					</Dialog.Header>
 					<div class="flex flex-col items-center gap-3 py-2">
 						<div
-							class="grid size-20 place-items-center rounded-2xl gradient-primary gloss text-4xl shadow-aqua"
+							class="grid size-20 place-items-center rounded-2xl bg-primary text-4xl shadow-sm"
 						>
 							🍥
 						</div>

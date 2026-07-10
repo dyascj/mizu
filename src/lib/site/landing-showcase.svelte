@@ -15,7 +15,7 @@
 	];
 </script>
 
-<div class="rounded-3xl border border-[color:var(--glass-border)] glass shadow-glass-lg">
+<div class="rounded-3xl border border-border glass shadow-xl">
 	<Tabs.Root value="components">
 		<div class="flex items-center justify-between gap-3 border-b border-border p-3 sm:px-4">
 			<Tabs.List

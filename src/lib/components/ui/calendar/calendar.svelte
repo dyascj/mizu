@@ -22,7 +22,7 @@
 	bind:placeholder
 	{weekdayFormat}
 	class={cn(
-		'gloss relative w-fit rounded-2xl border border-[color:var(--glass-border)] p-3 shadow-glass glass-strong',
+		' relative w-fit rounded-2xl border border-border p-3 shadow-lg bg-popover',
 		className
 	)}
 	{...restProps}

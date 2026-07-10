@@ -14,12 +14,12 @@
 	bind:ref
 	bind:checked
 	class={cn(
-		'peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border border-border shadow-pressed outline-none transition-[background-image,background-color] duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:gradient-primary data-[state=unchecked]:bg-muted',
+		'peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-border-strong dark:data-[state=unchecked]:bg-muted',
 		className
 	)}
 	{...restProps}
 >
 	<SwitchPrimitive.Thumb
-		class="pointer-events-none block size-5 rounded-full bg-white shadow-bevel transition-transform duration-200 ease-out data-[state=checked]:translate-x-[1.375rem] data-[state=unchecked]:translate-x-0.5"
+		class="pointer-events-none block size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ease-out data-[state=checked]:translate-x-[1.375rem] data-[state=unchecked]:translate-x-0.5"
 	/>
 </SwitchPrimitive.Root>
