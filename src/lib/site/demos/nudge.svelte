@@ -19,7 +19,9 @@
 			onDismiss={dismiss}
 		>
 			{#snippet actions()}
-				<Button size="sm" onclick={() => toast.success('Directions on the way')}>Take me there</Button>
+				<Button size="sm" onclick={() => toast.success('Directions on the way')}
+					>Take me there</Button
+				>
 				<Button size="sm" variant="ghost" onclick={dismiss}>Not now</Button>
 			{/snippet}
 		</Nudge>

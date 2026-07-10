@@ -5,7 +5,9 @@
 	let value = $state('');
 </script>
 
-<div class="mx-auto flex w-full max-w-sm flex-col items-center gap-6 rounded-3xl bg-card p-8 text-center shadow-md">
+<div
+	class="mx-auto flex w-full max-w-sm flex-col items-center gap-6 rounded-3xl bg-card p-8 text-center shadow-md"
+>
 	<div>
 		<h2 class="text-lg font-semibold tracking-tight">Check your email</h2>
 		<p class="mt-1 text-sm text-balance text-muted-foreground">

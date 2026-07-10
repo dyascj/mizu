@@ -11,15 +11,15 @@
 </script>
 
 <Tooltip.Provider>
-	<div class="h-96 w-full overflow-hidden rounded-2xl bg-background shadow-md [transform:translateZ(0)]">
+	<div
+		class="h-96 w-full overflow-hidden rounded-2xl bg-background shadow-md [transform:translateZ(0)]"
+	>
 		<Sidebar.Provider class="h-full min-h-0">
 			<Sidebar.Root collapsible="icon" class="h-full">
 				<Sidebar.Header>
 					<div class="flex items-center gap-2 px-1 py-0.5">
 						<AuraTile seed="Mizu" class="size-7 shrink-0 rounded-full" />
-						<span
-							class="text-sm font-semibold tracking-tight group-data-[collapsible=icon]:hidden"
-						>
+						<span class="text-sm font-semibold tracking-tight group-data-[collapsible=icon]:hidden">
 							Mizu
 						</span>
 					</div>

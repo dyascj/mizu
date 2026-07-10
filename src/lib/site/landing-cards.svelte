@@ -72,8 +72,8 @@
 		<Card.Content class="flex flex-col gap-2">
 			<ChatBubble role="user" animate={false}>Good morning! Anything on my plate today?</ChatBubble>
 			<Reasoning summary="Thought for 2 seconds" class="pl-1">
-				They asked about today. Calendar shows one meeting, and the walk they planned yesterday
-				is still unscheduled. Lead with the meeting, nudge the walk.
+				They asked about today. Calendar shows one meeting, and the walk they planned yesterday is
+				still unscheduled. Lead with the meeting, nudge the walk.
 			</Reasoning>
 			<ChatBubble role="assistant" animate={false} class="min-h-16 w-full max-w-[85%]">
 				{#key lunaRun}
@@ -110,7 +110,11 @@
 		<Card.Footer class="flex-col gap-2">
 			<Button class="w-full">Create account</Button>
 			<Button variant="ghost" class="w-full">
-				<svg viewBox="0 0 24 24" fill="currentColor" class="size-4" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.5 18 4.8 18 4.8c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+				<svg viewBox="0 0 24 24" fill="currentColor" class="size-4" aria-hidden="true"
+					><path
+						d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.5 18 4.8 18 4.8c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"
+					/></svg
+				>
 				Continue with GitHub
 			</Button>
 		</Card.Footer>
@@ -217,14 +221,17 @@
 			<div class="flex flex-1 flex-col gap-3">
 				<div class="flex flex-col gap-1.5">
 					<div class="flex justify-between text-xs">
-						<span class="text-muted-foreground">Tasks done</span><span class="tabular-nums">84%</span
+						<span class="text-muted-foreground">Tasks done</span><span class="tabular-nums"
+							>84%</span
 						>
 					</div>
 					<Progress value={84} />
 				</div>
 				<div class="flex flex-col gap-1.5">
 					<div class="flex justify-between text-xs">
-						<span class="text-muted-foreground">Memory used</span><span class="tabular-nums">61%</span>
+						<span class="text-muted-foreground">Memory used</span><span class="tabular-nums"
+							>61%</span
+						>
 					</div>
 					<Progress value={61} />
 				</div>
@@ -248,9 +255,7 @@
 	<!-- Command menu -->
 	<Card.Root class="break-inside-avoid">
 		<Card.Content class="flex flex-col gap-3 pt-6">
-			<div
-				class="flex items-center gap-2 rounded-full bg-secondary px-3.5 py-2"
-			>
+			<div class="flex items-center gap-2 rounded-full bg-secondary px-3.5 py-2">
 				<Search class="size-4 text-muted-foreground" />
 				<span class="flex-1 text-sm text-muted-foreground">Type a command…</span>
 				<KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>

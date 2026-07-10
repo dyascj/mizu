@@ -1,8 +1,5 @@
 <script lang="ts">
-	import {
-		createSvelteTable,
-		FlexRender
-	} from '$lib/components/ui/data-table';
+	import { createSvelteTable, FlexRender } from '$lib/components/ui/data-table';
 	import * as Table from '$lib/components/ui/table';
 	import { Button } from '$lib/components/ui/button';
 	import ArrowUpDown from '@lucide/svelte/icons/arrow-up-down';

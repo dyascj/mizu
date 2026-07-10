@@ -11,5 +11,8 @@
 </script>
 
 <div class="max-w-md">
-	<PromptSuggestions items={prompts} onSelect={(p) => toast.info({ title: 'Prompt', description: p })} />
+	<PromptSuggestions
+		items={prompts}
+		onSelect={(p) => toast.info({ title: 'Prompt', description: p })}
+	/>
 </div>

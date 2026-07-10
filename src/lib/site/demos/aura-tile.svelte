@@ -13,7 +13,8 @@
 			onclick={() => (selected = style)}
 		>
 			<AuraTile seed={style} selected={selected === style} class="w-full" />
-			<span class="truncate text-xs text-muted-foreground group-hover:text-foreground">{style}</span>
+			<span class="truncate text-xs text-muted-foreground group-hover:text-foreground">{style}</span
+			>
 		</button>
 	{/each}
 </div>

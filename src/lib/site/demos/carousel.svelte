@@ -18,7 +18,9 @@
 					class="bg-popover relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-2xl shadow-lg"
 				>
 					<div class="relative z-10 flex flex-col items-center gap-1">
-						<span class="font-display text-5xl font-semibold tabular-nums text-primary">{i + 1}</span>
+						<span class="font-display text-5xl font-semibold tabular-nums text-primary"
+							>{i + 1}</span
+						>
 						<span class="text-sm font-medium">{drop.label}</span>
 						<span class="text-xs tabular-nums text-muted-foreground">{drop.value}</span>
 					</div>

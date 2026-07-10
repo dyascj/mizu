@@ -29,9 +29,13 @@
 	{#if variant === 'dots'}
 		<span class="flex items-center gap-1" aria-hidden="true">
 			<span class="thinking-dot size-1.5 rounded-full bg-muted-foreground"></span>
-			<span class="thinking-dot size-1.5 rounded-full bg-muted-foreground" style="animation-delay: 150ms;"
+			<span
+				class="thinking-dot size-1.5 rounded-full bg-muted-foreground"
+				style="animation-delay: 150ms;"
 			></span>
-			<span class="thinking-dot size-1.5 rounded-full bg-muted-foreground" style="animation-delay: 300ms;"
+			<span
+				class="thinking-dot size-1.5 rounded-full bg-muted-foreground"
+				style="animation-delay: 300ms;"
 			></span>
 		</span>
 		<span class="text-muted-foreground">{label}</span>

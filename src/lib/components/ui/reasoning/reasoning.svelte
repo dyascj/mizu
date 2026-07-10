@@ -43,7 +43,9 @@
 		{/if}
 	</button>
 	{#if open && !streaming}
-		<div class="reasoning-body mt-1.5 rounded-xl bg-secondary/60 px-4 py-3 leading-relaxed text-muted-foreground">
+		<div
+			class="reasoning-body mt-1.5 rounded-xl bg-secondary/60 px-4 py-3 leading-relaxed text-muted-foreground"
+		>
 			{@render children?.()}
 		</div>
 	{/if}

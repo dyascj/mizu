@@ -70,7 +70,7 @@
     {
       "type": "registry:file",
       "target": "menubar/menubar.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(''),\n\t\tclass: className,\n\t\t...restProps\n\t}: MenubarPrimitive.RootProps = $props();\n</script>\n\n<MenubarPrimitive.Root\n\tbind:ref\n\tbind:value\n\tclass={cn(\n\t\t'flex h-10 items-center gap-1 rounded-full bg-card p-1 shadow-xs',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(''),\n\t\tclass: className,\n\t\t...restProps\n\t}: MenubarPrimitive.RootProps = $props();\n</script>\n\n<MenubarPrimitive.Root\n\tbind:ref\n\tbind:value\n\tclass={cn('flex h-10 items-center gap-1 rounded-full bg-card p-1 shadow-xs', className)}\n\t{...restProps}\n/>\n"
     }
   ]
 }

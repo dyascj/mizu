@@ -86,7 +86,7 @@
 		aria-valuemin={min}
 		aria-valuemax={max}
 		aria-label={label}
-		class="relative h-2.5 w-full overflow-hidden rounded-full bg-secondary "
+		class="relative h-2.5 w-full overflow-hidden rounded-full bg-secondary"
 	>
 		<div
 			class={cn(

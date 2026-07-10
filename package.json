@@ -40,7 +40,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check .",
-		"registry:build": "node scripts/build-registry.mjs"
+		"registry:build": "node scripts/build-registry.mjs",
+		"new:component": "node scripts/new-component.mjs"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^6.3.4",

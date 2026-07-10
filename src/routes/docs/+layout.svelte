@@ -33,18 +33,14 @@
 	>
 		<nav class="flex flex-col gap-5">
 			<div class="flex flex-col gap-px">
-				<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">
-					Getting Started
-				</p>
+				<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">Getting Started</p>
 				{#each gettingStarted as link (link.href)}
 					<a href={link.href} class={linkClass(isActive(link.href))}>{link.label}</a>
 				{/each}
 			</div>
 
 			<div class="flex flex-col gap-px">
-				<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">
-					Components
-				</p>
+				<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">Components</p>
 				<a href="/docs/components" class={linkClass(isActive('/docs/components'))}>Overview</a>
 			</div>
 

@@ -13,10 +13,7 @@
 
 <div
 	bind:this={ref}
-	class={cn(
-		'flex flex-col rounded-2xl bg-card text-card-foreground shadow-md',
-		className
-	)}
+	class={cn('flex flex-col rounded-2xl bg-card text-card-foreground shadow-md', className)}
 	{...rest}
 >
 	{@render children?.()}

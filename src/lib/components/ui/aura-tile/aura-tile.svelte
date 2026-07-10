@@ -12,7 +12,13 @@
 		ref?: HTMLDivElement | null;
 	};
 
-	let { seed, selected = false, class: className, ref = $bindable(null), ...rest }: Props = $props();
+	let {
+		seed,
+		selected = false,
+		class: className,
+		ref = $bindable(null),
+		...rest
+	}: Props = $props();
 
 	// The pastel family the whole system draws from.
 	const HUES = ['#ffd9e8', '#e6d9ff', '#cfe9ff', '#ffedd6', '#dffdf1', '#feefff'];

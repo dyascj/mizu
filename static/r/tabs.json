@@ -24,7 +24,7 @@
     {
       "type": "registry:file",
       "target": "tabs/tabs-list.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.ListProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.List\n\tbind:ref\n\tclass={cn(\n\t\t'inline-flex items-center gap-1 rounded-full bg-secondary p-1',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</TabsPrimitive.List>\n"
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.ListProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.List\n\tbind:ref\n\tclass={cn('inline-flex items-center gap-1 rounded-full bg-secondary p-1', className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</TabsPrimitive.List>\n"
     },
     {
       "type": "registry:file",

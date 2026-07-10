@@ -48,14 +48,14 @@
 	{@html `<script type="application/ld+json">${JSON.stringify(websiteJsonLd)}<\/script>`}
 </svelte:head>
 
-	<div bind:this={scroller} class="h-dvh overflow-y-auto [overscroll-behavior:none]">
-		<div class="flex min-h-dvh flex-col">
-			<SiteHeader />
-			<div class="flex-1">
-				{@render children()}
-			</div>
+<div bind:this={scroller} class="h-dvh overflow-y-auto [overscroll-behavior:none]">
+	<div class="flex min-h-dvh flex-col">
+		<SiteHeader />
+		<div class="flex-1">
+			{@render children()}
 		</div>
 	</div>
+</div>
 
 <style>
 	/* App-shell: the document itself doesn't scroll; the wrapper above does, so

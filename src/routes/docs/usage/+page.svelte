@@ -78,7 +78,9 @@
 				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
 					(i % 2 ? 'bg-muted/40' : '')}
 			>
-				<span class="shrink-0 font-display text-sm font-semibold text-foreground sm:w-44">{name}</span>
+				<span class="shrink-0 font-display text-sm font-semibold text-foreground sm:w-44"
+					>{name}</span
+				>
 				<span class="text-sm text-muted-foreground">{desc}</span>
 			</div>
 		{/each}
@@ -130,9 +132,7 @@
 
 	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Do and don't</h2>
 	<div class="grid gap-4 sm:grid-cols-2">
-		<div
-			class="rounded-xl bg-[color:color-mix(in_srgb,var(--success)_8%,var(--card))] p-4"
-		>
+		<div class="rounded-xl bg-[color:color-mix(in_srgb,var(--success)_8%,var(--card))] p-4">
 			<p class="mb-2 font-display text-sm font-semibold text-[color:var(--success)]">Do</p>
 			<ul class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
 				{#each doList as item}
@@ -140,9 +140,7 @@
 				{/each}
 			</ul>
 		</div>
-		<div
-			class="rounded-xl bg-[color:color-mix(in_srgb,var(--destructive)_7%,var(--card))] p-4"
-		>
+		<div class="rounded-xl bg-[color:color-mix(in_srgb,var(--destructive)_7%,var(--card))] p-4">
 			<p class="mb-2 font-display text-sm font-semibold text-[color:var(--destructive)]">Don't</p>
 			<ul class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
 				{#each dontList as item}
@@ -182,7 +180,9 @@
 				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
 					(i % 2 ? 'bg-muted/40' : '')}
 			>
-				<span class="shrink-0 font-display text-sm font-semibold text-foreground sm:w-52">{name}</span>
+				<span class="shrink-0 font-display text-sm font-semibold text-foreground sm:w-52"
+					>{name}</span
+				>
 				<span class="text-sm text-muted-foreground">{desc}</span>
 			</div>
 		{/each}

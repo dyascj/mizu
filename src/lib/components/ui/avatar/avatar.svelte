@@ -14,10 +14,7 @@
 <AvatarPrimitive.Root
 	bind:ref
 	bind:loadingStatus
-	class={cn(
-		'relative flex size-10 shrink-0 overflow-hidden rounded-full shadow-xs',
-		className
-	)}
+	class={cn('relative flex size-10 shrink-0 overflow-hidden rounded-full shadow-xs', className)}
 	{...restProps}
 >
 	{@render children?.()}

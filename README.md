@@ -106,16 +106,16 @@ Everything is driven by CSS variables: an airy light mode and a pure-black dark 
 
 ## Components
 
-| Group      | Components                                                                                                                                          |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Actions    | Button, Badge, Button Group                                                                                                                         |
+| Group      | Components                                                                                                                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Actions    | Button, Badge, Button Group                                                                                                                                                                |
 | Forms      | Input, Textarea, Label, Checkbox, Radio Group, Switch, Slider, Select, Native Select, Combobox, Toggle, Toggle Group, Input OTP, Input Group, Field, Calendar, Range Calendar, Date Picker |
-| Surfaces   | Card, Alert, Separator, Avatar, Aspect Ratio, Scroll Area, Table, Empty, Item, Kbd                                                                  |
-| Overlays   | Dialog, Alert Dialog, Sheet, Popover, Tooltip, Hover Card                                                                                           |
-| Menus      | Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command                                                                                      |
-| Navigation | Tabs, Accordion, Collapsible, Breadcrumb, Pagination                                                                                                |
-| Feedback   | Progress, Skeleton, Spinner, Circular Gauge                                                                                                         |
-| AI         | Aurora, Chat Input, Chat Bubble, Streaming Text, Reasoning, Tool Call, Sources, Message Actions, Plan, Nudge, Aura Tile, Voice Orb, Waveform, Prompt Suggestions, Thinking |
+| Surfaces   | Card, Alert, Separator, Avatar, Aspect Ratio, Scroll Area, Table, Empty, Item, Kbd                                                                                                         |
+| Overlays   | Dialog, Alert Dialog, Sheet, Popover, Tooltip, Hover Card                                                                                                                                  |
+| Menus      | Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command                                                                                                                             |
+| Navigation | Tabs, Accordion, Collapsible, Breadcrumb, Pagination                                                                                                                                       |
+| Feedback   | Progress, Skeleton, Spinner, Circular Gauge                                                                                                                                                |
+| AI         | Aurora, Chat Input, Chat Bubble, Streaming Text, Reasoning, Tool Call, Sources, Message Actions, Plan, Nudge, Aura Tile, Voice Orb, Waveform, Prompt Suggestions, Thinking                 |
 
 ## Develop
 

@@ -44,10 +44,7 @@
 
 <form
 	onsubmit={submit}
-	class={cn(
-		'flex w-full items-center gap-1 rounded-full bg-card p-1.5 pl-2 shadow-lg',
-		className
-	)}
+	class={cn('flex w-full items-center gap-1 rounded-full bg-card p-1.5 pl-2 shadow-lg', className)}
 >
 	{#if leading}
 		{@render leading()}

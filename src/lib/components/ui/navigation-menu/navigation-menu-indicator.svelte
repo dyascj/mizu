@@ -17,7 +17,5 @@
 	)}
 	{...restProps}
 >
-	<div
-		class="relative top-[60%] size-2 rotate-45 rounded-tl-sm bg-popover shadow-lg"
-	></div>
+	<div class="relative top-[60%] size-2 rotate-45 rounded-tl-sm bg-popover shadow-lg"></div>
 </NavigationMenuPrimitive.Indicator>

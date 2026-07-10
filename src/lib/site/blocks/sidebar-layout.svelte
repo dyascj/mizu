@@ -99,10 +99,14 @@
 					<h2 class="text-sm font-semibold tracking-tight">{active}</h2>
 				</header>
 				<div class="flex min-h-0 flex-1 flex-col justify-end gap-3 px-5 pb-5">
-					<div class="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-primary px-4 py-2.5 text-sm text-primary-foreground">
+					<div
+						class="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-primary px-4 py-2.5 text-sm text-primary-foreground"
+					>
 						Four nights in October. Keep it slow.
 					</div>
-					<div class="mr-auto w-fit max-w-[85%] rounded-2xl rounded-bl-md bg-secondary px-4 py-2.5 text-sm leading-relaxed">
+					<div
+						class="mr-auto w-fit max-w-[85%] rounded-2xl rounded-bl-md bg-secondary px-4 py-2.5 text-sm leading-relaxed"
+					>
 						Slow it is. Two neighborhoods, no alarms, and one perfect kissaten each morning.
 					</div>
 					<Thinking variant="dots" label="Typing" class="pl-3" />

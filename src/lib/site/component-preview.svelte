@@ -20,10 +20,7 @@
 	<Tabs.Content value="preview">
 		<div class="min-h-60 rounded-2xl bg-card p-8 shadow-sm" data-no-toc>
 			<div
-				class={cn(
-					'flex min-h-44 w-full flex-wrap items-center gap-5',
-					center && 'justify-center'
-				)}
+				class={cn('flex min-h-44 w-full flex-wrap items-center gap-5', center && 'justify-center')}
 			>
 				{@render children()}
 			</div>

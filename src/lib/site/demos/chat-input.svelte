@@ -6,5 +6,8 @@
 </script>
 
 <div class="w-full max-w-md">
-	<ChatInput bind:value onSubmit={(message) => toast.success({ title: 'Sent', description: message })} />
+	<ChatInput
+		bind:value
+		onSubmit={(message) => toast.success({ title: 'Sent', description: message })}
+	/>
 </div>

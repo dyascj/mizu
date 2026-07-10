@@ -54,10 +54,7 @@
 	bind:this={ref}
 	{onpointermove}
 	{onpointerleave}
-	class={cn(
-		'bg-popover flex items-end gap-2 rounded-2xl px-3 pt-2 pb-2.5 shadow-xl',
-		className
-	)}
+	class={cn('bg-popover flex items-end gap-2 rounded-2xl px-3 pt-2 pb-2.5 shadow-xl', className)}
 	{...rest}
 >
 	<div class="relative z-10 flex items-end gap-2">

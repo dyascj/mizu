@@ -39,7 +39,9 @@
 		{#if state === 'running'}
 			<Spinner size={16} />
 		{:else if state === 'done'}
-			<span class="grid size-4 shrink-0 place-items-center rounded-full bg-success text-success-foreground">
+			<span
+				class="grid size-4 shrink-0 place-items-center rounded-full bg-success text-success-foreground"
+			>
 				<Check class="size-3" strokeWidth={3} />
 			</span>
 		{:else}
@@ -67,7 +69,9 @@
 		{/if}
 	</button>
 	{#if open && children && state !== 'running'}
-		<div class="tool-result mt-1.5 rounded-xl bg-secondary/40 px-4 py-3 leading-relaxed text-muted-foreground">
+		<div
+			class="tool-result mt-1.5 rounded-xl bg-secondary/40 px-4 py-3 leading-relaxed text-muted-foreground"
+		>
 			{@render children()}
 		</div>
 	{/if}

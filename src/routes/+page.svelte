@@ -50,13 +50,15 @@
 			<OrbMark class="size-28 sm:size-36" />
 		</div>
 
-		<h1 class="max-w-xl text-5xl leading-[1.02] font-semibold tracking-tight text-balance sm:text-6xl">
+		<h1
+			class="max-w-xl text-5xl leading-[1.02] font-semibold tracking-tight text-balance sm:text-6xl"
+		>
 			Intelligence that feels light.
 		</h1>
 
 		<p class="max-w-md text-balance text-muted-foreground sm:text-lg">
-			Clean, airy components for AI products. Chat, voice, reasoning, and streaming for Svelte 5
-			and Tailwind v4, with a glow where intelligence lives.
+			Clean, airy components for AI products. Chat, voice, reasoning, and streaming for Svelte 5 and
+			Tailwind v4, with a glow where intelligence lives.
 		</p>
 
 		<div class="mt-1 flex flex-wrap items-center justify-center gap-3">

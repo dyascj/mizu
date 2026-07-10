@@ -8,7 +8,9 @@
 	let password = $state('');
 </script>
 
-<div class="mx-auto flex w-full max-w-sm flex-col items-center gap-6 rounded-3xl bg-card p-8 shadow-md">
+<div
+	class="mx-auto flex w-full max-w-sm flex-col items-center gap-6 rounded-3xl bg-card p-8 shadow-md"
+>
 	<div class="flex flex-col items-center gap-3 text-center">
 		<VoiceOrb state="idle" size={44} />
 		<div>

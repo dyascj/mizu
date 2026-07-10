@@ -23,17 +23,17 @@
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">The language</h2>
 	<p class="mb-4 leading-relaxed text-muted-foreground">
-		Interfaces built for AI deserve calm. Mizu (<span class="font-medium">水</span>, "water")
-		keeps every surface quiet so the content and the intelligence can speak: white on white with
-		hairline lines, shadows you feel more than see, one blue accent, and a soft pastel glow
-		reserved for the moments where the AI is present. Nothing shines, nothing shouts.
+		Interfaces built for AI deserve calm. Mizu (<span class="font-medium">水</span>, "water") keeps
+		every surface quiet so the content and the intelligence can speak: white on white with hairline
+		lines, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for the
+		moments where the AI is present. Nothing shines, nothing shouts.
 	</p>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">Principles</h2>
 	<ul class="mb-4 ml-5 list-disc space-y-2 text-muted-foreground">
 		<li>
-			<span class="font-semibold text-foreground">Quiet by default.</span> Hierarchy comes from
-			space, hairlines, and type, not decoration. The accent is for what matters.
+			<span class="font-semibold text-foreground">Quiet by default.</span> Hierarchy comes from space,
+			hairlines, and type, not decoration. The accent is for what matters.
 		</li>
 		<li>
 			<span class="font-semibold text-foreground">Accessible underneath.</span> Interactive

@@ -37,7 +37,9 @@
 		single command; the source lands in your project and is yours to edit.
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">1. Create a SvelteKit + Tailwind v4 app</h2>
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">
+		1. Create a SvelteKit + Tailwind v4 app
+	</h2>
 	<div class="flex flex-col gap-2">
 		<CopyCommand command="npx sv create my-app" />
 		<CopyCommand command="npx sv add tailwindcss" />

@@ -20,8 +20,8 @@
 	<header class="mx-auto max-w-2xl text-center">
 		<h1 class="text-3xl font-semibold tracking-tight">Blocks</h1>
 		<p class="mt-3 text-lg text-balance text-muted-foreground">
-			Whole screens for AI products, assembled from the components and ready to ship. Open the
-			code tab and copy everything.
+			Whole screens for AI products, assembled from the components and ready to ship. Open the code
+			tab and copy everything.
 		</p>
 	</header>
 
@@ -63,7 +63,9 @@
 						<Tabs.Trigger value="code">Code</Tabs.Trigger>
 					</Tabs.List>
 					<Tabs.Content value="preview">
-						<div class="rounded-3xl bg-secondary/50 p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-10">
+						<div
+							class="rounded-3xl bg-secondary/50 p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-10"
+						>
 							{#if b.Component}
 								{@const Block = b.Component}
 								<Block />

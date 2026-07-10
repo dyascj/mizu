@@ -54,7 +54,11 @@
 			check availability there first before widening the search.
 		</Reasoning>
 
-		<ToolCall name="Checked Verde's availability" detail="Saturday, 7:00 PM, table for two" state="done">
+		<ToolCall
+			name="Checked Verde's availability"
+			detail="Saturday, 7:00 PM, table for two"
+			state="done"
+		>
 			Two openings Saturday evening: 7:00 and 9:15. The 7:00 slot holds the corner table.
 		</ToolCall>
 
