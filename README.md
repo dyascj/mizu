@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./static/brand/mizu-side-by-side.png" width="440" alt="Mizu · The design system for AI products" />
+<img src="./static/brand/github-social.png" width="720" alt="Thought for 2 seconds: You do the thinking. Mizu handles the design." />
 
 # Mizu 水
 
