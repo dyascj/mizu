@@ -11,7 +11,8 @@
 		{ href: '/docs', label: 'Introduction' },
 		{ href: '/docs/installation', label: 'Installation' },
 		{ href: '/docs/theming', label: 'Theming' },
-		{ href: '/docs/usage', label: 'Usage' }
+		{ href: '/docs/usage', label: 'Usage' },
+		{ href: '/docs/build-a-chat', label: 'Build a chat' }
 	];
 	const groups = componentsByCategory();
 

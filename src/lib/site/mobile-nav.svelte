@@ -17,6 +17,7 @@
 		{ href: '/docs', label: 'Introduction' },
 		{ href: '/docs/installation', label: 'Installation' },
 		{ href: '/docs/theming', label: 'Theming' },
+		{ href: '/docs/build-a-chat', label: 'Build a chat' },
 		{ href: '/docs/components', label: 'Components' },
 		{ href: '/blocks', label: 'Blocks' }
 	];
