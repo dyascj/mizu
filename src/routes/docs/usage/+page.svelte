@@ -57,8 +57,8 @@
 </script>
 
 <Seo
-	title="Usage — {siteConfig.name}"
-	description="How to use Mizu well: the design principles behind it, how to drop components in and own them, composition and accessibility guidelines, and how to choose the right component."
+	title="Usage · {siteConfig.name}"
+	description="How to build AI products with Mizu: the design principles behind it, how to drop components in and own them, composition and accessibility guidelines, and how to choose the right component."
 />
 
 <article class="max-w-2xl">

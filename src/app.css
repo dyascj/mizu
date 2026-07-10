@@ -1,5 +1,5 @@
 /* ============================================================================
-   Mizu — a clean, airy design system for Svelte
+   Mizu: a clean, airy design system for AI products
    ----------------------------------------------------------------------------
    This file IS the theme. Install it once into your app and every Mizu
    component reads from these tokens. White surfaces, hairline borders,
@@ -13,10 +13,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ----------------------------------------------------------------------------
-   Semantic tokens — light (the default: white, airy, lit from within)
+   Semantic tokens, light (the default: white, airy, lit from within)
 ---------------------------------------------------------------------------- */
 :root {
-	/* Surfaces — white on white; hierarchy comes from hairlines and shadow */
+	/* Surfaces: white on white; hierarchy comes from space and shadow */
 	--background: #ffffff;
 	--foreground: #1c2b33;
 
@@ -59,25 +59,25 @@
 	--primary-muted: rgba(0, 178, 255, 0.1);
 	--primary-subtle: rgba(0, 178, 255, 0.05);
 
-	/* Translucent panel material — flat frost, no sheen */
+	/* Translucent panel material: flat frost, no sheen */
 	--glass: rgba(255, 255, 255, 0.72);
 	--glass-subtle: rgba(255, 255, 255, 0.55);
 	--glass-border: rgba(28, 43, 51, 0.08);
 	--glass-blur: 14px;
 
-	/* Aura orbs — the soft radial glows behind AI moments */
+	/* Aura orbs: the soft radial glows behind AI moments */
 	--orb-blue: radial-gradient(circle, rgba(216, 237, 255, 0.85) 0%, rgba(216, 237, 255, 0) 70%);
 	--orb-pink: radial-gradient(circle, rgba(253, 221, 222, 0.85) 0%, rgba(253, 221, 222, 0) 70%);
 	--orb-purple: radial-gradient(circle, rgba(244, 231, 255, 0.85) 0%, rgba(244, 231, 255, 0) 70%);
 	--orb-peach: radial-gradient(circle, rgba(255, 247, 231, 0.85) 0%, rgba(255, 247, 231, 0) 70%);
 
-	/* Aurora washes — pastel linear gradients for surfaces and art */
+	/* Aurora washes: pastel linear gradients for surfaces and art */
 	--aurora: linear-gradient(135deg, #f4e7ff 0%, #fdddde 100%);
 	--aurora-cool: linear-gradient(135deg, #e7fdff 0%, #ede4ff 100%);
 	--aurora-iris: linear-gradient(135deg, #feefff 0%, #effcff 49%, #f9fae9 100%);
 	--aurora-mint: linear-gradient(135deg, #dffdf1 0%, #fcfddd 100%);
 
-	/* Elevation — soft ambient only; never bevels, never rims */
+	/* Elevation: soft ambient only; never bevels, never rims */
 	--elevation-xs: 0 0 6px rgba(28, 43, 51, 0.04);
 	--elevation-sm: 0 0 10px rgba(28, 43, 51, 0.06);
 	--elevation-md: 0 0 16px rgba(28, 43, 51, 0.08);
@@ -87,7 +87,7 @@
 }
 
 /* ----------------------------------------------------------------------------
-   Semantic tokens — dark: a ladder of slate lifted from pure black.
+   Semantic tokens, dark: a ladder of slate lifted from pure black.
    No strokes; each layer is one tonal rung above the one beneath it
    (#000 page, #0c1116 card, #141b21 floating panel, #1d262e hover). 
 ---------------------------------------------------------------------------- */
@@ -216,7 +216,7 @@
 	--radius-xl: 1.25rem;
 	--radius-2xl: 1.5rem;
 
-	/* Type — one quiet family for everything */
+	/* Type: one quiet family for everything */
 	--font-sans:
 		'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 	--font-display:

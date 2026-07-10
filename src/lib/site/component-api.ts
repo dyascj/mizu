@@ -14,7 +14,7 @@ export type ApiPart = {
 /** A source file for the "Source" section. */
 export type SourceFile = { file: string; lang: 'svelte' | 'ts'; code: string };
 
-// Raw component source, loaded at build time (docs-site only — never shipped to
+// Raw component source, loaded at build time (docs-site only, never shipped to
 // consumers). Same mechanism the demos use, so the API is always in sync with
 // the real source: edit a component and its docs table updates on next build.
 const raw = import.meta.glob('../components/ui/**/*.{svelte,ts}', {

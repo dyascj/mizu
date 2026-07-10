@@ -95,7 +95,7 @@
 	<Card.Root class="break-inside-avoid">
 		<Card.Header>
 			<Card.Title>Create your account</Card.Title>
-			<Card.Description>Dive in — it takes a few seconds.</Card.Description>
+			<Card.Description>Dive in. It takes a few seconds.</Card.Description>
 		</Card.Header>
 		<Card.Content class="flex flex-col gap-3">
 			<div class="flex flex-col gap-1.5">

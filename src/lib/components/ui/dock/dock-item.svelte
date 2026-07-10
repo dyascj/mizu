@@ -27,10 +27,10 @@
 	const dock = getDockContext();
 
 	// Resting tile size; the lens scales up from this, never the layout box.
-	const BASE = 44; // px — matches size-11
+	const BASE = 44; // px, matches size-11
 
 	// The tile's resting horizontal center, in viewport px. Measured at rest (on
-	// mount + resize) so every item — not just the hovered one — has a stable
+	// mount + resize) so every item, not just the hovered one, has a stable
 	// center and the whole row swells together. Measuring while scaled would
 	// drift the center, so we never sample mid-magnify.
 	let center = $state<number | null>(null);
@@ -45,7 +45,7 @@
 		// Runs only in the browser; SSR renders at rest (scale 1).
 		measure();
 		window.addEventListener('resize', measure);
-		// Layout settles a tick after fonts/icons paint — catch that too.
+		// Layout settles a tick after fonts/icons paint; catch that too.
 		const id = requestAnimationFrame(measure);
 		return () => {
 			window.removeEventListener('resize', measure);
@@ -54,7 +54,7 @@
 	});
 
 	// Magnify factor in [1, magnification], falling off with a cosine curve so
-	// neighbors ease up too and the row reads as one continuous swell — no jitter.
+	// neighbors ease up too and the row reads as one continuous swell, no jitter.
 	const scale = $derived.by(() => {
 		const x = dock.pointerX;
 		if (x === null || center === null) return 1;

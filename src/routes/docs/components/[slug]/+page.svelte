@@ -22,13 +22,13 @@
 	// Richer than the catalog blurb so search/social snippets read as a real
 	// answer to "Svelte <component>" queries.
 	const seoDescription = $derived(
-		`${meta.description} A copy-paste ${meta.name} component for SvelteKit — accessible, themeable, and yours to own. Built with Svelte 5 and Tailwind v4.`
+		`${meta.description} A copy-paste ${meta.name} component for AI products on SvelteKit. Accessible, themeable, and yours to own. Built with Svelte 5 and Tailwind v4.`
 	);
 
 	const jsonLd = $derived({
 		'@context': 'https://schema.org',
 		'@type': 'SoftwareSourceCode',
-		name: `${meta.name} — ${siteConfig.name}`,
+		name: `${meta.name} · ${siteConfig.name}`,
 		description: meta.description,
 		url: `${siteConfig.url}/docs/components/${meta.slug}`,
 		codeRepository: siteConfig.repo,
@@ -39,7 +39,7 @@
 	});
 </script>
 
-<Seo title="{meta.name} — {siteConfig.name}" description={seoDescription} {jsonLd} />
+<Seo title="{meta.name} · {siteConfig.name}" description={seoDescription} {jsonLd} />
 
 <article class="max-w-3xl">
 	<div class="flex flex-wrap items-center gap-3">
@@ -68,7 +68,7 @@
 			{multiPart ? 'API reference' : 'Props'}
 		</h2>
 		<p class="mb-4 text-sm text-muted-foreground">
-			Generated from the component source — always in sync with what you install.
+			Generated from the component source, always in sync with what you install.
 		</p>
 		{#each api as part (part.title)}
 			{#if multiPart}
@@ -99,10 +99,10 @@
 											>{/if}
 									</td>
 									<td class="px-4 py-2.5 font-mono text-[0.8125rem] text-primary"
-										>{p.type || '—'}</td
+										>{p.type || '·'}</td
 									>
 									<td class="px-4 py-2.5 font-mono text-[0.8125rem] text-muted-foreground"
-										>{p.default ?? '—'}</td
+										>{p.default ?? '·'}</td
 									>
 								</tr>
 							{/each}
@@ -127,7 +127,7 @@
 	{#if source.length}
 		<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Source</h2>
 		<p class="mb-4 text-sm text-muted-foreground">
-			The full source you own once you copy it in — no black box.
+			The full source you own once you copy it in. No black box.
 		</p>
 		<div class="flex flex-col gap-2">
 			{#each source as f (f.file)}

@@ -26,7 +26,7 @@
 </script>
 
 <Seo
-	title="Installation — {siteConfig.name}"
+	title="Installation · {siteConfig.name}"
 	description="Set up Mizu in your SvelteKit project: configure Tailwind v4 and components.json, then add clean, airy components with the shadcn-svelte CLI and own the source."
 />
 

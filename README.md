@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="./static/brand/mizu-side-by-side.png" width="440" alt="Mizu — Design System" />
+<img src="./static/brand/mizu-side-by-side.png" width="440" alt="Mizu · The design system for AI products" />
 
 # Mizu 水
 
-**A clean, airy design system for Svelte.**
+**The design system for AI products.**
 
-Clean, airy components for SvelteKit. White surfaces, soft shadows, pill controls, and a pastel glow where intelligence lives. Built for Svelte 5 and Tailwind v4. Copy in what you need.
+Clean, airy components for AI products and the designers building them. Chat, voice, reasoning, and streaming for Svelte 5 and Tailwind v4. Copy in what you need.
 
 <p>
 	<img alt="Svelte 5" src="https://img.shields.io/badge/Svelte-5-FF3E00?logo=svelte&logoColor=white" />
@@ -20,12 +20,12 @@ Clean, airy components for SvelteKit. White surfaces, soft shadows, pill control
 
 ---
 
-Mizu is built for the interfaces we make now: white on white with hairline borders, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for the moments where the AI is present. Quiet surfaces, generous rounding, and restraint everywhere else. Everything ships as source you copy into your project and own — no black box, no version lock. One command adds a component (the registry works with the shadcn-svelte CLI you already have), or copy from any docs page.
+Mizu is built for AI products: chat, voice, reasoning, and streaming components in a language of white on white, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for the moments where the AI is present. Quiet surfaces, generous rounding, and restraint everywhere else. Everything ships as source you copy into your project and own. No black box, no version lock. One command adds a component (the registry works with the shadcn-svelte CLI you already have), or copy from any docs page.
 
 ## Highlights
 
 - **74 components**, from buttons and dialogs to streaming text, visible reasoning, tool calls, a voice orb, and a drifting pastel aurora.
-- **Recolor from one token.** The accent, glow, and focus ring all derive from `--primary` — change it once and the whole system follows.
+- **Recolor from one token.** The accent, glow, and focus ring all derive from `--primary`. Change it once and the whole system follows.
 - **Quiet by default.** Hierarchy comes from space, hairlines, and type. The accent and the glow are reserved for what matters.
 - **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the quiet skin.
 - **Airy light, pure-black dark.** A white light theme and a pure-black dark theme with slate surfaces, both with the blue accent on top.
@@ -43,7 +43,7 @@ cd my-app
 npx sv add tailwindcss
 ```
 
-**2. Add a `components.json`** so the CLI knows where to place files (or run `npx shadcn-svelte@latest init` to generate it). Point `tailwind.css` at **your** Tailwind entry — the file that holds `@import 'tailwindcss';`. Recent `sv add tailwindcss` creates `src/routes/layout.css`; older setups use `src/app.css`. Use whichever you have:
+**2. Add a `components.json`** so the CLI knows where to place files (or run `npx shadcn-svelte@latest init` to generate it). Point `tailwind.css` at **your** Tailwind entry, the file that holds `@import 'tailwindcss';`. Recent `sv add tailwindcss` creates `src/routes/layout.css`; older setups use `src/app.css`. Use whichever you have:
 
 ```json
 {
@@ -102,7 +102,7 @@ The brand is one token. Change `--primary` and the accent, glow, and focus ring 
 }
 ```
 
-Everything is driven by CSS variables — an airy light mode and a pure-black dark mode out of the box, plus a single `--primary` token (the default is `#00b2ff`) that recolors the whole system without touching a component.
+Everything is driven by CSS variables: an airy light mode and a pure-black dark mode out of the box, plus a single `--primary` token (the default is `#00b2ff`) that recolors the whole system without touching a component.
 
 ## Components
 

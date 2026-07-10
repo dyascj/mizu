@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * Extract a component's public API from its Svelte 5 source — no build step,
+ * Extract a component's public API from its Svelte 5 source. No build step,
  * no hand-maintained metadata. Every Mizu component anchors on a single
  * `let { … }: <Type> = $props()` destructuring, so we read the destructuring
  * for prop names / defaults / `$bindable`, the type expression for types, and
@@ -8,7 +8,7 @@
  * instead of an opaque alias). Base types in an intersection
  * (`HTMLButtonAttributes`, `Dialog.ContentProps`, …) become "extends" notes.
  *
- * Pure string parsing — runnable under plain node for testing.
+ * Pure string parsing, runnable under plain node for testing.
  */
 
 /** @typedef {{ name: string, type: string, default: string | null, bindable: boolean, optional: boolean }} PropRow */

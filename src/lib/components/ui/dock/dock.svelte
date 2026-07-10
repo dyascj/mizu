@@ -40,7 +40,7 @@
 	});
 
 	function onpointermove(event: PointerEvent) {
-		// Coarse pointers (touch) shouldn't trigger the lens — only fine ones hover.
+		// Coarse pointers (touch) shouldn't trigger the lens; only fine ones hover.
 		if (event.pointerType === 'touch') return;
 		pointerX = event.clientX;
 	}

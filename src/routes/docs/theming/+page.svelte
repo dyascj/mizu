@@ -16,7 +16,7 @@
 	--border: #eceef1; /* semantic strokes only */
 	--ring: var(--primary);
 
-	/* Soft ambient elevation — never bevels */
+	/* Soft ambient elevation, never bevels */
 	--elevation-sm: 0 0 10px rgba(28, 43, 51, 0.06);
 	--elevation-lg: 0 8px 24px rgba(28, 43, 51, 0.1);
 
@@ -42,7 +42,7 @@
 </script>
 
 <Seo
-	title="Theming — {siteConfig.name}"
+	title="Theming · {siteConfig.name}"
 	description="Theme Mizu with a handful of tokens. White surfaces, soft shadows, a tonal dark ladder, and pastel auras, with an airy light mode and a pure-black dark mode, built for Tailwind v4."
 />
 
@@ -116,7 +116,7 @@
 	</p>
 	<div class="grid gap-4 sm:grid-cols-2" data-no-toc>
 		<div class="rounded-2xl bg-white p-5 shadow-sm">
-			<p class="mb-3 text-xs font-medium text-[#70767d]">Light — shadow carries depth</p>
+			<p class="mb-3 text-xs font-medium text-[#70767d]">Light: shadow carries depth</p>
 			<div class="rounded-xl bg-white p-4 shadow-md">
 				<p class="text-xs text-[#70767d]">Card</p>
 				<div class="mt-2.5 rounded-lg bg-white p-3 shadow-lg">
@@ -126,7 +126,7 @@
 			</div>
 		</div>
 		<div class="rounded-2xl bg-[#000000] p-5">
-			<p class="mb-3 text-xs font-medium text-[#9da9b7]">Dark — tone carries depth</p>
+			<p class="mb-3 text-xs font-medium text-[#9da9b7]">Dark: tone carries depth</p>
 			<div class="rounded-xl bg-[#0c1116] p-4">
 				<p class="text-xs text-[#9da9b7]">Card</p>
 				<div class="mt-2.5 rounded-lg bg-[#141b21] p-3">

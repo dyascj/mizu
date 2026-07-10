@@ -8,16 +8,17 @@
 </script>
 
 <Seo
-	title="Introduction — {siteConfig.name}"
-	description="Mizu is an open-source component library for SvelteKit — clean, airy, accessible components you copy into your project and own. Built on Svelte 5 runes, Tailwind v4, and bits-ui."
+	title="Introduction · {siteConfig.name}"
+	description="Mizu is an open-source design system for AI products. Clean, airy, accessible components for chat, voice, and reasoning that you copy into your project and own. Built on Svelte 5 runes, Tailwind v4, and bits-ui."
 />
 
 <article class="max-w-2xl">
 	<MizuLogo class="mb-8 scale-125" />
 	<h1 class="text-3xl font-semibold">Introduction</h1>
 	<p class="mt-3 text-lg text-muted-foreground">
-		Mizu is a clean, airy design system for Svelte. White surfaces, hairline borders, soft
-		shadows, and pill controls, built honestly for Svelte 5 and Tailwind v4.
+		Mizu is a clean, airy design system for AI products and the designers building them. White
+		surfaces, soft shadows, pill controls, and the components a modern assistant needs, built
+		honestly for Svelte 5 and Tailwind v4.
 	</p>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">The language</h2>

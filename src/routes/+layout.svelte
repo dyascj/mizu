@@ -13,7 +13,7 @@
 		'@context': 'https://schema.org',
 		'@type': 'WebSite',
 		name: siteConfig.name,
-		alternateName: `${siteConfig.name} — ${siteConfig.tagline}`,
+		alternateName: `${siteConfig.name} · ${siteConfig.tagline}`,
 		url: siteConfig.url,
 		description: siteConfig.description,
 		inLanguage: 'en',
@@ -44,7 +44,7 @@
 	<meta property="og:image:height" content="1260" />
 	<meta name="twitter:card" content="summary_large_image" />
 
-	<!-- eslint-disable-next-line svelte/no-at-html-tags — static, app-generated JSON -->
+	<!-- eslint-disable-next-line svelte/no-at-html-tags: static, app-generated JSON -->
 	{@html `<script type="application/ld+json">${JSON.stringify(websiteJsonLd)}<\/script>`}
 </svelte:head>
 

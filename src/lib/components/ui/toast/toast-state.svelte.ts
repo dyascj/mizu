@@ -1,5 +1,5 @@
 /**
- * Mizu toast store — a tiny reactive queue, sonner-style.
+ * Mizu toast store: a tiny reactive queue, sonner-style.
  *
  * Mount one `<Toaster />` at your app root, then call `toast(...)` from anywhere:
  *   toast.success('Saved');
@@ -91,7 +91,7 @@ class ToastStore {
 
 const store = new ToastStore();
 
-/** The reactive toaster store — read `toaster.toasts` inside `<Toaster />`. */
+/** The reactive toaster store; read `toaster.toasts` inside `<Toaster />`. */
 export const toaster = store;
 
 type ToastFn = ((input: ToastInput) => number) & {

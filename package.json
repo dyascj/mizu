@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"packageManager": "pnpm@10.28.2",
-	"description": "A clean, airy design system for Svelte. White surfaces, soft shadows, and pastel glow for SvelteKit, Svelte 5, and Tailwind v4.",
+	"description": "A clean, airy design system for AI products. Chat, voice, reasoning, and streaming components for SvelteKit, Svelte 5, and Tailwind v4.",
 	"keywords": [
 		"svelte",
 		"sveltekit",
@@ -15,7 +15,11 @@
 		"shadcn-svelte",
 		"bits-ui",
 		"clean-ui",
-		"ai-ui"
+		"ai-ui",
+		"ai-components",
+		"chat-ui",
+		"voice-ui",
+		"ai-design-system"
 	],
 	"homepage": "https://github.com/dyascj/mizu#readme",
 	"repository": {

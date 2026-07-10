@@ -1,7 +1,7 @@
 import { componentsByCategory } from '$lib/site/catalog';
 import { siteConfig } from '$lib/site/config';
 
-// https://llmstxt.org — a single Markdown file so coding assistants (Cursor,
+// https://llmstxt.org: a single Markdown file so coding assistants (Cursor,
 // Claude, etc.) can ingest what Mizu is and link straight to each component's
 // docs + registry item. Generated from the catalog so it stays in sync.
 export const prerender = true;
@@ -11,12 +11,12 @@ export function GET() {
 	const reg = siteConfig.registryBase.replace(/\/$/, '');
 	const out: string[] = [];
 
-	out.push(`# ${siteConfig.name} — ${siteConfig.tagline}`);
+	out.push(`# ${siteConfig.name} · ${siteConfig.tagline}`);
 	out.push('');
 	out.push(`> ${siteConfig.description}`);
 	out.push('');
 	out.push(
-		'Mizu ships shadcn-svelte style: you copy the source into your own project and own it — no runtime dependency on Mizu. It targets SvelteKit, Svelte 5 (runes), and Tailwind v4, with accessible behavior from bits-ui. Recolor the whole system by changing one token (`--primary`).'
+		'Mizu is a design system for AI products: chat, voice, reasoning, and streaming components plus the classic primitives around them. You copy the source into your own project and own it, with no runtime dependency on Mizu. It targets SvelteKit, Svelte 5 (runes), and Tailwind v4, with accessible behavior from bits-ui. Recolor the whole system by changing one token (`--primary`).'
 	);
 	out.push('');
 	out.push('## Install a component');

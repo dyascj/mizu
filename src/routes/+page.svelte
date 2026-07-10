@@ -14,7 +14,8 @@
 		'@type': 'SoftwareApplication',
 		name: siteConfig.name,
 		applicationCategory: 'DeveloperApplication',
-		applicationSubCategory: 'UI component library',
+		applicationSubCategory: 'AI product design system',
+		keywords: 'AI components, design system, chat UI, voice UI, Svelte, streaming text',
 		operatingSystem: 'Web',
 		description: siteConfig.description,
 		url: siteConfig.url,
@@ -29,7 +30,7 @@
 </script>
 
 <Seo
-	title="{siteConfig.name} — {siteConfig.tagline}"
+	title="{siteConfig.name} · {siteConfig.tagline}"
 	description={siteConfig.description}
 	jsonLd={softwareJsonLd}
 />
@@ -54,8 +55,8 @@
 		</h1>
 
 		<p class="max-w-md text-balance text-muted-foreground sm:text-lg">
-			Clean, airy components for Svelte 5 and Tailwind v4. White surfaces, soft shadows, and a
-			glow where intelligence lives.
+			Clean, airy components for AI products. Chat, voice, reasoning, and streaming for Svelte 5
+			and Tailwind v4, with a glow where intelligence lives.
 		</p>
 
 		<div class="mt-1 flex flex-wrap items-center justify-center gap-3">

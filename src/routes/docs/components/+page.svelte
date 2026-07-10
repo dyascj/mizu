@@ -8,8 +8,8 @@
 </script>
 
 <Seo
-	title="Components — {siteConfig.name}"
-	description={`Browse all ${components.length} Mizu components for SvelteKit — buttons, inputs, dialogs, command palettes, data tables and more. Each has a live demo, props table, and copy-paste source.`}
+	title="Components · {siteConfig.name}"
+	description={`Browse all ${components.length} Mizu components for AI products: streaming text, chat, voice orbs, reasoning, plus buttons, dialogs, and data tables. Each has a live demo, props table, and copy-paste source.`}
 />
 
 <div>
