@@ -2,13 +2,17 @@
 	import * as Tabs from '$lib/components/ui/tabs';
 	import CodeBlock from '$lib/site/code-block.svelte';
 	import Seo from '$lib/site/seo.svelte';
-	import { blocks, getBlock } from '$lib/site/blocks';
+	import { blockCategories, blocks, getBlock, type BlockCategory } from '$lib/site/blocks';
 	import { siteConfig } from '$lib/site/config';
+	import { cn } from '$lib/utils.js';
+
+	let category = $state<BlockCategory>('Featured');
+	const visible = $derived(blocks.filter((b) => b.category === category));
 </script>
 
 <Seo
 	title="Blocks · {siteConfig.name}"
-	description="Prebuilt AI screens and flows for SvelteKit: an assistant chat, voice mode, an agent dashboard, and onboarding. Every block ships its full source to copy and own."
+	description="Prebuilt AI screens and flows for SvelteKit: assistant chat, voice mode, agent dashboards and runs, an app shell, and auth. Every block ships its full source to copy and own."
 />
 
 <div class="mx-auto w-full max-w-5xl px-5 py-12 sm:px-6">
@@ -20,8 +24,26 @@
 		</p>
 	</header>
 
-	<div class="mt-14 flex flex-col gap-16">
-		{#each blocks as block (block.slug)}
+	<nav class="mt-8 flex flex-wrap items-center justify-center gap-2" aria-label="Block categories">
+		{#each blockCategories as c (c)}
+			<button
+				type="button"
+				onclick={() => (category = c)}
+				aria-pressed={category === c}
+				class={cn(
+					'rounded-full px-4 py-1.5 text-sm transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring',
+					category === c
+						? 'bg-primary-muted font-medium text-primary'
+						: 'bg-secondary text-muted-foreground hover:text-foreground'
+				)}
+			>
+				{c}
+			</button>
+		{/each}
+	</nav>
+
+	<div class="mt-12 flex flex-col gap-16">
+		{#each visible as block (block.slug)}
 			{@const b = getBlock(block.slug)}
 			<section id={block.slug}>
 				<div class="mb-4 max-w-2xl">

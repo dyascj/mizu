@@ -1,4 +1,5 @@
 import { componentsByCategory } from '$lib/site/catalog';
+import { blocks } from '$lib/site/blocks';
 import { siteConfig } from '$lib/site/config';
 
 // https://llmstxt.org: a single Markdown file so coding assistants (Cursor,
@@ -36,6 +37,14 @@ export function GET() {
 	);
 	out.push(`- [Theming](${base}/docs/theming): the one-token brand system and light/dark modes`);
 	out.push(`- [Components](${base}/docs/components): browse all components`);
+	out.push(`- [Blocks](${base}/blocks): whole AI screens with full copyable source`);
+	out.push('');
+
+	out.push('## Blocks');
+	out.push('');
+	for (const b of blocks) {
+		out.push(`- [${b.name}](${base}/blocks#${b.slug}): ${b.description}`);
+	}
 	out.push('');
 
 	for (const group of componentsByCategory()) {
