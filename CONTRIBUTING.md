@@ -92,5 +92,6 @@ pnpm test:browser
 The release workflow verifies the same contract. A discouraged release is marked as yanked in the changelog and release notes, never rewritten.
 
 The detailed release, rollback, and incident procedure lives in `docs/releases.md`.
+Repository protection, merge, and security settings are defined in `repository-policy.json` and documented in `docs/repository-settings.md`.
 
 Visual baseline changes follow `docs/visual-regression.md`. Snapshot updates require inspecting every changed desktop and mobile image in light, dark, and custom-primary themes; they are never an automatic CI repair.

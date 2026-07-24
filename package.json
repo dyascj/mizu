@@ -65,6 +65,8 @@
 		"registry:consumer-check": "node scripts/verify-registry-consumer.mjs",
 		"release:verify": "node scripts/release.mjs verify",
 		"release:deployment-check": "node scripts/verify-deployed-registry.mjs",
+		"repository:audit": "node scripts/github-repository.mjs audit",
+		"repository:apply": "node scripts/github-repository.mjs apply",
 		"new:component": "node scripts/new-component.mjs"
 	},
 	"devDependencies": {

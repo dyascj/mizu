@@ -1,0 +1,21 @@
+{
+	"repository": "dyascj/mizu",
+	"defaultBranch": "main",
+	"requiredChecks": ["verify", "browser", "analyze"],
+	"requireBranchesUpToDate": true,
+	"requirePullRequests": true,
+	"requiredApprovingReviewCount": 0,
+	"requireConversationResolution": true,
+	"enforceAdmins": false,
+	"allowForcePushes": false,
+	"allowDeletions": false,
+	"mergeCommitAllowed": true,
+	"squashMergeAllowed": false,
+	"rebaseMergeAllowed": false,
+	"deleteBranchOnMerge": true,
+	"allowUpdateBranch": true,
+	"privateVulnerabilityReporting": true,
+	"dependabotSecurityUpdates": true,
+	"secretScanning": true,
+	"secretScanningPushProtection": true
+}
