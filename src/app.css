@@ -2,7 +2,7 @@
    Mizu: a clean, airy design system for AI products
    ----------------------------------------------------------------------------
    This file IS the theme. Install it once into your app and every Mizu
-   component reads from these tokens. White surfaces, hairline borders,
+   component reads from these tokens. White surfaces, semantic dividers,
    whisper-soft shadows, pill controls, and pastel aura gradients that give
    AI-era interfaces their glow are all defined here.
    ========================================================================== */
@@ -98,7 +98,7 @@
 
 /* ----------------------------------------------------------------------------
    Semantic tokens, dark: a ladder of slate lifted from pure black.
-   No strokes; each layer is one tonal rung above the one beneath it
+   No decorative strokes; each layer is one tonal rung above the one beneath it
    (#000 page, #0c1116 card, #141b21 floating panel, #1d262e hover). 
 ---------------------------------------------------------------------------- */
 .dark {

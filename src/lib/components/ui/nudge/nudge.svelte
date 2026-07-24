@@ -28,7 +28,13 @@
 		{#if icon}
 			{@render icon()}
 		{:else}
-			<VoiceOrb state="idle" size={28} class="mt-0.5 shrink-0" />
+			<VoiceOrb
+				state="idle"
+				size={28}
+				role="presentation"
+				aria-hidden="true"
+				class="mt-0.5 shrink-0"
+			/>
 		{/if}
 		<div class="min-w-0 flex-1">
 			<p class="text-sm font-medium text-foreground">{title}</p>

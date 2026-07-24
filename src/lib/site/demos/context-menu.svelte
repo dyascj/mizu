@@ -1,6 +1,9 @@
 <script lang="ts">
 	import * as ContextMenu from '$lib/components/ui/context-menu';
-	import { Copy, Droplets, WavesLadder, Trash2 } from '@lucide/svelte';
+	import Copy from '@lucide/svelte/icons/copy';
+	import Droplets from '@lucide/svelte/icons/droplets';
+	import WavesLadder from '@lucide/svelte/icons/waves-ladder';
+	import Trash2 from '@lucide/svelte/icons/trash-2';
 
 	let showGlow = $state(true);
 	let depth = $state('shallow');

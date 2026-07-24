@@ -10,6 +10,7 @@
 
 	type Props = Omit<HTMLAttributes<HTMLOListElement>, 'children'> & {
 		steps: Step[];
+		/** Active zero-based step. Out-of-range values display at the nearest valid step. */
 		current?: number;
 		orientation?: 'horizontal' | 'vertical';
 		clickable?: boolean;
@@ -30,6 +31,11 @@
 	}: Props = $props();
 
 	const isVertical = $derived(orientation === 'vertical');
+	const normalizedCurrent = $derived(
+		steps.length === 0
+			? -1
+			: Math.min(steps.length - 1, Math.max(0, Math.round(Number.isFinite(current) ? current : 0)))
+	);
 
 	function go(i: number) {
 		if (!clickable) return;
@@ -44,8 +50,8 @@
 	{...rest}
 >
 	{#each steps as step, i (i)}
-		{@const completed = i < current}
-		{@const active = i === current}
+		{@const completed = i < normalizedCurrent}
+		{@const active = i === normalizedCurrent}
 		<li
 			class={cn(
 				'group relative flex min-w-0',

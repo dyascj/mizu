@@ -36,6 +36,8 @@ class ToastStore {
 	toasts = $state<ToastData[]>([]);
 	#id = 0;
 	#timers = new Map<number, ReturnType<typeof setTimeout>>();
+	#remaining = new Map<number, number>();
+	#startedAt = new Map<number, number>();
 
 	add(input: ToastInput, variant: ToastVariant): number {
 		const opts: ToastOptions = typeof input === 'string' ? { title: input } : input;
@@ -49,42 +51,56 @@ class ToastStore {
 			duration,
 			action: opts.action
 		});
-		if (duration > 0) this.#arm(id, duration);
+		if (duration > 0) {
+			this.#remaining.set(id, duration);
+			this.#arm(id, duration);
+		}
 		return id;
 	}
 
 	#arm(id: number, ms: number) {
-		this.#clear(id);
+		this.#clearTimer(id);
+		this.#remaining.set(id, ms);
+		this.#startedAt.set(id, Date.now());
 		this.#timers.set(
 			id,
 			setTimeout(() => this.dismiss(id), ms)
 		);
 	}
 
-	#clear(id: number) {
+	#clearTimer(id: number) {
 		const t = this.#timers.get(id);
 		if (t) clearTimeout(t);
 		this.#timers.delete(id);
+		this.#startedAt.delete(id);
 	}
 
 	/** Pause auto-dismiss (e.g. while hovered). */
 	pause(id: number) {
-		this.#clear(id);
+		const startedAt = this.#startedAt.get(id);
+		const remaining = this.#remaining.get(id);
+		if (startedAt === undefined || remaining === undefined) return;
+		this.#remaining.set(id, Math.max(0, remaining - (Date.now() - startedAt)));
+		this.#clearTimer(id);
 	}
 
-	/** Resume auto-dismiss with the toast's remaining-ish duration. */
+	/** Resume auto-dismiss using the exact duration left when it was paused. */
 	resume(id: number) {
-		const t = this.toasts.find((x) => x.id === id);
-		if (t && t.duration > 0) this.#arm(id, t.duration);
+		const remaining = this.#remaining.get(id);
+		if (!this.toasts.some((toast) => toast.id === id) || remaining === undefined) return;
+		if (remaining <= 0) this.dismiss(id);
+		else this.#arm(id, remaining);
 	}
 
 	dismiss(id: number) {
-		this.#clear(id);
+		this.#clearTimer(id);
+		this.#remaining.delete(id);
 		this.toasts = this.toasts.filter((t) => t.id !== id);
 	}
 
 	clear() {
-		for (const id of this.#timers.keys()) this.#clear(id);
+		for (const id of this.#timers.keys()) this.#clearTimer(id);
+		this.#remaining.clear();
 		this.toasts = [];
 	}
 }

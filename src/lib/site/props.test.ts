@@ -13,7 +13,7 @@ function listSvelteFiles(dir: string): string[] {
 		const path = join(dir, entry);
 		return statSync(path).isDirectory()
 			? listSvelteFiles(path)
-			: path.endsWith('.svelte')
+			: path.endsWith('.svelte') && !/\.(?:test|spec)\.svelte$/.test(path)
 				? [path]
 				: [];
 	});
@@ -88,6 +88,25 @@ describe('parseProps', () => {
 			type: "'sm' | 'lg'",
 			default: "'sm'"
 		});
+	});
+
+	test('keeps member types when JSDoc and line comments precede them', () => {
+		const parsed = parseProps(`
+			<script lang="ts">
+				type Props = {
+					/** Diameter in pixels. */
+					size?: number;
+					// A URL-shaped literal must not be mistaken for a comment.
+					protocol?: 'https://';
+				};
+				let { size = 120, protocol = 'https://' }: Props = $props();
+			</script>
+		`);
+
+		expect(parsed.props).toMatchObject([
+			{ name: 'size', type: 'number', default: '120' },
+			{ name: 'protocol', type: "'https://'", default: "'https://'" }
+		]);
 	});
 
 	test('returns an empty API for source without props', () => {

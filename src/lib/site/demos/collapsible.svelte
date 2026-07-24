@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Collapsible from '$lib/components/ui/collapsible';
 	import { buttonVariants } from '$lib/components/ui/button';
-	import { ChevronsUpDown } from '@lucide/svelte';
+	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
 
 	let open = $state(false);
 </script>

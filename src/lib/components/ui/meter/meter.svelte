@@ -29,14 +29,19 @@
 		...rest
 	}: Props = $props();
 
-	const clamped = $derived(Math.max(min, Math.min(max, value)));
-	const pct = $derived(max > min ? ((clamped - min) / (max - min)) * 100 : 0);
+	const normalizedMin = $derived(Number.isFinite(min) ? min : 0);
+	const normalizedMax = $derived(
+		Number.isFinite(max) && max > normalizedMin ? max : normalizedMin + 1
+	);
+	const normalizedValue = $derived(Number.isFinite(value) ? value : normalizedMin);
+	const clamped = $derived(Math.max(normalizedMin, Math.min(normalizedMax, normalizedValue)));
+	const pct = $derived(((clamped - normalizedMin) / (normalizedMax - normalizedMin)) * 100);
 
 	/* HTML <meter> zone algorithm. `low`/`high` carve the range into three bands;
 	   `optimum` says which band is "good", which is sub-optimal, which is poor. */
 	const zone = $derived.by(() => {
-		const lo = low ?? min;
-		const hi = high ?? max;
+		const lo = low ?? normalizedMin;
+		const hi = high ?? normalizedMax;
 		if (optimum == null) return 'primary';
 
 		if (optimum < lo) {
@@ -65,7 +70,7 @@
 		}[zone]
 	);
 
-	const formatted = $derived(format ? format(value) : String(value));
+	const formatted = $derived(format ? format(clamped) : String(clamped));
 </script>
 
 <div class={cn('w-full', className)} {...rest}>
@@ -82,10 +87,10 @@
 
 	<div
 		role="meter"
-		aria-valuenow={value}
-		aria-valuemin={min}
-		aria-valuemax={max}
-		aria-label={label}
+		aria-valuenow={clamped}
+		aria-valuemin={normalizedMin}
+		aria-valuemax={normalizedMax}
+		aria-label={label ?? 'Meter'}
 		class="relative h-2.5 w-full overflow-hidden rounded-full bg-secondary"
 	>
 		<div

@@ -90,6 +90,49 @@ function matchBracket(str, open) {
 }
 
 /**
+ * Remove line and block comments without touching comment-like text inside
+ * string literals. Type members often carry JSDoc directly above them.
+ * @param {string} str
+ * @returns {string}
+ */
+function stripComments(str) {
+	let out = '';
+	/** @type {string | null} */
+	let quote = null;
+
+	for (let i = 0; i < str.length; i++) {
+		const ch = str[i];
+		const next = str[i + 1];
+		if (quote) {
+			out += ch;
+			if (ch === quote && str[i - 1] !== '\\') quote = null;
+			continue;
+		}
+		if (ch === '"' || ch === "'" || ch === '`') {
+			quote = ch;
+			out += ch;
+			continue;
+		}
+		if (ch === '/' && next === '*') {
+			i += 2;
+			while (i < str.length && !(str[i] === '*' && str[i + 1] === '/')) i++;
+			i++;
+			out += ' ';
+			continue;
+		}
+		if (ch === '/' && next === '/') {
+			i += 2;
+			while (i < str.length && str[i] !== '\n') i++;
+			out += '\n';
+			continue;
+		}
+		out += ch;
+	}
+
+	return out;
+}
+
+/**
  * Locate the `let { … }: <Type> = $props()` statement and return its raw
  * destructuring text and type-annotation text.
  * @param {string} source
@@ -307,7 +350,7 @@ export function parseProps(source) {
 	for (const operand of splitTopLevel(typeExpr, '&', { angle: true })) {
 		if (operand.startsWith('{')) {
 			const close = matchBracket(operand, 0);
-			const body = operand.slice(1, close === -1 ? undefined : close);
+			const body = stripComments(operand.slice(1, close === -1 ? undefined : close));
 			for (const member of splitTopLevel(body, ';', { angle: true })) {
 				const colon = member.indexOf(':');
 				if (colon === -1) continue;

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Toggle } from '$lib/components/ui/toggle';
-	import { Bold } from '@lucide/svelte';
+	import Bold from '@lucide/svelte/icons/bold';
 
 	let pressed = $state(false);
 </script>

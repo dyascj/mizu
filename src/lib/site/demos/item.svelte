@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Item from '$lib/components/ui/item';
 	import { Button } from '$lib/components/ui/button';
-	import { Droplets } from '@lucide/svelte';
+	import Droplets from '@lucide/svelte/icons/droplets';
 </script>
 
 <Item.Root class="w-full max-w-sm">

@@ -1,7 +1,10 @@
 <script lang="ts">
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { buttonVariants } from '$lib/components/ui/button';
-	import { Droplets, Settings, WavesLadder, LogOut } from '@lucide/svelte';
+	import Droplets from '@lucide/svelte/icons/droplets';
+	import Settings from '@lucide/svelte/icons/settings';
+	import WavesLadder from '@lucide/svelte/icons/waves-ladder';
+	import LogOut from '@lucide/svelte/icons/log-out';
 
 	let showRipples = $state(true);
 	let showFoam = $state(false);

@@ -6,7 +6,7 @@
 	<Accordion.Item value="clarity">
 		<Accordion.Trigger>What makes the surfaces feel like water?</Accordion.Trigger>
 		<Accordion.Content>
-			White surfaces, hairline borders, and soft ambient shadows give every panel its clarity.
+			White surfaces, restrained dividers, and soft ambient shadows give every panel its clarity.
 		</Accordion.Content>
 	</Accordion.Item>
 	<Accordion.Item value="theming">

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Minus } from '@lucide/svelte';
+	import Minus from '@lucide/svelte/icons/minus';
 	import { cn } from '$lib/utils.js';
 
 	let { class: className, ...restProps }: { class?: string } = $props();

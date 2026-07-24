@@ -24,7 +24,7 @@ Always run `pnpm registry:build` after touching components, blocks, or the catal
 
 ## Design rules (every change must follow these)
 
-- No strokes. Depth comes from shadows and gray fills in light mode and tonal surface rungs in dark mode, never borders. No `dark:border` fallbacks. Exceptions: `outline` variants, dashed empty states, table row dividers.
+- No decorative strokes. Depth comes from shadows and gray fills in light mode and tonal surface rungs in dark mode. Semantic strokes are reserved for control outlines, focus and invalid states, dashed empty states, dense-content dividers, and panel edges that must remain distinct over arbitrary content.
 - One accent, `--primary`. Active states are `bg-primary-muted text-primary`; everything else stays quiet gray.
 - `orb-*` and `aurora-*` washes mark AI moments only, never chrome.
 - Nothing heavier than `font-semibold`. Titles semibold with tight tracking, labels medium, body regular. Single-line controls are pills; multi-line fields are `rounded-2xl`.

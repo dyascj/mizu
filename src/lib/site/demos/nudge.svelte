@@ -4,11 +4,17 @@
 	import { toast } from '$lib/components/ui/toast';
 
 	let visible = $state(true);
+	let resetTimer: ReturnType<typeof setTimeout> | undefined;
 
 	function dismiss() {
 		visible = false;
-		setTimeout(() => (visible = true), 1200);
+		if (resetTimer) clearTimeout(resetTimer);
+		resetTimer = setTimeout(() => (visible = true), 1200);
 	}
+
+	$effect(() => () => {
+		if (resetTimer) clearTimeout(resetTimer);
+	});
 </script>
 
 <div class="flex min-h-32 w-full max-w-sm items-center">

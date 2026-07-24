@@ -14,7 +14,7 @@
     {
       "type": "registry:file",
       "target": "breadcrumb/breadcrumb-ellipsis.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { Ellipsis } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLSpanElement> & { class?: string };\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<span\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn('flex size-9 items-center justify-center', className)}\n\t{...rest}\n>\n\t<Ellipsis class=\"size-4\" />\n\t<span class=\"sr-only\">More</span>\n</span>\n"
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport Ellipsis from '@lucide/svelte/icons/ellipsis';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLSpanElement> & { class?: string };\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<span\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn('flex size-9 items-center justify-center', className)}\n\t{...rest}\n>\n\t<Ellipsis class=\"size-4\" />\n\t<span class=\"sr-only\">More</span>\n</span>\n"
     },
     {
       "type": "registry:file",
@@ -39,7 +39,7 @@
     {
       "type": "registry:file",
       "target": "breadcrumb/breadcrumb-separator.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { ChevronRight } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLLIElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<li role=\"presentation\" aria-hidden=\"true\" class={cn('[&>svg]:size-3.5', className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{:else}\n\t\t<ChevronRight />\n\t{/if}\n</li>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport ChevronRight from '@lucide/svelte/icons/chevron-right';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLLIElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<li role=\"presentation\" aria-hidden=\"true\" class={cn('[&>svg]:size-3.5', className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{:else}\n\t\t<ChevronRight />\n\t{/if}\n</li>\n"
     },
     {
       "type": "registry:file",

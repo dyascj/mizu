@@ -2,7 +2,10 @@
 	// A shadcn-style "wall of cards": every card is an agentic scenario built
 	// from real, interactive components, the same way the blocks are. No generic
 	// SaaS filler; this is what the system is for.
-	import { Bell, Search, Droplets, Check } from '@lucide/svelte';
+	import Bell from '@lucide/svelte/icons/bell';
+	import Search from '@lucide/svelte/icons/search';
+	import Droplets from '@lucide/svelte/icons/droplets';
+	import Check from '@lucide/svelte/icons/check';
 	import * as Card from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
@@ -56,8 +59,18 @@
 		{ value: 'super-2', label: 'Super 2.4' }
 	];
 	let lunaRun = $state(0);
+	let lunaReplayTimer: ReturnType<typeof setTimeout> | undefined;
 	const lunaReply =
 		'Two things: standup at ten, and you promised yourself a walk. I can remind you at three.';
+
+	function replayLuna() {
+		if (lunaReplayTimer) clearTimeout(lunaReplayTimer);
+		lunaReplayTimer = setTimeout(() => (lunaRun += 1), 3600);
+	}
+
+	$effect(() => () => {
+		if (lunaReplayTimer) clearTimeout(lunaReplayTimer);
+	});
 
 	const activity = [
 		{ title: 'Finished the research doc', detail: 'Sources cited and summarized', time: '9:41 AM' },
@@ -90,11 +103,7 @@
 			</Reasoning>
 			<ChatBubble role="assistant" animate={false} class="min-h-16 w-full max-w-[85%]">
 				{#key lunaRun}
-					<StreamingText
-						text={lunaReply}
-						speed={80}
-						onComplete={() => setTimeout(() => (lunaRun += 1), 3600)}
-					/>
+					<StreamingText text={lunaReply} speed={80} onComplete={replayLuna} />
 				{/key}
 			</ChatBubble>
 			<MessageActions text={lunaReply} class="pl-1" />

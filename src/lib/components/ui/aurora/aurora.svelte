@@ -3,9 +3,9 @@
 	import { cn } from '$lib/utils.js';
 
 	type Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
-		/** Override the drifting blob colors (defaults to the pastel aura palette). */
+		/** Override the drifting blob colors. Empty arrays fall back to the default pastel palette. */
 		colors?: string[];
-		/** Seconds for the base drift loop. Larger = slower and dreamier. */
+		/** Seconds for the base drift loop. Non-positive values fall back to 18. */
 		speed?: number;
 		/** Blur radius of the blobs, e.g. '64px'. */
 		blur?: string;
@@ -29,16 +29,19 @@
 		...rest
 	}: Props = $props();
 
+	const resolvedColors = $derived(colors.length > 0 ? colors : defaultColors);
+	const resolvedSpeed = $derived(Number.isFinite(speed) && speed > 0 ? speed : 18);
+
 	// Four drifting blobs, each pulling its color from `colors` (wrapping if fewer
 	// are supplied) so the mesh always has something to fade between.
-	const blobs = $derived([0, 1, 2, 3].map((i) => colors[i % colors.length]));
+	const blobs = $derived([0, 1, 2, 3].map((i) => resolvedColors[i % resolvedColors.length]));
 </script>
 
 <div
 	bind:this={ref}
 	aria-hidden="true"
 	class={cn('mizu-aurora pointer-events-none overflow-hidden', className)}
-	style="--aurora-speed: {speed}s; --aurora-blur: {blur};"
+	style="--aurora-speed: {resolvedSpeed}s; --aurora-blur: {blur};"
 	{...rest}
 >
 	<div

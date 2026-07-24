@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Empty from '$lib/components/ui/empty';
 	import { Button } from '$lib/components/ui/button';
-	import { Droplets } from '@lucide/svelte';
+	import Droplets from '@lucide/svelte/icons/droplets';
 </script>
 
 <Empty.Root class="w-full max-w-sm">

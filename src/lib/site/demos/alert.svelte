@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as Alert from '$lib/components/ui/alert';
-	import { Info, CircleCheck } from '@lucide/svelte';
+	import Info from '@lucide/svelte/icons/info';
+	import CircleCheck from '@lucide/svelte/icons/circle-check';
 </script>
 
 <div class="flex w-full max-w-md flex-col gap-3">

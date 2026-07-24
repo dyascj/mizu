@@ -7,6 +7,7 @@
 		value?: string[];
 		placeholder?: string;
 		disabled?: boolean;
+		/** Maximum tags, rounded and clamped to the inclusive range 0 to 1000. */
 		max?: number;
 		name?: string;
 		dedupe?: boolean;
@@ -31,7 +32,12 @@
 	let draft = $state('');
 	let inputEl = $state<HTMLInputElement | null>(null);
 
-	const atMax = $derived(max != null && value.length >= max);
+	const normalizedMax = $derived(
+		max == null
+			? undefined
+			: Math.min(1000, Math.max(0, Math.round(Number.isFinite(max) ? max : 1000)))
+	);
+	const atMax = $derived(normalizedMax != null && value.length >= normalizedMax);
 
 	function setValue(next: string[]) {
 		value = next;

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import { ChevronRight } from '@lucide/svelte';
+	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import { cn } from '$lib/utils.js';
 
 	type Props = HTMLAttributes<HTMLLIElement> & { class?: string; children?: Snippet };

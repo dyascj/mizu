@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as HoverCard from '$lib/components/ui/hover-card';
 	import * as Avatar from '$lib/components/ui/avatar';
-	import { Droplets } from '@lucide/svelte';
+	import Droplets from '@lucide/svelte/icons/droplets';
 </script>
 
 <HoverCard.Root>

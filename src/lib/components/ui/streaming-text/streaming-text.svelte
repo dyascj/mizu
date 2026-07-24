@@ -5,7 +5,7 @@
 	type Props = Omit<HTMLAttributes<HTMLSpanElement>, 'children'> & {
 		/** The full text to stream in, token by token. */
 		text: string;
-		/** Milliseconds between words. */
+		/** Milliseconds between visual tokens. Non-positive values reveal immediately. */
 		speed?: number;
 		/** Show the blinking caret while streaming. */
 		cursor?: boolean;
@@ -25,31 +25,58 @@
 	}: Props = $props();
 
 	const words = $derived(text.split(/(\s+)/).filter(Boolean));
+	const normalizedSpeed = $derived(
+		Math.min(60_000, Math.max(1, Math.round(Number.isFinite(speed) ? speed : 60)))
+	);
 	let shown = $state(0);
+	let reducedMotion = $state(false);
 	const done = $derived(shown >= words.length);
 
 	$effect(() => {
-		// restart whenever the text changes
-		void text;
+		if (typeof window.matchMedia !== 'function') return;
+		const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const sync = () => (reducedMotion = media.matches);
+		sync();
+		media.addEventListener('change', sync);
+		return () => media.removeEventListener('change', sync);
+	});
+
+	$effect(() => {
+		const currentWords = words;
+		const delay = normalizedSpeed;
+		const revealImmediately = reducedMotion || speed <= 0;
 		shown = 0;
-		const timer = setInterval(() => {
+
+		if (currentWords.length === 0 || revealImmediately) {
+			shown = currentWords.length;
+			onComplete?.();
+			return;
+		}
+
+		let timer: ReturnType<typeof setTimeout>;
+		const revealNext = () => {
 			shown += 1;
-			if (shown >= words.length) {
-				clearInterval(timer);
+			if (shown >= currentWords.length) {
 				onComplete?.();
+				return;
 			}
-		}, speed);
-		return () => clearInterval(timer);
+			timer = setTimeout(revealNext, delay);
+		};
+		timer = setTimeout(revealNext, delay);
+		return () => clearTimeout(timer);
 	});
 </script>
 
 <span bind:this={ref} class={cn('whitespace-pre-wrap', className)} {...rest}>
-	{#each words.slice(0, shown) as word, i (i)}
-		<span class="stream-word">{word}</span>
-	{/each}
-	{#if cursor && !done}
-		<span class="stream-caret" aria-hidden="true"></span>
-	{/if}
+	<span class="sr-only">{text}</span>
+	<span aria-hidden="true">
+		{#each words.slice(0, shown) as word, i (i)}
+			<span class="stream-word">{word}</span>
+		{/each}
+		{#if cursor && !done}
+			<span class="stream-caret"></span>
+		{/if}
+	</span>
 </span>
 
 <style>
@@ -84,7 +111,8 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.stream-word {
+		.stream-word,
+		.stream-caret {
 			animation: none;
 		}
 	}

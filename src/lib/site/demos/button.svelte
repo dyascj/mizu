@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { Droplet } from '@lucide/svelte';
+	import Droplet from '@lucide/svelte/icons/droplet';
 </script>
 
 <div class="flex flex-wrap items-center justify-center gap-3">

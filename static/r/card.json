@@ -3,7 +3,7 @@
   "name": "card",
   "type": "registry:ui",
   "title": "Card",
-  "description": "The signature surface: white, hairline border, soft shadow.",
+  "description": "The signature surface: quiet fill, generous radius, soft shadow.",
   "dependencies": [],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

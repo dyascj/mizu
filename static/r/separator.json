@@ -3,7 +3,7 @@
   "name": "separator",
   "type": "registry:ui",
   "title": "Separator",
-  "description": "A hairline divider for sections.",
+  "description": "A subtle semantic divider for sections.",
   "dependencies": [],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

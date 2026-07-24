@@ -34,6 +34,20 @@ export default defineConfig(
 				...globals.browser,
 				...globals.node
 			}
+		},
+		rules: {
+			'no-restricted-imports': [
+				'error',
+				{
+					paths: [
+						{
+							name: '@lucide/svelte',
+							allowTypeImports: true,
+							message: 'Import each Lucide icon from @lucide/svelte/icons/<name>.'
+						}
+					]
+				}
+			]
 		}
 	},
 	{

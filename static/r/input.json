@@ -3,7 +3,7 @@
   "name": "input",
   "type": "registry:ui",
   "title": "Input",
-  "description": "A pill text field with a hairline border and a blue focus ring.",
+  "description": "A pill text field with a quiet fill and a primary focus ring.",
   "dependencies": [],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

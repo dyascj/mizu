@@ -3,6 +3,16 @@
 	import { ChatBubble } from '$lib/components/ui/chat-bubble';
 
 	let run = $state(0);
+	let replayTimer: ReturnType<typeof setTimeout> | undefined;
+
+	function replayStream() {
+		if (replayTimer) clearTimeout(replayTimer);
+		replayTimer = setTimeout(() => (run += 1), 2600);
+	}
+
+	$effect(() => () => {
+		if (replayTimer) clearTimeout(replayTimer);
+	});
 </script>
 
 <div class="w-full max-w-md">
@@ -11,7 +21,7 @@
 			<StreamingText
 				text="Here is the plan: a slow morning, a long walk by the water, and dinner you do not have to think about. I already found three places nearby with open tables."
 				speed={70}
-				onComplete={() => setTimeout(() => (run += 1), 2600)}
+				onComplete={replayStream}
 			/>
 		{/key}
 	</ChatBubble>

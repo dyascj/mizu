@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Pagination as PaginationPrimitive, type WithoutChild } from 'bits-ui';
 	import type { Snippet } from 'svelte';
-	import { ChevronLeft } from '@lucide/svelte';
+	import ChevronLeft from '@lucide/svelte/icons/chevron-left';
 	import { cn } from '$lib/utils.js';
 
 	let {

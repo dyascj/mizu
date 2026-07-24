@@ -15,6 +15,16 @@
 	];
 
 	let run = $state(0);
+	let replayTimer: ReturnType<typeof setTimeout> | undefined;
+
+	function replayStream() {
+		if (replayTimer) clearTimeout(replayTimer);
+		replayTimer = setTimeout(() => (run += 1), 4000);
+	}
+
+	$effect(() => () => {
+		if (replayTimer) clearTimeout(replayTimer);
+	});
 </script>
 
 <div class="mx-auto flex w-full max-w-xl flex-col gap-4 rounded-3xl bg-card p-6 shadow-md">
@@ -43,7 +53,7 @@
 			<StreamingText
 				text="Front-runner so far: the boathouse on the east shore. Fits twenty, has the quiet morning light you asked for, and comes in under budget with room for the dinner."
 				speed={75}
-				onComplete={() => setTimeout(() => (run += 1), 4000)}
+				onComplete={replayStream}
 			/>
 		{/key}
 	</div>

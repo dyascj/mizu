@@ -5,9 +5,9 @@
 	import { setDockContext } from './context.js';
 
 	type Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
-		/** Peak scale of the item directly under the cursor. */
+		/** Peak scale under the cursor, clamped to the inclusive range 1 to 3. */
 		magnification?: number;
-		/** Influence radius in px the magnify falls off across. */
+		/** Influence radius in pixels, clamped to the inclusive range 1 to 1000. */
 		distance?: number;
 		class?: string;
 		ref?: HTMLDivElement | null;
@@ -26,16 +26,22 @@
 	// The live pointer X (viewport px) while over the dock; null when the
 	// cursor leaves so every item eases back to rest.
 	let pointerX = $state<number | null>(null);
+	const resolvedMagnification = $derived(
+		Math.min(3, Math.max(1, Number.isFinite(magnification) ? magnification : 1.6))
+	);
+	const resolvedDistance = $derived(
+		Math.min(1000, Math.max(1, Number.isFinite(distance) ? distance : 110))
+	);
 
 	setDockContext({
 		get pointerX() {
 			return pointerX;
 		},
 		get magnification() {
-			return magnification;
+			return resolvedMagnification;
 		},
 		get distance() {
-			return distance;
+			return resolvedDistance;
 		}
 	});
 

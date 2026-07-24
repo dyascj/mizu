@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as InputGroup from '$lib/components/ui/input-group';
-	import { Search } from '@lucide/svelte';
+	import Search from '@lucide/svelte/icons/search';
 </script>
 
 <InputGroup.Root class="w-full max-w-sm">

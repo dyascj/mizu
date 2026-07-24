@@ -34,7 +34,7 @@ Guidance for AI coding agents working in a project that uses Mizu, ${tagline} ($
 
 ## Design rules (do not violate)
 
-- Depth never comes from border strokes. Light mode uses soft shadows and gray fills; dark mode uses tonal surface rungs. Only \`outline\` variants, dashed empty states, and table row dividers may carry a stroke.
+- Depth does not come from decorative strokes. Light mode uses soft shadows and gray fills; dark mode uses tonal surface rungs. Semantic strokes are reserved for control outlines, focus and invalid states, dashed empty states, dense-content dividers, and panel edges over arbitrary content.
 - One accent: \`--primary\`. Active states are \`bg-primary-muted text-primary\`. Everything else stays quiet gray.
 - The \`orb-*\` and \`aurora-*\` pastel washes mark AI moments (voice, generation, presence), never chrome.
 - No font weight heavier than semibold. Single-line controls are pills; multi-line fields use \`rounded-2xl\`.

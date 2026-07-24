@@ -5,7 +5,9 @@
 
 	type Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
 		value: number;
+		/** Diameter in pixels, clamped to the inclusive range 16 to 512. */
 		size?: number;
+		/** Stroke width in pixels, clamped between 1 and half the resolved size. */
 		strokeWidth?: number;
 		label?: string;
 		showValue?: boolean;
@@ -30,11 +32,15 @@
 	const uid = $props.id();
 	const gradientId = `mizu-gauge-${uid}`;
 
-	const clamped = $derived(Math.max(0, Math.min(100, value)));
-	const radius = $derived((size - strokeWidth) / 2);
+	const normalizedSize = $derived(Math.min(512, Math.max(16, Number.isFinite(size) ? size : 120)));
+	const normalizedStroke = $derived(
+		Math.min(normalizedSize / 2, Math.max(1, Number.isFinite(strokeWidth) ? strokeWidth : 10))
+	);
+	const clamped = $derived(Math.max(0, Math.min(100, Number.isFinite(value) ? value : 0)));
+	const radius = $derived((normalizedSize - normalizedStroke) / 2);
 	const circumference = $derived(2 * Math.PI * radius);
 	const dashOffset = $derived(circumference - (clamped / 100) * circumference);
-	const center = $derived(size / 2);
+	const center = $derived(normalizedSize / 2);
 </script>
 
 <div
@@ -43,16 +49,22 @@
 	aria-valuenow={Math.round(clamped)}
 	aria-valuemin={0}
 	aria-valuemax={100}
-	aria-label={label}
+	aria-label={label ?? 'Progress'}
 	class={cn('relative inline-flex items-center justify-center', className)}
-	style="width: {size}px; height: {size}px;"
+	style="width: {normalizedSize}px; height: {normalizedSize}px;"
 	{...rest}
 >
-	<svg width={size} height={size} viewBox="0 0 {size} {size}" class="-rotate-90" aria-hidden="true">
+	<svg
+		width={normalizedSize}
+		height={normalizedSize}
+		viewBox="0 0 {normalizedSize} {normalizedSize}"
+		class="-rotate-90"
+		aria-hidden="true"
+	>
 		<defs>
 			<linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-				<stop offset="0%" stop-color="#5cd5ff" />
-				<stop offset="100%" stop-color="#0090d9" />
+				<stop offset="0%" stop-color="color-mix(in oklab, var(--primary) 55%, white)" />
+				<stop offset="100%" stop-color="var(--primary)" />
 			</linearGradient>
 		</defs>
 		<circle
@@ -62,7 +74,7 @@
 			fill="none"
 			stroke="currentColor"
 			class="text-muted-foreground/15"
-			stroke-width={strokeWidth}
+			stroke-width={normalizedStroke}
 		/>
 		<circle
 			cx={center}
@@ -70,11 +82,12 @@
 			r={radius}
 			fill="none"
 			stroke="url(#{gradientId})"
-			stroke-width={strokeWidth}
+			stroke-width={normalizedStroke}
 			stroke-linecap="round"
 			stroke-dasharray={circumference}
 			stroke-dashoffset={dashOffset}
-			class="transition-[stroke-dashoffset] duration-700 ease-out [filter:drop-shadow(0_0_6px_rgba(1,178,255,0.5))]"
+			class="transition-[stroke-dashoffset] duration-700 ease-out"
+			style="filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primary) 50%, transparent));"
 		/>
 	</svg>
 	<div

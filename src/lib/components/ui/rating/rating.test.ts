@@ -26,6 +26,19 @@ describe('Rating', () => {
 		expect(slider).toHaveAttribute('aria-valuenow', '1.5');
 	});
 
+	test('normalizes max and size boundaries', () => {
+		render(Rating, { value: Number.NaN, max: 0, size: -20 });
+		const slider = screen.getByRole('slider');
+
+		expect(slider).toHaveAttribute('aria-valuemax', '1');
+		expect(slider).toHaveAttribute('aria-valuenow', '0');
+		expect(slider.querySelectorAll('[data-rating-index]')).toHaveLength(1);
+		expect(slider.querySelector<HTMLElement>('[data-rating-index]')).toHaveStyle({
+			width: '8px',
+			height: '8px'
+		});
+	});
+
 	test('removes disabled and readonly ratings from the tab order', async () => {
 		const { rerender } = render(Rating, { value: 2, disabled: true });
 		const slider = screen.getByRole('slider');

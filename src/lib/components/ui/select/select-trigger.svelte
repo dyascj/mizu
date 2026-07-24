@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Select as SelectPrimitive, type WithoutChildrenOrChild } from 'bits-ui';
 	import type { Snippet } from 'svelte';
-	import { ChevronsUpDown } from '@lucide/svelte';
+	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
 	import { cn } from '$lib/utils.js';
 
 	let {

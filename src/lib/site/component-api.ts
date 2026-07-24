@@ -17,11 +17,14 @@ export type SourceFile = { file: string; lang: 'svelte' | 'ts'; code: string };
 // Raw component source, loaded at build time (docs-site only, never shipped to
 // consumers). Same mechanism the demos use, so the API is always in sync with
 // the real source: edit a component and its docs table updates on next build.
-const raw = import.meta.glob('../components/ui/**/*.{svelte,ts}', {
-	eager: true,
-	query: '?raw',
-	import: 'default'
-}) as Record<string, string>;
+const raw = import.meta.glob(
+	['../components/ui/**/*.{svelte,ts}', '!../components/ui/**/*.{test,spec}.{svelte,ts}'],
+	{
+		eager: true,
+		query: '?raw',
+		import: 'default'
+	}
+) as Record<string, string>;
 
 /** key → { slug, file } where key is `…/ui/<slug>/<file>`. */
 function locate(key: string): { slug: string; file: string } | null {

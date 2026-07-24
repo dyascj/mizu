@@ -5,9 +5,11 @@
 
 	type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onchange'> & {
 		value?: number;
+		/** Number of rating marks, rounded and clamped to the inclusive range 1 to 100. */
 		max?: number;
 		readonly?: boolean;
 		disabled?: boolean;
+		/** Mark size in pixels, clamped to the inclusive range 8 to 128. */
 		size?: number;
 		name?: string;
 		allowHalf?: boolean;
@@ -30,14 +32,19 @@
 
 	let hover = $state<number | null>(null);
 
+	const normalizedMax = $derived(
+		Math.min(100, Math.max(1, Math.round(Number.isFinite(max) ? max : 5)))
+	);
+	const normalizedSize = $derived(Math.min(128, Math.max(8, Number.isFinite(size) ? size : 24)));
+	const normalizedValue = $derived(Number.isFinite(value) ? (value ?? 0) : 0);
 	const interactive = $derived(!readonly && !disabled);
 	const step = $derived(allowHalf ? 0.5 : 1);
 	/* The score that actually paints: a live hover preview when interactive,
 	   otherwise the committed value (clamped to range). */
-	const display = $derived(hover ?? Math.max(0, Math.min(max, value ?? 0)));
+	const display = $derived(hover ?? Math.max(0, Math.min(normalizedMax, normalizedValue)));
 
 	function clamp(v: number) {
-		return Math.max(0, Math.min(max, Math.round(v / step) * step));
+		return Math.max(0, Math.min(normalizedMax, Math.round(v / step) * step));
 	}
 
 	function commit(v: number) {
@@ -96,7 +103,7 @@
 				next = 0;
 				break;
 			case 'End':
-				next = max;
+				next = normalizedMax;
 				break;
 			default:
 				return;
@@ -109,9 +116,9 @@
 <div
 	role="slider"
 	aria-valuemin={0}
-	aria-valuemax={max}
-	aria-valuenow={value ?? 0}
-	aria-label={rest['aria-label'] ?? `Rating, ${value ?? 0} of ${max}`}
+	aria-valuemax={normalizedMax}
+	aria-valuenow={display}
+	aria-label={rest['aria-label'] ?? `Rating, ${display} of ${normalizedMax}`}
 	aria-readonly={readonly || undefined}
 	aria-disabled={disabled || undefined}
 	tabindex={interactive ? 0 : -1}
@@ -127,7 +134,7 @@
 	)}
 	{...rest}
 >
-	{#each { length: max } as _, idx (idx)}
+	{#each { length: normalizedMax } as _, idx (idx)}
 		{@const i = idx + 1}
 		{@const fill = fillOf(i)}
 		<span
@@ -137,7 +144,7 @@
 				'relative inline-grid place-items-center transition-[scale] duration-150 ease-out',
 				interactive && 'hover:scale-110 active:scale-[0.96]'
 			)}
-			style="width: {size}px; height: {size}px;"
+			style="width: {normalizedSize}px; height: {normalizedSize}px;"
 		>
 			<!-- Empty outline base -->
 			<DropletIcon

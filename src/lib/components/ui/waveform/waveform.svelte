@@ -5,6 +5,7 @@
 	type Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
 		/** Animate the bars (a live voice) or hold them still. */
 		active?: boolean;
+		/** Visible bars, rounded and clamped to the inclusive range 1 to 64. */
 		bars?: number;
 		class?: string;
 		ref?: HTMLDivElement | null;
@@ -18,10 +19,15 @@
 		...rest
 	}: Props = $props();
 
+	/** Bar counts are integer layout units. Keep the DOM bounded for accidental input. */
+	const barCount = $derived(
+		Math.min(64, Math.max(1, Math.round(Number.isFinite(bars) ? bars : 5)))
+	);
+
 	// resting heights arc toward the middle so the idle state still reads as voice
 	const heights = $derived(
-		Array.from({ length: bars }, (_, i) => {
-			const t = bars === 1 ? 1 : i / (bars - 1);
+		Array.from({ length: barCount }, (_, i) => {
+			const t = barCount === 1 ? 1 : i / (barCount - 1);
 			return 0.35 + 0.65 * Math.sin(Math.PI * t);
 		})
 	);

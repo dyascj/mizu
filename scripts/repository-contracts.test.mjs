@@ -30,3 +30,18 @@ test('README count matches the component catalog and stale claims stay removed',
 	assert.doesNotMatch(readme, /Phosphor in the docs site/);
 	assert.doesNotMatch(readme, /hairline border/);
 });
+
+test('design rules reject stale claims and legacy Gauge colors', () => {
+	const guidance = [
+		read('AGENTS.md'),
+		read('CONTRIBUTING.md'),
+		read('src/routes/AGENTS.md/+server.ts'),
+		read('src/routes/docs/+page.svelte'),
+		read('src/routes/docs/usage/+page.svelte')
+	].join('\n');
+	const gauge = read('src/lib/components/ui/circular-gauge/circular-gauge.svelte');
+
+	assert.doesNotMatch(guidance, /\b(?:No strokes|no strokes|hairline borders?)\b/);
+	assert.doesNotMatch(gauge, /#(?:5cd5ff|0090d9)|rgba\(1,\s*178,\s*255/);
+	assert.match(gauge, /var\(--primary\)/);
+});

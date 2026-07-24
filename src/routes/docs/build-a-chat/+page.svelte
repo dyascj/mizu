@@ -16,6 +16,16 @@
 	const block = getBlock('assistant-chat');
 	let value = $state('');
 	let run = $state(0);
+	let replayTimer: ReturnType<typeof setTimeout> | undefined;
+
+	function replayStream() {
+		if (replayTimer) clearTimeout(replayTimer);
+		replayTimer = setTimeout(() => (run += 1), 3200);
+	}
+
+	$effect(() => () => {
+		if (replayTimer) clearTimeout(replayTimer);
+	});
 
 	const installComponents = `npx shadcn-svelte@latest add ${siteConfig.registryBase}/chat-bubble.json ${siteConfig.registryBase}/chat-input.json ${siteConfig.registryBase}/reasoning.json ${siteConfig.registryBase}/tool-call.json ${siteConfig.registryBase}/streaming-text.json ${siteConfig.registryBase}/sources.json ${siteConfig.registryBase}/message-actions.json ${siteConfig.registryBase}/prompt-suggestions.json`;
 
@@ -127,7 +137,7 @@
 				<StreamingText
 					text="Booked for Saturday at seven. I picked the corner table you liked."
 					speed={70}
-					onComplete={() => setTimeout(() => (run += 1), 3200)}
+					onComplete={replayStream}
 				/>
 			{/key}
 		</ChatBubble>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Badge } from '$lib/components/ui/badge';
-	import { Droplets } from '@lucide/svelte';
+	import Droplets from '@lucide/svelte/icons/droplets';
 </script>
 
 <div class="flex flex-wrap items-center justify-center gap-2.5">

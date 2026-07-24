@@ -20,7 +20,7 @@
     {
       "type": "registry:file",
       "target": "input-otp/input-otp-separator.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Minus } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet { class: className, ...restProps }: { class?: string } = $props();\n</script>\n\n<div role=\"separator\" class={cn('text-muted-foreground', className)} {...restProps}>\n\t<Minus class=\"size-4\" />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport Minus from '@lucide/svelte/icons/minus';\n\timport { cn } from '$lib/utils.js';\n\n\tlet { class: className, ...restProps }: { class?: string } = $props();\n</script>\n\n<div role=\"separator\" class={cn('text-muted-foreground', className)} {...restProps}>\n\t<Minus class=\"size-4\" />\n</div>\n"
     },
     {
       "type": "registry:file",

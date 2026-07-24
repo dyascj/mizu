@@ -5,7 +5,7 @@
 	const principles = [
 		[
 			'Quiet by default',
-			'Hierarchy comes from space, hairlines, and type. White surfaces and soft shadows carry the structure; nothing shines.'
+			'Hierarchy comes from space, tonal fills, and type. White surfaces and soft shadows carry the structure; nothing shines.'
 		],
 		[
 			'You own the code',
@@ -34,7 +34,7 @@
 	];
 	const dontList = [
 		'Hard-code colors that ignore the theme',
-		'Stack heavy shadows where a hairline would do',
+		'Stack heavy shadows where a quiet tonal shift would do',
 		'Remove focus rings to make it look cleaner',
 		'Ship an icon-only control with no accessible name',
 		'Animate without honoring prefers-reduced-motion'

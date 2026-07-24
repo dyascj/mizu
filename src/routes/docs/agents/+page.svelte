@@ -84,8 +84,8 @@ npx shadcn-svelte@latest add ${siteConfig.registryBase}/<slug>.json`;
 			or installs the finished block.
 		</li>
 		<li>
-			Respects the design rules: no strokes, one accent, auras only for AI moments, nothing heavier
-			than semibold, motion behind
+			Respects the design rules: no decorative strokes, one accent, auras only for AI moments,
+			nothing heavier than semibold, motion behind
 			<code class="font-mono text-[0.85em]">prefers-reduced-motion</code>.
 		</li>
 		<li>Themes through tokens instead of scattering hex values through your markup.</li>

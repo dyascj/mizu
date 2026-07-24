@@ -12,6 +12,7 @@
 
 	let value = $state('');
 	let run = $state(0);
+	let replayTimer: ReturnType<typeof setTimeout> | undefined;
 	let model = $state('era-3');
 	const models = [
 		{ value: 'era-3', label: 'Era 3.0' },
@@ -21,6 +22,15 @@
 
 	const reply =
 		'Booked for Saturday at seven. I picked the corner table you liked last time, and the walk over is fifteen minutes if you leave at a quarter to.';
+
+	function replayStream() {
+		if (replayTimer) clearTimeout(replayTimer);
+		replayTimer = setTimeout(() => (run += 1), 4200);
+	}
+
+	$effect(() => () => {
+		if (replayTimer) clearTimeout(replayTimer);
+	});
 </script>
 
 <div class="mx-auto flex h-[38rem] w-full max-w-xl flex-col rounded-3xl bg-card shadow-md">
@@ -64,11 +74,7 @@
 
 		<ChatBubble role="assistant" animate={false} class="min-h-16 w-full max-w-[85%]">
 			{#key run}
-				<StreamingText
-					text={reply}
-					speed={70}
-					onComplete={() => setTimeout(() => (run += 1), 4200)}
-				/>
+				<StreamingText text={reply} speed={70} onComplete={replayStream} />
 			{/key}
 		</ChatBubble>
 

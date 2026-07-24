@@ -15,7 +15,7 @@
 		"slug": "input",
 		"name": "Input",
 		"category": "Forms",
-		"description": "A pill text field with a hairline border and a blue focus ring."
+		"description": "A pill text field with a quiet fill and a primary focus ring."
 	},
 	{
 		"slug": "textarea",
@@ -68,7 +68,7 @@
 		"slug": "card",
 		"name": "Card",
 		"category": "Surfaces",
-		"description": "The signature surface: white, hairline border, soft shadow."
+		"description": "The signature surface: quiet fill, generous radius, soft shadow."
 	},
 	{
 		"slug": "alert",
@@ -80,7 +80,7 @@
 		"slug": "separator",
 		"name": "Separator",
 		"category": "Surfaces",
-		"description": "A hairline divider for sections."
+		"description": "A subtle semantic divider for sections."
 	},
 	{
 		"slug": "avatar",
