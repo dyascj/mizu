@@ -2,7 +2,7 @@
 	import CodeBlock from '$lib/site/code-block.svelte';
 	import CopyCommand from '$lib/site/copy-command.svelte';
 	import Seo from '$lib/site/seo.svelte';
-	import { siteConfig } from '$lib/site/config';
+	import { registryPinnedBase, siteConfig } from '$lib/site/config';
 
 	const base = siteConfig.url.replace(/\/$/, '');
 	const curlCmd = `curl -fsSL ${base}/AGENTS.md -o AGENTS.md`;
@@ -12,7 +12,7 @@ See AGENTS.md for the Mizu design system rules and install commands.`;
 
 	const promptSnippet = `Read ${base}/llms.txt for the component catalog,
 then install what you need with:
-npx shadcn-svelte@latest add ${siteConfig.registryBase}/<slug>.json`;
+npx shadcn-svelte@latest add ${registryPinnedBase}/<slug>.json`;
 </script>
 
 <Seo

@@ -31,6 +31,26 @@ test('README count matches the component catalog and stale claims stay removed',
 	assert.doesNotMatch(readme, /hairline border/);
 });
 
+test('release version, changelog, compatibility docs, and pinned install guidance agree', () => {
+	const packageJson = JSON.parse(read('package.json'));
+	const release = JSON.parse(read('registry-release.json'));
+	const changelog = read('CHANGELOG.md');
+	const compatibility = read('docs/compatibility.md');
+	const readme = read('README.md');
+
+	assert.equal(release.version, packageJson.version);
+	assert.match(release.generationCommit, /^[0-9a-f]{40}$/);
+	assert.match(
+		changelog,
+		new RegExp(`^## \\[${packageJson.version.replaceAll('.', '\\.')}\\]`, 'm')
+	);
+	assert.match(compatibility, new RegExp(`/r/v${packageJson.version.replaceAll('.', '\\.')}/`));
+	assert.match(
+		readme,
+		new RegExp(`/r/v${packageJson.version.replaceAll('.', '\\.')}/button\\.json`)
+	);
+});
+
 test('design rules reject stale claims and legacy Gauge colors', () => {
 	const guidance = [
 		read('AGENTS.md'),

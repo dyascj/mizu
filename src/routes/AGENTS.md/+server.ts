@@ -1,6 +1,6 @@
 import { components } from '$lib/site/catalog';
 import { blocks } from '$lib/site/blocks';
-import { siteConfig } from '$lib/site/config';
+import { registryPinnedBase, siteConfig } from '$lib/site/config';
 import { getPublicRoute } from '$lib/site/routes';
 
 // The drop-in AGENTS.md for projects that use Mizu: a README for AI coding
@@ -11,7 +11,7 @@ export const prerender = true;
 
 export function GET() {
 	const base = siteConfig.url.replace(/\/$/, '');
-	const reg = siteConfig.registryBase.replace(/\/$/, '');
+	const reg = registryPinnedBase.replace(/\/$/, '');
 	const ai = components.filter((c) => c.category === 'AI').map((c) => c.name);
 	const buildChatPath = getPublicRoute('/docs/build-a-chat')?.path ?? '/docs/build-a-chat';
 	const docsPath = getPublicRoute('/docs')?.path ?? '/docs';

@@ -5,9 +5,9 @@
 	import CopyCommand from '$lib/site/copy-command.svelte';
 	import OrbMark from '$lib/site/orb-mark.svelte';
 	import Seo from '$lib/site/seo.svelte';
-	import { siteConfig } from '$lib/site/config';
+	import { registryPinnedBase, siteConfig } from '$lib/site/config';
 
-	const installCmd = `npx shadcn-svelte@latest add ${siteConfig.registryBase}/button.json`;
+	const installCmd = `npx shadcn-svelte@latest add ${registryPinnedBase}/button.json`;
 
 	const softwareJsonLd = {
 		'@context': 'https://schema.org',

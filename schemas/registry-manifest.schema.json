@@ -1,0 +1,67 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://mizu-ui.com/schemas/registry-manifest.json",
+	"title": "Mizu registry release manifest",
+	"type": "object",
+	"required": [
+		"schemaVersion",
+		"name",
+		"version",
+		"channel",
+		"registryBase",
+		"generationCommit",
+		"generatedFrom",
+		"files"
+	],
+	"properties": {
+		"schemaVersion": {
+			"const": 1
+		},
+		"name": {
+			"const": "mizu"
+		},
+		"version": {
+			"type": "string",
+			"pattern": "^\\d+\\.\\d+\\.\\d+(?:-[a-z0-9.-]+)?$"
+		},
+		"channel": {
+			"enum": ["compatibility", "latest", "versioned"]
+		},
+		"registryBase": {
+			"type": "string",
+			"pattern": "^https://"
+		},
+		"generationCommit": {
+			"type": "string",
+			"pattern": "^[0-9a-f]{40}$"
+		},
+		"generatedFrom": {
+			"type": "string",
+			"pattern": "^https://.+/[0-9a-f]{40}$"
+		},
+		"files": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"type": "object",
+				"required": ["path", "bytes", "integrity"],
+				"properties": {
+					"path": {
+						"type": "string",
+						"pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.json$"
+					},
+					"bytes": {
+						"type": "integer",
+						"minimum": 1
+					},
+					"integrity": {
+						"type": "string",
+						"pattern": "^sha256-[A-Za-z0-9+/]{43}=$"
+					}
+				},
+				"additionalProperties": false
+			}
+		}
+	},
+	"additionalProperties": false
+}

@@ -63,6 +63,16 @@ const staticRoutes: PublicRoute[] = [
 		pager: true
 	},
 	{
+		path: '/docs/compatibility',
+		title: 'Compatibility',
+		description: 'Understand Mizu versions, pinned installs, deprecations, and migrations.',
+		section: 'getting-started',
+		navigation: true,
+		searchable: true,
+		sitemap: true,
+		pager: true
+	},
+	{
 		path: '/docs/build-a-chat',
 		title: 'Build a chat',
 		description: 'Compose the AI components into a complete assistant screen.',

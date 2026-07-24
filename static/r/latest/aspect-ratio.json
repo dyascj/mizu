@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "aspect-ratio",
+  "type": "registry:ui",
+  "title": "Aspect Ratio",
+  "description": "Hold content to a fixed ratio.",
+  "dependencies": [
+    "bits-ui@^2.18.1"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "aspect-ratio/aspect-ratio.svelte",
+      "content": "<script lang=\"ts\">\n\timport { AspectRatio as AspectRatioPrimitive } from 'bits-ui';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tratio = 1,\n\t\tchildren,\n\t\t...restProps\n\t}: AspectRatioPrimitive.RootProps = $props();\n</script>\n\n<AspectRatioPrimitive.Root bind:ref {ratio} {...restProps}>\n\t{@render children?.()}\n</AspectRatioPrimitive.Root>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "aspect-ratio/index.ts",
+      "content": "export { default as AspectRatio } from './aspect-ratio.svelte';\n"
+    }
+  ]
+}

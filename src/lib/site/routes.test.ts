@@ -3,7 +3,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, test } from 'vitest';
 
-import { siteConfig } from './config';
+import { registryPinnedBase, siteConfig } from './config';
 import {
 	gettingStartedRoutes,
 	primaryNavigationRoutes,
@@ -11,6 +11,8 @@ import {
 	sitemapRoutes
 } from './routes';
 import { GET as getSitemap } from '../../routes/sitemap.xml/+server';
+import { GET as getAgentGuide } from '../../routes/AGENTS.md/+server';
+import { GET as getLlmsText } from '../../routes/llms.txt/+server';
 
 const routesDir = join(dirname(fileURLToPath(import.meta.url)), '../../routes');
 
@@ -31,7 +33,12 @@ describe('public route manifest', () => {
 
 	test('drives complete navigation projections', () => {
 		expect(gettingStartedRoutes.map((route) => route.path)).toContain('/docs/usage');
+		expect(gettingStartedRoutes.map((route) => route.path)).toContain('/docs/compatibility');
 		expect(primaryNavigationRoutes.map((route) => route.path)).toContain('/blocks');
+	});
+
+	test('keeps generated guidance on the immutable current release', () => {
+		expect(registryPinnedBase).toBe(`${siteConfig.registryBase}/v${siteConfig.registryVersion}`);
 	});
 
 	test('matches every URL emitted by the sitemap', async () => {
@@ -43,5 +50,18 @@ describe('public route manifest', () => {
 		);
 
 		expect(actual).toEqual(sitemapRoutes.map((route) => route.path));
+	});
+
+	test('keeps generated documents complete and pinned', async () => {
+		const [agentGuide, llmsText] = await Promise.all([
+			getAgentGuide().text(),
+			getLlmsText().text()
+		]);
+
+		expect(agentGuide).toContain(`${registryPinnedBase}/<slug>.json`);
+		expect(llmsText).toContain(`${registryPinnedBase}/button.json`);
+		for (const route of primaryNavigationRoutes) {
+			expect(llmsText).toContain(`${siteConfig.url}${route.path}`);
+		}
 	});
 });

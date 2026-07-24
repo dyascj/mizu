@@ -17,11 +17,12 @@ pnpm test:browser     # Playwright route and accessibility tests
 pnpm build:budget     # enforce client JavaScript size limits after a build
 pnpm format           # prettier write
 pnpm registry:build   # regenerate static/r (CI fails if stale)
-pnpm registry:consumer-check # isolated Drawer and Data Table install/build
+pnpm registry:validate # validate schemas, dependencies, manifests, and integrity
+pnpm registry:consumer-check # isolated clean install/build of every registry item
 pnpm new:component <slug> "<Name>" <Category> "<Description>"   # scaffold a component
 ```
 
-Always run `pnpm registry:build` after touching components, blocks, or the catalog, and commit the regenerated `static/r/*.json`.
+Always run `pnpm registry:build` after touching components, blocks, or the catalog, and commit the regenerated `static/r` output. Existing `static/r/v*` directories are immutable; bump the package and registry release versions before changing installable source.
 
 ## Design rules (every change must follow these)
 

@@ -15,7 +15,8 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const registryDir = join(root, 'static/r');
 const requestedItems = process.argv.slice(2);
-const entryItems = requestedItems.length ? requestedItems : ['drawer', 'data-table'];
+const registry = JSON.parse(readFileSync(join(registryDir, 'registry.json'), 'utf8'));
+const entryItems = requestedItems.length ? requestedItems : registry.items.map(({ name }) => name);
 
 function parseDependency(specifier) {
 	const separator = specifier.lastIndexOf('@');
@@ -50,6 +51,8 @@ function collectItems(names) {
 
 function writeConsumerFiles(fixtureDir, items) {
 	const dependencies = {};
+	const imports = [];
+	const compiled = [];
 
 	for (const item of items.values()) {
 		for (const dependency of item.dependencies ?? []) {
@@ -64,13 +67,29 @@ function writeConsumerFiles(fixtureDir, items) {
 		}
 
 		for (const file of item.files) {
-			const target =
-				item.type === 'registry:lib'
-					? join(fixtureDir, 'src/lib', file.target)
-					: join(fixtureDir, 'src/lib/components/ui', file.target);
+			let target;
+			if (file.type === 'registry:hook') {
+				target = join(fixtureDir, 'src/lib/hooks', file.target);
+			} else if (file.type === 'registry:lib') {
+				target = join(fixtureDir, 'src/lib', file.target);
+			} else if (file.type === 'registry:component') {
+				target = join(fixtureDir, 'src/lib/components', file.target);
+			} else {
+				target = join(fixtureDir, 'src/lib/components/ui', file.target);
+			}
 			mkdirSync(dirname(target), { recursive: true });
 			writeFileSync(target, file.content);
 		}
+
+		const identifier = `Registry_${item.name.replaceAll('-', '_')}`;
+		if (item.type === 'registry:block') {
+			imports.push(`import ${identifier} from '$lib/components/blocks/${item.name}.svelte';`);
+		} else if (item.type === 'registry:lib') {
+			imports.push(`import * as ${identifier} from '$lib/utils';`);
+		} else {
+			imports.push(`import * as ${identifier} from '$lib/components/ui/${item.name}';`);
+		}
+		compiled.push(`typeof ${identifier}`);
 	}
 
 	const rootPackage = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
@@ -163,21 +182,14 @@ export default defineConfig({
 	writeFileSync(
 		join(fixtureDir, 'src/routes/+page.svelte'),
 		`<script lang="ts">
-	import * as Drawer from '$lib/components/ui/drawer';
-	import { createSvelteTable } from '$lib/components/ui/data-table';
+	${imports.join('\n\t')}
+
+	const compiledItems = [${compiled.join(', ')}];
 </script>
 
 <svelte:head><title>Mizu registry consumer check</title></svelte:head>
 
-<Drawer.Root>
-	<Drawer.Trigger>Open</Drawer.Trigger>
-	<Drawer.Content>
-		<Drawer.Title>Registry check</Drawer.Title>
-		<Drawer.Description>Drawer compiled in an isolated consumer.</Drawer.Description>
-	</Drawer.Content>
-</Drawer.Root>
-
-<p>Data table export: {typeof createSvelteTable}</p>
+<p>{compiledItems.length} registry items compiled in an isolated consumer.</p>
 `
 	);
 }
@@ -200,7 +212,7 @@ try {
 	const items = collectItems(entryItems);
 	writeConsumerFiles(fixtureDir, items);
 
-	console.log(`Checking ${entryItems.join(', ')} in ${fixtureDir}`);
+	console.log(`Checking ${entryItems.length} registry items in ${fixtureDir}`);
 	run(
 		'pnpm',
 		['install', '--prefer-offline', '--ignore-scripts', '--no-frozen-lockfile'],
@@ -209,7 +221,7 @@ try {
 	run('pnpm', ['exec', 'svelte-kit', 'sync'], fixtureDir);
 	run('pnpm', ['exec', 'svelte-check', '--tsconfig', './tsconfig.json'], fixtureDir);
 	run('pnpm', ['exec', 'vite', 'build'], fixtureDir);
-	console.log(`Registry consumer check passed: ${entryItems.join(', ')}`);
+	console.log(`Registry consumer check passed: ${entryItems.length} items`);
 } finally {
 	rmSync(fixtureDir, { recursive: true, force: true });
 }

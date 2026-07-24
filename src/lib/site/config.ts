@@ -1,3 +1,5 @@
+import release from '../../../registry-release.json';
+
 /**
  * Site-wide configuration. Update `repo` and `registryBase` once the project
  * is published. No secrets here; this file ships publicly.
@@ -14,7 +16,11 @@ export const siteConfig = {
 	repo: 'https://github.com/dyascj/mizu',
 	// The registry is served from the deployed site (static/r → /r). Re-run
 	// `pnpm registry:build` if you change this.
-	registryBase: 'https://mizu-ui.com/r'
+	registryBase: 'https://mizu-ui.com/r',
+	registryVersion: release.version
 };
+
+export const registryLatestBase = `${siteConfig.registryBase}/latest`;
+export const registryPinnedBase = `${siteConfig.registryBase}/v${siteConfig.registryVersion}`;
 
 export type SiteConfig = typeof siteConfig;

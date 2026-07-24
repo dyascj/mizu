@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "separator",
+  "type": "registry:ui",
+  "title": "Separator",
+  "description": "A subtle semantic divider for sections.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.1.1/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "separator/index.ts",
+      "content": "export { default as Separator } from './separator.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "separator/separator.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\torientation?: 'horizontal' | 'vertical';\n\t\tdecorative?: boolean;\n\t};\n\tlet {\n\t\tclass: className,\n\t\torientation = 'horizontal',\n\t\tdecorative = true,\n\t\t...rest\n\t}: Props = $props();\n</script>\n\n<div\n\trole={decorative ? 'none' : 'separator'}\n\taria-orientation={decorative ? undefined : orientation}\n\tclass={cn(\n\t\t'shrink-0 bg-border',\n\t\torientation === 'horizontal' ? 'h-px w-full' : 'h-full w-px',\n\t\tclassName\n\t)}\n\t{...rest}\n></div>\n"
+    }
+  ]
+}

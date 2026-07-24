@@ -5,7 +5,7 @@
 	import CodeBlock from '$lib/site/code-block.svelte';
 	import { getDemo } from '$lib/site/demos';
 	import { getComponentApi, getComponentSource } from '$lib/site/component-api';
-	import { siteConfig } from '$lib/site/config';
+	import { registryPinnedBase, siteConfig } from '$lib/site/config';
 	import Seo from '$lib/site/seo.svelte';
 
 	let { data } = $props();
@@ -19,7 +19,7 @@
 		]).then(([demo, api, source]) => ({ demo, api, source }))
 	);
 	const installCmd = $derived(
-		`npx shadcn-svelte@latest add ${siteConfig.registryBase}/${meta.slug}.json`
+		`npx shadcn-svelte@latest add ${registryPinnedBase}/${meta.slug}.json`
 	);
 
 	// Richer than the catalog blurb so search/social snippets read as a real
