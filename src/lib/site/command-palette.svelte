@@ -2,17 +2,10 @@
 	import { goto } from '$app/navigation';
 	import * as Command from '$lib/components/ui/command';
 	import { componentsByCategory } from './catalog';
+	import { gettingStartedRoutes } from './routes';
 	import { search } from './search.svelte';
 
 	const groups = componentsByCategory();
-	const gettingStarted = [
-		{ href: '/docs', label: 'Introduction' },
-		{ href: '/docs/installation', label: 'Installation' },
-		{ href: '/docs/theming', label: 'Theming' },
-		{ href: '/docs/usage', label: 'Usage' },
-		{ href: '/docs/build-a-chat', label: 'Build a chat' },
-		{ href: '/docs/agents', label: 'UI for Agents' }
-	];
 
 	function onWindowKeydown(e: KeyboardEvent) {
 		if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
@@ -34,9 +27,9 @@
 	<Command.List>
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Getting Started">
-			{#each gettingStarted as item (item.href)}
-				<Command.Item value={item.label} onSelect={() => go(item.href)}>
-					{item.label}
+			{#each gettingStartedRoutes as route (route.path)}
+				<Command.Item value={route.title} onSelect={() => go(route.path)}>
+					{route.title}
 				</Command.Item>
 			{/each}
 		</Command.Group>

@@ -45,7 +45,7 @@
 
 	<div class="mt-12 flex flex-col gap-16">
 		{#each visible as block (block.slug)}
-			{@const b = getBlock(block.slug)}
+			{@const blockPromise = getBlock(block.slug)}
 			<section id={block.slug}>
 				<div class="mb-4 flex flex-wrap items-end justify-between gap-4">
 					<div class="max-w-xl">
@@ -57,25 +57,29 @@
 						class="w-full max-w-xs"
 					/>
 				</div>
-				<Tabs.Root value="preview">
-					<Tabs.List>
-						<Tabs.Trigger value="preview">Preview</Tabs.Trigger>
-						<Tabs.Trigger value="code">Code</Tabs.Trigger>
-					</Tabs.List>
-					<Tabs.Content value="preview">
-						<div
-							class="rounded-3xl bg-secondary/50 p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-10"
-						>
-							{#if b.Component}
-								{@const Block = b.Component}
-								<Block />
-							{/if}
-						</div>
-					</Tabs.Content>
-					<Tabs.Content value="code">
-						<CodeBlock code={b.source} class="max-h-[32rem] overflow-y-auto" />
-					</Tabs.Content>
-				</Tabs.Root>
+				{#await blockPromise}
+					<div class="h-96 animate-pulse rounded-3xl bg-secondary/50" aria-hidden="true"></div>
+				{:then b}
+					<Tabs.Root value="preview">
+						<Tabs.List>
+							<Tabs.Trigger value="preview">Preview</Tabs.Trigger>
+							<Tabs.Trigger value="code">Code</Tabs.Trigger>
+						</Tabs.List>
+						<Tabs.Content value="preview">
+							<div
+								class="rounded-3xl bg-secondary/50 p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-10"
+							>
+								{#if b.Component}
+									{@const Block = b.Component}
+									<Block />
+								{/if}
+							</div>
+						</Tabs.Content>
+						<Tabs.Content value="code">
+							<CodeBlock code={b.source} class="max-h-[32rem] overflow-y-auto" />
+						</Tabs.Content>
+					</Tabs.Root>
+				{/await}
 			</section>
 		{/each}
 	</div>

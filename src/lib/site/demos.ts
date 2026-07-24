@@ -2,19 +2,26 @@ import type { Component } from 'svelte';
 
 // Each demo is a tiny .svelte file under ./demos. We load both the runnable
 // component (for the live Preview) and its raw source (for the Code tab).
-const modules = import.meta.glob('./demos/*.svelte', { eager: true }) as Record<
+const modules = import.meta.glob('./demos/*.svelte') as Record<
 	string,
-	{ default: Component }
+	() => Promise<{ default: Component }>
 >;
 const sources = import.meta.glob('./demos/*.svelte', {
-	eager: true,
 	query: '?raw',
 	import: 'default'
-}) as Record<string, string>;
+}) as Record<string, () => Promise<string>>;
 
-export function getDemo(slug: string): { Component: Component | null; source: string } {
+export async function getDemo(slug: string): Promise<{
+	Component: Component | null;
+	source: string;
+}> {
 	const key = `./demos/${slug}.svelte`;
-	return { Component: modules[key]?.default ?? null, source: (sources[key] ?? '').trim() };
+	const [module, source] = await Promise.all([modules[key]?.(), sources[key]?.()]);
+	return { Component: module?.default ?? null, source: (source ?? '').trim() };
+}
+
+export async function getDemoComponent(slug: string): Promise<Component | null> {
+	return (await modules[`./demos/${slug}.svelte`]?.())?.default ?? null;
 }
 
 export function hasDemo(slug: string): boolean {

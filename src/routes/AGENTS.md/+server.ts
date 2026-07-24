@@ -1,6 +1,7 @@
 import { components } from '$lib/site/catalog';
 import { blocks } from '$lib/site/blocks';
 import { siteConfig } from '$lib/site/config';
+import { getPublicRoute } from '$lib/site/routes';
 
 // The drop-in AGENTS.md for projects that use Mizu: a README for AI coding
 // agents (https://agents.md). Users curl this file into their repo so Cursor,
@@ -12,6 +13,9 @@ export function GET() {
 	const base = siteConfig.url.replace(/\/$/, '');
 	const reg = siteConfig.registryBase.replace(/\/$/, '');
 	const ai = components.filter((c) => c.category === 'AI').map((c) => c.name);
+	const buildChatPath = getPublicRoute('/docs/build-a-chat')?.path ?? '/docs/build-a-chat';
+	const docsPath = getPublicRoute('/docs')?.path ?? '/docs';
+	const blocksPath = getPublicRoute('/blocks')?.path ?? '/blocks';
 
 	const tagline = siteConfig.tagline.charAt(0).toLowerCase() + siteConfig.tagline.slice(1);
 	const out = `# Mizu
@@ -29,7 +33,7 @@ Guidance for AI coding agents working in a project that uses Mizu, ${tagline} ($
 ## Composing AI interfaces
 
 - The AI set: ${ai.join(', ')}.
-- A complete assistant screen stacks in this order: ChatBubble (user) -> Reasoning -> ToolCall -> ChatBubble (assistant) wrapping StreamingText -> Sources -> MessageActions -> PromptSuggestions -> ChatInput. Follow ${base}/docs/build-a-chat.
+- A complete assistant screen stacks in this order: ChatBubble (user) -> Reasoning -> ToolCall -> ChatBubble (assistant) wrapping StreamingText -> Sources -> MessageActions -> PromptSuggestions -> ChatInput. Follow ${base}${buildChatPath}.
 - Prefer installing the assistant-chat block over rebuilding that anatomy by hand.
 
 ## Design rules (do not violate)
@@ -50,8 +54,8 @@ Guidance for AI coding agents working in a project that uses Mizu, ${tagline} ($
 
 ## More
 
-- Docs and live demos: ${base}/docs
-- Blocks with full source: ${base}/blocks
+- Docs and live demos: ${base}${docsPath}
+- Blocks with full source: ${base}${blocksPath}
 - Machine-readable index: ${base}/llms.txt
 `;
 

@@ -5,6 +5,7 @@
 	import * as Sheet from '$lib/components/ui/sheet';
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { componentsByCategory } from './catalog';
+	import { primaryNavigationRoutes } from './routes';
 	import MizuLogo from './mizu-logo.svelte';
 	import { cn } from '$lib/utils.js';
 
@@ -13,15 +14,6 @@
 	// Close the drawer whenever a navigation finishes (i.e. a link was tapped).
 	afterNavigate(() => (open = false));
 
-	const main = [
-		{ href: '/docs', label: 'Introduction' },
-		{ href: '/docs/installation', label: 'Installation' },
-		{ href: '/docs/theming', label: 'Theming' },
-		{ href: '/docs/build-a-chat', label: 'Build a chat' },
-		{ href: '/docs/agents', label: 'UI for Agents' },
-		{ href: '/docs/components', label: 'Components' },
-		{ href: '/blocks', label: 'Blocks' }
-	];
 	const groups = componentsByCategory();
 
 	const active = (href: string) => page.url.pathname === href;
@@ -53,8 +45,8 @@
 
 		<nav class="flex flex-col gap-5 py-2 pb-10">
 			<div class="flex flex-col gap-px">
-				{#each main as l (l.href)}
-					<a href={l.href} class={linkClass(active(l.href))}>{l.label}</a>
+				{#each primaryNavigationRoutes as route (route.path)}
+					<a href={route.path} class={linkClass(active(route.path))}>{route.title}</a>
 				{/each}
 			</div>
 
