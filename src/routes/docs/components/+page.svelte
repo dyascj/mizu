@@ -25,13 +25,9 @@
 			<div class="grid gap-4 sm:grid-cols-2">
 				{#each group.items as c (c.slug)}
 					{@const demo = getDemo(c.slug)}
-					<a
-						href={`/docs/components/${c.slug}`}
-						class="group block focus-visible:outline-none"
-						aria-label={c.name}
-					>
+					<article class="group relative">
 						<div
-							class="relative flex h-40 items-center justify-center overflow-hidden rounded-2xl bg-card p-5 shadow-sm transition-[transform,box-shadow] duration-200 group-hover:-translate-y-0.5 group-hover:shadow-lg group-focus-visible:ring-2 group-focus-visible:ring-ring"
+							class="relative flex h-40 items-center justify-center overflow-hidden rounded-2xl bg-card p-5 shadow-sm transition-[transform,box-shadow] duration-200 group-hover:-translate-y-0.5 group-hover:shadow-lg group-focus-within:ring-2 group-focus-within:ring-ring"
 							data-no-toc
 						>
 							<div class="pointer-events-none flex w-full scale-90 items-center justify-center">
@@ -44,14 +40,18 @@
 							</div>
 						</div>
 						<div class="mt-2.5 flex items-center justify-between gap-2">
-							<span class="font-semibold transition-colors group-hover:text-[color:var(--primary)]">
+							<a
+								href={`/docs/components/${c.slug}`}
+								class="font-semibold transition-colors after:absolute after:inset-0 hover:text-[color:var(--primary)] focus-visible:outline-none"
+								aria-label={c.name}
+							>
 								{c.name}
-							</span>
+							</a>
 							{#if c.bits}
 								<span class="text-xs text-muted-foreground">bits-ui</span>
 							{/if}
 						</div>
-					</a>
+					</article>
 				{/each}
 			</div>
 		</section>

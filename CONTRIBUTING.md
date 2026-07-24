@@ -10,8 +10,10 @@ Mizu supports Node 22 and 24 with pnpm 10.28.
 pnpm install
 pnpm dev      # docs site + live previews on localhost:5183
 pnpm check    # type-check (svelte-check)
-pnpm lint     # prettier check
-pnpm test     # registry and repository contract tests
+pnpm format:check # prettier check
+pnpm lint     # semantic ESLint checks
+pnpm test     # contract, parser, and component tests
+pnpm test:browser # Playwright route and accessibility tests
 pnpm format   # prettier write
 pnpm registry:consumer-check # isolated registry install and build
 ```

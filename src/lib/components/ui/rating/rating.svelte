@@ -82,7 +82,7 @@
 
 	function onkeydown(e: KeyboardEvent) {
 		if (!interactive) return;
-		let next = value ?? 0;
+		let next: number;
 		switch (e.key) {
 			case 'ArrowRight':
 			case 'ArrowUp':

@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import {
 	assertExactInventory,
 	inferDeps,
+	isRegistrySource,
 	packageRoot,
 	replaceGeneratedDirectory
 } from './build-registry.mjs';
@@ -53,6 +54,15 @@ test('fails when registry source imports an undeclared package', () => {
 		() => inferDeps(["import 'not-declared';"], dependencyVersions),
 		/not-declared.*absent from package\.json dependencies/
 	);
+});
+
+test('excludes colocated tests and snapshots from registry source files', () => {
+	assert.equal(isRegistrySource('rating.svelte'), true);
+	assert.equal(isRegistrySource('helpers.ts'), true);
+	assert.equal(isRegistrySource('rating.test.ts'), false);
+	assert.equal(isRegistrySource('rating.spec.svelte'), false);
+	assert.equal(isRegistrySource('__tests__/rating.ts'), false);
+	assert.equal(isRegistrySource('__snapshots__/rating.txt'), false);
 });
 
 test('rejects missing and orphaned generated files', (context) => {

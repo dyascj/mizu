@@ -73,7 +73,7 @@
 		Five ideas hold the whole system together. When a decision is unclear, these break the tie.
 	</p>
 	<div class="overflow-hidden rounded-xl border border-border">
-		{#each principles as [name, desc], i}
+		{#each principles as [name, desc], i (name)}
 			<div
 				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
 					(i % 2 ? 'bg-muted/40' : '')}
@@ -135,7 +135,7 @@
 		<div class="rounded-xl bg-[color:color-mix(in_srgb,var(--success)_8%,var(--card))] p-4">
 			<p class="mb-2 font-display text-sm font-semibold text-[color:var(--success)]">Do</p>
 			<ul class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
-				{#each doList as item}
+				{#each doList as item (item)}
 					<li class="flex gap-2"><span class="text-[color:var(--success)]">✓</span>{item}</li>
 				{/each}
 			</ul>
@@ -143,7 +143,7 @@
 		<div class="rounded-xl bg-[color:color-mix(in_srgb,var(--destructive)_7%,var(--card))] p-4">
 			<p class="mb-2 font-display text-sm font-semibold text-[color:var(--destructive)]">Don't</p>
 			<ul class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
-				{#each dontList as item}
+				{#each dontList as item (item)}
 					<li class="flex gap-2"><span class="text-[color:var(--destructive)]">✕</span>{item}</li>
 				{/each}
 			</ul>
@@ -175,7 +175,7 @@
 		A few pairings come up constantly. When two components could work, this is the default call.
 	</p>
 	<div class="overflow-hidden rounded-xl border border-border">
-		{#each choices as [name, desc], i}
+		{#each choices as [name, desc], i (name)}
 			<div
 				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
 					(i % 2 ? 'bg-muted/40' : '')}

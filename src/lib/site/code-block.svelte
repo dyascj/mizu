@@ -33,7 +33,12 @@
 			<Copy class="size-4" />
 		{/if}
 	</button>
-	<pre class="max-h-[30rem] overflow-auto p-4 pr-12 text-[0.8125rem] leading-relaxed"><code
+	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+	<pre
+		role="region"
+		aria-label="Code sample"
+		tabindex="0"
+		class="max-h-[30rem] overflow-auto p-4 pr-12 text-[0.8125rem] leading-relaxed"><code
 			class="font-mono">{code}</code
 		></pre>
 </div>

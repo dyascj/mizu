@@ -2,6 +2,9 @@ node_modules
 .svelte-kit
 build
 package
+coverage
+playwright-report
+test-results
 .env
 .env.*
 pnpm-lock.yaml

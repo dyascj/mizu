@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
+	import { SvelteMap, SvelteSet } from 'svelte/reactivity';
 	import { cn } from '$lib/utils.js';
 	import { setTreeContext, type TreeNode, type TreeState } from './context.svelte.js';
 	import TreeItem from './tree-item.svelte';
@@ -27,7 +28,7 @@
 
 	// `expanded` is bindable but optional. When the consumer doesn't bind it, fall
 	// back to the seed list so the tree stays self-managed.
-	const expandedSet = $derived(new Set(expanded ?? defaultExpanded));
+	const expandedSet = $derived(new SvelteSet(expanded ?? defaultExpanded));
 
 	// Flatten the tree into the rows that are currently visible, in DOM order, so
 	// arrow-key navigation can walk a single linear list.
@@ -51,10 +52,10 @@
 		focusedId && visible.some((v) => v.id === focusedId) ? focusedId : (selected ?? visible[0]?.id)
 	);
 
-	const els = new Map<string, HTMLElement>();
+	const els = new SvelteMap<string, HTMLElement>();
 
 	function setExpanded(id: string, value: boolean) {
-		const next = new Set(expandedSet);
+		const next = new SvelteSet(expandedSet);
 		if (value) next.add(id);
 		else next.delete(id);
 		expanded = [...next];

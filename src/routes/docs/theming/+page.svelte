@@ -75,12 +75,12 @@
 		<code class="font-mono text-[0.85em]">mizu-500</code>. Swap these to re-tint the whole system.
 	</p>
 	<div class="mb-2 grid grid-cols-11 overflow-hidden rounded-xl border border-border shadow-xs">
-		{#each ramp as step}
+		{#each ramp as step (step)}
 			<div class="h-12" style={`background-color: var(--color-mizu-${step})`}></div>
 		{/each}
 	</div>
 	<div class="grid grid-cols-11 text-center font-mono text-[0.6rem] text-muted-foreground">
-		{#each ramp as step}<span>{step}</span>{/each}
+		{#each ramp as step (step)}<span>{step}</span>{/each}
 	</div>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">Material utilities</h2>
@@ -88,7 +88,7 @@
 		Beyond colors, Mizu adds a small set of surface utilities you can use anywhere.
 	</p>
 	<div class="overflow-hidden rounded-xl border border-border">
-		{#each utilities as [name, desc], i}
+		{#each utilities as [name, desc], i (name)}
 			<div
 				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
 					(i % 2 ? 'bg-muted/40' : '')}

@@ -45,6 +45,13 @@ function listFiles(dir, base = dir) {
 	return out;
 }
 
+/** Keep colocated tests and snapshots out of installable registry items. */
+export function isRegistrySource(file) {
+	return (
+		!/(^|\/)__(?:tests|snapshots)__(?:\/|$)/.test(file) && !/\.(?:test|spec)\.[^/]+$/.test(file)
+	);
+}
+
 /**
  * Read ESM import specifiers without maintaining a package whitelist.
  * TypeScript's preprocessor understands static, side-effect, and dynamic imports
@@ -200,7 +207,7 @@ export function buildRegistry() {
 	try {
 		for (const component of meta) {
 			const dir = join(UI_DIR, component.slug);
-			const relFiles = listFiles(dir).sort();
+			const relFiles = listFiles(dir).filter(isRegistrySource).sort();
 			const contents = relFiles.map((file) => readFileSync(join(dir, file), 'utf8'));
 			const { deps, registryDeps } = inferDeps(contents, dependencyVersions);
 			const dependencies = [

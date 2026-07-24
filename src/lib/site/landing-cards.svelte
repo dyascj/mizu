@@ -15,7 +15,6 @@
 	import { Separator } from '$lib/components/ui/separator';
 	import * as Select from '$lib/components/ui/select';
 	import * as RadioGroup from '$lib/components/ui/radio-group';
-	import * as Avatar from '$lib/components/ui/avatar';
 	import { ChatBubble } from '$lib/components/ui/chat-bubble';
 	import { ChatInput } from '$lib/components/ui/chat-input';
 	import { VoiceOrb } from '$lib/components/ui/voice-orb';
