@@ -3,12 +3,13 @@
 	import CopyCommand from '$lib/site/copy-command.svelte';
 	import * as Alert from '$lib/components/ui/alert';
 	import Info from '@lucide/svelte/icons/info';
-	import { siteConfig } from '$lib/site/config';
+	import { registryLatestBase, registryPinnedBase, siteConfig } from '$lib/site/config';
 	import Seo from '$lib/site/seo.svelte';
 
-	const base = siteConfig.registryBase;
+	const base = registryPinnedBase;
 	const addOne = `npx shadcn-svelte@latest add ${base}/button.json`;
 	const addMany = `npx shadcn-svelte@latest add ${base}/dialog.json ${base}/card.json`;
+	const addLatest = `npx shadcn-svelte@latest add ${registryLatestBase}/button.json`;
 
 	const componentsJson = `{
   "$schema": "https://shadcn-svelte.com/schema.json",
@@ -86,6 +87,17 @@
 	<CopyCommand command={addOne} />
 	<p class="mt-3 mb-3 leading-relaxed text-muted-foreground">Add several at once:</p>
 	<CopyCommand command={addMany} />
+
+	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Pinned and latest installs</h2>
+	<p class="mb-3 leading-relaxed text-muted-foreground">
+		The commands above pin Mizu v{siteConfig.registryVersion}, so the source and dependency ranges
+		stay reproducible. Use the explicit latest channel only when you intend to update and have
+		reviewed the
+		<a href="/docs/compatibility" class="font-medium text-primary hover:underline"
+			>compatibility policy and changelog</a
+		>.
+	</p>
+	<CopyCommand command={addLatest} />
 
 	<p class="mt-6 text-sm text-muted-foreground">
 		Prefer not to use the CLI? Every component page has its full source ready to copy straight into

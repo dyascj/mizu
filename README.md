@@ -20,7 +20,7 @@ Clean, airy components for AI products and the designers building them. Chat, vo
 
 ---
 
-Mizu is built for AI products: chat, voice, reasoning, and streaming components in a language of white on white, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for the moments where the AI is present. Quiet surfaces, generous rounding, and restraint everywhere else. Everything ships as source you copy into your project and own. No black box, no version lock. One command adds a component (the registry works with the shadcn-svelte CLI you already have), or copy from any docs page.
+Mizu is built for AI products: chat, voice, reasoning, and streaming components in a language of white on white, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for the moments where the AI is present. Quiet surfaces, generous rounding, and restraint everywhere else. Everything ships as source you copy into your project and own. No black box or runtime package lock-in. One command adds a component (the registry works with the shadcn-svelte CLI you already have), or copy from any docs page.
 
 ## Highlights
 
@@ -66,12 +66,12 @@ npx sv add tailwindcss
 **4. Add components** with the one-liner. It pulls the component, installs its npm dependencies, and adds the shared `cn` helper automatically:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.1.1/button.json
 ```
 
 You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.
 
-> The registry is served from [mizu-ui.com](https://mizu-ui.com). If you fork Mizu, point `repo` and `registryBase` in `src/lib/site/config.ts` at your own deployment and re-run `pnpm registry:build`.
+> Versioned registry URLs are immutable. Use `/r/latest/<item>.json` only when you intentionally want the newest release. See the [compatibility policy](./docs/compatibility.md). If you fork Mizu, point `repo` and `registryBase` in `src/lib/site/config.ts` at your own deployment and re-run `pnpm registry:build`.
 
 ## Usage
 
@@ -114,7 +114,8 @@ Mizu currently includes 79 components across AI, actions, forms, surfaces, overl
 pnpm install
 pnpm dev              # docs site + live previews
 pnpm check            # type-check
-pnpm registry:build   # regenerate static/r/*.json from the component source
+pnpm registry:build   # regenerate compatibility, latest, and versioned registry output
+pnpm registry:validate # verify schemas, dependency parity, inventory, and integrity
 ```
 
 The docs site lives in `src/routes`, components in `src/lib/components/ui`, the design tokens in `src/app.css`, and the site chrome (landing showcase, theming, command palette) in `src/lib/site`. To add a component: build it, list it in `src/lib/site/components.json`, write a demo in `src/lib/site/demos`, and re-run the registry build.

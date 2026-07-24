@@ -1,0 +1,75 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://mizu-ui.com/schemas/registry-item.json",
+	"title": "Mizu registry item",
+	"type": "object",
+	"required": [
+		"$schema",
+		"name",
+		"type",
+		"title",
+		"description",
+		"dependencies",
+		"registryDependencies",
+		"files"
+	],
+	"properties": {
+		"$schema": {
+			"const": "https://shadcn-svelte.com/schema/registry-item.json"
+		},
+		"name": {
+			"type": "string",
+			"pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+		},
+		"type": {
+			"enum": ["registry:ui", "registry:block", "registry:lib"]
+		},
+		"title": {
+			"type": "string",
+			"minLength": 1
+		},
+		"description": {
+			"type": "string",
+			"minLength": 1
+		},
+		"dependencies": {
+			"type": "array",
+			"uniqueItems": true,
+			"items": {
+				"type": "string",
+				"pattern": "^(?:@[^/]+/[^@]+|[^@]+)@\\S+$"
+			}
+		},
+		"registryDependencies": {
+			"type": "array",
+			"uniqueItems": true,
+			"items": {
+				"type": "string",
+				"pattern": "^https://.+\\.json$"
+			}
+		},
+		"files": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"type": "object",
+				"required": ["type", "target", "content"],
+				"properties": {
+					"type": {
+						"enum": ["registry:file", "registry:component", "registry:hook", "registry:lib"]
+					},
+					"target": {
+						"type": "string",
+						"minLength": 1
+					},
+					"content": {
+						"type": "string",
+						"minLength": 1
+					}
+				},
+				"additionalProperties": false
+			}
+		}
+	},
+	"additionalProperties": false
+}

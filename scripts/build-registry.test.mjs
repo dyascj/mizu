@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 
 import {
 	assertExactInventory,
+	assertImmutableDirectory,
+	assertLocalImports,
 	inferDeps,
 	isRegistrySource,
 	packageRoot,
@@ -37,8 +39,27 @@ test('infers versioned dependencies from static, side-effect, deep, and dynamic 
 			'paneforge@^1.0.2',
 			'vaul-svelte@1.0.0-next.7'
 		],
+		localImports: [],
 		registryDeps: ['button', 'utils']
 	});
+});
+
+test('tracks project-local imports and requires explicit installable files', () => {
+	const inferred = inferDeps(
+		["import { IsMobile } from '$lib/hooks/is-mobile.svelte.js';"],
+		dependencyVersions
+	);
+
+	assert.deepEqual(inferred.localImports, ['$lib/hooks/is-mobile.svelte.js']);
+	assert.doesNotThrow(() =>
+		assertLocalImports('sidebar', inferred.localImports, [
+			{ import: '$lib/hooks/is-mobile.svelte.js' }
+		])
+	);
+	assert.throws(
+		() => assertLocalImports('sidebar', inferred.localImports),
+		/unresolved local imports/
+	);
 });
 
 test('normalizes scoped and unscoped deep imports to package roots', () => {
@@ -96,21 +117,50 @@ test('replaces generated output and prunes retired artifacts', (context) => {
 	assert.equal(readFileSync(join(outDir, 'current.json'), 'utf8'), '{"old":false}\n');
 });
 
-test('generated output declares audited dependencies and has exact inventory', () => {
+test('rejects changes to an existing immutable release', (context) => {
+	const fixtureRoot = mkdtempSync(join(tmpdir(), 'mizu-registry-immutable-'));
+	context.after(() => rmSync(fixtureRoot, { recursive: true, force: true }));
+
+	const existing = join(fixtureRoot, 'existing');
+	const candidate = join(fixtureRoot, 'candidate');
+	mkdirSync(existing);
+	mkdirSync(candidate);
+	writeFileSync(join(existing, 'button.json'), '{"version":1}\n');
+	writeFileSync(join(candidate, 'button.json'), '{"version":1}\n');
+
+	assert.doesNotThrow(() => assertImmutableDirectory(existing, candidate));
+	writeFileSync(join(candidate, 'button.json'), '{"version":2}\n');
+	assert.throws(() => assertImmutableDirectory(existing, candidate), /would change button\.json/);
+});
+
+test('generated output declares audited dependencies and has exact versioned inventory', () => {
 	const outDir = join(root, 'static/r');
 	const drawer = JSON.parse(readFileSync(join(outDir, 'drawer.json'), 'utf8'));
+	const pinnedDrawer = JSON.parse(readFileSync(join(outDir, 'v0.1.1/drawer.json'), 'utf8'));
 	const dataTable = JSON.parse(readFileSync(join(outDir, 'data-table.json'), 'utf8'));
+	const manifest = JSON.parse(readFileSync(join(outDir, 'v0.1.1/manifest.json'), 'utf8'));
 	const components = JSON.parse(readFileSync(join(root, 'src/lib/site/components.json'), 'utf8'));
 	const blocks = JSON.parse(readFileSync(join(root, 'src/lib/site/blocks.json'), 'utf8'));
-	const expectedFiles = [
+	const itemFiles = [
 		...components.map(({ slug }) => `${slug}.json`),
 		...blocks.map(({ slug }) => `${slug}.json`),
 		'utils.json',
 		'registry.json'
 	];
+	const generatedFiles = [...itemFiles, 'manifest.json'];
 
 	assert.ok(drawer.dependencies.includes('vaul-svelte@1.0.0-next.7'));
 	assert.ok(drawer.dependencies.includes('bits-ui@^2.18.1'));
 	assert.ok(dataTable.dependencies.includes('@tanstack/table-core@^8.21.3'));
-	assertExactInventory(outDir, expectedFiles);
+	assert.ok(
+		pinnedDrawer.registryDependencies.every((dependency) =>
+			dependency.startsWith('https://mizu-ui.com/r/v0.1.1/')
+		)
+	);
+	assert.equal(manifest.version, '0.1.1');
+	assert.match(manifest.generationCommit, /^[0-9a-f]{40}$/);
+	assert.equal(manifest.files.length, itemFiles.length);
+	assertExactInventory(outDir, [...generatedFiles, 'latest', 'v0.1.1']);
+	assertExactInventory(join(outDir, 'latest'), generatedFiles);
+	assertExactInventory(join(outDir, 'v0.1.1'), generatedFiles);
 });

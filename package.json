@@ -1,6 +1,6 @@
 {
 	"name": "mizu",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"private": true,
 	"type": "module",
 	"packageManager": "pnpm@10.28.2",
@@ -11,6 +11,7 @@
 	"pnpm": {
 		"overrides": {
 			"brace-expansion": "5.0.8",
+			"postcss": "8.5.18",
 			"tar": "7.5.22"
 		}
 	},
@@ -60,6 +61,7 @@
 		"test:browser": "playwright test",
 		"security:audit": "pnpm audit --audit-level high",
 		"registry:build": "node scripts/build-registry.mjs",
+		"registry:validate": "node scripts/validate-registry.mjs",
 		"registry:consumer-check": "node scripts/verify-registry-consumer.mjs",
 		"new:component": "node scripts/new-component.mjs"
 	},
@@ -74,6 +76,7 @@
 		"@testing-library/jest-dom": "^7.0.0",
 		"@testing-library/svelte": "^5.4.2",
 		"@types/node": "^26.1.1",
+		"ajv": "^8.20.0",
 		"eslint": "^10.7.0",
 		"eslint-plugin-svelte": "^3.22.0",
 		"globals": "^17.7.0",

@@ -14,8 +14,11 @@ pnpm format:check # prettier check
 pnpm lint     # semantic ESLint checks
 pnpm test     # contract, parser, and component tests
 pnpm test:browser # Playwright route and accessibility tests
+pnpm build && pnpm build:budget # production build and client size limits
 pnpm format   # prettier write
-pnpm registry:consumer-check # isolated registry install and build
+pnpm registry:build # regenerate registry channels and release manifests
+pnpm registry:validate # schemas, dependencies, inventory, and integrity
+pnpm registry:consumer-check # isolated install and build of all registry items
 ```
 
 ## The design rules
@@ -42,7 +45,7 @@ That scaffolds `src/lib/components/ui/my-widget/` (component + `index.ts`), a de
 2. Make the demo show the component doing its real job in an AI product.
 3. `pnpm registry:build` to regenerate `static/r`, then run `pnpm check`, `pnpm lint`, and `pnpm test`.
 
-CI fails if `static/r` is stale, so always commit the rebuilt registry.
+If a component imports a project-local file outside `$lib/components/ui` or `$lib/utils`, declare it in the catalog entry's `registryFiles` list so the consumer receives it. CI fails on unresolved local imports and stale `static/r` output, so always commit the rebuilt registry.
 
 ## Lifting from shadcn-svelte
 
@@ -59,3 +62,29 @@ Whole screens live in `src/lib/site/blocks/` and are listed in `src/lib/site/blo
 - lucide icons only, imported per-icon (`@lucide/svelte/icons/<name>`).
 - No em dashes anywhere, including comments.
 - Keep the repo free of secrets.
+
+## Compatibility and releases
+
+Mizu's public contract includes props, callbacks, compound exports, documented behavior, accessibility semantics, CSS token names, and documented markup assumptions. Read `docs/compatibility.md` before changing one.
+
+- Patch releases must remain backwards compatible.
+- Before 1.0, documented breaking changes require a minor version and migration notes.
+- Deprecations remain for at least one minor release when correctness and security allow.
+- Versioned registry directories are immutable. Never edit or delete `static/r/v*` by hand.
+- `/r/latest` follows the current release. `/r/<item>.json` is a legacy compatibility alias.
+
+To prepare a release, update `package.json` and `registry-release.json` to the same version, record the source commit in `generationCommit`, complete every section in `CHANGELOG.md`, and run:
+
+```bash
+pnpm registry:build
+pnpm registry:validate
+pnpm registry:consumer-check
+pnpm test
+pnpm check
+pnpm lint
+pnpm build
+pnpm build:budget
+pnpm test:browser
+```
+
+The release workflow verifies the same contract. A discouraged release is marked as yanked in the changelog and release notes, never rewritten.

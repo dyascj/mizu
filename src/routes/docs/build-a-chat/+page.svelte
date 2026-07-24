@@ -3,7 +3,7 @@
 	import CopyCommand from '$lib/site/copy-command.svelte';
 	import Seo from '$lib/site/seo.svelte';
 	import { getBlock } from '$lib/site/blocks';
-	import { siteConfig } from '$lib/site/config';
+	import { registryPinnedBase, siteConfig } from '$lib/site/config';
 	import { ChatBubble } from '$lib/components/ui/chat-bubble';
 	import { ChatInput } from '$lib/components/ui/chat-input';
 	import { MessageActions } from '$lib/components/ui/message-actions';
@@ -27,7 +27,7 @@
 		if (replayTimer) clearTimeout(replayTimer);
 	});
 
-	const installComponents = `npx shadcn-svelte@latest add ${siteConfig.registryBase}/chat-bubble.json ${siteConfig.registryBase}/chat-input.json ${siteConfig.registryBase}/reasoning.json ${siteConfig.registryBase}/tool-call.json ${siteConfig.registryBase}/streaming-text.json ${siteConfig.registryBase}/sources.json ${siteConfig.registryBase}/message-actions.json ${siteConfig.registryBase}/prompt-suggestions.json`;
+	const installComponents = `npx shadcn-svelte@latest add ${registryPinnedBase}/chat-bubble.json ${registryPinnedBase}/chat-input.json ${registryPinnedBase}/reasoning.json ${registryPinnedBase}/tool-call.json ${registryPinnedBase}/streaming-text.json ${registryPinnedBase}/sources.json ${registryPinnedBase}/message-actions.json ${registryPinnedBase}/prompt-suggestions.json`;
 
 	const stepMessages = `<script lang="ts">
 	import { ChatBubble } from '$lib/components/ui/chat-bubble';
@@ -170,7 +170,7 @@
 		>.
 	</p>
 	<CopyCommand
-		command={`npx shadcn-svelte@latest add ${siteConfig.registryBase}/assistant-chat.json`}
+		command={`npx shadcn-svelte@latest add ${registryPinnedBase}/assistant-chat.json`}
 		class="mb-4 w-full max-w-md"
 	/>
 	<div

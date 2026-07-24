@@ -1,6 +1,6 @@
 import { componentsByCategory } from '$lib/site/catalog';
 import { blocks } from '$lib/site/blocks';
-import { siteConfig } from '$lib/site/config';
+import { registryPinnedBase, siteConfig } from '$lib/site/config';
 import { primaryNavigationRoutes } from '$lib/site/routes';
 
 // https://llmstxt.org: a single Markdown file so coding assistants (Cursor,
@@ -10,7 +10,7 @@ export const prerender = true;
 
 export function GET() {
 	const base = siteConfig.url.replace(/\/$/, '');
-	const reg = siteConfig.registryBase.replace(/\/$/, '');
+	const reg = registryPinnedBase.replace(/\/$/, '');
 	const out: string[] = [];
 
 	out.push(`# ${siteConfig.name} · ${siteConfig.tagline}`);

@@ -396,7 +396,15 @@
 		"name": "Sidebar",
 		"category": "Navigation",
 		"description": "A collapsible app sidebar that folds to a slim rail.",
-		"bits": true
+		"bits": true,
+		"registryFiles": [
+			{
+				"import": "$lib/hooks/is-mobile.svelte.js",
+				"source": "src/lib/hooks/is-mobile.svelte.ts",
+				"target": "is-mobile.svelte.ts",
+				"type": "registry:hook"
+			}
+		]
 	},
 	{
 		"slug": "stepper",

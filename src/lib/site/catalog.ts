@@ -22,6 +22,13 @@ export type ComponentMeta = {
 	bits?: boolean;
 	/** Extra npm dependencies required by an upstream bundle but not imported directly. */
 	npmDependencies?: string[];
+	/** Non-component project files installed with this registry item. */
+	registryFiles?: {
+		import: string;
+		source: string;
+		target: string;
+		type: 'registry:hook' | 'registry:lib';
+	}[];
 };
 
 export const components: ComponentMeta[] = data as ComponentMeta[];

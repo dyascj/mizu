@@ -14,6 +14,7 @@
  */
 import {
 	existsSync,
+	cpSync,
 	mkdirSync,
 	mkdtempSync,
 	readFileSync,
@@ -23,6 +24,7 @@ import {
 	statSync,
 	writeFileSync
 } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
@@ -31,6 +33,7 @@ const scriptPath = fileURLToPath(import.meta.url);
 const root = join(dirname(scriptPath), '..');
 const UI_DIR = join(root, 'src/lib/components/ui');
 const OUT_DIR = join(root, 'static/r');
+const RELEASE_CONFIG = join(root, 'registry-release.json');
 const ITEM_SCHEMA = 'https://shadcn-svelte.com/schema/registry-item.json';
 const REGISTRY_SCHEMA = 'https://shadcn-svelte.com/schema/registry.json';
 
@@ -96,6 +99,7 @@ export function versionDependency(packageName, dependencyVersions) {
 /** Infer versioned npm dependencies and Mizu registry dependencies. */
 export function inferDeps(contents, dependencyVersions) {
 	const deps = new Set();
+	const localImports = new Set();
 	const registryDeps = new Set();
 
 	for (const specifier of extractImportSpecifiers(contents)) {
@@ -113,6 +117,10 @@ export function inferDeps(contents, dependencyVersions) {
 			registryDeps.add(registryMatch[1]);
 			continue;
 		}
+		if (specifier.startsWith('$lib/')) {
+			localImports.add(specifier);
+			continue;
+		}
 
 		const packageName = packageRoot(specifier);
 		if (!packageName) continue;
@@ -126,7 +134,22 @@ export function inferDeps(contents, dependencyVersions) {
 		}
 	}
 
-	return { deps: [...deps].sort(), registryDeps: [...registryDeps].sort() };
+	return {
+		deps: [...deps].sort(),
+		localImports: [...localImports].sort(),
+		registryDeps: [...registryDeps].sort()
+	};
+}
+
+/** Fail when source relies on a project-local file the registry will not install. */
+export function assertLocalImports(itemName, localImports, registryFiles = []) {
+	const configured = registryFiles.map((file) => file.import).sort();
+	if (JSON.stringify(localImports) !== JSON.stringify(configured)) {
+		throw new Error(
+			`Registry item "${itemName}" has unresolved local imports: expected ${configured.join(', ') || 'none'}; ` +
+				`found ${localImports.join(', ') || 'none'}.`
+		);
+	}
 }
 
 /** Fail unless a generated directory contains exactly the expected files. */
@@ -144,6 +167,84 @@ export function assertExactInventory(dir, expectedFiles) {
 			.filter(Boolean)
 			.join('; ');
 		throw new Error(`Registry output inventory mismatch (${details}).`);
+	}
+}
+
+function json(value) {
+	return JSON.stringify(value, null, 2) + '\n';
+}
+
+function integrity(content) {
+	return `sha256-${createHash('sha256').update(content).digest('base64')}`;
+}
+
+function rewriteRegistryDependencies(item, base) {
+	return {
+		...item,
+		registryDependencies: (item.registryDependencies ?? []).map(
+			(dependency) => `${base}/${basename(new URL(dependency).pathname)}`
+		)
+	};
+}
+
+function writeManifest(directory, { base, channel, generationCommit, homepage, version }, files) {
+	const entries = files.map((file) => {
+		const content = readFileSync(join(directory, file));
+		return {
+			path: file,
+			bytes: content.byteLength,
+			integrity: integrity(content)
+		};
+	});
+
+	const manifest = {
+		schemaVersion: 1,
+		name: 'mizu',
+		version,
+		channel,
+		registryBase: base,
+		generationCommit,
+		generatedFrom: `${homepage}/commit/${generationCommit}`,
+		files: entries
+	};
+	writeFileSync(join(directory, 'manifest.json'), json(manifest));
+	return manifest;
+}
+
+function writeVariant(sourceDir, targetDir, base, release, itemFiles) {
+	mkdirSync(targetDir, { recursive: true });
+
+	for (const file of itemFiles) {
+		const source = JSON.parse(readFileSync(join(sourceDir, file), 'utf8'));
+		const output =
+			file === 'registry.json'
+				? {
+						...source,
+						items: source.items.map((item) => rewriteRegistryDependencies(item, base))
+					}
+				: rewriteRegistryDependencies(source, base);
+		writeFileSync(join(targetDir, file), json(output));
+	}
+
+	writeManifest(targetDir, { ...release, base }, itemFiles);
+}
+
+/** Fail before an existing immutable release can be changed or pruned. */
+export function assertImmutableDirectory(existingDir, candidateDir) {
+	const expected = readdirSync(existingDir).sort();
+	assertExactInventory(candidateDir, expected);
+
+	for (const file of expected) {
+		const existingPath = join(existingDir, file);
+		const candidatePath = join(candidateDir, file);
+		if (statSync(existingPath).isDirectory() || statSync(candidatePath).isDirectory()) {
+			throw new Error(`Immutable registry release contains an unexpected directory: ${file}.`);
+		}
+		if (!readFileSync(existingPath).equals(readFileSync(candidatePath))) {
+			throw new Error(
+				`Immutable registry release would change ${file}. Bump the package and registry release versions first.`
+			);
+		}
 	}
 }
 
@@ -176,6 +277,15 @@ export function replaceGeneratedDirectory(stagedDir, outDir) {
 export function buildRegistry() {
 	const packageJson = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 	const dependencyVersions = packageJson.dependencies ?? {};
+	const releaseConfig = JSON.parse(readFileSync(RELEASE_CONFIG, 'utf8'));
+	if (releaseConfig.version !== packageJson.version) {
+		throw new Error(
+			`registry-release.json version ${releaseConfig.version} does not match package.json version ${packageJson.version}.`
+		);
+	}
+	if (!/^[0-9a-f]{40}$/.test(releaseConfig.generationCommit)) {
+		throw new Error('registry-release.json generationCommit must be a full 40-character Git SHA.');
+	}
 
 	// Single source of truth: read registryBase straight from the site config.
 	const config = readFileSync(join(root, 'src/lib/site/config.ts'), 'utf8');
@@ -184,8 +294,14 @@ export function buildRegistry() {
 		config.match(/registryBase:\s*'([^']+)'/)?.[1] ||
 		'https://mizu-ui.com/r'
 	).replace(/\/$/, '');
-	const homepage = config.match(/repo:\s*'([^']+)'/)?.[1] ?? 'https://mizu-ui.com';
+	const homepage = config.match(/repo:\s*'([^']+)'/)?.[1] ?? 'https://github.com/dyascj/mizu';
 	const depUrl = (name) => `${base}/${name}.json`;
+	const release = {
+		channel: 'compatibility',
+		generationCommit: releaseConfig.generationCommit,
+		homepage,
+		version: releaseConfig.version
+	};
 
 	const meta = JSON.parse(readFileSync(join(root, 'src/lib/site/components.json'), 'utf8'));
 	const blocksMeta = JSON.parse(readFileSync(join(root, 'src/lib/site/blocks.json'), 'utf8'));
@@ -208,8 +324,13 @@ export function buildRegistry() {
 		for (const component of meta) {
 			const dir = join(UI_DIR, component.slug);
 			const relFiles = listFiles(dir).filter(isRegistrySource).sort();
-			const contents = relFiles.map((file) => readFileSync(join(dir, file), 'utf8'));
-			const { deps, registryDeps } = inferDeps(contents, dependencyVersions);
+			const registryFiles = component.registryFiles ?? [];
+			const contents = [
+				...relFiles.map((file) => readFileSync(join(dir, file), 'utf8')),
+				...registryFiles.map((file) => readFileSync(join(root, file.source), 'utf8'))
+			];
+			const { deps, localImports, registryDeps } = inferDeps(contents, dependencyVersions);
+			assertLocalImports(component.slug, localImports, registryFiles);
 			const dependencies = [
 				...new Set([
 					...deps,
@@ -230,22 +351,21 @@ export function buildRegistry() {
 					.filter((dependency) => dependency !== component.slug)
 					.map(depUrl),
 				// `target` is relative to the project's `ui` alias (e.g. button/button.svelte).
-				files: relFiles.map((file, index) => ({
-					type: 'registry:file',
-					target: `${component.slug}/${file}`,
-					content: contents[index]
-				}))
+				files: [
+					...relFiles.map((file, index) => ({
+						type: 'registry:file',
+						target: `${component.slug}/${file}`,
+						content: contents[index]
+					})),
+					...registryFiles.map((file, index) => ({
+						type: file.type,
+						target: file.target,
+						content: contents[relFiles.length + index]
+					}))
+				]
 			};
-			writeFileSync(
-				join(stagedDir, `${component.slug}.json`),
-				JSON.stringify(item, null, 2) + '\n'
-			);
-			items.push({
-				name: component.slug,
-				type: 'registry:ui',
-				title: component.name,
-				description: component.description
-			});
+			writeFileSync(join(stagedDir, `${component.slug}.json`), json(item));
+			items.push(item);
 		}
 
 		// Blocks: whole screens as registry:block items. Their sources import
@@ -253,7 +373,8 @@ export function buildRegistry() {
 		// way component items do and the file lands beside the user's components.
 		for (const block of blocksMeta) {
 			const content = readFileSync(join(blocksDir, `${block.slug}.svelte`), 'utf8');
-			const { deps, registryDeps } = inferDeps([content], dependencyVersions);
+			const { deps, localImports, registryDeps } = inferDeps([content], dependencyVersions);
+			assertLocalImports(block.slug, localImports);
 			const item = {
 				$schema: ITEM_SCHEMA,
 				name: block.slug,
@@ -270,13 +391,8 @@ export function buildRegistry() {
 					}
 				]
 			};
-			writeFileSync(join(stagedDir, `${block.slug}.json`), JSON.stringify(item, null, 2) + '\n');
-			items.push({
-				name: block.slug,
-				type: 'registry:block',
-				title: block.name,
-				description: block.description
-			});
+			writeFileSync(join(stagedDir, `${block.slug}.json`), json(item));
+			items.push(item);
 		}
 
 		// The shared `cn` helper as its own registry:lib item.
@@ -297,13 +413,8 @@ export function buildRegistry() {
 				}
 			]
 		};
-		writeFileSync(join(stagedDir, 'utils.json'), JSON.stringify(utils, null, 2) + '\n');
-		items.unshift({
-			name: 'utils',
-			type: 'registry:lib',
-			title: utils.title,
-			description: utils.description
-		});
+		writeFileSync(join(stagedDir, 'utils.json'), json(utils));
+		items.unshift(utils);
 
 		const registry = {
 			$schema: REGISTRY_SCHEMA,
@@ -311,19 +422,67 @@ export function buildRegistry() {
 			homepage,
 			items
 		};
-		writeFileSync(join(stagedDir, 'registry.json'), JSON.stringify(registry, null, 2) + '\n');
+		writeFileSync(join(stagedDir, 'registry.json'), json(registry));
 
-		assertExactInventory(
+		const itemFiles = [...itemNames, 'registry'].map((name) => `${name}.json`);
+		assertExactInventory(stagedDir, itemFiles);
+		writeManifest(stagedDir, { ...release, base }, itemFiles);
+
+		const latestDir = join(stagedDir, 'latest');
+		writeVariant(
 			stagedDir,
-			[...itemNames, 'registry'].map((name) => `${name}.json`)
+			latestDir,
+			`${base}/latest`,
+			{ ...release, channel: 'latest' },
+			itemFiles
 		);
+
+		const versionDirName = `v${release.version}`;
+		const versionDir = join(stagedDir, versionDirName);
+		writeVariant(
+			stagedDir,
+			versionDir,
+			`${base}/${versionDirName}`,
+			{ ...release, channel: 'versioned' },
+			itemFiles
+		);
+
+		const preservedVersions = existsSync(OUT_DIR)
+			? readdirSync(OUT_DIR, { withFileTypes: true })
+					.filter(
+						(entry) => entry.isDirectory() && /^v\d+\.\d+\.\d+(?:-[a-z0-9.-]+)?$/i.test(entry.name)
+					)
+					.map((entry) => entry.name)
+			: [];
+
+		for (const preservedVersion of preservedVersions) {
+			if (preservedVersion === versionDirName) {
+				assertImmutableDirectory(join(OUT_DIR, preservedVersion), versionDir);
+				continue;
+			}
+			cpSync(join(OUT_DIR, preservedVersion), join(stagedDir, preservedVersion), {
+				recursive: true,
+				errorOnExist: true
+			});
+		}
+
+		const generatedFiles = [...itemFiles, 'manifest.json'];
+		assertExactInventory(latestDir, generatedFiles);
+		assertExactInventory(versionDir, generatedFiles);
+		assertExactInventory(stagedDir, [
+			...generatedFiles,
+			'latest',
+			...new Set([...preservedVersions, versionDirName])
+		]);
 		replaceGeneratedDirectory(stagedDir, OUT_DIR);
 	} catch (error) {
 		if (existsSync(stagedDir)) rmSync(stagedDir, { recursive: true, force: true });
 		throw error;
 	}
 
-	console.log(`Registry built: ${items.length} items -> static/r/ (base: ${base})`);
+	console.log(
+		`Registry built: ${items.length} items -> static/r/, latest, and v${release.version} (base: ${base})`
+	);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === resolve(scriptPath)) {

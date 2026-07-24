@@ -4,7 +4,7 @@
 	import CopyCommand from '$lib/site/copy-command.svelte';
 	import Seo from '$lib/site/seo.svelte';
 	import { blockCategories, blocks, getBlock, type BlockCategory } from '$lib/site/blocks';
-	import { siteConfig } from '$lib/site/config';
+	import { registryPinnedBase, siteConfig } from '$lib/site/config';
 	import { cn } from '$lib/utils.js';
 
 	let category = $state<BlockCategory>('Featured');
@@ -53,7 +53,7 @@
 						<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{block.description}</p>
 					</div>
 					<CopyCommand
-						command={`npx shadcn-svelte@latest add ${siteConfig.registryBase}/${block.slug}.json`}
+						command={`npx shadcn-svelte@latest add ${registryPinnedBase}/${block.slug}.json`}
 						class="w-full max-w-xs"
 					/>
 				</div>

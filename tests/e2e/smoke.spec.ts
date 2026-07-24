@@ -6,6 +6,7 @@ const routes = [
 	'/docs',
 	'/docs/installation',
 	'/docs/usage',
+	'/docs/compatibility',
 	'/docs/components',
 	'/docs/components/button',
 	'/docs/build-a-chat',

@@ -30,6 +30,7 @@ jobs:
             git diff -- static/r
             exit 1
           fi
+      - run: pnpm registry:validate
       - run: pnpm registry:consumer-check
       - run: pnpm build
       - run: pnpm build:budget
