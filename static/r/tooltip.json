@@ -5,7 +5,7 @@
   "title": "Tooltip",
   "description": "A small hint shown on hover or focus.",
   "dependencies": [
-    "bits-ui"
+    "bits-ui@^2.18.1"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

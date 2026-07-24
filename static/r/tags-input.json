@@ -5,7 +5,7 @@
   "title": "Tags Input",
   "description": "A field that collects entries as soft pill chips.",
   "dependencies": [
-    "@lucide/svelte"
+    "@lucide/svelte@^1.21.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

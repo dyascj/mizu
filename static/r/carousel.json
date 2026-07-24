@@ -5,9 +5,9 @@
   "title": "Carousel",
   "description": "A swipeable slider with pill prev/next controls.",
   "dependencies": [
-    "@lucide/svelte",
-    "embla-carousel",
-    "embla-carousel-svelte"
+    "@lucide/svelte@^1.21.0",
+    "embla-carousel-svelte@^8.6.0",
+    "embla-carousel@^8.6.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/button.json",

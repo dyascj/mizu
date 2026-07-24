@@ -168,7 +168,8 @@
 		"name": "Drawer",
 		"category": "Overlays",
 		"description": "A bottom sheet that slides up for quick actions, vaul under the hood.",
-		"bits": false
+		"bits": false,
+		"npmDependencies": ["bits-ui"]
 	},
 	{
 		"slug": "hover-card",

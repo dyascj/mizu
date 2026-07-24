@@ -4,12 +4,16 @@ Thanks for helping make Mizu better.
 
 ## Development
 
+Mizu supports Node 22 and 24 with pnpm 10.28.
+
 ```bash
 pnpm install
 pnpm dev      # docs site + live previews on localhost:5183
 pnpm check    # type-check (svelte-check)
 pnpm lint     # prettier check
+pnpm test     # registry and repository contract tests
 pnpm format   # prettier write
+pnpm registry:consumer-check # isolated registry install and build
 ```
 
 ## The design rules
@@ -34,7 +38,7 @@ That scaffolds `src/lib/components/ui/my-widget/` (component + `index.ts`), a de
 
 1. Build the component: `tailwind-variants` for variants, bits-ui for behavior, the `cn` helper, and tokens from `src/app.css`.
 2. Make the demo show the component doing its real job in an AI product.
-3. `pnpm registry:build` to regenerate `static/r`, then `pnpm check && pnpm lint`.
+3. `pnpm registry:build` to regenerate `static/r`, then run `pnpm check`, `pnpm lint`, and `pnpm test`.
 
 CI fails if `static/r` is stale, so always commit the rebuilt registry.
 

@@ -5,7 +5,7 @@
   "title": "Chat Input",
   "description": "A pill composer with attach, voice, and send, ready for a companion.",
   "dependencies": [
-    "@lucide/svelte"
+    "@lucide/svelte@^1.21.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

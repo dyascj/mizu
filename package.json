@@ -4,6 +4,10 @@
 	"private": true,
 	"type": "module",
 	"packageManager": "pnpm@10.28.2",
+	"engines": {
+		"node": ">=22 <25",
+		"pnpm": ">=10.28.2 <11"
+	},
 	"description": "A clean, airy design system for AI products. Chat, voice, reasoning, and streaming components for SvelteKit, Svelte 5, and Tailwind v4.",
 	"keywords": [
 		"svelte",
@@ -21,7 +25,7 @@
 		"voice-ui",
 		"ai-design-system"
 	],
-	"homepage": "https://github.com/dyascj/mizu#readme",
+	"homepage": "https://mizu-ui.com",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/dyascj/mizu.git"
@@ -35,12 +39,14 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''",
+		"prepare": "svelte-kit sync",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check .",
+		"test": "node --test scripts/*.test.mjs",
 		"registry:build": "node scripts/build-registry.mjs",
+		"registry:consumer-check": "node scripts/verify-registry-consumer.mjs",
 		"new:component": "node scripts/new-component.mjs"
 	},
 	"devDependencies": {

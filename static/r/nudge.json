@@ -5,7 +5,7 @@
   "title": "Nudge",
   "description": "A proactive suggestion from the assistant, easy to act on or dismiss.",
   "dependencies": [
-    "@lucide/svelte"
+    "@lucide/svelte@^1.21.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json",

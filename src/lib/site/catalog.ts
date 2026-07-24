@@ -20,6 +20,8 @@ export type ComponentMeta = {
 	description: string;
 	/** Built on a bits-ui primitive (so installing it pulls in `bits-ui`). */
 	bits?: boolean;
+	/** Extra npm dependencies required by an upstream bundle but not imported directly. */
+	npmDependencies?: string[];
 };
 
 export const components: ComponentMeta[] = data as ComponentMeta[];

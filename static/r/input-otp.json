@@ -5,8 +5,8 @@
   "title": "Input OTP",
   "description": "Minimal one-time-code cells.",
   "dependencies": [
-    "@lucide/svelte",
-    "bits-ui"
+    "@lucide/svelte@^1.21.0",
+    "bits-ui@^2.18.1"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

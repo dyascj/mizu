@@ -4,7 +4,10 @@
   "type": "registry:ui",
   "title": "Drawer",
   "description": "A bottom sheet that slides up for quick actions, vaul under the hood.",
-  "dependencies": [],
+  "dependencies": [
+    "bits-ui@^2.18.1",
+    "vaul-svelte@1.0.0-next.7"
+  ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"
   ],

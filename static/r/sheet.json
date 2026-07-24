@@ -5,9 +5,9 @@
   "title": "Sheet",
   "description": "A panel that slides in from any edge.",
   "dependencies": [
-    "@lucide/svelte",
-    "bits-ui",
-    "tailwind-variants"
+    "@lucide/svelte@^1.21.0",
+    "bits-ui@^2.18.1",
+    "tailwind-variants@^3.2.2"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

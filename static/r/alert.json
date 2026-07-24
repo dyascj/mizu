@@ -5,7 +5,7 @@
   "title": "Alert",
   "description": "Quiet callouts in four intents.",
   "dependencies": [
-    "tailwind-variants"
+    "tailwind-variants@^3.2.2"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

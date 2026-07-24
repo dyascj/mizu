@@ -5,8 +5,8 @@
   "title": "cn utility",
   "description": "Tailwind-aware className merge helper used by every component.",
   "dependencies": [
-    "clsx",
-    "tailwind-merge"
+    "clsx@^2.1.1",
+    "tailwind-merge@^3.6.0"
   ],
   "registryDependencies": [],
   "files": [

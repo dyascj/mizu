@@ -5,7 +5,7 @@
   "title": "Scroll Area",
   "description": "A scroll container with a slim, quiet bar.",
   "dependencies": [
-    "bits-ui"
+    "bits-ui@^2.18.1"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

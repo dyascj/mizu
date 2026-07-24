@@ -13,11 +13,12 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm check
+      - run: pnpm test
       - name: Registry is in sync with component source
         run: |
           pnpm registry:build
@@ -27,4 +28,5 @@ jobs:
             git diff -- static/r
             exit 1
           fi
+      - run: pnpm registry:consumer-check
       - run: pnpm build

@@ -5,7 +5,7 @@
   "title": "Rating",
   "description": "Fillable symbols for a quick score.",
   "dependencies": [
-    "@lucide/svelte"
+    "@lucide/svelte@^1.21.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

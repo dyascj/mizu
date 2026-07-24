@@ -5,7 +5,7 @@
   "title": "Aura Tile",
   "description": "Seeded pastel cover art for anything the AI generates.",
   "dependencies": [
-    "@lucide/svelte"
+    "@lucide/svelte@^1.21.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

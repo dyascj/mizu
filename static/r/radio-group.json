@@ -5,7 +5,7 @@
   "title": "Radio Group",
   "description": "Single-select circles that light up with a blue dot.",
   "dependencies": [
-    "bits-ui"
+    "bits-ui@^2.18.1"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

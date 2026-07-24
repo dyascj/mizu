@@ -5,7 +5,7 @@
   "title": "Personalize",
   "description": "Onboarding for a companion: pick a style from aura tiles, set the conversation tone, grant permissions, and create.",
   "dependencies": [
-    "@lucide/svelte"
+    "@lucide/svelte@^1.21.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/aura-tile.json",

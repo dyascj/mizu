@@ -11,8 +11,10 @@ pnpm install
 pnpm dev              # docs site + live previews on localhost:5183
 pnpm check            # type-check (svelte-check)
 pnpm lint             # prettier check (CI fails on this)
+pnpm test             # registry and repository contract tests
 pnpm format           # prettier write
 pnpm registry:build   # regenerate static/r (CI fails if stale)
+pnpm registry:consumer-check # isolated Drawer and Data Table install/build
 pnpm new:component <slug> "<Name>" <Category> "<Description>"   # scaffold a component
 ```
 

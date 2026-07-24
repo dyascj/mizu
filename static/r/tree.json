@@ -5,7 +5,7 @@
   "title": "Tree",
   "description": "A nested, keyboard-navigable file-style tree.",
   "dependencies": [
-    "@lucide/svelte"
+    "@lucide/svelte@^1.21.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

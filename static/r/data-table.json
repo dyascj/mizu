@@ -4,7 +4,9 @@
   "type": "registry:ui",
   "title": "Data Table",
   "description": "TanStack-powered tables: sorting, filtering, and pagination you own.",
-  "dependencies": [],
+  "dependencies": [
+    "@tanstack/table-core@^8.21.3"
+  ],
   "registryDependencies": [],
   "files": [
     {

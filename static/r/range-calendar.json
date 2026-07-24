@@ -5,9 +5,9 @@
   "title": "Range Calendar",
   "description": "Pick a span of dates with a clean month grid.",
   "dependencies": [
-    "@internationalized/date",
-    "@lucide/svelte",
-    "bits-ui"
+    "@internationalized/date@^3.12.2",
+    "@lucide/svelte@^1.21.0",
+    "bits-ui@^2.18.1"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/button.json",

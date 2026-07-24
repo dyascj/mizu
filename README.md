@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./static/brand/github-social.png" width="720" alt="Thought for 2 seconds: You do the thinking. Mizu handles the design." />
+<img src="./static/brand/github-social.png" width="720" alt="Mizu: You do the thinking. Mizu handles the design." />
 
 # Mizu 水
 
@@ -25,8 +25,8 @@ Mizu is built for AI products: chat, voice, reasoning, and streaming components 
 ## Highlights
 
 - **79 components**, from buttons and dialogs to streaming text, visible reasoning, tool calls, a voice orb, and a drifting pastel aurora.
-- **Recolor from one token.** The accent, glow, and focus ring all derive from `--primary`. Change it once and the whole system follows.
-- **Quiet by default.** Hierarchy comes from space, hairlines, and type. The accent and the glow are reserved for what matters.
+- **Recolor from one token.** Accent states, primary-derived effects, and the focus ring follow `--primary`.
+- **Quiet by default.** Hierarchy comes from space, tonal surfaces, and type. The accent and the glow are reserved for what matters.
 - **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the quiet skin.
 - **Airy light, pure-black dark.** A white light theme and a pure-black dark theme with slate surfaces, both with the blue accent on top.
 - **Copy in, own it.** A shadcn-svelte-compatible registry, plus full source on every component page.
@@ -84,7 +84,7 @@ You can also open any component page in the docs and copy its source straight in
 <Card.Root class="max-w-sm">
 	<Card.Header>
 		<Card.Title>Clear morning</Card.Title>
-		<Card.Description>A white surface with a hairline border and a soft shadow.</Card.Description>
+		<Card.Description>A quiet white surface with a soft shadow.</Card.Description>
 	</Card.Header>
 	<Card.Footer>
 		<Button class="w-full">Continue</Button>
@@ -94,7 +94,7 @@ You can also open any component page in the docs and copy its source straight in
 
 ## Theming
 
-The brand is one token. Change `--primary` and the accent, glow, and focus ring follow:
+The brand is one token. Change `--primary` and the accent states, primary-derived effects, and focus ring follow:
 
 ```css
 :root {
@@ -102,20 +102,11 @@ The brand is one token. Change `--primary` and the accent, glow, and focus ring 
 }
 ```
 
-Everything is driven by CSS variables: an airy light mode and a pure-black dark mode out of the box, plus a single `--primary` token (the default is `#00b2ff`) that recolors the whole system without touching a component.
+The system is driven by CSS variables: an airy light mode and a pure-black dark mode out of the box, plus a single `--primary` token (the default is `#00b2ff`) for the accent states and primary-derived effects.
 
 ## Components
 
-| Group      | Components                                                                                                                                                                                 |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Actions    | Button, Badge, Button Group                                                                                                                                                                |
-| Forms      | Input, Textarea, Label, Checkbox, Radio Group, Switch, Slider, Select, Native Select, Combobox, Toggle, Toggle Group, Input OTP, Input Group, Field, Calendar, Range Calendar, Date Picker |
-| Surfaces   | Card, Alert, Separator, Avatar, Aspect Ratio, Scroll Area, Table, Empty, Item, Kbd                                                                                                         |
-| Overlays   | Dialog, Alert Dialog, Sheet, Popover, Tooltip, Hover Card                                                                                                                                  |
-| Menus      | Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command                                                                                                                             |
-| Navigation | Tabs, Accordion, Collapsible, Breadcrumb, Pagination                                                                                                                                       |
-| Feedback   | Progress, Skeleton, Spinner, Circular Gauge                                                                                                                                                |
-| AI         | Aurora, Chat Input, Chat Bubble, Streaming Text, Reasoning, Tool Call, Sources, Message Actions, Plan, Nudge, Aura Tile, Voice Orb, Waveform, Prompt Suggestions, Thinking                 |
+Mizu currently includes 79 components across AI, actions, forms, surfaces, overlays, menus, navigation, and feedback. Browse the complete, source-backed [component catalog](https://mizu-ui.com/docs/components).
 
 ## Develop
 
@@ -130,7 +121,7 @@ The docs site lives in `src/routes`, components in `src/lib/components/ui`, the 
 
 ## Built with
 
-Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide icons (with Phosphor in the docs site). Inspired by shadcn-svelte and the quiet confidence of modern AI interfaces.
+Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide icons. Inspired by shadcn-svelte and the quiet confidence of modern AI interfaces.
 
 ## License
 

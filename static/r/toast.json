@@ -5,8 +5,8 @@
   "title": "Toast",
   "description": "Transient notifications that slide in and stack.",
   "dependencies": [
-    "@lucide/svelte",
-    "tailwind-variants"
+    "@lucide/svelte@^1.21.0",
+    "tailwind-variants@^3.2.2"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/button.json",
