@@ -145,7 +145,7 @@ function extractPropsBlock(source) {
 	// anchors inside prop names that contain "let" (onComplete, deleted, ...).
 	const letRe = /\blet\s*\{/g;
 	let letIdx = -1;
-	for (let m; (m = letRe.exec(source)) && m.index < propsIdx; ) letIdx = m.index;
+	for (let m; (m = letRe.exec(source)) && m.index < propsIdx;) letIdx = m.index;
 	if (letIdx === -1) return null;
 	const braceOpen = source.indexOf('{', letIdx);
 	if (braceOpen === -1 || braceOpen > propsIdx) return null;

@@ -32,7 +32,7 @@
 		disabled={streaming}
 		onclick={() => (open = !open)}
 		aria-expanded={open}
-		class="flex w-fit items-center gap-1.5 rounded-full py-1 text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none"
+		class="text-muted-foreground hover:text-foreground focus-visible:ring-ring flex w-fit items-center gap-1.5 rounded-full py-1 transition-colors outline-none focus-visible:ring-2 disabled:pointer-events-none"
 	>
 		<Sparkles class="size-3.5" />
 		{#if streaming}
@@ -44,7 +44,7 @@
 	</button>
 	{#if open && !streaming}
 		<div
-			class="reasoning-body mt-1.5 rounded-xl bg-secondary/60 px-4 py-3 leading-relaxed text-muted-foreground"
+			class="reasoning-body bg-secondary/60 text-muted-foreground mt-1.5 rounded-xl px-4 py-3 leading-relaxed"
 		>
 			{@render children?.()}
 		</div>

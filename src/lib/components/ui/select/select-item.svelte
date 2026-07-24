@@ -22,7 +22,7 @@
 	{value}
 	{label}
 	class={cn(
-		'relative flex cursor-pointer select-none items-center rounded-lg py-1.5 pr-2 pl-8 text-sm outline-none transition-colors duration-100 data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+		'data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-pointer items-center rounded-lg py-1.5 pr-2 pl-8 text-sm transition-colors duration-100 outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
 		className
 	)}
 	{...restProps}
@@ -30,7 +30,7 @@
 	{#snippet children({ selected })}
 		{#if selected}
 			<span class="absolute left-2 flex size-4 items-center justify-center">
-				<Check class="size-4 text-primary" />
+				<Check class="text-primary size-4" />
 			</span>
 		{/if}
 		{#if childrenProp}

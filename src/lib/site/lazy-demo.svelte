@@ -25,7 +25,7 @@
 <div bind:this={root} class="flex min-h-24 w-full items-center justify-center">
 	{#if componentPromise}
 		{#await componentPromise}
-			<span class="size-5 animate-pulse rounded-full bg-secondary" aria-hidden="true"></span>
+			<span class="bg-secondary size-5 animate-pulse rounded-full" aria-hidden="true"></span>
 		{:then Demo}
 			{#if Demo}
 				<Demo />

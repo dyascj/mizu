@@ -9,7 +9,7 @@
 </script>
 
 <div class="flex w-full max-w-md flex-col gap-2">
-	<p class="text-sm text-muted-foreground">
+	<p class="text-muted-foreground text-sm">
 		Mizu components are built on Svelte 5 runes with Tailwind v4 utilities, and interactive behavior
 		comes from bits-ui.
 	</p>

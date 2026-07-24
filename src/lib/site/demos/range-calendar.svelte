@@ -6,4 +6,4 @@
 	let value = $state({ start, end: start.add({ days: 5 }) });
 </script>
 
-<RangeCalendar bind:value class="rounded-2xl bg-card p-3 shadow-md" />
+<RangeCalendar bind:value class="bg-card rounded-2xl p-3 shadow-md" />

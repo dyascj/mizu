@@ -14,17 +14,17 @@
 			<Command.Empty>No results found.</Command.Empty>
 			<Command.Group heading="Sources">
 				<Command.Item>
-					<Droplets class="size-4 text-muted-foreground" />
+					<Droplets class="text-muted-foreground size-4" />
 					<span>Spring water</span>
 					<Command.Shortcut>⌘S</Command.Shortcut>
 				</Command.Item>
 				<Command.Item>
-					<Waves class="size-4 text-muted-foreground" />
+					<Waves class="text-muted-foreground size-4" />
 					<span>Ocean</span>
 					<Command.Shortcut>⌘O</Command.Shortcut>
 				</Command.Item>
 				<Command.Item>
-					<CloudRain class="size-4 text-muted-foreground" />
+					<CloudRain class="text-muted-foreground size-4" />
 					<span>Rainfall</span>
 					<Command.Shortcut>⌘R</Command.Shortcut>
 				</Command.Item>
@@ -32,12 +32,12 @@
 			<Command.Separator />
 			<Command.Group heading="Actions">
 				<Command.Item>
-					<Search class="size-4 text-muted-foreground" />
+					<Search class="text-muted-foreground size-4" />
 					<span>Find a source</span>
 					<Command.Shortcut>⌘F</Command.Shortcut>
 				</Command.Item>
 				<Command.Item>
-					<Settings class="size-4 text-muted-foreground" />
+					<Settings class="text-muted-foreground size-4" />
 					<span>Filter settings</span>
 					<Command.Shortcut>⌘,</Command.Shortcut>
 				</Command.Item>

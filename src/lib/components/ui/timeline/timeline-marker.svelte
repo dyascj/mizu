@@ -18,7 +18,7 @@
 	<span
 		aria-hidden="true"
 		class={cn(
-			'bg-card absolute top-0.5 left-[0.4375rem] z-10 flex size-[1.375rem] -translate-x-1/2 items-center justify-center rounded-full text-primary shadow-glow ring-4 ring-background',
+			'bg-card text-primary shadow-glow ring-background absolute top-0.5 left-[0.4375rem] z-10 flex size-[1.375rem] -translate-x-1/2 items-center justify-center rounded-full ring-4',
 			className
 		)}
 	>
@@ -28,7 +28,7 @@
 	<span
 		aria-hidden="true"
 		class={cn(
-			'bg-primary absolute top-1 left-[0.4375rem] z-10 size-3 -translate-x-1/2 rounded-full shadow-glow ring-4 ring-background',
+			'bg-primary shadow-glow ring-background absolute top-1 left-[0.4375rem] z-10 size-3 -translate-x-1/2 rounded-full ring-4',
 			className
 		)}
 	></span>

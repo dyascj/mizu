@@ -9,7 +9,7 @@
 
 <label
 	class={cn(
-		'flex items-center gap-2 text-sm font-semibold text-foreground select-none has-[+:disabled]:opacity-50 peer-disabled:opacity-50',
+		'text-foreground flex items-center gap-2 text-sm font-semibold select-none peer-disabled:opacity-50 has-[+:disabled]:opacity-50',
 		className
 	)}
 	{...rest}

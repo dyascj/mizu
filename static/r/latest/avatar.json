@@ -14,7 +14,7 @@
     {
       "type": "registry:file",
       "target": "avatar/avatar-fallback.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: AvatarPrimitive.FallbackProps = $props();\n</script>\n\n<AvatarPrimitive.Fallback\n\tbind:ref\n\tclass={cn(\n\t\t'flex size-full items-center justify-center bg-muted text-sm font-semibold text-muted-foreground',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</AvatarPrimitive.Fallback>\n"
+      "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: AvatarPrimitive.FallbackProps = $props();\n</script>\n\n<AvatarPrimitive.Fallback\n\tbind:ref\n\tclass={cn(\n\t\t'bg-muted text-muted-foreground flex size-full items-center justify-center text-sm font-semibold',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</AvatarPrimitive.Fallback>\n"
     },
     {
       "type": "registry:file",

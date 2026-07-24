@@ -7,6 +7,6 @@
 	let { class: className, children, ...rest }: Props = $props();
 </script>
 
-<caption class={cn('mt-3 text-sm text-muted-foreground', className)} {...rest}>
+<caption class={cn('text-muted-foreground mt-3 text-sm', className)} {...rest}>
 	{@render children?.()}
 </caption>

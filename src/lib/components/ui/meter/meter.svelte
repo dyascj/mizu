@@ -80,7 +80,7 @@
 				<span class="text-muted-foreground">{label}</span>
 			{/if}
 			{#if showValue}
-				<span class="font-semibold tabular-nums text-foreground">{formatted}</span>
+				<span class="text-foreground font-semibold tabular-nums">{formatted}</span>
 			{/if}
 		</div>
 	{/if}
@@ -91,7 +91,7 @@
 		aria-valuemin={normalizedMin}
 		aria-valuemax={normalizedMax}
 		aria-label={label ?? 'Meter'}
-		class="relative h-2.5 w-full overflow-hidden rounded-full bg-secondary"
+		class="bg-secondary relative h-2.5 w-full overflow-hidden rounded-full"
 	>
 		<div
 			class={cn(

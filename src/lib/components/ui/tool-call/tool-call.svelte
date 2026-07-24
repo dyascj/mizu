@@ -34,19 +34,19 @@
 		disabled={!children || state === 'running'}
 		onclick={() => (open = !open)}
 		aria-expanded={open}
-		class="flex w-full items-center gap-2.5 rounded-xl bg-secondary/60 px-3.5 py-2.5 text-left outline-none transition-colors enabled:hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-default"
+		class="bg-secondary/60 enabled:hover:bg-secondary focus-visible:ring-ring flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left transition-colors outline-none focus-visible:ring-2 disabled:cursor-default"
 	>
 		{#if state === 'running'}
 			<Spinner size={16} />
 		{:else if state === 'done'}
 			<span
-				class="grid size-4 shrink-0 place-items-center rounded-full bg-success text-success-foreground"
+				class="bg-success text-success-foreground grid size-4 shrink-0 place-items-center rounded-full"
 			>
 				<Check class="size-3" strokeWidth={3} />
 			</span>
 		{:else}
 			<span
-				class="grid size-4 shrink-0 place-items-center rounded-full bg-destructive text-destructive-foreground"
+				class="bg-destructive text-destructive-foreground grid size-4 shrink-0 place-items-center rounded-full"
 			>
 				<X class="size-3" strokeWidth={3} />
 			</span>
@@ -56,13 +56,13 @@
 				>{name}</span
 			>
 			{#if detail}
-				<span class="block truncate text-xs text-muted-foreground">{detail}</span>
+				<span class="text-muted-foreground block truncate text-xs">{detail}</span>
 			{/if}
 		</span>
 		{#if children && state !== 'running'}
 			<ChevronDown
 				class={cn(
-					'size-3.5 shrink-0 text-muted-foreground transition-transform duration-200',
+					'text-muted-foreground size-3.5 shrink-0 transition-transform duration-200',
 					open && 'rotate-180'
 				)}
 			/>
@@ -70,7 +70,7 @@
 	</button>
 	{#if open && children && state !== 'running'}
 		<div
-			class="tool-result mt-1.5 rounded-xl bg-secondary/40 px-4 py-3 leading-relaxed text-muted-foreground"
+			class="tool-result bg-secondary/40 text-muted-foreground mt-1.5 rounded-xl px-4 py-3 leading-relaxed"
 		>
 			{@render children()}
 		</div>

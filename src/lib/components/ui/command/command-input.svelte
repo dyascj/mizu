@@ -13,13 +13,13 @@
 	} = $props();
 </script>
 
-<div class="flex items-center gap-2 border-b border-border px-3">
-	<Search class="size-4 shrink-0 text-muted-foreground" />
+<div class="border-border flex items-center gap-2 border-b px-3">
+	<Search class="text-muted-foreground size-4 shrink-0" />
 	<CommandPrimitive.Input
 		bind:ref
 		bind:value
 		class={cn(
-			'h-11 w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground dark:placeholder:text-foreground/60',
+			'text-foreground placeholder:text-muted-foreground dark:placeholder:text-foreground/60 h-11 w-full bg-transparent text-sm outline-none',
 			className
 		)}
 		{...restProps}

@@ -10,8 +10,8 @@
 	<Popover.Content class="w-72">
 		<div class="flex flex-col gap-3">
 			<div class="flex flex-col gap-1">
-				<h4 class="text-sm font-medium leading-none">Ripple strength</h4>
-				<p class="text-sm text-muted-foreground">Tune how far the waves spread.</p>
+				<h4 class="text-sm leading-none font-medium">Ripple strength</h4>
+				<p class="text-muted-foreground text-sm">Tune how far the waves spread.</p>
 			</div>
 			<div class="flex flex-col gap-2">
 				<Label for="ripple">Spread (px)</Label>

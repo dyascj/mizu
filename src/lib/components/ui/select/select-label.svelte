@@ -11,6 +11,6 @@
 
 <SelectPrimitive.GroupHeading
 	bind:ref
-	class={cn('px-2 py-1.5 text-xs font-semibold text-muted-foreground', className)}
+	class={cn('text-muted-foreground px-2 py-1.5 text-xs font-semibold', className)}
 	{...restProps}
 />

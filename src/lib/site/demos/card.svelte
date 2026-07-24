@@ -9,7 +9,7 @@
 		<Card.Description>A quiet surface with soft elevation and no decorative rim.</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<p class="text-sm text-muted-foreground">
+		<p class="text-muted-foreground text-sm">
 			Compose a header, content, and footer, or drop in anything you like.
 		</p>
 	</Card.Content>

@@ -13,7 +13,7 @@
 <DatePickerPrimitive.Input
 	bind:ref
 	class={cn(
-		'flex h-10 w-full select-none items-center rounded-full bg-secondary pl-3.5 pr-1.5 text-sm text-foreground outline-none transition-[box-shadow,border-color] duration-150 focus-within:ring-2 focus-within:ring-ring/35 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-destructive/35',
+		'bg-secondary text-foreground focus-within:ring-ring/35 data-[invalid]:border-destructive data-[invalid]:ring-destructive/35 flex h-10 w-full items-center rounded-full pr-1.5 pl-3.5 text-sm transition-[box-shadow,border-color] duration-150 outline-none select-none focus-within:ring-2 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
 		className
 	)}
 	{...restProps}
@@ -22,13 +22,13 @@
 		<div class="flex flex-1 items-center tabular-nums">
 			{#each segments as { part, value }, i (i)}
 				{#if part === 'literal'}
-					<DatePickerPrimitive.Segment {part} class="px-px text-muted-foreground">
+					<DatePickerPrimitive.Segment {part} class="text-muted-foreground px-px">
 						{value}
 					</DatePickerPrimitive.Segment>
 				{:else}
 					<DatePickerPrimitive.Segment
 						{part}
-						class="rounded-md px-1 py-0.5 outline-none transition-colors duration-150 hover:bg-accent focus:bg-accent focus:text-accent-foreground aria-[valuetext=Empty]:text-muted-foreground"
+						class="hover:bg-accent focus:bg-accent focus:text-accent-foreground aria-[valuetext=Empty]:text-muted-foreground rounded-md px-1 py-0.5 transition-colors duration-150 outline-none"
 					>
 						{value}
 					</DatePickerPrimitive.Segment>

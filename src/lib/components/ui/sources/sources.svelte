@@ -21,10 +21,10 @@
 			href={source.url}
 			target={source.url ? '_blank' : undefined}
 			rel={source.url ? 'noreferrer' : undefined}
-			class="inline-flex items-center gap-1.5 rounded-full bg-secondary py-1 pr-2.5 pl-1 text-xs text-muted-foreground outline-none transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+			class="bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:ring-ring inline-flex items-center gap-1.5 rounded-full py-1 pr-2.5 pl-1 text-xs transition-colors outline-none focus-visible:ring-2"
 		>
 			<span
-				class="grid size-4 place-items-center rounded-full bg-card text-[0.625rem] font-medium text-foreground shadow-xs tabular-nums"
+				class="bg-card text-foreground grid size-4 place-items-center rounded-full text-[0.625rem] font-medium tabular-nums shadow-xs"
 			>
 				{i + 1}
 			</span>

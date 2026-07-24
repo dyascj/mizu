@@ -63,41 +63,41 @@
 
 <article class="max-w-2xl">
 	<h1 class="font-display text-3xl font-semibold">Usage</h1>
-	<p class="mt-3 text-lg text-muted-foreground">
+	<p class="text-muted-foreground mt-3 text-lg">
 		The principles behind Mizu, how to drop components in and make them yours, and how to keep
 		things coherent as you compose. The components are the vocabulary; this is the grammar.
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Principles</h2>
-	<p class="mb-4 leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Principles</h2>
+	<p class="text-muted-foreground mb-4 leading-relaxed">
 		Five ideas hold the whole system together. When a decision is unclear, these break the tie.
 	</p>
-	<div class="overflow-hidden rounded-xl border border-border">
+	<div class="border-border overflow-hidden rounded-xl border">
 		{#each principles as [name, desc], i (name)}
 			<div
 				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
 					(i % 2 ? 'bg-muted/40' : '')}
 			>
-				<span class="shrink-0 font-display text-sm font-semibold text-foreground sm:w-44"
+				<span class="font-display text-foreground shrink-0 text-sm font-semibold sm:w-44"
 					>{name}</span
 				>
-				<span class="text-sm text-muted-foreground">{desc}</span>
+				<span class="text-muted-foreground text-sm">{desc}</span>
 			</div>
 		{/each}
 	</div>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Using a component</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Using a component</h2>
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Add a component with the CLI, or copy the source straight from its page. Either way the files
-		land in <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"
+		land in <code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]"
 			>src/lib/components/ui/</code
 		>
 		and belong to you. Style any part through its
-		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">class</code> prop. Classes
+		<code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">class</code> prop. Classes
 		merge with tailwind-merge, so your overrides win without
 		<code class="font-mono text-[0.85em]">!important</code>.
 	</p>
-	<ul class="mb-2 ml-5 list-disc space-y-1.5 leading-relaxed text-muted-foreground">
+	<ul class="text-muted-foreground mb-2 ml-5 list-disc space-y-1.5 leading-relaxed">
 		<li>
 			Compose with the exported parts, like <code class="font-mono text-[0.85em]">Dialog.Root</code
 			>,
@@ -108,41 +108,41 @@
 		<li>Delete the components you do not use. Nothing is loaded that you did not add.</li>
 	</ul>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Composition</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Composition</h2>
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Mizu ships a few surface utilities: <code
-			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">glass</code
+			class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">glass</code
 		>
 		for flat frosted panels that float above content, and the
-		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">orb-*</code> and
-		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">aurora-*</code> pastel washes
+		<code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">orb-*</code> and
+		<code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">aurora-*</code> pastel washes
 		for the moments where the AI is present. Two rules keep them looking right:
 	</p>
-	<ul class="mb-2 ml-5 list-disc space-y-1.5 leading-relaxed text-muted-foreground">
+	<ul class="text-muted-foreground mb-2 ml-5 list-disc space-y-1.5 leading-relaxed">
 		<li>
-			<span class="font-semibold text-foreground">One frost per layer.</span> Translucency is for the
+			<span class="text-foreground font-semibold">One frost per layer.</span> Translucency is for the
 			single floating panel above the page, never for panels stacked on panels. Everything else is solid
 			white or slate.
 		</li>
 		<li>
-			<span class="font-semibold text-foreground">Concentric radius.</span> A child's corner radius should
+			<span class="text-foreground font-semibold">Concentric radius.</span> A child's corner radius should
 			equal its parent's radius minus the padding between them, or the corners read as misaligned.
 		</li>
 	</ul>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Do and don't</h2>
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Do and don't</h2>
 	<div class="grid gap-4 sm:grid-cols-2">
 		<div class="rounded-xl bg-[color:color-mix(in_srgb,var(--success)_8%,var(--card))] p-4">
-			<p class="mb-2 font-display text-sm font-semibold text-[color:var(--success)]">Do</p>
-			<ul class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
+			<p class="font-display mb-2 text-sm font-semibold text-[color:var(--success)]">Do</p>
+			<ul class="text-muted-foreground space-y-1.5 text-sm leading-relaxed">
 				{#each doList as item (item)}
 					<li class="flex gap-2"><span class="text-[color:var(--success)]">✓</span>{item}</li>
 				{/each}
 			</ul>
 		</div>
 		<div class="rounded-xl bg-[color:color-mix(in_srgb,var(--destructive)_7%,var(--card))] p-4">
-			<p class="mb-2 font-display text-sm font-semibold text-[color:var(--destructive)]">Don't</p>
-			<ul class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
+			<p class="font-display mb-2 text-sm font-semibold text-[color:var(--destructive)]">Don't</p>
+			<ul class="text-muted-foreground space-y-1.5 text-sm leading-relaxed">
 				{#each dontList as item (item)}
 					<li class="flex gap-2"><span class="text-[color:var(--destructive)]">✕</span>{item}</li>
 				{/each}
@@ -150,12 +150,12 @@
 		</div>
 	</div>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Accessibility</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Accessibility</h2>
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Behavior is delegated to bits-ui, so focus traps, roving focus, escape handling, and ARIA wiring
 		are handled for you. Your job is to keep the names and contrast intact.
 	</p>
-	<ul class="mb-2 ml-5 list-disc space-y-1.5 leading-relaxed text-muted-foreground">
+	<ul class="text-muted-foreground mb-2 ml-5 list-disc space-y-1.5 leading-relaxed">
 		<li>
 			Give every dialog a <code class="font-mono text-[0.85em]">Dialog.Title</code> (use
 			<code class="font-mono text-[0.85em]">sr-only</code> if it is visually hidden) and every input
@@ -170,20 +170,20 @@
 		<li>On light surfaces, use mizu-600 or darker for small text to keep contrast comfortable.</li>
 	</ul>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Choosing the right component</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Choosing the right component</h2>
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		A few pairings come up constantly. When two components could work, this is the default call.
 	</p>
-	<div class="overflow-hidden rounded-xl border border-border">
+	<div class="border-border overflow-hidden rounded-xl border">
 		{#each choices as [name, desc], i (name)}
 			<div
 				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
 					(i % 2 ? 'bg-muted/40' : '')}
 			>
-				<span class="shrink-0 font-display text-sm font-semibold text-foreground sm:w-52"
+				<span class="font-display text-foreground shrink-0 text-sm font-semibold sm:w-52"
 					>{name}</span
 				>
-				<span class="text-sm text-muted-foreground">{desc}</span>
+				<span class="text-muted-foreground text-sm">{desc}</span>
 			</div>
 		{/each}
 	</div>

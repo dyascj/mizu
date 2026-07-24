@@ -95,13 +95,13 @@
 	>
 		{@render children?.()}
 		{#if showValue}
-			<span class="font-display text-2xl leading-none font-semibold tabular-nums text-foreground">
+			<span class="font-display text-foreground text-2xl leading-none font-semibold tabular-nums">
 				{Math.round(clamped)}
 			</span>
 		{/if}
 		{#if label}
 			<span
-				class="text-[0.7rem] leading-none font-medium tracking-wide text-muted-foreground uppercase"
+				class="text-muted-foreground text-[0.7rem] leading-none font-medium tracking-wide uppercase"
 			>
 				{label}
 			</span>

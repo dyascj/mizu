@@ -17,7 +17,7 @@
 	bind:ref
 	{value}
 	{max}
-	class={cn('relative h-3 w-full overflow-hidden rounded-full bg-muted ', className)}
+	class={cn('bg-muted relative h-3 w-full overflow-hidden rounded-full ', className)}
 	{...restProps}
 >
 	<div

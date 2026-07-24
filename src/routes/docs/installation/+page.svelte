@@ -33,12 +33,12 @@
 
 <article class="max-w-2xl">
 	<h1 class="font-display text-3xl font-semibold">Installation</h1>
-	<p class="mt-3 text-lg text-muted-foreground">
+	<p class="text-muted-foreground mt-3 text-lg">
 		Mizu is a shadcn-svelte-compatible registry. After a one-time setup, add any component with a
 		single command; the source lands in your project and is yours to edit.
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">
 		1. Create a SvelteKit + Tailwind v4 app
 	</h2>
 	<div class="flex flex-col gap-2">
@@ -46,24 +46,24 @@
 		<CopyCommand command="npx sv add tailwindcss" />
 	</div>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">2. Add a components.json</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">2. Add a components.json</h2>
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		This tells the CLI where to place files. Create <code
-			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">components.json</code
+			class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">components.json</code
 		>
 		at the project root:
 	</p>
 	<CodeBlock code={componentsJson} />
-	<p class="mt-3 mb-3 leading-relaxed text-muted-foreground">
-		Or run <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"
+	<p class="text-muted-foreground mt-3 mb-3 leading-relaxed">
+		Or run <code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]"
 			>npx shadcn-svelte@latest init</code
 		> to generate one interactively (pick any base color, you'll replace its theme next).
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">3. Add the theme</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">3. Add the theme</h2>
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Paste the Mizu theme into your <code
-			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">src/app.css</code
+			class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">src/app.css</code
 		>, right after <code class="font-mono text-[0.85em]">@import 'tailwindcss';</code>. It is one
 		portable file (copy it from
 		<a
@@ -79,29 +79,29 @@
 		> page). It defines the palette, surface utilities, pastel auras, elevation, and fonts.
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">4. Add components</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">4. Add components</h2>
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Now the one-liner. It pulls the component, installs its npm dependencies, and adds the shared
-		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">cn</code> helper automatically:
+		<code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">cn</code> helper automatically:
 	</p>
 	<CopyCommand command={addOne} />
-	<p class="mt-3 mb-3 leading-relaxed text-muted-foreground">Add several at once:</p>
+	<p class="text-muted-foreground mt-3 mb-3 leading-relaxed">Add several at once:</p>
 	<CopyCommand command={addMany} />
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Pinned and latest installs</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Pinned and latest installs</h2>
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		The commands above pin Mizu v{siteConfig.registryVersion}, so the source and dependency ranges
 		stay reproducible. Use the explicit latest channel only when you intend to update and have
 		reviewed the
-		<a href="/docs/compatibility" class="font-medium text-primary hover:underline"
+		<a href="/docs/compatibility" class="text-primary font-medium hover:underline"
 			>compatibility policy and changelog</a
 		>.
 	</p>
 	<CopyCommand command={addLatest} />
 
-	<p class="mt-6 text-sm text-muted-foreground">
+	<p class="text-muted-foreground mt-6 text-sm">
 		Prefer not to use the CLI? Every component page has its full source ready to copy straight into
-		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"
+		<code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]"
 			>src/lib/components/ui/</code
 		>
 		(you'll also want <code class="font-mono text-[0.85em]">src/lib/utils.ts</code> and the theme).

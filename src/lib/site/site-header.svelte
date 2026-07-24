@@ -31,7 +31,7 @@
 				{#each navLinks as l (l.href)}
 					<a
 						href={l.href}
-						class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+						class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
 					>
 						{l.label}
 					</a>
@@ -44,7 +44,7 @@
 			<button
 				onclick={() => (search.open = true)}
 				aria-label="Search"
-				class="inline-flex items-center gap-2 rounded-full bg-secondary px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground sm:w-48 sm:px-3.5"
+				class="bg-secondary text-muted-foreground hover:text-foreground inline-flex items-center gap-2 rounded-full px-2.5 py-1.5 text-sm transition-colors sm:w-48 sm:px-3.5"
 			>
 				<SearchIcon class="size-4 shrink-0" />
 				<span class="hidden flex-1 text-left sm:inline">Search</span>

@@ -30,7 +30,7 @@
 		>
 			{#if step.state === 'done'}
 				<span
-					class="plan-check grid size-4 shrink-0 place-items-center rounded-full bg-success text-success-foreground"
+					class="plan-check bg-success text-success-foreground grid size-4 shrink-0 place-items-center rounded-full"
 				>
 					<Check class="size-3" strokeWidth={3} />
 				</span>
@@ -38,7 +38,7 @@
 				<Spinner size={16} class="shrink-0" />
 			{:else}
 				<span class="grid size-4 shrink-0 place-items-center">
-					<span class="size-1.5 rounded-full bg-muted-foreground/40"></span>
+					<span class="bg-muted-foreground/40 size-1.5 rounded-full"></span>
 				</span>
 			{/if}
 			<span class="min-w-0">
@@ -46,7 +46,7 @@
 					>{step.label}</span
 				>
 				{#if step.detail}
-					<span class="block truncate text-xs text-muted-foreground">{step.detail}</span>
+					<span class="text-muted-foreground block truncate text-xs">{step.detail}</span>
 				{/if}
 			</span>
 		</li>

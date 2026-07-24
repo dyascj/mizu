@@ -24,7 +24,7 @@
 		bind:this={ref}
 		bind:value
 		class={cn(
-			'h-10 w-full appearance-none rounded-full bg-secondary px-3.5 pr-9 text-sm outline-none transition-[border-color,box-shadow] focus-visible:ring-2 focus-visible:ring-ring/35 disabled:pointer-events-none disabled:opacity-50',
+			'bg-secondary focus-visible:ring-ring/35 h-10 w-full appearance-none rounded-full px-3.5 pr-9 text-sm transition-[border-color,box-shadow] outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50',
 			className
 		)}
 		{...rest}
@@ -32,6 +32,6 @@
 		{@render children?.()}
 	</select>
 	<ChevronDown
-		class="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-muted-foreground"
+		class="text-muted-foreground pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2"
 	/>
 </div>

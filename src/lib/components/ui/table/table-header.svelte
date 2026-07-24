@@ -7,6 +7,6 @@
 	let { class: className, children, ...rest }: Props = $props();
 </script>
 
-<thead class={cn('[&_tr]:border-b [&_tr]:border-border', className)} {...rest}>
+<thead class={cn('[&_tr]:border-border [&_tr]:border-b', className)} {...rest}>
 	{@render children?.()}
 </thead>

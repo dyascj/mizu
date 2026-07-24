@@ -9,7 +9,7 @@
 
 <tr
 	class={cn(
-		'border-b border-border transition-colors hover:bg-secondary/50 data-[state=selected]:bg-accent',
+		'border-border hover:bg-secondary/50 data-[state=selected]:bg-accent border-b transition-colors',
 		className
 	)}
 	{...rest}

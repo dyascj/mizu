@@ -27,12 +27,12 @@
 	});
 </script>
 
-<div class="mx-auto flex w-full max-w-xl flex-col gap-4 rounded-3xl bg-card p-6 shadow-md">
+<div class="bg-card mx-auto flex w-full max-w-xl flex-col gap-4 rounded-3xl p-6 shadow-md">
 	<header class="flex items-center gap-3">
 		<VoiceOrb state="thinking" size={36} />
 		<div class="min-w-0 flex-1">
 			<p class="text-sm font-semibold">Era is working</p>
-			<p class="text-xs text-muted-foreground">Venue shortlist for the offsite</p>
+			<p class="text-muted-foreground text-xs">Venue shortlist for the offsite</p>
 		</div>
 		<div class="flex items-center gap-1">
 			<Button variant="ghost" size="icon" aria-label="Pause run">
@@ -48,7 +48,7 @@
 
 	<ToolCall name="Comparing availability" detail="3 venues, Oct 12 to 14" state="running" />
 
-	<div class="rounded-2xl bg-secondary/60 px-4 py-3 text-sm leading-relaxed">
+	<div class="bg-secondary/60 rounded-2xl px-4 py-3 text-sm leading-relaxed">
 		{#key run}
 			<StreamingText
 				text="Front-runner so far: the boathouse on the east shore. Fits twenty, has the quiet morning light you asked for, and comes in under budget with room for the dinner."

@@ -9,7 +9,7 @@
 
 <div
 	class={cn(
-		'flex size-12 items-center justify-center rounded-2xl bg-popover shadow-xs text-muted-foreground [&>svg]:size-6',
+		'bg-popover text-muted-foreground flex size-12 items-center justify-center rounded-2xl shadow-xs [&>svg]:size-6',
 		className
 	)}
 	{...rest}

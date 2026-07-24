@@ -87,24 +87,24 @@
 
 <article class="max-w-2xl">
 	<h1 class="text-3xl font-semibold">Build a chat</h1>
-	<p class="mt-3 text-lg text-muted-foreground">
+	<p class="text-muted-foreground mt-3 text-lg">
 		The AI components are designed to stack into one anatomy: what the user said, what the assistant
 		did, and what it answered. This guide composes a complete conversation screen from eight of
 		them.
 	</p>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">0. Install the parts</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		One command brings in everything this guide uses, dependencies included.
 	</p>
 	<CopyCommand command={installComponents} class="w-full" />
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">1. Messages</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Conversations are two voices: the user on the accent, the assistant on the quiet fill. Bubbles
 		animate in on arrival by default.
 	</p>
-	<div class="mb-3 flex flex-col gap-2.5 rounded-2xl bg-card p-6 shadow-sm" data-no-toc>
+	<div class="bg-card mb-3 flex flex-col gap-2.5 rounded-2xl p-6 shadow-sm" data-no-toc>
 		<ChatBubble role="user" animate={false}>Find somewhere quiet for dinner Saturday.</ChatBubble>
 		<ChatBubble role="assistant" animate={false}>On it. Checking your usual spots first.</ChatBubble
 		>
@@ -112,11 +112,11 @@
 	<CodeBlock code={stepMessages} />
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">2. Show the work</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Between the question and the answer lives the work. Reasoning folds the chain of thought into a
 		quiet disclosure; Tool Call reports each thing the assistant actually did.
 	</p>
-	<div class="mb-3 flex flex-col gap-2.5 rounded-2xl bg-card p-6 shadow-sm" data-no-toc>
+	<div class="bg-card mb-3 flex flex-col gap-2.5 rounded-2xl p-6 shadow-sm" data-no-toc>
 		<Reasoning summary="Thought for 4 seconds">
 			Quiet matters more than fancy. Check the corner table at Verde first.
 		</Reasoning>
@@ -127,11 +127,11 @@
 	<CodeBlock code={stepWork} />
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">3. The answer, streaming</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Streaming Text types the reply in token by token. Ground it with Sources and finish with Message
 		Actions so every answer can be copied, rated, or regenerated.
 	</p>
-	<div class="mb-3 flex flex-col gap-2 rounded-2xl bg-card p-6 shadow-sm" data-no-toc>
+	<div class="bg-card mb-3 flex flex-col gap-2 rounded-2xl p-6 shadow-sm" data-no-toc>
 		<ChatBubble role="assistant" animate={false} class="min-h-16 w-full max-w-[85%]">
 			{#key run}
 				<StreamingText
@@ -147,12 +147,12 @@
 	<CodeBlock code={stepStream} />
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">4. The composer</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Prompt Suggestions invite the next message; Chat Input carries attach, voice, and send in one
-		pill. Wire <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">onSubmit</code>
+		pill. Wire <code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">onSubmit</code>
 		to your model call and you have a working chat.
 	</p>
-	<div class="mb-3 flex flex-col gap-2.5 rounded-2xl bg-card p-6 shadow-sm" data-no-toc>
+	<div class="bg-card mb-3 flex flex-col gap-2.5 rounded-2xl p-6 shadow-sm" data-no-toc>
 		<PromptSuggestions
 			items={['Make it 8pm instead', 'Add it to my calendar']}
 			onSelect={(p) => (value = p)}
@@ -162,11 +162,11 @@
 	<CodeBlock code={stepComposer} />
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">5. All together</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Stacked in order inside a card, the pieces read as one screen: messages, the work, the streaming
 		answer, the composer. The finished version ships as the Assistant chat block; grab the whole
 		thing with one command or copy its source from the
-		<a href="/blocks#assistant-chat" class="font-medium text-primary hover:underline">Blocks page</a
+		<a href="/blocks#assistant-chat" class="text-primary font-medium hover:underline">Blocks page</a
 		>.
 	</p>
 	<CopyCommand
@@ -174,11 +174,11 @@
 		class="mb-4 w-full max-w-md"
 	/>
 	<div
-		class="rounded-3xl bg-secondary/50 p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-8"
+		class="bg-secondary/50 rounded-3xl p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-8"
 		data-no-toc
 	>
 		{#await blockPromise}
-			<div class="h-96 animate-pulse rounded-3xl bg-card" aria-hidden="true"></div>
+			<div class="bg-card h-96 animate-pulse rounded-3xl" aria-hidden="true"></div>
 		{:then block}
 			{#if block.Component}
 				{@const Block = block.Component}

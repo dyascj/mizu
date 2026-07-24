@@ -48,18 +48,18 @@
 
 <article class="max-w-2xl">
 	<h1 class="text-3xl font-semibold">Theming</h1>
-	<p class="mt-3 text-lg text-muted-foreground">
+	<p class="text-muted-foreground mt-3 text-lg">
 		One file drives everything. Mizu's look lives in CSS custom properties, mapped to Tailwind v4
 		utilities. Recolor the system by changing a handful of tokens.
 	</p>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">The token block</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
-		Add this to <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"
+	<p class="text-muted-foreground mb-3 leading-relaxed">
+		Add this to <code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]"
 			>src/app.css</code
 		>
 		after
-		<code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"
+		<code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]"
 			>@import 'tailwindcss';</code
 		>. Semantic tokens (<code class="font-mono text-[0.85em]">--background</code>,
 		<code class="font-mono text-[0.85em]">--primary</code>, …) are mapped with
@@ -69,40 +69,40 @@
 	<CodeBlock code={tokenSnippet} />
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">The brand ramp</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		<code class="font-mono text-[0.85em]">mizu-50</code> through
 		<code class="font-mono text-[0.85em]">mizu-950</code>. The accent is
 		<code class="font-mono text-[0.85em]">mizu-500</code>. Swap these to re-tint the whole system.
 	</p>
-	<div class="mb-2 grid grid-cols-11 overflow-hidden rounded-xl border border-border shadow-xs">
+	<div class="border-border mb-2 grid grid-cols-11 overflow-hidden rounded-xl border shadow-xs">
 		{#each ramp as step (step)}
 			<div class="h-12" style={`background-color: var(--color-mizu-${step})`}></div>
 		{/each}
 	</div>
-	<div class="grid grid-cols-11 text-center font-mono text-[0.6rem] text-muted-foreground">
+	<div class="text-muted-foreground grid grid-cols-11 text-center font-mono text-[0.6rem]">
 		{#each ramp as step (step)}<span>{step}</span>{/each}
 	</div>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">Material utilities</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Beyond colors, Mizu adds a small set of surface utilities you can use anywhere.
 	</p>
-	<div class="overflow-hidden rounded-xl border border-border">
+	<div class="border-border overflow-hidden rounded-xl border">
 		{#each utilities as [name, desc], i (name)}
 			<div
 				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
 					(i % 2 ? 'bg-muted/40' : '')}
 			>
-				<code class="shrink-0 font-mono text-sm text-primary sm:w-72">{name}</code>
-				<span class="text-sm text-muted-foreground">{desc}</span>
+				<code class="text-primary shrink-0 font-mono text-sm sm:w-72">{name}</code>
+				<span class="text-muted-foreground text-sm">{desc}</span>
 			</div>
 		{/each}
 	</div>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">Dark mode</h2>
-	<p class="mb-4 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-4 leading-relaxed">
 		Mizu uses a class strategy: add <code
-			class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">dark</code
+			class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">dark</code
 		>
 		to <code class="font-mono text-[0.85em]">&lt;html&gt;</code>. The page goes pure black and
 		surfaces lift to slate. The included theme store handles persistence and a no-flash inline
@@ -110,7 +110,7 @@
 	</p>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">The surface ladder</h2>
-	<p class="mb-4 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-4 leading-relaxed">
 		Depth never comes from strokes. In light mode, shadows carry the layers; in dark mode, each
 		surface is one tonal rung above the one beneath it.
 	</p>

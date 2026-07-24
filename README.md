@@ -66,7 +66,7 @@ npx sv add tailwindcss
 **4. Add components** with the one-liner. It pulls the component, installs its npm dependencies, and adds the shared `cn` helper automatically:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.1.3/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.1.4/button.json
 ```
 
 You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.

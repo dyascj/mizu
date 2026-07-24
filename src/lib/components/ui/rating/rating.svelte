@@ -127,7 +127,7 @@
 	onclick={handleClick}
 	onmouseleave={() => (hover = null)}
 	class={cn(
-		'inline-flex items-center gap-1 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+		'focus-visible:ring-ring focus-visible:ring-offset-background inline-flex items-center gap-1 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
 		interactive && 'cursor-pointer',
 		disabled && 'pointer-events-none opacity-50',
 		className
@@ -148,7 +148,7 @@
 		>
 			<!-- Empty outline base -->
 			<DropletIcon
-				class="absolute inset-0 m-auto text-muted-foreground/40"
+				class="text-muted-foreground/40 absolute inset-0 m-auto"
 				{size}
 				strokeWidth={1.75}
 			/>
@@ -161,7 +161,7 @@
 					aria-hidden="true"
 				>
 					<DropletIcon
-						class="absolute top-0 left-0 text-mizu-500 drop-shadow-[0_1px_3px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
+						class="text-mizu-500 absolute top-0 left-0 drop-shadow-[0_1px_3px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
 						{size}
 						fill="currentColor"
 						strokeWidth={1.75}

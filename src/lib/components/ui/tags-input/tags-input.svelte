@@ -76,7 +76,7 @@
 
 <div
 	class={cn(
-		'flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-2xl bg-secondary px-2.5 py-2 text-sm outline-none transition-[box-shadow,border-color] duration-150 focus-within:ring-2 focus-within:ring-ring/35',
+		'bg-secondary focus-within:ring-ring/35 flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-2xl px-2.5 py-2 text-sm transition-[box-shadow,border-color] duration-150 outline-none focus-within:ring-2',
 		disabled && 'cursor-not-allowed opacity-50',
 		className
 	)}
@@ -88,14 +88,14 @@
 	<ul class="contents">
 		{#each value as tag, i (tag + i)}
 			<li
-				class="inline-flex h-6 items-center gap-1 rounded-full bg-primary pr-1 pl-2.5 text-xs font-medium text-primary-foreground shadow-xs"
+				class="bg-primary text-primary-foreground inline-flex h-6 items-center gap-1 rounded-full pr-1 pl-2.5 text-xs font-medium shadow-xs"
 			>
 				<span>{tag}</span>
 				<button
 					type="button"
 					{disabled}
 					onclick={() => removeAt(i)}
-					class="inline-grid size-4 place-items-center rounded-full text-primary-foreground/80 outline-none transition-[background-color,color] duration-150 hover:bg-white/25 hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-white/70 disabled:pointer-events-none"
+					class="text-primary-foreground/80 hover:text-primary-foreground inline-grid size-4 place-items-center rounded-full transition-[background-color,color] duration-150 outline-none hover:bg-white/25 focus-visible:ring-2 focus-visible:ring-white/70 disabled:pointer-events-none"
 				>
 					<XIcon class="size-3" />
 					<span class="sr-only">Remove {tag}</span>
@@ -114,7 +114,7 @@
 		readonly={atMax}
 		{onkeydown}
 		onblur={commitDraft}
-		class="flex-1 basis-24 bg-transparent text-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed"
+		class="text-foreground placeholder:text-muted-foreground flex-1 basis-24 bg-transparent outline-none disabled:cursor-not-allowed"
 	/>
 
 	{#if name}

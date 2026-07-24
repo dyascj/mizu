@@ -14,7 +14,7 @@
 	bind:ref
 	{cell}
 	class={cn(
-		'relative flex size-11 items-center justify-center rounded-xl bg-secondary text-lg text-foreground outline-none transition-[border-color,box-shadow] duration-150 data-[active=true]:border-ring data-[active=true]:ring-2 data-[active=true]:ring-ring/35',
+		'bg-secondary text-foreground data-[active=true]:border-ring data-[active=true]:ring-ring/35 relative flex size-11 items-center justify-center rounded-xl text-lg transition-[border-color,box-shadow] duration-150 outline-none data-[active=true]:ring-2',
 		className
 	)}
 	{...restProps}
@@ -24,7 +24,7 @@
 	{/if}
 	{#if cell.hasFakeCaret}
 		<div class="pointer-events-none absolute inset-0 flex items-center justify-center">
-			<div class="h-5 w-px animate-pulse bg-foreground"></div>
+			<div class="bg-foreground h-5 w-px animate-pulse"></div>
 		</div>
 	{/if}
 </PinInputPrimitive.Cell>

@@ -9,14 +9,14 @@
 		<Tabs.Trigger value="settings">Settings</Tabs.Trigger>
 	</Tabs.List>
 	<Tabs.Content value="overview">
-		<p class="text-sm text-muted-foreground">
+		<p class="text-muted-foreground text-sm">
 			A calm summary of everything flowing through your space.
 		</p>
 	</Tabs.Content>
 	<Tabs.Content value="activity">
-		<p class="text-sm text-muted-foreground">Recent ripples, sorted newest first.</p>
+		<p class="text-muted-foreground text-sm">Recent ripples, sorted newest first.</p>
 	</Tabs.Content>
 	<Tabs.Content value="settings">
-		<p class="text-sm text-muted-foreground">Adjust how the water behaves to suit your flow.</p>
+		<p class="text-muted-foreground text-sm">Adjust how the water behaves to suit your flow.</p>
 	</Tabs.Content>
 </Tabs.Root>

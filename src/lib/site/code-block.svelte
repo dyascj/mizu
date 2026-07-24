@@ -21,12 +21,12 @@
 </script>
 
 <div
-	class={cn('group relative overflow-hidden rounded-xl bg-secondary dark:bg-popover', className)}
+	class={cn('group bg-secondary dark:bg-popover relative overflow-hidden rounded-xl', className)}
 >
 	<button
 		onclick={copy}
 		aria-label="Copy code"
-		class="absolute top-2.5 right-2.5 z-10 inline-flex size-8 items-center justify-center rounded-lg bg-card/70 text-muted-foreground shadow-xs transition-[scale,color] duration-150 hover:text-foreground active:scale-[0.96]"
+		class="bg-card/70 text-muted-foreground hover:text-foreground absolute top-2.5 right-2.5 z-10 inline-flex size-8 items-center justify-center rounded-lg shadow-xs transition-[scale,color] duration-150 active:scale-[0.96]"
 	>
 		{#if copied}
 			<Check class="size-4 text-[color:var(--success)]" />

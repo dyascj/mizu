@@ -14,19 +14,19 @@
 
 <div>
 	<h1 class="font-display text-3xl font-semibold">Components</h1>
-	<p class="mt-3 text-lg text-muted-foreground">
+	<p class="text-muted-foreground mt-3 text-lg">
 		{components.length} clean, accessible components. Pick a color up in the header and the whole set
 		recolors live.
 	</p>
 
 	{#each groups as group (group.category)}
 		<section class="mt-10">
-			<h2 class="mb-4 font-display text-xl font-semibold">{group.category}</h2>
+			<h2 class="font-display mb-4 text-xl font-semibold">{group.category}</h2>
 			<div class="grid gap-4 sm:grid-cols-2">
 				{#each group.items as c (c.slug)}
 					<article class="group relative">
 						<div
-							class="relative flex h-40 items-center justify-center overflow-hidden rounded-2xl bg-card p-5 shadow-sm transition-[transform,box-shadow] duration-200 group-hover:-translate-y-0.5 group-hover:shadow-lg group-focus-within:ring-2 group-focus-within:ring-ring"
+							class="bg-card group-focus-within:ring-ring relative flex h-40 items-center justify-center overflow-hidden rounded-2xl p-5 shadow-sm transition-[transform,box-shadow] duration-200 group-focus-within:ring-2 group-hover:-translate-y-0.5 group-hover:shadow-lg"
 							data-no-toc
 						>
 							<div class="pointer-events-none flex w-full scale-90 items-center justify-center">
@@ -42,7 +42,7 @@
 								{c.name}
 							</a>
 							{#if c.bits}
-								<span class="text-xs text-muted-foreground">bits-ui</span>
+								<span class="text-muted-foreground text-xs">bits-ui</span>
 							{/if}
 						</div>
 					</article>

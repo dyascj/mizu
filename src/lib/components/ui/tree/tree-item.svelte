@@ -32,10 +32,10 @@
 	onfocus={() => tree.onFocus(node.id)}
 	onkeydown={(e) => tree.onKeydown(e, node.id, hasChildren, depth)}
 	class={cn(
-		'flex h-9 cursor-pointer items-center gap-1.5 rounded-lg pr-2 outline-none transition-[background,box-shadow,color] duration-150 ease-out select-none',
-		'hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+		'flex h-9 cursor-pointer items-center gap-1.5 rounded-lg pr-2 transition-[background,box-shadow,color] duration-150 ease-out outline-none select-none',
+		'hover:bg-accent focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2',
 		selected
-			? 'bg-[color:color-mix(in_oklab,var(--primary)_14%,transparent)] font-medium text-foreground'
+			? 'text-foreground bg-[color:color-mix(in_oklab,var(--primary)_14%,transparent)] font-medium'
 			: 'text-foreground/90'
 	)}
 	style="padding-left: calc(0.5rem + {depth} * 1.125rem);"
@@ -43,7 +43,7 @@
 	{#if hasChildren}
 		<ChevronRight
 			class={cn(
-				'size-4 shrink-0 text-muted-foreground transition-transform duration-200 ease-out',
+				'text-muted-foreground size-4 shrink-0 transition-transform duration-200 ease-out',
 				expanded && 'rotate-90'
 			)}
 		/>
@@ -60,7 +60,7 @@
 {#if hasChildren}
 	<div
 		role="group"
-		class="grid transition-[grid-template-rows] duration-200 ease-out mizu-tree-group"
+		class="mizu-tree-group grid transition-[grid-template-rows] duration-200 ease-out"
 		class:mizu-tree-open={expanded}
 		style="grid-template-rows: {expanded ? '1fr' : '0fr'};"
 	>

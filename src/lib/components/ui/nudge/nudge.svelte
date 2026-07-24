@@ -22,7 +22,7 @@
 
 <div
 	role="status"
-	class={cn('nudge-in relative w-full max-w-sm rounded-2xl bg-card p-4 shadow-lg', className)}
+	class={cn('nudge-in bg-card relative w-full max-w-sm rounded-2xl p-4 shadow-lg', className)}
 >
 	<div class="flex items-start gap-3">
 		{#if icon}
@@ -37,9 +37,9 @@
 			/>
 		{/if}
 		<div class="min-w-0 flex-1">
-			<p class="text-sm font-medium text-foreground">{title}</p>
+			<p class="text-foreground text-sm font-medium">{title}</p>
 			{#if description}
-				<p class="mt-0.5 text-sm leading-relaxed text-muted-foreground">{description}</p>
+				<p class="text-muted-foreground mt-0.5 text-sm leading-relaxed">{description}</p>
 			{/if}
 			{#if actions}
 				<div class="mt-3 flex flex-wrap items-center gap-2">
@@ -52,7 +52,7 @@
 				type="button"
 				onclick={onDismiss}
 				aria-label="Dismiss"
-				class="inline-flex size-6 shrink-0 items-center justify-center rounded-full text-muted-foreground outline-none transition-colors hover:bg-secondary hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+				class="text-muted-foreground hover:bg-secondary hover:text-foreground focus-visible:ring-ring inline-flex size-6 shrink-0 items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2"
 			>
 				<X class="size-3.5" />
 			</button>

@@ -9,4 +9,4 @@
 	}: HTMLAttributes<HTMLDivElement> & { ref?: HTMLDivElement | null; class?: string } = $props();
 </script>
 
-<div bind:this={ref} class={cn('animate-pulse rounded-md bg-muted/70', className)} {...rest}></div>
+<div bind:this={ref} class={cn('bg-muted/70 animate-pulse rounded-md', className)} {...rest}></div>

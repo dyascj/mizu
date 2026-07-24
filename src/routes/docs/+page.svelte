@@ -16,14 +16,14 @@
 <article class="max-w-2xl">
 	<MizuLogo class="mb-8 scale-125" />
 	<h1 class="text-3xl font-semibold">Introduction</h1>
-	<p class="mt-3 text-lg text-muted-foreground">
+	<p class="text-muted-foreground mt-3 text-lg">
 		Mizu is a clean, airy design system for AI products and the designers building them. White
 		surfaces, soft shadows, pill controls, and the components a modern assistant needs, built
 		honestly for Svelte 5 and Tailwind v4.
 	</p>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">The language</h2>
-	<p class="mb-4 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-4 leading-relaxed">
 		Interfaces built for AI deserve calm. Mizu (<span class="font-medium">水</span>, "water") keeps
 		every surface quiet so the content and the intelligence can speak: white on white with subtle
 		dividers, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for
@@ -31,31 +31,31 @@
 	</p>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">Principles</h2>
-	<ul class="mb-4 ml-5 list-disc space-y-2 text-muted-foreground">
+	<ul class="text-muted-foreground mb-4 ml-5 list-disc space-y-2">
 		<li>
-			<span class="font-semibold text-foreground">Quiet by default.</span> Hierarchy comes from space,
+			<span class="text-foreground font-semibold">Quiet by default.</span> Hierarchy comes from space,
 			tonal fills, and type, not decoration. The accent is for what matters.
 		</li>
 		<li>
-			<span class="font-semibold text-foreground">Accessible underneath.</span> Interactive
+			<span class="text-foreground font-semibold">Accessible underneath.</span> Interactive
 			components wrap
 			<a
 				href="https://bits-ui.com"
-				class="font-medium text-primary underline-offset-4 hover:underline">bits-ui</a
+				class="text-primary font-medium underline-offset-4 hover:underline">bits-ui</a
 			> primitives, so keyboard and screen-reader behavior is handled.
 		</li>
 		<li>
-			<span class="font-semibold text-foreground">Yours to own.</span> Components are copied into your
+			<span class="text-foreground font-semibold">Yours to own.</span> Components are copied into your
 			project as source. No black-box dependency, no version lock.
 		</li>
 		<li>
-			<span class="font-semibold text-foreground">Tokens all the way down.</span> One theme file drives
+			<span class="text-foreground font-semibold">Tokens all the way down.</span> One theme file drives
 			every surface, in an airy light mode and a pure-black dark mode.
 		</li>
 	</ul>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">How it ships</h2>
-	<p class="mb-4 leading-relaxed text-muted-foreground">
+	<p class="text-muted-foreground mb-4 leading-relaxed">
 		Every component is source you copy into your project and own. Add one with a single command
 		using the CLI you already have, point an AI agent at the clean per-component JSON, or copy the
 		code straight from any component page. {components.length} components are ready today.

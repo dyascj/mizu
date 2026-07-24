@@ -17,7 +17,7 @@
 
 <time
 	bind:this={ref}
-	class={cn('text-xs font-medium tracking-wide text-muted-foreground tabular-nums', className)}
+	class={cn('text-muted-foreground text-xs font-medium tracking-wide tabular-nums', className)}
 	{...rest}
 >
 	{@render children?.()}

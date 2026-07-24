@@ -12,7 +12,7 @@
     {
       "type": "registry:file",
       "target": "field/field-description.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLParagraphElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<p class={cn('text-sm text-muted-foreground', className)} {...rest}>\n\t{@render children?.()}\n</p>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLParagraphElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<p class={cn('text-muted-foreground text-sm', className)} {...rest}>\n\t{@render children?.()}\n</p>\n"
     },
     {
       "type": "registry:file",

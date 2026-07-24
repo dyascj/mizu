@@ -6,7 +6,7 @@
 	<Resizable.PaneGroup direction="horizontal" class="relative z-10">
 		<Resizable.Pane defaultSize={30} minSize={20}>
 			<div class="flex h-full flex-col gap-1 p-4">
-				<span class="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+				<span class="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
 					Sources
 				</span>
 				<span class="text-sm">Rainfall</span>
@@ -17,10 +17,10 @@
 		<Resizable.Handle withHandle />
 		<Resizable.Pane defaultSize={70}>
 			<div class="flex h-full flex-col items-center justify-center gap-1 p-4 text-center">
-				<span class="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+				<span class="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
 					Preview
 				</span>
-				<span class="text-sm text-foreground">Drag the grip to resize the panes.</span>
+				<span class="text-foreground text-sm">Drag the grip to resize the panes.</span>
 			</div>
 		</Resizable.Pane>
 	</Resizable.PaneGroup>

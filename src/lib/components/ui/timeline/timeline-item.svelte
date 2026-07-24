@@ -24,12 +24,12 @@
 	} = $props();
 </script>
 
-<li bind:this={ref} class={cn('relative pl-9 pb-6 last:pb-0', className)} {...rest}>
+<li bind:this={ref} class={cn('relative pb-6 pl-9 last:pb-0', className)} {...rest}>
 	<!-- The vertical rail this item's marker sits on. -->
 	{#if !last}
 		<span
 			aria-hidden="true"
-			class="pointer-events-none absolute top-3 bottom-0 left-[0.4375rem] w-px -translate-x-1/2 bg-border"
+			class="bg-border pointer-events-none absolute top-3 bottom-0 left-[0.4375rem] w-px -translate-x-1/2"
 		></span>
 	{/if}
 	<Marker {icon} />

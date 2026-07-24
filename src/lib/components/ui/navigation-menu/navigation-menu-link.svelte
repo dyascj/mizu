@@ -12,7 +12,7 @@
 <NavigationMenuPrimitive.Link
 	bind:ref
 	class={cn(
-		'block select-none space-y-1 rounded-lg p-3 text-sm leading-none no-underline outline-none transition-[background-color] duration-150 hover:bg-secondary focus-visible:bg-secondary data-[active]:bg-accent',
+		'hover:bg-secondary focus-visible:bg-secondary data-[active]:bg-accent block space-y-1 rounded-lg p-3 text-sm leading-none no-underline transition-[background-color] duration-150 outline-none select-none',
 		className
 	)}
 	{...restProps}

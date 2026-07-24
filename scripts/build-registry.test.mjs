@@ -34,7 +34,7 @@ test('infers versioned dependencies from static, side-effect, deep, and dynamic 
 
 	assert.deepEqual(inferDeps([source], dependencyVersions), {
 		deps: [
-			'@lucide/svelte@^1.21.0',
+			`@lucide/svelte@${dependencyVersions['@lucide/svelte']}`,
 			'@tanstack/table-core@^8.21.3',
 			'paneforge@^1.0.2',
 			'vaul-svelte@1.0.0-next.7'

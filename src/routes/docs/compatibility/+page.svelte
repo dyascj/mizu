@@ -14,13 +14,13 @@
 
 <article class="max-w-2xl">
 	<h1 class="font-display text-3xl font-semibold">Compatibility</h1>
-	<p class="mt-3 text-lg text-muted-foreground">
+	<p class="text-muted-foreground mt-3 text-lg">
 		Mizu components become part of your application source. Versions still matter because updates
 		can change props, exports, behavior, markup assumptions, and design tokens.
 	</p>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Pinned by default</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Pinned by default</h2>
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Documentation commands use the immutable <code class="font-mono"
 			>v{siteConfig.registryVersion}</code
 		>
@@ -28,15 +28,15 @@
 	</p>
 	<CopyCommand command={pinned} />
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Following latest</h2>
-	<p class="mb-3 leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Following latest</h2>
+	<p class="text-muted-foreground mb-3 leading-relaxed">
 		Use the <code class="font-mono">latest</code> channel when you intentionally want the newest release.
 		Review the changelog before rerunning it because copied source may change.
 	</p>
 	<CopyCommand command={latest} />
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Versioning contract</h2>
-	<ul class="ml-5 list-disc space-y-2 text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Versioning contract</h2>
+	<ul class="text-muted-foreground ml-5 list-disc space-y-2">
 		<li>Patch releases fix defects without intentionally breaking the public contract.</li>
 		<li>Before 1.0, minor releases may contain documented breaking changes and migration notes.</li>
 		<li>After 1.0, breaking changes require a major release.</li>
@@ -50,15 +50,15 @@
 		</li>
 	</ul>
 
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Release records</h2>
-	<p class="leading-relaxed text-muted-foreground">
+	<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Release records</h2>
+	<p class="text-muted-foreground leading-relaxed">
 		Each pinned directory includes a <code class="font-mono">manifest.json</code> with its version,
 		source commit, file sizes, and SHA-256 integrity values. Old pinned directories are never
 		rewritten or removed during a normal release. Breaking changes and any exceptional yanks are
 		recorded in the
 		<a
 			href="{siteConfig.repo}/blob/main/CHANGELOG.md"
-			class="font-medium text-primary hover:underline">changelog</a
+			class="text-primary font-medium hover:underline">changelog</a
 		>.
 	</p>
 </article>

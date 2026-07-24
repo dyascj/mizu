@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "name": "mizu",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "channel": "compatibility",
   "registryBase": "https://mizu-ui.com/r",
-  "generationCommit": "fff38ffc05d5ae4f48cbbc1186c97d83baf8f651",
-  "generatedFrom": "https://github.com/dyascj/mizu/commit/fff38ffc05d5ae4f48cbbc1186c97d83baf8f651",
+  "generationCommit": "35c68863900c3953e9239dd60639e8f59acdb1e4",
+  "generatedFrom": "https://github.com/dyascj/mizu/commit/35c68863900c3953e9239dd60639e8f59acdb1e4",
   "files": [
     {
       "path": "button.json",
@@ -20,47 +20,47 @@
     {
       "path": "input.json",
       "bytes": 1330,
-      "integrity": "sha256-ytr0/tWprxUdNi53xb0Oa3WBDRZhb5WlgGT//8qhMRU="
+      "integrity": "sha256-3YWIBM8THqrzT5t/KlJMJiJKRotIpnnQrdZ9PluQyrk="
     },
     {
       "path": "textarea.json",
       "bytes": 1349,
-      "integrity": "sha256-iEfZRAbZUSm91uzXyzDj8ehopKuwwnm6QG7NsRDkuXI="
+      "integrity": "sha256-KKlCUN7SH/P6GsqGXxeWDE+BdjHqsmM+CtwJKYokhsw="
     },
     {
       "path": "label.json",
       "bytes": 1111,
-      "integrity": "sha256-8IQLS5rIYfEmTrjJqzh3bylXPgoSwWa/GK1YYsZrKpo="
+      "integrity": "sha256-8fq6ouA0qRKVajqtthNY4KPsyhU8KS3aUXoZgKJl74I="
     },
     {
       "path": "checkbox.json",
       "bytes": 2292,
-      "integrity": "sha256-UIQ61lrJN5zE9R8ZJDhcmPYteiVdq1v+1RgFJB9QUzc="
+      "integrity": "sha256-eTGR7uZ1Q+sw6Ntkh7lFTqaI7r0tzKNLSS7LhUWmzik="
     },
     {
       "path": "radio-group.json",
       "bytes": 2482,
-      "integrity": "sha256-3bnN1lQb5LLrPuq/97UrWWA5BlYcgrxxCLBTO4zbgO8="
+      "integrity": "sha256-SRs4bJUerzRdc++Q9PqnZ/yy3w0WGnu9wGiZNMN/byk="
     },
     {
       "path": "switch.json",
       "bytes": 1720,
-      "integrity": "sha256-Jdbwq3/ftw1Ums9Tp2cvD97JwTnGVts36vwZER7huLU="
+      "integrity": "sha256-AJeznI1vkV4v+ZHpvmzGkWKtdd2a4I8ZRz4IaC6bbe0="
     },
     {
       "path": "slider.json",
       "bytes": 2396,
-      "integrity": "sha256-nipLN0ISdTWJ6/Kf2wOVNZAIoFgsk1wlutDTuvAbMDQ="
+      "integrity": "sha256-UT3rwfZ8LWQeXSPDcURZ2HAkpTtTBAk2zpJe9JQBYPA="
     },
     {
       "path": "select.json",
       "bytes": 5666,
-      "integrity": "sha256-iB5s8isacYOnAN4POEw/cRjzpkXQRS6s5/pdPtn+1pE="
+      "integrity": "sha256-LL4MqXOsj2hrNBXNGMVzvMrl6st6foHnNBqfPFqdfEU="
     },
     {
       "path": "card.json",
       "bytes": 4314,
-      "integrity": "sha256-zHgF91Drj38ScKyLwSbh+SI5J5YVdowTLeDFfNwMh6I="
+      "integrity": "sha256-jftN2Rj1l9ATbGZtY9nItPk2ueiTuQBUfGhUmRgRbJ8="
     },
     {
       "path": "alert.json",
@@ -70,67 +70,67 @@
     {
       "path": "separator.json",
       "bytes": 1257,
-      "integrity": "sha256-tkxGuRkNCDBN7QWe5ycYqsJv3MhmL+nEGqZ2pSmSYUY="
+      "integrity": "sha256-8/ZC/n9JounS2nNYYbLCH4Bx57SXDx+g9GQa6B3A1LA="
     },
     {
       "path": "avatar.json",
       "bytes": 2464,
-      "integrity": "sha256-CCKtOHrcjUkG9PcpdMrS9DYdYZXltNsKOr7AngKC2KA="
+      "integrity": "sha256-TGHRv5JHnvqSD0Ak323BTqOnXjZDXgisGmBLUZRnm+E="
     },
     {
       "path": "dialog.json",
       "bytes": 7662,
-      "integrity": "sha256-NbyetF3Kly4lP9iXqE89tdZ3BBqYM7bVbyyZKsCaesE="
+      "integrity": "sha256-QeUvwRQ1fMiwva799mTTIe0y8iYY6v6GEavSsIMejg8="
     },
     {
       "path": "popover.json",
       "bytes": 3233,
-      "integrity": "sha256-cihgK8fTTcEZy1+qgVLWDH4vE6m9gA++30Jh7e0cKog="
+      "integrity": "sha256-KdX87yZ6dy69cDbe6z2wDNoZooOhnS+Q4k/nG2NvzE4="
     },
     {
       "path": "tooltip.json",
       "bytes": 3189,
-      "integrity": "sha256-fReQppeveSE01cWsF1QpFPB7FgIJpqKTeSO++//sv98="
+      "integrity": "sha256-5ADpquGzTLiG1y1dWVV0Tp6umKiUO1g+jVt9Y/0bPnc="
     },
     {
       "path": "tabs.json",
       "bytes": 4005,
-      "integrity": "sha256-7cBcXPsKqWp1oLpvaeAMJq2ingYL3qxPekD2iX3m614="
+      "integrity": "sha256-QOwtgaIpZtY0XmhgYIBQyebVrbb1KQVOewC+ZVR+1ko="
     },
     {
       "path": "accordion.json",
       "bytes": 3412,
-      "integrity": "sha256-C3QhQqelaR2YYroFnIdW26iMYhrze0rXs0IGNI7k8lM="
+      "integrity": "sha256-7wfF0+YAfwAN9E/ekFGJjCvSKjbvg4WaTTwgyA/F0rE="
     },
     {
       "path": "progress.json",
       "bytes": 1396,
-      "integrity": "sha256-jG5zvofrse9ATVz++UavBQ49dgVOt5I9mFQJ2VG0BgE="
+      "integrity": "sha256-FHW47zIltDNAtIoSe61u6+vEYOSXoaY4/c2X8QMTIqc="
     },
     {
       "path": "skeleton.json",
       "bytes": 989,
-      "integrity": "sha256-wWNItW5v8pRJ+db7qUnGTGPDdha0pDDzKXaHBt2fzY8="
+      "integrity": "sha256-Vk1POqHNaNGWIwKoSjLxm78I5IPJuIdh+nmkIlGE+40="
     },
     {
       "path": "spinner.json",
       "bytes": 1392,
-      "integrity": "sha256-BT5McginClVFuMpnwMl3Cwfb+WwVckC651wBZjPwFXc="
+      "integrity": "sha256-1YH5sNCo3F3xwiDPDkCb2f8mUEQ4ruS0czWaXK7Lv9E="
     },
     {
       "path": "circular-gauge.json",
       "bytes": 4161,
-      "integrity": "sha256-uvROMq2ZcDTE5X6WIYGDH41BgssDMLPv8pnqp4yNsnk="
+      "integrity": "sha256-v9GmYE/LWjBrJmyUNEliBVUdLl30Ha0DOKamZ8YGjdA="
     },
     {
       "path": "alert-dialog.json",
       "bytes": 8827,
-      "integrity": "sha256-JzQvwMbKWd2DABDnC+MV+t5cESa30CGBJ4FxcshoQx0="
+      "integrity": "sha256-wTt1s0jLQ7QiyqxrlpigeAke+r/TpAhZGXm6U2aaPIk="
     },
     {
       "path": "sheet.json",
       "bytes": 8363,
-      "integrity": "sha256-X/300ZrRCc+29ngcAqK5vSwQozOaaDxan/eT8cxyEVo="
+      "integrity": "sha256-qvGdYTxLFzcF0H0W8itOUuFafZt5VZhPckybD4PQ9u0="
     },
     {
       "path": "drawer.json",
@@ -140,37 +140,37 @@
     {
       "path": "hover-card.json",
       "bytes": 2799,
-      "integrity": "sha256-xdpFFORJWvSJUcrwO4o7RBqsQ76igFWOFqg7irlNfjg="
+      "integrity": "sha256-hpwROV+04mQIlJsHUBJ1VOAyedv9hbhMBhtAFe0I8qM="
     },
     {
       "path": "dropdown-menu.json",
       "bytes": 10883,
-      "integrity": "sha256-kgjiH11xJFSBVK2sJz3JU/VZoPxqtihecrKWNUPXvFE="
+      "integrity": "sha256-H+RD/OEC/Zhj3l6vZc1Eil6U1LmYuNMkR+5+IGaSo6k="
     },
     {
       "path": "context-menu.json",
       "bytes": 10739,
-      "integrity": "sha256-BDUJtdDp+hLt8SEcgXtma/hU9AySq7VjmUzhmCop/ZM="
+      "integrity": "sha256-aw8YLeMYzGOVl8uFSKso0k9pK5BwB6vre8PecN06osQ="
     },
     {
       "path": "menubar.json",
       "bytes": 11739,
-      "integrity": "sha256-sRLQO7vik1mgkkwzNCIPerUUuyLOEvTyA3JESzIyiAo="
+      "integrity": "sha256-KN6GlgpltS3ouOij8QvPbh3GkRIifOuSvGFOwCI5NVE="
     },
     {
       "path": "navigation-menu.json",
       "bytes": 8512,
-      "integrity": "sha256-38Ufs3DWW4pjUHPTLDzq9PI/rATnhTDp+clkHtjDF4w="
+      "integrity": "sha256-GV/2ab+RR1EioKfQKEEuhchGAIwY6QJoJmTxLxUpYns="
     },
     {
       "path": "command.json",
       "bytes": 9272,
-      "integrity": "sha256-5VD2d37nidfqljswfvbyLhrAwXg4siOP0OUeeNMrkvA="
+      "integrity": "sha256-+z+CNrGfT1Y0s/YyEp1I2a2myD/BUjb2pYb4vGzg1Kk="
     },
     {
       "path": "combobox.json",
       "bytes": 6656,
-      "integrity": "sha256-Bl1h+yfNNkaR/QOW/FsSalKuaRCNTG7ZlzOHjlbjHQk="
+      "integrity": "sha256-+KOn+j5l48R3O5v2HkFd0UhdsACnMljkXnUCvh0RNY0="
     },
     {
       "path": "toggle.json",
@@ -180,27 +180,27 @@
     {
       "path": "toggle-group.json",
       "bytes": 2689,
-      "integrity": "sha256-LiTM9BD3oorEvIegPK99kNcUaCPPgq0L7eb1Pb/K8jo="
+      "integrity": "sha256-y869ZaO1WxBFIVYx9qaYingNYbxLgxvIFhEAd4eZOs0="
     },
     {
       "path": "input-otp.json",
       "bytes": 3088,
-      "integrity": "sha256-DzJWBceNhkJQEpvVZn2jtmQ4f0+bwRqd4qVPNfqWu3M="
+      "integrity": "sha256-qgqB6W+vE+/VdTrfO7DQIqX65/sqzTl+5carj79p8EQ="
     },
     {
       "path": "input-group.json",
       "bytes": 2788,
-      "integrity": "sha256-o+OlaCddNgtL0zktuOQPVqY0ZytSiaqlrL87MuGfO4I="
+      "integrity": "sha256-nuJtloS+5u4WUB3sSLBf9lQa9AFav2/zHLjfFIqVJuA="
     },
     {
       "path": "field.json",
       "bytes": 4783,
-      "integrity": "sha256-3wlA1We7mRdxIEWRMjgFQ4WGZmcQsrCvbyMdZKY20SM="
+      "integrity": "sha256-Dt3KAihxyA/mIAzzjbokVgNKBrnsC9iw+UKL0aQrIIU="
     },
     {
       "path": "native-select.json",
       "bytes": 1757,
-      "integrity": "sha256-FHQX3mmYGi0AMjn6HYfKfitu8WfIjbKc3W2EzLW7LIE="
+      "integrity": "sha256-4IvO9xNp7nAR4/qO9y+3kx+ysKFfMrkP89lv/d77qOs="
     },
     {
       "path": "collapsible.json",
@@ -210,17 +210,17 @@
     {
       "path": "breadcrumb.json",
       "bytes": 5497,
-      "integrity": "sha256-KS4QDEFkW/MVEgOlh1J4uOUNOu/WqFXUvhnFpmaPj54="
+      "integrity": "sha256-uKRFNxAzdylqTenHVXmRU6gxLwpqhG0ZESEUVzjv2QA="
     },
     {
       "path": "pagination.json",
       "bytes": 7676,
-      "integrity": "sha256-wANMY8x3dlzCiZgwae3n3ljT2djnjotmeZSSmbdt900="
+      "integrity": "sha256-tBKxc23SJXVIaH0vbldy1gthETSXxz20fBiCTWunVhc="
     },
     {
       "path": "scroll-area.json",
       "bytes": 3211,
-      "integrity": "sha256-z2pLxNfzPBH1gyv0DD5PWliTG+7BHJ/wuGb28nu+NW0="
+      "integrity": "sha256-YyzzLvPvI8XYpS5NCvKSi+Lx0vfLlkAmR0/n3fiduaM="
     },
     {
       "path": "aspect-ratio.json",
@@ -230,72 +230,72 @@
     {
       "path": "table.json",
       "bytes": 5801,
-      "integrity": "sha256-1T8sLSoUQOO7nbQymFPncnkmGSueFh0mZEvCOq3h1Fw="
+      "integrity": "sha256-fBD3ydo9SPWsm7oxZTEu1V2kQNNfSm14ZP65V24FoSg="
     },
     {
       "path": "empty.json",
       "bytes": 3911,
-      "integrity": "sha256-D8zXN30D0VRZsjBtSqt/GPcXzg3MXkdDPsok2xJp43A="
+      "integrity": "sha256-9lPRpAnyg6F9rvcGhj30SdMKf8tk0vxfZX1NN1sBTyw="
     },
     {
       "path": "item.json",
       "bytes": 4424,
-      "integrity": "sha256-qrYR4rEJ1L9wULuKPq47o/qv3ZdNutNSq/zYNrtLyas="
+      "integrity": "sha256-2CbvnDGaqiBh1Y10KO8rtt0/Aae4hcfzLYa1hN/vhhc="
     },
     {
       "path": "kbd.json",
       "bytes": 1698,
-      "integrity": "sha256-0X2z7S/IWzU0ykAg/JUD5wijuMHBfM1Ei7UERLRUpbQ="
+      "integrity": "sha256-Bw5IHA4hlUPGf94riJeidx1La0XXo2N+l4XB0TlwmVI="
     },
     {
       "path": "button-group.json",
       "bytes": 2050,
-      "integrity": "sha256-80n5mp/+VLMXTtfJWgBgVThBwYvq3iJNZTB5icPrfTs="
+      "integrity": "sha256-IXD3Pq/rjpDeXZLJoGyiFV2YK7Ovasj0LgabIoiN/g0="
     },
     {
       "path": "toast.json",
-      "bytes": 10700,
-      "integrity": "sha256-3K5uuB8QfDmPruYOouKew5Bja5jNYpjrnVdewbFgc/U="
+      "bytes": 10673,
+      "integrity": "sha256-E4gWTO4TlI/xhQzWAajbw8TdOGynZWWuc8HVgJXNn18="
     },
     {
       "path": "meter.json",
       "bytes": 3664,
-      "integrity": "sha256-zjvVfalj+dupUEKP8/euvWgSIR7kGBWKSZUBQ9UOvPw="
+      "integrity": "sha256-k1KxhdBJlMgNmima2xkDbMpW5xmWM8MMNMXeh1D+8HE="
     },
     {
       "path": "calendar.json",
       "bytes": 21691,
-      "integrity": "sha256-GtrtRRqcfK+7OOYrnJpjqOwtoe9B1EXWSFSFrt38ZE8="
+      "integrity": "sha256-qQZtblWwjsy6b24BUmHz0kG1tbj/ShOyJzTvGzPB0bI="
     },
     {
       "path": "range-calendar.json",
       "bytes": 22308,
-      "integrity": "sha256-wkME/1vg3IkR2TCwZkgTCZaxKak80AvbODncMMu84vo="
+      "integrity": "sha256-hsA57eMbruWr9GIkdBE1GvbtsSPKhfzDnRn/GWata10="
     },
     {
       "path": "date-picker.json",
       "bytes": 10793,
-      "integrity": "sha256-Ptfa4B86pfI9UBMVcJnEgSLo6DDwJp6wF5/qr0COimk="
+      "integrity": "sha256-hByGNq0P5dF4tsJAqpyv+XMl1Wa+5Yr9DnTbVJIQwZc="
     },
     {
       "path": "rating.json",
       "bytes": 6221,
-      "integrity": "sha256-ppjQA3VUIrAFfI1Vc/BFMFDY/QuB9SyZsmheMOIlvKY="
+      "integrity": "sha256-19ibcuhTbj86GlIiPvDH2lOIiGZZT2/5D7LnIreIEj8="
     },
     {
       "path": "tags-input.json",
       "bytes": 4355,
-      "integrity": "sha256-uvJtM9GrIjCop3h4TJsOLYkDN+m7xms0vTrrlBXPxao="
+      "integrity": "sha256-KpmqC6ne/fuk+MemyGkOiAPzGa/X4FvLDgk2OSVspeo="
     },
     {
       "path": "carousel.json",
       "bytes": 9828,
-      "integrity": "sha256-xscULyWGyRR/aSgPMELDevLM9BG8e8Hm3wgigSgJSac="
+      "integrity": "sha256-ijstf6N3EJS5nETmCHI0ynEvr5J6vyzY+P9Vc6KgmVM="
     },
     {
       "path": "resizable.json",
       "bytes": 3658,
-      "integrity": "sha256-57RcoI08KZmb6t+M72K9Zrim+7uyW8fKh7mOraoNoSI="
+      "integrity": "sha256-abIxseCSnsnUXYonkbmDgCYL8ZQ+IkBwprnu+FhUEsM="
     },
     {
       "path": "data-table.json",
@@ -305,27 +305,27 @@
     {
       "path": "timeline.json",
       "bytes": 5987,
-      "integrity": "sha256-TMTm5r+Nr3KpXlIdMJ/jZGYAugFLcdGHnGXFD8waKqY="
+      "integrity": "sha256-cVFHCMASKS2lgCq1N3aLKxcXzfWO+AHOAeA7/d0Vss4="
     },
     {
       "path": "sidebar.json",
       "bytes": 34911,
-      "integrity": "sha256-CSY3zNGo+rX+uxbTZDw4QhcR8C0KsJqIX0oCtdh2e3U="
+      "integrity": "sha256-2en/6cXSHHGz8Qur1tUAJfuLvfTx1fjyyC/HV3WkSzk="
     },
     {
       "path": "stepper.json",
       "bytes": 5533,
-      "integrity": "sha256-Py/QACcF6A8BdDyUKmfpVziqXAUesgL5deNooAHJMFo="
+      "integrity": "sha256-NVhVtmtq2U2oAy9gzu8rvOi+n9FZ35OI19rxiltLems="
     },
     {
       "path": "tree.json",
       "bytes": 10431,
-      "integrity": "sha256-2xDwSkZjFvRl/ogShm9DKm4C1CNAXBhH9nKRNGJNvco="
+      "integrity": "sha256-mrapfh5H5ERmk+Ro7qf2ja1Zokfafuf/o6emCQeaTmI="
     },
     {
       "path": "dock.json",
       "bytes": 8505,
-      "integrity": "sha256-MUhgR1+ch2Q+sZQcFQ7zD0iukRWzp8pmXlNNOlrNudI="
+      "integrity": "sha256-Xw7b9oolwEHSDVCy9zSKVYCFkzPfRcEFrrijPq8O5Es="
     },
     {
       "path": "aurora.json",
@@ -335,7 +335,7 @@
     {
       "path": "chat-input.json",
       "bytes": 3375,
-      "integrity": "sha256-ITHOmXO6s8AzDTIHHFufPkAhNvS7JKRGEqkJDiNkMeM="
+      "integrity": "sha256-nJDs5yBS31yDX59T96j26FmNFhLqJFijXis2L94WiNA="
     },
     {
       "path": "chat-bubble.json",
@@ -350,37 +350,37 @@
     {
       "path": "reasoning.json",
       "bytes": 3323,
-      "integrity": "sha256-JKKEFs+nPIPvefU53ZozG23a14XpTCND4jIfDMEhZfg="
+      "integrity": "sha256-YLRB0WBsXSkWQpL1mp1v1RTjVJsi9NOfnOTin+sqAqU="
     },
     {
       "path": "tool-call.json",
       "bytes": 4183,
-      "integrity": "sha256-bcoW/fVzwdmSzbAD5hErTDxcrxqyL/paZpvFXQWZYSo="
+      "integrity": "sha256-4DmtxKi6YGUHgDP4pR941xfibIwRj4YQJaC7+xu3Db0="
     },
     {
       "path": "sources.json",
       "bytes": 1882,
-      "integrity": "sha256-+u3y8uAZWTo1+HLpSMXHQetuVHR3q1LYFTkzmoPGl/Y="
+      "integrity": "sha256-2Ejk2WNs36p8Lwt63dUoPLMrDjQCtlwlZvvfP1eAuig="
     },
     {
       "path": "message-actions.json",
       "bytes": 3808,
-      "integrity": "sha256-uDLYT9JzUBaqRBPwk3l5Ok1STlkg/+J0i64J4TJxyE8="
+      "integrity": "sha256-fHyTbsKqKoM9G9W1C5uMgiYHg/hwR9EkbyrxKA74V0M="
     },
     {
       "path": "plan.json",
       "bytes": 3317,
-      "integrity": "sha256-6TwSG6g0idikR2kUaWdaqrNc6HKOD2IaYMIhjNfALYs="
+      "integrity": "sha256-lK55S0CEVPx8rcrdAKInwkCvtxsf+bH8Sfyf1FYD+W0="
     },
     {
       "path": "nudge.json",
       "bytes": 3021,
-      "integrity": "sha256-CqtVyCwXWVbwOb5HVf0MeCLVOvbpiVy2WFtY7qRek7g="
+      "integrity": "sha256-ZYoFRBzr1sUqCU91QYfWqzWVg+ep58M8m2ShJquul44="
     },
     {
       "path": "aura-tile.json",
       "bytes": 2796,
-      "integrity": "sha256-NaxR+Jx10Voj4T+zHHG6zLD9+b5qM4DQJv49No9aNWU="
+      "integrity": "sha256-gsVPDXWwrcDqSNj5nAxp0jTHtQ9ZcyKwl8YG28Mqm1E="
     },
     {
       "path": "voice-orb.json",
@@ -390,62 +390,62 @@
     {
       "path": "waveform.json",
       "bytes": 2457,
-      "integrity": "sha256-6DIfQ0jlyW7BCHK5WOFrFsFt9BRh1TbX7zw+3J4IyJs="
+      "integrity": "sha256-hiruvG9YzcvXyVebSlQLLpAVvdUVMVzAT/FipH+9b8o="
     },
     {
       "path": "prompt-suggestions.json",
       "bytes": 1581,
-      "integrity": "sha256-ZPkTctodUseh0CJKfiZrN0AFPkur3fP/zCUMxizqEdE="
+      "integrity": "sha256-83XBP1Ddrag45+N4+MUZ06ZfidKljC83gR6EFScgFR4="
     },
     {
       "path": "thinking.json",
       "bytes": 2964,
-      "integrity": "sha256-r7hFoFJyRG1NDV9MBnVVONCmjc45Nrsmxi8e77LzNV4="
+      "integrity": "sha256-7k3zkCEsNWNJIPzjPLibWrRWrqZ9CLzk99OnmDoS9YU="
     },
     {
       "path": "assistant-chat.json",
       "bytes": 4558,
-      "integrity": "sha256-qEVfBiWLRLHwv766XaHT0sQbQAVZ2Ss0TAqKKU8+eo0="
+      "integrity": "sha256-ciexUwBQBC39/za/VFzq6031s7Rna0Ize+tiAb/wvmw="
     },
     {
       "path": "voice-mode.json",
       "bytes": 2106,
-      "integrity": "sha256-hKYwHlRISIVPvedKDbDhQVPsNEpaHVY322nNqWv+pZc="
+      "integrity": "sha256-I0XH9X42WmeEhyQivQAK1kw+DuzcxCZ8oJYSWzQ1mpo="
     },
     {
       "path": "personalize.json",
       "bytes": 3422,
-      "integrity": "sha256-AtVqHXvBi7cl+FemepHIpfRSLwyqonYVWQj73zfjBm8="
+      "integrity": "sha256-drPZtEM0+VimgosiYQpScVWMdCHOeI3GUMAyq16a5L8="
     },
     {
       "path": "agent-dashboard.json",
       "bytes": 4246,
-      "integrity": "sha256-/VQJjYurMf2Cgpw+HciRNMUxGHPDd3KYeORXeIyJDLk="
+      "integrity": "sha256-JpgKIyu5AL3QElhA3sF6Nz0yVVopQ+1TPEQJU8aNcY0="
     },
     {
       "path": "agent-run.json",
       "bytes": 2963,
-      "integrity": "sha256-bNGUNzeqmbTlohydmjcOeKHi76n0gT0FjfzqjD8vQAM="
+      "integrity": "sha256-PEXYkUcYsaFgb90/X54LuGG/lemCxw49uDvQ30K0RFg="
     },
     {
       "path": "sidebar-layout.json",
       "bytes": 5378,
-      "integrity": "sha256-8ZwgIDPlJTdR7H6/qjWiLwjfBPm80ErUF9esOqd+Rns="
+      "integrity": "sha256-3O8oaai021G7RZ/RCTRDNCdx2/gQcVW6pS9ofsaPiUE="
     },
     {
       "path": "login.json",
       "bytes": 2976,
-      "integrity": "sha256-ZygiL9LbdL8k1TsXjF+duw32Zeo5G7adISYy2EQN6T8="
+      "integrity": "sha256-SnErvNlKuGi4mxZHrMVQijWxoSnfFKJ9YeyleGCMdRI="
     },
     {
       "path": "signup.json",
       "bytes": 2443,
-      "integrity": "sha256-5bxXPkMlxT19EuK53WhcVV4iWppzg2zlJJNMgmAZDY8="
+      "integrity": "sha256-BIrEq/5N7OvFkT1xShq52MUpZ8SviHODhuWOMf/VSfk="
     },
     {
       "path": "otp.json",
       "bytes": 1769,
-      "integrity": "sha256-atFqINueFklMZOZu2JuvFhjWzLJEjeOr9oDPHHK3O2M="
+      "integrity": "sha256-s3DvRqseigGkv0COAAWmEIb8i9gzT00hoomtd8vFHjo="
     },
     {
       "path": "utils.json",
@@ -454,8 +454,8 @@
     },
     {
       "path": "registry.json",
-      "bytes": 467596,
-      "integrity": "sha256-hGkHGiCTofK6Th/n7OEbccAkW7SfSrWRT75YvIZ91n4="
+      "bytes": 467569,
+      "integrity": "sha256-zbO8IE4SNOQAxgZUAchdUlk8t50N2vCCQeRmRDzkbk4="
     }
   ]
 }

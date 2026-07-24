@@ -11,10 +11,10 @@
 	let agreed = $state(false);
 </script>
 
-<div class="mx-auto flex w-full max-w-sm flex-col gap-6 rounded-3xl bg-card p-8 shadow-md">
+<div class="bg-card mx-auto flex w-full max-w-sm flex-col gap-6 rounded-3xl p-8 shadow-md">
 	<div>
 		<h2 class="text-lg font-semibold tracking-tight">Create your account</h2>
-		<p class="mt-1 text-sm text-muted-foreground">A companion of your own, in about a minute.</p>
+		<p class="text-muted-foreground mt-1 text-sm">A companion of your own, in about a minute.</p>
 	</div>
 
 	<div class="flex flex-col gap-4">
@@ -37,7 +37,7 @@
 		</div>
 		<div class="flex items-center gap-2.5">
 			<Checkbox id="signup-terms" bind:checked={agreed} />
-			<Label for="signup-terms" class="text-xs font-normal text-muted-foreground">
+			<Label for="signup-terms" class="text-muted-foreground text-xs font-normal">
 				I agree to the terms and the privacy policy.
 			</Label>
 		</div>

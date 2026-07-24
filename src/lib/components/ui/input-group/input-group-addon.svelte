@@ -7,6 +7,6 @@
 	let { class: className, children, ...rest }: Props = $props();
 </script>
 
-<div class={cn('flex items-center px-3 text-muted-foreground [&>svg]:size-4', className)} {...rest}>
+<div class={cn('text-muted-foreground flex items-center px-3 [&>svg]:size-4', className)} {...rest}>
 	{@render children?.()}
 </div>

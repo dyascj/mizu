@@ -17,7 +17,7 @@
 
 <Tooltip.Provider>
 	<div
-		class="h-[30rem] w-full overflow-hidden rounded-3xl bg-background shadow-md [transform:translateZ(0)]"
+		class="bg-background h-[30rem] w-full [transform:translateZ(0)] overflow-hidden rounded-3xl shadow-md"
 	>
 		<Sidebar.Provider class="h-full min-h-0">
 			<Sidebar.Root collapsible="icon" class="h-full">
@@ -100,12 +100,12 @@
 				</header>
 				<div class="flex min-h-0 flex-1 flex-col justify-end gap-3 px-5 pb-5">
 					<div
-						class="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-primary px-4 py-2.5 text-sm text-primary-foreground"
+						class="bg-primary text-primary-foreground ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md px-4 py-2.5 text-sm"
 					>
 						Four nights in October. Keep it slow.
 					</div>
 					<div
-						class="mr-auto w-fit max-w-[85%] rounded-2xl rounded-bl-md bg-secondary px-4 py-2.5 text-sm leading-relaxed"
+						class="bg-secondary mr-auto w-fit max-w-[85%] rounded-2xl rounded-bl-md px-4 py-2.5 text-sm leading-relaxed"
 					>
 						Slow it is. Two neighborhoods, no alarms, and one perfect kissaten each morning.
 					</div>

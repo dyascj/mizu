@@ -56,7 +56,7 @@
 			Intelligence that feels light.
 		</h1>
 
-		<p class="max-w-md text-balance text-muted-foreground sm:text-lg">
+		<p class="text-muted-foreground max-w-md text-balance sm:text-lg">
 			Clean, airy components for AI products. Chat, voice, reasoning, and streaming for Svelte 5 and
 			Tailwind v4, with a glow where intelligence lives.
 		</p>
@@ -83,7 +83,7 @@
 
 <footer class="-mt-4">
 	<div
-		class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-7 text-sm text-muted-foreground sm:flex-row"
+		class="text-muted-foreground mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-7 text-sm sm:flex-row"
 	>
 		<div class="flex items-center gap-2.5">
 			<OrbMark class="size-5" />
@@ -92,19 +92,19 @@
 					href={siteConfig.authorUrl}
 					target="_blank"
 					rel="noreferrer"
-					class="font-medium text-foreground transition-colors hover:text-primary"
+					class="text-foreground hover:text-primary font-medium transition-colors"
 					>{siteConfig.author}</a
 				></span
 			>
 		</div>
 		<div class="flex items-center gap-5">
-			<a href="/docs" class="transition-colors hover:text-foreground">Docs</a>
-			<a href="/docs/components" class="transition-colors hover:text-foreground">Components</a>
+			<a href="/docs" class="hover:text-foreground transition-colors">Docs</a>
+			<a href="/docs/components" class="hover:text-foreground transition-colors">Components</a>
 			<a
 				href={siteConfig.repo}
 				target="_blank"
 				rel="noreferrer"
-				class="transition-colors hover:text-foreground"
+				class="hover:text-foreground transition-colors"
 			>
 				GitHub
 			</a>
