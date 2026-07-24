@@ -2,6 +2,34 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.1.2] - 2026-07-24
+
+### Added
+
+- Tag-gated release automation with deployment integrity verification, annotated tags, changelog notes, and offline registry assets.
+- Security, support, conduct, ownership, issue, pull-request, roadmap, accessibility, and incident-response policies.
+- Browser interaction coverage for keyboard navigation and open component states.
+
+### Changed
+
+- Horizontally scrollable component API tables are named keyboard-focusable regions.
+
+### Deprecated
+
+- No additional APIs or registry channels are deprecated in this release.
+
+### Removed
+
+- No public APIs or registry items are removed in this release.
+
+### Fixed
+
+- Tree keeps its roving tab stop on a visible row when the selected item is inside a collapsed branch.
+
+### Security
+
+- Private vulnerability reporting and supported-version expectations are documented.
+
 ## [0.1.1] - 2026-07-24
 
 ### Added

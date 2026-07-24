@@ -135,12 +135,21 @@ test('rejects changes to an existing immutable release', (context) => {
 
 test('generated output declares audited dependencies and has exact versioned inventory', () => {
 	const outDir = join(root, 'static/r');
+	const release = JSON.parse(readFileSync(join(root, 'registry-release.json'), 'utf8'));
+	const currentVersionDir = `v${release.version}`;
 	const drawer = JSON.parse(readFileSync(join(outDir, 'drawer.json'), 'utf8'));
-	const pinnedDrawer = JSON.parse(readFileSync(join(outDir, 'v0.1.1/drawer.json'), 'utf8'));
+	const pinnedDrawer = JSON.parse(
+		readFileSync(join(outDir, currentVersionDir, 'drawer.json'), 'utf8')
+	);
 	const dataTable = JSON.parse(readFileSync(join(outDir, 'data-table.json'), 'utf8'));
-	const manifest = JSON.parse(readFileSync(join(outDir, 'v0.1.1/manifest.json'), 'utf8'));
+	const manifest = JSON.parse(
+		readFileSync(join(outDir, currentVersionDir, 'manifest.json'), 'utf8')
+	);
 	const components = JSON.parse(readFileSync(join(root, 'src/lib/site/components.json'), 'utf8'));
 	const blocks = JSON.parse(readFileSync(join(root, 'src/lib/site/blocks.json'), 'utf8'));
+	const versionDirectories = readdirSync(outDir, { withFileTypes: true })
+		.filter((entry) => entry.isDirectory() && /^v\d+\.\d+\.\d+/.test(entry.name))
+		.map((entry) => entry.name);
 	const itemFiles = [
 		...components.map(({ slug }) => `${slug}.json`),
 		...blocks.map(({ slug }) => `${slug}.json`),
@@ -154,13 +163,15 @@ test('generated output declares audited dependencies and has exact versioned inv
 	assert.ok(dataTable.dependencies.includes('@tanstack/table-core@^8.21.3'));
 	assert.ok(
 		pinnedDrawer.registryDependencies.every((dependency) =>
-			dependency.startsWith('https://mizu-ui.com/r/v0.1.1/')
+			dependency.startsWith(`https://mizu-ui.com/r/${currentVersionDir}/`)
 		)
 	);
-	assert.equal(manifest.version, '0.1.1');
+	assert.equal(manifest.version, release.version);
 	assert.match(manifest.generationCommit, /^[0-9a-f]{40}$/);
 	assert.equal(manifest.files.length, itemFiles.length);
-	assertExactInventory(outDir, [...generatedFiles, 'latest', 'v0.1.1']);
+	assertExactInventory(outDir, [...generatedFiles, 'latest', ...versionDirectories]);
 	assertExactInventory(join(outDir, 'latest'), generatedFiles);
-	assertExactInventory(join(outDir, 'v0.1.1'), generatedFiles);
+	for (const versionDirectory of versionDirectories) {
+		assertExactInventory(join(outDir, versionDirectory), generatedFiles);
+	}
 });

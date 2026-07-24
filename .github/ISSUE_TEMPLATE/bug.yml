@@ -1,0 +1,60 @@
+name: Bug report
+description: Report reproducible behavior that differs from the documentation.
+title: '[Bug]: '
+labels:
+  - bug
+  - needs-triage
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping make Mizu reliable. Remove secrets and private project data.
+  - type: input
+    id: version
+    attributes:
+      label: Pinned Mizu version
+      description: Use the version from the registry URL or manifest.
+      placeholder: 0.1.2
+    validations:
+      required: true
+  - type: input
+    id: item
+    attributes:
+      label: Component or block
+      placeholder: sidebar
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Link a repository or provide the smallest source and commands that reproduce the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Node, pnpm, SvelteKit, browser, and operating system versions.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I reproduced this with unmodified source from a pinned Mizu registry URL.
+          required: true
+        - label: This report contains no secrets, private source, or customer data.
+          required: true

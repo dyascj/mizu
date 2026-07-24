@@ -85,7 +85,14 @@
 					<h3 class="mt-6 mb-3 font-mono text-base font-semibold text-foreground">{part.title}</h3>
 				{/if}
 				{#if part.props.length}
-					<div class="overflow-x-auto rounded-2xl border border-border glass">
+					<!-- Keyboard focus is required when the props table overflows horizontally. -->
+					<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+					<div
+						class="overflow-x-auto rounded-2xl border border-border glass"
+						role="region"
+						aria-label={`${part.title} properties`}
+						tabindex="0"
+					>
 						<table class="w-full border-collapse text-left text-sm">
 							<thead>
 								<tr class="border-b border-border text-muted-foreground">

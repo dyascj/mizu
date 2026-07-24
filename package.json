@@ -1,6 +1,6 @@
 {
 	"name": "mizu",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"private": true,
 	"type": "module",
 	"packageManager": "pnpm@10.28.2",
@@ -63,6 +63,8 @@
 		"registry:build": "node scripts/build-registry.mjs",
 		"registry:validate": "node scripts/validate-registry.mjs",
 		"registry:consumer-check": "node scripts/verify-registry-consumer.mjs",
+		"release:verify": "node scripts/release.mjs verify",
+		"release:deployment-check": "node scripts/verify-deployed-registry.mjs",
 		"new:component": "node scripts/new-component.mjs"
 	},
 	"devDependencies": {

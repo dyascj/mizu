@@ -36,4 +36,15 @@ describe('Tree', () => {
 		expect(notes).toHaveAttribute('aria-selected', 'true');
 		expect(onSelect).toHaveBeenCalledWith('notes');
 	});
+
+	test('keeps the roving tab stop on a visible row when selection is collapsed', () => {
+		render(Tree, { items, selected: 'mizu' });
+		const tree = screen.getByRole('tree');
+
+		expect(within(tree).getByRole('treeitem', { name: 'Projects' })).toHaveAttribute(
+			'tabindex',
+			'0'
+		);
+		expect(within(tree).getByRole('treeitem', { name: 'Mizu' })).toHaveAttribute('tabindex', '-1');
+	});
 });

@@ -49,7 +49,11 @@
 	// Roving tabindex target. Defaults to the selected row, else the first row.
 	let focusedId = $state<string | undefined>(undefined);
 	const rovingId = $derived(
-		focusedId && visible.some((v) => v.id === focusedId) ? focusedId : (selected ?? visible[0]?.id)
+		focusedId && visible.some((v) => v.id === focusedId)
+			? focusedId
+			: selected && visible.some((v) => v.id === selected)
+				? selected
+				: visible[0]?.id
 	);
 
 	const els = new SvelteMap<string, HTMLElement>();

@@ -66,7 +66,7 @@ npx sv add tailwindcss
 **4. Add components** with the one-liner. It pulls the component, installs its npm dependencies, and adds the shared `cn` helper automatically:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.1.1/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.1.2/button.json
 ```
 
 You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.
@@ -123,6 +123,15 @@ The docs site lives in `src/routes`, components in `src/lib/components/ui`, the 
 ## Built with
 
 Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide icons. Inspired by shadcn-svelte and the quiet confidence of modern AI interfaces.
+
+## Community
+
+- [Contributing](./CONTRIBUTING.md)
+- [Security policy](./SECURITY.md)
+- [Support](./SUPPORT.md)
+- [Code of conduct](./CODE_OF_CONDUCT.md)
+- [Roadmap](./ROADMAP.md)
+- [Maintainers](./MAINTAINERS.md)
 
 ## License
 
