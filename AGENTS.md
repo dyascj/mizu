@@ -19,6 +19,7 @@ pnpm format           # prettier write
 pnpm registry:build   # regenerate static/r (CI fails if stale)
 pnpm registry:validate # validate schemas, dependencies, manifests, and integrity
 pnpm registry:consumer-check # isolated clean install/build of every registry item
+pnpm release:verify <version> # verify version, changelog, commit, and release artifacts
 pnpm new:component <slug> "<Name>" <Category> "<Description>"   # scaffold a component
 ```
 

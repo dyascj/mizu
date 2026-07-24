@@ -2,6 +2,8 @@
 
 Thanks for helping make Mizu better.
 
+Participation is governed by `CODE_OF_CONDUCT.md`. Use the issue templates and `SUPPORT.md` to keep reports reproducible and route security concerns privately.
+
 ## Development
 
 Mizu supports Node 22 and 24 with pnpm 10.28.
@@ -88,3 +90,7 @@ pnpm test:browser
 ```
 
 The release workflow verifies the same contract. A discouraged release is marked as yanked in the changelog and release notes, never rewritten.
+
+The detailed release, rollback, and incident procedure lives in `docs/releases.md`.
+
+Visual baseline changes follow `docs/visual-regression.md`. Snapshot updates require inspecting every changed desktop and mobile image in light, dark, and custom-primary themes; they are never an automatic CI repair.

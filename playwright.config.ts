@@ -6,6 +6,15 @@ export default defineConfig({
 	forbidOnly: Boolean(process.env.CI),
 	retries: process.env.CI ? 2 : 0,
 	reporter: process.env.CI ? 'github' : 'list',
+	snapshotPathTemplate: '{testDir}/__screenshots__/{projectName}/{testFileBaseName}/{arg}{ext}',
+	expect: {
+		toHaveScreenshot: {
+			animations: 'disabled',
+			caret: 'hide',
+			maxDiffPixelRatio: 0.03,
+			threshold: 0.2
+		}
+	},
 	use: {
 		baseURL: 'http://127.0.0.1:5183',
 		trace: 'on-first-retry'

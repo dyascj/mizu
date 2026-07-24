@@ -1,0 +1,30 @@
+name: Documentation issue
+description: Report missing, incorrect, inconsistent, or unclear guidance.
+title: '[Docs]: '
+labels:
+  - documentation
+  - needs-triage
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Page or file
+      placeholder: https://mizu-ui.com/docs/installation
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or missing?
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Suggested correction
+  - type: checkboxes
+    id: generated
+    attributes:
+      label: Generated surfaces
+      options:
+        - label: I checked whether the same claim appears in README, llms.txt, or AGENTS.md.

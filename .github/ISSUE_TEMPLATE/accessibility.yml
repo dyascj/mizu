@@ -1,0 +1,47 @@
+name: Accessibility issue
+description: Report a keyboard, focus, announcement, semantics, contrast, or motion problem.
+title: '[Accessibility]: '
+labels:
+  - accessibility
+  - needs-triage
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Pinned Mizu version
+      placeholder: 0.1.2
+    validations:
+      required: true
+  - type: input
+    id: surface
+    attributes:
+      label: Component, block, or docs route
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Keyboard and focus
+        - Screen reader or announcement
+        - Semantics or labeling
+        - Contrast or visual state
+        - Motion or animation
+        - Touch or pointer target
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps and observed result
+      description: Include browser, operating system, assistive technology, and versions.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected accessible behavior
+    validations:
+      required: true

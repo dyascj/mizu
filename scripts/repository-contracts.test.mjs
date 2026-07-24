@@ -65,3 +65,41 @@ test('design rules reject stale claims and legacy Gauge colors', () => {
 	assert.doesNotMatch(gauge, /#(?:5cd5ff|0090d9)|rgba\(1,\s*178,\s*255/);
 	assert.match(gauge, /var\(--primary\)/);
 });
+
+test('community and maintainer surfaces remain present', () => {
+	const required = [
+		'SECURITY.md',
+		'CODE_OF_CONDUCT.md',
+		'SUPPORT.md',
+		'MAINTAINERS.md',
+		'ROADMAP.md',
+		'.github/CODEOWNERS',
+		'.github/PULL_REQUEST_TEMPLATE.md',
+		'.github/ISSUE_TEMPLATE/bug.yml',
+		'.github/ISSUE_TEMPLATE/component-request.yml',
+		'.github/ISSUE_TEMPLATE/accessibility.yml',
+		'.github/ISSUE_TEMPLATE/documentation.yml'
+	];
+
+	for (const path of required) {
+		assert.ok(read(path).trim().length > 0, `${path} must not be empty`);
+	}
+	assert.match(read('.github/CODEOWNERS'), /@dyascj/);
+	assert.match(read('SECURITY.md'), /security\/advisories\/new/);
+});
+
+test('release automation verifies immutable deployment before publishing', () => {
+	const workflow = read('.github/workflows/release.yml');
+
+	assert.match(workflow, /workflow_dispatch:/);
+	assert.match(workflow, /node scripts\/release\.mjs verify/);
+	assert.match(workflow, /node scripts\/verify-deployed-registry\.mjs/);
+	assert.match(workflow, /git tag -a/);
+	assert.match(workflow, /gh release create/);
+	assert.ok(
+		[read('.github/workflows/ci.yml'), read('.github/workflows/codeql.yml'), workflow]
+			.flatMap((contents) => [...contents.matchAll(/uses:\s+\S+@(\S+)/g)])
+			.every((match) => /^[0-9a-f]{40}$/.test(match[1])),
+		'GitHub Actions must be pinned to full commit SHAs'
+	);
+});

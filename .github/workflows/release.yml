@@ -1,0 +1,93 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Semantic version from package.json, without the v prefix
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-v${{ inputs.version }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: release
+    env:
+      VERSION: ${{ inputs.version }}
+      TAG: v${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/release.mjs verify "$VERSION"
+      - name: Verify the recorded source commit
+        run: |
+          generation_commit="$(node -p "require('./registry-release.json').generationCommit")"
+          git merge-base --is-ancestor "$generation_commit" "$GITHUB_SHA"
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm check
+      - run: pnpm test
+      - run: pnpm security:audit
+      - run: pnpm registry:build
+      - run: pnpm registry:validate
+      - run: pnpm registry:consumer-check
+      - run: pnpm build
+      - run: pnpm build:budget
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:browser
+      - name: Verify generated output and clean release tree
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            exit 1
+          fi
+
+      - name: Verify the deployed immutable registry
+        run: node scripts/verify-deployed-registry.mjs "$VERSION"
+
+      - name: Prepare release notes and assets
+        run: |
+          node scripts/release.mjs notes "$VERSION" > release-notes.md
+          tar -czf "mizu-registry-$TAG.tar.gz" "static/r/$TAG"
+          cp "static/r/$TAG/manifest.json" "mizu-registry-$TAG-manifest.json"
+          sha256sum "mizu-registry-$TAG.tar.gz" "mizu-registry-$TAG-manifest.json" > "mizu-registry-$TAG.sha256"
+
+      - name: Create or verify the annotated tag
+        run: |
+          git fetch --tags --force
+          if git rev-parse "refs/tags/$TAG" >/dev/null 2>&1; then
+            test "$(git cat-file -t "refs/tags/$TAG")" = tag
+            test "$(git rev-list -n 1 "$TAG")" = "$GITHUB_SHA"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag -a "$TAG" -m "Mizu $TAG"
+            git push origin "$TAG"
+          fi
+
+      - name: Publish the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" --title "Mizu $TAG" --notes-file release-notes.md
+            gh release upload "$TAG" --clobber "mizu-registry-$TAG.tar.gz" "mizu-registry-$TAG-manifest.json" "mizu-registry-$TAG.sha256"
+          else
+            gh release create "$TAG" --verify-tag --title "Mizu $TAG" --notes-file release-notes.md "mizu-registry-$TAG.tar.gz" "mizu-registry-$TAG-manifest.json" "mizu-registry-$TAG.sha256"
+          fi

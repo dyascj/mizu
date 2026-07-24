@@ -1,0 +1,39 @@
+name: Component request
+description: Propose a focused component or block with a demonstrated product use.
+title: '[Component]: '
+labels:
+  - enhancement
+  - needs-triage
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Proposed name
+    validations:
+      required: true
+  - type: textarea
+    id: use
+    attributes:
+      label: Product use
+      description: Describe the concrete interface and user need.
+    validations:
+      required: true
+  - type: textarea
+    id: overlap
+    attributes:
+      label: Existing alternatives
+      description: Explain why current Mizu or bits-ui primitives do not cover the need.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Interaction and accessibility contract
+      description: Include keyboard, focus, announcements, disabled states, and reduced motion where relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Add screenshots or links that clarify the request. Do not include copyrighted source.

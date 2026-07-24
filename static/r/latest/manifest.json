@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "name": "mizu",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "channel": "latest",
   "registryBase": "https://mizu-ui.com/r/latest",
-  "generationCommit": "0c6de5089e37beabf7f6c6b31696a3e72088e91e",
-  "generatedFrom": "https://github.com/dyascj/mizu/commit/0c6de5089e37beabf7f6c6b31696a3e72088e91e",
+  "generationCommit": "c480c0ae1648414b6a332f23c6f1dbc8f925e5cf",
+  "generatedFrom": "https://github.com/dyascj/mizu/commit/c480c0ae1648414b6a332f23c6f1dbc8f925e5cf",
   "files": [
     {
       "path": "button.json",
@@ -319,8 +319,8 @@
     },
     {
       "path": "tree.json",
-      "bytes": 10356,
-      "integrity": "sha256-tO7AgoRrTIWTYUZUoU2XXn9eebNIaDogOXHhv6/49YM="
+      "bytes": 10438,
+      "integrity": "sha256-nwddZhYK/Fwq8oyILTZkQNgzu+ZPGil5Y8lpTEbpY2U="
     },
     {
       "path": "dock.json",
@@ -454,8 +454,8 @@
     },
     {
       "path": "registry.json",
-      "bytes": 468489,
-      "integrity": "sha256-JmH4mT8uLLC22TWI9VIsIusYWFu35wdRib07O6okohQ="
+      "bytes": 468571,
+      "integrity": "sha256-era+s+8e0T9z2ZtGyAWmFQNi5EYP4qn3TOJLqz/2qsM="
     }
   ]
 }
