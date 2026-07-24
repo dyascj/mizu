@@ -12,7 +12,7 @@
 				>This rinses out locally stored data and starts you fresh.</Dialog.Description
 			>
 		</Dialog.Header>
-		<p class="text-sm text-muted-foreground">Your settings and saved items stay put.</p>
+		<p class="text-muted-foreground text-sm">Your settings and saved items stay put.</p>
 		<Dialog.Footer>
 			<Dialog.Close class={buttonVariants({ variant: 'ghost' })}>Cancel</Dialog.Close>
 			<Button>Clear cache</Button>

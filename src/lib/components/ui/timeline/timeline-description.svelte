@@ -15,6 +15,6 @@
 	} = $props();
 </script>
 
-<p bind:this={ref} class={cn('text-sm text-muted-foreground', className)} {...rest}>
+<p bind:this={ref} class={cn('text-muted-foreground text-sm', className)} {...rest}>
 	{@render children?.()}
 </p>

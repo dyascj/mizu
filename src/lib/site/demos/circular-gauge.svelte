@@ -4,5 +4,5 @@
 </script>
 
 <CircularGauge value={72} label="Focus">
-	<Droplets class="size-5 text-primary" />
+	<Droplets class="text-primary size-5" />
 </CircularGauge>

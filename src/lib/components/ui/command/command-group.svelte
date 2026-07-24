@@ -18,7 +18,7 @@
 
 <CommandPrimitive.Group bind:ref class={cn('overflow-hidden', className)} {...restProps}>
 	{#if heading}
-		<CommandPrimitive.GroupHeading class="px-2 py-1.5 text-xs font-semibold text-muted-foreground">
+		<CommandPrimitive.GroupHeading class="text-muted-foreground px-2 py-1.5 text-xs font-semibold">
 			{heading}
 		</CommandPrimitive.GroupHeading>
 	{/if}

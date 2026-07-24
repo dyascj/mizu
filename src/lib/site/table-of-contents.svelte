@@ -56,7 +56,7 @@
 
 {#if items.length >= 2}
 	<nav aria-label="On this page" class="sticky top-24 text-[0.8125rem]">
-		<p class="mb-3 px-3 font-semibold text-muted-foreground">On This Page</p>
+		<p class="text-muted-foreground mb-3 px-3 font-semibold">On This Page</p>
 		<ul class="flex flex-col gap-0.5">
 			{#each items as item (item.id)}
 				<li>
@@ -66,7 +66,7 @@
 							'block rounded-md px-3 py-1.5 leading-snug transition-colors',
 							item.level === 3 && 'pl-6',
 							activeId === item.id
-								? 'bg-muted font-medium text-foreground'
+								? 'bg-muted text-foreground font-medium'
 								: 'text-muted-foreground hover:text-foreground'
 						)}
 					>

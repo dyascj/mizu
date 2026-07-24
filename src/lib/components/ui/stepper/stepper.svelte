@@ -81,10 +81,10 @@
 						onclick={() => go(i)}
 						aria-label={step.label}
 						class={cn(
-							'relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm font-semibold outline-none transition-[background,color,box-shadow] duration-200 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96]',
+							'focus-visible:ring-ring focus-visible:ring-offset-background relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm font-semibold transition-[background,color,box-shadow] duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]',
 							completed && 'bg-primary text-primary-foreground shadow-sm',
 							active &&
-								'bg-primary text-primary-foreground shadow-glow ring-2 ring-[color:var(--primary)] ring-offset-2 ring-offset-background',
+								'bg-primary text-primary-foreground shadow-glow ring-offset-background ring-2 ring-[color:var(--primary)] ring-offset-2',
 							!completed && !active && 'bg-secondary text-muted-foreground hover:bg-accent'
 						)}
 					>
@@ -101,7 +101,7 @@
 							'relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm font-semibold transition-[background,color,box-shadow] duration-200 ease-out',
 							completed && 'bg-primary text-primary-foreground shadow-sm',
 							active &&
-								'bg-primary text-primary-foreground shadow-glow ring-2 ring-[color:var(--primary)] ring-offset-2 ring-offset-background',
+								'bg-primary text-primary-foreground shadow-glow ring-offset-background ring-2 ring-[color:var(--primary)] ring-offset-2',
 							!completed && !active && 'bg-secondary text-muted-foreground'
 						)}
 					>
@@ -129,7 +129,7 @@
 					{step.label}
 				</span>
 				{#if step.description}
-					<span class="mt-0.5 block text-xs text-muted-foreground">{step.description}</span>
+					<span class="text-muted-foreground mt-0.5 block text-xs">{step.description}</span>
 				{/if}
 			</div>
 		</li>

@@ -33,13 +33,13 @@
 	});
 </script>
 
-<div class="mx-auto flex h-[38rem] w-full max-w-xl flex-col rounded-3xl bg-card shadow-md">
+<div class="bg-card mx-auto flex h-[38rem] w-full max-w-xl flex-col rounded-3xl shadow-md">
 	<!-- header -->
 	<header class="flex items-center gap-3 px-5 pt-5 pb-3">
 		<VoiceOrb state="idle" size={36} />
 		<div class="min-w-0 flex-1">
 			<p class="text-sm font-semibold">Era</p>
-			<p class="text-xs text-muted-foreground">Online now</p>
+			<p class="text-muted-foreground text-xs">Online now</p>
 		</div>
 		<Select.Root type="single" bind:value={model}>
 			<Select.Trigger class="h-8 w-28 text-xs">

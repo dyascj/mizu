@@ -86,14 +86,14 @@
 
 {#snippet inner()}
 	<!-- icon, above the sheen -->
-	<span class="relative z-10 flex items-center justify-center text-mizu-700 dark:text-mizu-100">
+	<span class="text-mizu-700 dark:text-mizu-100 relative z-10 flex items-center justify-center">
 		{@render children?.()}
 	</span>
 
 	{#if label}
 		<!-- caption bubble; appears on hover/focus, lifts with the tile -->
 		<span
-			class="mizu-dock-label bg-popover pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 translate-y-1 scale-95 rounded-lg px-2.5 py-1 text-xs font-medium whitespace-nowrap text-popover-foreground opacity-0 shadow-lg transition-[opacity,scale,translate] duration-150 ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:scale-100 group-focus-visible:opacity-100"
+			class="mizu-dock-label bg-popover text-popover-foreground pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 translate-y-1 scale-95 rounded-lg px-2.5 py-1 text-xs font-medium whitespace-nowrap opacity-0 shadow-lg transition-[opacity,scale,translate] duration-150 ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:scale-100 group-focus-visible:opacity-100"
 		>
 			{label}
 		</span>

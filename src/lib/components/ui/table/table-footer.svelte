@@ -9,7 +9,7 @@
 
 <tfoot
 	class={cn(
-		'border-t border-border bg-secondary/50 font-semibold [&>tr]:last:border-b-0',
+		'border-border bg-secondary/50 border-t font-semibold [&>tr]:last:border-b-0',
 		className
 	)}
 	{...rest}

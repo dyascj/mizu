@@ -6,9 +6,9 @@
 </script>
 
 <!-- The Mizu lockup: glow orb + wordmark. -->
-<span class={cn('inline-flex select-none items-center gap-2', className)}>
+<span class={cn('inline-flex items-center gap-2 select-none', className)}>
 	<OrbMark class="size-7" />
 	{#if wordmark}
-		<span class="text-lg font-semibold tracking-tight text-foreground">Mizu</span>
+		<span class="text-foreground text-lg font-semibold tracking-tight">Mizu</span>
 	{/if}
 </span>

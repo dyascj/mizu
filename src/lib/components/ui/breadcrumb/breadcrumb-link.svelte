@@ -11,6 +11,6 @@
 	let { class: className, ref = $bindable(null), children, ...rest }: Props = $props();
 </script>
 
-<a bind:this={ref} class={cn('transition-colors hover:text-foreground', className)} {...rest}>
+<a bind:this={ref} class={cn('hover:text-foreground transition-colors', className)} {...rest}>
 	{@render children?.()}
 </a>

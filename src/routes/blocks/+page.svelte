@@ -19,7 +19,7 @@
 <div class="mx-auto w-full max-w-5xl px-5 py-12 sm:px-6">
 	<header class="mx-auto max-w-2xl text-center">
 		<h1 class="text-3xl font-semibold tracking-tight">Blocks</h1>
-		<p class="mt-3 text-lg text-balance text-muted-foreground">
+		<p class="text-muted-foreground mt-3 text-lg text-balance">
 			Whole screens for AI products, assembled from the components and ready to ship. Open the code
 			tab and copy everything.
 		</p>
@@ -32,9 +32,9 @@
 				onclick={() => (category = c)}
 				aria-pressed={category === c}
 				class={cn(
-					'rounded-full px-4 py-1.5 text-sm transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring',
+					'focus-visible:ring-ring rounded-full px-4 py-1.5 text-sm transition-colors outline-none focus-visible:ring-2',
 					category === c
-						? 'bg-primary-muted font-medium text-primary'
+						? 'bg-primary-muted text-primary font-medium'
 						: 'bg-secondary text-muted-foreground hover:text-foreground'
 				)}
 			>
@@ -50,7 +50,7 @@
 				<div class="mb-4 flex flex-wrap items-end justify-between gap-4">
 					<div class="max-w-xl">
 						<h2 class="text-xl font-semibold tracking-tight">{block.name}</h2>
-						<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{block.description}</p>
+						<p class="text-muted-foreground mt-1 text-sm leading-relaxed">{block.description}</p>
 					</div>
 					<CopyCommand
 						command={`npx shadcn-svelte@latest add ${registryPinnedBase}/${block.slug}.json`}
@@ -58,7 +58,7 @@
 					/>
 				</div>
 				{#await blockPromise}
-					<div class="h-96 animate-pulse rounded-3xl bg-secondary/50" aria-hidden="true"></div>
+					<div class="bg-secondary/50 h-96 animate-pulse rounded-3xl" aria-hidden="true"></div>
 				{:then b}
 					<Tabs.Root value="preview">
 						<Tabs.List>
@@ -67,7 +67,7 @@
 						</Tabs.List>
 						<Tabs.Content value="preview">
 							<div
-								class="rounded-3xl bg-secondary/50 p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-10"
+								class="bg-secondary/50 rounded-3xl p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-10"
 							>
 								{#if b.Component}
 									{@const Block = b.Component}

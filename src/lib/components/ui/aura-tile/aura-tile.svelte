@@ -50,7 +50,7 @@
 	bind:this={ref}
 	class={cn(
 		'relative aspect-square overflow-hidden rounded-xl transition-shadow',
-		selected && 'ring-2 ring-primary ring-offset-2 ring-offset-background',
+		selected && 'ring-primary ring-offset-background ring-2 ring-offset-2',
 		className
 	)}
 	style="background-image: {background};"
@@ -58,7 +58,7 @@
 >
 	{#if selected}
 		<span
-			class="absolute right-1.5 bottom-1.5 grid size-5 place-items-center rounded-full bg-primary text-primary-foreground shadow-sm"
+			class="bg-primary text-primary-foreground absolute right-1.5 bottom-1.5 grid size-5 place-items-center rounded-full shadow-sm"
 		>
 			<Check class="size-3" strokeWidth={3} />
 		</span>

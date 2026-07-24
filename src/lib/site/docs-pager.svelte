@@ -9,7 +9,7 @@
 </script>
 
 {#if pager.prev || pager.next}
-	<nav class="mt-12 flex items-center justify-between gap-3 border-t border-border pt-6">
+	<nav class="border-border mt-12 flex items-center justify-between gap-3 border-t pt-6">
 		{#if pager.prev}
 			<a href={pager.prev.href} class={buttonVariants({ variant: 'outline', size: 'sm' })}>
 				<ArrowLeft class="size-4" />

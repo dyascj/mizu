@@ -9,7 +9,7 @@
 
 <kbd
 	class={cn(
-		'inline-flex h-5 min-w-5 items-center justify-center rounded-md bg-muted px-1.5 font-mono text-[0.7rem] font-medium text-muted-foreground shadow-xs',
+		'bg-muted text-muted-foreground inline-flex h-5 min-w-5 items-center justify-center rounded-md px-1.5 font-mono text-[0.7rem] font-medium shadow-xs',
 		className
 	)}
 	{...rest}

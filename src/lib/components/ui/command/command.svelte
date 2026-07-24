@@ -19,7 +19,7 @@
 	bind:ref
 	bind:value
 	class={cn(
-		'flex h-full w-full flex-col overflow-hidden rounded-xl bg-transparent text-popover-foreground',
+		'text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-xl bg-transparent',
 		className
 	)}
 	{...restProps}

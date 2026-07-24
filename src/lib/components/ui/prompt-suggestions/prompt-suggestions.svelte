@@ -18,7 +18,7 @@
 		<button
 			type="button"
 			onclick={() => onSelect?.(item)}
-			class="rounded-full bg-card px-3.5 py-2 text-sm text-foreground shadow-xs outline-none transition-[background-color,scale] hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring active:scale-[0.98]"
+			class="bg-card text-foreground hover:bg-secondary focus-visible:ring-ring rounded-full px-3.5 py-2 text-sm shadow-xs transition-[background-color,scale] outline-none focus-visible:ring-2 active:scale-[0.98]"
 		>
 			{item}
 		</button>

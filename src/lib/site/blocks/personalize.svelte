@@ -13,10 +13,10 @@
 	let memory = $state(true);
 </script>
 
-<div class="mx-auto flex w-full max-w-md flex-col gap-7 rounded-3xl bg-card p-7 shadow-md">
+<div class="bg-card mx-auto flex w-full max-w-md flex-col gap-7 rounded-3xl p-7 shadow-md">
 	<div>
 		<h2 class="text-lg font-semibold tracking-tight">Make it yours</h2>
-		<p class="mt-1 text-sm text-muted-foreground">
+		<p class="text-muted-foreground mt-1 text-sm">
 			Pick a look and a voice. You can change all of this later.
 		</p>
 	</div>
@@ -27,7 +27,7 @@
 			{#each styles as s (s)}
 				<button
 					type="button"
-					class="rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring"
+					class="focus-visible:ring-ring rounded-xl outline-none focus-visible:ring-2"
 					onclick={() => (style = s)}
 					aria-pressed={style === s}
 					aria-label={s}
@@ -51,14 +51,14 @@
 		<div class="flex items-center justify-between gap-4">
 			<div>
 				<Label for="p-speech" class="font-medium">Speech recognition</Label>
-				<p class="text-xs text-muted-foreground">Talk instead of typing.</p>
+				<p class="text-muted-foreground text-xs">Talk instead of typing.</p>
 			</div>
 			<Switch id="p-speech" bind:checked={speech} />
 		</div>
 		<div class="flex items-center justify-between gap-4">
 			<div>
 				<Label for="p-memory" class="font-medium">Long-term memory</Label>
-				<p class="text-xs text-muted-foreground">Remembers across sessions.</p>
+				<p class="text-muted-foreground text-xs">Remembers across sessions.</p>
 			</div>
 			<Switch id="p-memory" bind:checked={memory} />
 		</div>

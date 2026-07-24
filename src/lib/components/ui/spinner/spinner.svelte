@@ -9,7 +9,7 @@
 	}: HTMLAttributes<HTMLDivElement> & { size?: number; class?: string } = $props();
 </script>
 
-<div role="status" class={cn('inline-flex text-primary', className)} {...rest}>
+<div role="status" class={cn('text-primary inline-flex', className)} {...rest}>
 	<svg
 		class="animate-spin"
 		width={size}

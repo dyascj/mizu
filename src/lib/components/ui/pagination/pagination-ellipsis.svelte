@@ -16,7 +16,7 @@
 <span
 	bind:this={ref}
 	aria-hidden="true"
-	class={cn('flex size-9 items-center justify-center text-muted-foreground', className)}
+	class={cn('text-muted-foreground flex size-9 items-center justify-center', className)}
 	{...restProps}
 >
 	<Ellipsis class="size-4" />

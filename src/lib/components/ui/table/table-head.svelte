@@ -9,7 +9,7 @@
 
 <th
 	class={cn(
-		'h-10 px-3 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0',
+		'text-muted-foreground h-10 px-3 text-left align-middle font-semibold [&:has([role=checkbox])]:pr-0',
 		className
 	)}
 	{...rest}

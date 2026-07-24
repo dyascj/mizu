@@ -9,13 +9,13 @@
 </script>
 
 <div
-	class="mx-auto flex w-full max-w-sm flex-col items-center gap-6 rounded-3xl bg-card p-8 shadow-md"
+	class="bg-card mx-auto flex w-full max-w-sm flex-col items-center gap-6 rounded-3xl p-8 shadow-md"
 >
 	<div class="flex flex-col items-center gap-3 text-center">
 		<VoiceOrb state="idle" size={44} />
 		<div>
 			<h2 class="text-lg font-semibold tracking-tight">Welcome back</h2>
-			<p class="mt-1 text-sm text-muted-foreground">She remembers where you left off.</p>
+			<p class="text-muted-foreground mt-1 text-sm">She remembers where you left off.</p>
 		</div>
 	</div>
 
@@ -27,7 +27,7 @@
 		<div class="flex flex-col gap-1.5">
 			<div class="flex items-center justify-between">
 				<Label for="login-password">Password</Label>
-				<a href="##" class="text-xs text-muted-foreground transition-colors hover:text-primary">
+				<a href="##" class="text-muted-foreground hover:text-primary text-xs transition-colors">
 					Forgot it?
 				</a>
 			</div>
@@ -47,7 +47,7 @@
 		</Button>
 	</div>
 
-	<p class="text-xs text-muted-foreground">
-		New here? <a href="##" class="font-medium text-primary hover:underline">Create an account</a>
+	<p class="text-muted-foreground text-xs">
+		New here? <a href="##" class="text-primary font-medium hover:underline">Create an account</a>
 	</p>
 </div>

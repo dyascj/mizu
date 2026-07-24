@@ -14,7 +14,7 @@
 <div
 	bind:this={ref}
 	class={cn(
-		'flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-border p-10 text-center',
+		'border-border flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed p-10 text-center',
 		className
 	)}
 	{...rest}

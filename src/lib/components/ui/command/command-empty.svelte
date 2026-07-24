@@ -16,7 +16,7 @@
 
 <CommandPrimitive.Empty
 	bind:ref
-	class={cn('py-6 text-center text-sm text-muted-foreground', className)}
+	class={cn('text-muted-foreground py-6 text-center text-sm', className)}
 	{...restProps}
 >
 	{@render children?.()}

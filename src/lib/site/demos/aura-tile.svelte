@@ -9,11 +9,11 @@
 	{#each styles as style (style)}
 		<button
 			type="button"
-			class="group flex flex-col gap-1.5 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring"
+			class="group focus-visible:ring-ring flex flex-col gap-1.5 rounded-xl outline-none focus-visible:ring-2"
 			onclick={() => (selected = style)}
 		>
 			<AuraTile seed={style} selected={selected === style} class="w-full" />
-			<span class="truncate text-xs text-muted-foreground group-hover:text-foreground">{style}</span
+			<span class="text-muted-foreground group-hover:text-foreground truncate text-xs">{style}</span
 			>
 		</button>
 	{/each}

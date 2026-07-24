@@ -26,23 +26,23 @@
 	{max}
 	{step}
 	class={cn(
-		'relative flex w-full touch-none select-none items-center data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col',
+		'relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col',
 		className
 	)}
 	{...restProps}
 >
 	{#snippet children({ thumbItems })}
 		<span
-			class="relative h-2 w-full grow overflow-hidden rounded-full bg-muted data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2"
+			class="bg-muted relative h-2 w-full grow overflow-hidden rounded-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2"
 		>
 			<SliderPrimitive.Range
-				class="absolute h-full bg-primary data-[orientation=vertical]:h-auto data-[orientation=vertical]:w-full"
+				class="bg-primary absolute h-full data-[orientation=vertical]:h-auto data-[orientation=vertical]:w-full"
 			/>
 		</span>
 		{#each thumbItems as { index } (index)}
 			<SliderPrimitive.Thumb
 				{index}
-				class="block size-5 shrink-0 rounded-full bg-white shadow-sm outline-none transition-[scale] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none"
+				class="focus-visible:ring-ring focus-visible:ring-offset-background block size-5 shrink-0 rounded-full bg-white shadow-sm transition-[scale] duration-150 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none"
 			/>
 		{/each}
 	{/snippet}

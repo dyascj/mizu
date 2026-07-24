@@ -23,7 +23,7 @@
 		bind:ref
 		{sideOffset}
 		class={cn(
-			' z-50 w-fit rounded-2xl p-3 text-popover-foreground shadow-xl outline-none transition-[opacity,transform] duration-150 bg-popover data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
+			' text-popover-foreground bg-popover z-50 w-fit rounded-2xl p-3 shadow-xl transition-[opacity,transform] duration-150 outline-none data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
 			className
 		)}
 		{...restProps}
@@ -42,7 +42,7 @@
 							<span class="sr-only">Previous month</span>
 						</DatePickerPrimitive.PrevButton>
 						<DatePickerPrimitive.Heading
-							class="font-display text-sm font-semibold tabular-nums text-foreground"
+							class="font-display text-foreground text-sm font-semibold tabular-nums"
 						/>
 						<DatePickerPrimitive.NextButton
 							class={cn(
@@ -57,12 +57,12 @@
 
 					<div class="flex flex-col gap-4 sm:flex-row">
 						{#each months as month (month.value)}
-							<DatePickerPrimitive.Grid class="w-full border-collapse select-none space-y-1">
+							<DatePickerPrimitive.Grid class="w-full border-collapse space-y-1 select-none">
 								<DatePickerPrimitive.GridHead>
 									<DatePickerPrimitive.GridRow class="flex">
 										{#each weekdays as weekday, i (i)}
 											<DatePickerPrimitive.HeadCell
-												class="w-9 text-[0.7rem] font-medium uppercase tracking-wide text-muted-foreground"
+												class="text-muted-foreground w-9 text-[0.7rem] font-medium tracking-wide uppercase"
 											>
 												{weekday.slice(0, 2)}
 											</DatePickerPrimitive.HeadCell>

@@ -22,7 +22,7 @@
 		buttonVariants({ variant, size: 'icon' }),
 		'absolute z-20 size-9 rounded-full disabled:pointer-events-none disabled:opacity-50',
 		ctx.orientation === 'horizontal'
-			? '-right-4 top-1/2 -translate-y-1/2'
+			? 'top-1/2 -right-4 -translate-y-1/2'
 			: '-bottom-4 left-1/2 -translate-x-1/2 rotate-90',
 		className
 	)}

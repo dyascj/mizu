@@ -50,9 +50,9 @@
 	<Icon class="relative z-10 mt-0.5 size-5 shrink-0 text-[color:var(--toast)]" />
 
 	<div class="relative z-10 flex-1 pt-0.5">
-		<p class="text-sm font-semibold text-foreground">{toast.title}</p>
+		<p class="text-foreground text-sm font-semibold">{toast.title}</p>
 		{#if toast.description}
-			<p class="mt-0.5 text-sm text-muted-foreground">{toast.description}</p>
+			<p class="text-muted-foreground mt-0.5 text-sm">{toast.description}</p>
 		{/if}
 		{#if toast.action}
 			<button
@@ -68,7 +68,7 @@
 	</div>
 
 	<button
-		class="absolute right-2.5 top-2.5 z-20 inline-flex size-7 items-center justify-center rounded-lg text-muted-foreground outline-none transition-[scale,background-color] duration-150 hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96]"
+		class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute top-2.5 right-2.5 z-20 inline-flex size-7 items-center justify-center rounded-lg transition-[scale,background-color] duration-150 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]"
 		onclick={() => toaster.dismiss(toast.id)}
 	>
 		<XIcon class="size-3.5" />

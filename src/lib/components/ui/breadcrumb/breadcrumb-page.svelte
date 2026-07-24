@@ -11,7 +11,7 @@
 	role="link"
 	aria-disabled="true"
 	aria-current="page"
-	class={cn('font-semibold text-foreground', className)}
+	class={cn('text-foreground font-semibold', className)}
 	{...rest}
 >
 	{@render children?.()}

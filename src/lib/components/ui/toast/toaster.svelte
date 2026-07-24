@@ -7,12 +7,7 @@
 	import { toaster } from './toast-state.svelte.js';
 
 	type Position =
-		| 'top-left'
-		| 'top-center'
-		| 'top-right'
-		| 'bottom-left'
-		| 'bottom-center'
-		| 'bottom-right';
+		'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
 
 	let { position = 'bottom-right', class: className }: { position?: Position; class?: string } =
 		$props();

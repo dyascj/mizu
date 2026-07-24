@@ -10,6 +10,6 @@
 	}: HTMLAttributes<HTMLSpanElement> & { class?: string; children: Snippet } = $props();
 </script>
 
-<span class={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)} {...restProps}>
+<span class={cn('text-muted-foreground ml-auto text-xs tracking-widest', className)} {...restProps}>
 	{@render children?.()}
 </span>

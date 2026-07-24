@@ -24,24 +24,24 @@
 
 <div class="mx-auto flex w-full max-w-6xl gap-8 px-5 py-10 sm:px-6">
 	<aside
-		class="sticky top-24 hidden h-[calc(100dvh-8.5rem)] w-52 shrink-0 overflow-y-auto py-6 lg:block [overscroll-behavior:contain] [scrollbar-width:none] [mask-image:linear-gradient(to_bottom,transparent_0,black_1.5rem,black_calc(100%-3rem),transparent_100%)] [&::-webkit-scrollbar]:hidden"
+		class="sticky top-24 hidden h-[calc(100dvh-8.5rem)] w-52 shrink-0 [scrollbar-width:none] overflow-y-auto [overscroll-behavior:contain] [mask-image:linear-gradient(to_bottom,transparent_0,black_1.5rem,black_calc(100%-3rem),transparent_100%)] py-6 lg:block [&::-webkit-scrollbar]:hidden"
 	>
 		<nav class="flex flex-col gap-5">
 			<div class="flex flex-col gap-px">
-				<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">Getting Started</p>
+				<p class="text-muted-foreground/70 px-2 pb-1 text-xs font-medium">Getting Started</p>
 				{#each gettingStartedRoutes as route (route.path)}
 					<a href={route.path} class={linkClass(isActive(route.path))}>{route.title}</a>
 				{/each}
 			</div>
 
 			<div class="flex flex-col gap-px">
-				<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">Components</p>
+				<p class="text-muted-foreground/70 px-2 pb-1 text-xs font-medium">Components</p>
 				<a href="/docs/components" class={linkClass(isActive('/docs/components'))}>Overview</a>
 			</div>
 
 			{#each groups as group (group.category)}
 				<div class="flex flex-col gap-px">
-					<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">
+					<p class="text-muted-foreground/70 px-2 pb-1 text-xs font-medium">
 						{group.category}
 					</p>
 					{#each group.items as item (item.slug)}

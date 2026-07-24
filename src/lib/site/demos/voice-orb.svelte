@@ -8,7 +8,7 @@
 
 <div class="flex flex-col items-center gap-6">
 	<VoiceOrb state={orb} size={112} />
-	<p class="text-sm text-muted-foreground">
+	<p class="text-muted-foreground text-sm">
 		{orb === 'idle' ? 'Standing by' : `I'm ${orb}...`}
 	</p>
 	<ToggleGroup.Root type="single" bind:value={orbState}>

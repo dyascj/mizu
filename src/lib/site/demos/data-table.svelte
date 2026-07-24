@@ -51,7 +51,7 @@
 	});
 </script>
 
-<div class="w-full max-w-lg overflow-hidden rounded-2xl bg-card shadow-md">
+<div class="bg-card w-full max-w-lg overflow-hidden rounded-2xl shadow-md">
 	<Table.Root>
 		<Table.Header>
 			{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}

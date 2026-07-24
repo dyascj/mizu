@@ -132,7 +132,7 @@
 	<Card.Root class="break-inside-avoid">
 		<Card.Header>
 			<Card.Title class="flex items-center gap-2">
-				<Bell class="size-4 text-primary" />
+				<Bell class="text-primary size-4" />
 				While you were away
 			</Card.Title>
 			<Card.Description>Your agent kept going.</Card.Description>
@@ -140,13 +140,13 @@
 		<Card.Content class="flex flex-col gap-3">
 			<ToolCall name="Summarizing your inbox" detail="12 unread" state="running" />
 			{#each activity as a (a.title)}
-				<div class="flex items-start gap-3 rounded-xl bg-secondary/60 p-3">
+				<div class="bg-secondary/60 flex items-start gap-3 rounded-xl p-3">
 					<VoiceOrb state="idle" size={22} class="mt-0.5" />
 					<div class="min-w-0 flex-1">
 						<p class="truncate text-sm font-medium">{a.title}</p>
-						<p class="truncate text-xs text-muted-foreground">{a.detail}</p>
+						<p class="text-muted-foreground truncate text-xs">{a.detail}</p>
 					</div>
-					<span class="text-[0.6875rem] text-muted-foreground tabular-nums">{a.time}</span>
+					<span class="text-muted-foreground text-[0.6875rem] tabular-nums">{a.time}</span>
 				</div>
 			{/each}
 		</Card.Content>
@@ -170,8 +170,8 @@
 					>
 						<RadioGroup.Item value={o.v} id="brain-{o.v}" />
 						<span class="flex-1">
-							<span class="block font-semibold text-foreground">{o.t}</span>
-							<span class="block text-xs text-muted-foreground">{o.s}</span>
+							<span class="text-foreground block font-semibold">{o.t}</span>
+							<span class="text-muted-foreground block text-xs">{o.s}</span>
 						</span>
 						<Badge variant={brain === o.v ? 'primary' : 'secondary'}>{o.tag}</Badge>
 					</Label>
@@ -195,7 +195,7 @@
 					<VoiceOrb state="idle" size={32} />
 					<div class="min-w-0 flex-1">
 						<p class="truncate text-sm font-semibold">{m.name}</p>
-						<p class="truncate text-xs text-muted-foreground">{m.task}</p>
+						<p class="text-muted-foreground truncate text-xs">{m.task}</p>
 					</div>
 					<Select.Root type="single" value={m.model}>
 						<Select.Trigger class="h-8 w-28 text-xs">
@@ -220,7 +220,7 @@
 		</Card.Header>
 		<Card.Content class="flex items-center gap-5">
 			<CircularGauge value={72} label="Focus">
-				<Droplets class="size-5 text-primary" />
+				<Droplets class="text-primary size-5" />
 			</CircularGauge>
 			<div class="flex flex-1 flex-col gap-3">
 				<div class="flex flex-col gap-1.5">
@@ -247,7 +247,7 @@
 	<Card.Root class="break-inside-avoid">
 		<Card.Content class="flex flex-col items-center gap-4 pt-8 pb-6">
 			<VoiceOrb state="listening" size={88} />
-			<p class="text-sm text-muted-foreground">I'm listening...</p>
+			<p class="text-muted-foreground text-sm">I'm listening...</p>
 			<Waveform bars={7} class="h-6" />
 			<div class="flex gap-2">
 				<Button variant="secondary" size="sm">Cancel</Button>
@@ -259,9 +259,9 @@
 	<!-- Command menu -->
 	<Card.Root class="break-inside-avoid">
 		<Card.Content class="flex flex-col gap-3 pt-6">
-			<div class="flex items-center gap-2 rounded-full bg-secondary px-3.5 py-2">
-				<Search class="size-4 text-muted-foreground" />
-				<span class="flex-1 text-sm text-muted-foreground">Ask, or command...</span>
+			<div class="bg-secondary flex items-center gap-2 rounded-full px-3.5 py-2">
+				<Search class="text-muted-foreground size-4" />
+				<span class="text-muted-foreground flex-1 text-sm">Ask, or command...</span>
 				<KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>
 			</div>
 			<div class="flex flex-col">
@@ -288,21 +288,21 @@
 			<div class="flex items-start justify-between gap-4">
 				<div>
 					<p class="text-sm font-medium">Speech recognition</p>
-					<p class="text-xs text-muted-foreground">Talk instead of typing.</p>
+					<p class="text-muted-foreground text-xs">Talk instead of typing.</p>
 				</div>
 				<Switch bind:checked={ai.speech} />
 			</div>
 			<div class="flex items-start justify-between gap-4">
 				<div>
 					<p class="text-sm font-medium">Long-term memory</p>
-					<p class="text-xs text-muted-foreground">Remembers across sessions.</p>
+					<p class="text-muted-foreground text-xs">Remembers across sessions.</p>
 				</div>
 				<Switch bind:checked={ai.memory} />
 			</div>
 			<div class="flex items-start justify-between gap-4">
 				<div>
 					<p class="text-sm font-medium">Personalization</p>
-					<p class="text-xs text-muted-foreground">Learns your preferences.</p>
+					<p class="text-muted-foreground text-xs">Learns your preferences.</p>
 				</div>
 				<Switch bind:checked={ai.personalization} />
 			</div>

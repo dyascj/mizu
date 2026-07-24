@@ -12,7 +12,7 @@
 
 <Tooltip.Provider>
 	<div
-		class="h-96 w-full overflow-hidden rounded-2xl bg-background shadow-md [transform:translateZ(0)]"
+		class="bg-background h-96 w-full [transform:translateZ(0)] overflow-hidden rounded-2xl shadow-md"
 	>
 		<Sidebar.Provider class="h-full min-h-0">
 			<Sidebar.Root collapsible="icon" class="h-full">
@@ -94,13 +94,13 @@
 				<Sidebar.Footer>
 					<div class="flex items-center gap-2 px-1 py-0.5">
 						<span
-							class="flex size-7 shrink-0 items-center justify-center rounded-full bg-mizu-100 text-xs font-semibold text-mizu-700"
+							class="bg-mizu-100 text-mizu-700 flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold"
 						>
 							A
 						</span>
 						<div class="min-w-0 group-data-[collapsible=icon]:hidden">
-							<p class="truncate text-xs font-medium text-foreground">Ada Rivers</p>
-							<p class="truncate text-[0.6875rem] text-muted-foreground">ada@mizu.dev</p>
+							<p class="text-foreground truncate text-xs font-medium">Ada Rivers</p>
+							<p class="text-muted-foreground truncate text-[0.6875rem]">ada@mizu.dev</p>
 						</div>
 					</div>
 				</Sidebar.Footer>
@@ -115,18 +115,18 @@
 				</header>
 				<div class="flex-1 overflow-auto px-4 pb-4">
 					<div class="grid grid-cols-2 gap-3">
-						<div class="rounded-xl bg-secondary/60 p-3">
-							<p class="text-xs text-muted-foreground">Tasks done</p>
+						<div class="bg-secondary/60 rounded-xl p-3">
+							<p class="text-muted-foreground text-xs">Tasks done</p>
 							<p class="mt-1 text-2xl font-semibold tabular-nums">84%</p>
 						</div>
-						<div class="rounded-xl bg-secondary/60 p-3">
-							<p class="text-xs text-muted-foreground">Focus</p>
+						<div class="bg-secondary/60 rounded-xl p-3">
+							<p class="text-muted-foreground text-xs">Focus</p>
 							<p class="mt-1 text-2xl font-semibold tabular-nums">72</p>
 						</div>
 					</div>
 					<div class="mt-3 space-y-2">
-						<div class="h-3 w-3/4 rounded-full bg-muted"></div>
-						<div class="h-3 w-1/2 rounded-full bg-muted"></div>
+						<div class="bg-muted h-3 w-3/4 rounded-full"></div>
+						<div class="bg-muted h-3 w-1/2 rounded-full"></div>
 					</div>
 				</div>
 			</Sidebar.Inset>

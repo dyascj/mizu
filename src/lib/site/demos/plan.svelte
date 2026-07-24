@@ -19,12 +19,10 @@
 	});
 
 	const steps = $derived(
-		script.map(
-			(label, i): PlanStep => ({
-				label,
-				state: i < done ? 'done' : i === done ? 'active' : 'pending'
-			})
-		)
+		script.map((label, i): PlanStep => ({
+			label,
+			state: i < done ? 'done' : i === done ? 'active' : 'pending'
+		}))
 	);
 </script>
 

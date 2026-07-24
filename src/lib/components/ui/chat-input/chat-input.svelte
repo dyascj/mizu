@@ -44,7 +44,7 @@
 
 <form
 	onsubmit={submit}
-	class={cn('flex w-full items-center gap-1 rounded-full bg-card p-1.5 pl-2 shadow-lg', className)}
+	class={cn('bg-card flex w-full items-center gap-1 rounded-full p-1.5 pl-2 shadow-lg', className)}
 >
 	{#if leading}
 		{@render leading()}
@@ -59,7 +59,7 @@
 		bind:value
 		{placeholder}
 		{disabled}
-		class="h-9 min-w-0 flex-1 bg-transparent px-1.5 text-sm text-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed"
+		class="text-foreground placeholder:text-muted-foreground h-9 min-w-0 flex-1 bg-transparent px-1.5 text-sm outline-none disabled:cursor-not-allowed"
 	/>
 
 	{#if trailing}
@@ -74,7 +74,7 @@
 		type="submit"
 		disabled={disabled || !value.trim()}
 		aria-label="Send"
-		class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm outline-none transition-[background-color,scale] hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none disabled:opacity-40"
+		class="bg-primary text-primary-foreground hover:bg-primary-hover focus-visible:ring-ring focus-visible:ring-offset-background inline-flex size-9 shrink-0 items-center justify-center rounded-full shadow-sm transition-[background-color,scale] outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-40"
 	>
 		<ArrowUp class="size-4" />
 	</button>

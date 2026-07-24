@@ -16,10 +16,10 @@
 
 <AccordionPrimitive.Content
 	bind:ref
-	class="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+	class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
 	{...restProps}
 >
-	<div class={cn('pb-4 text-muted-foreground', className)}>
+	<div class={cn('text-muted-foreground pb-4', className)}>
 		{@render children?.()}
 	</div>
 </AccordionPrimitive.Content>

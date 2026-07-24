@@ -42,7 +42,7 @@
 >
 	{#each heights as h, i (i)}
 		<span
-			class={cn('w-1 rounded-full bg-primary', active && 'wave-bar')}
+			class={cn('bg-primary w-1 rounded-full', active && 'wave-bar')}
 			style="height: {Math.round(h * 100)}%; animation-delay: {i * 120}ms;"
 		></span>
 	{/each}

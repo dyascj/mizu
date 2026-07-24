@@ -25,7 +25,7 @@
 	<DialogPrimitive.Content
 		bind:ref
 		class={cn(
-			'fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-popover p-6 shadow-xl transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
+			'bg-popover fixed top-1/2 left-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-2xl p-6 shadow-xl transition-[opacity,transform] duration-150 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
 			className
 		)}
 		{...restProps}
@@ -35,7 +35,7 @@
 		</div>
 		{#if closeButton}
 			<DialogPrimitive.Close
-				class="absolute right-4 top-4 inline-flex size-7 items-center justify-center rounded-full text-muted-foreground outline-none transition-[scale,background-color] duration-150 hover:bg-secondary hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.96] disabled:pointer-events-none"
+				class="text-muted-foreground hover:bg-secondary hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute top-4 right-4 inline-flex size-7 items-center justify-center rounded-full transition-[scale,background-color] duration-150 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none"
 			>
 				<XIcon class="size-4" />
 				<span class="sr-only">Close</span>

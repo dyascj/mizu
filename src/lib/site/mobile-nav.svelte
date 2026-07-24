@@ -35,7 +35,7 @@
 	</Sheet.Trigger>
 	<Sheet.Content
 		side="left"
-		class="flex w-[19rem] max-w-[85vw] flex-col gap-0 overflow-y-auto [mask-image:linear-gradient(to_bottom,black_calc(100%-3rem),transparent_100%)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+		class="flex w-[19rem] max-w-[85vw] [scrollbar-width:none] flex-col gap-0 overflow-y-auto [mask-image:linear-gradient(to_bottom,black_calc(100%-3rem),transparent_100%)] [&::-webkit-scrollbar]:hidden"
 	>
 		<Sheet.Header class="pb-2">
 			<Sheet.Title class="flex items-center">
@@ -52,7 +52,7 @@
 
 			{#each groups as group (group.category)}
 				<div class="flex flex-col gap-px">
-					<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">
+					<p class="text-muted-foreground/70 px-2 pb-1 text-xs font-medium">
 						{group.category}
 					</p>
 					{#each group.items as item (item.slug)}
