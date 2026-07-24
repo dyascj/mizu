@@ -62,6 +62,12 @@ export function auditRepositoryState(policy, state) {
 	);
 	pushMismatch(
 		mismatches,
+		'vulnerability alerts',
+		state.vulnerabilityAlerts,
+		policy.vulnerabilityAlerts
+	);
+	pushMismatch(
+		mismatches,
 		'Dependabot security updates',
 		security.dependabot_security_updates?.status,
 		policy.dependabotSecurityUpdates ? 'enabled' : 'disabled'
@@ -196,7 +202,11 @@ function readState(policy) {
 		protection: api(`repos/${policy.repository}/branches/${policy.defaultBranch}/protection`, {
 			optional: true
 		}),
-		privateVulnerabilityReporting: api(`repos/${policy.repository}/private-vulnerability-reporting`)
+		privateVulnerabilityReporting: api(
+			`repos/${policy.repository}/private-vulnerability-reporting`
+		),
+		vulnerabilityAlerts:
+			api(`repos/${policy.repository}/vulnerability-alerts`, { optional: true }) !== null
 	};
 }
 
@@ -217,6 +227,9 @@ function applyPolicy(policy) {
 	});
 	if (policy.privateVulnerabilityReporting) {
 		api(`repos/${policy.repository}/private-vulnerability-reporting`, { method: 'PUT' });
+	}
+	if (policy.vulnerabilityAlerts) {
+		api(`repos/${policy.repository}/vulnerability-alerts`, { method: 'PUT' });
 	}
 	if (policy.dependabotSecurityUpdates) {
 		api(`repos/${policy.repository}/automated-security-fixes`, { method: 'PUT' });

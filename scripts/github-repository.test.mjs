@@ -19,6 +19,7 @@ const policy = {
 	deleteBranchOnMerge: true,
 	allowUpdateBranch: true,
 	privateVulnerabilityReporting: true,
+	vulnerabilityAlerts: true,
 	dependabotSecurityUpdates: true,
 	secretScanning: true,
 	secretScanningPushProtection: true
@@ -46,7 +47,8 @@ const state = {
 		allow_force_pushes: { enabled: false },
 		allow_deletions: { enabled: false }
 	},
-	privateVulnerabilityReporting: { enabled: true }
+	privateVulnerabilityReporting: { enabled: true },
+	vulnerabilityAlerts: true
 };
 
 test('repository policy accepts the intended remote state', () => {

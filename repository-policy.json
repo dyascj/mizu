@@ -15,6 +15,7 @@
 	"deleteBranchOnMerge": true,
 	"allowUpdateBranch": true,
 	"privateVulnerabilityReporting": true,
+	"vulnerabilityAlerts": true,
 	"dependabotSecurityUpdates": true,
 	"secretScanning": true,
 	"secretScanningPushProtection": true
