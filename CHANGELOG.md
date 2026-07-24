@@ -12,6 +12,7 @@ All notable changes to Mizu are documented here. The project follows the compati
 
 - Pull requests now require the full verification, browser, and CodeQL checks before merge.
 - CI fetches release provenance history before validating immutable registry metadata.
+- Pinned GitHub Actions use maintained Node 24 runtimes.
 
 ### Deprecated
 
