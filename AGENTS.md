@@ -14,6 +14,7 @@ pnpm format:check     # prettier check
 pnpm lint             # semantic ESLint checks
 pnpm test             # contract, parser, and component tests
 pnpm test:browser     # Playwright route and accessibility tests
+pnpm build:budget     # enforce client JavaScript size limits after a build
 pnpm format           # prettier write
 pnpm registry:build   # regenerate static/r (CI fails if stale)
 pnpm registry:consumer-check # isolated Drawer and Data Table install/build

@@ -1,16 +1,10 @@
-import { components } from './catalog';
+import { pagerRoutes } from './routes';
 
 export type DocLink = { href: string; title: string };
 
 /** Flat, ordered list of every docs page, for prev/next paging. */
 export const docsNav: DocLink[] = [
-	{ href: '/docs', title: 'Introduction' },
-	{ href: '/docs/installation', title: 'Installation' },
-	{ href: '/docs/theming', title: 'Theming' },
-	{ href: '/docs/usage', title: 'Usage' },
-	{ href: '/docs/build-a-chat', title: 'Build a chat' },
-	{ href: '/docs/agents', title: 'UI for Agents' },
-	...components.map((c) => ({ href: `/docs/components/${c.slug}`, title: c.name }))
+	...pagerRoutes.map((route) => ({ href: route.path, title: route.title }))
 ];
 
 export function pagerFor(pathname: string): { prev: DocLink | null; next: DocLink | null } {

@@ -14,17 +14,15 @@ export type ApiPart = {
 /** A source file for the "Source" section. */
 export type SourceFile = { file: string; lang: 'svelte' | 'ts'; code: string };
 
-// Raw component source, loaded at build time (docs-site only, never shipped to
-// consumers). Same mechanism the demos use, so the API is always in sync with
-// the real source: edit a component and its docs table updates on next build.
+// Raw component source, split into per-file lazy modules for the docs site.
+// A component page fetches only the current slug's source and API inputs.
 const raw = import.meta.glob(
 	['../components/ui/**/*.{svelte,ts}', '!../components/ui/**/*.{test,spec}.{svelte,ts}'],
 	{
-		eager: true,
 		query: '?raw',
 		import: 'default'
 	}
-) as Record<string, string>;
+) as Record<string, () => Promise<string>>;
 
 /** key → { slug, file } where key is `…/ui/<slug>/<file>`. */
 function locate(key: string): { slug: string; file: string } | null {
@@ -68,26 +66,30 @@ function order(a: { file: string }, b: { file: string }, slug: string) {
 }
 
 /** Parsed, presentable API for each documentable part of a component. */
-export function getComponentApi(slug: string): ApiPart[] {
+export async function getComponentApi(slug: string): Promise<ApiPart[]> {
 	const svelte = filesFor(slug)
 		.filter((f) => f.file.endsWith('.svelte'))
 		.sort((a, b) => order(a, b, slug));
 	const single = svelte.length === 1;
-	return svelte
-		.map(({ file, key }) => {
-			const { props, extendsTypes } = parseProps(raw[key]);
+	const parts = await Promise.all(
+		svelte.map(async ({ file, key }) => {
+			const source = await raw[key]();
+			const { props, extendsTypes } = parseProps(source);
 			return { title: partTitle(slug, file, single), props, extendsTypes };
 		})
-		.filter((part) => part.props.length > 0 || part.extendsTypes.length > 0);
+	);
+	return parts.filter((part) => part.props.length > 0 || part.extendsTypes.length > 0);
 }
 
 /** Every source file of a component, for the collapsible "Source" section. */
-export function getComponentSource(slug: string): SourceFile[] {
-	return filesFor(slug)
-		.sort((a, b) => order(a, b, slug))
-		.map(({ file, key }) => ({
-			file,
-			lang: file.endsWith('.ts') ? 'ts' : 'svelte',
-			code: raw[key].trim()
-		}));
+export async function getComponentSource(slug: string): Promise<SourceFile[]> {
+	return Promise.all(
+		filesFor(slug)
+			.sort((a, b) => order(a, b, slug))
+			.map(async ({ file, key }) => ({
+				file,
+				lang: file.endsWith('.ts') ? 'ts' : 'svelte',
+				code: (await raw[key]()).trim()
+			}))
+	);
 }

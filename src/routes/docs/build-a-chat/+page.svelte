@@ -13,7 +13,7 @@
 	import { StreamingText } from '$lib/components/ui/streaming-text';
 	import { ToolCall } from '$lib/components/ui/tool-call';
 
-	const block = getBlock('assistant-chat');
+	const blockPromise = getBlock('assistant-chat');
 	let value = $state('');
 	let run = $state(0);
 	let replayTimer: ReturnType<typeof setTimeout> | undefined;
@@ -177,9 +177,13 @@
 		class="rounded-3xl bg-secondary/50 p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-8"
 		data-no-toc
 	>
-		{#if block.Component}
-			{@const Block = block.Component}
-			<Block />
-		{/if}
+		{#await blockPromise}
+			<div class="h-96 animate-pulse rounded-3xl bg-card" aria-hidden="true"></div>
+		{:then block}
+			{#if block.Component}
+				{@const Block = block.Component}
+				<Block />
+			{/if}
+		{/await}
 	</div>
 </article>

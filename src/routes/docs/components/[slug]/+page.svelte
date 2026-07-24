@@ -11,10 +11,13 @@
 	let { data } = $props();
 
 	const meta = $derived(data.component);
-	const demo = $derived(getDemo(meta.slug));
-	const api = $derived(getComponentApi(meta.slug));
-	const source = $derived(getComponentSource(meta.slug));
-	const multiPart = $derived(api.length > 1);
+	const componentDocs = $derived(
+		Promise.all([
+			getDemo(meta.slug),
+			getComponentApi(meta.slug),
+			getComponentSource(meta.slug)
+		]).then(([demo, api, source]) => ({ demo, api, source }))
+	);
 	const installCmd = $derived(
 		`npx shadcn-svelte@latest add ${siteConfig.registryBase}/${meta.slug}.json`
 	);
@@ -49,101 +52,109 @@
 	</div>
 	<p class="mt-3 text-lg text-muted-foreground">{meta.description}</p>
 
-	<h2 class="mt-8 mb-4 font-display text-xl font-semibold">Example</h2>
-	{#if demo.Component}
-		{@const Demo = demo.Component}
-		<ComponentPreview code={demo.source}>
-			<Demo />
-		</ComponentPreview>
-	{:else}
-		<div
-			class="rounded-2xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground"
-		>
-			A live demo for <span class="font-semibold text-foreground">{meta.name}</span> is coming soon.
-		</div>
-	{/if}
+	{#await componentDocs}
+		<div class="mt-8 h-60 animate-pulse rounded-2xl bg-card shadow-sm" aria-hidden="true"></div>
+	{:then docs}
+		{@const demo = docs.demo}
+		{@const api = docs.api}
+		{@const source = docs.source}
+		{@const multiPart = api.length > 1}
+		<h2 class="mt-8 mb-4 font-display text-xl font-semibold">Example</h2>
+		{#if demo.Component}
+			{@const Demo = demo.Component}
+			<ComponentPreview code={demo.source}>
+				<Demo />
+			</ComponentPreview>
+		{:else}
+			<div
+				class="rounded-2xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground"
+			>
+				A live demo for <span class="font-semibold text-foreground">{meta.name}</span> is coming soon.
+			</div>
+		{/if}
 
-	{#if api.length}
-		<h2 class="mt-10 mb-2 font-display text-xl font-semibold">
-			{multiPart ? 'API reference' : 'Props'}
-		</h2>
-		<p class="mb-4 text-sm text-muted-foreground">
-			Generated from the component source, always in sync with what you install.
-		</p>
-		{#each api as part (part.title)}
-			{#if multiPart}
-				<h3 class="mt-6 mb-3 font-mono text-base font-semibold text-foreground">{part.title}</h3>
-			{/if}
-			{#if part.props.length}
-				<div class="overflow-x-auto rounded-2xl border border-border glass">
-					<table class="w-full border-collapse text-left text-sm">
-						<thead>
-							<tr class="border-b border-border text-muted-foreground">
-								<th class="px-4 py-2.5 font-medium">Prop</th>
-								<th class="px-4 py-2.5 font-medium">Type</th>
-								<th class="px-4 py-2.5 font-medium">Default</th>
-							</tr>
-						</thead>
-						<tbody>
-							{#each part.props as p (p.name)}
-								<tr class="border-b border-border last:border-0 align-top">
-									<td class="px-4 py-2.5 whitespace-nowrap">
-										<code class="font-mono text-foreground">{p.name}</code>
-										{#if !p.optional}<span
-												class="ml-1 text-[color:var(--destructive)]"
-												title="Required">*</span
-											>{/if}
-										{#if p.bindable}<span
-												class="ml-1.5 rounded bg-secondary px-1.5 py-0.5 font-mono text-[0.65rem] text-muted-foreground"
-												title="Two-way bindable with bind:">bind</span
-											>{/if}
-									</td>
-									<td class="px-4 py-2.5 font-mono text-[0.8125rem] text-primary"
-										>{p.type || '·'}</td
-									>
-									<td class="px-4 py-2.5 font-mono text-[0.8125rem] text-muted-foreground"
-										>{p.default ?? '·'}</td
-									>
+		{#if api.length}
+			<h2 class="mt-10 mb-2 font-display text-xl font-semibold">
+				{multiPart ? 'API reference' : 'Props'}
+			</h2>
+			<p class="mb-4 text-sm text-muted-foreground">
+				Generated from the component source and snapshot-tested against the catalog.
+			</p>
+			{#each api as part (part.title)}
+				{#if multiPart}
+					<h3 class="mt-6 mb-3 font-mono text-base font-semibold text-foreground">{part.title}</h3>
+				{/if}
+				{#if part.props.length}
+					<div class="overflow-x-auto rounded-2xl border border-border glass">
+						<table class="w-full border-collapse text-left text-sm">
+							<thead>
+								<tr class="border-b border-border text-muted-foreground">
+									<th class="px-4 py-2.5 font-medium">Prop</th>
+									<th class="px-4 py-2.5 font-medium">Type</th>
+									<th class="px-4 py-2.5 font-medium">Default</th>
 								</tr>
-							{/each}
-						</tbody>
-					</table>
-				</div>
-			{/if}
-			{#if part.extendsTypes.length}
-				<p class="mt-2 text-sm text-muted-foreground">
-					Also accepts {#each part.extendsTypes as t, i (t)}<code class="font-mono text-foreground"
-							>{t}</code
-						>{i < part.extendsTypes.length - 1 ? ', ' : ''}{/each} props (e.g. native attributes pass
-					straight through).
-				</p>
-			{/if}
-		{/each}
-	{/if}
-
-	<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Installation</h2>
-	<CopyCommand command={installCmd} />
-
-	{#if source.length}
-		<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Source</h2>
-		<p class="mb-4 text-sm text-muted-foreground">
-			The full source you own once you copy it in. No black box.
-		</p>
-		<div class="flex flex-col gap-2">
-			{#each source as f (f.file)}
-				<details class="group rounded-2xl border border-border glass">
-					<summary
-						class="flex cursor-pointer items-center justify-between px-4 py-3 font-mono text-sm text-foreground select-none"
-					>
-						{f.file}
-						<span class="text-xs text-muted-foreground group-open:hidden">Show</span>
-						<span class="hidden text-xs text-muted-foreground group-open:inline">Hide</span>
-					</summary>
-					<div class="px-2 pb-2">
-						<CodeBlock code={f.code} />
+							</thead>
+							<tbody>
+								{#each part.props as p (p.name)}
+									<tr class="border-b border-border last:border-0 align-top">
+										<td class="px-4 py-2.5 whitespace-nowrap">
+											<code class="font-mono text-foreground">{p.name}</code>
+											{#if !p.optional}<span
+													class="ml-1 text-[color:var(--destructive)]"
+													title="Required">*</span
+												>{/if}
+											{#if p.bindable}<span
+													class="ml-1.5 rounded bg-secondary px-1.5 py-0.5 font-mono text-[0.65rem] text-muted-foreground"
+													title="Two-way bindable with bind:">bind</span
+												>{/if}
+										</td>
+										<td class="px-4 py-2.5 font-mono text-[0.8125rem] text-primary"
+											>{p.type || '·'}</td
+										>
+										<td class="px-4 py-2.5 font-mono text-[0.8125rem] text-muted-foreground"
+											>{p.default ?? '·'}</td
+										>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
 					</div>
-				</details>
+				{/if}
+				{#if part.extendsTypes.length}
+					<p class="mt-2 text-sm text-muted-foreground">
+						Also accepts {#each part.extendsTypes as t, i (t)}<code
+								class="font-mono text-foreground">{t}</code
+							>{i < part.extendsTypes.length - 1 ? ', ' : ''}{/each} props (e.g. native attributes pass
+						straight through).
+					</p>
+				{/if}
 			{/each}
-		</div>
-	{/if}
+		{/if}
+
+		<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Installation</h2>
+		<CopyCommand command={installCmd} />
+
+		{#if source.length}
+			<h2 class="mt-10 mb-3 font-display text-xl font-semibold">Source</h2>
+			<p class="mb-4 text-sm text-muted-foreground">
+				The full source you own once you copy it in. No black box.
+			</p>
+			<div class="flex flex-col gap-2">
+				{#each source as f (f.file)}
+					<details class="group rounded-2xl border border-border glass">
+						<summary
+							class="flex cursor-pointer items-center justify-between px-4 py-3 font-mono text-sm text-foreground select-none"
+						>
+							{f.file}
+							<span class="text-xs text-muted-foreground group-open:hidden">Show</span>
+							<span class="hidden text-xs text-muted-foreground group-open:inline">Hide</span>
+						</summary>
+						<div class="px-2 pb-2">
+							<CodeBlock code={f.code} />
+						</div>
+					</details>
+				{/each}
+			</div>
+		{/if}
+	{/await}
 </article>

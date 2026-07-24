@@ -32,6 +32,7 @@ jobs:
           fi
       - run: pnpm registry:consumer-check
       - run: pnpm build
+      - run: pnpm build:budget
 
   browser:
     needs: verify

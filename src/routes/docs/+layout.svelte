@@ -1,20 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { componentsByCategory } from '$lib/site/catalog';
+	import { gettingStartedRoutes } from '$lib/site/routes';
 	import TableOfContents from '$lib/site/table-of-contents.svelte';
 	import DocsPager from '$lib/site/docs-pager.svelte';
 	import { cn } from '$lib/utils.js';
 
 	let { children } = $props();
 
-	const gettingStarted = [
-		{ href: '/docs', label: 'Introduction' },
-		{ href: '/docs/installation', label: 'Installation' },
-		{ href: '/docs/theming', label: 'Theming' },
-		{ href: '/docs/usage', label: 'Usage' },
-		{ href: '/docs/build-a-chat', label: 'Build a chat' },
-		{ href: '/docs/agents', label: 'UI for Agents' }
-	];
 	const groups = componentsByCategory();
 
 	function isActive(href: string) {
@@ -36,8 +29,8 @@
 		<nav class="flex flex-col gap-5">
 			<div class="flex flex-col gap-px">
 				<p class="px-2 pb-1 text-xs font-medium text-muted-foreground/70">Getting Started</p>
-				{#each gettingStarted as link (link.href)}
-					<a href={link.href} class={linkClass(isActive(link.href))}>{link.label}</a>
+				{#each gettingStartedRoutes as route (route.path)}
+					<a href={route.path} class={linkClass(isActive(route.path))}>{route.title}</a>
 				{/each}
 			</div>
 

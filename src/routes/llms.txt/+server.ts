@@ -1,6 +1,7 @@
 import { componentsByCategory } from '$lib/site/catalog';
 import { blocks } from '$lib/site/blocks';
 import { siteConfig } from '$lib/site/config';
+import { primaryNavigationRoutes } from '$lib/site/routes';
 
 // https://llmstxt.org: a single Markdown file so coding assistants (Cursor,
 // Claude, etc.) can ingest what Mizu is and link straight to each component's
@@ -32,18 +33,9 @@ export function GET() {
 	out.push('');
 	out.push('## Docs');
 	out.push('');
-	out.push(
-		`- [Installation](${base}/docs/installation): set up SvelteKit + Tailwind + components.json`
-	);
-	out.push(`- [Theming](${base}/docs/theming): the one-token brand system and light/dark modes`);
-	out.push(
-		`- [Build a chat](${base}/docs/build-a-chat): compose the AI components into a full assistant screen`
-	);
-	out.push(
-		`- [UI for Agents](${base}/docs/agents): set up AI coding agents to build with Mizu; drop-in agent guidance lives at ${base}/AGENTS.md`
-	);
-	out.push(`- [Components](${base}/docs/components): browse all components`);
-	out.push(`- [Blocks](${base}/blocks): whole AI screens with full copyable source`);
+	for (const route of primaryNavigationRoutes) {
+		out.push(`- [${route.title}](${base}${route.path}): ${route.description}`);
+	}
 	out.push('');
 
 	out.push('## Blocks');

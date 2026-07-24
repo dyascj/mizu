@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { components, componentsByCategory } from '$lib/site/catalog';
-	import { getDemo } from '$lib/site/demos';
+	import LazyDemo from '$lib/site/lazy-demo.svelte';
 	import { siteConfig } from '$lib/site/config';
 	import Seo from '$lib/site/seo.svelte';
 
@@ -24,19 +24,13 @@
 			<h2 class="mb-4 font-display text-xl font-semibold">{group.category}</h2>
 			<div class="grid gap-4 sm:grid-cols-2">
 				{#each group.items as c (c.slug)}
-					{@const demo = getDemo(c.slug)}
 					<article class="group relative">
 						<div
 							class="relative flex h-40 items-center justify-center overflow-hidden rounded-2xl bg-card p-5 shadow-sm transition-[transform,box-shadow] duration-200 group-hover:-translate-y-0.5 group-hover:shadow-lg group-focus-within:ring-2 group-focus-within:ring-ring"
 							data-no-toc
 						>
 							<div class="pointer-events-none flex w-full scale-90 items-center justify-center">
-								{#if demo.Component}
-									{@const Demo = demo.Component}
-									<Demo />
-								{:else}
-									<span class="text-sm text-muted-foreground">{c.name}</span>
-								{/if}
+								<LazyDemo slug={c.slug} />
 							</div>
 						</div>
 						<div class="mt-2.5 flex items-center justify-between gap-2">
