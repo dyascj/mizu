@@ -122,7 +122,7 @@ All notable changes to Mizu are documented here. The project follows the compati
 - GitHub Actions are pinned to full commit SHAs.
 - High and critical dependency advisories fail CI, with narrow dependency overrides for audited transitive fixes.
 
-## [0.1.0] - 2026-07-21
+## [0.1.0] - 2026-07-10
 
 ### Added
 
