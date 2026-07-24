@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "textarea",
+  "type": "registry:ui",
+  "title": "Textarea",
+  "description": "Multi-line input matching the field style.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.1.4/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "textarea/index.ts",
+      "content": "export { default as Textarea } from './textarea.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "textarea/textarea.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLTextareaAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLTextareaAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLTextAreaElement | null;\n\t\tvalue?: string | null;\n\t};\n\tlet { class: className, ref = $bindable(null), value = $bindable(), ...rest }: Props = $props();\n</script>\n\n<textarea\n\tbind:this={ref}\n\tbind:value\n\tclass={cn(\n\t\t'bg-secondary text-foreground placeholder:text-muted-foreground focus-visible:ring-ring/35 flex min-h-20 w-full rounded-xl px-3.5 py-2.5 text-sm transition-[box-shadow,border-color] duration-150 outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...rest}></textarea>\n"
+    }
+  ]
+}

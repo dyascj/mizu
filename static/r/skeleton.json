@@ -17,7 +17,7 @@
     {
       "type": "registry:file",
       "target": "skeleton/skeleton.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...rest\n\t}: HTMLAttributes<HTMLDivElement> & { ref?: HTMLDivElement | null; class?: string } = $props();\n</script>\n\n<div bind:this={ref} class={cn('animate-pulse rounded-md bg-muted/70', className)} {...rest}></div>\n"
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...rest\n\t}: HTMLAttributes<HTMLDivElement> & { ref?: HTMLDivElement | null; class?: string } = $props();\n</script>\n\n<div bind:this={ref} class={cn('bg-muted/70 animate-pulse rounded-md', className)} {...rest}></div>\n"
     }
   ]
 }

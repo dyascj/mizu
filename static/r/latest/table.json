@@ -22,7 +22,7 @@
     {
       "type": "registry:file",
       "target": "table/table-caption.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<caption class={cn('mt-3 text-sm text-muted-foreground', className)} {...rest}>\n\t{@render children?.()}\n</caption>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<caption class={cn('text-muted-foreground mt-3 text-sm', className)} {...rest}>\n\t{@render children?.()}\n</caption>\n"
     },
     {
       "type": "registry:file",
@@ -32,22 +32,22 @@
     {
       "type": "registry:file",
       "target": "table/table-footer.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableSectionElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<tfoot\n\tclass={cn(\n\t\t'border-t border-border bg-secondary/50 font-semibold [&>tr]:last:border-b-0',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</tfoot>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableSectionElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<tfoot\n\tclass={cn(\n\t\t'border-border bg-secondary/50 border-t font-semibold [&>tr]:last:border-b-0',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</tfoot>\n"
     },
     {
       "type": "registry:file",
       "target": "table/table-head.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLThAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLThAttributes & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<th\n\tclass={cn(\n\t\t'h-10 px-3 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</th>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLThAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLThAttributes & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<th\n\tclass={cn(\n\t\t'text-muted-foreground h-10 px-3 text-left align-middle font-semibold [&:has([role=checkbox])]:pr-0',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</th>\n"
     },
     {
       "type": "registry:file",
       "target": "table/table-header.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableSectionElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<thead class={cn('[&_tr]:border-b [&_tr]:border-border', className)} {...rest}>\n\t{@render children?.()}\n</thead>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableSectionElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<thead class={cn('[&_tr]:border-border [&_tr]:border-b', className)} {...rest}>\n\t{@render children?.()}\n</thead>\n"
     },
     {
       "type": "registry:file",
       "target": "table/table-row.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableRowElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<tr\n\tclass={cn(\n\t\t'border-b border-border transition-colors hover:bg-secondary/50 data-[state=selected]:bg-accent',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</tr>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLTableRowElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<tr\n\tclass={cn(\n\t\t'border-border hover:bg-secondary/50 data-[state=selected]:bg-accent border-b transition-colors',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</tr>\n"
     },
     {
       "type": "registry:file",

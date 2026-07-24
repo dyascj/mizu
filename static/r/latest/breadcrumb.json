@@ -5,7 +5,7 @@
   "title": "Breadcrumb",
   "description": "A path trail back to the top.",
   "dependencies": [
-    "@lucide/svelte@^1.21.0"
+    "@lucide/svelte@^1.26.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/latest/utils.json"
@@ -24,17 +24,17 @@
     {
       "type": "registry:file",
       "target": "breadcrumb/breadcrumb-link.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAnchorAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAnchorAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLAnchorElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<a bind:this={ref} class={cn('transition-colors hover:text-foreground', className)} {...rest}>\n\t{@render children?.()}\n</a>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAnchorAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAnchorAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLAnchorElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<a bind:this={ref} class={cn('hover:text-foreground transition-colors', className)} {...rest}>\n\t{@render children?.()}\n</a>\n"
     },
     {
       "type": "registry:file",
       "target": "breadcrumb/breadcrumb-list.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLOListElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<ol\n\tclass={cn('flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground', className)}\n\t{...rest}\n>\n\t{@render children?.()}\n</ol>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLOListElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<ol\n\tclass={cn('text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm', className)}\n\t{...rest}\n>\n\t{@render children?.()}\n</ol>\n"
     },
     {
       "type": "registry:file",
       "target": "breadcrumb/breadcrumb-page.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLSpanElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<span\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn('font-semibold text-foreground', className)}\n\t{...rest}\n>\n\t{@render children?.()}\n</span>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLSpanElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<span\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn('text-foreground font-semibold', className)}\n\t{...rest}\n>\n\t{@render children?.()}\n</span>\n"
     },
     {
       "type": "registry:file",

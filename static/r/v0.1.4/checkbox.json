@@ -1,0 +1,26 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "checkbox",
+  "type": "registry:ui",
+  "title": "Checkbox",
+  "description": "A rounded tile that fills solid blue with a check.",
+  "dependencies": [
+    "@lucide/svelte@^1.26.0",
+    "bits-ui@^2.18.1"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.1.4/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "checkbox/checkbox.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Checkbox as CheckboxPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport Check from '@lucide/svelte/icons/check';\n\timport Minus from '@lucide/svelte/icons/minus';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchecked = $bindable(false),\n\t\tindeterminate = $bindable(false),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CheckboxPrimitive.RootProps> & { class?: string } = $props();\n</script>\n\n<CheckboxPrimitive.Root\n\tbind:ref\n\tbind:checked\n\tbind:indeterminate\n\tclass={cn(\n\t\t'bg-secondary focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground relative flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-md transition-[background-color,box-shadow] duration-150 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-transparent data-[state=checked]:shadow-sm data-[state=indeterminate]:border-transparent data-[state=indeterminate]:shadow-sm',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked, indeterminate })}\n\t\t<span class=\"relative z-10 flex items-center justify-center\">\n\t\t\t{#if indeterminate}\n\t\t\t\t<Minus class=\"size-3.5\" strokeWidth={3} />\n\t\t\t{:else if checked}\n\t\t\t\t<Check class=\"size-3.5\" strokeWidth={3} />\n\t\t\t{/if}\n\t\t</span>\n\t{/snippet}\n</CheckboxPrimitive.Root>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "checkbox/index.ts",
+      "content": "export { default as Checkbox } from './checkbox.svelte';\n"
+    }
+  ]
+}

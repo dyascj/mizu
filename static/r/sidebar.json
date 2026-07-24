@@ -5,7 +5,7 @@
   "title": "Sidebar",
   "description": "A collapsible app sidebar that folds to a slim rail.",
   "dependencies": [
-    "@lucide/svelte@^1.21.0",
+    "@lucide/svelte@^1.26.0",
     "bits-ui@^2.18.1",
     "tailwind-variants@^3.2.2"
   ],
@@ -36,7 +36,7 @@
     {
       "type": "registry:file",
       "target": "sidebar/sidebar-content.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn, type WithElementRef } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"sidebar-content\"\n\tdata-sidebar=\"content\"\n\tclass={cn(\n\t\t'flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn, type WithElementRef } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"sidebar-content\"\n\tdata-sidebar=\"content\"\n\tclass={cn(\n\t\t'flex min-h-0 flex-1 [scrollbar-width:none] flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&::-webkit-scrollbar]:hidden',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
     },
     {
       "type": "registry:file",

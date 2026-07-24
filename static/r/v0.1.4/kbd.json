@@ -1,0 +1,28 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "kbd",
+  "type": "registry:ui",
+  "title": "Kbd",
+  "description": "A keyboard-key badge.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.1.4/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "kbd/index.ts",
+      "content": "export { default as Kbd } from './kbd.svelte';\nexport { default as KbdGroup } from './kbd-group.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "kbd/kbd-group.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<kbd class={cn('inline-flex items-center gap-1', className)} {...rest}>\n\t{@render children?.()}\n</kbd>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "kbd/kbd.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLElement> & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<kbd\n\tclass={cn(\n\t\t'bg-muted text-muted-foreground inline-flex h-5 min-w-5 items-center justify-center rounded-md px-1.5 font-mono text-[0.7rem] font-medium shadow-xs',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</kbd>\n"
+    }
+  ]
+}

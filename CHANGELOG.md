@@ -2,6 +2,34 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.1.4] - 2026-07-24
+
+### Added
+
+- No new components this time. v0.1.4 clears the dependency queue before feature work resumes.
+
+### Changed
+
+- Updated the development stack to SvelteKit 2.70.1, Svelte 5.56.7, Vite 8.1.5, and Tailwind CSS 4.3.3.
+- Reformatted components, blocks, demos, and documentation with Prettier 3.9. This is a formatting-only migration; component APIs and behavior are unchanged.
+- Updated Lucide to 1.26.0 and moved the same compatible range into generated registry items.
+
+### Deprecated
+
+- Nothing is deprecated in this release.
+
+### Removed
+
+- Nothing is removed in this release.
+
+### Fixed
+
+- Registry dependency tests now follow `package.json` instead of freezing the Lucide version inside a fixture.
+
+### Security
+
+- SvelteKit 2.70.1 keeps CSRF protection enabled when a build uses a non-production `NODE_ENV`.
+
 ## [0.1.3] - 2026-07-24
 
 ### Added
