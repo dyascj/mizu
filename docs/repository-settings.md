@@ -14,7 +14,7 @@ Mizu uses merge commits. This preserves the commits made on each focused topic b
 
 ## Security settings
 
-Private vulnerability reporting, Dependabot security updates, secret scanning, and secret scanning push protection must remain enabled. Security reports follow `SECURITY.md`; dependency update pull requests still pass the same required checks as other changes.
+Private vulnerability reporting, vulnerability alerts, Dependabot security updates, secret scanning, and secret scanning push protection must remain enabled. Security reports follow `SECURITY.md`; dependency update pull requests still pass the same required checks as other changes.
 
 ## Applying and checking
 
