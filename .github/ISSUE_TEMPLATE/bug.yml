@@ -13,7 +13,7 @@ body:
     attributes:
       label: Pinned Mizu version
       description: Use the version from the registry URL or manifest.
-      placeholder: 0.1.2
+      placeholder: 0.1.3
     validations:
       required: true
   - type: input

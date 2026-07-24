@@ -2,6 +2,35 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.1.3] - 2026-07-24
+
+### Added
+
+- Source-controlled GitHub repository policy with audited branch protection, merge, cleanup, vulnerability-reporting, and dependency-security settings.
+
+### Changed
+
+- Pull requests now require the full verification, browser, and CodeQL checks before merge.
+- CI fetches release provenance history before validating immutable registry metadata.
+
+### Deprecated
+
+- No additional APIs or registry channels are deprecated in this release.
+
+### Removed
+
+- Squash and rebase merge strategies are disabled in favor of documented merge commits.
+
+### Fixed
+
+- Carousel uses consumer-build-compatible parameter syntax while preserving the same scrolling behavior.
+- The repository policy enables vulnerability alerts before Dependabot security updates.
+
+### Security
+
+- `main` is protected from routine direct pushes, force pushes, and deletion.
+- Private vulnerability reporting, vulnerability alerts, Dependabot security updates, secret scanning, and push protection are enabled.
+
 ## [0.1.2] - 2026-07-24
 
 ### Added
