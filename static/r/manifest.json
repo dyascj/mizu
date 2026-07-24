@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "name": "mizu",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "channel": "compatibility",
   "registryBase": "https://mizu-ui.com/r",
-  "generationCommit": "c480c0ae1648414b6a332f23c6f1dbc8f925e5cf",
-  "generatedFrom": "https://github.com/dyascj/mizu/commit/c480c0ae1648414b6a332f23c6f1dbc8f925e5cf",
+  "generationCommit": "fff38ffc05d5ae4f48cbbc1186c97d83baf8f651",
+  "generatedFrom": "https://github.com/dyascj/mizu/commit/fff38ffc05d5ae4f48cbbc1186c97d83baf8f651",
   "files": [
     {
       "path": "button.json",
@@ -289,8 +289,8 @@
     },
     {
       "path": "carousel.json",
-      "bytes": 9830,
-      "integrity": "sha256-bmjMRUkIfRoqSnHDLrJLC94i9VMtfjQ4fDiDVjxZ7ag="
+      "bytes": 9828,
+      "integrity": "sha256-xscULyWGyRR/aSgPMELDevLM9BG8e8Hm3wgigSgJSac="
     },
     {
       "path": "resizable.json",
@@ -454,8 +454,8 @@
     },
     {
       "path": "registry.json",
-      "bytes": 467598,
-      "integrity": "sha256-r8/qZe8qGl0kG7Ha4bNVLfuXZne6N1EnjD903r4N1Lg="
+      "bytes": 467596,
+      "integrity": "sha256-hGkHGiCTofK6Th/n7OEbccAkW7SfSrWRT75YvIZ91n4="
     }
   ]
 }

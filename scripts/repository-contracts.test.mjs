@@ -17,6 +17,7 @@ test('Node and pnpm contracts agree across local development and CI', () => {
 	assert.equal(packageJson.scripts.prepare, 'svelte-kit sync');
 	assert.equal(read('.nvmrc').trim(), '22');
 	assert.match(workflow, /node-version: 22/);
+	assert.match(workflow, /fetch-depth: 0/);
 	assert.match(viteConfig, /adapter\(\{ runtime: 'nodejs22\.x' \}\)/);
 });
 

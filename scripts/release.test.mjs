@@ -1,7 +1,12 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { releaseNotes, verifyRelease } from './release.mjs';
+
+const currentVersion = JSON.parse(
+	readFileSync(new URL('../package.json', import.meta.url), 'utf8')
+).version;
 
 const completeEntry = `## [1.2.3] - 2026-07-24
 
@@ -41,8 +46,8 @@ test('rejects changelog entries missing the release template', () => {
 });
 
 test('verifies the current release metadata and immutable output', () => {
-	const release = verifyRelease('0.1.2');
+	const release = verifyRelease(currentVersion);
 
-	assert.equal(release.tag, 'v0.1.2');
+	assert.equal(release.tag, `v${currentVersion}`);
 	assert.equal(release.manifest.channel, 'versioned');
 });

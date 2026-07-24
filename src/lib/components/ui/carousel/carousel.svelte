@@ -66,7 +66,7 @@
 	function scrollNext() {
 		api?.scrollNext();
 	}
-	function scrollTo(index: number, jump?: boolean) {
+	function scrollTo(index: number, jump = false) {
 		api?.scrollTo(index, jump);
 	}
 
