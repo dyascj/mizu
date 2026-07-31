@@ -98,7 +98,7 @@
 	},
 	"dependencies": {
 		"@internationalized/date": "^3.12.2",
-		"@lucide/svelte": "^1.26.0",
+		"@lucide/svelte": "^1.27.0",
 		"@tanstack/table-core": "^8.21.3",
 		"bits-ui": "^2.18.1",
 		"clsx": "^2.1.1",
