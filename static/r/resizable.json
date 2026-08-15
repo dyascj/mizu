@@ -5,7 +5,7 @@
   "title": "Resizable",
   "description": "Draggable panes split by a quiet handle.",
   "dependencies": [
-    "@lucide/svelte@^1.26.0",
+    "@lucide/svelte@^1.28.0",
     "paneforge@^1.0.2"
   ],
   "registryDependencies": [

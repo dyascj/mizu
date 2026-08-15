@@ -5,7 +5,7 @@
   "title": "Carousel",
   "description": "A swipeable slider with pill prev/next controls.",
   "dependencies": [
-    "@lucide/svelte@^1.26.0",
+    "@lucide/svelte@^1.28.0",
     "embla-carousel-svelte@^8.6.0",
     "embla-carousel@^8.6.0"
   ],

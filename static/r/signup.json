@@ -5,7 +5,7 @@
   "title": "Sign up",
   "description": "Account creation ending in the gradient create button.",
   "dependencies": [
-    "@lucide/svelte@^1.26.0"
+    "@lucide/svelte@^1.28.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/button.json",

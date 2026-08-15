@@ -2,6 +2,40 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.2.0] - 2026-08-15
+
+### Added
+
+- No new components. v0.2.0 modernizes the data table and clears the dependency and security queue.
+
+### Changed
+
+- **Breaking: the `data-table` registry item now targets TanStack Table v9.** The vendored `createSvelteTable` wrapper, `flex-render.svelte`, and `render-helpers.ts` are removed. The item re-exports `FlexRender`, `renderComponent`, `renderSnippet`, and `createTable` (aliased as `createSvelteTable`) from the official `@tanstack/svelte-table` adapter, which itself re-exports all of `@tanstack/table-core`. Migration for consumers reinstalling the copied source:
+  - Replace `@tanstack/table-core` with `@tanstack/svelte-table` in `package.json`.
+  - Register features and row models through options instead of `get*RowModel` options. Old: `createSvelteTable({ data, columns, getCoreRowModel: getCoreRowModel(), getSortedRowModel: getSortedRowModel() })`. New: `const features = tableFeatures({ rowSortingFeature, sortedRowModel: createSortedRowModel(), sortFns }); createSvelteTable({ features, columns, get data() { return data } })`.
+  - Type column definitions against the feature set: `ColumnDef<typeof features, Row>[]`.
+  - Table state lives in rune-aware atoms; external `$state` plus `onSortingChange` wiring is no longer required. Read slices with `table.atoms.<slice>.get()` when needed.
+  - `row.getVisibleCells()` requires registering `columnVisibilityFeature`; use `row.getAllCells()` otherwise.
+  - `FlexRender` accepts `{cell}` or `{header}` directly, and still accepts the previous `content`/`context` pair. The old `attach` prop is removed.
+- Updated Lucide to 1.28.0, tailwind-variants to 3.3.1, and @internationalized/date to 3.12.3, and moved the same ranges into generated registry items.
+- Updated the development stack to SvelteKit 2.70.2, Svelte 5.56.9, Vite 8.2.1, Playwright 1.62, and jsdom 30.
+
+### Deprecated
+
+- Nothing is deprecated in this release.
+
+### Removed
+
+- The vendored data-table adapter files (`data-table.svelte.ts`, `flex-render.svelte`, `render-helpers.ts`), replaced by the official adapter as described above.
+
+### Fixed
+
+- Registry dependency tests read every dependency range from `package.json` instead of freezing the TanStack range inside a fixture.
+
+### Security
+
+- Cleared all `pnpm audit` findings: brace-expansion, postcss, nanoid, fast-uri, and cookie advisories via updated overrides, and the SvelteKit 2.70.2 content-negotiation ReDoS fix.
+
 ## [0.1.4] - 2026-07-24
 
 ### Added

@@ -5,7 +5,7 @@
   "title": "Breadcrumb",
   "description": "A path trail back to the top.",
   "dependencies": [
-    "@lucide/svelte@^1.26.0"
+    "@lucide/svelte@^1.28.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/latest/utils.json"

@@ -5,8 +5,8 @@
   "title": "Range Calendar",
   "description": "Pick a span of dates with a clean month grid.",
   "dependencies": [
-    "@internationalized/date@^3.12.2",
-    "@lucide/svelte@^1.26.0",
+    "@internationalized/date@^3.12.3",
+    "@lucide/svelte@^1.28.0",
     "bits-ui@^2.18.1"
   ],
   "registryDependencies": [

@@ -5,7 +5,7 @@
   "title": "Date Picker",
   "description": "A pill date field with a popover calendar.",
   "dependencies": [
-    "@lucide/svelte@^1.26.0",
+    "@lucide/svelte@^1.28.0",
     "bits-ui@^2.18.1"
   ],
   "registryDependencies": [

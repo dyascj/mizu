@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:ui",
+  "title": "Input",
+  "description": "A pill text field with a quiet fill and a primary focus ring.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.2.0/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "input/index.ts",
+      "content": "export { default as Input } from './input.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "input/input.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLInputAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLInputAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLInputElement | null;\n\t\tvalue?: string | number | null;\n\t};\n\tlet { class: className, ref = $bindable(null), value = $bindable(), ...rest }: Props = $props();\n</script>\n\n<input\n\tbind:this={ref}\n\tbind:value\n\tclass={cn(\n\t\t'bg-secondary text-foreground placeholder:text-muted-foreground focus-visible:ring-ring/35 flex h-10 w-full rounded-full px-4 py-2 text-sm transition-[box-shadow,border-color] duration-150 outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...rest}\n/>\n"
+    }
+  ]
+}

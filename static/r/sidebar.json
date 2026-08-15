@@ -5,9 +5,9 @@
   "title": "Sidebar",
   "description": "A collapsible app sidebar that folds to a slim rail.",
   "dependencies": [
-    "@lucide/svelte@^1.26.0",
+    "@lucide/svelte@^1.28.0",
     "bits-ui@^2.18.1",
-    "tailwind-variants@^3.2.2"
+    "tailwind-variants@^3.3.1"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/button.json",

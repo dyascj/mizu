@@ -29,7 +29,7 @@
       "title": "Button",
       "description": "Pill-shaped actions with seven flat, quiet variants.",
       "dependencies": [
-        "tailwind-variants@^3.2.2"
+        "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -54,7 +54,7 @@
       "title": "Badge",
       "description": "Compact status pills in soft intent colors.",
       "dependencies": [
-        "tailwind-variants@^3.2.2"
+        "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -148,7 +148,7 @@
       "title": "Checkbox",
       "description": "A rounded tile that fills solid blue with a check.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -254,7 +254,7 @@
       "title": "Select",
       "description": "A clean dropdown with highlighted items.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -348,7 +348,7 @@
       "title": "Alert",
       "description": "Quiet callouts in four intents.",
       "dependencies": [
-        "tailwind-variants@^3.2.2"
+        "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -441,7 +441,7 @@
       "title": "Dialog",
       "description": "A clean modal floating over a blurred scrim.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -627,7 +627,7 @@
       "title": "Accordion",
       "description": "Collapsible sections with a smooth height transition.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -828,9 +828,9 @@
       "title": "Sheet",
       "description": "A panel that slides in from any edge.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1",
-        "tailwind-variants@^3.2.2"
+        "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1006,7 +1006,7 @@
       "title": "Dropdown Menu",
       "description": "A crisp menu of actions, with submenus and checks.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -1072,7 +1072,7 @@
       "title": "Context Menu",
       "description": "A right-click menu, clean and quiet.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -1138,7 +1138,7 @@
       "title": "Menubar",
       "description": "A desktop-style bar of dropdown menus.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -1214,7 +1214,7 @@
       "title": "Navigation Menu",
       "description": "Site navigation with floating dropdown panels.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -1275,7 +1275,7 @@
       "title": "Command",
       "description": "A searchable command palette.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -1342,7 +1342,7 @@
       "title": "Combobox",
       "description": "A searchable select in a clean popover.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -1394,7 +1394,7 @@
       "description": "A two-state button with a soft pressed look.",
       "dependencies": [
         "bits-ui@^2.18.1",
-        "tailwind-variants@^3.2.2"
+        "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1449,7 +1449,7 @@
       "title": "Input OTP",
       "description": "Minimal one-time-code cells.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -1571,7 +1571,7 @@
       "title": "Native Select",
       "description": "A styled native select, no JS required.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1626,7 +1626,7 @@
       "title": "Breadcrumb",
       "description": "A path trail back to the top.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1681,7 +1681,7 @@
       "title": "Pagination",
       "description": "Page-by-page navigation controls.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -1995,8 +1995,8 @@
       "title": "Toast",
       "description": "Transient notifications that slide in and stack.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
-        "tailwind-variants@^3.2.2"
+        "@lucide/svelte@^1.28.0",
+        "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/button.json",
@@ -2055,8 +2055,8 @@
       "title": "Calendar",
       "description": "A clean month grid with a solid blue selected day.",
       "dependencies": [
-        "@internationalized/date@^3.12.2",
-        "@lucide/svelte@^1.26.0",
+        "@internationalized/date@^3.12.3",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -2168,8 +2168,8 @@
       "title": "Range Calendar",
       "description": "Pick a span of dates with a clean month grid.",
       "dependencies": [
-        "@internationalized/date@^3.12.2",
-        "@lucide/svelte@^1.26.0",
+        "@internationalized/date@^3.12.3",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -2281,7 +2281,7 @@
       "title": "Date Picker",
       "description": "A pill date field with a popover calendar.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1"
       ],
       "registryDependencies": [
@@ -2333,7 +2333,7 @@
       "title": "Rating",
       "description": "Fillable symbols for a quick score.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2358,7 +2358,7 @@
       "title": "Tags Input",
       "description": "A field that collects entries as soft pill chips.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2383,7 +2383,7 @@
       "title": "Carousel",
       "description": "A swipeable slider with pill prev/next controls.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "embla-carousel-svelte@^8.6.0",
         "embla-carousel@^8.6.0"
       ],
@@ -2436,7 +2436,7 @@
       "title": "Resizable",
       "description": "Draggable panes split by a quiet handle.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "paneforge@^1.0.2"
       ],
       "registryDependencies": [
@@ -2472,29 +2472,14 @@
       "title": "Data Table",
       "description": "TanStack-powered tables: sorting, filtering, and pagination you own.",
       "dependencies": [
-        "@tanstack/table-core@^8.21.3"
+        "@tanstack/svelte-table@^9.1.2"
       ],
       "registryDependencies": [],
       "files": [
         {
           "type": "registry:file",
-          "target": "data-table/data-table.svelte.ts",
-          "content": "import {\n\ttype RowData,\n\ttype TableOptions,\n\ttype TableOptionsResolved,\n\ttype TableState,\n\ttype Updater,\n\tcreateTable\n} from '@tanstack/table-core';\n\n/**\n * Creates a reactive TanStack table object for Svelte.\n * @param options Table options to create the table with.\n * @returns A reactive table object.\n * @example\n * ```svelte\n * <script>\n *   const table = createSvelteTable({ ... })\n * </script>\n *\n * <table>\n *   <thead>\n *     {#each table.getHeaderGroups() as headerGroup}\n *       <tr>\n *         {#each headerGroup.headers as header}\n *           <th colspan={header.colSpan}>\n *         \t   <FlexRender content={header.column.columnDef.header} context={header.getContext()} />\n *         \t </th>\n *         {/each}\n *       </tr>\n *     {/each}\n *   </thead>\n * \t <!-- ... -->\n * </table>\n * ```\n */\nexport function createSvelteTable<TData extends RowData>(options: TableOptions<TData>) {\n\tconst resolvedOptions: TableOptionsResolved<TData> = mergeObjects(\n\t\t{\n\t\t\tstate: {},\n\t\t\tonStateChange() {},\n\t\t\trenderFallbackValue: null,\n\t\t\tmergeOptions: (\n\t\t\t\tdefaultOptions: TableOptions<TData>,\n\t\t\t\toptions: Partial<TableOptions<TData>>\n\t\t\t) => {\n\t\t\t\treturn mergeObjects(defaultOptions, options);\n\t\t\t}\n\t\t},\n\t\toptions\n\t);\n\n\tconst table = createTable(resolvedOptions);\n\tlet state = $state<TableState>(table.initialState);\n\n\tfunction updateOptions() {\n\t\ttable.setOptions(() => {\n\t\t\treturn mergeObjects(resolvedOptions, options, {\n\t\t\t\tstate: mergeObjects(state, options.state || {}),\n\n\t\t\t\tonStateChange: (updater: Updater<TableState>) => {\n\t\t\t\t\tif (updater instanceof Function) state = updater(state);\n\t\t\t\t\telse state = mergeObjects(state, updater);\n\n\t\t\t\t\toptions.onStateChange?.(updater);\n\t\t\t\t}\n\t\t\t});\n\t\t});\n\t}\n\n\tupdateOptions();\n\n\t$effect.pre(() => {\n\t\tupdateOptions();\n\t});\n\n\treturn table;\n}\n\ntype MaybeThunk<T extends object> = T | (() => T | null | undefined);\ntype Intersection<T extends readonly unknown[]> = (T extends [infer H, ...infer R]\n\t? H & Intersection<R>\n\t: unknown) & {};\n\n/**\n * Lazily merges several objects (or thunks) while preserving\n * getter semantics from every source.\n *\n * Proxy-based to avoid known WebKit recursion issue.\n */\n// eslint-disable-next-line @typescript-eslint/no-explicit-any\nexport function mergeObjects<Sources extends readonly MaybeThunk<any>[]>(\n\t...sources: Sources\n): Intersection<{ [K in keyof Sources]: Sources[K] }> {\n\tconst resolve = <T extends object>(src: MaybeThunk<T>): T | undefined =>\n\t\ttypeof src === 'function' ? (src() ?? undefined) : src;\n\n\tconst findSourceWithKey = (key: PropertyKey) => {\n\t\tfor (let i = sources.length - 1; i >= 0; i--) {\n\t\t\tconst obj = resolve(sources[i]);\n\t\t\tif (obj && key in obj) return obj;\n\t\t}\n\t\treturn undefined;\n\t};\n\n\treturn new Proxy(Object.create(null), {\n\t\tget(_, key) {\n\t\t\tconst src = findSourceWithKey(key);\n\n\t\t\treturn src?.[key as never];\n\t\t},\n\n\t\thas(_, key) {\n\t\t\treturn !!findSourceWithKey(key);\n\t\t},\n\n\t\townKeys(): (string | symbol)[] {\n\t\t\t// eslint-disable-next-line svelte/prefer-svelte-reactivity\n\t\t\tconst all = new Set<string | symbol>();\n\t\t\tfor (const s of sources) {\n\t\t\t\tconst obj = resolve(s);\n\t\t\t\tif (obj) {\n\t\t\t\t\tfor (const k of Reflect.ownKeys(obj) as (string | symbol)[]) {\n\t\t\t\t\t\tall.add(k);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn [...all];\n\t\t},\n\n\t\tgetOwnPropertyDescriptor(_, key) {\n\t\t\tconst src = findSourceWithKey(key);\n\t\t\tif (!src) return undefined;\n\t\t\treturn {\n\t\t\t\tconfigurable: true,\n\t\t\t\tenumerable: true,\n\t\t\t\t// eslint-disable-next-line @typescript-eslint/no-explicit-any\n\t\t\t\tvalue: (src as any)[key],\n\t\t\t\twritable: true\n\t\t\t};\n\t\t}\n\t}) as Intersection<{ [K in keyof Sources]: Sources[K] }>;\n}\n"
-        },
-        {
-          "type": "registry:file",
-          "target": "data-table/flex-render.svelte",
-          "content": "<script\n\tlang=\"ts\"\n\tgenerics=\"TData, TValue, TContext extends HeaderContext<TData, TValue> | CellContext<TData, TValue>\"\n>\n\timport type { CellContext, ColumnDefTemplate, HeaderContext } from '@tanstack/table-core';\n\timport { RenderComponentConfig, RenderSnippetConfig } from './render-helpers.js';\n\timport type { Attachment } from 'svelte/attachments';\n\ttype Props = {\n\t\t/** The cell or header field of the current cell's column definition. */\n\t\tcontent?: TContext extends HeaderContext<TData, TValue>\n\t\t\t? ColumnDefTemplate<HeaderContext<TData, TValue>>\n\t\t\t: TContext extends CellContext<TData, TValue>\n\t\t\t\t? ColumnDefTemplate<CellContext<TData, TValue>>\n\t\t\t\t: never;\n\t\t/** The result of the `getContext()` function of the header or cell */\n\t\tcontext: TContext;\n\n\t\t/** Used to pass attachments that can't be gotten through context */\n\t\tattach?: Attachment;\n\t};\n\n\tlet { content, context, attach }: Props = $props();\n</script>\n\n{#if typeof content === 'string'}\n\t{content}\n{:else if content instanceof Function}\n\t<!-- It's unlikely that a CellContext will be passed to a Header -->\n\t<!-- eslint-disable-next-line @typescript-eslint/no-explicit-any -->\n\t{@const result = content(context as any)}\n\t{#if result instanceof RenderComponentConfig}\n\t\t{@const { component: Component, props } = result}\n\t\t<Component {...props} {attach} />\n\t{:else if result instanceof RenderSnippetConfig}\n\t\t{@const { snippet, params } = result}\n\t\t{@render snippet({ ...params, attach })}\n\t{:else}\n\t\t{result}\n\t{/if}\n{/if}\n"
-        },
-        {
-          "type": "registry:file",
           "target": "data-table/index.ts",
-          "content": "export { default as FlexRender } from './flex-render.svelte';\nexport { renderComponent, renderSnippet } from './render-helpers.js';\nexport { createSvelteTable } from './data-table.svelte.js';\n"
-        },
-        {
-          "type": "registry:file",
-          "target": "data-table/render-helpers.ts",
-          "content": "import type { Component, ComponentProps, Snippet } from 'svelte';\n\n/**\n * A helper class to make it easy to identify Svelte components in\n * `columnDef.cell` and `columnDef.header` properties.\n *\n * > NOTE: This class should only be used internally by the adapter. If you're\n * reading this and you don't know what this is for, you probably don't need it.\n *\n * @example\n * ```svelte\n * {@const result = content(context as any)}\n * {#if result instanceof RenderComponentConfig}\n *   {@const { component: Component, props } = result}\n *   <Component {...props} />\n * {/if}\n * ```\n */\nexport class RenderComponentConfig<TComponent extends Component> {\n\tcomponent: TComponent;\n\tprops: ComponentProps<TComponent> | Record<string, never>;\n\tconstructor(\n\t\tcomponent: TComponent,\n\t\tprops: ComponentProps<TComponent> | Record<string, never> = {}\n\t) {\n\t\tthis.component = component;\n\t\tthis.props = props;\n\t}\n}\n\n/**\n * A helper class to make it easy to identify Svelte Snippets in `columnDef.cell` and `columnDef.header` properties.\n *\n * > NOTE: This class should only be used internally by the adapter. If you're\n * reading this and you don't know what this is for, you probably don't need it.\n *\n * @example\n * ```svelte\n * {@const result = content(context as any)}\n * {#if result instanceof RenderSnippetConfig}\n *   {@const { snippet, params } = result}\n *   {@render snippet(params)}\n * {/if}\n * ```\n */\nexport class RenderSnippetConfig<TProps> {\n\tsnippet: Snippet<[TProps]>;\n\tparams: TProps;\n\tconstructor(snippet: Snippet<[TProps]>, params: TProps) {\n\t\tthis.snippet = snippet;\n\t\tthis.params = params;\n\t}\n}\n\n/**\n * A helper function to help create cells from Svelte components through ColumnDef's `cell` and `header` properties.\n *\n * This is only to be used with Svelte Components - use `renderSnippet` for Svelte Snippets.\n *\n * @param component A Svelte component\n * @param props The props to pass to `component`\n * @returns A `RenderComponentConfig` object that helps svelte-table know how to render the header/cell component.\n * @example\n * ```ts\n * // +page.svelte\n * const defaultColumns = [\n *   columnHelper.accessor('name', {\n *     header: header => renderComponent(SortHeader, { label: 'Name', header }),\n *   }),\n *   columnHelper.accessor('state', {\n *     header: header => renderComponent(SortHeader, { label: 'State', header }),\n *   }),\n * ]\n * ```\n * @see {@link https://tanstack.com/table/latest/docs/guide/column-defs}\n */\nexport function renderComponent<\n\t// eslint-disable-next-line @typescript-eslint/no-explicit-any\n\tT extends Component<any>,\n\tProps extends ComponentProps<T>\n>(component: T, props: Props = {} as Props) {\n\treturn new RenderComponentConfig(component, props);\n}\n\n/**\n * A helper function to help create cells from Svelte Snippets through ColumnDef's `cell` and `header` properties.\n *\n * The snippet must only take one parameter.\n *\n * This is only to be used with Snippets - use `renderComponent` for Svelte Components.\n *\n * @param snippet\n * @param params\n * @returns - A `RenderSnippetConfig` object that helps svelte-table know how to render the header/cell snippet.\n * @example\n * ```ts\n * // +page.svelte\n * const defaultColumns = [\n *   columnHelper.accessor('name', {\n *     cell: cell => renderSnippet(nameSnippet, { name: cell.row.name }),\n *   }),\n *   columnHelper.accessor('state', {\n *     cell: cell => renderSnippet(stateSnippet, { state: cell.row.state }),\n *   }),\n * ]\n * ```\n * @see {@link https://tanstack.com/table/latest/docs/guide/column-defs}\n */\nexport function renderSnippet<TProps>(snippet: Snippet<[TProps]>, params: TProps = {} as TProps) {\n\treturn new RenderSnippetConfig(snippet, params);\n}\n"
+          "content": "// TanStack Table v9 ships an official Svelte 5 adapter, so this item re-exports\n// it instead of vendoring one. `createSvelteTable` stays as the local name for\n// continuity with code written against earlier releases; it is the adapter's\n// `createTable`. The adapter also re-exports all of @tanstack/table-core, so\n// `tableFeatures`, row model factories, sort functions, and types can be\n// imported from '@tanstack/svelte-table' directly.\nexport {\n\tFlexRender,\n\trenderComponent,\n\trenderSnippet,\n\tcreateTable as createSvelteTable\n} from '@tanstack/svelte-table';\n"
         }
       ]
     },
@@ -2505,7 +2490,7 @@
       "title": "Timeline",
       "description": "A vertical history with softly glowing markers.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2555,9 +2540,9 @@
       "title": "Sidebar",
       "description": "A collapsible app sidebar that folds to a slim rail.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0",
+        "@lucide/svelte@^1.28.0",
         "bits-ui@^2.18.1",
-        "tailwind-variants@^3.2.2"
+        "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/button.json",
@@ -2712,7 +2697,7 @@
       "title": "Stepper",
       "description": "A multi-step progress trail with quiet nodes.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2737,7 +2722,7 @@
       "title": "Tree",
       "description": "A nested, keyboard-navigable file-style tree.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2828,7 +2813,7 @@
       "title": "Chat Input",
       "description": "A pill composer with attach, voice, and send, ready for a companion.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2853,7 +2838,7 @@
       "title": "Chat Bubble",
       "description": "User and assistant message bubbles, flat and quiet.",
       "dependencies": [
-        "tailwind-variants@^3.2.2"
+        "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2901,7 +2886,7 @@
       "title": "Reasoning",
       "description": "A collapsible chain of thought: shimmers while thinking, folds away when done.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2926,7 +2911,7 @@
       "title": "Tool Call",
       "description": "Live status for a tool the assistant is using, with an expandable result.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/spinner.json",
@@ -2975,7 +2960,7 @@
       "title": "Message Actions",
       "description": "Copy, regenerate, and feedback beneath a reply.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -3000,7 +2985,7 @@
       "title": "Plan",
       "description": "The agent's step list: shimmer while working, checks as it lands.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/spinner.json",
@@ -3026,7 +3011,7 @@
       "title": "Nudge",
       "description": "A proactive suggestion from the assistant, easy to act on or dismiss.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json",
@@ -3052,7 +3037,7 @@
       "title": "Aura Tile",
       "description": "Seeded pastel cover art for anything the AI generates.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -3196,7 +3181,7 @@
       "title": "Voice mode",
       "description": "A fullscreen listening surface on a drifting aurora: the orb, a live waveform, and mute and done controls.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/aurora.json",
@@ -3219,7 +3204,7 @@
       "title": "Personalize",
       "description": "Onboarding for a companion: pick a style from aura tiles, set the conversation tone, grant permissions, and create.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/aura-tile.json",
@@ -3268,7 +3253,7 @@
       "title": "Agent run",
       "description": "A single run up close: the plan advancing, a live tool call, streaming findings, and pause and stop controls.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/button.json",
@@ -3292,7 +3277,7 @@
       "title": "Sidebar layout",
       "description": "The full app shell: an icon-collapsible sidebar with chats and a group action, and a conversation in the inset.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/aura-tile.json",
@@ -3337,7 +3322,7 @@
       "title": "Sign up",
       "description": "Account creation ending in the gradient create button.",
       "dependencies": [
-        "@lucide/svelte@^1.26.0"
+        "@lucide/svelte@^1.28.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/button.json",

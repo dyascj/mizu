@@ -5,7 +5,7 @@
   "title": "Dialog",
   "description": "A clean modal floating over a blurred scrim.",
   "dependencies": [
-    "@lucide/svelte@^1.26.0",
+    "@lucide/svelte@^1.28.0",
     "bits-ui@^2.18.1"
   ],
   "registryDependencies": [

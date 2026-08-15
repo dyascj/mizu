@@ -5,7 +5,7 @@
   "title": "Native Select",
   "description": "A styled native select, no JS required.",
   "dependencies": [
-    "@lucide/svelte@^1.26.0"
+    "@lucide/svelte@^1.28.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

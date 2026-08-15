@@ -5,7 +5,7 @@
   "title": "Tool Call",
   "description": "Live status for a tool the assistant is using, with an expandable result.",
   "dependencies": [
-    "@lucide/svelte@^1.26.0"
+    "@lucide/svelte@^1.28.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/spinner.json",

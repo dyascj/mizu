@@ -6,7 +6,7 @@
   "description": "A two-state button with a soft pressed look.",
   "dependencies": [
     "bits-ui@^2.18.1",
-    "tailwind-variants@^3.2.2"
+    "tailwind-variants@^3.3.1"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/latest/utils.json"

@@ -5,7 +5,7 @@
   "title": "Input OTP",
   "description": "Minimal one-time-code cells.",
   "dependencies": [
-    "@lucide/svelte@^1.26.0",
+    "@lucide/svelte@^1.28.0",
     "bits-ui@^2.18.1"
   ],
   "registryDependencies": [

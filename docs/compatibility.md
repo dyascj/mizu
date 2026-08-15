@@ -15,7 +15,7 @@ Mizu distributes source rather than a runtime package. Its public contract still
 Use a versioned URL when reproducibility matters:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.1.4/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.2.0/button.json
 ```
 
 Use the explicit latest channel only when you intend to receive the newest released source:

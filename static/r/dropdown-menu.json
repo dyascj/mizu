@@ -5,7 +5,7 @@
   "title": "Dropdown Menu",
   "description": "A crisp menu of actions, with submenus and checks.",
   "dependencies": [
-    "@lucide/svelte@^1.26.0",
+    "@lucide/svelte@^1.28.0",
     "bits-ui@^2.18.1"
   ],
   "registryDependencies": [
