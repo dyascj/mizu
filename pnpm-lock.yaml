@@ -15,10 +15,10 @@ importers:
   .:
     dependencies:
       '@internationalized/date':
-        specifier: ^3.12.3
+        specifier: ^3.12.2
         version: 3.12.3
       '@lucide/svelte':
-        specifier: ^1.28.0
+        specifier: ^1.26.0
         version: 1.31.0(svelte@5.56.9(@typescript-eslint/types@8.67.0))
       '@tanstack/table-core':
         specifier: ^8.21.3
@@ -42,7 +42,7 @@ importers:
         specifier: ^3.6.0
         version: 3.6.0
       tailwind-variants:
-        specifier: ^3.3.1
+        specifier: ^3.2.2
         version: 3.3.1(tailwind-merge@3.6.0)(tailwindcss@4.3.3)
       vaul-svelte:
         specifier: 1.0.0-next.7
