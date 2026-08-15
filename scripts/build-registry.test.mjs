@@ -23,7 +23,7 @@ const dependencyVersions = JSON.parse(
 test('infers versioned dependencies from static, side-effect, deep, and dynamic imports', () => {
 	const source = `
 		import 'vaul-svelte';
-		import type { ColumnDef } from '@tanstack/table-core';
+		import type { ColumnDef } from '@tanstack/svelte-table';
 		export { default as Check } from '@lucide/svelte/icons/check';
 		const pane = import('paneforge/internal');
 		import { cn } from '$lib/utils.js';
@@ -35,7 +35,7 @@ test('infers versioned dependencies from static, side-effect, deep, and dynamic 
 	assert.deepEqual(inferDeps([source], dependencyVersions), {
 		deps: [
 			`@lucide/svelte@${dependencyVersions['@lucide/svelte']}`,
-			`@tanstack/table-core@${dependencyVersions['@tanstack/table-core']}`,
+			`@tanstack/svelte-table@${dependencyVersions['@tanstack/svelte-table']}`,
 			'paneforge@^1.0.2',
 			'vaul-svelte@1.0.0-next.7'
 		],
@@ -162,7 +162,7 @@ test('generated output declares audited dependencies and has exact versioned inv
 	assert.ok(drawer.dependencies.includes('bits-ui@^2.18.1'));
 	assert.ok(
 		dataTable.dependencies.includes(
-			`@tanstack/table-core@${dependencyVersions['@tanstack/table-core']}`
+			`@tanstack/svelte-table@${dependencyVersions['@tanstack/svelte-table']}`
 		)
 	);
 	assert.ok(

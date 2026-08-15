@@ -4,11 +4,12 @@
 	import { Button } from '$lib/components/ui/button';
 	import ArrowUpDown from '@lucide/svelte/icons/arrow-up-down';
 	import {
-		getCoreRowModel,
-		getSortedRowModel,
-		type ColumnDef,
-		type SortingState
-	} from '@tanstack/table-core';
+		createSortedRowModel,
+		rowSortingFeature,
+		sortFns,
+		tableFeatures,
+		type ColumnDef
+	} from '@tanstack/svelte-table';
 
 	type Run = { agent: string; task: string; status: string; tokens: number };
 
@@ -20,7 +21,15 @@
 		{ agent: 'Fjord', task: 'Release notes', status: 'Done', tokens: 3105 }
 	];
 
-	const columns: ColumnDef<Run>[] = [
+	// Sorting state lives in the table's own rune-aware atoms, so no external
+	// $state or onSortingChange wiring is needed.
+	const features = tableFeatures({
+		rowSortingFeature,
+		sortedRowModel: createSortedRowModel(),
+		sortFns
+	});
+
+	const columns: ColumnDef<typeof features, Run>[] = [
 		{ accessorKey: 'agent', header: 'Agent' },
 		{ accessorKey: 'task', header: 'Task' },
 		{ accessorKey: 'status', header: 'Status' },
@@ -31,23 +40,12 @@
 		}
 	];
 
-	let sorting = $state<SortingState>([]);
-
 	const table = createSvelteTable({
+		features,
+		columns,
 		get data() {
 			return runs;
-		},
-		columns,
-		state: {
-			get sorting() {
-				return sorting;
-			}
-		},
-		onSortingChange: (updater) => {
-			sorting = typeof updater === 'function' ? updater(sorting) : updater;
-		},
-		getCoreRowModel: getCoreRowModel(),
-		getSortedRowModel: getSortedRowModel()
+		}
 	});
 </script>
 
@@ -69,10 +67,7 @@
 									<ArrowUpDown class="size-3.5" />
 								</Button>
 							{:else if !header.isPlaceholder}
-								<FlexRender
-									content={header.column.columnDef.header}
-									context={header.getContext()}
-								/>
+								<FlexRender {header} />
 							{/if}
 						</Table.Head>
 					{/each}
@@ -82,9 +77,9 @@
 		<Table.Body>
 			{#each table.getRowModel().rows as row (row.id)}
 				<Table.Row>
-					{#each row.getVisibleCells() as cell (cell.id)}
+					{#each row.getAllCells() as cell (cell.id)}
 						<Table.Cell>
-							<FlexRender content={cell.column.columnDef.cell} context={cell.getContext()} />
+							<FlexRender {cell} />
 						</Table.Cell>
 					{/each}
 				</Table.Row>

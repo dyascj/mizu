@@ -113,11 +113,6 @@ context-menu-shortcut.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTM
 context-menu-sub-content.svelte extends ContextMenu.SubContentProps | ref?: unknown = null bindable, class: unknown
 context-menu-sub-trigger.svelte extends WithoutChild<ContextMenu.SubTriggerProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean, children: unknown
 # data-table
-flex-render.svelte | content?: TContext extends HeaderContext<TData, TValue>
-			? ColumnDefTemplate<HeaderContext<TData, TValue>>
-			: TContext extends CellContext<TData, TValue>
-				? ColumnDefTemplate<CellContext<TData, TValue>>
-				: never, context: TContext, attach?: Attachment
 # date-picker
 date-picker-content.svelte extends WithoutChildrenOrChild<DatePicker.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 8, portalProps?: DatePicker.PortalProps
 date-picker-day.svelte extends WithoutChild<DatePicker.DayProps> | ref?: unknown = null bindable, class?: string
