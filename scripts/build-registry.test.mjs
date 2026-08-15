@@ -35,7 +35,7 @@ test('infers versioned dependencies from static, side-effect, deep, and dynamic 
 	assert.deepEqual(inferDeps([source], dependencyVersions), {
 		deps: [
 			`@lucide/svelte@${dependencyVersions['@lucide/svelte']}`,
-			'@tanstack/table-core@^8.21.3',
+			`@tanstack/table-core@${dependencyVersions['@tanstack/table-core']}`,
 			'paneforge@^1.0.2',
 			'vaul-svelte@1.0.0-next.7'
 		],
@@ -160,7 +160,11 @@ test('generated output declares audited dependencies and has exact versioned inv
 
 	assert.ok(drawer.dependencies.includes('vaul-svelte@1.0.0-next.7'));
 	assert.ok(drawer.dependencies.includes('bits-ui@^2.18.1'));
-	assert.ok(dataTable.dependencies.includes('@tanstack/table-core@^8.21.3'));
+	assert.ok(
+		dataTable.dependencies.includes(
+			`@tanstack/table-core@${dependencyVersions['@tanstack/table-core']}`
+		)
+	);
 	assert.ok(
 		pinnedDrawer.registryDependencies.every((dependency) =>
 			dependency.startsWith(`https://mizu-ui.com/r/${currentVersionDir}/`)
