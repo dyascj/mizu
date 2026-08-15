@@ -100,7 +100,7 @@
 	"dependencies": {
 		"@internationalized/date": "^3.12.2",
 		"@lucide/svelte": "^1.26.0",
-		"@tanstack/table-core": "^8.21.3",
+		"@tanstack/table-core": "^9.1.2",
 		"bits-ui": "^2.18.1",
 		"clsx": "^2.1.1",
 		"embla-carousel": "^8.6.0",
