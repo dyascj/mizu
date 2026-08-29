@@ -26,6 +26,8 @@ describe('MessageActions', () => {
 		expect(screen.getByRole('button', { name: 'Message copied' })).toBeInTheDocument();
 		expect(screen.getByText('Message copied')).toHaveAttribute('aria-live', 'polite');
 
+		// Flush Svelte's own zero-delay event-propagation timer so only the component's timer remains.
+		await vi.advanceTimersByTimeAsync(0);
 		unmount();
 		expect(vi.getTimerCount()).toBe(0);
 	});
