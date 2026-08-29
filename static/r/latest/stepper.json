@@ -5,7 +5,7 @@
   "title": "Stepper",
   "description": "A multi-step progress trail with quiet nodes.",
   "dependencies": [
-    "@lucide/svelte@^1.28.0"
+    "@lucide/svelte@^1.34.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/latest/utils.json"

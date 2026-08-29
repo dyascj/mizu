@@ -2,6 +2,33 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.2.1] - 2026-08-28
+
+### Added
+
+- No new components. v0.2.1 clears the dependency queue that accumulated after v0.2.0.
+
+### Changed
+
+- Updated bits-ui to 2.19.0 and Lucide to 1.34.0, and moved the same ranges into generated registry items.
+- Updated the development stack to SvelteKit 2.70.3, Svelte 5.56.10, Vite 8.2.2, Vitest 4.1.11, ESLint 10.9.1, typescript-eslint 8.68.0, and @types/node 26.3.0.
+
+### Deprecated
+
+- Nothing is deprecated in this release.
+
+### Removed
+
+- Nothing is removed in this release.
+
+### Fixed
+
+- The message-actions teardown test flushes the zero-delay timer that Svelte 5.56.10 schedules on the first delegated event, so it only asserts on the component's own copy reset timer. Component behavior is unchanged.
+
+### Security
+
+- No security fixes. `pnpm audit` remains clear at the high level.
+
 ## [0.2.0] - 2026-08-15
 
 ### Added

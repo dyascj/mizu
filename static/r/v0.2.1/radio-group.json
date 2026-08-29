@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "radio-group",
+  "type": "registry:ui",
+  "title": "Radio Group",
+  "description": "Single-select circles that light up with a blue dot.",
+  "dependencies": [
+    "bits-ui@^2.19.0"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.2.1/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "radio-group/index.ts",
+      "content": "import Root from './radio-group.svelte';\nimport Item from './radio-group-item.svelte';\n\nexport {\n\tRoot,\n\tItem,\n\t//\n\tRoot as RadioGroup,\n\tItem as RadioGroupItem\n};\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "radio-group/radio-group-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport { RadioGroup as RadioGroupPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<RadioGroupPrimitive.ItemProps> & { class?: string } = $props();\n</script>\n\n<RadioGroupPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\t'bg-secondary focus-visible:ring-ring focus-visible:ring-offset-background relative flex size-5 shrink-0 items-center justify-center rounded-full transition-[background-color,box-shadow] duration-150 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:shadow-sm',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<div\n\t\t\tclass={cn(\n\t\t\t\t'bg-primary size-2.5 rounded-full transition-[scale] duration-150 ease-out',\n\t\t\t\tchecked ? 'scale-100' : 'scale-0'\n\t\t\t)}\n\t\t></div>\n\t{/snippet}\n</RadioGroupPrimitive.Item>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "radio-group/radio-group.svelte",
+      "content": "<script lang=\"ts\">\n\timport { RadioGroup as RadioGroupPrimitive } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(''),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: RadioGroupPrimitive.RootProps & {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<RadioGroupPrimitive.Root bind:ref bind:value class={cn('grid gap-2', className)} {...restProps}>\n\t{@render children?.()}\n</RadioGroupPrimitive.Root>\n"
+    }
+  ]
+}

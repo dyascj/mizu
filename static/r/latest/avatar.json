@@ -5,7 +5,7 @@
   "title": "Avatar",
   "description": "A rounded image with a graceful fallback.",
   "dependencies": [
-    "bits-ui@^2.18.1"
+    "bits-ui@^2.19.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/latest/utils.json"

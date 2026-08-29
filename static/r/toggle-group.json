@@ -5,7 +5,7 @@
   "title": "Toggle Group",
   "description": "A segmented set of toggles in a pill rail.",
   "dependencies": [
-    "bits-ui@^2.18.1"
+    "bits-ui@^2.19.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

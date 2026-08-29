@@ -5,7 +5,7 @@
   "title": "Plan",
   "description": "The agent's step list: shimmer while working, checks as it lands.",
   "dependencies": [
-    "@lucide/svelte@^1.28.0"
+    "@lucide/svelte@^1.34.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/spinner.json",

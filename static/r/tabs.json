@@ -5,7 +5,7 @@
   "title": "Tabs",
   "description": "A segmented pill switcher with a raised active tab.",
   "dependencies": [
-    "bits-ui@^2.18.1"
+    "bits-ui@^2.19.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

@@ -159,7 +159,7 @@ test('generated output declares audited dependencies and has exact versioned inv
 	const generatedFiles = [...itemFiles, 'manifest.json'];
 
 	assert.ok(drawer.dependencies.includes('vaul-svelte@1.0.0-next.7'));
-	assert.ok(drawer.dependencies.includes('bits-ui@^2.18.1'));
+	assert.ok(drawer.dependencies.includes(`bits-ui@${dependencyVersions['bits-ui']}`));
 	assert.ok(
 		dataTable.dependencies.includes(
 			`@tanstack/svelte-table@${dependencyVersions['@tanstack/svelte-table']}`

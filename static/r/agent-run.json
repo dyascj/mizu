@@ -5,7 +5,7 @@
   "title": "Agent run",
   "description": "A single run up close: the plan advancing, a live tool call, streaming findings, and pause and stop controls.",
   "dependencies": [
-    "@lucide/svelte@^1.28.0"
+    "@lucide/svelte@^1.34.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/button.json",
