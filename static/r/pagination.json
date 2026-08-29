@@ -5,8 +5,8 @@
   "title": "Pagination",
   "description": "Page-by-page navigation controls.",
   "dependencies": [
-    "@lucide/svelte@^1.28.0",
-    "bits-ui@^2.18.1"
+    "@lucide/svelte@^1.34.0",
+    "bits-ui@^2.19.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

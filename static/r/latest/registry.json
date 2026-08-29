@@ -148,8 +148,8 @@
       "title": "Checkbox",
       "description": "A rounded tile that fills solid blue with a check.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -174,7 +174,7 @@
       "title": "Radio Group",
       "description": "Single-select circles that light up with a blue dot.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -204,7 +204,7 @@
       "title": "Switch",
       "description": "A flat iOS-style toggle with a white thumb.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -229,7 +229,7 @@
       "title": "Slider",
       "description": "A quiet track with a blue range and a white thumb.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -254,8 +254,8 @@
       "title": "Select",
       "description": "A clean dropdown with highlighted items.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -406,7 +406,7 @@
       "title": "Avatar",
       "description": "A rounded image with a graceful fallback.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -441,8 +441,8 @@
       "title": "Dialog",
       "description": "A clean modal floating over a blurred scrim.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -507,7 +507,7 @@
       "title": "Popover",
       "description": "A floating panel anchored to a trigger.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -547,7 +547,7 @@
       "title": "Tooltip",
       "description": "A small hint shown on hover or focus.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -587,7 +587,7 @@
       "title": "Tabs",
       "description": "A segmented pill switcher with a raised active tab.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -627,8 +627,8 @@
       "title": "Accordion",
       "description": "Collapsible sections with a smooth height transition.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -663,7 +663,7 @@
       "title": "Progress",
       "description": "A quiet track with a solid blue fill.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -757,7 +757,7 @@
       "title": "Alert Dialog",
       "description": "A clean modal that interrupts for a confirmation.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/button.json",
@@ -828,8 +828,8 @@
       "title": "Sheet",
       "description": "A panel that slides in from any edge.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1",
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0",
         "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
@@ -895,7 +895,7 @@
       "title": "Drawer",
       "description": "A bottom sheet that slides up for quick actions, vaul under the hood.",
       "dependencies": [
-        "bits-ui@^2.18.1",
+        "bits-ui@^2.19.0",
         "vaul-svelte@1.0.0-next.7"
       ],
       "registryDependencies": [
@@ -971,7 +971,7 @@
       "title": "Hover Card",
       "description": "A card revealed on hover or focus.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1006,8 +1006,8 @@
       "title": "Dropdown Menu",
       "description": "A crisp menu of actions, with submenus and checks.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1072,8 +1072,8 @@
       "title": "Context Menu",
       "description": "A right-click menu, clean and quiet.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1138,8 +1138,8 @@
       "title": "Menubar",
       "description": "A desktop-style bar of dropdown menus.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1214,8 +1214,8 @@
       "title": "Navigation Menu",
       "description": "Site navigation with floating dropdown panels.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1275,8 +1275,8 @@
       "title": "Command",
       "description": "A searchable command palette.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/dialog.json",
@@ -1342,8 +1342,8 @@
       "title": "Combobox",
       "description": "A searchable select in a clean popover.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1393,7 +1393,7 @@
       "title": "Toggle",
       "description": "A two-state button with a soft pressed look.",
       "dependencies": [
-        "bits-ui@^2.18.1",
+        "bits-ui@^2.19.0",
         "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
@@ -1419,7 +1419,7 @@
       "title": "Toggle Group",
       "description": "A segmented set of toggles in a pill rail.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1449,8 +1449,8 @@
       "title": "Input OTP",
       "description": "Minimal one-time-code cells.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1571,7 +1571,7 @@
       "title": "Native Select",
       "description": "A styled native select, no JS required.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1596,7 +1596,7 @@
       "title": "Collapsible",
       "description": "A single open-and-close disclosure.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1626,7 +1626,7 @@
       "title": "Breadcrumb",
       "description": "A path trail back to the top.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1681,8 +1681,8 @@
       "title": "Pagination",
       "description": "Page-by-page navigation controls.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1737,7 +1737,7 @@
       "title": "Scroll Area",
       "description": "A scroll container with a slim, quiet bar.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -1767,7 +1767,7 @@
       "title": "Aspect Ratio",
       "description": "Hold content to a fixed ratio.",
       "dependencies": [
-        "bits-ui@^2.18.1"
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [],
       "files": [
@@ -1995,7 +1995,7 @@
       "title": "Toast",
       "description": "Transient notifications that slide in and stack.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
+        "@lucide/svelte@^1.34.0",
         "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
@@ -2056,8 +2056,8 @@
       "description": "A clean month grid with a solid blue selected day.",
       "dependencies": [
         "@internationalized/date@^3.12.3",
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/button.json",
@@ -2169,8 +2169,8 @@
       "description": "Pick a span of dates with a clean month grid.",
       "dependencies": [
         "@internationalized/date@^3.12.3",
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/button.json",
@@ -2281,8 +2281,8 @@
       "title": "Date Picker",
       "description": "A pill date field with a popover calendar.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1"
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/button.json",
@@ -2333,7 +2333,7 @@
       "title": "Rating",
       "description": "Fillable symbols for a quick score.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2358,7 +2358,7 @@
       "title": "Tags Input",
       "description": "A field that collects entries as soft pill chips.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2383,7 +2383,7 @@
       "title": "Carousel",
       "description": "A swipeable slider with pill prev/next controls.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
+        "@lucide/svelte@^1.34.0",
         "embla-carousel-svelte@^8.6.0",
         "embla-carousel@^8.6.0"
       ],
@@ -2436,7 +2436,7 @@
       "title": "Resizable",
       "description": "Draggable panes split by a quiet handle.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
+        "@lucide/svelte@^1.34.0",
         "paneforge@^1.0.2"
       ],
       "registryDependencies": [
@@ -2490,7 +2490,7 @@
       "title": "Timeline",
       "description": "A vertical history with softly glowing markers.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2540,8 +2540,8 @@
       "title": "Sidebar",
       "description": "A collapsible app sidebar that folds to a slim rail.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0",
-        "bits-ui@^2.18.1",
+        "@lucide/svelte@^1.34.0",
+        "bits-ui@^2.19.0",
         "tailwind-variants@^3.3.1"
       ],
       "registryDependencies": [
@@ -2697,7 +2697,7 @@
       "title": "Stepper",
       "description": "A multi-step progress trail with quiet nodes.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2722,7 +2722,7 @@
       "title": "Tree",
       "description": "A nested, keyboard-navigable file-style tree.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2813,7 +2813,7 @@
       "title": "Chat Input",
       "description": "A pill composer with attach, voice, and send, ready for a companion.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2886,7 +2886,7 @@
       "title": "Reasoning",
       "description": "A collapsible chain of thought: shimmers while thinking, folds away when done.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2911,7 +2911,7 @@
       "title": "Tool Call",
       "description": "Live status for a tool the assistant is using, with an expandable result.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/spinner.json",
@@ -2960,7 +2960,7 @@
       "title": "Message Actions",
       "description": "Copy, regenerate, and feedback beneath a reply.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -2985,7 +2985,7 @@
       "title": "Plan",
       "description": "The agent's step list: shimmer while working, checks as it lands.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/spinner.json",
@@ -3011,7 +3011,7 @@
       "title": "Nudge",
       "description": "A proactive suggestion from the assistant, easy to act on or dismiss.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json",
@@ -3037,7 +3037,7 @@
       "title": "Aura Tile",
       "description": "Seeded pastel cover art for anything the AI generates.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/utils.json"
@@ -3181,7 +3181,7 @@
       "title": "Voice mode",
       "description": "A fullscreen listening surface on a drifting aurora: the orb, a live waveform, and mute and done controls.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/aurora.json",
@@ -3204,7 +3204,7 @@
       "title": "Personalize",
       "description": "Onboarding for a companion: pick a style from aura tiles, set the conversation tone, grant permissions, and create.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/aura-tile.json",
@@ -3253,7 +3253,7 @@
       "title": "Agent run",
       "description": "A single run up close: the plan advancing, a live tool call, streaming findings, and pause and stop controls.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/button.json",
@@ -3277,7 +3277,7 @@
       "title": "Sidebar layout",
       "description": "The full app shell: an icon-collapsible sidebar with chats and a group action, and a conversation in the inset.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/aura-tile.json",
@@ -3322,7 +3322,7 @@
       "title": "Sign up",
       "description": "Account creation ending in the gradient create button.",
       "dependencies": [
-        "@lucide/svelte@^1.28.0"
+        "@lucide/svelte@^1.34.0"
       ],
       "registryDependencies": [
         "https://mizu-ui.com/r/latest/button.json",
