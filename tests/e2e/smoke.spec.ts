@@ -6,6 +6,7 @@ const routes = [
 	'/docs',
 	'/docs/installation',
 	'/docs/usage',
+	'/docs/theming',
 	'/docs/compatibility',
 	'/docs/components',
 	'/docs/components/button',
@@ -26,13 +27,13 @@ for (const theme of ['light', 'dark'] as const) {
 			expect(response?.ok()).toBe(true);
 			await expect(page.locator('body')).toBeVisible();
 
-			let axe = new AxeBuilder({ page })
-				.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-				// Color tokens have their own contrast contract. This smoke suite checks
-				// names, roles, states, document structure, and keyboard-facing markup.
-				.disableRules(['color-contrast']);
-			if (path === '/') axe = axe.exclude('.cards-fade');
-			if (path === '/docs/components') axe = axe.exclude('[data-no-toc]');
+			const axe = new AxeBuilder({ page }).withTags([
+				'wcag2a',
+				'wcag2aa',
+				'wcag21a',
+				'wcag21aa',
+				'wcag22aa'
+			]);
 
 			const results = await axe.analyze();
 			const violations = results.violations.map(({ id, impact, nodes }) => ({

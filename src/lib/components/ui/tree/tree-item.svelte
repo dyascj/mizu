@@ -32,7 +32,7 @@
 	onfocus={() => tree.onFocus(node.id)}
 	onkeydown={(e) => tree.onKeydown(e, node.id, hasChildren, depth)}
 	class={cn(
-		'flex h-9 cursor-pointer items-center gap-1.5 rounded-lg pr-2 transition-[background,box-shadow,color] duration-150 ease-out outline-none select-none',
+		'flex h-9 cursor-pointer items-center gap-1.5 rounded-lg pr-2 transition-[background,box-shadow,color] duration-200 ease-out outline-none select-none',
 		'hover:bg-accent focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2',
 		selected
 			? 'text-foreground bg-[color:color-mix(in_oklab,var(--primary)_14%,transparent)] font-medium'

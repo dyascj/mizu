@@ -19,5 +19,7 @@
 	class={cn('max-h-80 overflow-y-auto p-1', className)}
 	{...restProps}
 >
-	{@render children?.()}
+	<CommandPrimitive.Viewport>
+		{@render children?.()}
+	</CommandPrimitive.Viewport>
 </CommandPrimitive.List>

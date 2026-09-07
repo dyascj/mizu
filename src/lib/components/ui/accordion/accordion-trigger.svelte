@@ -19,7 +19,7 @@
 	<AccordionPrimitive.Trigger
 		bind:ref
 		class={cn(
-			'hover:text-primary focus-visible:text-primary flex w-full items-center justify-between py-4 text-left font-semibold transition-colors duration-150 outline-none [&[data-state=open]>svg]:rotate-180',
+			'hover:text-primary focus-visible:text-primary flex w-full items-center justify-between py-4 text-left font-semibold transition-colors duration-200 outline-none [&[data-state=open]>svg]:rotate-180',
 			className
 		)}
 		{...restProps}

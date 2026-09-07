@@ -8,6 +8,12 @@
 	type Props = {
 		value?: string;
 		placeholder?: string;
+		/** Accessible name for the message field. */
+		label?: string;
+		/** Attachment action. The button is hidden when omitted. */
+		onAttach?: () => void;
+		/** Voice action. The button is hidden when omitted. */
+		onVoice?: () => void;
 		disabled?: boolean;
 		/** Called with the trimmed message when the user submits. */
 		onSubmit?: (message: string) => void;
@@ -22,6 +28,9 @@
 	let {
 		value = $bindable(''),
 		placeholder = 'Type a message...',
+		label = 'Message',
+		onAttach,
+		onVoice,
 		disabled = false,
 		onSubmit,
 		leading,
@@ -44,12 +53,15 @@
 
 <form
 	onsubmit={submit}
-	class={cn('bg-card flex w-full items-center gap-1 rounded-full p-1.5 pl-2 shadow-lg', className)}
+	class={cn(
+		'bg-control focus-within:ring-ring flex w-full items-center gap-1 rounded-full p-1.5 pl-2 transition-[border-color,box-shadow] duration-200 focus-within:ring-2',
+		className
+	)}
 >
 	{#if leading}
 		{@render leading()}
-	{:else}
-		<button type="button" class={iconBtn} {disabled} aria-label="Attach">
+	{:else if onAttach}
+		<button type="button" class={iconBtn} {disabled} onclick={onAttach} aria-label="Attach">
 			<Paperclip class="size-4" />
 		</button>
 	{/if}
@@ -57,15 +69,19 @@
 	<input
 		bind:this={ref}
 		bind:value
+		aria-label={label}
+		onkeydown={(event) => {
+			if (event.isComposing && event.key === 'Enter') event.preventDefault();
+		}}
 		{placeholder}
 		{disabled}
-		class="text-foreground placeholder:text-muted-foreground h-9 min-w-0 flex-1 bg-transparent px-1.5 text-sm outline-none disabled:cursor-not-allowed"
+		class="text-foreground placeholder:text-muted-foreground h-9 min-w-0 flex-1 bg-transparent px-2.5 text-sm outline-none focus-visible:outline-none disabled:cursor-not-allowed"
 	/>
 
 	{#if trailing}
 		{@render trailing()}
-	{:else}
-		<button type="button" class={iconBtn} {disabled} aria-label="Voice input">
+	{:else if onVoice}
+		<button type="button" class={iconBtn} {disabled} onclick={onVoice} aria-label="Voice input">
 			<Mic class="size-4" />
 		</button>
 	{/if}

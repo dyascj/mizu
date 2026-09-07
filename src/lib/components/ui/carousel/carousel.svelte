@@ -71,10 +71,18 @@
 	}
 
 	function handleKeyDown(e: KeyboardEvent) {
-		if (e.key === 'ArrowLeft') {
+		if (
+			e.defaultPrevented ||
+			(e.target instanceof HTMLElement &&
+				e.target.closest('input, textarea, select, [contenteditable]'))
+		)
+			return;
+		const previousKey = orientation === 'vertical' ? 'ArrowUp' : 'ArrowLeft';
+		const nextKey = orientation === 'vertical' ? 'ArrowDown' : 'ArrowRight';
+		if (e.key === previousKey) {
 			e.preventDefault();
 			scrollPrev();
-		} else if (e.key === 'ArrowRight') {
+		} else if (e.key === nextKey) {
 			e.preventDefault();
 			scrollNext();
 		}

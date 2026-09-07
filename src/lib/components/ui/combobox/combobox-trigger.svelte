@@ -15,7 +15,7 @@
 <ComboboxPrimitive.Trigger
 	bind:ref
 	class={cn(
-		'text-muted-foreground absolute top-1/2 right-2 inline-flex size-6 -translate-y-1/2 items-center justify-center rounded-md transition-[scale] duration-150 outline-none active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50',
+		'text-muted-foreground absolute top-1/2 right-2 inline-flex size-6 -translate-y-1/2 items-center justify-center rounded-md transition-[scale] duration-200 outline-none active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50',
 		className
 	)}
 	{...restProps}

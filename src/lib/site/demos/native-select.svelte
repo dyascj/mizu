@@ -5,7 +5,7 @@
 </script>
 
 <div class="w-full max-w-xs">
-	<NativeSelect bind:value>
+	<NativeSelect aria-label="Water type" bind:value>
 		<option value="still">Still</option>
 		<option value="sparkling">Sparkling</option>
 		<option value="mineral">Mineral</option>

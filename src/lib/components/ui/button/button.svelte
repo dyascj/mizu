@@ -2,7 +2,7 @@
 	import { tv, type VariantProps } from 'tailwind-variants';
 
 	export const buttonVariants = tv({
-		base: 'inline-flex shrink-0 select-none items-center justify-center gap-2 whitespace-nowrap font-medium outline-none transition-[background-color,color,box-shadow,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50',
+		base: 'inline-flex shrink-0 select-none items-center justify-center gap-2 whitespace-nowrap font-medium outline-none transition-[background-color,color,box-shadow,scale] duration-200 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50',
 		variants: {
 			variant: {
 				primary: 'bg-primary text-primary-foreground shadow-sm hover:bg-primary-hover',
@@ -38,6 +38,7 @@
 		size?: ButtonSize;
 		class?: string;
 		href?: string;
+		disabled?: boolean;
 		ref?: HTMLElement | null;
 		children?: Snippet;
 	} & HTMLButtonAttributes &
@@ -50,16 +51,36 @@
 		href = undefined,
 		ref = $bindable(null),
 		children,
+		disabled = false,
 		...rest
 	}: Props = $props();
 </script>
 
 {#if href}
-	<a bind:this={ref} {href} class={cn(buttonVariants({ variant, size }), className)} {...rest}>
+	<a
+		{...rest}
+		bind:this={ref}
+		href={disabled ? undefined : href}
+		onclick={disabled ? undefined : rest.onclick}
+		role={disabled ? 'link' : rest.role}
+		aria-disabled={disabled || undefined}
+		tabindex={disabled ? -1 : rest.tabindex}
+		class={cn(
+			buttonVariants({ variant, size }),
+			disabled && 'pointer-events-none opacity-50',
+			className
+		)}
+	>
 		{@render children?.()}
 	</a>
 {:else}
-	<button bind:this={ref} class={cn(buttonVariants({ variant, size }), className)} {...rest}>
+	<button
+		type="button"
+		{disabled}
+		bind:this={ref}
+		class={cn(buttonVariants({ variant, size }), className)}
+		{...rest}
+	>
 		{@render children?.()}
 	</button>
 {/if}

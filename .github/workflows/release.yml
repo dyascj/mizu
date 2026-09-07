@@ -85,9 +85,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          release_flags=()
+          if [[ "$VERSION" == *-* ]]; then
+            release_flags+=(--prerelease --latest=false)
+          fi
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release edit "$TAG" --title "Mizu $TAG" --notes-file release-notes.md
+            gh release edit "$TAG" --title "Mizu $TAG" --notes-file release-notes.md "${release_flags[@]}"
             gh release upload "$TAG" --clobber "mizu-registry-$TAG.tar.gz" "mizu-registry-$TAG-manifest.json" "mizu-registry-$TAG.sha256"
           else
-            gh release create "$TAG" --verify-tag --title "Mizu $TAG" --notes-file release-notes.md "mizu-registry-$TAG.tar.gz" "mizu-registry-$TAG-manifest.json" "mizu-registry-$TAG.sha256"
+            gh release create "$TAG" --verify-tag --title "Mizu $TAG" --notes-file release-notes.md "${release_flags[@]}" "mizu-registry-$TAG.tar.gz" "mizu-registry-$TAG-manifest.json" "mizu-registry-$TAG.sha256"
           fi

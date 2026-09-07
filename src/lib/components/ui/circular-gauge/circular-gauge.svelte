@@ -86,8 +86,7 @@
 			stroke-linecap="round"
 			stroke-dasharray={circumference}
 			stroke-dashoffset={dashOffset}
-			class="transition-[stroke-dashoffset] duration-700 ease-out"
-			style="filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primary) 50%, transparent));"
+			class="transition-[stroke-dashoffset] duration-300 ease-out"
 		/>
 	</svg>
 	<div
@@ -100,9 +99,7 @@
 			</span>
 		{/if}
 		{#if label}
-			<span
-				class="text-muted-foreground text-[0.7rem] leading-none font-medium tracking-wide uppercase"
-			>
+			<span class="text-muted-foreground text-[0.7rem] leading-none font-medium">
 				{label}
 			</span>
 		{/if}

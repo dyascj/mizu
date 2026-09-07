@@ -38,3 +38,13 @@ describe('TagsInput', () => {
 		expect(input).toHaveAttribute('readonly');
 	});
 });
+
+test('does not commit a tag during IME composition', async () => {
+	const onValueChange = vi.fn();
+	render(TagsInput, { onValueChange });
+	const input = screen.getByRole('textbox');
+	await fireEvent.input(input, { target: { value: '日本語' } });
+	await fireEvent.keyDown(input, { key: 'Enter', isComposing: true });
+	expect(onValueChange).not.toHaveBeenCalled();
+	expect(input).toHaveValue('日本語');
+});

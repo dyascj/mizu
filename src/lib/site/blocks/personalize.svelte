@@ -11,9 +11,10 @@
 	let tone = $state('balanced');
 	let speech = $state(true);
 	let memory = $state(true);
+	let created = $state(false);
 </script>
 
-<div class="bg-card mx-auto flex w-full max-w-md flex-col gap-7 rounded-3xl p-7 shadow-md">
+<div class="bg-card mx-auto flex w-full max-w-md flex-col gap-7 rounded-3xl p-5 shadow-md sm:p-7">
 	<div>
 		<h2 class="text-lg font-semibold tracking-tight">Make it yours</h2>
 		<p class="text-muted-foreground mt-1 text-sm">
@@ -40,7 +41,7 @@
 
 	<div class="flex flex-col gap-2.5">
 		<p class="text-sm font-medium">Conversation style</p>
-		<ToggleGroup.Root type="single" bind:value={tone} class="w-fit">
+		<ToggleGroup.Root type="single" bind:value={tone} class="w-fit max-w-full flex-wrap">
 			<ToggleGroup.Item value="creative">Creative</ToggleGroup.Item>
 			<ToggleGroup.Item value="balanced">Balanced</ToggleGroup.Item>
 			<ToggleGroup.Item value="precise">Precise</ToggleGroup.Item>
@@ -64,8 +65,11 @@
 		</div>
 	</div>
 
-	<Button variant="ai" size="lg" class="w-full">
+	<Button variant="ai" size="lg" class="w-full" onclick={() => (created = true)}>
 		<Sparkles class="size-4" />
 		Create my companion
 	</Button>
+	{#if created}<p role="status" class="text-muted-foreground text-sm">
+			Preview saved. Your companion uses {style} with a {tone || 'balanced'} tone.
+		</p>{/if}
 </div>

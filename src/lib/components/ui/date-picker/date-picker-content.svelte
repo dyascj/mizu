@@ -23,7 +23,7 @@
 		bind:ref
 		{sideOffset}
 		class={cn(
-			' text-popover-foreground bg-popover z-50 w-fit rounded-2xl p-3 shadow-xl transition-[opacity,transform] duration-150 outline-none data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
+			' text-popover-foreground bg-popover z-50 w-fit rounded-2xl p-3 shadow-xl transition-[opacity,transform] duration-200 outline-none data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
 			className
 		)}
 		{...restProps}
@@ -62,7 +62,7 @@
 									<DatePickerPrimitive.GridRow class="flex">
 										{#each weekdays as weekday, i (i)}
 											<DatePickerPrimitive.HeadCell
-												class="text-muted-foreground w-9 text-[0.7rem] font-medium tracking-wide uppercase"
+												class="text-muted-foreground w-9 text-[0.7rem] font-medium"
 											>
 												{weekday.slice(0, 2)}
 											</DatePickerPrimitive.HeadCell>

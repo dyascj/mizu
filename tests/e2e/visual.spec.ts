@@ -15,7 +15,7 @@ for (const slug of components) {
 
 			if (theme === 'custom-primary') {
 				await page.evaluate(() => {
-					document.documentElement.style.setProperty('--primary', '#ff0066');
+					document.documentElement.style.setProperty('--primary', '#6d28d9');
 				});
 			}
 

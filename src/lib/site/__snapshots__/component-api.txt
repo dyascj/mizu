@@ -38,7 +38,7 @@ breadcrumb-page.svelte extends HTMLAttributes<HTMLSpanElement> | class?: string,
 breadcrumb-separator.svelte extends HTMLAttributes<HTMLLIElement> | class?: string, children?: Snippet
 breadcrumb.svelte extends HTMLAttributes<HTMLElement> | class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
 # button
-button.svelte extends HTMLButtonAttributes & HTMLAnchorAttributes | variant?: 'primary' | 'secondary' | 'destructive' | 'success' | 'outline' | 'ghost' | 'ai' | 'link' = 'primary', size?: 'sm' | 'md' | 'lg' | 'icon' = 'md', class?: string, href?: string = undefined, ref?: HTMLElement | null = null bindable, children?: Snippet
+button.svelte extends HTMLButtonAttributes & HTMLAnchorAttributes | variant?: 'primary' | 'secondary' | 'destructive' | 'success' | 'outline' | 'ghost' | 'ai' | 'link' = 'primary', size?: 'sm' | 'md' | 'lg' | 'icon' = 'md', class?: string, href?: string = undefined, ref?: HTMLElement | null = null bindable, children?: Snippet, disabled?: boolean = false
 # button-group
 button-group-text.svelte extends HTMLAttributes<HTMLSpanElement> | class?: string, children?: Snippet
 button-group.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
@@ -77,7 +77,7 @@ carousel.svelte extends HTMLAttributes<HTMLDivElement> | opts?: CarouselOptions 
 # chat-bubble
 chat-bubble.svelte extends HTMLAttributes<HTMLDivElement> | role?: 'user' | 'assistant' = 'assistant', animate?: boolean = true, class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
 # chat-input
-chat-input.svelte | value?: string = '' bindable, placeholder?: string = 'Type a message...', disabled?: boolean = false, onSubmit?: (message: string) => void, leading?: Snippet, trailing?: Snippet, class?: string, ref?: HTMLInputElement | null = null bindable
+chat-input.svelte | value?: string = '' bindable, placeholder?: string = 'Type a message...', label?: string = 'Message', onAttach?: () => void, onVoice?: () => void, disabled?: boolean = false, onSubmit?: (message: string) => void, leading?: Snippet, trailing?: Snippet, class?: string, ref?: HTMLInputElement | null = null bindable
 # checkbox
 checkbox.svelte extends WithoutChildrenOrChild<Checkbox.RootProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, indeterminate?: unknown = false bindable, class?: string
 # circular-gauge
@@ -329,7 +329,7 @@ spinner.svelte extends HTMLAttributes<HTMLDivElement> | size?: number = 20, clas
 # stepper
 stepper.svelte extends Omit<HTMLAttributes<HTMLOListElement>, 'children'> | steps: Step[], current?: number = 0 bindable, orientation?: 'horizontal' | 'vertical' = 'horizontal', clickable?: boolean = false, onStepChange?: (i: number) => void, class?: string, ref?: HTMLOListElement | null = null bindable
 # streaming-text
-streaming-text.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | text: string, speed?: number = 60, cursor?: boolean = true, onComplete?: () => void, class?: string, ref?: HTMLSpanElement | null = null bindable
+streaming-text.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | text: string, speed?: number = 60, cursor?: boolean = true, paused?: boolean = false, onComplete?: () => void, class?: string, ref?: HTMLSpanElement | null = null bindable
 # switch
 switch.svelte extends WithoutChildrenOrChild<Switch.RootProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, class?: string
 # table
@@ -378,6 +378,6 @@ tooltip.svelte extends Tooltip.RootProps |
 tree-item.svelte | node: TreeNode, depth: number
 tree.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | items: TreeNode[], selected?: string | undefined = undefined bindable, expanded?: string[] = undefined bindable, defaultExpanded?: string[] = [], onSelect?: (id: string) => void, class?: string, ref?: HTMLDivElement | null = null bindable
 # voice-orb
-voice-orb.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | state?: 'idle' | 'listening' | 'thinking' | 'speaking' = 'idle', size?: number = 96, class?: string, ref?: HTMLDivElement | null = null bindable
+voice-orb.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | state?: 'idle' | 'listening' | 'thinking' | 'speaking' = 'idle', size?: number = 96, volume?: number = 0, class?: string, ref?: HTMLDivElement | null = null bindable
 # waveform
 waveform.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | active?: boolean = true, bars?: number = 5, class?: string, ref?: HTMLDivElement | null = null bindable

@@ -42,3 +42,9 @@ Keep vulnerability details in the private advisory until coordinated disclosure.
 ## Deployment rollback
 
 A site rollback may restore a prior application deployment, but it must not erase a published registry version. Confirm that every previously released `/r/v*` URL remains available after rollback. If a rollback would remove a newer pinned directory, redeploy an artifact containing both versions instead.
+
+## Candidate releases
+
+Set a prerelease version in `package.json` and `registry-release.json`, and set `stableVersion` to the most recent stable release. The generator writes the candidate's immutable directory while preserving the stable install aliases. The consumer check tests the version recorded in `registry-release.json`.
+
+The release workflow marks prereleases as such on GitHub and does not make them the latest stable release. Complete the keyboard and VoiceOver review required by ADR 0003 before promoting a new stable minor version. Promotion uses a new immutable version directory; candidate directories remain unchanged.

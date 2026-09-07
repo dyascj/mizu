@@ -93,11 +93,11 @@
 		switch (e.key) {
 			case 'ArrowRight':
 			case 'ArrowUp':
-				next = (value ?? 0) + step;
+				next = Math.max(0, Math.min(normalizedMax, normalizedValue)) + step;
 				break;
 			case 'ArrowLeft':
 			case 'ArrowDown':
-				next = (value ?? 0) - step;
+				next = Math.max(0, Math.min(normalizedMax, normalizedValue)) - step;
 				break;
 			case 'Home':
 				next = 0;
@@ -127,7 +127,7 @@
 	onclick={handleClick}
 	onmouseleave={() => (hover = null)}
 	class={cn(
-		'focus-visible:ring-ring focus-visible:ring-offset-background inline-flex items-center gap-1 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+		'focus-visible:ring-ring focus-visible:ring-offset-background inline-flex max-w-full flex-wrap items-center gap-1 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
 		interactive && 'cursor-pointer',
 		disabled && 'pointer-events-none opacity-50',
 		className
@@ -141,7 +141,7 @@
 			data-rating-index={i}
 			aria-hidden="true"
 			class={cn(
-				'relative inline-grid place-items-center transition-[scale] duration-150 ease-out',
+				'relative inline-grid place-items-center transition-[scale] duration-200 ease-out',
 				interactive && 'hover:scale-110 active:scale-[0.96]'
 			)}
 			style="width: {normalizedSize}px; height: {normalizedSize}px;"
@@ -149,7 +149,7 @@
 			<!-- Empty outline base -->
 			<DropletIcon
 				class="text-muted-foreground/40 absolute inset-0 m-auto"
-				{size}
+				size={normalizedSize}
 				strokeWidth={1.75}
 			/>
 			<!-- Filled overlay, clipped to the fill fraction. The inner icon keeps
@@ -157,12 +157,12 @@
 			{#if fill > 0}
 				<span
 					class="absolute top-0 left-0 h-full overflow-hidden"
-					style="width: {fill === 0.5 ? size / 2 : size}px;"
+					style="width: {fill === 0.5 ? normalizedSize / 2 : normalizedSize}px;"
 					aria-hidden="true"
 				>
 					<DropletIcon
-						class="text-mizu-500 absolute top-0 left-0 drop-shadow-[0_1px_3px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
-						{size}
+						class="text-primary absolute top-0 left-0"
+						size={normalizedSize}
 						fill="currentColor"
 						strokeWidth={1.75}
 					/>

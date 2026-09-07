@@ -11,7 +11,13 @@
 	</Field.Root>
 	<Field.Root>
 		<Field.Label for="capacity">Capacity (litres)</Field.Label>
-		<Input id="capacity" type="number" placeholder="0" />
-		<Field.Error>Capacity must be greater than zero.</Field.Error>
+		<Input
+			id="capacity"
+			type="number"
+			placeholder="0"
+			aria-invalid="true"
+			aria-describedby="capacity-error"
+		/>
+		<Field.Error id="capacity-error">Capacity must be greater than zero.</Field.Error>
 	</Field.Root>
 </Field.Group>

@@ -9,7 +9,7 @@
 		"slug": "voice-mode",
 		"name": "Voice mode",
 		"category": "Featured",
-		"description": "A fullscreen listening surface on a drifting aurora: the orb, a live waveform, and mute and done controls."
+		"description": "A voice session with a cloud orb, waveform, mute, and end-session controls."
 	},
 	{
 		"slug": "personalize",
@@ -39,13 +39,13 @@
 		"slug": "login",
 		"name": "Login",
 		"category": "Auth",
-		"description": "A quiet sign-in card with the orb, email and password, and GitHub."
+		"description": "A sign-in form with email and password, autofill, and local preview feedback."
 	},
 	{
 		"slug": "signup",
 		"name": "Sign up",
 		"category": "Auth",
-		"description": "Account creation ending in the gradient create button."
+		"description": "An account form with validation, password autofill, and a required terms agreement."
 	},
 	{
 		"slug": "otp",

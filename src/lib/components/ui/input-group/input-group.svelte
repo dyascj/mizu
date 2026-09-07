@@ -14,7 +14,7 @@
 <div
 	bind:this={ref}
 	class={cn(
-		'bg-secondary focus-within:ring-ring/35 flex items-center rounded-full transition-[border-color,box-shadow] focus-within:ring-2',
+		'bg-control focus-within:ring-ring flex items-center rounded-full transition-[border-color,box-shadow] focus-within:ring-2',
 		className
 	)}
 	{...rest}

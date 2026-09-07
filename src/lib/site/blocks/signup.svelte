@@ -9,28 +9,51 @@
 	let email = $state('');
 	let password = $state('');
 	let agreed = $state(false);
+	let submitted = $state(false);
 </script>
 
-<div class="bg-card mx-auto flex w-full max-w-sm flex-col gap-6 rounded-3xl p-8 shadow-md">
+<form
+	onsubmit={(event) => {
+		event.preventDefault();
+		submitted = true;
+	}}
+	class="bg-card mx-auto flex w-full max-w-sm flex-col gap-6 rounded-3xl p-5 shadow-md sm:p-8"
+>
 	<div>
 		<h2 class="text-lg font-semibold tracking-tight">Create your account</h2>
-		<p class="text-muted-foreground mt-1 text-sm">A companion of your own, in about a minute.</p>
+		<p class="text-muted-foreground mt-1 text-sm">Set up your workspace.</p>
 	</div>
 
 	<div class="flex flex-col gap-4">
 		<div class="flex flex-col gap-1.5">
 			<Label for="signup-name">Name</Label>
-			<Input id="signup-name" placeholder="Ada Rivers" bind:value={name} />
+			<Input
+				id="signup-name"
+				autocomplete="name"
+				required
+				placeholder="Ada Rivers"
+				bind:value={name}
+			/>
 		</div>
 		<div class="flex flex-col gap-1.5">
 			<Label for="signup-email">Email</Label>
-			<Input id="signup-email" type="email" placeholder="you@water.com" bind:value={email} />
+			<Input
+				id="signup-email"
+				type="email"
+				autocomplete="email"
+				required
+				placeholder="you@example.com"
+				bind:value={email}
+			/>
 		</div>
 		<div class="flex flex-col gap-1.5">
 			<Label for="signup-password">Password</Label>
 			<Input
 				id="signup-password"
 				type="password"
+				autocomplete="new-password"
+				required
+				minlength={8}
 				placeholder="8+ characters"
 				bind:value={password}
 			/>
@@ -43,8 +66,13 @@
 		</div>
 	</div>
 
-	<Button variant="ai" class="w-full" disabled={!agreed}>
+	<Button type="submit" variant="primary" class="w-full" disabled={!agreed}>
 		<Sparkles class="size-4" />
-		Create my companion
+		Create account
 	</Button>
-</div>
+	<p role="status" class="text-muted-foreground text-xs">
+		{submitted
+			? 'Preview complete. No account was created.'
+			: 'Preview only. Your details stay in this browser.'}
+	</p>
+</form>

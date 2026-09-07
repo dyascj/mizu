@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { SvelteSet } from 'svelte/reactivity';
 	import { afterNavigate } from '$app/navigation';
 	import { cn } from '$lib/utils.js';
 
@@ -27,8 +28,14 @@
 			(h) => !h.closest('[data-no-toc]')
 		);
 		const next: Item[] = [];
+		const ids = new SvelteSet<string>();
 		for (const h of headings) {
-			if (!h.id) h.id = slugify(h.textContent ?? '');
+			const base = h.id || slugify(h.textContent ?? '') || 'section';
+			let id = base;
+			let suffix = 2;
+			while (ids.has(id)) id = `${base}-${suffix++}`;
+			ids.add(id);
+			h.id = id;
 			next.push({ id: h.id, text: h.textContent ?? '', level: h.tagName === 'H3' ? 3 : 2 });
 		}
 		items = next;
@@ -48,7 +55,26 @@
 
 	onMount(() => {
 		build();
-		return () => observer?.disconnect();
+		let frame = 0;
+		const mutation = new MutationObserver((records) => {
+			if (
+				records.every((record) =>
+					(record.target instanceof Element ? record.target : record.target.parentElement)?.closest(
+						'[data-no-toc]'
+					)
+				)
+			)
+				return;
+			cancelAnimationFrame(frame);
+			frame = requestAnimationFrame(build);
+		});
+		const root = document.getElementById('doc-content');
+		if (root) mutation.observe(root, { childList: true, subtree: true });
+		return () => {
+			observer?.disconnect();
+			mutation.disconnect();
+			cancelAnimationFrame(frame);
+		};
 	});
 
 	afterNavigate(() => requestAnimationFrame(build));
@@ -56,14 +82,14 @@
 
 {#if items.length >= 2}
 	<nav aria-label="On this page" class="sticky top-24 text-[0.8125rem]">
-		<p class="text-muted-foreground mb-3 px-3 font-semibold">On This Page</p>
+		<p class="text-muted-foreground mb-3 px-3 font-semibold">On this page</p>
 		<ul class="flex flex-col gap-0.5">
 			{#each items as item (item.id)}
 				<li>
 					<a
 						href={`#${item.id}`}
 						class={cn(
-							'block rounded-md px-3 py-1.5 leading-snug transition-colors',
+							'block rounded-md px-3 py-1.5 leading-snug [overflow-wrap:anywhere] transition-colors',
 							item.level === 3 && 'pl-6',
 							activeId === item.id
 								? 'bg-muted text-foreground font-medium'

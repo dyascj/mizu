@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import SearchIcon from '@lucide/svelte/icons/search';
 	import MobileNav from './mobile-nav.svelte';
 	import MizuLogo from './mizu-logo.svelte';
@@ -17,21 +18,20 @@
 	];
 </script>
 
-<header class="sticky top-3 z-40 px-3 sm:px-5">
-	<div
-		class="glass mx-auto flex h-14 max-w-6xl items-center gap-4 rounded-full px-4 shadow-md sm:px-5"
-	>
+<header class="bg-background/90 sticky top-0 z-40 px-5 backdrop-blur-xl sm:px-8">
+	<div class="mx-auto flex h-18 max-w-[1376px] items-center gap-4">
 		<!-- Left: mobile menu + logo + nav -->
 		<div class="flex items-center gap-2 sm:gap-6">
 			<MobileNav />
 			<a href="/" class="flex items-center" aria-label="{siteConfig.name} home">
 				<MizuLogo />
 			</a>
-			<nav class="hidden items-center gap-5 md:flex">
+			<nav aria-label="Main navigation" class="hidden items-center gap-6 lg:flex">
 				{#each navLinks as l (l.href)}
 					<a
 						href={l.href}
-						class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+						aria-current={page.url.pathname === l.href ? 'page' : undefined}
+						class="text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground text-sm font-medium transition-colors"
 					>
 						{l.label}
 					</a>
@@ -44,7 +44,7 @@
 			<button
 				onclick={() => (search.open = true)}
 				aria-label="Search"
-				class="bg-secondary text-muted-foreground hover:text-foreground inline-flex items-center gap-2 rounded-full px-2.5 py-1.5 text-sm transition-colors sm:w-48 sm:px-3.5"
+				class="bg-secondary text-muted-foreground hover:text-foreground inline-flex min-h-10 items-center gap-2 rounded-full px-2.5 py-1.5 text-sm transition-colors sm:w-48 sm:px-3.5"
 			>
 				<SearchIcon class="size-4 shrink-0" />
 				<span class="hidden flex-1 text-left sm:inline">Search</span>

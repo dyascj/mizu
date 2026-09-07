@@ -13,7 +13,8 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const registryDir = join(root, 'static/r');
+const release = JSON.parse(readFileSync(join(root, 'registry-release.json'), 'utf8'));
+const registryDir = join(root, 'static/r', `v${release.version}`);
 const requestedItems = process.argv.slice(2);
 const registry = JSON.parse(readFileSync(join(registryDir, 'registry.json'), 'utf8'));
 const entryItems = requestedItems.length ? requestedItems : registry.items.map(({ name }) => name);

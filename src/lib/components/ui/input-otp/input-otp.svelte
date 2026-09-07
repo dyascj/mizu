@@ -19,7 +19,10 @@
 	bind:ref
 	bind:value
 	{maxlength}
-	class={cn('flex items-center gap-2 disabled:cursor-not-allowed disabled:opacity-50', className)}
+	class={cn(
+		'flex max-w-full items-center gap-1.5 disabled:cursor-not-allowed disabled:opacity-50',
+		className
+	)}
 	{children}
 	{...restProps}
 />

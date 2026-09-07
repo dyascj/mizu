@@ -1,139 +1,124 @@
 <script lang="ts">
+	import SurfacePreview from '$lib/site/surface-preview.svelte';
 	import CodeBlock from '$lib/site/code-block.svelte';
 	import { siteConfig } from '$lib/site/config';
 	import Seo from '$lib/site/seo.svelte';
-
-	const ramp = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
-
-	const tokenSnippet = `:root {
-	--background: #ffffff;
-	--foreground: #1c2b33;
-	--card: #ffffff;
-	--muted: #f2f4f7;
-	--muted-foreground: #70767d;
-	--primary: #00b2ff; /* the one accent */
-	--primary-foreground: #ffffff;
-	--border: #eceef1; /* semantic strokes only */
-	--ring: var(--primary);
-
-	/* Soft ambient elevation, never bevels */
-	--elevation-sm: 0 0 10px rgba(28, 43, 51, 0.06);
-	--elevation-lg: 0 8px 24px rgba(28, 43, 51, 0.1);
-
-	/* Pastel auras for AI moments */
-	--orb-pink: radial-gradient(circle, rgba(253, 221, 222, 0.85) 0%, transparent 70%);
-	--aurora: linear-gradient(135deg, #f4e7ff 0%, #fdddde 100%);
+	const tokens = [
+		{ name: 'Page', token: '--background' },
+		{ name: 'Card', token: '--card' },
+		{ name: 'Popover', token: '--popover' },
+		{ name: 'Secondary', token: '--secondary' },
+		{ name: 'Muted text', token: '--muted-foreground' },
+		{ name: 'Primary', token: '--primary' }
+	];
+	const theme = `:root {
+  --background: #ffffff;
+  --foreground: #202020;
+  --card: #ffffff;
+  --popover: #ffffff;
+  --secondary: #f5f5f5;
+  --muted: #f5f5f5;
+  --muted-foreground: #626262;
+  --primary: #171717;
+  --primary-hover: #333333;
+  --primary-foreground: #ffffff;
+  --control: #e8e8e8;
+  --input: #8a8a8a;
+  --ring: var(--primary);
 }
 
 .dark {
-	--background: #000000; /* pure black */
-	--foreground: #f6f8f9;
-	--card: #0c1116; /* slate lifted from the ink */
-	--primary: #00b2ff;
-	/* …each token gets a dark variant… */
+  --background: #000000;
+  --foreground: #f5f5f5;
+  --card: #141414;
+  --popover: #202020;
+  --secondary: #202020;
+  --muted: #202020;
+  --muted-foreground: #a3a3a3;
+  --primary: #f5f5f5;
+  --primary-hover: #d9d9d9;
+  --primary-foreground: #171717;
+  --control: #363636;
+  --input: #858585;
 }`;
+	const accent = `:root {
+  --primary: #6d28d9;
+  --primary-hover: #5b21b6;
+  --primary-foreground: #ffffff;
+}
 
-	const utilities = [
-		['glass / glass-subtle', 'Flat frosted translucency + backdrop blur, for floating panels.'],
-		['orb-pink / -blue / -purple / -peach', 'Soft radial pastel auras. Pair with blur for glow.'],
-		['aurora / -cool / -iris / -mint', 'Pastel linear washes for surfaces and art.'],
-		['shadow-xs … shadow-xl / shadow-glow', 'Soft ambient elevation, plus a blue glow.']
-	];
+.dark {
+  --primary: #c4b5fd;
+  --primary-hover: #ddd6fe;
+  --primary-foreground: #221442;
+}`;
 </script>
 
 <Seo
 	title="Theming · {siteConfig.name}"
-	description="Theme Mizu with a handful of tokens. White surfaces, soft shadows, a tonal dark ladder, and pastel auras, with an airy light mode and a pure-black dark mode, built for Tailwind v4."
+	description="Customize Mizu's neutral palette, semantic color tokens, light and dark themes, and reduced-motion behavior."
 />
-
-<article class="max-w-2xl">
-	<h1 class="text-3xl font-semibold">Theming</h1>
-	<p class="text-muted-foreground mt-3 text-lg">
-		One file drives everything. Mizu's look lives in CSS custom properties, mapped to Tailwind v4
-		utilities. Recolor the system by changing a handful of tokens.
+<article class="max-w-3xl">
+	<h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Theming</h1>
+	<p class="text-muted-foreground mt-4 text-lg leading-relaxed">
+		Black, white, and neutral grays. Color where it has a job to do.
 	</p>
-
-	<h2 class="mt-10 mb-3 text-xl font-semibold">The token block</h2>
-	<p class="text-muted-foreground mb-3 leading-relaxed">
-		Add this to <code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]"
-			>src/app.css</code
-		>
-		after
-		<code class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]"
-			>@import 'tailwindcss';</code
-		>. Semantic tokens (<code class="font-mono text-[0.85em]">--background</code>,
-		<code class="font-mono text-[0.85em]">--primary</code>, …) are mapped with
-		<code class="font-mono text-[0.85em]">@theme inline</code> so utilities like
-		<code class="font-mono text-[0.85em]">bg-primary</code> react to light and dark automatically.
+	<h2 class="mt-12 mb-3 text-xl font-semibold">The palette</h2>
+	<p class="text-muted-foreground mb-6 leading-relaxed">
+		These swatches read the current theme. Use the theme button in the header to compare light and
+		dark.
 	</p>
-	<CodeBlock code={tokenSnippet} />
-
-	<h2 class="mt-10 mb-3 text-xl font-semibold">The brand ramp</h2>
-	<p class="text-muted-foreground mb-3 leading-relaxed">
-		<code class="font-mono text-[0.85em]">mizu-50</code> through
-		<code class="font-mono text-[0.85em]">mizu-950</code>. The accent is
-		<code class="font-mono text-[0.85em]">mizu-500</code>. Swap these to re-tint the whole system.
-	</p>
-	<div class="border-border mb-2 grid grid-cols-11 overflow-hidden rounded-xl border shadow-xs">
-		{#each ramp as step (step)}
-			<div class="h-12" style={`background-color: var(--color-mizu-${step})`}></div>
-		{/each}
-	</div>
-	<div class="text-muted-foreground grid grid-cols-11 text-center font-mono text-[0.6rem]">
-		{#each ramp as step (step)}<span>{step}</span>{/each}
-	</div>
-
-	<h2 class="mt-10 mb-3 text-xl font-semibold">Material utilities</h2>
-	<p class="text-muted-foreground mb-3 leading-relaxed">
-		Beyond colors, Mizu adds a small set of surface utilities you can use anywhere.
-	</p>
-	<div class="border-border overflow-hidden rounded-xl border">
-		{#each utilities as [name, desc], i (name)}
-			<div
-				class={'flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4 ' +
-					(i % 2 ? 'bg-muted/40' : '')}
-			>
-				<code class="text-primary shrink-0 font-mono text-sm sm:w-72">{name}</code>
-				<span class="text-muted-foreground text-sm">{desc}</span>
+	<div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+		{#each tokens as item (item.token)}
+			<div class="min-w-0">
+				<div class="h-24 rounded-2xl shadow-sm" style:background-color={`var(${item.token})`}></div>
+				<p class="mt-3 text-sm font-medium">{item.name}</p>
+				<code class="text-muted-foreground mt-1 block text-xs break-all">{item.token}</code>
 			</div>
 		{/each}
 	</div>
-
-	<h2 class="mt-10 mb-3 text-xl font-semibold">Dark mode</h2>
-	<p class="text-muted-foreground mb-4 leading-relaxed">
-		Mizu uses a class strategy: add <code
-			class="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">dark</code
-		>
-		to <code class="font-mono text-[0.85em]">&lt;html&gt;</code>. The page goes pure black and
-		surfaces lift to slate. The included theme store handles persistence and a no-flash inline
-		script. Toggle it with the sun/moon button in the header.
+	<h2 class="mt-12 mb-3 text-xl font-semibold">Controls on every surface</h2>
+	<p class="text-muted-foreground mb-6 leading-relaxed">
+		Fields use a separate <code>--control</code> fill so they remain visible inside cards and floating
+		panels. Visible text identifies the field; focus and error states add a ring. Small empty controls
+		keep a semantic boundary. Try typing, tabbing, and switching themes below.
 	</p>
-
-	<h2 class="mt-10 mb-3 text-xl font-semibold">The surface ladder</h2>
+	<SurfacePreview />
+	<h2 class="mt-12 mb-3 text-xl font-semibold">Theme tokens</h2>
 	<p class="text-muted-foreground mb-4 leading-relaxed">
-		Depth never comes from strokes. In light mode, shadows carry the layers; in dark mode, each
-		surface is one tonal rung above the one beneath it.
+		The installed <code>app.css</code> maps CSS variables through Tailwind's
+		<code>@theme inline</code>. Update the variables to change every component that uses them.
 	</p>
-	<div class="grid gap-4 sm:grid-cols-2" data-no-toc>
-		<div class="rounded-2xl bg-white p-5 shadow-sm">
-			<p class="mb-3 text-xs font-medium text-[#70767d]">Light: shadow carries depth</p>
-			<div class="rounded-xl bg-white p-4 shadow-md">
-				<p class="text-xs text-[#70767d]">Card</p>
-				<div class="mt-2.5 rounded-lg bg-white p-3 shadow-lg">
-					<p class="text-xs text-[#70767d]">Floating panel</p>
-					<div class="mt-2.5 rounded-md bg-[#f2f4f7] px-3 py-2 text-xs text-[#1c2b33]">Hover</div>
-				</div>
-			</div>
-		</div>
-		<div class="rounded-2xl bg-[#000000] p-5">
-			<p class="mb-3 text-xs font-medium text-[#9da9b7]">Dark: tone carries depth</p>
-			<div class="rounded-xl bg-[#0c1116] p-4">
-				<p class="text-xs text-[#9da9b7]">Card</p>
-				<div class="mt-2.5 rounded-lg bg-[#141b21] p-3">
-					<p class="text-xs text-[#9da9b7]">Floating panel</p>
-					<div class="mt-2.5 rounded-md bg-[#1d262e] px-3 py-2 text-xs text-[#f6f8f9]">Hover</div>
-				</div>
-			</div>
-		</div>
+	<CodeBlock code={theme} />
+	<h2 class="mt-12 mb-3 text-xl font-semibold">Add your brand color</h2>
+	<p class="text-muted-foreground mb-4 leading-relaxed">
+		Override the primary, hover, and foreground colors together. The selected-state fills derive
+		from your primary color. Check text and focus contrast in both themes.
+	</p>
+	<CodeBlock code={accent} />
+	<h2 class="mt-12 mb-3 text-xl font-semibold">Surfaces and status</h2>
+	<div class="text-muted-foreground space-y-4 leading-relaxed">
+		<p>
+			Use <code>bg-background</code> for the page, <code>bg-card</code> for content, and
+			<code>bg-popover</code> for floating controls. Gray fills and soft shadows establish depth. Keep
+			borders for inputs, focus, dividers, and panel edges that need separation.
+		</p>
+		<p>
+			Success, warning, destructive, and info colors communicate status. The voice orb and aurora
+			utilities use color for AI activity. Navigation, labels, and routine actions stay neutral.
+		</p>
+	</div>
+	<h2 class="mt-12 mb-3 text-xl font-semibold">Motion and dark mode</h2>
+	<div class="text-muted-foreground space-y-4 leading-relaxed">
+		<p>
+			Add the <code>dark</code> class to the document to activate the dark theme. Save the preference
+			in your app and apply it before the first paint to avoid a flash.
+		</p>
+		<p>
+			Transitions take 200 to 320 milliseconds. Components respect <code
+				>prefers-reduced-motion</code
+			>. The cloud orb stops drawing animation frames when motion is reduced or the orb is
+			offscreen.
+		</p>
 	</div>
 </article>

@@ -15,8 +15,8 @@
 <div>
 	<h1 class="font-display text-3xl font-semibold">Components</h1>
 	<p class="text-muted-foreground mt-3 text-lg">
-		{components.length} clean, accessible components. Pick a color up in the header and the whole set
-		recolors live.
+		{components.length} components for interfaces with intelligence. Explore the previews, then open a
+		component for its API and source.
 	</p>
 
 	{#each groups as group (group.category)}
@@ -26,10 +26,14 @@
 				{#each group.items as c (c.slug)}
 					<article class="group relative">
 						<div
-							class="bg-card group-focus-within:ring-ring relative flex h-40 items-center justify-center overflow-hidden rounded-2xl p-5 shadow-sm transition-[transform,box-shadow] duration-200 group-focus-within:ring-2 group-hover:-translate-y-0.5 group-hover:shadow-lg"
+							class="bg-secondary/60 group-focus-within:ring-ring relative flex h-52 items-center justify-center overflow-hidden rounded-2xl p-5 shadow-sm transition-[transform,box-shadow] duration-200 group-focus-within:ring-2 group-hover:-translate-y-0.5 group-hover:shadow-lg"
 							data-no-toc
 						>
-							<div class="pointer-events-none flex w-full scale-90 items-center justify-center">
+							<div
+								inert
+								aria-hidden="true"
+								class="pointer-events-none flex w-full scale-90 items-center justify-center"
+							>
 								<LazyDemo slug={c.slug} />
 							</div>
 						</div>

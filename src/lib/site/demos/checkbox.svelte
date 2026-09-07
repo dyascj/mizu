@@ -7,5 +7,5 @@
 
 <div class="flex items-center gap-3">
 	<Checkbox id="clear-skies" bind:checked />
-	<Label for="clear-skies">Accept clear skies</Label>
+	<Label for="clear-skies">Send me project updates</Label>
 </div>

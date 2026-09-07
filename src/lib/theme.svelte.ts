@@ -20,7 +20,12 @@ function apply(theme: Theme) {
 
 function initial(): Theme {
 	if (!browser) return 'system';
-	return (localStorage.getItem(STORAGE_KEY) as Theme) ?? 'system';
+	try {
+		const saved = localStorage.getItem(STORAGE_KEY);
+		return saved === 'light' || saved === 'dark' ? saved : 'system';
+	} catch {
+		return 'system';
+	}
 }
 
 /** Reactive theme state. Mutate via `setTheme` / `toggleTheme`. */
@@ -33,7 +38,11 @@ export function isDark(): boolean {
 
 export function setTheme(next: Theme) {
 	theme.value = next;
-	if (browser) localStorage.setItem(STORAGE_KEY, next);
+	try {
+		if (browser) localStorage.setItem(STORAGE_KEY, next);
+	} catch {
+		// The theme still works when browser storage is unavailable.
+	}
 	apply(next);
 }
 

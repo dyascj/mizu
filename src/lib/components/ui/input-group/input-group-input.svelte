@@ -14,7 +14,7 @@
 	bind:this={ref}
 	bind:value
 	class={cn(
-		'placeholder:text-muted-foreground h-10 flex-1 bg-transparent px-3.5 text-sm outline-none disabled:pointer-events-none disabled:opacity-50',
+		'placeholder:text-muted-foreground h-10 min-w-0 flex-1 bg-transparent px-3.5 text-sm outline-none disabled:pointer-events-none disabled:opacity-50',
 		className
 	)}
 	{...rest}

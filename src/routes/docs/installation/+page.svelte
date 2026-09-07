@@ -1,4 +1,5 @@
 <script lang="ts">
+	import release from '../../../../registry-release.json';
 	import CodeBlock from '$lib/site/code-block.svelte';
 	import CopyCommand from '$lib/site/copy-command.svelte';
 	import * as Alert from '$lib/components/ui/alert';
@@ -33,6 +34,11 @@
 
 <article class="max-w-2xl">
 	<h1 class="font-display text-3xl font-semibold">Installation</h1>
+	<p class="text-muted-foreground bg-secondary mt-4 rounded-2xl p-4 text-sm leading-relaxed">
+		These docs describe <code>v{release.version}</code>. The current stable registry is
+		<code>v{release.stableVersion ?? release.version}</code>. Pin a version when installing
+		components.
+	</p>
 	<p class="text-muted-foreground mt-3 text-lg">
 		Mizu is a shadcn-svelte-compatible registry. After a one-time setup, add any component with a
 		single command; the source lands in your project and is yours to edit.

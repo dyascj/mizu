@@ -14,7 +14,8 @@
 	bind:this={ref}
 	bind:value
 	class={cn(
-		'bg-secondary text-foreground placeholder:text-muted-foreground focus-visible:ring-ring/35 flex min-h-20 w-full rounded-xl px-3.5 py-2.5 text-sm transition-[box-shadow,border-color] duration-150 outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',
+		'bg-control text-foreground placeholder:text-muted-foreground focus-visible:ring-ring aria-invalid:ring-destructive flex min-h-20 w-full rounded-2xl px-3.5 py-2.5 text-sm transition-[box-shadow,border-color] duration-200 outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-2',
+		!rest.placeholder && !value && 'ring-input ring-1',
 		className
 	)}
 	{...rest}></textarea>

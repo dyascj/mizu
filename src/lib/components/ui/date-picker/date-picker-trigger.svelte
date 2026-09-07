@@ -13,7 +13,7 @@
 <DatePickerPrimitive.Trigger
 	bind:ref
 	class={cn(
-		'text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background inline-flex size-7 shrink-0 items-center justify-center rounded-lg transition-[background-color,color,scale] duration-150 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-1 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50',
+		'text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background inline-flex size-7 shrink-0 items-center justify-center rounded-lg transition-[background-color,color,scale] duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-1 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50',
 		className
 	)}
 	{...restProps}

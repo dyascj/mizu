@@ -7,5 +7,5 @@
 
 <div class="flex items-center gap-3">
 	<Switch id="glow" bind:checked />
-	<Label for="glow">Aura glow</Label>
+	<Label for="glow">Email notifications</Label>
 </div>

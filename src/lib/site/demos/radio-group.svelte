@@ -8,14 +8,14 @@
 <RadioGroup.Root bind:value class="grid gap-3">
 	<div class="flex items-center gap-3">
 		<RadioGroup.Item value="calm" id="wind-calm" />
-		<Label for="wind-calm">Calm</Label>
+		<Label for="wind-calm">Personal</Label>
 	</div>
 	<div class="flex items-center gap-3">
 		<RadioGroup.Item value="breeze" id="wind-breeze" />
-		<Label for="wind-breeze">Breeze</Label>
+		<Label for="wind-breeze">Team</Label>
 	</div>
 	<div class="flex items-center gap-3">
 		<RadioGroup.Item value="storm" id="wind-storm" />
-		<Label for="wind-storm">Storm</Label>
+		<Label for="wind-storm">Organization</Label>
 	</div>
 </RadioGroup.Root>

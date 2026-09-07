@@ -21,7 +21,7 @@
 		],
 		[
 			'Restraint over decoration',
-			'The content does the talking. One blue accent, one glow, and generous space go further than any effect.'
+			'Use neutral colors for navigation and controls. Reserve color for status and AI activity.'
 		]
 	];
 
@@ -122,7 +122,7 @@
 		<li>
 			<span class="text-foreground font-semibold">One frost per layer.</span> Translucency is for the
 			single floating panel above the page, never for panels stacked on panels. Everything else is solid
-			white or slate.
+			neutral light or dark surfaces.
 		</li>
 		<li>
 			<span class="text-foreground font-semibold">Concentric radius.</span> A child's corner radius should

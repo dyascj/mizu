@@ -6,6 +6,7 @@ import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 import {
+	aliasVersion,
 	assertExactInventory,
 	assertImmutableDirectory,
 	assertLocalImports,
@@ -137,11 +138,13 @@ test('generated output declares audited dependencies and has exact versioned inv
 	const outDir = join(root, 'static/r');
 	const release = JSON.parse(readFileSync(join(root, 'registry-release.json'), 'utf8'));
 	const currentVersionDir = `v${release.version}`;
-	const drawer = JSON.parse(readFileSync(join(outDir, 'drawer.json'), 'utf8'));
+	const drawer = JSON.parse(readFileSync(join(outDir, currentVersionDir, 'drawer.json'), 'utf8'));
 	const pinnedDrawer = JSON.parse(
 		readFileSync(join(outDir, currentVersionDir, 'drawer.json'), 'utf8')
 	);
-	const dataTable = JSON.parse(readFileSync(join(outDir, 'data-table.json'), 'utf8'));
+	const dataTable = JSON.parse(
+		readFileSync(join(outDir, currentVersionDir, 'data-table.json'), 'utf8')
+	);
 	const manifest = JSON.parse(
 		readFileSync(join(outDir, currentVersionDir, 'manifest.json'), 'utf8')
 	);
@@ -176,6 +179,27 @@ test('generated output declares audited dependencies and has exact versioned inv
 	assertExactInventory(outDir, [...generatedFiles, 'latest', ...versionDirectories]);
 	assertExactInventory(join(outDir, 'latest'), generatedFiles);
 	for (const versionDirectory of versionDirectories) {
-		assertExactInventory(join(outDir, versionDirectory), generatedFiles);
+		const historical = JSON.parse(
+			readFileSync(join(outDir, versionDirectory, 'manifest.json'), 'utf8')
+		);
+		assertExactInventory(join(outDir, versionDirectory), [
+			...historical.files.map(({ path }) => path),
+			'manifest.json'
+		]);
+	}
+});
+
+test('prereleases preserve stable aliases and require an explicit stable version', () => {
+	assert.equal(aliasVersion({ version: '0.3.0' }), '0.3.0');
+	assert.equal(aliasVersion({ version: '0.3.0-rc.1', stableVersion: '0.2.1' }), '0.2.1');
+	assert.throws(() => aliasVersion({ version: '0.3.0-rc.1' }), /explicit stableVersion/);
+	assert.throws(
+		() => aliasVersion({ version: '0.3.0-rc.1', stableVersion: '0.2.1-rc.1' }),
+		/explicit stableVersion/
+	);
+	const release = JSON.parse(readFileSync(join(root, 'registry-release.json'), 'utf8'));
+	for (const directory of ['static/r', 'static/r/latest']) {
+		const manifest = JSON.parse(readFileSync(join(root, directory, 'manifest.json'), 'utf8'));
+		assert.equal(manifest.version, aliasVersion(release));
 	}
 });

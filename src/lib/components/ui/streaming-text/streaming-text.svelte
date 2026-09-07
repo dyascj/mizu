@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { untrack } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/utils.js';
 
@@ -9,6 +10,8 @@
 		speed?: number;
 		/** Show the blinking caret while streaming. */
 		cursor?: boolean;
+		/** Pause the reveal without discarding the text already shown. */
+		paused?: boolean;
 		onComplete?: () => void;
 		class?: string;
 		ref?: HTMLSpanElement | null;
@@ -18,6 +21,7 @@
 		text,
 		speed = 60,
 		cursor = true,
+		paused = false,
 		onComplete,
 		class: className,
 		ref = $bindable(null),
@@ -29,6 +33,8 @@
 		Math.min(60_000, Math.max(1, Math.round(Number.isFinite(speed) ? speed : 60)))
 	);
 	let shown = $state(0);
+	let notified = false;
+	let previousText: string | undefined;
 	let reducedMotion = $state(false);
 	const done = $derived(shown >= words.length);
 
@@ -42,27 +48,30 @@
 	});
 
 	$effect(() => {
-		const currentWords = words;
-		const delay = normalizedSpeed;
-		const revealImmediately = reducedMotion || speed <= 0;
-		shown = 0;
+		if (text !== previousText) {
+			previousText = text;
+			shown = 0;
+			notified = false;
+		}
+	});
 
-		if (currentWords.length === 0 || revealImmediately) {
-			shown = currentWords.length;
-			onComplete?.();
+	$effect(() => {
+		const count = words.length;
+		if (paused) return;
+		if ((reducedMotion || speed <= 0) && shown !== count) {
+			shown = count;
 			return;
 		}
-
-		let timer: ReturnType<typeof setTimeout>;
-		const revealNext = () => {
-			shown += 1;
-			if (shown >= currentWords.length) {
-				onComplete?.();
-				return;
+		if (shown >= count) {
+			if (!notified) {
+				notified = true;
+				untrack(() => onComplete?.());
 			}
-			timer = setTimeout(revealNext, delay);
-		};
-		timer = setTimeout(revealNext, delay);
+			return;
+		}
+		const timer = setTimeout(() => {
+			shown += 1;
+		}, normalizedSpeed);
 		return () => clearTimeout(timer);
 	});
 </script>
@@ -73,7 +82,7 @@
 		{#each words.slice(0, shown) as word, i (i)}
 			<span class="stream-word">{word}</span>
 		{/each}
-		{#if cursor && !done}
+		{#if cursor && !done && !paused}
 			<span class="stream-caret"></span>
 		{/if}
 	</span>

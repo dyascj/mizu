@@ -18,11 +18,13 @@ Use a versioned URL when reproducibility matters:
 npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.2.1/button.json
 ```
 
-Use the explicit latest channel only when you intend to receive the newest released source:
+Use the explicit latest channel only when you intend to receive the newest stable source:
 
 ```bash
 npx shadcn-svelte@latest add https://mizu-ui.com/r/latest/button.json
 ```
+
+Prerelease docs use the candidate's versioned URL. During a candidate release, `stableVersion` in `registry-release.json` keeps `/r/latest` and the compatibility aliases on the last stable version. The isolated consumer check always tests the candidate.
 
 The legacy `/r/<item>.json` path remains as a compatibility alias. New documentation and generated agent guidance use pinned URLs.
 

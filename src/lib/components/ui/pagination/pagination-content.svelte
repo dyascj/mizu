@@ -15,6 +15,10 @@
 	} = $props();
 </script>
 
-<ul bind:this={ref} class={cn('flex flex-row items-center gap-1', className)} {...restProps}>
+<ul
+	bind:this={ref}
+	class={cn('flex flex-row flex-wrap items-center justify-center gap-1', className)}
+	{...restProps}
+>
 	{@render children?.()}
 </ul>
