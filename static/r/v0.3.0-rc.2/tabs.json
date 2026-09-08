@@ -1,0 +1,40 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "tabs",
+  "type": "registry:ui",
+  "title": "Tabs",
+  "description": "A segmented pill switcher with a raised active tab.",
+  "dependencies": [
+    "bits-ui@^2.19.0"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.3.0-rc.2/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "tabs/index.ts",
+      "content": "import Root from './tabs.svelte';\nimport List from './tabs-list.svelte';\nimport Trigger from './tabs-trigger.svelte';\nimport Content from './tabs-content.svelte';\n\nexport {\n\tRoot,\n\tList,\n\tTrigger,\n\tContent,\n\t//\n\tRoot as Tabs,\n\tList as TabsList,\n\tTrigger as TabsTrigger,\n\tContent as TabsContent\n};\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "tabs/tabs-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.Content bind:ref class={cn('mt-3 outline-none', className)} {...restProps}>\n\t{@render children?.()}\n</TabsPrimitive.Content>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "tabs/tabs-list.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.ListProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.List\n\tbind:ref\n\tclass={cn(\n\t\t'bg-secondary inline-flex max-w-full flex-wrap items-center gap-1 rounded-xl p-1',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</TabsPrimitive.List>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "tabs/tabs-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.TriggerProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.Trigger\n\tbind:ref\n\tclass={cn(\n\t\t'text-muted-foreground focus-visible:ring-ring focus-visible:ring-offset-background data-[state=active]:bg-primary-muted data-[state=active]:text-primary relative overflow-hidden rounded-full px-2 py-1.5 text-sm font-semibold transition-[background-color,color,box-shadow] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-xs sm:px-3',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<span class=\"relative z-10 inline-flex items-center gap-2\">{@render children?.()}</span>\n</TabsPrimitive.Trigger>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "tabs/tabs.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.RootProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.Root bind:ref bind:value class={cn('flex flex-col', className)} {...restProps}>\n\t{@render children?.()}\n</TabsPrimitive.Root>\n"
+    }
+  ]
+}

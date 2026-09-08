@@ -1,0 +1,18 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "data-table",
+  "type": "registry:ui",
+  "title": "Data Table",
+  "description": "TanStack-powered tables: sorting, filtering, and pagination you own.",
+  "dependencies": [
+    "@tanstack/svelte-table@^9.2.4"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "data-table/index.ts",
+      "content": "// TanStack Table v9 ships an official Svelte 5 adapter, so this item re-exports\n// it instead of vendoring one. `createSvelteTable` stays as the local name for\n// continuity with code written against earlier releases; it is the adapter's\n// `createTable`. The adapter also re-exports all of @tanstack/table-core, so\n// `tableFeatures`, row model factories, sort functions, and types can be\n// imported from '@tanstack/svelte-table' directly.\nexport {\n\tFlexRender,\n\trenderComponent,\n\trenderSnippet,\n\tcreateTable as createSvelteTable\n} from '@tanstack/svelte-table';\n"
+    }
+  ]
+}
