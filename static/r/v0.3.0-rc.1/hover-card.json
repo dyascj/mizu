@@ -1,0 +1,35 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "hover-card",
+  "type": "registry:ui",
+  "title": "Hover Card",
+  "description": "A card revealed on hover or focus.",
+  "dependencies": [
+    "bits-ui@^2.19.0"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.3.0-rc.1/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "hover-card/hover-card-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { LinkPreview as HoverCardPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tside = 'bottom',\n\t\tsideOffset = 8,\n\t\talign = 'center',\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<HoverCardPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tportalProps?: HoverCardPrimitive.PortalProps;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<HoverCardPrimitive.Portal {...portalProps}>\n\t<HoverCardPrimitive.Content\n\t\tbind:ref\n\t\t{side}\n\t\t{sideOffset}\n\t\t{align}\n\t\tclass={cn(\n\t\t\t'bg-popover text-popover-foreground z-50 w-64 rounded-xl p-4 shadow-lg transition-[opacity,transform] duration-200 outline-none data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</HoverCardPrimitive.Content>\n</HoverCardPrimitive.Portal>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "hover-card/hover-card-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { LinkPreview as HoverCardPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<HoverCardPrimitive.TriggerProps> & { class?: string } = $props();\n</script>\n\n<HoverCardPrimitive.Trigger bind:ref class={cn(className)} {...restProps} />\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "hover-card/hover-card.svelte",
+      "content": "<script lang=\"ts\">\n\timport { LinkPreview as HoverCardPrimitive } from 'bits-ui';\n\n\tlet { ...restProps }: HoverCardPrimitive.RootProps = $props();\n</script>\n\n<HoverCardPrimitive.Root {...restProps} />\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "hover-card/index.ts",
+      "content": "import Root from './hover-card.svelte';\nimport Trigger from './hover-card-trigger.svelte';\nimport Content from './hover-card-content.svelte';\n\nexport {\n\tRoot,\n\tTrigger,\n\tContent,\n\t//\n\tRoot as HoverCard,\n\tTrigger as HoverCardTrigger,\n\tContent as HoverCardContent\n};\n"
+    }
+  ]
+}

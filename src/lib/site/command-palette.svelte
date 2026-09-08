@@ -26,7 +26,7 @@
 	<Command.Input placeholder="Search components and docs" />
 	<Command.List>
 		<Command.Empty>No results found.</Command.Empty>
-		<Command.Group heading="Getting Started">
+		<Command.Group heading="Getting started">
 			{#each gettingStartedRoutes as route (route.path)}
 				<Command.Item value={route.title} onSelect={() => go(route.path)}>
 					{route.title}

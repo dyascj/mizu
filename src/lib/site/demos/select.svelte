@@ -14,7 +14,7 @@
 </script>
 
 <Select.Root type="single" bind:value>
-	<Select.Trigger class="w-56">
+	<Select.Trigger class="w-56" aria-label="Water source">
 		{selectedLabel ?? 'Pick a water source'}
 	</Select.Trigger>
 	<Select.Content>

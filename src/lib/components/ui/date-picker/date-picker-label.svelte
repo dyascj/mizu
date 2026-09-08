@@ -11,6 +11,6 @@
 
 <DatePickerPrimitive.Label
 	bind:ref
-	class={cn('text-foreground text-sm leading-none font-medium', className)}
+	class={cn('text-foreground text-sm leading-snug font-medium', className)}
 	{...restProps}
 />

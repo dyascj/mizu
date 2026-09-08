@@ -3,7 +3,7 @@
 		"slug": "button",
 		"name": "Button",
 		"category": "Actions",
-		"description": "Pill-shaped actions with seven flat, quiet variants."
+		"description": "Pill actions with neutral, semantic, and AI variants."
 	},
 	{
 		"slug": "badge",
@@ -33,28 +33,28 @@
 		"slug": "checkbox",
 		"name": "Checkbox",
 		"category": "Forms",
-		"description": "A rounded tile that fills solid blue with a check.",
+		"description": "A compact checkbox with clear checked, disabled, and focus states.",
 		"bits": true
 	},
 	{
 		"slug": "radio-group",
 		"name": "Radio Group",
 		"category": "Forms",
-		"description": "Single-select circles that light up with a blue dot.",
+		"description": "A single choice with a visible selection and keyboard navigation.",
 		"bits": true
 	},
 	{
 		"slug": "switch",
 		"name": "Switch",
 		"category": "Forms",
-		"description": "A flat iOS-style toggle with a white thumb.",
+		"description": "A pill switch for an immediate on or off choice.",
 		"bits": true
 	},
 	{
 		"slug": "slider",
 		"name": "Slider",
 		"category": "Forms",
-		"description": "A quiet track with a blue range and a white thumb.",
+		"description": "A neutral track with a contrasting range and a draggable thumb.",
 		"bits": true
 	},
 	{
@@ -68,7 +68,7 @@
 		"slug": "card",
 		"name": "Card",
 		"category": "Surfaces",
-		"description": "The signature surface: quiet fill, generous radius, soft shadow."
+		"description": "A flexible content surface with soft elevation."
 	},
 	{
 		"slug": "alert",
@@ -128,7 +128,7 @@
 		"slug": "progress",
 		"name": "Progress",
 		"category": "Feedback",
-		"description": "A quiet track with a solid blue fill.",
+		"description": "A neutral track with a contrasting progress indicator.",
 		"bits": true
 	},
 	{
@@ -339,7 +339,7 @@
 		"slug": "calendar",
 		"name": "Calendar",
 		"category": "Forms",
-		"description": "A clean month grid with a solid blue selected day.",
+		"description": "A month grid with a contrasting selected day.",
 		"bits": true
 	},
 	{
@@ -434,7 +434,7 @@
 		"slug": "chat-input",
 		"name": "Chat Input",
 		"category": "AI",
-		"description": "A pill composer with attach, voice, and send, ready for a companion."
+		"description": "A message composer with optional attachment and voice actions."
 	},
 	{
 		"slug": "chat-bubble",
@@ -494,7 +494,7 @@
 		"slug": "voice-orb",
 		"name": "Voice Orb",
 		"category": "AI",
-		"description": "The assistant's presence: a pastel orb that listens, thinks, and speaks."
+		"description": "An audio-reactive cloud orb, adapted from orb-ui for Svelte."
 	},
 	{
 		"slug": "waveform",

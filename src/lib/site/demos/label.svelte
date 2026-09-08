@@ -7,5 +7,5 @@
 
 <div class="flex items-center gap-2.5">
 	<Checkbox id="filtered" bind:checked />
-	<Label for="filtered">Filtered and ready to pour</Label>
+	<Label for="filtered">Keep me updated</Label>
 </div>

@@ -19,7 +19,7 @@
 	const active = (href: string) => page.url.pathname === href;
 	const linkClass = (isActive: boolean) =>
 		cn(
-			'rounded-md px-2 py-1.5 text-[0.8rem] leading-snug transition-colors',
+			'rounded-md px-2 py-1.5 text-sm leading-snug transition-colors',
 			isActive
 				? 'bg-primary-muted font-medium text-primary'
 				: 'text-muted-foreground hover:text-foreground'
@@ -52,7 +52,7 @@
 
 			{#each groups as group (group.category)}
 				<div class="flex flex-col gap-px">
-					<p class="text-muted-foreground/70 px-2 pb-1 text-xs font-medium">
+					<p class="text-muted-foreground px-2 pb-1 text-xs font-medium">
 						{group.category}
 					</p>
 					{#each group.items as item (item.slug)}

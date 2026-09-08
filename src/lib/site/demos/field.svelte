@@ -5,13 +5,19 @@
 
 <Field.Group class="w-full max-w-sm">
 	<Field.Root>
-		<Field.Label for="reservoir">Reservoir name</Field.Label>
-		<Input id="reservoir" placeholder="Clearwater Basin" />
-		<Field.Description>How this source appears in your reports.</Field.Description>
+		<Field.Label for="reservoir">Project name</Field.Label>
+		<Input id="reservoir" placeholder="Product launch" />
+		<Field.Description>Visible to everyone in your workspace.</Field.Description>
 	</Field.Root>
 	<Field.Root>
-		<Field.Label for="capacity">Capacity (litres)</Field.Label>
-		<Input id="capacity" type="number" placeholder="0" />
-		<Field.Error>Capacity must be greater than zero.</Field.Error>
+		<Field.Label for="capacity">Team size</Field.Label>
+		<Input
+			id="capacity"
+			type="number"
+			placeholder="0"
+			aria-invalid="true"
+			aria-describedby="capacity-error"
+		/>
+		<Field.Error id="capacity-error">Enter at least one team member.</Field.Error>
 	</Field.Root>
 </Field.Group>

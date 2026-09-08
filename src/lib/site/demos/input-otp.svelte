@@ -4,7 +4,7 @@
 	let value = $state('');
 </script>
 
-<InputOTP.Root maxlength={6} bind:value>
+<InputOTP.Root aria-label="Verification code" maxlength={6} bind:value>
 	{#snippet children({ cells })}
 		{#each cells as cell (cell)}
 			<InputOTP.Slot {cell} />

@@ -41,6 +41,7 @@
 	const circumference = $derived(2 * Math.PI * radius);
 	const dashOffset = $derived(circumference - (clamped / 100) * circumference);
 	const center = $derived(normalizedSize / 2);
+	const innerSize = $derived(Math.max(0, normalizedSize - normalizedStroke * 2));
 </script>
 
 <div
@@ -86,22 +87,28 @@
 			stroke-linecap="round"
 			stroke-dasharray={circumference}
 			stroke-dashoffset={dashOffset}
-			class="transition-[stroke-dashoffset] duration-700 ease-out"
-			style="filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primary) 50%, transparent));"
+			class="transition-[stroke-dashoffset] duration-300 ease-out"
 		/>
 	</svg>
 	<div
-		class="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-0.5"
+		class="pointer-events-none absolute flex flex-col items-center justify-center gap-0.5 text-center"
+		style:width="{innerSize * 0.8}px"
 	>
-		{@render children?.()}
-		{#if showValue}
-			<span class="font-display text-foreground text-2xl leading-none font-semibold tabular-nums">
+		{#if innerSize >= 64}
+			{@render children?.()}
+		{/if}
+		{#if showValue && innerSize >= 32}
+			<span
+				class="font-display text-foreground leading-none font-semibold tabular-nums"
+				style:font-size="{Math.min(24, innerSize * 0.4)}px"
+			>
 				{Math.round(clamped)}
 			</span>
 		{/if}
-		{#if label}
+		{#if label && innerSize >= 64}
 			<span
-				class="text-muted-foreground text-[0.7rem] leading-none font-medium tracking-wide uppercase"
+				class="text-muted-foreground w-full truncate text-xs leading-tight font-medium"
+				title={label}
 			>
 				{label}
 			</span>

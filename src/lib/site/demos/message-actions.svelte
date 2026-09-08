@@ -12,6 +12,6 @@
 		text={reply}
 		class="pl-1"
 		onRegenerate={() => toast.info('Regenerating...')}
-		onFeedback={(f) => toast.success({ title: 'Thanks', description: `Marked ${f}.` })}
+		onFeedback={(f) => toast.success(f ? 'Feedback saved' : 'Feedback removed')}
 	/>
 </div>

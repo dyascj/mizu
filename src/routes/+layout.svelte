@@ -1,11 +1,9 @@
 <script lang="ts">
 	import '../app.css';
-	import { afterNavigate } from '$app/navigation';
 	import SiteHeader from '$lib/site/site-header.svelte';
 	import { siteConfig } from '$lib/site/config';
 
 	let { children } = $props();
-	let scroller = $state<HTMLDivElement | null>(null);
 
 	// Sitewide structured data (Schema.org). Page-specific titles/descriptions
 	// and the homepage's SoftwareApplication node live in <Seo> on each route.
@@ -19,15 +17,6 @@
 		inLanguage: 'en',
 		author: { '@type': 'Person', name: siteConfig.author, url: siteConfig.authorUrl }
 	};
-
-	// The app scrolls inside `scroller` (not the document), so we reset it to the
-	// top on real page navigations. Hash links (in-page anchors) are left alone.
-	afterNavigate((nav) => {
-		if (nav.to?.url.hash) return;
-		scroller?.scrollTo({ top: 0, left: 0 });
-		// Fallback in case the document itself is the scroll container.
-		window.scrollTo(0, 0);
-	});
 </script>
 
 <svelte:head>
@@ -45,27 +34,15 @@
 	<meta name="twitter:card" content="summary_large_image" />
 
 	<!-- eslint-disable-next-line svelte/no-at-html-tags: static, app-generated JSON -->
-	{@html `<script type="application/ld+json">${JSON.stringify(websiteJsonLd)}<\/script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify(websiteJsonLd).replaceAll('<', '\\u003c')}<\/script>`}
 </svelte:head>
 
-<div bind:this={scroller} class="h-dvh overflow-y-auto [overscroll-behavior:none]">
-	<div class="flex min-h-dvh flex-col">
-		<SiteHeader />
-		<div class="flex-1">
-			{@render children()}
-		</div>
-	</div>
+<a
+	href="#main-content"
+	class="bg-foreground text-background fixed top-3 left-4 z-50 -translate-y-24 rounded-full px-5 py-3 text-sm font-medium focus:translate-y-0"
+	>Skip to content</a
+>
+<div class="flex min-h-dvh flex-col">
+	<SiteHeader />
+	<div class="min-w-0 flex-1">{@render children()}</div>
 </div>
-
-<style>
-	/* App-shell: the document itself doesn't scroll; the wrapper above does, so
-	   overscroll-behavior fully removes the rubber-band bounce. Kept here (not in
-	   app.css) so the theme file stays portable for anyone installing Mizu. */
-	:global(html),
-	:global(body) {
-		height: 100%;
-	}
-	:global(body) {
-		overflow: hidden;
-	}
-</style>

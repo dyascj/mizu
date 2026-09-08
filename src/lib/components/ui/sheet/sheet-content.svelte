@@ -2,7 +2,7 @@
 	import { tv, type VariantProps } from 'tailwind-variants';
 
 	export const sheetVariants = tv({
-		base: 'bg-popover fixed z-50 flex flex-col gap-4 border-border p-6 shadow-xl transition-[transform,opacity] duration-150 ease-out',
+		base: 'bg-popover fixed z-50 flex overflow-y-auto flex-col gap-4 border-border p-6 shadow-xl transition-[transform,opacity] duration-200 ease-out',
 		variants: {
 			side: {
 				top: 'inset-x-0 top-0 h-3/4 max-h-screen w-full border-b data-[state=closed]:-translate-y-full data-[state=open]:translate-y-0',
@@ -46,7 +46,7 @@
 	<SheetPrimitive.Content bind:ref class={cn(sheetVariants({ side }), className)} {...restProps}>
 		{@render children?.()}
 		<SheetPrimitive.Close
-			class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute top-4 right-4 inline-flex size-7 items-center justify-center rounded-lg transition-[scale,background-color] duration-150 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none"
+			class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute top-4 right-4 inline-flex size-7 items-center justify-center rounded-lg transition-[scale,background-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none"
 		>
 			<XIcon class="size-4" />
 			<span class="sr-only">Close</span>

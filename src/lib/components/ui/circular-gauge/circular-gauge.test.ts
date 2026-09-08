@@ -11,6 +11,7 @@ describe('CircularGauge', () => {
 		const circles = meter.querySelectorAll('circle');
 
 		expect(meter).toHaveAttribute('aria-valuenow', '0');
+		expect(meter.textContent?.trim()).toBe('');
 		expect(meter).toHaveStyle({ width: '16px', height: '16px' });
 		expect(svg).toHaveAttribute('width', '16');
 		expect(circles[0]).toHaveAttribute('r', '4');

@@ -7,5 +7,5 @@
 	<InputGroup.Addon>
 		<Search />
 	</InputGroup.Addon>
-	<InputGroup.Input type="search" placeholder="Search streams and springs" />
+	<InputGroup.Input type="search" placeholder="Search projects" />
 </InputGroup.Root>

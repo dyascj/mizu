@@ -1,4 +1,5 @@
 {
-	"version": "0.2.1",
-	"generationCommit": "bd893af4c78bbb6075dabae6080190240b9559e4"
+	"version": "0.3.0-rc.2",
+	"generationCommit": "8bcd6a95df9bc595a24f4ffcdf74bb404dc84fae",
+	"stableVersion": "0.2.1"
 }

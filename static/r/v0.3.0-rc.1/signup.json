@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "signup",
+  "type": "registry:block",
+  "title": "Sign up",
+  "description": "An account form with validation, password autofill, and a required terms agreement.",
+  "dependencies": [
+    "@lucide/svelte@^1.39.0"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.3.0-rc.1/button.json",
+    "https://mizu-ui.com/r/v0.3.0-rc.1/checkbox.json",
+    "https://mizu-ui.com/r/v0.3.0-rc.1/input.json",
+    "https://mizu-ui.com/r/v0.3.0-rc.1/label.json"
+  ],
+  "files": [
+    {
+      "type": "registry:component",
+      "target": "blocks/signup.svelte",
+      "content": "<script lang=\"ts\">\n\timport Sparkles from '@lucide/svelte/icons/sparkles';\n\timport { Button } from '$lib/components/ui/button';\n\timport { Checkbox } from '$lib/components/ui/checkbox';\n\timport { Input } from '$lib/components/ui/input';\n\timport { Label } from '$lib/components/ui/label';\n\n\tlet name = $state('');\n\tlet email = $state('');\n\tlet password = $state('');\n\tlet agreed = $state(false);\n\tlet submitted = $state(false);\n</script>\n\n<form\n\tonsubmit={(event) => {\n\t\tevent.preventDefault();\n\t\tsubmitted = true;\n\t}}\n\tclass=\"bg-card mx-auto flex w-full max-w-sm flex-col gap-6 rounded-3xl p-5 shadow-md sm:p-8\"\n>\n\t<div>\n\t\t<h2 class=\"text-lg font-semibold tracking-tight\">Create your account</h2>\n\t\t<p class=\"text-muted-foreground mt-1 text-sm\">Set up your workspace.</p>\n\t</div>\n\n\t<div class=\"flex flex-col gap-4\">\n\t\t<div class=\"flex flex-col gap-1.5\">\n\t\t\t<Label for=\"signup-name\">Name</Label>\n\t\t\t<Input\n\t\t\t\tid=\"signup-name\"\n\t\t\t\tautocomplete=\"name\"\n\t\t\t\trequired\n\t\t\t\tplaceholder=\"Ada Rivers\"\n\t\t\t\tbind:value={name}\n\t\t\t/>\n\t\t</div>\n\t\t<div class=\"flex flex-col gap-1.5\">\n\t\t\t<Label for=\"signup-email\">Email</Label>\n\t\t\t<Input\n\t\t\t\tid=\"signup-email\"\n\t\t\t\ttype=\"email\"\n\t\t\t\tautocomplete=\"email\"\n\t\t\t\trequired\n\t\t\t\tplaceholder=\"you@example.com\"\n\t\t\t\tbind:value={email}\n\t\t\t/>\n\t\t</div>\n\t\t<div class=\"flex flex-col gap-1.5\">\n\t\t\t<Label for=\"signup-password\">Password</Label>\n\t\t\t<Input\n\t\t\t\tid=\"signup-password\"\n\t\t\t\ttype=\"password\"\n\t\t\t\tautocomplete=\"new-password\"\n\t\t\t\trequired\n\t\t\t\tminlength={8}\n\t\t\t\tplaceholder=\"8+ characters\"\n\t\t\t\tbind:value={password}\n\t\t\t/>\n\t\t</div>\n\t\t<div class=\"flex items-center gap-2.5\">\n\t\t\t<Checkbox id=\"signup-terms\" bind:checked={agreed} />\n\t\t\t<Label for=\"signup-terms\" class=\"text-muted-foreground text-xs font-normal\">\n\t\t\t\tI agree to the terms and the privacy policy.\n\t\t\t</Label>\n\t\t</div>\n\t</div>\n\n\t<Button type=\"submit\" variant=\"primary\" class=\"w-full\" disabled={!agreed}>\n\t\t<Sparkles class=\"size-4\" />\n\t\tCreate account\n\t</Button>\n\t<p role=\"status\" class=\"text-muted-foreground text-xs\">\n\t\t{submitted\n\t\t\t? 'Preview complete. No account was created.'\n\t\t\t: 'Preview only. Your details stay in this browser.'}\n\t</p>\n</form>\n"
+    }
+  ]
+}

@@ -10,9 +10,9 @@
 	</Empty.Media>
 	<Empty.Title>Nothing here yet</Empty.Title>
 	<Empty.Description>
-		Your collection is dry. Add a source to start gathering water.
+		Your workspace is ready. Add your first project to get started.
 	</Empty.Description>
 	<Empty.Content>
-		<Button>Add source</Button>
+		<Button href="/docs/build-a-chat">Start a project</Button>
 	</Empty.Content>
 </Empty.Root>

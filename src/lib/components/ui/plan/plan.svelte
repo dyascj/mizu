@@ -20,12 +20,12 @@
 	let { steps, class: className }: Props = $props();
 </script>
 
-<ol class={cn('flex w-fit flex-col gap-1 text-sm', className)}>
+<ol class={cn('flex w-fit max-w-full flex-col gap-1 text-sm', className)}>
 	{#each steps as step (step.label)}
 		<li
 			class={cn(
 				'flex items-center gap-2.5 rounded-lg py-1 transition-colors duration-300',
-				step.state === 'pending' && 'text-muted-foreground/60'
+				step.state === 'pending' && 'text-muted-foreground'
 			)}
 		>
 			{#if step.state === 'done'}
@@ -42,11 +42,11 @@
 				</span>
 			{/if}
 			<span class="min-w-0">
-				<span class={cn('block truncate', step.state === 'active' && 'plan-shimmer font-medium')}
+				<span class={cn('block break-words', step.state === 'active' && 'plan-shimmer font-medium')}
 					>{step.label}</span
 				>
 				{#if step.detail}
-					<span class="text-muted-foreground block truncate text-xs">{step.detail}</span>
+					<span class="text-muted-foreground block text-xs break-words">{step.detail}</span>
 				{/if}
 			</span>
 		</li>

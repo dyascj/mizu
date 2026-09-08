@@ -18,7 +18,7 @@
 <PaginationPrimitive.NextButton
 	bind:ref
 	class={cn(
-		'text-foreground hover:bg-secondary focus-visible:ring-ring focus-visible:ring-offset-background relative inline-flex h-9 shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full bg-transparent px-3 text-sm font-semibold transition-[background-color,scale] duration-150 outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50',
+		'text-foreground hover:bg-secondary focus-visible:ring-ring focus-visible:ring-offset-background relative inline-flex h-9 shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full bg-transparent px-3 text-sm font-semibold transition-[background-color,scale] duration-200 outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50',
 		className
 	)}
 	{...restProps}

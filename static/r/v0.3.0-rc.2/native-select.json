@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "native-select",
+  "type": "registry:ui",
+  "title": "Native Select",
+  "description": "A styled native select, no JS required.",
+  "dependencies": [
+    "@lucide/svelte@^1.39.0"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.3.0-rc.2/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "native-select/index.ts",
+      "content": "export { default as NativeSelect } from './native-select.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "native-select/native-select.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLSelectAttributes } from 'svelte/elements';\n\timport ChevronDown from '@lucide/svelte/icons/chevron-down';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLSelectAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLSelectElement | null;\n\t\tvalue?: string | number | string[] | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet {\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tchildren,\n\t\t...rest\n\t}: Props = $props();\n</script>\n\n<div class=\"relative w-full\">\n\t<select\n\t\tbind:this={ref}\n\t\tbind:value\n\t\tclass={cn(\n\t\t\t'bg-control focus-visible:ring-ring h-10 w-full appearance-none rounded-full px-3.5 pr-9 text-base transition-[border-color,box-shadow] outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 sm:text-sm',\n\t\t\tclassName\n\t\t)}\n\t\t{...rest}\n\t>\n\t\t{@render children?.()}\n\t</select>\n\t<ChevronDown\n\t\tclass=\"text-muted-foreground pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2\"\n\t/>\n</div>\n"
+    }
+  ]
+}

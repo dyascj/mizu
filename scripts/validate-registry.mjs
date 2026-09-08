@@ -5,7 +5,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import Ajv2020 from 'ajv/dist/2020.js';
 
-import { assertExactInventory, inferDeps } from './build-registry.mjs';
+import { aliasVersion, assertExactInventory, inferDeps } from './build-registry.mjs';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const root = join(dirname(scriptPath), '..');
@@ -189,8 +189,12 @@ export function validateRegistry() {
 		throw new Error(`The immutable ${currentVersionDirectory} registry release is missing.`);
 	}
 
+	const stable = aliasVersion(releaseConfig);
+	const currentAliases = stable === releaseConfig.version;
+	const aliasManifest = readJson(join(registryDir, `v${stable}`, 'manifest.json'));
+	const aliasFiles = aliasManifest.files.map(({ path }) => path);
 	assertExactInventory(registryDir, [
-		...expectedFiles,
+		...aliasFiles,
 		'manifest.json',
 		'latest',
 		...versionDirectories
@@ -199,22 +203,22 @@ export function validateRegistry() {
 	validateDirectory({
 		base: rootManifest.registryBase,
 		channel: 'compatibility',
-		dependencyParity: packageJson.dependencies,
+		dependencyParity: currentAliases ? packageJson.dependencies : null,
 		directory: registryDir,
-		expectedCommit: releaseConfig.generationCommit,
+		expectedCommit: aliasManifest.generationCommit,
 		extraEntries: ['latest', ...versionDirectories],
-		expectedFiles,
-		expectedVersion: packageJson.version,
+		expectedFiles: aliasFiles,
+		expectedVersion: stable,
 		schemas
 	});
 	validateDirectory({
 		base: `${rootManifest.registryBase}/latest`,
 		channel: 'latest',
-		dependencyParity: packageJson.dependencies,
+		dependencyParity: currentAliases ? packageJson.dependencies : null,
 		directory: join(registryDir, 'latest'),
-		expectedCommit: releaseConfig.generationCommit,
-		expectedFiles,
-		expectedVersion: packageJson.version,
+		expectedCommit: aliasManifest.generationCommit,
+		expectedFiles: aliasFiles,
+		expectedVersion: stable,
 		schemas
 	});
 
@@ -227,7 +231,11 @@ export function validateRegistry() {
 			dependencyParity: current ? packageJson.dependencies : null,
 			directory: join(registryDir, versionDirectory),
 			expectedCommit: current ? releaseConfig.generationCommit : null,
-			expectedFiles,
+			expectedFiles: current
+				? expectedFiles
+				: readJson(join(registryDir, versionDirectory, 'manifest.json')).files.map(
+						({ path }) => path
+					),
 			expectedVersion: version,
 			schemas
 		});

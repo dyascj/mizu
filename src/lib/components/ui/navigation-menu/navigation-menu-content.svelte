@@ -12,7 +12,7 @@
 <NavigationMenuPrimitive.Content
 	bind:ref
 	class={cn(
-		'bg-popover text-popover-foreground top-0 left-0 w-full rounded-xl p-2 shadow-lg md:absolute md:w-auto',
+		'bg-popover text-popover-foreground absolute top-0 left-0 w-max max-w-[calc(100vw-2rem)] rounded-xl p-2 [&>*]:max-w-full',
 		'transition-[opacity,transform] duration-200 ease-out',
 		'data-[motion=from-end]:translate-x-2 data-[motion=from-end]:opacity-0 data-[motion=from-start]:-translate-x-2 data-[motion=from-start]:opacity-0',
 		'data-[motion=to-end]:translate-x-2 data-[motion=to-end]:opacity-0 data-[motion=to-start]:-translate-x-2 data-[motion=to-start]:opacity-0',

@@ -10,7 +10,8 @@
 		/** The message text the copy button writes to the clipboard. */
 		text?: string;
 		onRegenerate?: () => void;
-		onFeedback?: (feedback: 'up' | 'down') => void;
+		/** Reports the current vote, or null when the user clears it. */
+		onFeedback?: (feedback: 'up' | 'down' | null) => void;
 		class?: string;
 	};
 
@@ -38,7 +39,7 @@
 
 	function vote(dir: 'up' | 'down') {
 		feedback = feedback === dir ? null : dir;
-		if (feedback) onFeedback?.(feedback);
+		onFeedback?.(feedback);
 	}
 
 	$effect(() => () => {
@@ -78,7 +79,7 @@
 	{/if}
 	<button
 		type="button"
-		class={cn(btn, feedback === 'up' && 'text-primary')}
+		class={cn(btn, feedback === 'up' && 'bg-primary-muted text-primary')}
 		onclick={() => vote('up')}
 		aria-label="Good response"
 		aria-pressed={feedback === 'up'}
@@ -87,7 +88,7 @@
 	</button>
 	<button
 		type="button"
-		class={cn(btn, feedback === 'down' && 'text-primary')}
+		class={cn(btn, feedback === 'down' && 'bg-primary-muted text-primary')}
 		onclick={() => vote('down')}
 		aria-label="Bad response"
 		aria-pressed={feedback === 'down'}

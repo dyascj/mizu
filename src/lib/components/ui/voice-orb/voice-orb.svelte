@@ -1,137 +1,181 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/utils.js';
+	import { createCloudRenderer } from './cloud-renderer.js';
 
 	type Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
-		/** What the assistant is doing; drives the animation. */
+		/** What the assistant is doing. */
 		state?: 'idle' | 'listening' | 'thinking' | 'speaking';
+		/** Orb diameter in CSS pixels, clamped to 16 through 512. */
 		size?: number;
+		/** Normalized audio level from your voice provider, clamped to 0 through 1. */
+		volume?: number;
 		class?: string;
 		ref?: HTMLDivElement | null;
 	};
-
 	let {
-		state = 'idle',
+		state: orbState = 'idle',
 		size = 96,
+		volume = 0,
 		class: className,
 		ref = $bindable(null),
 		...rest
 	}: Props = $props();
+	const diameter = $derived(Math.min(512, Math.max(16, Number.isFinite(size) ? size : 96)));
+	const level = $derived(Math.min(1, Math.max(0, Number.isFinite(volume) ? volume : 0)));
+	let canvas: HTMLCanvasElement;
+	let ready = $state(false);
+	let refresh: (() => void) | undefined;
+
+	$effect(() => {
+		void orbState;
+		void level;
+		void diameter;
+		refresh?.();
+	});
+
+	onMount(() => {
+		if (
+			typeof window.matchMedia !== 'function' ||
+			typeof IntersectionObserver === 'undefined' ||
+			typeof ResizeObserver === 'undefined'
+		)
+			return;
+		const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		let renderer: ReturnType<typeof createCloudRenderer>;
+		let frame = 0;
+		let visible = false;
+		let previous = 0;
+		let flow = 0;
+		let smoothedLevel = 0;
+		let lost = false;
+
+		function initialize() {
+			try {
+				renderer = createCloudRenderer(canvas, diameter);
+			} catch {
+				renderer = undefined;
+			}
+			ready = Boolean(renderer);
+		}
+
+		function draw(now: number) {
+			frame = 0;
+			const delta = previous ? Math.min((now - previous) / 1000, 0.05) : 0;
+			previous = now;
+			const reduced = motion.matches;
+			smoothedLevel = reduced
+				? 0
+				: smoothedLevel + (level - smoothedLevel) * (1 - Math.exp(-10 * delta));
+			const activity =
+				orbState === 'speaking'
+					? 0.66 + smoothedLevel * 0.34
+					: orbState === 'listening'
+						? 0.28 + smoothedLevel * 0.32
+						: 0.1;
+			const speed =
+				orbState === 'speaking'
+					? 1.65 + smoothedLevel * 1.55
+					: orbState === 'listening'
+						? 0.72 + smoothedLevel * 0.78
+						: 0.24;
+			if (!reduced && orbState !== 'idle') flow += delta * speed;
+			const scale = reduced
+				? 1
+				: orbState === 'speaking'
+					? 1 + smoothedLevel * 0.12
+					: orbState === 'listening'
+						? 1 - smoothedLevel * 0.12
+						: 1;
+			canvas.style.transform = `scale(${scale})`;
+			renderer?.draw(reduced ? 0 : flow, activity);
+			if (renderer && !reduced && visible && !document.hidden && orbState !== 'idle' && !lost)
+				frame = requestAnimationFrame(draw);
+		}
+
+		function sync() {
+			cancelAnimationFrame(frame);
+			frame = 0;
+			previous = 0;
+			if (!visible || document.hidden || lost) return;
+			if (!renderer) initialize();
+			draw(performance.now());
+		}
+
+		function contextLost(event: Event) {
+			event.preventDefault();
+			lost = true;
+			ready = false;
+			cancelAnimationFrame(frame);
+			renderer = undefined;
+		}
+		function contextRestored() {
+			lost = false;
+			sync();
+		}
+
+		const intersection = new IntersectionObserver(([entry]) => {
+			visible = entry.isIntersecting;
+			sync();
+		});
+		intersection.observe(canvas);
+		const resize = new ResizeObserver(sync);
+		resize.observe(canvas);
+		motion.addEventListener('change', sync);
+		document.addEventListener('visibilitychange', sync);
+		canvas.addEventListener('webglcontextlost', contextLost);
+		canvas.addEventListener('webglcontextrestored', contextRestored);
+		refresh = sync;
+
+		return () => {
+			refresh = undefined;
+			cancelAnimationFrame(frame);
+			intersection.disconnect();
+			resize.disconnect();
+			motion.removeEventListener('change', sync);
+			document.removeEventListener('visibilitychange', sync);
+			canvas.removeEventListener('webglcontextlost', contextLost);
+			canvas.removeEventListener('webglcontextrestored', contextRestored);
+			renderer?.destroy();
+		};
+	});
 </script>
 
 <div
 	bind:this={ref}
 	role="status"
-	aria-label={state}
-	class={cn('voice-orb relative select-none', `is-${state}`, className)}
-	style="width: {size}px; height: {size}px;"
+	aria-label={orbState}
+	class={cn('voice-orb relative shrink-0 select-none', className)}
+	style:width="{diameter}px"
+	style:max-width="100%"
+	style:aspect-ratio="1"
+	data-renderer={ready ? 'webgl' : 'fallback'}
 	{...rest}
 >
-	<span class="orb-halo"></span>
-	<span class="orb-body">
-		<span class="orb-aura"></span>
-	</span>
+	<span class="orb-fallback" aria-hidden="true"></span>
+	<canvas
+		bind:this={canvas}
+		aria-hidden="true"
+		class="absolute inset-0 block size-full rounded-full"
+		style:opacity={ready ? 1 : 0}
+	></canvas>
 </div>
 
 <style>
-	.voice-orb {
-		pointer-events: none;
-	}
-
-	.orb-body {
+	.orb-fallback {
 		position: absolute;
 		inset: 0;
-		border-radius: 9999px;
-		overflow: hidden;
-		background: #ffffff;
-		transition: transform 0.4s ease;
-	}
-
-	.orb-aura {
-		position: absolute;
-		inset: -30%;
-		border-radius: 9999px;
-		background:
-			radial-gradient(60% 60% at 30% 25%, #ffc4dd 0%, transparent 62%),
-			radial-gradient(55% 55% at 76% 28%, #dcc8ff 0%, transparent 64%),
-			radial-gradient(65% 65% at 68% 80%, #bcdfff 0%, transparent 66%),
-			radial-gradient(45% 45% at 26% 74%, #ffe4c2 0%, transparent 62%);
-		filter: blur(6px) saturate(1.15);
-		animation: orb-turn 24s linear infinite;
-		will-change: transform;
-	}
-
-	.orb-halo {
-		position: absolute;
-		inset: -16%;
-		border-radius: 9999px;
-		background: radial-gradient(
-			circle,
-			rgba(230, 217, 255, 0.55) 0%,
-			rgba(255, 217, 232, 0.3) 45%,
-			transparent 70%
+		border-radius: 50%;
+		background: var(
+			--voice-orb-fallback,
+			linear-gradient(
+				180deg,
+				rgb(98 106 251),
+				rgb(143 157 251) 32%,
+				rgb(221 230 253) 52%,
+				rgb(201 211 251)
+			)
 		);
-		filter: blur(8px);
-		transition: opacity 0.4s ease;
-	}
-
-	/* listening: a slow, attentive breath */
-	.is-listening .orb-body {
-		animation: orb-breathe 2.4s ease-in-out infinite;
-	}
-	.is-listening .orb-aura {
-		animation-duration: 14s;
-	}
-
-	/* thinking: the aura churns faster, the halo dims */
-	.is-thinking .orb-aura {
-		animation-duration: 6s;
-		filter: blur(6px) saturate(1.5);
-	}
-	.is-thinking .orb-halo {
-		opacity: 0.6;
-	}
-
-	/* speaking: quick, voice-like pulses */
-	.is-speaking .orb-body {
-		animation: orb-speak 0.9s ease-in-out infinite;
-	}
-	.is-speaking .orb-aura {
-		animation-duration: 10s;
-	}
-
-	@keyframes orb-turn {
-		to {
-			transform: rotate(360deg);
-		}
-	}
-	@keyframes orb-breathe {
-		0%,
-		100% {
-			transform: scale(1);
-		}
-		50% {
-			transform: scale(1.06);
-		}
-	}
-	@keyframes orb-speak {
-		0%,
-		100% {
-			transform: scale(1);
-		}
-		30% {
-			transform: scale(1.09);
-		}
-		60% {
-			transform: scale(1.03);
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.orb-aura,
-		.is-listening .orb-body,
-		.is-speaking .orb-body {
-			animation: none;
-		}
 	}
 </style>

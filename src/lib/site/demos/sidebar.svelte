@@ -37,8 +37,8 @@
 									</Sidebar.MenuButton>
 								</Sidebar.MenuItem>
 
-								<Collapsible.Root open class="group/collapsible">
-									<Sidebar.MenuItem>
+								<Sidebar.MenuItem>
+									<Collapsible.Root open class="group/collapsible">
 										<Collapsible.Trigger>
 											{#snippet child({ props })}
 												<Sidebar.MenuButton {...props} tooltipContent="Agents">
@@ -69,8 +69,8 @@
 												</Sidebar.MenuSubItem>
 											</Sidebar.MenuSub>
 										</Collapsible.Content>
-									</Sidebar.MenuItem>
-								</Collapsible.Root>
+									</Collapsible.Root>
+								</Sidebar.MenuItem>
 
 								<Sidebar.MenuItem>
 									<Sidebar.MenuButton tooltipContent="Library">
@@ -94,7 +94,7 @@
 				<Sidebar.Footer>
 					<div class="flex items-center gap-2 px-1 py-0.5">
 						<span
-							class="bg-mizu-100 text-mizu-700 flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold"
+							class="bg-secondary text-foreground flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold"
 						>
 							A
 						</span>

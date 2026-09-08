@@ -55,7 +55,7 @@
 		<li
 			class={cn(
 				'group relative flex min-w-0',
-				isVertical ? 'gap-4 pb-6 last:pb-0' : 'flex-1 flex-col items-center last:flex-none'
+				isVertical ? 'gap-4 pb-6 last:pb-0' : 'flex-1 flex-col items-center'
 			)}
 			aria-current={active ? 'step' : undefined}
 		>
@@ -84,7 +84,7 @@
 							'focus-visible:ring-ring focus-visible:ring-offset-background relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm font-semibold transition-[background,color,box-shadow] duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]',
 							completed && 'bg-primary text-primary-foreground shadow-sm',
 							active &&
-								'bg-primary text-primary-foreground shadow-glow ring-offset-background ring-2 ring-[color:var(--primary)] ring-offset-2',
+								'bg-primary text-primary-foreground ring-offset-background ring-2 ring-[color:var(--primary)] ring-offset-2',
 							!completed && !active && 'bg-secondary text-muted-foreground hover:bg-accent'
 						)}
 					>
@@ -101,7 +101,7 @@
 							'relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm font-semibold transition-[background,color,box-shadow] duration-200 ease-out',
 							completed && 'bg-primary text-primary-foreground shadow-sm',
 							active &&
-								'bg-primary text-primary-foreground shadow-glow ring-offset-background ring-2 ring-[color:var(--primary)] ring-offset-2',
+								'bg-primary text-primary-foreground ring-offset-background ring-2 ring-[color:var(--primary)] ring-offset-2',
 							!completed && !active && 'bg-secondary text-muted-foreground'
 						)}
 					>
@@ -116,7 +116,7 @@
 
 			<div
 				class={cn(
-					'min-w-0',
+					'min-w-0 break-words',
 					isVertical ? 'pt-1.5' : 'mt-2 flex flex-col items-center px-1 text-center'
 				)}
 			>

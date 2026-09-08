@@ -10,9 +10,10 @@
 	import SettingsIcon from '@lucide/svelte/icons/settings';
 	import PlusIcon from '@lucide/svelte/icons/plus';
 
-	const chats = ['Trip to Tokyo', 'Blog outline', 'Dinner ideas', 'Week planning'];
+	let chats = $state(['Trip to Tokyo', 'Blog outline', 'Dinner ideas', 'Week planning']);
 	let active = $state('Trip to Tokyo');
 	let value = $state('');
+	let submitted = $state('');
 </script>
 
 <Tooltip.Provider>
@@ -35,19 +36,19 @@
 						<Sidebar.GroupContent>
 							<Sidebar.Menu>
 								<Sidebar.MenuItem>
-									<Sidebar.MenuButton tooltipContent="Home">
+									<Sidebar.MenuButton tooltipContent="Home" onclick={() => (active = 'Home')}>
 										<HouseIcon />
 										<span>Home</span>
 									</Sidebar.MenuButton>
 								</Sidebar.MenuItem>
 								<Sidebar.MenuItem>
-									<Sidebar.MenuButton tooltipContent="Agents">
+									<Sidebar.MenuButton tooltipContent="Agents" onclick={() => (active = 'Agents')}>
 										<BotIcon />
 										<span>Agents</span>
 									</Sidebar.MenuButton>
 								</Sidebar.MenuItem>
 								<Sidebar.MenuItem>
-									<Sidebar.MenuButton tooltipContent="Library">
+									<Sidebar.MenuButton tooltipContent="Library" onclick={() => (active = 'Library')}>
 										<LibraryIcon />
 										<span>Library</span>
 									</Sidebar.MenuButton>
@@ -58,7 +59,15 @@
 
 					<Sidebar.Group>
 						<Sidebar.GroupLabel>Chats</Sidebar.GroupLabel>
-						<Sidebar.GroupAction title="New chat">
+						<Sidebar.GroupAction
+							title="New chat"
+							onclick={() => {
+								const title = `New chat ${chats.length + 1}`;
+								chats = [...chats, title];
+								active = title;
+								submitted = '';
+							}}
+						>
 							<PlusIcon />
 						</Sidebar.GroupAction>
 						<Sidebar.GroupContent>
@@ -82,7 +91,7 @@
 				<Sidebar.Footer>
 					<Sidebar.Menu>
 						<Sidebar.MenuItem>
-							<Sidebar.MenuButton tooltipContent="Settings">
+							<Sidebar.MenuButton tooltipContent="Settings" onclick={() => (active = 'Settings')}>
 								<SettingsIcon />
 								<span>Settings</span>
 							</Sidebar.MenuButton>
@@ -98,19 +107,25 @@
 					<Sidebar.Trigger />
 					<h2 class="text-sm font-semibold tracking-tight">{active}</h2>
 				</header>
-				<div class="flex min-h-0 flex-1 flex-col justify-end gap-3 px-5 pb-5">
+				<div class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-5 pb-5">
 					<div
 						class="bg-primary text-primary-foreground ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md px-4 py-2.5 text-sm"
 					>
-						Four nights in October. Keep it slow.
+						{submitted || 'Four nights in October. Keep it slow.'}
 					</div>
 					<div
 						class="bg-secondary mr-auto w-fit max-w-[85%] rounded-2xl rounded-bl-md px-4 py-2.5 text-sm leading-relaxed"
 					>
-						Slow it is. Two neighborhoods, no alarms, and one perfect kissaten each morning.
+						{submitted
+							? 'Message received in this local preview.'
+							: 'I suggest two neighborhoods and a free afternoon between activities.'}
 					</div>
 					<Thinking variant="dots" label="Typing" class="pl-3" />
-					<ChatInput bind:value placeholder="Message Era..." />
+					<ChatInput
+						bind:value
+						placeholder="Message Era..."
+						onSubmit={(message) => (submitted = message)}
+					/>
 				</div>
 			</Sidebar.Inset>
 		</Sidebar.Provider>

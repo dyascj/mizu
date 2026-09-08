@@ -79,3 +79,28 @@ describe('StreamingText', () => {
 		expect(onComplete).toHaveBeenCalledTimes(2);
 	});
 });
+
+test('pauses and resumes the revealed text without duplicate completion', async () => {
+	vi.useFakeTimers();
+	const onComplete = vi.fn();
+	const { container, rerender, unmount } = render(StreamingText, {
+		text: 'Hello world',
+		speed: 10,
+		onComplete
+	});
+	const visual = container.querySelector('[aria-hidden="true"]');
+	await act(() => vi.advanceTimersByTimeAsync(10));
+	expect(visual).toHaveTextContent('Hello');
+	await rerender({ paused: true });
+	await act(() => vi.advanceTimersByTimeAsync(100));
+	expect(visual).toHaveTextContent('Hello');
+	await rerender({ paused: false });
+	await act(() => vi.advanceTimersByTimeAsync(20));
+	expect(visual).toHaveTextContent('Hello world');
+	expect(onComplete).toHaveBeenCalledOnce();
+	await rerender({ paused: true });
+	await rerender({ paused: false });
+	expect(onComplete).toHaveBeenCalledOnce();
+	unmount();
+	expect(vi.getTimerCount()).toBe(0);
+});

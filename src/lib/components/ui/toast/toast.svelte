@@ -38,25 +38,47 @@
 		error: XCircleIcon
 	};
 	const Icon = $derived(icons[toast.variant]);
+	let hovered = false;
+	let focused = false;
+	function syncTimer() {
+		if (hovered || focused) toaster.pause(toast.id);
+		else toaster.resume(toast.id);
+	}
 </script>
 
 <div
 	role={toast.variant === 'error' ? 'alert' : 'status'}
 	aria-live={toast.variant === 'error' ? 'assertive' : 'polite'}
 	class={cn(toastVariants({ variant: toast.variant }))}
-	onpointerenter={() => toaster.pause(toast.id)}
-	onpointerleave={() => toaster.resume(toast.id)}
+	onpointerenter={() => {
+		hovered = true;
+		syncTimer();
+	}}
+	onpointerleave={() => {
+		hovered = false;
+		syncTimer();
+	}}
+	onfocusin={() => {
+		focused = true;
+		syncTimer();
+	}}
+	onfocusout={(event) => {
+		focused =
+			event.relatedTarget instanceof Node && event.currentTarget.contains(event.relatedTarget);
+		syncTimer();
+	}}
 >
 	<Icon class="relative z-10 mt-0.5 size-5 shrink-0 text-[color:var(--toast)]" />
 
-	<div class="relative z-10 flex-1 pt-0.5">
+	<div class="relative z-10 min-w-0 flex-1 pt-0.5 [overflow-wrap:anywhere]">
 		<p class="text-foreground text-sm font-semibold">{toast.title}</p>
 		{#if toast.description}
 			<p class="text-muted-foreground mt-0.5 text-sm">{toast.description}</p>
 		{/if}
 		{#if toast.action}
 			<button
-				class={cn(buttonVariants({ variant: 'secondary', size: 'sm' }), 'mt-2.5 h-7 px-3 text-xs')}
+				type="button"
+				class={cn(buttonVariants({ variant: 'secondary', size: 'sm' }), 'mt-2.5 px-3 text-xs')}
 				onclick={() => {
 					toast.action?.onclick();
 					toaster.dismiss(toast.id);
@@ -68,7 +90,8 @@
 	</div>
 
 	<button
-		class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute top-2.5 right-2.5 z-20 inline-flex size-7 items-center justify-center rounded-lg transition-[scale,background-color] duration-150 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]"
+		type="button"
+		class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute top-2.5 right-2.5 z-20 inline-flex size-7 items-center justify-center rounded-lg transition-[scale,background-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]"
 		onclick={() => toaster.dismiss(toast.id)}
 	>
 		<XIcon class="size-3.5" />
@@ -76,9 +99,9 @@
 	</button>
 
 	{#if toast.duration > 0}
-		<!-- Remaining-time bar. Pauses with the dismiss timer on hover. -->
+		<!-- Remaining-time bar. Pauses with the dismiss timer on hover and keyboard focus. -->
 		<div
-			class="mizu-toast-bar absolute inset-x-0 bottom-0 z-10 h-0.5 origin-left bg-[color:var(--toast)] opacity-70 group-hover:[animation-play-state:paused]"
+			class="mizu-toast-bar absolute inset-x-0 bottom-0 z-10 h-0.5 origin-left bg-[color:var(--toast)] opacity-70 group-focus-within:[animation-play-state:paused] group-hover:[animation-play-state:paused]"
 			style="animation-duration: {toast.duration}ms;"
 			aria-hidden="true"
 		></div>

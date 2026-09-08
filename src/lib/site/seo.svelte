@@ -44,6 +44,6 @@
 
 	{#if jsonLd}
 		<!-- eslint-disable-next-line svelte/no-at-html-tags: static, app-generated JSON -->
-		{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>`}
+		{@html `<script type="application/ld+json">${JSON.stringify(jsonLd).replaceAll('<', '\\u003c')}<\/script>`}
 	{/if}
 </svelte:head>

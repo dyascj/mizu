@@ -25,3 +25,25 @@ describe('ChatInput', () => {
 		expect(onSubmit).not.toHaveBeenCalled();
 	});
 });
+
+test('composition Enter does not submit and optional actions are wired', async () => {
+	const onAttach = vi.fn();
+	const onVoice = vi.fn();
+	const { rerender } = render(ChatInput, { value: '日本語' });
+	expect(screen.queryByRole('button', { name: 'Attach' })).toBeNull();
+	const input = screen.getByRole('textbox', { name: 'Message' });
+	const event = new KeyboardEvent('keydown', {
+		key: 'Enter',
+		isComposing: true,
+		bubbles: true,
+		cancelable: true
+	});
+	await fireEvent(input, event);
+	expect(event.defaultPrevented).toBe(true);
+	expect(input).toHaveValue('日本語');
+	await rerender({ onAttach, onVoice });
+	await fireEvent.click(screen.getByRole('button', { name: 'Attach' }));
+	await fireEvent.click(screen.getByRole('button', { name: 'Voice input' }));
+	expect(onAttach).toHaveBeenCalledOnce();
+	expect(onVoice).toHaveBeenCalledOnce();
+});

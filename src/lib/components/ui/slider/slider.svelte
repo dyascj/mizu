@@ -33,6 +33,7 @@
 >
 	{#snippet children({ thumbItems })}
 		<span
+			data-orientation={restProps.orientation ?? 'horizontal'}
 			class="bg-muted relative h-2 w-full grow overflow-hidden rounded-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2"
 		>
 			<SliderPrimitive.Range
@@ -42,7 +43,11 @@
 		{#each thumbItems as { index } (index)}
 			<SliderPrimitive.Thumb
 				{index}
-				class="focus-visible:ring-ring focus-visible:ring-offset-background block size-5 shrink-0 rounded-full bg-white shadow-sm transition-[scale] duration-150 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none"
+				aria-label={restProps['aria-label']
+					? `${restProps['aria-label']}${thumbItems.length > 1 ? ` ${index + 1}` : ''}`
+					: undefined}
+				aria-labelledby={restProps['aria-labelledby']}
+				class="focus-visible:ring-ring focus-visible:ring-offset-background border-input bg-control block size-5 shrink-0 rounded-full border shadow-sm transition-[scale] duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none"
 			/>
 		{/each}
 	{/snippet}

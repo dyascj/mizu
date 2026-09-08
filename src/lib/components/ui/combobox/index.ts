@@ -7,7 +7,7 @@ import Item from './combobox-item.svelte';
 import Group from './combobox-group.svelte';
 import GroupHeading from './combobox-group-heading.svelte';
 
-const Root = ComboboxPrimitive.Root;
+import Root from './combobox.svelte';
 const Portal = ComboboxPrimitive.Portal;
 
 export {

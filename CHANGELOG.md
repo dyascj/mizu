@@ -2,6 +2,91 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.3.0-rc.2] - 2026-09-07
+
+This candidate includes the neutral theme, native Svelte cloud orb, revised landing page and docs, and the component spacing, radius, and interaction audit. It includes the fixes recorded under 0.3.0-rc.1. The stable registry remains on 0.2.1. Representative VoiceOver review is required before a stable 0.3.0 release.
+
+### Added
+
+- Browser checks for open menus, date pickers, selection lists, tooltips, dialogs, and drawers, including viewport bounds and Escape dismissal.
+- Regression coverage for repeated citations, unsafe citation URLs, retained invalid tags, compact gauges, and clearing a feedback vote.
+
+### Changed
+
+- Phone input text uses 16 pixels. Small metadata uses 12 pixels. Card titles allow wrapped lines, and dialog footers stack their actions on narrow screens.
+- Checkboxes and keycaps use smaller corner radii. OTP cells, segmented controls, calendars, and range endpoints have consistent shapes.
+- Button sizes set a minimum height and allow long action labels to wrap. For a deliberate smaller fixed height, override the minimum height too, or use the appropriate size variant.
+- Selected controls use a stronger neutral fill. Component, gallery, and block previews use the page background in both themes.
+- **MessageActions migration:** `onFeedback` now receives `'up'`, `'down'`, or `null`. Handle `null` to remove a previously recorded vote. The earlier callback omitted vote removal.
+- **Select and Combobox migration:** keep their `Root`, input or trigger, and content from the same Mizu version. The roots now share list relationships. Give Select triggers a visible associated label or an `aria-label`. `Combobox.Content` provides its own viewport; place groups and items directly inside it.
+- **CircularGauge migration:** diameters without enough interior space omit visual center content. The value and label remain available through the meter's accessibility attributes. Use a larger diameter for a visible caption.
+- Demo copy describes projects, files, reviews, and settings. Navigation examples link to working documentation routes.
+
+### Deprecated
+
+- No additional APIs deprecated.
+
+### Removed
+
+- No components removed.
+
+### Fixed
+
+- Context menus and navigation flyouts running outside narrow viewports.
+- Missing IDs and control relationships in open Select and Combobox lists.
+- Collapsed tree descendants remaining exposed to assistive technology.
+- Rejected or duplicate tags clearing the user's draft, and repeated labels causing keyed-render errors.
+- Selected calendar dates losing text contrast on hover and range endpoints receiving inconsistent corners.
+- Oversized menu content and long citation labels escaping their containers.
+
+### Security
+
+- Sources only creates links for HTTP, HTTPS, and relative web URLs. Other URL schemes render as plain citations.
+
+## [0.3.0-rc.1] - 2026-09-07
+
+This candidate is ready for integration testing. The stable and compatibility registry aliases remain on 0.2.1. Representative VoiceOver review is still required before 0.3.0 becomes stable.
+
+### Added
+
+- A Svelte 5 port of Orb UI's cloud renderer, with MIT attribution, audio-level input, reduced-motion handling, offscreen suspension, and a fallback when WebGL is unavailable or its context is lost.
+- `ChatInput` exposes `label`, `onAttach`, and `onVoice`. `StreamingText` exposes `paused` and resumes the current text without restarting it.
+- A control-fill token, live surface examples in the theming docs, and browser coverage for all 79 components in light and dark on desktop and mobile.
+- Tests for semantic contrast, tablet reflow, every block category, disabled links, IME composition, focused toast timers, and WebGL fallback behavior.
+
+### Changed
+
+- The default theme uses black, white, and neutral grays. AI activity and status retain color. Fields use a distinct fill on page, card, muted, and popover backgrounds. Focus, error states, and small empty controls retain semantic boundaries.
+- The landing page has five composed examples, responsive layouts, and restrained entrance motion. Documentation uses native page scrolling, clearer typography, wrapping API tables, and async section navigation. UI labels use sentence case.
+- Updated the reviewed dependency ranges for Svelte, TypeScript ESLint, Node types, globals, Lucide, internationalized dates, and TanStack Table. CodeQL actions now share one revision and one Dependabot group.
+- **Migration for copied source:** reinstall the theme alongside updated components to receive `--control` and the revised primary/foreground pairs. Custom themes should define `--control`, `--input`, and their primary foreground together.
+- **Button migration:** buttons now default to `type="button"`. Add `type="submit"` to intentional form submitters. Disabled link buttons have no navigable URL or callback.
+- **ChatInput migration:** attachment and microphone buttons render when their callbacks are supplied. Existing `leading` and `trailing` snippets still work.
+- **Command migration:** `Command.List` now creates the Bits UI viewport internally. Put items and groups directly inside the list.
+- Block previews provide local feedback. Authentication examples validate inputs but do not send credentials or create accounts.
+
+### Deprecated
+
+- No APIs deprecated. The legacy blue ramp remains available for existing custom themes.
+
+### Removed
+
+- Decorative uppercase labels, blue focus washes, the masked landing-page component wall, and the custom page scroll container.
+
+### Fixed
+
+- Low-contrast primary and status text, the dark-mode switch thumb, and composers that blended into their surrounding cards.
+- Slider, progress, select, and OTP accessible names; command list relationships; sidebar list semantics; keyboard access to scrollable tables and conversations.
+- Mobile pagination, dock, stepper, OTP, and block layouts; oversized dialog scrolling; long API names and documentation pagination.
+- IME Enter handling, rating size and invalid-value normalization, carousel keys inside editable fields, and keyboard focus pausing toast dismissal.
+- Theme storage failures, clipboard failure feedback and timer cleanup, deterministic sidebar skeletons, and premultiplied alpha at the orb edge.
+- Historical registry inventories now validate against their own manifests. Candidate builds preserve the stable aliases and verify the candidate's isolated consumer install.
+
+### Security
+
+- Updated the transitive `fast-uri` dependency to 3.1.7 to resolve four high-severity advisories. The dependency audit reports no known vulnerabilities.
+- JSON-LD serialization escapes HTML-significant input before insertion into script elements.
+
 ## [0.2.1] - 2026-08-28
 
 ### Added

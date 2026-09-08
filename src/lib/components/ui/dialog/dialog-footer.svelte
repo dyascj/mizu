@@ -11,6 +11,10 @@
 	let { class: className, ref = $bindable(null), children, ...rest }: Props = $props();
 </script>
 
-<div bind:this={ref} class={cn('flex justify-end gap-3', className)} {...rest}>
+<div
+	bind:this={ref}
+	class={cn('flex flex-col-reverse gap-3 sm:flex-row sm:justify-end', className)}
+	{...rest}
+>
 	{@render children?.()}
 </div>

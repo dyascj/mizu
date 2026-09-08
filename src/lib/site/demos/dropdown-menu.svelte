@@ -13,47 +13,47 @@
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger class={buttonVariants({ variant: 'secondary' })}>
-		Water settings
+		Project actions
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56" align="start">
-		<DropdownMenu.Label>Surface</DropdownMenu.Label>
+		<DropdownMenu.Label>Project</DropdownMenu.Label>
 		<DropdownMenu.Group>
 			<DropdownMenu.Item>
 				<Droplets />
-				Add droplet
+				New file
 				<DropdownMenu.Shortcut>⌘D</DropdownMenu.Shortcut>
 			</DropdownMenu.Item>
 			<DropdownMenu.Item>
 				<Settings />
-				Calibrate flow
+				Project settings
 				<DropdownMenu.Shortcut>⌘F</DropdownMenu.Shortcut>
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
-		<DropdownMenu.CheckboxItem bind:checked={showRipples}>Show ripples</DropdownMenu.CheckboxItem>
-		<DropdownMenu.CheckboxItem bind:checked={showFoam}>Show foam</DropdownMenu.CheckboxItem>
+		<DropdownMenu.CheckboxItem bind:checked={showRipples}>Show previews</DropdownMenu.CheckboxItem>
+		<DropdownMenu.CheckboxItem bind:checked={showFoam}>Show archived</DropdownMenu.CheckboxItem>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Label>Clarity</DropdownMenu.Label>
+		<DropdownMenu.Label>View</DropdownMenu.Label>
 		<DropdownMenu.RadioGroup bind:value={clarity}>
-			<DropdownMenu.RadioItem value="clear">Crystal clear</DropdownMenu.RadioItem>
-			<DropdownMenu.RadioItem value="murky">Murky</DropdownMenu.RadioItem>
+			<DropdownMenu.RadioItem value="clear">Comfortable</DropdownMenu.RadioItem>
+			<DropdownMenu.RadioItem value="murky">Compact</DropdownMenu.RadioItem>
 		</DropdownMenu.RadioGroup>
 		<DropdownMenu.Separator />
 		<DropdownMenu.Sub>
 			<DropdownMenu.SubTrigger>
 				<WavesLadder />
-				Currents
+				Move to
 			</DropdownMenu.SubTrigger>
 			<DropdownMenu.SubContent>
-				<DropdownMenu.Item>Tide</DropdownMenu.Item>
-				<DropdownMenu.Item>Eddy</DropdownMenu.Item>
-				<DropdownMenu.Item>Drift</DropdownMenu.Item>
+				<DropdownMenu.Item>Drafts</DropdownMenu.Item>
+				<DropdownMenu.Item>In review</DropdownMenu.Item>
+				<DropdownMenu.Item>Archive</DropdownMenu.Item>
 			</DropdownMenu.SubContent>
 		</DropdownMenu.Sub>
 		<DropdownMenu.Separator />
 		<DropdownMenu.Item>
 			<LogOut />
-			Drain
+			Leave project
 		</DropdownMenu.Item>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

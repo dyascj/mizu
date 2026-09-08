@@ -2,7 +2,7 @@
 	import { tv, type VariantProps } from 'tailwind-variants';
 
 	export const chatBubbleVariants = tv({
-		base: 'w-fit max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed break-words',
+		base: 'w-fit max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed [overflow-wrap:anywhere]',
 		variants: {
 			role: {
 				user: 'ml-auto rounded-br-md bg-primary text-primary-foreground',

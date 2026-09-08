@@ -6,5 +6,5 @@
 </script>
 
 <div class="flex justify-center">
-	<Calendar type="single" bind:value />
+	<Calendar type="single" bind:value class="shadow-md" />
 </div>

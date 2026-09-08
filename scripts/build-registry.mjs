@@ -274,6 +274,15 @@ export function replaceGeneratedDirectory(stagedDir, outDir) {
 	if (hadExistingOutput) rmSync(backupDir, { recursive: true, force: true });
 }
 
+/** Prereleases never replace the stable install aliases. */
+export function aliasVersion(release) {
+	if (!release.version.includes('-')) return release.version;
+	if (!/^\d+\.\d+\.\d+$/.test(release.stableVersion ?? '')) {
+		throw new Error('Prereleases require an explicit stableVersion for the install aliases.');
+	}
+	return release.stableVersion;
+}
+
 export function buildRegistry() {
 	const packageJson = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 	const dependencyVersions = packageJson.dependencies ?? {};
@@ -447,6 +456,34 @@ export function buildRegistry() {
 			itemFiles
 		);
 
+		let aliasFiles = itemFiles;
+		const stable = aliasVersion(releaseConfig);
+		if (stable !== release.version) {
+			const stableDir = join(OUT_DIR, `v${stable}`);
+			const manifest = JSON.parse(readFileSync(join(stableDir, 'manifest.json'), 'utf8'));
+			if (manifest.version !== stable || manifest.channel !== 'versioned') {
+				throw new Error('The stable registry manifest does not match stableVersion.');
+			}
+			aliasFiles = manifest.files.map(({ path }) => path);
+			for (const file of itemFiles) rmSync(join(stagedDir, file));
+			rmSync(latestDir, { recursive: true });
+			const stableRelease = { ...manifest, homepage };
+			writeVariant(
+				stableDir,
+				stagedDir,
+				base,
+				{ ...stableRelease, channel: 'compatibility' },
+				aliasFiles
+			);
+			writeVariant(
+				stableDir,
+				latestDir,
+				`${base}/latest`,
+				{ ...stableRelease, channel: 'latest' },
+				aliasFiles
+			);
+		}
+
 		const preservedVersions = existsSync(OUT_DIR)
 			? readdirSync(OUT_DIR, { withFileTypes: true })
 					.filter(
@@ -466,9 +503,9 @@ export function buildRegistry() {
 			});
 		}
 
-		const generatedFiles = [...itemFiles, 'manifest.json'];
+		const generatedFiles = [...aliasFiles, 'manifest.json'];
 		assertExactInventory(latestDir, generatedFiles);
-		assertExactInventory(versionDir, generatedFiles);
+		assertExactInventory(versionDir, [...itemFiles, 'manifest.json']);
 		assertExactInventory(stagedDir, [
 			...generatedFiles,
 			'latest',

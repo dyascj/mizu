@@ -16,7 +16,7 @@
 		// A thin aqua-lit seam: neutral at rest, blooms to the brand accent on
 		// hover / keyboard focus / active drag. `group` lets the inner grip react
 		// to the resizer's data-direction.
-		'group bg-border relative flex w-px items-center justify-center transition-colors duration-150 ease-out outline-none',
+		'group bg-border relative flex w-px items-center justify-center transition-colors duration-200 ease-out outline-none',
 		'after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2',
 		'hover:bg-[color:color-mix(in_oklab,var(--primary)_55%,transparent)]',
 		'focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-1',

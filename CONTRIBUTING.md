@@ -28,8 +28,10 @@ pnpm registry:consumer-check # isolated install and build of all registry items
 Mizu is a design system for AI products. Every contribution has to speak the same language:
 
 - **No decorative strokes.** Depth comes from the surface ladder. Light mode uses white surfaces with soft ambient shadows and gray fills. Dark mode uses tonal rungs (`#000` page, card, popover, hover). Semantic strokes are reserved for control outlines, focus and invalid states, dashed empty states, dense-content dividers, and panel edges that must remain distinct over arbitrary content. See `docs/decisions/0001-visual-boundaries.md`.
-- **One accent.** `--primary` blue for the active thing; active states are `bg-primary-muted text-primary`. Everything else is quiet gray.
+- **Neutral first.** `--primary` is black in light mode and white in dark mode; active states are `bg-primary-muted text-primary`. Everything else is quiet gray.
 - **Auras are for AI moments.** The `orb-*` and `aurora-*` washes mark where intelligence lives (voice, generation, presence), never chrome.
+- Component, gallery, and block preview canvases use the page background in both themes. Keep gray fills inside the components themselves.
+- Use sentence case for UI labels and headings. No all-caps eyebrows or `uppercase` text styling. Preserve established acronyms and code identifiers.
 - **Nothing heavier than semibold.** Titles are semibold with tight tracking, labels are medium, body is regular. Controls are pills; multi-line fields are `rounded-2xl`.
 - **Motion is quiet and honest.** 200-320ms ease-out entrances, 2s shimmer sweeps for working states, and everything respects `prefers-reduced-motion`.
 
@@ -51,7 +53,7 @@ If a component imports a project-local file outside `$lib/components/ui` or `$li
 
 ## Lifting from shadcn-svelte
 
-When stock shadcn-svelte already solved the behavior, lift it instead of rebuilding: fetch `https://shadcn-svelte.com/registry/<name>.json`, extract the file contents, resolve `$UI$` / `$UTILS$` / `$HOOKS$` placeholders to `$lib/...`, then reskin to the design rules above (strip borders, blue-wash actives, hide scrollbars). The sidebar, calendar, and drawer all arrived this way.
+When stock shadcn-svelte already solved the behavior, lift it instead of rebuilding: fetch `https://shadcn-svelte.com/registry/<name>.json`, extract the file contents, resolve `$UI$` / `$UTILS$` / `$HOOKS$` placeholders to `$lib/...`, then reskin to the design rules above (strip decorative borders, use tonal active states). The sidebar, calendar, and drawer all arrived this way.
 
 ## Blocks
 

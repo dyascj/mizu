@@ -50,7 +50,7 @@
 </script>
 
 <div class="bg-card w-full max-w-lg overflow-hidden rounded-2xl shadow-md">
-	<Table.Root>
+	<Table.Root class="min-w-[28rem]">
 		<Table.Header>
 			{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 				<Table.Row>
@@ -60,7 +60,7 @@
 								<Button
 									variant="ghost"
 									size="sm"
-									class="-ml-3 h-8"
+									class="-ml-3 h-8 [overflow-wrap:normal] whitespace-nowrap"
 									onclick={() => header.column.toggleSorting(header.column.getIsSorted() === 'asc')}
 								>
 									Tokens

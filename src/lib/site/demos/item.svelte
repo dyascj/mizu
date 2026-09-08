@@ -9,10 +9,10 @@
 		<Droplets />
 	</Item.Media>
 	<Item.Content>
-		<Item.Title>Spring water</Item.Title>
-		<Item.Description>Filtered and ready to bottle.</Item.Description>
+		<Item.Title>Design brief</Item.Title>
+		<Item.Description>Updated today by Alex.</Item.Description>
 	</Item.Content>
 	<Item.Actions>
-		<Button variant="outline" size="sm">View</Button>
+		<Button variant="secondary" size="sm" href="/docs/usage">View</Button>
 	</Item.Actions>
 </Item.Root>

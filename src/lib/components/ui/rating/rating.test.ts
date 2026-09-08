@@ -53,3 +53,11 @@ describe('Rating', () => {
 		expect(slider).toHaveAttribute('tabindex', '-1');
 	});
 });
+
+test('normalizes the drawn icons and recovers keyboard input from NaN', async () => {
+	render(Rating, { value: NaN, size: -20 });
+	const slider = screen.getByRole('slider');
+	expect(slider.querySelector('svg')).toHaveAttribute('width', '8');
+	await fireEvent.keyDown(slider, { key: 'ArrowRight' });
+	expect(slider).toHaveAttribute('aria-valuenow', '1');
+});

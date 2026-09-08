@@ -15,33 +15,33 @@
 	}
 	const linkClass = (active: boolean) =>
 		cn(
-			'rounded-md px-2 py-1 text-[0.8rem] leading-snug transition-colors',
+			'rounded-lg px-3 py-1.5 text-sm leading-snug transition-colors',
 			active
 				? 'bg-primary-muted font-medium text-primary'
 				: 'text-muted-foreground hover:text-foreground'
 		);
 </script>
 
-<div class="mx-auto flex w-full max-w-6xl gap-8 px-5 py-10 sm:px-6">
+<div class="mx-auto flex w-full max-w-[1440px] gap-10 px-5 py-10 sm:px-8 lg:py-12">
 	<aside
 		class="sticky top-24 hidden h-[calc(100dvh-8.5rem)] w-52 shrink-0 [scrollbar-width:none] overflow-y-auto [overscroll-behavior:contain] [mask-image:linear-gradient(to_bottom,transparent_0,black_1.5rem,black_calc(100%-3rem),transparent_100%)] py-6 lg:block [&::-webkit-scrollbar]:hidden"
 	>
-		<nav class="flex flex-col gap-5">
+		<nav aria-label="Documentation" class="flex flex-col gap-5">
 			<div class="flex flex-col gap-px">
-				<p class="text-muted-foreground/70 px-2 pb-1 text-xs font-medium">Getting Started</p>
+				<p class="text-muted-foreground px-2 pb-1 text-xs font-medium">Getting started</p>
 				{#each gettingStartedRoutes as route (route.path)}
 					<a href={route.path} class={linkClass(isActive(route.path))}>{route.title}</a>
 				{/each}
 			</div>
 
 			<div class="flex flex-col gap-px">
-				<p class="text-muted-foreground/70 px-2 pb-1 text-xs font-medium">Components</p>
+				<p class="text-muted-foreground px-2 pb-1 text-xs font-medium">Components</p>
 				<a href="/docs/components" class={linkClass(isActive('/docs/components'))}>Overview</a>
 			</div>
 
 			{#each groups as group (group.category)}
 				<div class="flex flex-col gap-px">
-					<p class="text-muted-foreground/70 px-2 pb-1 text-xs font-medium">
+					<p class="text-muted-foreground px-2 pb-1 text-xs font-medium">
 						{group.category}
 					</p>
 					{#each group.items as item (item.slug)}
@@ -53,14 +53,14 @@
 		</nav>
 	</aside>
 
-	<main class="min-w-0 flex-1 pb-16">
+	<main id="main-content" class="min-w-0 flex-1 pb-16" tabindex="-1">
 		<div id="doc-content">
 			{@render children()}
 		</div>
 		<DocsPager />
 	</main>
 
-	<aside class="hidden w-56 shrink-0 xl:block">
+	<aside class="hidden w-44 shrink-0 xl:block">
 		<TableOfContents />
 	</aside>
 </div>

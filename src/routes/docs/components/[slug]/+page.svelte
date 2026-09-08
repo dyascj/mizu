@@ -46,7 +46,7 @@
 
 <article class="max-w-3xl">
 	<div class="flex flex-wrap items-center gap-3">
-		<h1 class="font-display text-3xl font-semibold">{meta.name}</h1>
+		<h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">{meta.name}</h1>
 		<Badge variant="outline">{meta.category}</Badge>
 		{#if meta.bits}<Badge variant="secondary">bits-ui</Badge>{/if}
 	</div>
@@ -77,9 +77,7 @@
 			<h2 class="font-display mt-10 mb-2 text-xl font-semibold">
 				{multiPart ? 'API reference' : 'Props'}
 			</h2>
-			<p class="text-muted-foreground mb-4 text-sm">
-				Generated from the component source and snapshot-tested against the catalog.
-			</p>
+			<p class="text-muted-foreground mb-4 text-sm">Properties, defaults, and supported values.</p>
 			{#each api as part (part.title)}
 				{#if multiPart}
 					<h3 class="text-foreground mt-6 mb-3 font-mono text-base font-semibold">{part.title}</h3>
@@ -111,7 +109,7 @@
 													title="Required">*</span
 												>{/if}
 											{#if p.bindable}<span
-													class="bg-secondary text-muted-foreground ml-1.5 rounded px-1.5 py-0.5 font-mono text-[0.65rem]"
+													class="bg-secondary text-muted-foreground ml-1.5 rounded px-1.5 py-0.5 font-mono text-xs"
 													title="Two-way bindable with bind:">bind</span
 												>{/if}
 										</td>
@@ -130,7 +128,7 @@
 				{#if part.extendsTypes.length}
 					<p class="text-muted-foreground mt-2 text-sm">
 						Also accepts {#each part.extendsTypes as t, i (t)}<code
-								class="text-foreground font-mono">{t}</code
+								class="text-foreground font-mono break-all">{t}</code
 							>{i < part.extendsTypes.length - 1 ? ', ' : ''}{/each} props (e.g. native attributes pass
 						straight through).
 					</p>
@@ -144,7 +142,7 @@
 		{#if source.length}
 			<h2 class="font-display mt-10 mb-3 text-xl font-semibold">Source</h2>
 			<p class="text-muted-foreground mb-4 text-sm">
-				The full source you own once you copy it in. No black box.
+				Copy the source into your project and adapt it to your product.
 			</p>
 			<div class="flex flex-col gap-2">
 				{#each source as f (f.file)}
@@ -152,7 +150,7 @@
 						<summary
 							class="text-foreground flex cursor-pointer items-center justify-between px-4 py-3 font-mono text-sm select-none"
 						>
-							{f.file}
+							<span class="min-w-0 break-all">{f.file}</span>
 							<span class="text-muted-foreground text-xs group-open:hidden">Show</span>
 							<span class="text-muted-foreground hidden text-xs group-open:inline">Hide</span>
 						</summary>

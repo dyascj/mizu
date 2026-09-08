@@ -22,7 +22,7 @@
 <RangeCalendarPrimitive.PrevButton
 	bind:ref
 	class={cn(
-		buttonVariants({ variant }),
+		buttonVariants({ variant, size: 'icon' }),
 		'size-(--cell-size) bg-transparent p-0 select-none disabled:opacity-50 rtl:rotate-180',
 		className
 	)}

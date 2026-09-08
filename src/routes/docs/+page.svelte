@@ -15,19 +15,17 @@
 
 <article class="max-w-2xl">
 	<MizuLogo class="mb-8 scale-125" />
-	<h1 class="text-3xl font-semibold">Introduction</h1>
+	<h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Introduction</h1>
 	<p class="text-muted-foreground mt-3 text-lg">
-		Mizu is a clean, airy design system for AI products and the designers building them. White
-		surfaces, soft shadows, pill controls, and the components a modern assistant needs, built
-		honestly for Svelte 5 and Tailwind v4.
+		Mizu is a Svelte 5 component library for AI products. Build conversations, voice interfaces, and
+		agent workflows with source you can copy into your project and customize.
 	</p>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">The language</h2>
 	<p class="text-muted-foreground mb-4 leading-relaxed">
-		Interfaces built for AI deserve calm. Mizu (<span class="font-medium">水</span>, "water") keeps
-		every surface quiet so the content and the intelligence can speak: white on white with subtle
-		dividers, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for
-		the moments where the AI is present. Nothing shines, nothing shouts.
+		Black, white, and neutral grays give the interface its structure. Color marks status and AI
+		activity. Controls remain distinct on each surface, with visible focus and readable labels in
+		light and dark themes.
 	</p>
 
 	<h2 class="mt-10 mb-3 text-xl font-semibold">Principles</h2>
@@ -42,7 +40,8 @@
 			<a
 				href="https://bits-ui.com"
 				class="text-primary font-medium underline-offset-4 hover:underline">bits-ui</a
-			> primitives, so keyboard and screen-reader behavior is handled.
+			> primitives for established keyboard and screen-reader behavior. Supply meaningful labels and test
+			the completed flow in your app.
 		</li>
 		<li>
 			<span class="text-foreground font-semibold">Yours to own.</span> Components are copied into your
@@ -50,7 +49,7 @@
 		</li>
 		<li>
 			<span class="text-foreground font-semibold">Tokens all the way down.</span> One theme file drives
-			every surface, in an airy light mode and a pure-black dark mode.
+			every surface, in a neutral light mode and a pure-black dark mode.
 		</li>
 	</ul>
 

@@ -8,11 +8,11 @@
 	import { ToolCall } from '$lib/components/ui/tool-call';
 	import { VoiceOrb } from '$lib/components/ui/voice-orb';
 
-	const agents = [
+	let agents = $state([
 		{ name: 'Era', task: 'Planning your trip', state: 'thinking' as const },
 		{ name: 'Fjord', task: 'Drafting the blog post', state: 'idle' as const },
 		{ name: 'Super', task: 'Watching the inbox', state: 'idle' as const }
-	];
+	]);
 
 	const steps: PlanStep[] = [
 		{ label: 'Understanding the brief', state: 'done' },
@@ -22,6 +22,7 @@
 	];
 
 	let nudgeVisible = $state(true);
+	let reminder = $state(false);
 </script>
 
 <div class="mx-auto grid w-full max-w-4xl gap-4 lg:grid-cols-3">
@@ -29,7 +30,7 @@
 	<Card.Root>
 		<Card.Header>
 			<Card.Title>Your agents</Card.Title>
-			<Card.Description>Three at work right now.</Card.Description>
+			<Card.Description>{agents.length} agents in your workspace.</Card.Description>
 		</Card.Header>
 		<Card.Content class="flex flex-col gap-4">
 			{#each agents as agent (agent.name)}
@@ -43,7 +44,17 @@
 			{/each}
 		</Card.Content>
 		<Card.Footer>
-			<Button variant="secondary" size="sm" class="w-full">New agent</Button>
+			<Button
+				variant="secondary"
+				size="sm"
+				class="w-full"
+				onclick={() => {
+					agents = [
+						...agents,
+						{ name: `Agent ${agents.length + 1}`, task: 'Ready for a task', state: 'idle' }
+					];
+				}}>New agent</Button
+			>
 		</Card.Footer>
 	</Card.Root>
 
@@ -65,16 +76,16 @@
 			<Card.Header>
 				<Card.Title>Today</Card.Title>
 			</Card.Header>
-			<Card.Content class="flex items-center gap-5">
-				<CircularGauge value={72} label="Focus" />
-				<div class="flex flex-1 flex-col gap-3">
+			<Card.Content class="flex flex-wrap items-center gap-5">
+				<CircularGauge value={72} label="Focus" size={96} />
+				<div class="flex min-w-24 flex-1 flex-col gap-3">
 					<div class="flex flex-col gap-1.5">
 						<div class="flex justify-between text-xs">
 							<span class="text-muted-foreground">Tasks done</span><span class="tabular-nums"
 								>84%</span
 							>
 						</div>
-						<Progress value={84} />
+						<Progress value={84} aria-label="Tasks done" />
 					</div>
 				</div>
 			</Card.Content>
@@ -87,9 +98,18 @@
 				onDismiss={() => (nudgeVisible = false)}
 			>
 				{#snippet actions()}
-					<Button size="sm">Remind me</Button>
+					<Button
+						size="sm"
+						onclick={() => {
+							reminder = true;
+							nudgeVisible = false;
+						}}>Remind me</Button
+					>
 				{/snippet}
 			</Nudge>
 		{/if}
+		{#if reminder}<p role="status" class="text-muted-foreground text-sm">
+				Reminder added for Tuesday in this preview.
+			</p>{/if}
 	</div>
 </div>

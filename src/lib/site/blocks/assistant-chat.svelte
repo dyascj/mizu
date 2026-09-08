@@ -11,6 +11,7 @@
 	import * as Select from '$lib/components/ui/select';
 
 	let value = $state('');
+	let submitted = $state('');
 	let run = $state(0);
 	let replayTimer: ReturnType<typeof setTimeout> | undefined;
 	let model = $state('era-3');
@@ -24,6 +25,7 @@
 		'Booked for Saturday at seven. I picked the corner table you liked last time, and the walk over is fifteen minutes if you leave at a quarter to.';
 
 	function replayStream() {
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 		if (replayTimer) clearTimeout(replayTimer);
 		replayTimer = setTimeout(() => (run += 1), 4200);
 	}
@@ -42,7 +44,7 @@
 			<p class="text-muted-foreground text-xs">Online now</p>
 		</div>
 		<Select.Root type="single" bind:value={model}>
-			<Select.Trigger class="h-8 w-28 text-xs">
+			<Select.Trigger class="h-8 w-28 text-xs" aria-label="Model">
 				{models.find((m) => m.value === model)?.label}
 			</Select.Trigger>
 			<Select.Content>
@@ -53,8 +55,14 @@
 		</Select.Root>
 	</header>
 
-	<!-- conversation -->
-	<div class="flex min-h-0 flex-1 flex-col gap-2.5 overflow-y-auto px-5 py-3">
+	<!-- Keyboard users can scroll the conversation independently. -->
+	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+	<div
+		class="flex min-h-0 flex-1 flex-col gap-2.5 overflow-y-auto px-5 py-3"
+		tabindex="0"
+		role="region"
+		aria-label="Conversation"
+	>
 		<ChatBubble role="user" animate={false}>
 			Find somewhere quiet for dinner Saturday and book it.
 		</ChatBubble>
@@ -83,13 +91,22 @@
 			items={[{ label: 'verde.rest', url: 'https://example.com' }, { label: 'maps' }]}
 		/>
 		<MessageActions text={reply} class="pl-1" />
+		{#if submitted}<ChatBubble role="user" animate={false}>{submitted}</ChatBubble>
+			<p role="status" class="text-muted-foreground text-xs">
+				Message received in this local preview.
+			</p>{/if}
 	</div>
 
 	<!-- composer -->
 	<footer class="flex flex-col gap-2.5 px-5 pt-1 pb-5">
 		<PromptSuggestions
+			onSelect={(prompt) => (value = prompt)}
 			items={['Make it 8pm instead', 'Add it to my calendar', 'What should I wear?']}
 		/>
-		<ChatInput bind:value placeholder="Message Era..." />
+		<ChatInput
+			bind:value
+			placeholder="Message Era..."
+			onSubmit={(message) => (submitted = message)}
+		/>
 	</footer>
 </div>

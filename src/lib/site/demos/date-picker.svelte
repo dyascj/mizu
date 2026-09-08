@@ -8,7 +8,7 @@
 <div class="flex justify-center">
 	<DatePicker.Root bind:value>
 		<div class="flex w-64 flex-col gap-2">
-			<DatePicker.Label>Trip date</DatePicker.Label>
+			<DatePicker.Label>Review date</DatePicker.Label>
 			<DatePicker.Input />
 			<DatePicker.Content />
 		</div>
