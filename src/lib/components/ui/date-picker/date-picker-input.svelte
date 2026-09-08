@@ -13,7 +13,7 @@
 <DatePickerPrimitive.Input
 	bind:ref
 	class={cn(
-		'bg-control text-foreground focus-within:ring-ring data-[invalid]:border-destructive data-[invalid]:ring-destructive flex h-10 w-full items-center rounded-full pr-1.5 pl-3.5 text-sm transition-[box-shadow,border-color] duration-200 outline-none select-none focus-within:ring-2 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
+		'bg-control text-foreground focus-within:ring-ring data-[invalid]:border-destructive data-[invalid]:ring-destructive flex h-10 w-full items-center rounded-full pr-1.5 pl-3.5 text-base transition-[box-shadow,border-color] duration-200 outline-none select-none focus-within:ring-2 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 sm:text-sm',
 		className
 	)}
 	{...restProps}

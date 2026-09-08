@@ -75,7 +75,7 @@
 		}}
 		{placeholder}
 		{disabled}
-		class="text-foreground placeholder:text-muted-foreground h-9 min-w-0 flex-1 bg-transparent px-2.5 text-sm outline-none focus-visible:outline-none disabled:cursor-not-allowed"
+		class="text-foreground placeholder:text-muted-foreground h-9 min-w-0 flex-1 bg-transparent px-2.5 text-base outline-none focus-visible:outline-none disabled:cursor-not-allowed sm:text-sm"
 	/>
 
 	{#if trailing}

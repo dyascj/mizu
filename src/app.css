@@ -58,7 +58,7 @@
 	--ring: var(--primary);
 
 	/* Accent washes */
-	--primary-muted: color-mix(in srgb, var(--primary) 10%, var(--background));
+	--primary-muted: color-mix(in srgb, var(--primary) 16%, var(--background));
 	--primary-subtle: color-mix(in srgb, var(--primary) 5%, var(--background));
 
 	/* Translucent panel material: flat frost, no sheen */
@@ -142,7 +142,7 @@
 	--control: #363636;
 	--ring: var(--primary);
 
-	--primary-muted: color-mix(in srgb, var(--primary) 10%, var(--background));
+	--primary-muted: color-mix(in srgb, var(--primary) 24%, var(--background));
 	--primary-subtle: color-mix(in srgb, var(--primary) 5%, var(--background));
 
 	--glass: rgba(20, 20, 20, 0.72);

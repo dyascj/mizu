@@ -2,7 +2,7 @@
 	import { tv, type VariantProps } from 'tailwind-variants';
 
 	export const buttonVariants = tv({
-		base: 'inline-flex shrink-0 select-none items-center justify-center gap-2 whitespace-nowrap font-medium outline-none transition-[background-color,color,box-shadow,scale] duration-200 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50',
+		base: 'inline-flex max-w-full shrink-0 select-none items-center justify-center gap-2 whitespace-normal text-center font-medium [overflow-wrap:anywhere] outline-none transition-[background-color,color,box-shadow,scale] duration-200 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50',
 		variants: {
 			variant: {
 				primary: 'bg-primary text-primary-foreground shadow-sm hover:bg-primary-hover',
@@ -15,9 +15,9 @@
 				link: 'bg-transparent text-primary underline-offset-4 hover:underline'
 			},
 			size: {
-				sm: 'h-8 rounded-full px-4 text-sm',
-				md: 'h-10 rounded-full px-5 text-sm',
-				lg: 'h-12 rounded-full px-6 text-base',
+				sm: 'min-h-8 rounded-full px-4 py-1.5 text-sm',
+				md: 'min-h-10 rounded-full px-5 py-2.5 text-sm',
+				lg: 'min-h-12 rounded-full px-6 py-3 text-base',
 				icon: 'size-10 rounded-full'
 			}
 		},

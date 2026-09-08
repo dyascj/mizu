@@ -5,10 +5,10 @@
 </script>
 
 <div class="w-full max-w-xs">
-	<NativeSelect aria-label="Water type" bind:value>
-		<option value="still">Still</option>
-		<option value="sparkling">Sparkling</option>
-		<option value="mineral">Mineral</option>
-		<option value="spring">Spring</option>
+	<NativeSelect aria-label="Notification frequency" bind:value>
+		<option value="still">Every update</option>
+		<option value="sparkling">Daily summary</option>
+		<option value="mineral">Weekly summary</option>
+		<option value="spring">Never</option>
 	</NativeSelect>
 </div>

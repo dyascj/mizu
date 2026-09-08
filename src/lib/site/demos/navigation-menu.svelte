@@ -5,38 +5,38 @@
 <NavigationMenu.Root>
 	<NavigationMenu.List>
 		<NavigationMenu.Item>
-			<NavigationMenu.Trigger>Sources</NavigationMenu.Trigger>
+			<NavigationMenu.Trigger>Components</NavigationMenu.Trigger>
 			<NavigationMenu.Content>
-				<ul class="grid w-64 gap-1">
+				<ul class="grid w-64 max-w-full gap-1">
 					<li>
-						<NavigationMenu.Link href="##">
-							<div class="font-medium">Springs</div>
-							<p class="text-muted-foreground">Naturally filtered through stone.</p>
+						<NavigationMenu.Link href="/docs/components/chat-input">
+							<div class="font-medium">Chat components</div>
+							<p class="text-muted-foreground">Build conversations with streaming and citations.</p>
 						</NavigationMenu.Link>
 					</li>
 					<li>
-						<NavigationMenu.Link href="##">
-							<div class="font-medium">Glaciers</div>
-							<p class="text-muted-foreground">Ancient ice, slowly melting clear.</p>
+						<NavigationMenu.Link href="/docs/components/input">
+							<div class="font-medium">Form controls</div>
+							<p class="text-muted-foreground">Inputs, selection, and validation.</p>
 						</NavigationMenu.Link>
 					</li>
 				</ul>
 			</NavigationMenu.Content>
 		</NavigationMenu.Item>
 		<NavigationMenu.Item>
-			<NavigationMenu.Trigger>Care</NavigationMenu.Trigger>
+			<NavigationMenu.Trigger>Guides</NavigationMenu.Trigger>
 			<NavigationMenu.Content>
-				<ul class="grid w-64 gap-1">
+				<ul class="grid w-64 max-w-full gap-1">
 					<li>
-						<NavigationMenu.Link href="##">
-							<div class="font-medium">Filtration</div>
-							<p class="text-muted-foreground">Keep every drop crystal clear.</p>
+						<NavigationMenu.Link href="/docs/installation">
+							<div class="font-medium">Installation</div>
+							<p class="text-muted-foreground">Add your first component.</p>
 						</NavigationMenu.Link>
 					</li>
 					<li>
-						<NavigationMenu.Link href="##">
-							<div class="font-medium">Storage</div>
-							<p class="text-muted-foreground">Cool, dark, and still.</p>
+						<NavigationMenu.Link href="/docs/theming">
+							<div class="font-medium">Theming</div>
+							<p class="text-muted-foreground">Set colors, type, and motion.</p>
 						</NavigationMenu.Link>
 					</li>
 				</ul>

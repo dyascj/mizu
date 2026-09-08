@@ -4,15 +4,15 @@
 
 <div class="flex w-full max-w-xs flex-col gap-4">
 	<div class="flex flex-col gap-3">
-		<p class="text-foreground text-sm">Surface tension</p>
+		<p class="text-foreground text-sm">Project settings</p>
 		<Separator />
-		<p class="text-muted-foreground text-sm">The quiet skin atop still water.</p>
+		<p class="text-muted-foreground text-sm">Manage access and notifications for this project.</p>
 	</div>
 	<div class="text-muted-foreground flex h-5 items-center gap-3 text-sm">
-		<span>Lake</span>
+		<span>General</span>
 		<Separator orientation="vertical" />
-		<span>River</span>
+		<span>Members</span>
 		<Separator orientation="vertical" />
-		<span>Spring</span>
+		<span>Billing</span>
 	</div>
 </div>

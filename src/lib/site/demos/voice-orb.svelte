@@ -11,7 +11,11 @@
 	<p class="text-muted-foreground text-sm">
 		{orb === 'idle' ? 'Standing by' : `I'm ${orb}...`}
 	</p>
-	<ToggleGroup.Root class="flex-wrap justify-center" type="single" bind:value={orbState}>
+	<ToggleGroup.Root
+		class="grid grid-cols-2 justify-center sm:flex"
+		type="single"
+		bind:value={() => orbState, (value) => (orbState = value || 'idle')}
+	>
 		<ToggleGroup.Item value="idle">Idle</ToggleGroup.Item>
 		<ToggleGroup.Item value="listening">Listening</ToggleGroup.Item>
 		<ToggleGroup.Item value="thinking">Thinking</ToggleGroup.Item>

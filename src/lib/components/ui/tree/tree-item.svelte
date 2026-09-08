@@ -10,6 +10,8 @@
 	let { node, depth }: { node: TreeNode; depth: number } = $props();
 
 	const tree = getTreeContext();
+	const uid = $props.id();
+	const groupId = `tree-group-${uid}`;
 
 	const hasChildren = $derived(!!node.children?.length);
 	const expanded = $derived(tree.isExpanded(node.id));
@@ -25,6 +27,7 @@
 <div
 	role="treeitem"
 	aria-selected={selected}
+	aria-owns={hasChildren ? groupId : undefined}
 	aria-expanded={hasChildren ? expanded : undefined}
 	tabindex={tree.focusedId === node.id ? 0 : -1}
 	{@attach (el) => tree.registerEl(node.id, el as HTMLElement)}
@@ -34,9 +37,7 @@
 	class={cn(
 		'flex h-9 cursor-pointer items-center gap-1.5 rounded-lg pr-2 transition-[background,box-shadow,color] duration-200 ease-out outline-none select-none',
 		'hover:bg-accent focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2',
-		selected
-			? 'text-foreground bg-[color:color-mix(in_oklab,var(--primary)_14%,transparent)] font-medium'
-			: 'text-foreground/90'
+		selected ? 'bg-primary-muted text-primary font-medium' : 'text-foreground/90'
 	)}
 	style="padding-left: calc(0.5rem + {depth} * 1.125rem);"
 >
@@ -60,6 +61,9 @@
 {#if hasChildren}
 	<div
 		role="group"
+		id={groupId}
+		aria-hidden={!expanded}
+		inert={!expanded}
 		class="mizu-tree-group grid transition-[grid-template-rows] duration-200 ease-out"
 		class:mizu-tree-open={expanded}
 		style="grid-template-rows: {expanded ? '1fr' : '0fr'};"

@@ -2,6 +2,17 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
 async function expectNoAccessibilityViolations(page: Page) {
+	// Inspect settled styles after entrance transitions.
+	await page.waitForFunction(() =>
+		document
+			.getAnimations()
+			.every(
+				(animation) =>
+					Number(animation.effect?.getComputedTiming().duration) > 320 ||
+					animation.effect?.getComputedTiming().iterations === Infinity ||
+					animation.playState === 'finished'
+			)
+	);
 	const results = await new AxeBuilder({ page })
 		.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
 		.analyze();

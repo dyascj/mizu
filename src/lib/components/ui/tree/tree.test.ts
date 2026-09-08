@@ -45,6 +45,6 @@ describe('Tree', () => {
 			'tabindex',
 			'0'
 		);
-		expect(within(tree).getByRole('treeitem', { name: 'Mizu' })).toHaveAttribute('tabindex', '-1');
+		expect(within(tree).queryByRole('treeitem', { name: 'Mizu' })).not.toBeInTheDocument();
 	});
 });

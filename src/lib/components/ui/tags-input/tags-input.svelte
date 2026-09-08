@@ -46,10 +46,11 @@
 
 	function addTag(raw: string) {
 		const tag = raw.trim();
-		if (!tag || disabled || atMax) return;
-		if (dedupe && value.includes(tag)) return;
-		if (validate && !validate(tag)) return;
+		if (!tag || disabled || atMax) return false;
+		if (dedupe && value.includes(tag)) return false;
+		if (validate && !validate(tag)) return false;
 		setValue([...value, tag]);
+		return true;
 	}
 
 	function removeAt(index: number) {
@@ -59,8 +60,7 @@
 
 	function commitDraft() {
 		if (!draft.trim()) return;
-		addTag(draft);
-		draft = '';
+		if (addTag(draft)) draft = '';
 	}
 
 	function onkeydown(e: KeyboardEvent) {
@@ -78,7 +78,7 @@
 <div
 	class={cn(
 		'bg-control focus-within:ring-ring flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-2xl px-2.5 py-2 text-sm transition-[box-shadow,border-color] duration-200 outline-none focus-within:ring-2',
-		!placeholder && !value.length && 'ring-input ring-1',
+		!placeholder && !value.length && !draft && 'ring-input ring-1',
 		disabled && 'cursor-not-allowed opacity-50',
 		className
 	)}
@@ -116,7 +116,7 @@
 		readonly={atMax}
 		{onkeydown}
 		onblur={commitDraft}
-		class="text-foreground placeholder:text-muted-foreground min-w-0 flex-1 basis-24 bg-transparent outline-none disabled:cursor-not-allowed"
+		class="text-foreground placeholder:text-muted-foreground min-w-0 flex-1 basis-24 bg-transparent text-base outline-none disabled:cursor-not-allowed sm:text-sm"
 	/>
 
 	{#if name}

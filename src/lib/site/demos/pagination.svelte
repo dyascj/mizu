@@ -12,11 +12,11 @@
 			</Pagination.Item>
 			{#each pages as p (p.key)}
 				{#if p.type === 'ellipsis'}
-					<Pagination.Item>
+					<Pagination.Item class="hidden sm:block">
 						<Pagination.Ellipsis />
 					</Pagination.Item>
 				{:else}
-					<Pagination.Item>
+					<Pagination.Item class={p.value === page ? '' : 'hidden sm:block'}>
 						<Pagination.Page page={p} />
 					</Pagination.Item>
 				{/if}

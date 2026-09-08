@@ -21,9 +21,11 @@
 <DatePickerPrimitive.Portal {...portalProps}>
 	<DatePickerPrimitive.Content
 		bind:ref
+		role="dialog"
+		aria-label="Choose a date"
 		{sideOffset}
 		class={cn(
-			' text-popover-foreground bg-popover z-50 w-fit rounded-2xl p-3 shadow-xl transition-[opacity,transform] duration-200 outline-none data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
+			' text-popover-foreground bg-popover z-50 max-h-[calc(100dvh-2rem)] w-fit max-w-[calc(100vw-2rem)] overflow-auto rounded-2xl p-3 shadow-xl transition-[opacity,transform] duration-200 outline-none data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
 			className
 		)}
 		{...restProps}
@@ -62,7 +64,7 @@
 									<DatePickerPrimitive.GridRow class="flex">
 										{#each weekdays as weekday, i (i)}
 											<DatePickerPrimitive.HeadCell
-												class="text-muted-foreground w-9 text-[0.7rem] font-medium"
+												class="text-muted-foreground w-9 text-xs font-medium"
 											>
 												{weekday.slice(0, 2)}
 											</DatePickerPrimitive.HeadCell>

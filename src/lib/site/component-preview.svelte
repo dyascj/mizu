@@ -18,7 +18,7 @@
 		<Tabs.Trigger value="code">Code</Tabs.Trigger>
 	</Tabs.List>
 	<Tabs.Content value="preview">
-		<div class="bg-secondary/60 min-h-72 min-w-0 rounded-2xl p-4 sm:p-8" data-no-toc>
+		<div class="bg-background min-h-72 min-w-0 rounded-2xl p-4 sm:p-8" data-no-toc>
 			<div
 				class={cn(
 					'flex min-h-64 w-full min-w-0 flex-wrap items-center gap-5 [&>*]:min-w-0',

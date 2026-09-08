@@ -86,12 +86,13 @@ circular-gauge.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> |
 collapsible-content.svelte extends WithoutChildrenOrChild<Collapsible.ContentProps> | ref?: unknown = null bindable, class?: string, children: Snippet
 collapsible-trigger.svelte extends Collapsible.TriggerProps | ref?: unknown = null bindable
 # combobox
-combobox-content.svelte extends WithoutChildrenOrChild<Combobox.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 6, portalProps?: Combobox.PortalProps, children: Snippet
+combobox-content.svelte extends WithoutChildrenOrChild<Combobox.ContentProps> | id?: unknown = `mizu-combobox-${uid}`, ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 6, portalProps?: Combobox.PortalProps, children: Snippet
 combobox-group-heading.svelte extends Combobox.GroupHeadingProps | ref?: unknown = null bindable, class?: string
 combobox-group.svelte extends Combobox.GroupProps | ref?: unknown = null bindable, class?: string
 combobox-input.svelte extends WithoutChildrenOrChild<Combobox.InputProps> | ref?: unknown = null bindable, class?: string
 combobox-item.svelte extends WithoutChild<Combobox.ItemProps> | ref?: unknown = null bindable, class?: string, value: unknown, label: unknown, children?: Snippet
 combobox-trigger.svelte extends WithoutChildrenOrChild<Combobox.TriggerProps> | ref?: unknown = null bindable, class?: string
+combobox.svelte extends Combobox.RootProps | value: unknown bindable, open?: unknown = false bindable
 # command
 command-dialog.svelte extends WithoutChildrenOrChild<Command.RootProps> | open?: boolean = false bindable, value?: unknown = '' bindable, title?: string = 'Command menu', description?: string = 'Search for a command to run.', class?: string, children: Snippet
 command-empty.svelte extends WithoutChildrenOrChild<Command.EmptyProps> | ref?: unknown = null bindable, class?: string, children: Snippet
@@ -171,7 +172,7 @@ field-set.svelte extends HTMLFieldsetAttributes | class?: string, children?: Sni
 field.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
 # hover-card
 hover-card-content.svelte extends WithoutChildrenOrChild<LinkPreview.ContentProps> | ref?: unknown = null bindable, class?: string, side?: unknown = 'bottom', sideOffset?: unknown = 8, align?: unknown = 'center', portalProps?: LinkPreview.PortalProps, children: Snippet
-hover-card-trigger.svelte extends WithoutChild<LinkPreview.TriggerProps> | ref?: unknown = null bindable, class?: string
+hover-card-trigger.svelte extends WithoutChildrenOrChild<LinkPreview.TriggerProps> | ref?: unknown = null bindable, class?: string, children?: Snippet
 hover-card.svelte extends LinkPreview.RootProps | 
 # input
 input.svelte extends HTMLInputAttributes | class?: string, ref?: HTMLInputElement | null = null bindable, value?: string | number | null bindable
@@ -208,7 +209,7 @@ menubar-sub-trigger.svelte extends WithoutChild<Menubar.SubTriggerProps> | ref?:
 menubar-trigger.svelte extends Menubar.TriggerProps | ref?: unknown = null bindable, class: unknown
 menubar.svelte extends Menubar.RootProps | ref?: unknown = null bindable, value?: unknown = '' bindable, class: unknown
 # message-actions
-message-actions.svelte | text?: string, onRegenerate?: () => void, onFeedback?: (feedback: 'up' | 'down') => void, class?: string
+message-actions.svelte | text?: string, onRegenerate?: () => void, onFeedback?: (feedback: 'up' | 'down' | null) => void, class?: string
 # meter
 meter.svelte extends HTMLAttributes<HTMLDivElement> | value: number, min?: number = 0, max?: number = 100, low?: number, high?: number, optimum?: number, label?: string, showValue?: boolean = false, format?: (v: number) => string, class?: string
 # native-select
@@ -277,11 +278,12 @@ resizable-pane.svelte extends PaneProps | ref?: unknown = null bindable
 scroll-area-scrollbar.svelte extends WithoutChild<ScrollArea.ScrollbarProps> | ref?: unknown = null bindable, class?: string, orientation?: unknown = 'vertical'
 scroll-area.svelte extends WithoutChild<ScrollArea.RootProps> | ref?: unknown = null bindable, class?: string, orientation?: 'vertical' | 'horizontal' | 'both' = 'vertical', viewportClass?: string, children: Snippet
 # select
-select-content.svelte extends WithoutChildrenOrChild<Select.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 6, children: Snippet
+select-content.svelte extends WithoutChildrenOrChild<Select.ContentProps> | id?: unknown = `mizu-select-${uid}`, ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 6, children: Snippet
 select-group.svelte extends Select.GroupProps | ref?: unknown = null bindable, class?: string
 select-item.svelte extends WithoutChild<Select.ItemProps> | ref?: unknown = null bindable, class?: string, value: unknown, label: unknown, children?: Snippet
 select-label.svelte extends Select.GroupHeadingProps | ref?: unknown = null bindable, class?: string
 select-trigger.svelte extends WithoutChildrenOrChild<Select.TriggerProps> | ref?: unknown = null bindable, class?: string, children: Snippet
+select.svelte extends Select.RootProps | value: unknown bindable, open?: unknown = false bindable
 # separator
 separator.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, orientation?: 'horizontal' | 'vertical' = 'horizontal', decorative?: boolean = true
 # sheet

@@ -26,7 +26,7 @@
 				{#each group.items as c (c.slug)}
 					<article class="group relative">
 						<div
-							class="bg-secondary/60 group-focus-within:ring-ring relative flex h-52 items-center justify-center overflow-hidden rounded-2xl p-5 shadow-sm transition-[transform,box-shadow] duration-200 group-focus-within:ring-2 group-hover:-translate-y-0.5 group-hover:shadow-lg"
+							class="bg-background group-focus-within:ring-ring relative flex h-52 items-center justify-center overflow-hidden rounded-2xl p-5 shadow-sm transition-[transform,box-shadow] duration-200 group-focus-within:ring-2 group-hover:-translate-y-0.5 group-hover:shadow-lg"
 							data-no-toc
 						>
 							<div

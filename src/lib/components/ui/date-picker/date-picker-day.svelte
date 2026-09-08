@@ -12,10 +12,10 @@
 <DatePickerPrimitive.Day
 	bind:ref
 	class={cn(
-		'text-foreground relative inline-flex size-9 items-center justify-center overflow-hidden rounded-lg text-sm font-medium transition-[background-color,box-shadow,scale] duration-200 ease-out outline-none select-none',
+		'text-foreground relative inline-flex size-9 items-center justify-center overflow-hidden rounded-full text-sm font-medium transition-[background-color,box-shadow,scale] duration-200 ease-out outline-none select-none',
 		'hover:bg-accent',
 		'data-[today]:ring-1 data-[today]:ring-[color:var(--primary)]',
-		'data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:shadow-sm data-[selected]:ring-0 data-[selected]:hover:bg-transparent',
+		'data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:hover:bg-primary-hover data-[selected]:hover:text-primary-foreground data-[selected]:shadow-sm data-[selected]:ring-0',
 		'data-[outside-month]:text-muted-foreground/45 data-[outside-month]:pointer-events-none',
 		'data-[unavailable]:text-muted-foreground/50 data-[unavailable]:line-through',
 		'data-[disabled]:text-muted-foreground/40 data-[disabled]:pointer-events-none',

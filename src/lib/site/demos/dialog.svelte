@@ -8,11 +8,11 @@
 	<Dialog.Content>
 		<Dialog.Header>
 			<Dialog.Title>Clear your cache?</Dialog.Title>
-			<Dialog.Description
-				>This rinses out locally stored data and starts you fresh.</Dialog.Description
-			>
+			<Dialog.Description>Remove temporary files stored on this device.</Dialog.Description>
 		</Dialog.Header>
-		<p class="text-muted-foreground text-sm">Your settings and saved items stay put.</p>
+		<p class="text-muted-foreground text-sm">
+			Your account, settings, and saved projects will stay available.
+		</p>
 		<Dialog.Footer>
 			<Dialog.Close class={buttonVariants({ variant: 'ghost' })}>Cancel</Dialog.Close>
 			<Button>Clear cache</Button>

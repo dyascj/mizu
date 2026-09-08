@@ -7,5 +7,5 @@
 		<Kbd>⌘</Kbd>
 		<Kbd>K</Kbd>
 	</KbdGroup>
-	<span>Press to search the depths.</span>
+	<span>Open search with the keyboard.</span>
 </div>

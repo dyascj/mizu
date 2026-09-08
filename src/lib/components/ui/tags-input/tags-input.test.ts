@@ -16,6 +16,7 @@ describe('TagsInput', () => {
 		await fireEvent.input(input, { target: { value: 'two' } });
 		await fireEvent.keyDown(input, { key: ',' });
 		expect(onValueChange).toHaveBeenCalledTimes(1);
+		expect(input).toHaveValue('two');
 
 		await fireEvent.input(input, { target: { value: '' } });
 		await fireEvent.keyDown(input, { key: 'Backspace' });
@@ -31,6 +32,7 @@ describe('TagsInput', () => {
 		await fireEvent.input(input, { target: { value: 'other' } });
 		await fireEvent.keyDown(input, { key: 'Enter' });
 		expect(onValueChange).not.toHaveBeenCalled();
+		expect(input).toHaveValue('other');
 
 		await fireEvent.input(input, { target: { value: 'mizu' } });
 		await fireEvent.keyDown(input, { key: 'Enter' });

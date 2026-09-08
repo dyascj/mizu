@@ -13,41 +13,41 @@
 	<ContextMenu.Trigger
 		class="glass border-border text-muted-foreground flex h-36 w-72 items-center justify-center rounded-xl border border-dashed text-sm select-none"
 	>
-		Right-click the pool
+		Right-click this file
 	</ContextMenu.Trigger>
 	<ContextMenu.Content class="w-52">
-		<ContextMenu.Label>Pool</ContextMenu.Label>
+		<ContextMenu.Label>Design brief</ContextMenu.Label>
 		<ContextMenu.Item>
 			<Copy />
-			Copy surface
+			Copy link
 			<ContextMenu.Shortcut>⌘C</ContextMenu.Shortcut>
 		</ContextMenu.Item>
 		<ContextMenu.Item>
 			<Droplets />
-			Refill
+			Duplicate
 		</ContextMenu.Item>
 		<ContextMenu.Separator />
-		<ContextMenu.CheckboxItem bind:checked={showGlow}>Aura glow</ContextMenu.CheckboxItem>
+		<ContextMenu.CheckboxItem bind:checked={showGlow}>Show preview</ContextMenu.CheckboxItem>
 		<ContextMenu.Separator />
 		<ContextMenu.RadioGroup bind:value={depth}>
-			<ContextMenu.RadioItem value="shallow">Shallow</ContextMenu.RadioItem>
-			<ContextMenu.RadioItem value="deep">Deep</ContextMenu.RadioItem>
+			<ContextMenu.RadioItem value="shallow">Compact</ContextMenu.RadioItem>
+			<ContextMenu.RadioItem value="deep">Comfortable</ContextMenu.RadioItem>
 		</ContextMenu.RadioGroup>
 		<ContextMenu.Separator />
 		<ContextMenu.Sub>
 			<ContextMenu.SubTrigger>
 				<WavesLadder />
-				Effects
+				Move to
 			</ContextMenu.SubTrigger>
 			<ContextMenu.SubContent>
-				<ContextMenu.Item>Ripple</ContextMenu.Item>
-				<ContextMenu.Item>Caustics</ContextMenu.Item>
+				<ContextMenu.Item>Drafts</ContextMenu.Item>
+				<ContextMenu.Item>Archive</ContextMenu.Item>
 			</ContextMenu.SubContent>
 		</ContextMenu.Sub>
 		<ContextMenu.Separator />
 		<ContextMenu.Item class="text-[color:var(--destructive)]">
 			<Trash2 />
-			Drain pool
+			Delete file
 		</ContextMenu.Item>
 	</ContextMenu.Content>
 </ContextMenu.Root>

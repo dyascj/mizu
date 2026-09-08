@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./static/brand/github-social.png" width="720" alt="Mizu: You do the thinking. Mizu handles the design." />
+<img src="./static/brand/github-social.png" width="720" alt="Mizu. Build a better conversation. Svelte components for AI products." />
 
 # Mizu 水
 
@@ -20,7 +20,7 @@ Clean, airy components for AI products and the designers building them. Chat, vo
 
 ---
 
-Mizu is built for AI products: chat, voice, reasoning, and streaming components in a language of white on white, shadows you feel more than see, one blue accent, and a soft pastel glow reserved for the moments where the AI is present. Quiet surfaces, generous rounding, and restraint everywhere else. Everything ships as source you copy into your project and own. No black box or runtime package lock-in. One command adds a component (the registry works with the shadcn-svelte CLI you already have), or copy from any docs page.
+Mizu provides Svelte components for chat, voice, forms, and application layouts. The default theme uses black, white, and neutral grays. Color marks AI activity and status. Components ship as source, with their styles and behavior available to edit in your project.
 
 ## Highlights
 
@@ -28,8 +28,16 @@ Mizu is built for AI products: chat, voice, reasoning, and streaming components 
 - **Recolor from one token.** Accent states, primary-derived effects, and the focus ring follow `--primary`.
 - **Quiet by default.** Hierarchy comes from space, tonal surfaces, and type. The accent and the glow are reserved for what matters.
 - **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the quiet skin.
-- **Airy light, pure-black dark.** A white light theme and a pure-black dark theme with slate surfaces, both with the blue accent on top.
+- **Light and dark themes.** White and pure-black page backgrounds, neutral card and control fills, and contrasting text.
 - **Copy in, own it.** A shadcn-svelte-compatible registry, plus full source on every component page.
+
+The audit candidate in this checkout is `0.3.0-rc.2`. Install it explicitly for testing:
+
+```bash
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.0-rc.2/button.json
+```
+
+The stable install channel remains on `0.2.1` until the candidate completes release review.
 
 ## Quick start
 

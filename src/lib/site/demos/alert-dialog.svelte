@@ -5,18 +5,18 @@
 
 <AlertDialog.Root>
 	<AlertDialog.Trigger class={buttonVariants({ variant: 'destructive' })}>
-		Drain reservoir
+		Delete project
 	</AlertDialog.Trigger>
 	<AlertDialog.Content>
 		<AlertDialog.Header>
-			<AlertDialog.Title>Drain the reservoir?</AlertDialog.Title>
+			<AlertDialog.Title>Delete this project?</AlertDialog.Title>
 			<AlertDialog.Description>
-				This empties every drop and cannot be undone. The basin will run dry.
+				This removes the project and its files. This action cannot be undone.
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
-			<AlertDialog.Cancel>Keep it</AlertDialog.Cancel>
-			<AlertDialog.Action>Drain</AlertDialog.Action>
+			<AlertDialog.Cancel>Keep project</AlertDialog.Cancel>
+			<AlertDialog.Action>Delete project</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>

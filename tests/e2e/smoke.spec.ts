@@ -18,7 +18,7 @@ const routes = [
 for (const theme of ['light', 'dark'] as const) {
 	for (const path of routes) {
 		test(`${path} loads without accessibility violations in ${theme} mode`, async ({ page }) => {
-			await page.emulateMedia({ colorScheme: theme });
+			await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });
 			await page.addInitScript((selectedTheme) => {
 				localStorage.setItem('mizu-theme', selectedTheme);
 			}, theme);

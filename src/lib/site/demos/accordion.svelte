@@ -4,21 +4,23 @@
 
 <Accordion.Root type="single" class="w-full max-w-md">
 	<Accordion.Item value="clarity">
-		<Accordion.Trigger>What makes the surfaces feel like water?</Accordion.Trigger>
+		<Accordion.Trigger>Can I use this in a commercial project?</Accordion.Trigger>
 		<Accordion.Content>
-			White surfaces, restrained dividers, and soft ambient shadows give every panel its clarity.
+			Yes. Mizu is MIT licensed. Keep the license notice with the source you distribute.
 		</Accordion.Content>
 	</Accordion.Item>
 	<Accordion.Item value="theming">
-		<Accordion.Trigger>Can I tint the palette?</Accordion.Trigger>
+		<Accordion.Trigger>How do I change the theme?</Accordion.Trigger>
 		<Accordion.Content>
-			Yes. Shift a few tokens and the whole system ripples to match your chosen hue.
+			Edit the tokens in your Tailwind stylesheet. Primary actions and focus indicators follow your
+			primary color.
 		</Accordion.Content>
 	</Accordion.Item>
 	<Accordion.Item value="motion">
-		<Accordion.Trigger>Is the motion adjustable?</Accordion.Trigger>
+		<Accordion.Trigger>Does it support reduced motion?</Accordion.Trigger>
 		<Accordion.Content>
-			Every transition eases gently and respects reduced-motion preferences.
+			The components respect your device preference. Animated effects pause or resolve to a static
+			state.
 		</Accordion.Content>
 	</Accordion.Item>
 </Accordion.Root>

@@ -45,7 +45,7 @@ describe('MessageActions', () => {
 		expect(screen.getByRole('button', { name: 'Copy message' })).toBeInTheDocument();
 	});
 
-	test('toggles feedback and only reports active votes', async () => {
+	test('reports both feedback votes and clearing a vote', async () => {
 		const onFeedback = vi.fn();
 		render(MessageActions, { onFeedback });
 		const good = screen.getByRole('button', { name: 'Good response' });
@@ -55,6 +55,7 @@ describe('MessageActions', () => {
 		expect(onFeedback).toHaveBeenCalledWith('up');
 		await fireEvent.click(good);
 		expect(good).toHaveAttribute('aria-pressed', 'false');
-		expect(onFeedback).toHaveBeenCalledTimes(1);
+		expect(onFeedback).toHaveBeenLastCalledWith(null);
+		expect(onFeedback).toHaveBeenCalledTimes(2);
 	});
 });

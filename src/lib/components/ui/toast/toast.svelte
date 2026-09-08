@@ -78,7 +78,7 @@
 		{#if toast.action}
 			<button
 				type="button"
-				class={cn(buttonVariants({ variant: 'secondary', size: 'sm' }), 'mt-2.5 h-7 px-3 text-xs')}
+				class={cn(buttonVariants({ variant: 'secondary', size: 'sm' }), 'mt-2.5 px-3 text-xs')}
 				onclick={() => {
 					toast.action?.onclick();
 					toaster.dismiss(toast.id);

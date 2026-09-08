@@ -26,7 +26,7 @@
 	bind:ref
 	{type}
 	bind:value
-	class={cn('bg-secondary flex items-center gap-1 rounded-full p-1', className)}
+	class={cn('bg-secondary flex max-w-full flex-wrap items-center gap-1 rounded-2xl p-1', className)}
 	{...restProps}
 >
 	{@render children?.()}

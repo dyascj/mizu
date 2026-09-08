@@ -72,7 +72,7 @@
 						</Tabs.List>
 						<Tabs.Content value="preview">
 							<div
-								class="bg-secondary/50 rounded-3xl p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-10"
+								class="bg-background rounded-3xl p-4 [contain-intrinsic-size:auto_36rem] [content-visibility:auto] sm:p-10"
 							>
 								{#if b.Component}
 									{@const Block = b.Component}

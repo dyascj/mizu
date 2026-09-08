@@ -13,6 +13,6 @@
 		Your workspace is ready. Add your first project to get started.
 	</Empty.Description>
 	<Empty.Content>
-		<Button>Add a project</Button>
+		<Button href="/docs/build-a-chat">Start a project</Button>
 	</Empty.Content>
 </Empty.Root>

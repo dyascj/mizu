@@ -15,6 +15,7 @@ for (const theme of ['light', 'dark'] as const) {
 			await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });
 			await page.addInitScript((value) => localStorage.setItem('mizu-theme', value), theme);
 			await page.goto(`/blocks?category=${category.toLowerCase().replaceAll(' ', '-')}`);
+			await page.waitForLoadState('networkidle');
 			for (const block of blocks.filter((b) => b.category === category)) {
 				const section = page.locator(`#${block.slug}`);
 				const preview = section.getByRole('tabpanel', { name: 'Preview', exact: true });

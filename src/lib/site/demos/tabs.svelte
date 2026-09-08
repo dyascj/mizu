@@ -10,13 +10,15 @@
 	</Tabs.List>
 	<Tabs.Content value="overview">
 		<p class="text-muted-foreground text-sm">
-			A calm summary of everything flowing through your space.
+			Your project is on track. The next review is on Thursday.
 		</p>
 	</Tabs.Content>
 	<Tabs.Content value="activity">
-		<p class="text-muted-foreground text-sm">Recent ripples, sorted newest first.</p>
+		<p class="text-muted-foreground text-sm">Alex updated the design brief two hours ago.</p>
 	</Tabs.Content>
 	<Tabs.Content value="settings">
-		<p class="text-muted-foreground text-sm">Adjust how the water behaves to suit your flow.</p>
+		<p class="text-muted-foreground text-sm">
+			Manage your project name, team access, and notifications.
+		</p>
 	</Tabs.Content>
 </Tabs.Root>

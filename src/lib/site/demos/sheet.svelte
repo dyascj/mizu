@@ -9,16 +9,16 @@
 	<Sheet.Trigger class={buttonVariants({ variant: 'secondary' })}>Open settings</Sheet.Trigger>
 	<Sheet.Content side="right">
 		<Sheet.Header>
-			<Sheet.Title>Water settings</Sheet.Title>
-			<Sheet.Description>Adjust your flow, then save to apply.</Sheet.Description>
+			<Sheet.Title>Project settings</Sheet.Title>
+			<Sheet.Description>Update the project details, then save your changes.</Sheet.Description>
 		</Sheet.Header>
 		<div class="flex flex-col gap-4 py-2">
 			<div class="flex flex-col gap-2">
-				<Label for="source">Source</Label>
-				<Input id="source" value="Mountain spring" />
+				<Label for="source">Project name</Label>
+				<Input id="source" value="Design system" />
 			</div>
 			<div class="flex flex-col gap-2">
-				<Label for="flow">Flow rate</Label>
+				<Label for="flow">Team size</Label>
 				<Input id="flow" type="number" value="42" />
 			</div>
 		</div>

@@ -2,6 +2,47 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.3.0-rc.2] - 2026-09-07
+
+This candidate includes the neutral theme, native Svelte cloud orb, revised landing page and docs, and the component spacing, radius, and interaction audit. It includes the fixes recorded under 0.3.0-rc.1. The stable registry remains on 0.2.1. Representative VoiceOver review is required before a stable 0.3.0 release.
+
+### Added
+
+- Browser checks for open menus, date pickers, selection lists, tooltips, dialogs, and drawers, including viewport bounds and Escape dismissal.
+- Regression coverage for repeated citations, unsafe citation URLs, retained invalid tags, compact gauges, and clearing a feedback vote.
+
+### Changed
+
+- Phone input text uses 16 pixels. Small metadata uses 12 pixels. Card titles allow wrapped lines, and dialog footers stack their actions on narrow screens.
+- Checkboxes and keycaps use smaller corner radii. OTP cells, segmented controls, calendars, and range endpoints have consistent shapes.
+- Button sizes set a minimum height and allow long action labels to wrap. For a deliberate smaller fixed height, override the minimum height too, or use the appropriate size variant.
+- Selected controls use a stronger neutral fill. Component, gallery, and block previews use the page background in both themes.
+- **MessageActions migration:** `onFeedback` now receives `'up'`, `'down'`, or `null`. Handle `null` to remove a previously recorded vote. The earlier callback omitted vote removal.
+- **Select and Combobox migration:** keep their `Root`, input or trigger, and content from the same Mizu version. The roots now share list relationships. Give Select triggers a visible associated label or an `aria-label`. `Combobox.Content` provides its own viewport; place groups and items directly inside it.
+- **CircularGauge migration:** diameters without enough interior space omit visual center content. The value and label remain available through the meter's accessibility attributes. Use a larger diameter for a visible caption.
+- Demo copy describes projects, files, reviews, and settings. Navigation examples link to working documentation routes.
+
+### Deprecated
+
+- No additional APIs deprecated.
+
+### Removed
+
+- No components removed.
+
+### Fixed
+
+- Context menus and navigation flyouts running outside narrow viewports.
+- Missing IDs and control relationships in open Select and Combobox lists.
+- Collapsed tree descendants remaining exposed to assistive technology.
+- Rejected or duplicate tags clearing the user's draft, and repeated labels causing keyed-render errors.
+- Selected calendar dates losing text contrast on hover and range endpoints receiving inconsistent corners.
+- Oversized menu content and long citation labels escaping their containers.
+
+### Security
+
+- Sources only creates links for HTTP, HTTPS, and relative web URLs. Other URL schemes render as plain citations.
+
 ## [0.3.0-rc.1] - 2026-09-07
 
 This candidate is ready for integration testing. The stable and compatibility registry aliases remain on 0.2.1. Representative VoiceOver review is still required before 0.3.0 becomes stable.

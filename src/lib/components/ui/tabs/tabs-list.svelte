@@ -16,7 +16,10 @@
 
 <TabsPrimitive.List
 	bind:ref
-	class={cn('bg-secondary inline-flex items-center gap-1 rounded-full p-1', className)}
+	class={cn(
+		'bg-secondary inline-flex max-w-full flex-wrap items-center gap-1 rounded-xl p-1',
+		className
+	)}
 	{...restProps}
 >
 	{@render children?.()}

@@ -24,6 +24,12 @@ Use the explicit latest channel only when you intend to receive the newest stabl
 npx shadcn-svelte@latest add https://mizu-ui.com/r/latest/button.json
 ```
 
+The current audit candidate is available through its pinned channel:
+
+```bash
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.0-rc.2/button.json
+```
+
 Prerelease docs use the candidate's versioned URL. During a candidate release, `stableVersion` in `registry-release.json` keeps `/r/latest` and the compatibility aliases on the last stable version. The isolated consumer check always tests the candidate.
 
 The legacy `/r/<item>.json` path remains as a compatibility alias. New documentation and generated agent guidance use pinned URLs.
