@@ -31,13 +31,13 @@ Mizu provides Svelte components for chat, voice, forms, and application layouts.
 - **Light and dark themes.** White and pure-black page backgrounds, neutral card and control fills, and contrasting text.
 - **Copy in, own it.** A shadcn-svelte-compatible registry, plus full source on every component page.
 
-The audit candidate in this checkout is `0.3.0-rc.2`. Install it explicitly for testing:
+The current stable release is `0.3.0`. Pin it for reproducible installs:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.0-rc.2/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.0/button.json
 ```
 
-The stable install channel remains on `0.2.1` until the candidate completes release review.
+Upgrading copied components from 0.2.x requires the migrations in the [changelog](./CHANGELOG.md#030---2026-09-07).
 
 ## Quick start
 
@@ -74,7 +74,7 @@ npx sv add tailwindcss
 **4. Add components** with the one-liner. It pulls the component, installs its npm dependencies, and adds the shared `cn` helper automatically:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.2.1/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.0/button.json
 ```
 
 You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.
@@ -102,15 +102,21 @@ You can also open any component page in the docs and copy its source straight in
 
 ## Theming
 
-The brand is one token. Change `--primary` and the accent states, primary-derived effects, and focus ring follow:
+The default primary is black in light mode and white in dark mode. Custom themes should set the primary color and its foreground together:
 
 ```css
 :root {
-	--primary: #00b2ff; /* the default */
+	--primary: #171717;
+	--primary-foreground: #ffffff;
+}
+
+.dark {
+	--primary: #f5f5f5;
+	--primary-foreground: #171717;
 }
 ```
 
-The system is driven by CSS variables: an airy light mode and a pure-black dark mode out of the box, plus a single `--primary` token (the default is `#00b2ff`) for the accent states and primary-derived effects.
+CSS variables also define card, popover, and control fills. Reinstall the theme with updated components to receive the `--control` token, and check custom colors against each containing background. See the [theming guide](https://mizu-ui.com/docs/theming).
 
 ## Components
 

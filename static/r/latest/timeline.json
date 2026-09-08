@@ -5,7 +5,7 @@
   "title": "Timeline",
   "description": "A vertical history with softly glowing markers.",
   "dependencies": [
-    "@lucide/svelte@^1.34.0"
+    "@lucide/svelte@^1.39.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/latest/utils.json"

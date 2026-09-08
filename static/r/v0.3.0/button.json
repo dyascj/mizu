@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "title": "Button",
+  "description": "Pill actions with neutral, semantic, and AI variants.",
+  "dependencies": [
+    "tailwind-variants@^3.3.1"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.3.0/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "button/button.svelte",
+      "content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from 'tailwind-variants';\n\n\texport const buttonVariants = tv({\n\t\tbase: 'inline-flex max-w-full shrink-0 select-none items-center justify-center gap-2 whitespace-normal text-center font-medium [overflow-wrap:anywhere] outline-none transition-[background-color,color,box-shadow,scale] duration-200 ease-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50',\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tprimary: 'bg-primary text-primary-foreground shadow-sm hover:bg-primary-hover',\n\t\t\t\tsecondary: 'bg-secondary text-secondary-foreground hover:bg-muted',\n\t\t\t\tdestructive: 'bg-destructive text-destructive-foreground shadow-sm hover:opacity-90',\n\t\t\t\tsuccess: 'bg-success text-success-foreground shadow-sm hover:opacity-90',\n\t\t\t\toutline: 'border border-input bg-card text-foreground shadow-xs hover:bg-secondary',\n\t\t\t\tghost: 'bg-transparent text-foreground hover:bg-secondary',\n\t\t\t\tai: 'aurora text-foreground shadow-sm transition-[filter] hover:brightness-[1.03] dark:text-foreground',\n\t\t\t\tlink: 'bg-transparent text-primary underline-offset-4 hover:underline'\n\t\t\t},\n\t\t\tsize: {\n\t\t\t\tsm: 'min-h-8 rounded-full px-4 py-1.5 text-sm',\n\t\t\t\tmd: 'min-h-10 rounded-full px-5 py-2.5 text-sm',\n\t\t\t\tlg: 'min-h-12 rounded-full px-6 py-3 text-base',\n\t\t\t\ticon: 'size-10 rounded-full'\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: { variant: 'primary', size: 'md' }\n\t});\n\n\texport type ButtonVariant = VariantProps<typeof buttonVariants>['variant'];\n\texport type ButtonSize = VariantProps<typeof buttonVariants>['size'];\n</script>\n\n<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = {\n\t\tvariant?: ButtonVariant;\n\t\tsize?: ButtonSize;\n\t\tclass?: string;\n\t\thref?: string;\n\t\tdisabled?: boolean;\n\t\tref?: HTMLElement | null;\n\t\tchildren?: Snippet;\n\t} & HTMLButtonAttributes &\n\t\tHTMLAnchorAttributes;\n\n\tlet {\n\t\tvariant = 'primary',\n\t\tsize = 'md',\n\t\tclass: className,\n\t\thref = undefined,\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\tdisabled = false,\n\t\t...rest\n\t}: Props = $props();\n</script>\n\n{#if href}\n\t<a\n\t\t{...rest}\n\t\tbind:this={ref}\n\t\thref={disabled ? undefined : href}\n\t\tonclick={disabled ? undefined : rest.onclick}\n\t\trole={disabled ? 'link' : rest.role}\n\t\taria-disabled={disabled || undefined}\n\t\ttabindex={disabled ? -1 : rest.tabindex}\n\t\tclass={cn(\n\t\t\tbuttonVariants({ variant, size }),\n\t\t\tdisabled && 'pointer-events-none opacity-50',\n\t\t\tclassName\n\t\t)}\n\t>\n\t\t{@render children?.()}\n\t</a>\n{:else}\n\t<button\n\t\ttype=\"button\"\n\t\t{disabled}\n\t\tbind:this={ref}\n\t\tclass={cn(buttonVariants({ variant, size }), className)}\n\t\t{...rest}\n\t>\n\t\t{@render children?.()}\n\t</button>\n{/if}\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "button/index.ts",
+      "content": "export { default as Button, buttonVariants } from './button.svelte';\nexport type { ButtonVariant, ButtonSize } from './button.svelte';\n"
+    }
+  ]
+}
