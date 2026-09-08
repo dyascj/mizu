@@ -1,0 +1,23 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "voice-mode",
+  "type": "registry:block",
+  "title": "Voice mode",
+  "description": "A voice session with a cloud orb, waveform, mute, and end-session controls.",
+  "dependencies": [
+    "@lucide/svelte@^1.39.0"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.3.0/aurora.json",
+    "https://mizu-ui.com/r/v0.3.0/button.json",
+    "https://mizu-ui.com/r/v0.3.0/voice-orb.json",
+    "https://mizu-ui.com/r/v0.3.0/waveform.json"
+  ],
+  "files": [
+    {
+      "type": "registry:component",
+      "target": "blocks/voice-mode.svelte",
+      "content": "<script lang=\"ts\">\n\timport Mic from '@lucide/svelte/icons/mic';\n\timport X from '@lucide/svelte/icons/x';\n\timport { Aurora } from '$lib/components/ui/aurora';\n\timport { Button } from '$lib/components/ui/button';\n\timport { VoiceOrb } from '$lib/components/ui/voice-orb';\n\timport { Waveform } from '$lib/components/ui/waveform';\n\n\tlet muted = $state(false);\n\tlet ended = $state(false);\n</script>\n\n<div\n\tclass=\"bg-card relative mx-auto flex h-[30rem] w-full max-w-xl flex-col items-center justify-center overflow-hidden rounded-3xl shadow-md\"\n>\n\t{#if !ended}<Aurora speed={22} class=\"dark:opacity-35\" />{/if}\n\n\t<div class=\"relative flex flex-col items-center gap-5\">\n\t\t<VoiceOrb state={ended || muted ? 'idle' : 'listening'} size={128} />\n\t\t<p class=\"text-foreground text-sm font-medium\">\n\t\t\t{ended\n\t\t\t\t? 'Voice session ended.'\n\t\t\t\t: muted\n\t\t\t\t\t? 'Muted. Tap the mic when you are ready.'\n\t\t\t\t\t: \"I'm listening...\"}\n\t\t</p>\n\t\t<Waveform bars={9} active={!muted && !ended} class=\"h-8\" />\n\t</div>\n\n\t<div class=\"relative mt-10 flex items-center gap-3\">\n\t\t{#if ended}<Button\n\t\t\t\tonclick={() => {\n\t\t\t\t\tended = false;\n\t\t\t\t\tmuted = false;\n\t\t\t\t}}>Start again</Button\n\t\t\t>{:else}\n\t\t\t<Button\n\t\t\t\tvariant={muted ? 'primary' : 'outline'}\n\t\t\t\tsize=\"icon\"\n\t\t\t\taria-label={muted ? 'Unmute' : 'Mute'}\n\t\t\t\taria-pressed={muted}\n\t\t\t\tonclick={() => (muted = !muted)}\n\t\t\t>\n\t\t\t\t<Mic class=\"size-4\" />\n\t\t\t</Button>\n\t\t\t<Button variant=\"secondary\" size=\"lg\" onclick={() => (ended = true)}>Done</Button>\n\t\t\t<Button\n\t\t\t\tvariant=\"ghost\"\n\t\t\t\tsize=\"icon\"\n\t\t\t\taria-label=\"Close voice mode\"\n\t\t\t\tonclick={() => (ended = true)}\n\t\t\t>\n\t\t\t\t<X class=\"size-4\" />\n\t\t\t</Button>\n\t\t{/if}\n\t</div>\n</div>\n"
+    }
+  ]
+}

@@ -2,6 +2,53 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.3.0] - 2026-09-07
+
+This stable release promotes the audited 0.3.0-rc.2 component source. The versioned registry, `/r/latest`, and compatibility install aliases now provide 0.3.0. Earlier version directories remain unchanged.
+
+CJ authorized this release with representative manual VoiceOver review still outstanding, an exception for this release to ADR 0003. Automated accessibility and keyboard checks passed; they do not replace that manual review.
+
+### Added
+
+- A native Svelte 5 port of Orb UI's cloud renderer, with MIT attribution, audio-level input, reduced-motion support, offscreen suspension, and WebGL failure recovery.
+- `ChatInput` props `label`, `onAttach`, and `onVoice`; `StreamingText.paused` resumes the current text without restarting it.
+- Contrast checks across containing backgrounds, responsive checks for all 79 components and nine blocks, and tests for open overlays, keyboard behavior, and component edge cases.
+
+### Changed
+
+- Black, white, and neutral gray themes, distinct control fills, and color reserved for AI activity and status. Component, gallery, and block previews use the page background in both themes.
+- Revised landing page and documentation with responsive examples, native page scrolling, sentence case, restrained motion, and consistent spacing, typography, and corner radii.
+- Updated reviewed runtime and development dependencies and grouped CodeQL actions on a shared revision.
+- **Theme migration:** reinstall the theme alongside updated components. Custom themes must define `--control`, `--input`, and matching primary/foreground colors.
+- **Button migration:** buttons default to `type="button"`; set `type="submit"` for intentional submitters. Disabled link buttons omit navigation and callbacks. Sizes now set a minimum height so long labels can wrap; override that minimum when requiring a smaller fixed height.
+- **ChatInput migration:** attachment and microphone actions render when their respective callbacks are supplied. Existing `leading` and `trailing` snippets still work.
+- **Command migration:** `Command.List` creates its viewport internally. Place items and groups directly inside it.
+- **Select and Combobox migration:** install matching versions of their root, trigger or input, and content. Label Select triggers through a visible associated label or `aria-label`. `Combobox.Content` creates its viewport internally; place groups and items directly inside it.
+- **MessageActions migration:** `onFeedback` receives `'up'`, `'down'`, or `null`. Handle `null` to remove a previously recorded vote.
+- **CircularGauge migration:** compact diameters omit center content that cannot fit. The accessible label and value remain available. Use a larger diameter for a visible caption.
+
+### Deprecated
+
+- No APIs deprecated. The legacy blue ramp remains available for existing custom themes.
+
+### Removed
+
+- Decorative uppercase labels, blue focus washes, the masked landing-page component wall, and the custom page scroll container. No components removed.
+
+### Fixed
+
+- Low-contrast text, selected calendar hover states, dark switch thumbs, and composers blending into cards.
+- Missing accessible names and list relationships, collapsed tree descendants exposed to assistive technology, and malformed sidebar list markup.
+- Narrow-screen overflow in menus, flyouts, dialogs, documentation tables, and composed examples.
+- IME submission, invalid rating values, carousel keys inside editable fields, focused toast dismissal, rejected tag drafts, repeated citations, and cleared feedback votes.
+- Clipboard failure feedback, timer and observer cleanup, theme storage failures, and nondeterministic sidebar skeletons. Blocks now provide working local interactions.
+- Historical registry validation, isolated consumer installation of candidates, and preservation of stable aliases during prereleases.
+
+### Security
+
+- Updated `fast-uri` to 3.1.7 to resolve four high-severity advisories. The dependency audit reports no known vulnerabilities.
+- Escaped HTML-significant input in JSON-LD. Sources only links HTTP, HTTPS, and relative web URLs; other schemes render as plain citations.
+
 ## [0.3.0-rc.2] - 2026-09-07
 
 This candidate includes the neutral theme, native Svelte cloud orb, revised landing page and docs, and the component spacing, radius, and interaction audit. It includes the fixes recorded under 0.3.0-rc.1. The stable registry remains on 0.2.1. Representative VoiceOver review is required before a stable 0.3.0 release.

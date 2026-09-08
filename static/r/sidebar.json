@@ -5,7 +5,7 @@
   "title": "Sidebar",
   "description": "A collapsible app sidebar that folds to a slim rail.",
   "dependencies": [
-    "@lucide/svelte@^1.34.0",
+    "@lucide/svelte@^1.39.0",
     "bits-ui@^2.19.0",
     "tailwind-variants@^3.3.1"
   ],
@@ -101,7 +101,7 @@
     {
       "type": "registry:file",
       "target": "sidebar/sidebar-menu-skeleton.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from '$lib/utils.js';\n\timport { Skeleton } from '$lib/components/ui/skeleton/index.js';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tshowIcon = false,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> & {\n\t\tshowIcon?: boolean;\n\t} = $props();\n\n\t// Random width between 50% and 90%\n\tconst width = `${Math.floor(Math.random() * 40) + 50}%`;\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"sidebar-menu-skeleton\"\n\tdata-sidebar=\"menu-skeleton\"\n\tclass={cn('flex h-8 items-center gap-2 rounded-md px-2', className)}\n\t{...restProps}\n>\n\t{#if showIcon}\n\t\t<Skeleton class=\"size-4 rounded-md\" data-sidebar=\"menu-skeleton-icon\" />\n\t{/if}\n\t<Skeleton\n\t\tclass=\"h-4 max-w-(--skeleton-width) flex-1\"\n\t\tdata-sidebar=\"menu-skeleton-text\"\n\t\tstyle=\"--skeleton-width: {width};\"\n\t/>\n\t{@render children?.()}\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from '$lib/utils.js';\n\timport { Skeleton } from '$lib/components/ui/skeleton/index.js';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tshowIcon = false,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> & {\n\t\tshowIcon?: boolean;\n\t} = $props();\n\n\t// Stable across server rendering and hydration.\n\tconst width = '70%';\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"sidebar-menu-skeleton\"\n\tdata-sidebar=\"menu-skeleton\"\n\tclass={cn('flex h-8 items-center gap-2 rounded-md px-2', className)}\n\t{...restProps}\n>\n\t{#if showIcon}\n\t\t<Skeleton class=\"size-4 rounded-md\" data-sidebar=\"menu-skeleton-icon\" />\n\t{/if}\n\t<Skeleton\n\t\tclass=\"h-4 max-w-(--skeleton-width) flex-1\"\n\t\tdata-sidebar=\"menu-skeleton-text\"\n\t\tstyle=\"--skeleton-width: {width};\"\n\t/>\n\t{@render children?.()}\n</div>\n"
     },
     {
       "type": "registry:file",

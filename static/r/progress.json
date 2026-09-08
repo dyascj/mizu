@@ -3,7 +3,7 @@
   "name": "progress",
   "type": "registry:ui",
   "title": "Progress",
-  "description": "A quiet track with a solid blue fill.",
+  "description": "A neutral track with a contrasting progress indicator.",
   "dependencies": [
     "bits-ui@^2.19.0"
   ],
