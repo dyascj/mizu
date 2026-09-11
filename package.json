@@ -99,7 +99,7 @@
 	},
 	"dependencies": {
 		"@internationalized/date": "^3.12.4",
-		"@lucide/svelte": "^1.39.0",
+		"@lucide/svelte": "^1.43.0",
 		"@tanstack/svelte-table": "^9.2.4",
 		"bits-ui": "^2.19.0",
 		"clsx": "^2.1.1",
