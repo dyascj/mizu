@@ -73,16 +73,16 @@
 	"devDependencies": {
 		"@axe-core/playwright": "^4.13.0",
 		"@eslint/js": "^10.0.1",
-		"@playwright/test": "^1.62.1",
+		"@playwright/test": "^1.63.0",
 		"@sveltejs/adapter-vercel": "^6.3.4",
 		"@sveltejs/kit": "^2.70.3",
 		"@sveltejs/vite-plugin-svelte": "^7.3.0",
 		"@tailwindcss/vite": "^4.3.3",
 		"@testing-library/jest-dom": "^7.0.1",
 		"@testing-library/svelte": "^5.4.2",
-		"@types/node": "^26.4.1",
+		"@types/node": "^26.6.0",
 		"ajv": "^8.20.0",
-		"eslint": "^10.9.1",
+		"eslint": "^10.10.0",
 		"eslint-plugin-svelte": "^3.23.0",
 		"globals": "^17.12.0",
 		"jsdom": "^30.0.1",
@@ -94,7 +94,7 @@
 		"tailwindcss": "^4.3.3",
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.69.0",
-		"vite": "^8.2.2",
+		"vite": "^8.3.0",
 		"vitest": "^4.1.11"
 	},
 	"dependencies": {
