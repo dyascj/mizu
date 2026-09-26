@@ -353,6 +353,8 @@ tabs.svelte extends WithoutChildrenOrChild<Tabs.RootProps> | ref?: unknown = nul
 tags-input.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'onchange'> | value?: string[] = [] bindable, placeholder?: string, disabled?: boolean = false, max?: number, name?: string, dedupe?: boolean = true, validate?: (tag: string) => boolean, class?: string, onValueChange?: (value: string[]) => void
 # text-reveal
 text-reveal.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | text: string, by?: 'word' | 'character' = 'word', effect?: 'blur' | 'rise' | 'fade' = 'blur', trigger?: 'mount' | 'view' = 'mount', delay?: number = 0, stagger?: number, as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' = 'span', class?: string, ref?: HTMLElement | null = null bindable
+# text-rotate
+text-rotate.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | words: string[], interval?: number = 2400, effect?: 'blur' | 'slide' = 'blur', paused?: boolean = false, class?: string, ref?: HTMLSpanElement | null = null bindable
 # textarea
 textarea.svelte extends HTMLTextareaAttributes | class?: string, ref?: HTMLTextAreaElement | null = null bindable, value?: string | null bindable
 # thinking
