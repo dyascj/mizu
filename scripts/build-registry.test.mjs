@@ -182,6 +182,7 @@ test('generated output declares audited dependencies and has exact versioned inv
 	).files.map(({ path }) => path);
 	assertExactInventory(outDir, [...aliasFiles, 'manifest.json', 'latest', ...versionDirectories]);
 	assertExactInventory(join(outDir, 'latest'), [...aliasFiles, 'manifest.json']);
+	assertExactInventory(join(outDir, currentVersionDir), generatedFiles);
 	for (const versionDirectory of versionDirectories) {
 		const historical = JSON.parse(
 			readFileSync(join(outDir, versionDirectory, 'manifest.json'), 'utf8')
