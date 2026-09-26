@@ -55,16 +55,19 @@
 		{#each surfaces as surface (surface.id)}
 			<Tabs.Content value={surface.id} class="mt-8 w-full">
 				<div class="bg-secondary/60 dark:bg-card rounded-[2.5rem] p-3 sm:p-6">
-					{#await getBlock(surface.block)}
-						<div class="h-[44rem]" aria-hidden="true"></div>
-					{:then block}
-						{#if block.Component}
-							{@const Block = block.Component}
-							<div class="animate-fade-in flex min-h-[44rem] items-center justify-center">
-								<Block />
-							</div>
-						{/if}
-					{/await}
+					<!-- Only the visible screen is mounted, so hidden blocks never run timers or add headings. -->
+					{#if current === surface.id}
+						{#await getBlock(surface.block)}
+							<div class="h-[44rem]" aria-hidden="true"></div>
+						{:then block}
+							{#if block.Component}
+								{@const Block = block.Component}
+								<div class="animate-fade-in flex min-h-[44rem] items-center justify-center">
+									<Block />
+								</div>
+							{/if}
+						{/await}
+					{/if}
 				</div>
 			</Tabs.Content>
 		{/each}

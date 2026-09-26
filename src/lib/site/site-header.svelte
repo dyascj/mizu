@@ -56,7 +56,7 @@
 			type="button"
 			onclick={() => (search.open = true)}
 			aria-label="Search documentation"
-			class="bg-secondary text-muted-foreground hover:text-foreground focus-visible:ring-ring absolute left-1/2 hidden h-10 w-[min(22rem,32vw)] -translate-x-1/2 items-center gap-2.5 rounded-full px-4 text-sm transition-[color,box-shadow] duration-(--duration-fast) outline-none focus-visible:ring-2 md:flex"
+			class="bg-secondary text-muted-foreground hover:text-foreground focus-visible:ring-ring absolute left-1/2 hidden h-10 w-[min(22rem,32vw)] -translate-x-1/2 items-center gap-2.5 rounded-full px-4 text-sm transition-[color,box-shadow] duration-(--duration-fast) outline-none focus-visible:ring-2 xl:flex"
 		>
 			<SearchIcon class="size-4 shrink-0" />
 			<span class="flex-1 text-left">Search components</span>
@@ -67,7 +67,7 @@
 			<Button
 				variant="ghost"
 				size="icon"
-				class="md:hidden"
+				class="xl:hidden"
 				aria-label="Search documentation"
 				onclick={() => (search.open = true)}
 			>

@@ -9,7 +9,7 @@
 </svelte:head>
 
 <div class="flex min-h-[70dvh] flex-col items-center justify-center gap-6 px-6 text-center">
-	<MizuMark tone="water" flow="always" class="size-20" />
+	<span class="group"><MizuMark tone="water" class="size-20" /></span>
 	<div>
 		<p class="text-muted-foreground text-sm font-medium tabular-nums">{page.status}</p>
 		<h1 class="mt-1 text-2xl font-semibold tracking-tight">

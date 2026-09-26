@@ -22,6 +22,8 @@
 		children: Snippet;
 	} = $props();
 
+	const ROUNDS = 3;
+
 	let card = $state<HTMLElement>();
 	let position = $state({ x: 0, y: 0 });
 	let visible = $state(false);
@@ -50,6 +52,11 @@
 
 		let cancelled = false;
 		let pending: ReturnType<typeof setTimeout> | undefined;
+		let held: HTMLElement | null = null;
+		const release = () => {
+			held?.dispatchEvent(new KeyboardEvent('keyup', { key: ' ', bubbles: true }));
+			held = null;
+		};
 		const sleep = (ms: number) =>
 			new Promise<void>((resolve) => {
 				pending = setTimeout(resolve, ms);
@@ -66,54 +73,64 @@
 			await sleep(760);
 		};
 
+		/** Returns false when the rest of the loop should be skipped. */
 		const act = async (step: CursorStep, element: HTMLElement) => {
 			const action = step.action ?? 'click';
 			if (action === 'type' && 'value' in element) {
 				const field = element as HTMLInputElement;
+				// Never write over, or later send, something the reader typed.
+				if (field.value) return false;
 				for (const character of step.text ?? '') {
-					if (cancelled) return;
+					if (cancelled) return false;
 					field.value += character;
 					field.dispatchEvent(new Event('input', { bubbles: true }));
 					await sleep(55);
 				}
-				return;
+				return true;
 			}
 			if (action === 'hover') {
 				element.dispatchEvent(new PointerEvent('pointerenter', { bubbles: true }));
-				return;
+				return true;
 			}
 			pressing = true;
 			if (action === 'hold') {
 				// A synthetic pointer cannot be captured, so hold through the keyboard path.
+				held = element;
 				element.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
 				await sleep(step.hold ?? 1400);
-				element.dispatchEvent(new KeyboardEvent('keyup', { key: ' ', bubbles: true }));
+				release();
 			} else {
 				await sleep(140);
 				element.click();
 			}
 			pressing = false;
+			return true;
 		};
 
+		// A few rounds make the point; after that the card rests until the
+		// reader scrolls back or hands control back to the cursor.
 		(async () => {
 			await sleep(900);
-			while (!cancelled) {
+			for (let round = 0; round < ROUNDS && !cancelled; round++) {
 				for (const step of steps) {
 					if (cancelled) return;
 					const element = root.querySelector<HTMLElement>(step.target);
 					if (!element) continue;
 					await moveTo(element);
 					if (cancelled) return;
-					await act(step, element);
+					if (!(await act(step, element))) break;
 					await sleep(step.wait ?? 900);
 				}
 			}
+			visible = false;
 		})();
 
 		return () => {
 			cancelled = true;
 			pressing = false;
 			clearTimeout(pending);
+			// A reader who takes over mid-hold must not inherit the confirmation.
+			release();
 		};
 	});
 </script>

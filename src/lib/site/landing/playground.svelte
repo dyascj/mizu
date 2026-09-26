@@ -89,7 +89,7 @@
 		</div>
 	</div>
 
-	<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
 		<div class="flex flex-col gap-3 [&>*]:flex-1">
 			<PlaygroundCard
 				label="Presence"
@@ -155,13 +155,7 @@
 				</div>
 			</PlaygroundCard>
 
-			<PlaygroundCard
-				label="Copy button"
-				href="/docs/components/copy-button"
-				cursor="#2f9bff"
-				class="min-h-64"
-				steps={[{ target: 'button', wait: 2600 }]}
-			>
+			<PlaygroundCard label="Copy button" href="/docs/components/copy-button" class="min-h-64">
 				<div
 					class="bg-card flex w-full max-w-xs items-center gap-2 rounded-full py-1.5 pr-1.5 pl-4 shadow-xs"
 				>
