@@ -17,7 +17,7 @@
 <TabsPrimitive.Trigger
 	bind:ref
 	class={cn(
-		'text-muted-foreground focus-visible:ring-ring focus-visible:ring-offset-background data-[state=active]:bg-primary-muted data-[state=active]:text-primary relative overflow-hidden rounded-full px-2 py-1.5 text-sm font-semibold transition-[background-color,color,box-shadow] duration-(--duration-base) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-xs sm:px-3',
+		'text-muted-foreground focus-visible:ring-ring focus-visible:ring-offset-background data-[state=active]:bg-primary-muted data-[state=active]:text-primary relative overflow-hidden rounded-full px-2 py-1.5 text-sm font-semibold transition-[background-color,color,box-shadow] duration-(--duration-base) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-xs sm:px-3 [[data-indicator]_&]:data-[state=active]:bg-transparent [[data-indicator]_&]:data-[state=active]:shadow-none',
 		className
 	)}
 	{...restProps}

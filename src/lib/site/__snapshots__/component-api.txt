@@ -113,6 +113,8 @@ context-menu-separator.svelte extends ContextMenu.SeparatorProps | ref?: unknown
 context-menu-shortcut.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTMLSpanElement | null = null bindable, class: unknown
 context-menu-sub-content.svelte extends ContextMenu.SubContentProps | ref?: unknown = null bindable, class: unknown
 context-menu-sub-trigger.svelte extends WithoutChild<ContextMenu.SubTriggerProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean, children: unknown
+# copy-button
+copy-button.svelte extends Omit<HTMLButtonAttributes, 'value' | 'children' | 'onclick'> | value: string, label?: string = 'Copy', timeout?: number = 1600, onCopy?: (value: string) => void, variant?: 'ghost' | 'secondary' = 'ghost', size?: 'sm' | 'md' = 'md', ref?: HTMLButtonElement | null = null bindable, class?: string
 # data-table
 # date-picker
 date-picker-content.svelte extends WithoutChildrenOrChild<DatePicker.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 8, portalProps?: DatePicker.PortalProps
@@ -170,6 +172,8 @@ field-label.svelte extends HTMLLabelAttributes | class?: string, children?: Snip
 field-legend.svelte extends HTMLAttributes<HTMLLegendElement> | class?: string, children?: Snippet
 field-set.svelte extends HTMLFieldsetAttributes | class?: string, children?: Snippet
 field.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
+# hold-button
+hold-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick'> | duration?: number = 1200, onConfirm: () => void, variant?: 'destructive' | 'primary' = 'destructive', size?: 'sm' | 'md' | 'lg' = 'md', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string, children: Snippet
 # hover-card
 hover-card-content.svelte extends WithoutChildrenOrChild<LinkPreview.ContentProps> | ref?: unknown = null bindable, class?: string, side?: unknown = 'bottom', sideOffset?: unknown = 8, align?: unknown = 'center', portalProps?: LinkPreview.PortalProps, children: Snippet
 hover-card-trigger.svelte extends WithoutChildrenOrChild<LinkPreview.TriggerProps> | ref?: unknown = null bindable, class?: string, children?: Snippet
@@ -184,6 +188,8 @@ input-group.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, ref?
 input-otp-separator.svelte | class?: string
 input-otp-slot.svelte extends WithoutChildrenOrChild<PinInput.CellProps> | ref?: unknown = null bindable, cell: unknown, class?: string
 input-otp.svelte extends WithoutChildren<PinInput.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, maxlength?: unknown = 6, class?: string, children: NonNullable<PinInput.RootProps['children']>
+# install-prompt
+install-prompt.svelte | title?: string = 'Install the app', description?: string = 'Open it from your home screen, like any other app.', icon?: Snippet, storageKey?: string, onInstall?: (outcome: 'accepted' | 'dismissed') => void, onDismiss?: () => void, forceVisible?: boolean = false, class?: string
 # item
 item-actions.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
 item-content.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
@@ -196,6 +202,8 @@ kbd-group.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?
 kbd.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?: Snippet
 # label
 label.svelte extends HTMLLabelAttributes | class?: string, children?: Snippet
+# marquee
+marquee.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | children: Snippet, direction?: 'left' | 'right' | 'up' | 'down' = 'left', speed?: number = 40, gap?: string = '1rem', pauseOnHover?: boolean = true, paused?: boolean = false, fade?: boolean = true, class?: string, ref?: HTMLDivElement | null = null bindable
 # menubar
 menubar-checkbox-item.svelte extends WithoutChildrenOrChild<Menubar.CheckboxItemProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, indeterminate?: unknown = false bindable, class: unknown, children?: Snippet
 menubar-content.svelte extends WithoutChild<Menubar.ContentProps> | ref?: unknown = null bindable, class: unknown, sideOffset?: unknown = 8, align?: unknown = 'start', portalProps?: Menubar.PortalProps
@@ -224,8 +232,12 @@ navigation-menu-list.svelte extends WithoutChild<NavigationMenu.ListProps> | ref
 navigation-menu-trigger.svelte extends WithoutChildrenOrChild<NavigationMenu.TriggerProps> | ref?: unknown = null bindable, class?: string, children: Snippet
 navigation-menu-viewport.svelte extends WithoutChild<NavigationMenu.ViewportProps> | ref?: unknown = null bindable, class?: string
 navigation-menu.svelte extends WithoutChild<NavigationMenu.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, class?: string, viewport?: boolean = true, children: Snippet
+# network-status
+network-status.svelte | variant?: 'pill' | 'inline' = 'pill', fixed?: boolean = false, offlineLabel?: string = "You're offline. Changes will sync when you reconnect.", onlineLabel?: string = 'Back online', resetAfter?: number = 3000, forceStatus?: 'online' | 'offline', class?: string
 # nudge
 nudge.svelte | title: string, description?: string, onDismiss?: () => void, icon?: Snippet, actions?: Snippet, class?: string
+# number-ticker
+number-ticker.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | value: number, locale?: string, format?: Intl.NumberFormatOptions, class?: string, ref?: HTMLSpanElement | null = null bindable
 # pagination
 pagination-content.svelte extends HTMLAttributes<HTMLUListElement> | ref?: HTMLUListElement | null = null bindable, class?: string, children: Snippet
 pagination-ellipsis.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTMLSpanElement | null = null bindable, class?: string
@@ -241,6 +253,8 @@ popover-close.svelte extends WithoutChild<Popover.CloseProps> | ref?: unknown = 
 popover-content.svelte extends WithoutChildrenOrChild<Popover.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 8, portalProps?: Popover.PortalProps, children: Snippet
 popover-trigger.svelte extends WithoutChild<Popover.TriggerProps> | ref?: unknown = null bindable, class?: string
 popover.svelte extends Popover.RootProps | 
+# presence
+presence.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | state?: PresenceState = 'idle', tone?: PresenceTone = 'water', size?: number = 96, volume?: number = 0, interactive?: boolean = true, label?: string, class?: string, ref?: HTMLDivElement | null = null bindable
 # progress
 progress.svelte extends WithoutChildrenOrChild<Progress.RootProps> | ref?: unknown = null bindable, value?: unknown = 0 bindable, max?: unknown = 100, class?: string
 # prompt-suggestions
@@ -278,6 +292,9 @@ resizable-pane.svelte extends PaneProps | ref?: unknown = null bindable
 # scroll-area
 scroll-area-scrollbar.svelte extends WithoutChild<ScrollArea.ScrollbarProps> | ref?: unknown = null bindable, class?: string, orientation?: unknown = 'vertical'
 scroll-area.svelte extends WithoutChild<ScrollArea.RootProps> | ref?: unknown = null bindable, class?: string, orientation?: 'vertical' | 'horizontal' | 'both' = 'vertical', viewportClass?: string, children: Snippet
+# segmented-control
+segmented-control-item.svelte extends WithoutChildrenOrChild<RadioGroup.ItemProps> | value: string, disabled?: boolean = false, ref?: HTMLElement | null = null bindable, class?: string, children: Snippet
+segmented-control.svelte extends Omit<RadioGroup.RootProps, 'orientation' | 'child' | 'children'> | value?: string = '' bindable, onValueChange?: (value: string) => void, size?: 'sm' | 'md' = 'md', fullWidth?: boolean = false, disabled?: boolean = false, ref?: HTMLElement | null = null bindable, class?: string, children: Snippet
 # select
 select-content.svelte extends WithoutChildrenOrChild<Select.ContentProps> | id?: unknown = `mizu-select-${uid}`, ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 6, children: Snippet
 select-group.svelte extends Select.GroupProps | ref?: unknown = null bindable, class?: string
@@ -335,6 +352,9 @@ stepper.svelte extends Omit<HTMLAttributes<HTMLOListElement>, 'children'> | step
 streaming-text.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | text: string, speed?: number = 60, cursor?: boolean = true, paused?: boolean = false, onComplete?: () => void, class?: string, ref?: HTMLSpanElement | null = null bindable
 # switch
 switch.svelte extends WithoutChildrenOrChild<Switch.RootProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, class?: string
+# tab-bar
+tab-bar-item.svelte extends Omit<HTMLButtonAttributes & HTMLAnchorAttributes, 'children'> | label: string, icon?: Component<{ class?: string; strokeWidth?: number }>, active?: boolean = false, href?: string = undefined, badge?: number = 0, badgeLabel?: string, class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
+tab-bar.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | variant?: 'floating' | 'docked' = 'floating', fixed?: boolean = false, labels?: 'visible' | 'hidden' = 'visible', label?: string = 'Main', class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
 # table
 table-body.svelte extends HTMLAttributes<HTMLTableSectionElement> | class?: string, children?: Snippet
 table-caption.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?: Snippet
@@ -351,6 +371,10 @@ tabs-trigger.svelte extends WithoutChildrenOrChild<Tabs.TriggerProps> | ref?: un
 tabs.svelte extends WithoutChildrenOrChild<Tabs.RootProps> | ref?: unknown = null bindable, value: unknown bindable, class?: string, children: Snippet
 # tags-input
 tags-input.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'onchange'> | value?: string[] = [] bindable, placeholder?: string, disabled?: boolean = false, max?: number, name?: string, dedupe?: boolean = true, validate?: (tag: string) => boolean, class?: string, onValueChange?: (value: string[]) => void
+# text-reveal
+text-reveal.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | text: string, by?: 'word' | 'character' = 'word', effect?: 'blur' | 'rise' | 'fade' = 'blur', trigger?: 'mount' | 'view' = 'mount', delay?: number = 0, stagger?: number, as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' = 'span', class?: string, ref?: HTMLElement | null = null bindable
+# text-rotate
+text-rotate.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | words: string[], interval?: number = 2400, effect?: 'blur' | 'slide' = 'blur', paused?: boolean = false, loop?: boolean = true, class?: string, ref?: HTMLSpanElement | null = null bindable
 # textarea
 textarea.svelte extends HTMLTextareaAttributes | class?: string, ref?: HTMLTextAreaElement | null = null bindable, value?: string | null bindable
 # thinking
