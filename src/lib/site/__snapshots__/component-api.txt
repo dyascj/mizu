@@ -196,6 +196,8 @@ kbd-group.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?
 kbd.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?: Snippet
 # label
 label.svelte extends HTMLLabelAttributes | class?: string, children?: Snippet
+# marquee
+marquee.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | children: Snippet, direction?: 'left' | 'right' | 'up' | 'down' = 'left', speed?: number = 40, gap?: string = '1rem', pauseOnHover?: boolean = true, paused?: boolean = false, fade?: boolean = true, class?: string, ref?: HTMLDivElement | null = null bindable
 # menubar
 menubar-checkbox-item.svelte extends WithoutChildrenOrChild<Menubar.CheckboxItemProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, indeterminate?: unknown = false bindable, class: unknown, children?: Snippet
 menubar-content.svelte extends WithoutChild<Menubar.ContentProps> | ref?: unknown = null bindable, class: unknown, sideOffset?: unknown = 8, align?: unknown = 'start', portalProps?: Menubar.PortalProps

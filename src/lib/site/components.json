@@ -537,5 +537,11 @@
 		"name": "Number Ticker",
 		"category": "Motion",
 		"description": "A formatted number whose digits roll into place when the value changes."
+	},
+	{
+		"slug": "marquee",
+		"name": "Marquee",
+		"category": "Motion",
+		"description": "An endless, pausable scroller for logos, testimonials, and prompt chips."
 	}
 ]
