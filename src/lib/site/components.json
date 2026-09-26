@@ -114,7 +114,7 @@
 		"slug": "tabs",
 		"name": "Tabs",
 		"category": "Navigation",
-		"description": "A segmented pill switcher with a raised active tab.",
+		"description": "A segmented pill switcher whose raised active tab slides between triggers.",
 		"bits": true
 	},
 	{
