@@ -212,6 +212,7 @@ menubar.svelte extends Menubar.RootProps | ref?: unknown = null bindable, value?
 message-actions.svelte | text?: string, onRegenerate?: () => void, onFeedback?: (feedback: 'up' | 'down' | null) => void, class?: string
 # meter
 meter.svelte extends HTMLAttributes<HTMLDivElement> | value: number, min?: number = 0, max?: number = 100, low?: number, high?: number, optimum?: number, label?: string, showValue?: boolean = false, format?: (v: number) => string, class?: string
+# motion
 # native-select
 native-select.svelte extends HTMLSelectAttributes | class?: string, ref?: HTMLSelectElement | null = null bindable, value?: string | number | string[] | null bindable, children?: Snippet
 # navigation-menu
@@ -368,7 +369,10 @@ toaster.svelte | position?: Position = 'bottom-right', class?: string
 toggle.svelte extends WithoutChildrenOrChild<Toggle.RootProps> | ref?: unknown = null bindable, pressed?: unknown = false bindable, variant?: 'default' | 'outline' = 'default', size?: 'sm' | 'md' | 'lg' = 'md', class?: string, children?: Snippet
 # toggle-group
 toggle-group-item.svelte extends WithoutChildrenOrChild<ToggleGroup.ItemProps> | ref?: unknown = null bindable, variant?: ToggleVariant = 'default', size?: ToggleSize = 'md', class?: string, children?: Snippet
-toggle-group.svelte | ref?: HTMLElement | null = null bindable, value?: string = '' bindable, type?: 'single' = 'single', class?: string, children?: Snippet, disabled?: boolean
+toggle-group.svelte extends Omit<
+		Extract<ToggleGroup.RootProps, { type: 'single' }>,
+		'type' | 'value' | 'child' | 'children' | 'ref'
+	> | ref?: HTMLElement | null = null bindable, value?: string = '' bindable, type?: 'single' = 'single', class?: string, children?: Snippet
 # tool-call
 tool-call.svelte | name: string, state?: 'running' | 'done' | 'error' = 'running', detail?: string, open?: boolean = false bindable, class?: string, children?: Snippet
 # tooltip
