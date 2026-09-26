@@ -9,10 +9,20 @@
 	import Seo from '$lib/site/seo.svelte';
 
 	const colors = [
-		{ name: 'Ink', hex: '#171717', note: 'Primary text and the mark', swatch: 'bg-[#171717]' },
+		{
+			name: 'Ink',
+			hex: '#171717',
+			note: 'Primary text and the mark',
+			swatch: 'bg-[#171717] dark:shadow-[inset_0_0_0_1px_var(--border-strong)]'
+		},
 		{ name: 'Paper', hex: '#FFFFFF', note: 'Light pages and cards', swatch: 'bg-white shadow-sm' },
 		{ name: 'Mist', hex: '#F5F5F5', note: 'Controls and quiet fills', swatch: 'bg-[#f5f5f5]' },
-		{ name: 'Night', hex: '#000000', note: 'Dark pages', swatch: 'bg-black' },
+		{
+			name: 'Night',
+			hex: '#000000',
+			note: 'Dark pages',
+			swatch: 'bg-black dark:shadow-[inset_0_0_0_1px_var(--border-strong)]'
+		},
 		{
 			name: 'Water',
 			hex: '#626AFB',
@@ -75,8 +85,8 @@
 
 <main id="main-content" tabindex="-1" class="mx-auto max-w-6xl px-5 sm:px-8">
 	<section class="flex flex-col items-center pt-16 pb-20 text-center sm:pt-24 sm:pb-28">
-		<div class="animate-scale-in">
-			<MizuMark tone="water" flow="always" class="size-28 sm:size-36" />
+		<div class="animate-scale-in group">
+			<MizuMark tone="water" class="size-28 sm:size-36" />
 		</div>
 		<h1
 			class="animate-blur-in stagger mt-10 max-w-3xl text-[clamp(2.5rem,6vw,4.75rem)] leading-[1.02] font-semibold tracking-[-0.045em]"

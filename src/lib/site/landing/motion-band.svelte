@@ -35,11 +35,11 @@
 	>
 		<div
 			aria-hidden="true"
-			class="orb-purple animate-breathe pointer-events-none absolute -top-40 -right-32 size-[36rem] rounded-full blur-3xl"
+			class="orb-purple pointer-events-none absolute -top-40 -right-32 size-[36rem] rounded-full blur-3xl"
 		></div>
 		<div
 			aria-hidden="true"
-			class="orb-blue animate-float pointer-events-none absolute -bottom-48 -left-40 size-[34rem] rounded-full blur-3xl"
+			class="orb-blue pointer-events-none absolute -bottom-48 -left-40 size-[34rem] rounded-full blur-3xl"
 		></div>
 		<div class="relative grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-center">
 			<div {@attach reveal({ children: true })}>

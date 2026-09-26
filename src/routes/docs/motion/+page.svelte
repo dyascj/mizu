@@ -103,7 +103,8 @@
 <span class="text-shimmer animate-shimmer">Searching the web</span>`;
 
 	const svelteExample = `<script lang="ts">
-  import { blurIn, pop, reveal, magnetic, stagger } from '$lib/components/ui/motion';
+  import { fade } from 'svelte/transition';
+  import { blurIn, pop, reveal, magnetic, duration, stagger } from '$lib/components/ui/motion';
 <\/script>
 
 <!-- Svelte transitions that fall back to a crossfade for reduced motion -->
@@ -111,7 +112,7 @@
   <p in:blurIn>{answer}</p>
 {/if}
 {#if open}
-  <div in:pop out:fade={{ duration: 160 }}>...</div>
+  <div in:pop out:fade={{ duration: duration.fast }}>...</div>
 {/if}
 
 <!-- Reveal children in sequence the first time they scroll into view -->

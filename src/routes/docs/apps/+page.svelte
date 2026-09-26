@@ -63,11 +63,12 @@
 /// <reference no-default-lib="true"/>
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
-import { build, files, version } from '$service-worker';
+import { build, files, prerendered, version } from '$service-worker';
 
 const sw = self as unknown as ServiceWorkerGlobalScope;
 const CACHE = \`app-\${version}\`;
-const SHELL = [...build, ...files];
+// Scripts, styles, static files, and prerendered pages make up the shell.
+const SHELL = [...build, ...files, ...prerendered];
 
 sw.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(SHELL)));
@@ -81,17 +82,30 @@ sw.addEventListener('activate', (event) => {
   );
 });
 
-// Serve the app shell from the cache. Never cache model responses or user data here.
 sw.addEventListener('fetch', (event) => {
-  const url = new URL(event.request.url);
-  if (event.request.method !== 'GET' || !SHELL.includes(url.pathname)) return;
-  event.respondWith(caches.match(url.pathname).then((hit) => hit ?? fetch(event.request)));
+  const { request } = event;
+  if (request.method !== 'GET') return;
+  const url = new URL(request.url);
+
+  // Shell files never change within a version, so the cache answers first.
+  if (SHELL.includes(url.pathname)) {
+    event.respondWith(caches.match(url.pathname).then((hit) => hit ?? fetch(request)));
+    return;
+  }
+
+  // Pages try the network, then fall back to the cached start page offline.
+  // Never cache model responses or personal data here.
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request).catch(async () => (await caches.match('/')) ?? Response.error())
+    );
+  }
 });`;
 
 	const checklist = [
 		'The viewport uses viewport-fit=cover, and fixed bars use the safe-area utilities.',
 		'Scrolling content reserves space for the tab bar so the last item is reachable.',
-		'Every touch target is at least 44 pixels in both directions.',
+		'Navigation and primary actions are at least 44 pixels in both directions, and nothing tappable is smaller than 24.',
 		'Hover-only effects, such as magnetic buttons, stay off for touch and coarse pointers.',
 		'The manifest has a maskable icon and theme colors that match both themes.',
 		'Queued work survives a lost connection, and NetworkStatus tells people it will sync.',
@@ -145,7 +159,9 @@ sw.addEventListener('fetch', (event) => {
 		>
 		appears only when the browser can install the app, shows Add to Home Screen steps on iOS, and stays
 		hidden once installed. Ask after someone has found value, not on the first visit, and pass a
-		<code>storageKey</code> so a dismissal is remembered.
+		<code>storageKey</code> so a dismissal is remembered. Import the component in your root layout, even
+		if you render it later: Chromium offers installation once, early in the visit, and the import is what
+		listens for it.
 	</p>
 	<CodeBlock code={install} />
 
@@ -155,7 +171,8 @@ sw.addEventListener('fetch', (event) => {
 			>Network Status</a
 		>
 		tells people when they lose their connection and when it returns. Pair it with a service worker that
-		caches the app shell. SvelteKit registers
+		caches the app shell and prerendered pages, and falls back to the start page for anything else. SvelteKit
+		registers
 		<code>src/service-worker.ts</code> automatically.
 	</p>
 	<CodeBlock code={worker} />

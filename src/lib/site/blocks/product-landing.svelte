@@ -1,6 +1,8 @@
 <script lang="ts">
 	import ArrowRight from '@lucide/svelte/icons/arrow-right';
 	import BookOpenCheck from '@lucide/svelte/icons/book-open-check';
+	import Pause from '@lucide/svelte/icons/pause';
+	import Play from '@lucide/svelte/icons/play';
 	import Quote from '@lucide/svelte/icons/quote';
 	import ShieldCheck from '@lucide/svelte/icons/shield-check';
 	import { Button } from '$lib/components/ui/button';
@@ -39,6 +41,7 @@
 		}
 	];
 
+	let questionsPaused = $state(false);
 	let answered = $state(2_418_604);
 	$effect(() => {
 		const timer = setInterval(() => (answered += Math.ceil(Math.random() * 7)), 2200);
@@ -49,7 +52,9 @@
 <div class="bg-background w-full overflow-hidden rounded-[2rem] shadow-sm">
 	<nav class="flex items-center justify-between gap-4 px-5 py-4 sm:px-8" aria-label="Halo">
 		<a href="#top" class="flex items-center gap-2 font-semibold tracking-tight">
-			<Presence size={26} tone="iris" interactive={false} label="Halo" />
+			<span aria-hidden="true" class="inline-flex">
+				<Presence size={26} tone="iris" interactive={false} ambient={false} />
+			</span>
 			Halo
 		</a>
 		<div class="text-muted-foreground hidden items-center gap-6 text-sm md:flex">
@@ -73,7 +78,8 @@
 			style:--index="2"
 		>
 			Your calm partner for <TextRotate
-				words={['research', 'reading', 'writing', 'research']}
+				words={['reading', 'writing', 'research']}
+				interval={1600}
 				loop={false}
 				class="text-muted-foreground"
 			/>.
@@ -94,14 +100,31 @@
 		</div>
 	</section>
 
-	<Marquee speed={32} class="py-2" aria-label="Questions people ask Halo">
-		{#each questions as question (question)}
-			<span
-				class="bg-secondary text-muted-foreground rounded-full px-4 py-2 text-sm whitespace-nowrap"
-				>{question}</span
-			>
-		{/each}
-	</Marquee>
+	<div class="relative">
+		<Marquee
+			speed={32}
+			paused={questionsPaused}
+			class="py-2"
+			role="region"
+			aria-label="Questions people ask Halo"
+		>
+			{#each questions as question (question)}
+				<span
+					class="bg-secondary text-muted-foreground rounded-full px-4 py-2 text-sm whitespace-nowrap"
+					>{question}</span
+				>
+			{/each}
+		</Marquee>
+		<button
+			type="button"
+			onclick={() => (questionsPaused = !questionsPaused)}
+			aria-label={questionsPaused ? 'Play questions' : 'Pause questions'}
+			aria-pressed={questionsPaused}
+			class="bg-background text-muted-foreground hover:text-foreground focus-visible:ring-ring absolute top-1/2 right-3 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full shadow-sm transition-colors outline-none focus-visible:ring-2 sm:right-6"
+		>
+			{#if questionsPaused}<Play class="size-3.5" />{:else}<Pause class="size-3.5" />{/if}
+		</button>
+	</div>
 
 	<section
 		class="grid gap-3 px-5 pt-12 sm:grid-cols-3 sm:px-8"

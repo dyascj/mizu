@@ -1,0 +1,24 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "number-ticker",
+  "type": "registry:ui",
+  "title": "Number Ticker",
+  "description": "A formatted number whose digits roll into place when the value changes.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.4.0/motion.json",
+    "https://mizu-ui.com/r/v0.4.0/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "number-ticker/index.ts",
+      "content": "export { default as NumberTicker } from './number-ticker.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "number-ticker/number-ticker.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport type { TransitionConfig } from 'svelte/transition';\n\timport { duration, easeIn, easeOut, prefersReducedMotion } from '$lib/components/ui/motion';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = Omit<HTMLAttributes<HTMLSpanElement>, 'children'> & {\n\t\t/** The number to show. Changes roll each digit to its new place. */\n\t\tvalue: number;\n\t\t/** BCP 47 locale for grouping, decimals, and digits. Defaults to the runtime locale. */\n\t\tlocale?: string;\n\t\t/** Intl.NumberFormat options, such as currency, percent, or compact notation. */\n\t\tformat?: Intl.NumberFormatOptions;\n\t\tclass?: string;\n\t\tref?: HTMLSpanElement | null;\n\t};\n\n\tlet { value, locale, format, class: className, ref = $bindable(null), ...rest }: Props = $props();\n\n\tconst formatter = $derived(new Intl.NumberFormat(locale, format));\n\t/** The locale's own glyphs for 0 through 9, so any numbering system can roll. */\n\tconst digits = $derived.by(() => {\n\t\tconst { numberingSystem } = formatter.resolvedOptions();\n\t\tconst plain = new Intl.NumberFormat(locale, { numberingSystem, useGrouping: false });\n\t\treturn Array.from({ length: 10 }, (_, digit) => plain.format(digit));\n\t});\n\tconst formatted = $derived(formatter.format(value));\n\n\t// Key each character by its place from the right, so ones stay ones and a\n\t// new leading digit enters on the left instead of shifting every column.\n\tconst characters = $derived.by(() => {\n\t\tconst glyphs = Array.from(formatted);\n\t\treturn glyphs.map((glyph, i) => {\n\t\t\tconst digit = digits.indexOf(glyph);\n\t\t\tconst place = glyphs.length - i;\n\t\t\treturn { glyph, digit, key: digit === -1 ? `${place}:${glyph}` : `${place}` };\n\t\t});\n\t});\n\n\t/** New columns open from zero width; the width eases so neighbors never jump. */\n\tfunction column(node: HTMLElement, { exit = false } = {}): TransitionConfig {\n\t\tif (prefersReducedMotion()) return {};\n\t\tconst width = node.getBoundingClientRect().width;\n\t\treturn {\n\t\t\tduration: exit ? duration.fast : duration.base,\n\t\t\teasing: exit ? easeIn : easeOut,\n\t\t\tcss: (t) => `width: ${t * width}px; opacity: ${t}; filter: blur(${(1 - t) * 0.1}em)`\n\t\t};\n\t}\n</script>\n\n<span\n\tbind:this={ref}\n\tclass={cn('inline-block whitespace-nowrap tabular-nums', className)}\n\t{...rest}\n>\n\t<span class=\"sr-only\">{formatted}</span>\n\t<span aria-hidden=\"true\">\n\t\t{#each characters as character (character.key)}\n\t\t\t<span\n\t\t\t\tclass=\"inline-block\"\n\t\t\t\tclass:ticker-column={character.digit !== -1}\n\t\t\t\tin:column\n\t\t\t\tout:column={{ exit: true }}\n\t\t\t>\n\t\t\t\t{#if character.digit === -1}\n\t\t\t\t\t{character.glyph}\n\t\t\t\t{:else}\n\t\t\t\t\t<span class=\"invisible\">{character.glyph}</span>\n\t\t\t\t\t<span\n\t\t\t\t\t\tclass=\"ease-spring absolute inset-x-0 top-0 flex flex-col items-center transition-[translate] duration-(--duration-spring)\"\n\t\t\t\t\t\tstyle:translate=\"0 {character.digit * -10}%\"\n\t\t\t\t\t>\n\t\t\t\t\t\t{#each digits as glyph (glyph)}<span class=\"ticker-cell\">{glyph}</span>{/each}\n\t\t\t\t\t</span>\n\t\t\t\t{/if}\n\t\t\t</span>\n\t\t{/each}\n\t</span>\n</span>\n\n<style>\n\t/* Each column shows one line plus a feathered margin above and below. The\n\t   margin is padding cancelled by a negative margin, so the line box and the\n\t   baseline stay exactly where plain text would put them. */\n\t.ticker-column,\n\t.ticker-cell {\n\t\tpadding-block: var(--ticker-feather);\n\t}\n\n\t.ticker-column {\n\t\t--ticker-feather: 0.25em;\n\t\tposition: relative;\n\t\tmargin-block: calc(var(--ticker-feather) * -1);\n\t\tmask-image: linear-gradient(\n\t\t\ttransparent,\n\t\t\tblack var(--ticker-feather),\n\t\t\tblack calc(100% - var(--ticker-feather)),\n\t\t\ttransparent\n\t\t);\n\t}\n</style>\n"
+    }
+  ]
+}

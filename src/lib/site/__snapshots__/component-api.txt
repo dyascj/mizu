@@ -254,7 +254,7 @@ popover-content.svelte extends WithoutChildrenOrChild<Popover.ContentProps> | re
 popover-trigger.svelte extends WithoutChild<Popover.TriggerProps> | ref?: unknown = null bindable, class?: string
 popover.svelte extends Popover.RootProps | 
 # presence
-presence.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | state?: PresenceState = 'idle', tone?: PresenceTone = 'water', size?: number = 96, volume?: number = 0, interactive?: boolean = true, label?: string, class?: string, ref?: HTMLDivElement | null = null bindable
+presence.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | state?: PresenceState = 'idle', tone?: PresenceTone = 'water', size?: number = 96, volume?: number = 0, interactive?: boolean = true, ambient?: boolean = true, label?: string, class?: string, ref?: HTMLDivElement | null = null bindable
 # progress
 progress.svelte extends WithoutChildrenOrChild<Progress.RootProps> | ref?: unknown = null bindable, value?: unknown = 0 bindable, max?: unknown = 100, class?: string
 # prompt-suggestions

@@ -8,7 +8,11 @@
 	type Props = Omit<HTMLButtonAttributes, 'children' | 'onclick'> & {
 		/** How long the press must last before it confirms, in milliseconds. */
 		duration?: number;
-		/** Called once each time a hold runs to completion. */
+		/**
+		 * Called once each time a hold runs to completion. Assistive technology
+		 * that activates with a plain click, such as a screen reader in browse
+		 * mode, confirms without holding.
+		 */
 		onConfirm: () => void;
 		/** Colors for the resting pill and the fill that sweeps across it. */
 		variant?: 'destructive' | 'primary';
@@ -84,11 +88,26 @@
 		animate((elapsed) => {
 			progress = Math.min(1, (from + elapsed) / duration);
 			if (progress < 1) return true;
-			phase = 'done';
-			resetTimer = setTimeout(retract, confirmation);
-			onConfirm();
+			complete();
 			return false;
 		});
+	}
+
+	function complete() {
+		cancelAnimationFrame(frame);
+		progress = 1;
+		phase = 'done';
+		resetTimer = setTimeout(retract, confirmation);
+		onConfirm();
+	}
+
+	// Screen readers in browse mode, switch access, and voice control activate
+	// with a click that has no pointer or key press behind it. They cannot hold,
+	// and the activation is already deliberate, so it confirms directly.
+	function onclick(event: MouseEvent) {
+		if (event.detail !== 0 || pointerId !== null || heldKey !== null) return;
+		if (disabled || phase === 'done') return;
+		complete();
 	}
 
 	function release() {
@@ -183,6 +202,7 @@
 	onpointerup={onpointerend}
 	onpointercancel={onpointerend}
 	onlostpointercapture={onpointerend}
+	{onclick}
 	{onkeydown}
 	{onkeyup}
 	onblur={release}
@@ -191,7 +211,8 @@
 		if (phase === 'holding') event.preventDefault();
 	}}
 >
-	<span class={cn('inline-flex items-center gap-2', phase === 'done' && 'invisible')}>
+	<!-- Transparent rather than invisible while done, so the button keeps its name. -->
+	<span class={cn('inline-flex items-center gap-2', phase === 'done' && 'opacity-0')}>
 		{@render children()}
 	</span>
 	<span

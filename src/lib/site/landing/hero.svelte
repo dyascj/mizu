@@ -37,7 +37,7 @@
 		<span class="font-serif text-[1.08em] font-normal tracking-[-0.02em] whitespace-nowrap italic"
 			><TextRotate
 				words={['assistant', 'workspace', 'app', 'conversation']}
-				interval={1700}
+				interval={1400}
 				loop={false}
 			/>.</span
 		>

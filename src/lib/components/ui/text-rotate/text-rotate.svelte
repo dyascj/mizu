@@ -53,7 +53,8 @@
 		const media = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const sync = () => {
 			reducedMotion = media.matches;
-			if (media.matches) index = 0;
+			// Hold still on the word assistive technology reads.
+			if (media.matches) index = loop ? 0 : Math.max(0, words.length - 1);
 		};
 		sync();
 		media.addEventListener('change', sync);

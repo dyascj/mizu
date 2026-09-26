@@ -1,0 +1,26 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "network-status",
+  "type": "registry:ui",
+  "title": "Network Status",
+  "description": "An online and offline indicator that reassures people their changes will sync.",
+  "dependencies": [
+    "@lucide/svelte@^1.48.0"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.4.0/motion.json",
+    "https://mizu-ui.com/r/v0.4.0/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "network-status/index.ts",
+      "content": "export { default as NetworkStatus } from './network-status.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "network-status/network-status.svelte",
+      "content": "<script lang=\"ts\">\n\timport { untrack } from 'svelte';\n\timport { fade } from 'svelte/transition';\n\timport Wifi from '@lucide/svelte/icons/wifi';\n\timport WifiOff from '@lucide/svelte/icons/wifi-off';\n\timport { duration, easeIn, rise } from '$lib/components/ui/motion';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Status = 'online' | 'offline';\n\n\ttype Props = {\n\t\t/** `pill` floats at the top center of its container; `inline` sits in the flow as a banner. */\n\t\tvariant?: 'pill' | 'inline';\n\t\t/** Pin the pill to the top of the viewport, clear of the notch. */\n\t\tfixed?: boolean;\n\t\t/** Shown while the device has no connection. */\n\t\tofflineLabel?: string;\n\t\t/** Shown briefly when the connection returns. */\n\t\tonlineLabel?: string;\n\t\t/** Milliseconds the online message stays before hiding. */\n\t\tresetAfter?: number;\n\t\t/** Override the detected status, for previews and tests. */\n\t\tforceStatus?: 'online' | 'offline';\n\t\tclass?: string;\n\t};\n\n\tlet {\n\t\tvariant = 'pill',\n\t\tfixed = false,\n\t\tofflineLabel = \"You're offline. Changes will sync when you reconnect.\",\n\t\tonlineLabel = 'Back online',\n\t\tresetAfter = 3000,\n\t\tforceStatus,\n\t\tclass: className\n\t}: Props = $props();\n\n\t// Assume online until the browser says otherwise, so the server renders an\n\t// empty live region instead of a false alarm.\n\tlet online = $state(true);\n\tlet recovered = $state(false);\n\n\tconst status = $derived<Status>(forceStatus ?? (online ? 'online' : 'offline'));\n\tconst message = $derived(\n\t\tstatus === 'offline' ? offlineLabel : recovered ? onlineLabel : undefined\n\t);\n\n\t$effect(() => {\n\t\tonline = navigator.onLine;\n\t\tconst update = () => (online = navigator.onLine);\n\t\twindow.addEventListener('online', update);\n\t\twindow.addEventListener('offline', update);\n\t\treturn () => {\n\t\t\twindow.removeEventListener('online', update);\n\t\t\twindow.removeEventListener('offline', update);\n\t\t};\n\t});\n\n\t// Coming back from offline shows the online message, then hides it.\n\tlet wasOffline = false;\n\t$effect(() => {\n\t\tif (status === 'offline') {\n\t\t\twasOffline = true;\n\t\t\trecovered = false;\n\t\t\treturn;\n\t\t}\n\t\tif (!wasOffline) return;\n\t\twasOffline = false;\n\t\trecovered = true;\n\t\tconst timer = setTimeout(\n\t\t\t() => (recovered = false),\n\t\t\tuntrack(() => resetAfter)\n\t\t);\n\t\treturn () => clearTimeout(timer);\n\t});\n</script>\n\n<!-- The live region stays mounted so screen readers hear every change. -->\n<div\n\trole=\"status\"\n\taria-live=\"polite\"\n\taria-atomic=\"true\"\n\tclass={cn(\n\t\tvariant === 'pill' && 'pointer-events-none inset-x-0 top-0 z-50 flex justify-center',\n\t\t// Device insets only apply at the screen edge; an embedded pill keeps a fixed margin.\n\t\tvariant === 'pill' && (fixed ? 'pt-safe px-safe fixed' : 'absolute px-3 pt-3'),\n\t\tclassName\n\t)}\n>\n\t{#if message}\n\t\t<div\n\t\t\tclass={cn(\n\t\t\t\t'text-sm',\n\t\t\t\tvariant === 'pill'\n\t\t\t\t\t? 'glass pointer-events-auto max-w-md rounded-3xl border py-2 pr-4 pl-3 shadow-lg'\n\t\t\t\t\t: 'bg-secondary rounded-2xl px-4 py-3'\n\t\t\t)}\n\t\t\tin:rise={{ y: variant === 'pill' ? -8 : 4, duration: duration.slow }}\n\t\t\tout:fade={{ duration: duration.fast, easing: easeIn }}\n\t\t>\n\t\t\t<!-- Swapping between offline and online crossfades in place. -->\n\t\t\t{#key status}\n\t\t\t\t<span class=\"flex items-center gap-2.5\" in:fade={{ duration: duration.fast }}>\n\t\t\t\t\t{#if status === 'offline'}\n\t\t\t\t\t\t<WifiOff class=\"text-muted-foreground size-4 shrink-0\" aria-hidden=\"true\" />\n\t\t\t\t\t{:else}\n\t\t\t\t\t\t<Wifi class=\"size-4 shrink-0 text-[color:var(--success)]\" aria-hidden=\"true\" />\n\t\t\t\t\t{/if}\n\t\t\t\t\t<span class=\"text-foreground leading-snug text-balance\">{message}</span>\n\t\t\t\t</span>\n\t\t\t{/key}\n\t\t</div>\n\t{/if}\n</div>\n"
+    }
+  ]
+}

@@ -58,6 +58,26 @@ describe('HoldButton', () => {
 		expect(onConfirm).toHaveBeenCalledTimes(1);
 	});
 
+	test('keeps its name while showing the confirmation', async () => {
+		const { button } = setup({ duration: 400 });
+		await fireEvent.pointerDown(button, { button: 0, pointerId: 1 });
+		await advance(500);
+		expect(button).toHaveAttribute('data-phase', 'done');
+		expect(screen.getByRole('button', { name: 'Hold to delete' })).toBe(button);
+	});
+
+	test('confirms a click from assistive technology without a hold', async () => {
+		const { button, onConfirm } = setup();
+		await fireEvent.click(button, { detail: 0 });
+		expect(onConfirm).toHaveBeenCalledTimes(1);
+		expect(screen.getByText('Confirmed')).toBeInTheDocument();
+
+		// Pointer clicks report a detail count and must still be held.
+		await advance(3000);
+		await fireEvent.click(button, { detail: 1 });
+		expect(onConfirm).toHaveBeenCalledTimes(1);
+	});
+
 	test('springs back when released early', async () => {
 		const { button, onConfirm } = setup({ duration: 1000 });
 

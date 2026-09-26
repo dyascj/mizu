@@ -5,7 +5,8 @@ import { hasFinePointer, prefersReducedMotion } from './media.js';
  * Track the pointer inside an element as CSS custom properties:
  * `--pointer-x` and `--pointer-y` in pixels from the top left, and
  * `--pointer-active` as 1 while hovered and 0 otherwise. Style anything from
- * those values, such as a radial glow that follows the cursor.
+ * those values, such as a radial glow that follows the cursor. Touch screens
+ * and reduced motion keep `--pointer-active` at 0.
  *
  * ```svelte
  * <div {@attach pointerPosition()} class="bg-[radial-gradient(...at_var(--pointer-x)_var(--pointer-y)...)]">
@@ -13,6 +14,13 @@ import { hasFinePointer, prefersReducedMotion } from './media.js';
  */
 export function pointerPosition(): Attachment<HTMLElement> {
 	return (node) => {
+		// Effects built on the position are decoration: skip them for touch and
+		// for readers who asked for less motion.
+		if (!hasFinePointer() || prefersReducedMotion()) {
+			node.style.setProperty('--pointer-active', '0');
+			return () => node.style.removeProperty('--pointer-active');
+		}
+
 		let frame = 0;
 		let x = 0;
 		let y = 0;
@@ -67,7 +75,7 @@ export function magnetic({
 		const previousTransition = node.style.transition;
 		node.style.transition = [
 			previousTransition,
-			'translate var(--duration-spring, 520ms) var(--ease-spring, ease-out)'
+			'translate var(--duration-spring) var(--ease-spring)'
 		]
 			.filter(Boolean)
 			.join(', ');
