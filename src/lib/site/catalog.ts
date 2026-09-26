@@ -3,6 +3,7 @@ import data from './components.json';
 export const categories = [
 	'AI',
 	'Motion',
+	'App',
 	'Actions',
 	'Forms',
 	'Surfaces',
