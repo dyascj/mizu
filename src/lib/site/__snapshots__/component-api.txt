@@ -184,6 +184,8 @@ input-group.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, ref?
 input-otp-separator.svelte | class?: string
 input-otp-slot.svelte extends WithoutChildrenOrChild<PinInput.CellProps> | ref?: unknown = null bindable, cell: unknown, class?: string
 input-otp.svelte extends WithoutChildren<PinInput.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, maxlength?: unknown = 6, class?: string, children: NonNullable<PinInput.RootProps['children']>
+# install-prompt
+install-prompt.svelte | title?: string = 'Install the app', description?: string = 'Open it from your home screen, like any other app.', icon?: Snippet, storageKey?: string, onInstall?: (outcome: 'accepted' | 'dismissed') => void, onDismiss?: () => void, forceVisible?: boolean = false, class?: string
 # item
 item-actions.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
 item-content.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet

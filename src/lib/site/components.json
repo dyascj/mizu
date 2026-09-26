@@ -525,5 +525,11 @@
 		"name": "Tab Bar",
 		"category": "App",
 		"description": "Bottom navigation for mobile apps and PWAs, with a sliding indicator and unread badges."
+	},
+	{
+		"slug": "install-prompt",
+		"name": "Install Prompt",
+		"category": "App",
+		"description": "A card that offers to install your PWA, with Add to Home Screen steps on iOS."
 	}
 ]
