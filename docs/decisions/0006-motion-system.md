@@ -22,8 +22,8 @@ Usage rules:
 
 - Enter with `ease-out` or a spring. Exit faster with `ease-in`.
 - Springs animate scale and position only. Color and opacity must not overshoot.
-- Looping motion indicates AI activity or a working state. Idle interfaces hold still.
-- Reduced motion completes CSS motion immediately, turns Svelte transitions into a short crossfade, never hides content behind a scroll reveal, and disables pointer effects.
+- Looping motion indicates AI activity, AI presence, or a working state. Other idle interfaces hold still. Continuous motion that runs longer than five seconds beside other content offers a way to stop it (WCAG 2.2.2), such as the `paused` props on TextRotate and Marquee and `ambient={false}` on Presence.
+- Reduced motion completes CSS motion immediately and cancels start delays, turns Svelte transitions into a short crossfade, never hides content behind a scroll reveal, and disables pointer effects.
 
 ## Consequences
 

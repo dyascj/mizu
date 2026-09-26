@@ -76,7 +76,7 @@
 				<button
 					type="button"
 					onclick={reset}
-					class="text-muted-foreground hover:text-foreground -ml-1 inline-flex items-center gap-1 rounded-full px-1 py-1 text-sm transition-colors"
+					class="text-muted-foreground hover:text-foreground -ml-2 inline-flex min-h-11 items-center gap-1 rounded-full px-2 text-sm transition-colors"
 				>
 					<ArrowLeft class="size-4" /> Home
 				</button>
@@ -106,7 +106,9 @@
 					</div>
 				</div>
 
-				<div class="-mx-5 mt-7 flex snap-x [scrollbar-width:none] gap-3 overflow-x-auto px-5 pb-1">
+				<div
+					class="-mx-5 mt-7 flex snap-x scroll-px-5 [scrollbar-width:none] gap-3 overflow-x-auto px-5 pb-1"
+				>
 					{#each starters as starter, index (starter.title)}
 						<button
 							type="button"
@@ -127,7 +129,7 @@
 					<button
 						type="button"
 						onclick={() => (offline = !offline)}
-						class="text-muted-foreground hover:text-foreground text-xs transition-colors"
+						class="text-muted-foreground hover:text-foreground -mr-2 min-h-11 rounded-full px-2 text-xs transition-colors"
 						>{offline ? 'Go online' : 'Go offline'}</button
 					>
 				</div>

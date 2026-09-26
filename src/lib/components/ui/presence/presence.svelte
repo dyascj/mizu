@@ -27,6 +27,12 @@
 		volume?: number;
 		/** Eyes follow a fine pointer and the body squishes when pressed. */
 		interactive?: boolean;
+		/**
+		 * Let the body breathe and drift while idle or sleeping. Turn it off where
+		 * Presence sits beside content people read for a long time. Expressions,
+		 * blinking, and working states still animate.
+		 */
+		ambient?: boolean;
 		/** Accessible description. Defaults to a sentence describing the state. */
 		label?: string;
 		class?: string;
@@ -39,6 +45,7 @@
 		size = 96,
 		volume = 0,
 		interactive = true,
+		ambient = true,
 		label,
 		class: className,
 		ref = $bindable(null),
@@ -121,6 +128,7 @@
 	data-tone={tone}
 	data-blinking={blinking || undefined}
 	data-pressed={pressed || undefined}
+	data-still={!ambient || undefined}
 	class={cn('mizu-presence relative inline-grid shrink-0 select-none', className)}
 	style:--presence-size="{diameter}px"
 	style:--presence-level={voiced ? level : 0}
@@ -155,6 +163,11 @@
 
 <style>
 	.mizu-presence {
+		/* Loop lengths derive from the ambient token so they retune with the theme. */
+		--presence-drift: calc(var(--duration-ambient) * 3.5);
+		--presence-breath: calc(var(--duration-ambient) * 2.4);
+		--presence-hop: calc(var(--duration-ambient) * 0.8);
+		--presence-ponder: calc(var(--duration-ambient) * 1.2);
 		--presence-highlight: #e2e7ff;
 		--presence-mid: #8f9dfb;
 		--presence-deep: #5b61f5;
@@ -232,8 +245,8 @@
 		scale: calc(1 + var(--presence-level) * 0.05) calc(1 - var(--presence-level) * 0.035);
 		transition: scale var(--duration-spring) var(--ease-spring-bouncy);
 		animation:
-			presence-morph 7s var(--ease-in-out) infinite,
-			presence-breathe 4.8s var(--ease-in-out) infinite;
+			presence-morph var(--presence-drift) var(--ease-in-out) infinite,
+			presence-breathe var(--presence-breath) var(--ease-in-out) infinite;
 	}
 	.mizu-presence[data-pressed] .presence-body {
 		scale: 1.08 0.9;
@@ -251,7 +264,7 @@
 		background: radial-gradient(closest-side, rgb(255 255 255 / 0.7), transparent);
 		filter: blur(calc(var(--presence-size) * 0.02));
 		rotate: -24deg;
-		animation: presence-sheen 7s var(--ease-in-out) infinite;
+		animation: presence-sheen var(--presence-drift) var(--ease-in-out) infinite;
 	}
 
 	.presence-face {
@@ -306,11 +319,11 @@
 	}
 	.mizu-presence[data-state='thinking'] .presence-body {
 		animation:
-			presence-morph 3.2s var(--ease-in-out) infinite,
-			presence-ponder 2.4s var(--ease-in-out) infinite;
+			presence-morph calc(var(--presence-ponder) * 1.333) var(--ease-in-out) infinite,
+			presence-ponder var(--presence-ponder) var(--ease-in-out) infinite;
 	}
 	.mizu-presence[data-state='thinking'] .presence-sheen {
-		animation-duration: 2.4s;
+		animation-duration: var(--presence-ponder);
 	}
 	.mizu-presence[data-state='speaking'] .presence-pupil {
 		scale: 1 calc(0.82 - var(--presence-level) * 0.25);
@@ -329,15 +342,15 @@
 	}
 	.mizu-presence[data-state='happy'] .presence-body {
 		animation:
-			presence-morph 7s var(--ease-in-out) infinite,
-			presence-hop 1.6s var(--ease-in-out) infinite;
+			presence-morph var(--presence-drift) var(--ease-in-out) infinite,
+			presence-hop var(--presence-hop) var(--ease-in-out) infinite;
 	}
 	.mizu-presence[data-state='sleeping'] .presence-pupil {
 		scale: 1.1 0.14;
 		translate: 0 5px;
 	}
 	.mizu-presence[data-state='sleeping'] .presence-body {
-		animation: presence-breathe 6.4s var(--ease-in-out) infinite;
+		animation: presence-breathe calc(var(--presence-breath) * 1.333) var(--ease-in-out) infinite;
 		filter: saturate(0.7);
 	}
 	.mizu-presence[data-state='sleeping'] .presence-glow {
@@ -381,6 +394,12 @@
 			translate: calc(var(--presence-size) * -0.05) calc(var(--presence-size) * 0.02);
 			opacity: 0.7;
 		}
+	}
+
+	/* Holding still while idle or resting; working states keep their motion. */
+	.mizu-presence[data-still]:is([data-state='idle'], [data-state='sleeping']) .presence-body,
+	.mizu-presence[data-still] .presence-sheen {
+		animation: none;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

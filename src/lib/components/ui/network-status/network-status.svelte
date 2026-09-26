@@ -80,9 +80,9 @@
 	aria-live="polite"
 	aria-atomic="true"
 	class={cn(
-		variant === 'pill' &&
-			'pt-safe px-safe pointer-events-none inset-x-0 top-0 z-50 flex justify-center',
-		variant === 'pill' && (fixed ? 'fixed' : 'absolute'),
+		variant === 'pill' && 'pointer-events-none inset-x-0 top-0 z-50 flex justify-center',
+		// Device insets only apply at the screen edge; an embedded pill keeps a fixed margin.
+		variant === 'pill' && (fixed ? 'pt-safe px-safe fixed' : 'absolute px-3 pt-3'),
 		className
 	)}
 >

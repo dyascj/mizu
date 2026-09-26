@@ -36,6 +36,31 @@
 			// Dismissal still applies for this visit.
 		}
 	}
+
+	// Chromium fires beforeinstallprompt once, early in the visit. Listening
+	// when the module loads, rather than when a card mounts, lets an app import
+	// the component in its root layout and ask later without missing the event.
+	let captured: BeforeInstallPromptEvent | null = null;
+	const subscribers: ((event: BeforeInstallPromptEvent | null) => void)[] = [];
+
+	function publish(event: BeforeInstallPromptEvent | null) {
+		captured = event;
+		for (const subscriber of subscribers) subscriber(event);
+	}
+
+	if (typeof window !== 'undefined') {
+		window.addEventListener('beforeinstallprompt', (event) => {
+			// Keep the browser's mini-infobar away; the card is the invitation.
+			event.preventDefault();
+			publish(event as BeforeInstallPromptEvent);
+		});
+		window.addEventListener('appinstalled', () => publish(null));
+	}
+
+	function subscribe(subscriber: (event: BeforeInstallPromptEvent | null) => void) {
+		subscribers.push(subscriber);
+		return () => subscribers.splice(subscribers.indexOf(subscriber), 1);
+	}
 </script>
 
 <script lang="ts">
@@ -97,27 +122,19 @@
 		remembered = storageKey ? wasDismissed(storageKey) : false;
 		mounted = true;
 
-		const capture = (event: Event) => {
-			// Keep the browser's mini-infobar away; the card is the invitation.
-			event.preventDefault();
-			deferred = event as BeforeInstallPromptEvent;
-		};
-		const installed = () => {
-			deferred = null;
-			closed = true;
-		};
-		window.addEventListener('beforeinstallprompt', capture);
-		window.addEventListener('appinstalled', installed);
-		return () => {
-			window.removeEventListener('beforeinstallprompt', capture);
-			window.removeEventListener('appinstalled', installed);
-		};
+		deferred = captured;
+		return subscribe((event) => {
+			// A null event means the app was installed from anywhere.
+			if (!event && deferred) closed = true;
+			deferred = event;
+		});
 	});
 
 	async function install() {
 		const event = deferred;
 		// A captured prompt can only be shown once.
 		deferred = null;
+		if (captured === event) captured = null;
 		closed = true;
 		if (!event) return;
 		try {
@@ -178,9 +195,9 @@
 			</p>
 		{/if}
 		<div class="mt-4 flex justify-end gap-2">
-			<Button variant="ghost" size="sm" onclick={dismiss}>Not now</Button>
+			<Button variant="ghost" onclick={dismiss}>Not now</Button>
 			{#if !instructions}
-				<Button size="sm" onclick={install}>Install</Button>
+				<Button onclick={install}>Install</Button>
 			{/if}
 		</div>
 	</section>

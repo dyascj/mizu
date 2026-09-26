@@ -309,7 +309,10 @@
 	--animate-fade-out: fade-out var(--duration-fast) var(--ease-in) both;
 	--animate-rise-in: rise-in var(--duration-deliberate) var(--ease-out) both;
 	--animate-blur-in: blur-in var(--duration-deliberate) var(--ease-out) both;
-	--animate-scale-in: scale-in var(--duration-spring) var(--ease-spring) both;
+	/* Scale rides the spring; opacity takes the plain curve so it never overshoots. */
+	--animate-scale-in:
+		scale-in var(--duration-spring) var(--ease-spring) both,
+		fade-in var(--duration-base) var(--ease-out) both;
 	--animate-shimmer: shimmer var(--duration-ambient) linear infinite;
 	--animate-breathe: breathe 4s var(--ease-in-out) infinite;
 	--animate-float: float 6s var(--ease-in-out) infinite;
@@ -341,7 +344,6 @@
 	}
 	@keyframes scale-in {
 		from {
-			opacity: 0;
 			scale: 0.94;
 		}
 	}
@@ -556,6 +558,7 @@
 	::before,
 	::after {
 		animation-duration: 0.001ms !important;
+		animation-delay: 0s !important;
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.001ms !important;
 		scroll-behavior: auto !important;

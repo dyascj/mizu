@@ -63,6 +63,15 @@ describe('Presence', () => {
 		expect(vi.getTimerCount()).toBe(0);
 	});
 
+	test('can hold its ambient motion still', async () => {
+		stubMedia();
+		const { rerender } = render(Presence);
+		const root = screen.getByRole('img');
+		expect(root).not.toHaveAttribute('data-still');
+		await rerender({ ambient: false });
+		expect(root).toHaveAttribute('data-still');
+	});
+
 	test('squishes while pressed only when interactive', async () => {
 		stubMedia();
 		const { rerender } = render(Presence);

@@ -41,6 +41,8 @@ beforeEach(() => {
 	stubAnimations();
 	stubDisplayMode(false);
 	localStorage.clear();
+	// The captured install event is shared across cards; start each test without one.
+	window.dispatchEvent(new Event('appinstalled'));
 });
 
 afterEach(() => {
@@ -133,12 +135,9 @@ describe('InstallPrompt', () => {
 		await waitFor(() => expect(screen.queryByRole('region')).toBeNull());
 	});
 
-	test('stops listening when unmounted', () => {
-		const remove = vi.spyOn(window, 'removeEventListener');
-		const { unmount } = render(InstallPrompt, { title });
-		unmount();
-		const events = remove.mock.calls.map(([type]) => type);
-		expect(events).toContain('beforeinstallprompt');
-		expect(events).toContain('appinstalled');
+	test('offers an install event that fired before the card mounted', async () => {
+		await offerInstall();
+		render(InstallPrompt, { title });
+		expect(await screen.findByRole('button', { name: 'Install' })).toBeInTheDocument();
 	});
 });

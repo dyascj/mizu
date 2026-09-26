@@ -111,9 +111,10 @@
 	data-variant={variant}
 	class={cn(
 		variant === 'floating'
-			? 'px-safe pb-safe pointer-events-none flex justify-center'
-			: 'glass px-safe pb-safe w-full pt-1.5 shadow-md dark:shadow-[0_-1px_0_var(--glass-border)]',
-		fixed && 'fixed inset-x-0 bottom-0 z-40',
+			? 'pointer-events-none flex justify-center'
+			: 'glass w-full pt-1.5 shadow-md dark:shadow-[0_-1px_0_var(--glass-border)]',
+		// Device insets only apply at the screen edge; embedded bars keep a fixed margin.
+		fixed ? 'px-safe pb-safe fixed inset-x-0 bottom-0 z-40' : 'px-3 pb-3',
 		className
 	)}
 	{...rest}

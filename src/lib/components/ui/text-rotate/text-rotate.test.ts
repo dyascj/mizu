@@ -40,6 +40,13 @@ afterEach(() => {
 });
 
 describe('TextRotate', () => {
+	test('shows the same final word to everyone under reduced motion', () => {
+		stubReducedMotion(true);
+		const { container } = render(TextRotate, { words, loop: false });
+		expect(current(container)).toBe('ship');
+		expect(container.querySelector('.sr-only')).toHaveTextContent('ship');
+	});
+
 	test('settles on the last word when it does not loop', async () => {
 		const { container } = render(TextRotate, { words, interval: 1000, loop: false });
 		expect(container.querySelector('.sr-only')).toHaveTextContent('ship');

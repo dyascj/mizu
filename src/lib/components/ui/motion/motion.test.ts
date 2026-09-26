@@ -13,9 +13,9 @@ import {
 	stagger
 } from './index.js';
 
-function stubReducedMotion(reduce: boolean) {
+function stubReducedMotion(reduce: boolean, finePointer = true) {
 	vi.stubGlobal('matchMedia', (query: string) => ({
-		matches: reduce && query.includes('reduce'),
+		matches: query.includes('reduce') ? reduce : query.includes('pointer: fine') && finePointer,
 		media: query,
 		addEventListener() {},
 		removeEventListener() {}
@@ -154,6 +154,7 @@ describe('reveal', () => {
 
 describe('pointerPosition', () => {
 	test('exposes the pointer as custom properties and cleans up', () => {
+		stubReducedMotion(false);
 		vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
 			callback(0);
 			return 1;
@@ -172,5 +173,20 @@ describe('pointerPosition', () => {
 
 		if (typeof cleanup === 'function') cleanup();
 		expect(node.style.getPropertyValue('--pointer-x')).toBe('');
+	});
+
+	test('stays inactive for touch and reduced motion', () => {
+		for (const [reduce, fine] of [
+			[false, false],
+			[true, true]
+		]) {
+			stubReducedMotion(reduce, fine);
+			const node = document.createElement('div');
+			const cleanup = pointerPosition()(node);
+			node.dispatchEvent(new PointerEvent('pointermove', { clientX: 10, clientY: 10 }));
+			expect(node.style.getPropertyValue('--pointer-active')).toBe('0');
+			expect(node.style.getPropertyValue('--pointer-x')).toBe('');
+			if (typeof cleanup === 'function') cleanup();
+		}
 	});
 });
