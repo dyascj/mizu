@@ -2,6 +2,41 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.4.0-rc.2] - 2026-09-25
+
+This candidate adds Presence, eleven components for motion, apps, and interaction, and two blocks. It includes everything in 0.4.0-rc.1. The stable registry remains on 0.3.1. Representative VoiceOver review is required before a stable 0.4.0 release.
+
+### Added
+
+- Presence: an expressive companion for idle, listening, thinking, speaking, happy, and sleeping states, with five tones, voice level, pointer-following eyes, and a press squish.
+- Motion components: TextReveal, TextRotate, NumberTicker, and Marquee.
+- App components: TabBar, InstallPrompt, and NetworkStatus, plus `pt-safe`, `pb-safe`, `px-safe`, `py-safe`, `pl-safe`, and `pr-safe` utilities for edge-to-edge layouts.
+- Interaction components: SegmentedControl, HoldButton, and CopyButton.
+- Mobile assistant and product landing blocks, in new Mobile and Websites block categories.
+- An App catalog category. The component scaffolder reads its categories from the catalog.
+
+### Changed
+
+- Tabs slide a raised indicator between triggers on the snappy spring. The public API and keyboard behavior are unchanged.
+- **Tabs migration:** reinstall `tabs-list.svelte` and `tabs-trigger.svelte` together. The list now owns the active fill.
+- The document viewport uses `viewport-fit=cover` so safe-area utilities receive device insets.
+
+### Deprecated
+
+- No APIs deprecated.
+
+### Removed
+
+- No components removed.
+
+### Fixed
+
+- No fixes beyond 0.4.0-rc.1.
+
+### Security
+
+- No security changes.
+
 ## [0.4.0-rc.1] - 2026-09-25
 
 This candidate introduces the motion system. The stable registry remains on 0.3.1. Representative VoiceOver review is required before a stable 0.4.0 release.

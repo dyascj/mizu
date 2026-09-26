@@ -1,0 +1,45 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "tabs",
+  "type": "registry:ui",
+  "title": "Tabs",
+  "description": "A segmented pill switcher whose raised active tab slides between triggers.",
+  "dependencies": [
+    "bits-ui@^2.19.3"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.4.0-rc.2/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "tabs/index.ts",
+      "content": "import Root from './tabs.svelte';\nimport List from './tabs-list.svelte';\nimport Trigger from './tabs-trigger.svelte';\nimport Content from './tabs-content.svelte';\n\nexport {\n\tRoot,\n\tList,\n\tTrigger,\n\tContent,\n\t//\n\tRoot as Tabs,\n\tList as TabsList,\n\tTrigger as TabsTrigger,\n\tContent as TabsContent\n};\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "tabs/sliding-indicator.ts",
+      "content": "import type { Attachment } from 'svelte/attachments';\n\n/**\n * Keeps the attached element sized and positioned over the descendant of its\n * parent that matches `selector`. Moving to a different match animates through\n * the element's own CSS transition. The first placement and layout changes\n * (resizes, wrapping, fonts loading) apply instantly so the indicator never\n * trails the content it marks.\n *\n * The parent must be positioned. It receives `data-indicator` while the\n * indicator is in place, so items can drop the fallback fill they show before\n * hydration.\n */\nexport function slidingIndicator(selector: string): Attachment<HTMLElement> {\n\treturn (indicator) => {\n\t\tconst container = indicator.parentElement;\n\t\tif (!container) return;\n\n\t\tlet current: HTMLElement | null = null;\n\n\t\tconst place = () => {\n\t\t\tconst target = container.querySelector<HTMLElement>(selector);\n\t\t\tif (!target) {\n\t\t\t\tcurrent = null;\n\t\t\t\tindicator.hidden = true;\n\t\t\t\tcontainer.removeAttribute('data-indicator');\n\t\t\t\treturn;\n\t\t\t}\n\n\t\t\t// Offsets ignore transforms, so a pressed item's scale never leaks in.\n\t\t\tlet x = 0;\n\t\t\tlet y = 0;\n\t\t\tfor (let el: HTMLElement | null = target; el && el !== container;) {\n\t\t\t\tx += el.offsetLeft;\n\t\t\t\ty += el.offsetTop;\n\t\t\t\tel = el.offsetParent as HTMLElement | null;\n\t\t\t}\n\n\t\t\tconst instant = current === null || current === target;\n\t\t\tcurrent = target;\n\t\t\tif (instant) indicator.style.transition = 'none';\n\t\t\tindicator.hidden = false;\n\t\t\tindicator.style.translate = `${x}px ${y}px`;\n\t\t\tindicator.style.width = `${target.offsetWidth}px`;\n\t\t\tindicator.style.height = `${target.offsetHeight}px`;\n\t\t\tif (instant) {\n\t\t\t\t// Commit the jump before the transition comes back.\n\t\t\t\tvoid indicator.offsetWidth;\n\t\t\t\tindicator.style.transition = '';\n\t\t\t}\n\t\t\tcontainer.setAttribute('data-indicator', '');\n\t\t};\n\n\t\tconst resizes = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(place);\n\t\tconst observeSizes = () => {\n\t\t\tif (!resizes) return;\n\t\t\tresizes.disconnect();\n\t\t\tresizes.observe(container);\n\t\t\tfor (const child of container.children) {\n\t\t\t\tif (child !== indicator) resizes.observe(child);\n\t\t\t}\n\t\t};\n\n\t\tconst mutations = new MutationObserver((records) => {\n\t\t\tif (records.some((record) => record.type === 'childList')) observeSizes();\n\t\t\tplace();\n\t\t});\n\t\tmutations.observe(container, {\n\t\t\tsubtree: true,\n\t\t\tchildList: true,\n\t\t\tattributes: true,\n\t\t\tattributeFilter: ['data-state']\n\t\t});\n\n\t\tobserveSizes();\n\t\tplace();\n\n\t\treturn () => {\n\t\t\tmutations.disconnect();\n\t\t\tresizes?.disconnect();\n\t\t\tcontainer.removeAttribute('data-indicator');\n\t\t};\n\t};\n}\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "tabs/tabs-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.Content bind:ref class={cn('mt-3 outline-none', className)} {...restProps}>\n\t{@render children?.()}\n</TabsPrimitive.Content>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "tabs/tabs-list.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\timport { slidingIndicator } from './sliding-indicator.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.ListProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.List\n\tbind:ref\n\tclass={cn(\n\t\t'bg-secondary relative inline-flex max-w-full flex-wrap items-center gap-1 rounded-xl p-1',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<span\n\t\taria-hidden=\"true\"\n\t\thidden\n\t\tclass=\"bg-primary-muted ease-spring-snappy pointer-events-none absolute top-0 left-0 rounded-full shadow-xs transition-[translate,width,height] duration-(--duration-spring-snappy) motion-reduce:transition-none\"\n\t\t{@attach slidingIndicator('[data-tabs-trigger][data-state=\"active\"]')}\n\t></span>\n\t{@render children?.()}\n</TabsPrimitive.List>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "tabs/tabs-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.TriggerProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.Trigger\n\tbind:ref\n\tclass={cn(\n\t\t'text-muted-foreground focus-visible:ring-ring focus-visible:ring-offset-background data-[state=active]:bg-primary-muted data-[state=active]:text-primary relative overflow-hidden rounded-full px-2 py-1.5 text-sm font-semibold transition-[background-color,color,box-shadow] duration-(--duration-base) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-xs sm:px-3 [[data-indicator]_&]:data-[state=active]:bg-transparent [[data-indicator]_&]:data-[state=active]:shadow-none',\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<span class=\"relative z-10 inline-flex items-center gap-2\">{@render children?.()}</span>\n</TabsPrimitive.Trigger>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "tabs/tabs.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<TabsPrimitive.RootProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<TabsPrimitive.Root bind:ref bind:value class={cn('flex flex-col', className)} {...restProps}>\n\t{@render children?.()}\n</TabsPrimitive.Root>\n"
+    }
+  ]
+}

@@ -29,7 +29,7 @@ The current stable release is `0.3.1`. Earlier stable and candidate directories 
 The current candidate is available through its pinned channel:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.4.0-rc.1/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.4.0-rc.2/button.json
 ```
 
 During a candidate release, docs use the candidate's versioned URL, and `stableVersion` in `registry-release.json` keeps `/r/latest` and the compatibility aliases on the last stable version. The isolated consumer check always tests the version recorded in `registry-release.json`.

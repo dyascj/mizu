@@ -24,7 +24,7 @@ Mizu provides Svelte components for chat, voice, forms, and application layouts.
 
 ## Highlights
 
-- **80 components**, from buttons and dialogs to streaming text, visible reasoning, tool calls, a voice orb, and a drifting pastel aurora.
+- **91 components**, from buttons and dialogs to streaming text, visible reasoning, tool calls, a voice orb, and a drifting pastel aurora.
 - **Recolor from one token.** Accent states, primary-derived effects, and the focus ring follow `--primary`.
 - **Quiet by default.** Hierarchy comes from space, tonal surfaces, and type. The accent and the glow are reserved for what matters.
 - **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the quiet skin.
@@ -37,10 +37,10 @@ The current stable release is `0.3.1`. Pin it for reproducible installs:
 npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.1/button.json
 ```
 
-The `0.4.0-rc.1` candidate adds the motion system. Install it explicitly for testing:
+The `0.4.0-rc.2` candidate adds the motion system, Presence, and app, text, and control components. Install it explicitly for testing:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.4.0-rc.1/button.json https://mizu-ui.com/r/v0.4.0-rc.1/motion.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.4.0-rc.2/button.json https://mizu-ui.com/r/v0.4.0-rc.2/presence.json
 ```
 
 Upgrading copied components from 0.2.x requires the migrations in the [changelog](./CHANGELOG.md#030---2026-09-07).
@@ -126,7 +126,7 @@ CSS variables also define card, popover, and control fills. Reinstall the theme 
 
 ## Components
 
-Mizu currently includes 80 components across AI, motion, actions, forms, surfaces, overlays, menus, navigation, and feedback. Browse the complete, source-backed [component catalog](https://mizu-ui.com/docs/components).
+Mizu currently includes 91 components across AI, motion, app, actions, forms, surfaces, overlays, menus, navigation, and feedback. Browse the complete, source-backed [component catalog](https://mizu-ui.com/docs/components).
 
 ## Develop
 

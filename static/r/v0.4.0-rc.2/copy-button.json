@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "copy-button",
+  "type": "registry:ui",
+  "title": "Copy Button",
+  "description": "An icon button that copies text to the clipboard and morphs into a check on success.",
+  "dependencies": [
+    "@lucide/svelte@^1.48.0"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.4.0-rc.2/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "copy-button/copy-button.svelte",
+      "content": "<script lang=\"ts\">\n\timport Copy from '@lucide/svelte/icons/copy';\n\timport Check from '@lucide/svelte/icons/check';\n\timport X from '@lucide/svelte/icons/x';\n\timport type { HTMLButtonAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = Omit<HTMLButtonAttributes, 'value' | 'children' | 'onclick'> & {\n\t\t/** The text written to the clipboard. */\n\t\tvalue: string;\n\t\t/** Accessible name for the button. */\n\t\tlabel?: string;\n\t\t/** How long the success or failure state shows, in milliseconds. */\n\t\ttimeout?: number;\n\t\t/** Called with the copied text after the clipboard accepts it. */\n\t\tonCopy?: (value: string) => void;\n\t\t/** Resting fill: transparent until hover, or a quiet gray. */\n\t\tvariant?: 'ghost' | 'secondary';\n\t\t/** Button diameter. */\n\t\tsize?: 'sm' | 'md';\n\t\t/** The button element. */\n\t\tref?: HTMLButtonElement | null;\n\t\t/** Classes for the button. */\n\t\tclass?: string;\n\t};\n\n\tlet {\n\t\tvalue,\n\t\tlabel = 'Copy',\n\t\ttimeout = 1600,\n\t\tonCopy,\n\t\tvariant = 'ghost',\n\t\tsize = 'md',\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: Props = $props();\n\n\tlet status = $state<'idle' | 'copied' | 'error'>('idle');\n\tlet resetTimer: ReturnType<typeof setTimeout> | undefined;\n\n\tasync function copy() {\n\t\tclearTimeout(resetTimer);\n\t\ttry {\n\t\t\tawait navigator.clipboard.writeText(value);\n\t\t\tstatus = 'copied';\n\t\t\tonCopy?.(value);\n\t\t} catch {\n\t\t\tstatus = 'error';\n\t\t}\n\t\tresetTimer = setTimeout(() => (status = 'idle'), timeout);\n\t}\n\n\t$effect(() => () => clearTimeout(resetTimer));\n\n\t// Entering icons spring in; leaving icons fall away faster on a plain curve.\n\tconst shown =\n\t\t'scale-100 opacity-100 blur-none [transition:scale_var(--duration-spring)_var(--ease-spring),opacity_var(--duration-fast)_var(--ease-out),filter_var(--duration-fast)_var(--ease-out)]';\n\tconst hidden =\n\t\t'scale-50 opacity-0 blur-[2px] transition-[scale,opacity,filter] duration-(--duration-fast) ease-in';\n</script>\n\n<button\n\t{...restProps}\n\tbind:this={ref}\n\ttype=\"button\"\n\taria-label={label}\n\tdata-status={status}\n\tonclick={copy}\n\tclass={cn(\n\t\t'text-muted-foreground hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background inline-grid shrink-0 place-items-center rounded-full transition-[background-color,color,scale] duration-(--duration-fast) ease-out outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.92] disabled:pointer-events-none disabled:opacity-50 [&>svg]:col-start-1 [&>svg]:row-start-1',\n\t\tvariant === 'ghost' ? 'hover:bg-foreground/8' : 'bg-secondary hover:bg-control',\n\t\tsize === 'sm' ? 'size-8 [&>svg]:size-3.5' : 'size-10 [&>svg]:size-4',\n\t\tclassName\n\t)}\n>\n\t<Copy aria-hidden=\"true\" class={status === 'idle' ? shown : hidden} />\n\t<Check aria-hidden=\"true\" class={cn('text-success', status === 'copied' ? shown : hidden)} />\n\t<X aria-hidden=\"true\" class={cn('text-destructive', status === 'error' ? shown : hidden)} />\n</button>\n<span class=\"sr-only\" aria-live=\"polite\">\n\t{status === 'copied' ? 'Copied' : status === 'error' ? 'Copy failed' : ''}\n</span>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "copy-button/index.ts",
+      "content": "export { default as CopyButton } from './copy-button.svelte';\n"
+    }
+  ]
+}

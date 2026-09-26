@@ -13,7 +13,14 @@ const sources = import.meta.glob('./blocks/*.svelte', {
 	import: 'default'
 }) as Record<string, () => Promise<string>>;
 
-export const blockCategories = ['Featured', 'Agents', 'Mobile', 'Websites', 'App shell', 'Auth'] as const;
+export const blockCategories = [
+	'Featured',
+	'Agents',
+	'Mobile',
+	'Websites',
+	'App shell',
+	'Auth'
+] as const;
 export type BlockCategory = (typeof blockCategories)[number];
 
 export type BlockMeta = {
