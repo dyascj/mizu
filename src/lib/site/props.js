@@ -331,7 +331,7 @@ export function parseProps(source) {
 	// Comments can hold apostrophes and backticks that read as unclosed string
 	// literals while brackets are matched, so drop them from the script first.
 	source = source.replace(
-		/(<script[^>]*>)([\s\S]*?)(<\/script>)/g,
+		/(<script\b[^>]*>)([\s\S]*?)(<\/script\b[^>]*>)/gi,
 		(_, open, body, close) => open + stripComments(body) + close
 	);
 	const block = extractPropsBlock(source);
