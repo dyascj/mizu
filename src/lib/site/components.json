@@ -169,7 +169,9 @@
 		"category": "Overlays",
 		"description": "A bottom sheet that slides up for quick actions, vaul under the hood.",
 		"bits": false,
-		"npmDependencies": ["bits-ui"]
+		"npmDependencies": [
+			"bits-ui"
+		]
 	},
 	{
 		"slug": "hover-card",
@@ -525,5 +527,29 @@
 		"name": "Presence",
 		"category": "AI",
 		"description": "An expressive companion that shows when an assistant is listening, thinking, speaking, or done."
+	},
+	{
+		"slug": "text-reveal",
+		"name": "Text Reveal",
+		"category": "Motion",
+		"description": "Reveals a line or an answer word by word or character by character, on mount or on scroll."
+	},
+	{
+		"slug": "text-rotate",
+		"name": "Text Rotate",
+		"category": "Motion",
+		"description": "Cycles a word in place while the line around it eases to fit."
+	},
+	{
+		"slug": "number-ticker",
+		"name": "Number Ticker",
+		"category": "Motion",
+		"description": "A formatted number whose digits roll into place when the value changes."
+	},
+	{
+		"slug": "marquee",
+		"name": "Marquee",
+		"category": "Motion",
+		"description": "An endless, pausable scroller for logos, testimonials, and prompt chips."
 	}
 ]

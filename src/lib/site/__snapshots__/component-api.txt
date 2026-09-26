@@ -196,6 +196,8 @@ kbd-group.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?
 kbd.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?: Snippet
 # label
 label.svelte extends HTMLLabelAttributes | class?: string, children?: Snippet
+# marquee
+marquee.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | children: Snippet, direction?: 'left' | 'right' | 'up' | 'down' = 'left', speed?: number = 40, gap?: string = '1rem', pauseOnHover?: boolean = true, paused?: boolean = false, fade?: boolean = true, class?: string, ref?: HTMLDivElement | null = null bindable
 # menubar
 menubar-checkbox-item.svelte extends WithoutChildrenOrChild<Menubar.CheckboxItemProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, indeterminate?: unknown = false bindable, class: unknown, children?: Snippet
 menubar-content.svelte extends WithoutChild<Menubar.ContentProps> | ref?: unknown = null bindable, class: unknown, sideOffset?: unknown = 8, align?: unknown = 'start', portalProps?: Menubar.PortalProps
@@ -212,6 +214,7 @@ menubar.svelte extends Menubar.RootProps | ref?: unknown = null bindable, value?
 message-actions.svelte | text?: string, onRegenerate?: () => void, onFeedback?: (feedback: 'up' | 'down' | null) => void, class?: string
 # meter
 meter.svelte extends HTMLAttributes<HTMLDivElement> | value: number, min?: number = 0, max?: number = 100, low?: number, high?: number, optimum?: number, label?: string, showValue?: boolean = false, format?: (v: number) => string, class?: string
+# motion
 # native-select
 native-select.svelte extends HTMLSelectAttributes | class?: string, ref?: HTMLSelectElement | null = null bindable, value?: string | number | string[] | null bindable, children?: Snippet
 # navigation-menu
@@ -225,6 +228,8 @@ navigation-menu-viewport.svelte extends WithoutChild<NavigationMenu.ViewportProp
 navigation-menu.svelte extends WithoutChild<NavigationMenu.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, class?: string, viewport?: boolean = true, children: Snippet
 # nudge
 nudge.svelte | title: string, description?: string, onDismiss?: () => void, icon?: Snippet, actions?: Snippet, class?: string
+# number-ticker
+number-ticker.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | value: number, locale?: string, format?: Intl.NumberFormatOptions, class?: string, ref?: HTMLSpanElement | null = null bindable
 # pagination
 pagination-content.svelte extends HTMLAttributes<HTMLUListElement> | ref?: HTMLUListElement | null = null bindable, class?: string, children: Snippet
 pagination-ellipsis.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTMLSpanElement | null = null bindable, class?: string
@@ -350,6 +355,10 @@ tabs-trigger.svelte extends WithoutChildrenOrChild<Tabs.TriggerProps> | ref?: un
 tabs.svelte extends WithoutChildrenOrChild<Tabs.RootProps> | ref?: unknown = null bindable, value: unknown bindable, class?: string, children: Snippet
 # tags-input
 tags-input.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'onchange'> | value?: string[] = [] bindable, placeholder?: string, disabled?: boolean = false, max?: number, name?: string, dedupe?: boolean = true, validate?: (tag: string) => boolean, class?: string, onValueChange?: (value: string[]) => void
+# text-reveal
+text-reveal.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | text: string, by?: 'word' | 'character' = 'word', effect?: 'blur' | 'rise' | 'fade' = 'blur', trigger?: 'mount' | 'view' = 'mount', delay?: number = 0, stagger?: number, as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' = 'span', class?: string, ref?: HTMLElement | null = null bindable
+# text-rotate
+text-rotate.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | words: string[], interval?: number = 2400, effect?: 'blur' | 'slide' = 'blur', paused?: boolean = false, class?: string, ref?: HTMLSpanElement | null = null bindable
 # textarea
 textarea.svelte extends HTMLTextareaAttributes | class?: string, ref?: HTMLTextAreaElement | null = null bindable, value?: string | null bindable
 # thinking
@@ -368,7 +377,10 @@ toaster.svelte | position?: Position = 'bottom-right', class?: string
 toggle.svelte extends WithoutChildrenOrChild<Toggle.RootProps> | ref?: unknown = null bindable, pressed?: unknown = false bindable, variant?: 'default' | 'outline' = 'default', size?: 'sm' | 'md' | 'lg' = 'md', class?: string, children?: Snippet
 # toggle-group
 toggle-group-item.svelte extends WithoutChildrenOrChild<ToggleGroup.ItemProps> | ref?: unknown = null bindable, variant?: ToggleVariant = 'default', size?: ToggleSize = 'md', class?: string, children?: Snippet
-toggle-group.svelte | ref?: HTMLElement | null = null bindable, value?: string = '' bindable, type?: 'single' = 'single', class?: string, children?: Snippet, disabled?: boolean
+toggle-group.svelte extends Omit<
+		Extract<ToggleGroup.RootProps, { type: 'single' }>,
+		'type' | 'value' | 'child' | 'children' | 'ref'
+	> | ref?: HTMLElement | null = null bindable, value?: string = '' bindable, type?: 'single' = 'single', class?: string, children?: Snippet
 # tool-call
 tool-call.svelte | name: string, state?: 'running' | 'done' | 'error' = 'running', detail?: string, open?: boolean = false bindable, class?: string, children?: Snippet
 # tooltip

@@ -1,0 +1,125 @@
+import { act, fireEvent, render } from '@testing-library/svelte';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+
+import TextRotate from './text-rotate.svelte';
+
+function stubReducedMotion(reduce: boolean) {
+	vi.stubGlobal('matchMedia', (query: string) => ({
+		matches: reduce && query.includes('reduce'),
+		media: query,
+		addEventListener() {},
+		removeEventListener() {}
+	}));
+}
+
+// jsdom has no Web Animations API; Svelte transitions finish on the next microtask.
+const nativeAnimate = Element.prototype.animate;
+function fakeAnimate() {
+	return {
+		cancel() {},
+		set onfinish(done: () => void) {
+			queueMicrotask(done);
+		}
+	} as unknown as Animation;
+}
+
+const words = ['explore', 'build', 'ship'];
+const current = (container: HTMLElement) => container.querySelector('.invisible')?.textContent;
+
+beforeEach(() => {
+	Element.prototype.animate = fakeAnimate;
+	stubReducedMotion(false);
+	vi.useFakeTimers();
+});
+
+afterEach(() => {
+	Element.prototype.animate = nativeAnimate;
+	vi.useRealTimers();
+	vi.restoreAllMocks();
+	vi.unstubAllGlobals();
+});
+
+describe('TextRotate', () => {
+	test('gives assistive technology the first word and hides the rotation', () => {
+		const { container } = render(TextRotate, { words });
+		expect(container.querySelector('.sr-only')).toHaveTextContent('explore');
+		for (const node of container.querySelectorAll('.sr-only ~ span')) {
+			expect(node).toHaveAttribute('aria-hidden', 'true');
+		}
+	});
+
+	test('cycles through the words on the interval and wraps around', async () => {
+		const { container } = render(TextRotate, { words, interval: 1000 });
+		expect(current(container)).toBe('explore');
+		await act(() => vi.advanceTimersByTimeAsync(1000));
+		expect(current(container)).toBe('build');
+		await act(() => vi.advanceTimersByTimeAsync(2000));
+		expect(current(container)).toBe('explore');
+		expect(container.querySelector('.sr-only')).toHaveTextContent('explore');
+	});
+
+	test('holds the word while paused, hovered, focused, or in a background tab', async () => {
+		const { container, rerender } = render(TextRotate, { words, interval: 1000, paused: true });
+		const root = container.firstElementChild as HTMLElement;
+		await act(() => vi.advanceTimersByTimeAsync(3000));
+		expect(current(container)).toBe('explore');
+
+		await rerender({ paused: false });
+		await fireEvent.pointerEnter(root);
+		await act(() => vi.advanceTimersByTimeAsync(3000));
+		expect(current(container)).toBe('explore');
+		await fireEvent.pointerLeave(root);
+
+		await fireEvent.focusIn(root);
+		await act(() => vi.advanceTimersByTimeAsync(3000));
+		expect(current(container)).toBe('explore');
+		await fireEvent.focusOut(root);
+
+		vi.spyOn(document, 'hidden', 'get').mockReturnValue(true);
+		await fireEvent(document, new Event('visibilitychange'));
+		await act(() => vi.advanceTimersByTimeAsync(3000));
+		expect(current(container)).toBe('explore');
+
+		vi.spyOn(document, 'hidden', 'get').mockReturnValue(false);
+		await fireEvent(document, new Event('visibilitychange'));
+		await act(() => vi.advanceTimersByTimeAsync(1000));
+		expect(current(container)).toBe('build');
+	});
+
+	test('never rotates for reduced motion', async () => {
+		stubReducedMotion(true);
+		const { container } = render(TextRotate, { words, interval: 1000 });
+		expect(vi.getTimerCount()).toBe(0);
+		await act(() => vi.advanceTimersByTimeAsync(5000));
+		expect(current(container)).toBe('explore');
+	});
+
+	test('sizes the wrapper to the measured word and cleans up on destroy', async () => {
+		const observers: { callback: ResizeObserverCallback; disconnect: () => void }[] = [];
+		vi.stubGlobal(
+			'ResizeObserver',
+			class {
+				disconnect = vi.fn();
+				observe = vi.fn();
+				constructor(callback: ResizeObserverCallback) {
+					observers.push({ callback, disconnect: this.disconnect });
+				}
+			}
+		);
+		const { container, unmount } = render(TextRotate, { words });
+		const root = container.firstElementChild as HTMLElement;
+		expect(root.style.width).toBe('');
+
+		observers[0].callback(
+			[{ borderBoxSize: [{ inlineSize: 72.5 }] } as unknown as ResizeObserverEntry],
+			{} as ResizeObserver
+		);
+		await act();
+		expect(root.style.width).toBe('72.5px');
+
+		expect(vi.getTimerCount()).toBe(1);
+		unmount();
+		expect(vi.getTimerCount()).toBe(0);
+		expect(observers[0].disconnect).toHaveBeenCalled();
+	});
+});
