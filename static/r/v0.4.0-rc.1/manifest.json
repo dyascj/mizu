@@ -4,8 +4,8 @@
   "version": "0.4.0-rc.1",
   "channel": "versioned",
   "registryBase": "https://mizu-ui.com/r/v0.4.0-rc.1",
-  "generationCommit": "223851e610407b665376e9c44a57b359d0088102",
-  "generatedFrom": "https://github.com/dyascj/mizu/commit/223851e610407b665376e9c44a57b359d0088102",
+  "generationCommit": "8ef6b73b8809cfe9ceafa17e6a30656c85711846",
+  "generatedFrom": "https://github.com/dyascj/mizu/commit/8ef6b73b8809cfe9ceafa17e6a30656c85711846",
   "files": [
     {
       "path": "button.json",
@@ -179,8 +179,8 @@
     },
     {
       "path": "toggle-group.json",
-      "bytes": 2832,
-      "integrity": "sha256-DMw41mNWj9SOd6RhjuDJVHxe1rKvsb1D2DR+9OR+miY="
+      "bytes": 2877,
+      "integrity": "sha256-tAUysEZcbzxdMtpmIfOJM2YaSHnIjV6KpVXUh+iSGSU="
     },
     {
       "path": "input-otp.json",
@@ -459,8 +459,8 @@
     },
     {
       "path": "registry.json",
-      "bytes": 500822,
-      "integrity": "sha256-G8Rwk/4CPew3XnNtEcdVp5J+ogGKdJLLvpLhlCnN6Eg="
+      "bytes": 500867,
+      "integrity": "sha256-dgwOtIu9MDov7pUdRR8gYJNVHBKUQcyl3eAtQkzbBVw="
     }
   ]
 }
