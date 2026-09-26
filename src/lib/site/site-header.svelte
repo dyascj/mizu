@@ -14,42 +14,65 @@
 		{ href: '/docs', label: 'Docs' },
 		{ href: '/docs/components', label: 'Components' },
 		{ href: '/blocks', label: 'Blocks' },
-		{ href: '/docs/theming', label: 'Themes' }
+		{ href: '/docs/motion', label: 'Motion' }
 	];
+
+	let scrolled = $state(false);
+
+	const current = (href: string) =>
+		href === '/docs' ? page.url.pathname === href : page.url.pathname.startsWith(href);
 </script>
 
-<header class="bg-background/90 sticky top-0 z-40 px-5 backdrop-blur-xl sm:px-8">
-	<div class="mx-auto flex h-18 max-w-[1376px] items-center gap-4">
-		<!-- Left: mobile menu + logo + nav -->
-		<div class="flex items-center gap-2 sm:gap-6">
+<svelte:window onscroll={() => (scrolled = window.scrollY > 8)} />
+
+<header
+	data-scrolled={scrolled || undefined}
+	class="sticky top-0 z-40 px-4 transition-[background-color,box-shadow,backdrop-filter] duration-(--duration-slow) ease-out data-[scrolled]:bg-[color-mix(in_oklab,var(--background)_78%,transparent)] data-[scrolled]:shadow-[0_1px_0_color-mix(in_oklab,var(--foreground)_6%,transparent)] data-[scrolled]:backdrop-blur-xl sm:px-6"
+>
+	<div class="relative mx-auto flex h-16 max-w-[1376px] items-center gap-3">
+		<div class="flex items-center gap-1 sm:gap-5">
 			<MobileNav />
-			<a href="/" class="flex items-center" aria-label="{siteConfig.name} home">
+			<a
+				href="/"
+				class="focus-visible:ring-ring flex items-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
+				aria-label="{siteConfig.name} home"
+			>
 				<MizuLogo />
 			</a>
-			<nav aria-label="Main navigation" class="hidden items-center gap-6 lg:flex">
-				{#each navLinks as l (l.href)}
+			<nav aria-label="Main navigation" class="hidden items-center gap-1 lg:flex">
+				{#each navLinks as link (link.href)}
 					<a
-						href={l.href}
-						aria-current={page.url.pathname === l.href ? 'page' : undefined}
-						class="text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground text-sm font-medium transition-colors"
+						href={link.href}
+						aria-current={current(link.href) ? 'page' : undefined}
+						class="text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground hover:bg-secondary/70 rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-(--duration-fast)"
 					>
-						{l.label}
+						{link.label}
 					</a>
 				{/each}
 			</nav>
 		</div>
 
-		<!-- Right: search + theme + repo -->
-		<div class="ml-auto flex items-center gap-1.5">
-			<button
+		<button
+			type="button"
+			onclick={() => (search.open = true)}
+			aria-label="Search documentation"
+			class="bg-secondary text-muted-foreground hover:text-foreground focus-visible:ring-ring absolute left-1/2 hidden h-10 w-[min(22rem,32vw)] -translate-x-1/2 items-center gap-2.5 rounded-full px-4 text-sm transition-[color,box-shadow] duration-(--duration-fast) outline-none focus-visible:ring-2 md:flex"
+		>
+			<SearchIcon class="size-4 shrink-0" />
+			<span class="flex-1 text-left">Search components</span>
+			<Kbd>⌘K</Kbd>
+		</button>
+
+		<div class="ml-auto flex items-center gap-1">
+			<Button
+				variant="ghost"
+				size="icon"
+				class="md:hidden"
+				aria-label="Search documentation"
 				onclick={() => (search.open = true)}
-				aria-label="Search"
-				class="bg-secondary text-muted-foreground hover:text-foreground inline-flex min-h-10 items-center gap-2 rounded-full px-2.5 py-1.5 text-sm transition-colors sm:w-48 sm:px-3.5"
 			>
-				<SearchIcon class="size-4 shrink-0" />
-				<span class="hidden flex-1 text-left sm:inline">Search</span>
-				<Kbd class="hidden sm:inline-flex">⌘K</Kbd>
-			</button>
+				<SearchIcon class="size-5" />
+			</Button>
 			<Button
 				href={siteConfig.repo}
 				target="_blank"
@@ -65,6 +88,9 @@
 				</svg>
 			</Button>
 			<ModeToggle />
+			<Button href="/docs/installation" size="sm" class="ml-1 hidden sm:inline-flex"
+				>Get started</Button
+			>
 		</div>
 	</div>
 </header>

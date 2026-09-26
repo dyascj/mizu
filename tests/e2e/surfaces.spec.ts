@@ -115,7 +115,7 @@ test('landing page fits the tablet breakpoint and remains usable with larger tex
 }) => {
 	await page.setViewportSize({ width: 768, height: 1024 });
 	await page.goto('/');
-	await page.getByRole('heading', { name: 'The essentials, too' }).scrollIntoViewIfNeeded();
+	await page.getByRole('heading', { name: 'Start with one component.' }).scrollIntoViewIfNeeded();
 	expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(768);
 	await page.evaluate(() => {
 		document.documentElement.style.fontSize = '125%';

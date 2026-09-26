@@ -1,12 +1,14 @@
 <script lang="ts">
 	import type { Easing } from '$lib/components/ui/motion';
+	import { cn } from '$lib/utils.js';
 
 	let {
 		name,
 		token,
 		durationToken,
 		easing,
-		note
+		note,
+		class: className
 	}: {
 		name: string;
 		/** CSS custom property that holds the easing, without var(). */
@@ -16,6 +18,7 @@
 		/** JavaScript twin of the token, used to draw the curve. */
 		easing: Easing;
 		note: string;
+		class?: string;
 	} = $props();
 
 	const size = 120;
@@ -38,7 +41,10 @@
 <button
 	type="button"
 	onclick={() => (played = !played)}
-	class="bg-card hover:bg-secondary/60 focus-visible:ring-ring group flex w-full flex-col gap-4 rounded-3xl p-5 text-left shadow-sm transition-colors outline-none focus-visible:ring-2"
+	class={cn(
+		'bg-card hover:bg-secondary/60 focus-visible:ring-ring group flex w-full flex-col gap-4 rounded-3xl p-5 text-left shadow-sm transition-colors outline-none focus-visible:ring-2',
+		className
+	)}
 	aria-label="Play {name}"
 >
 	<svg viewBox="0 0 {size} {size}" class="text-foreground aspect-square w-full" aria-hidden="true">
