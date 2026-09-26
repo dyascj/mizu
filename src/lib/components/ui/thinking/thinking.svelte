@@ -40,29 +40,13 @@
 		</span>
 		<span class="text-muted-foreground">{label}</span>
 	{:else}
-		<span class="thinking-shimmer" aria-hidden="true">{label}</span>
+		<span class="text-shimmer animate-shimmer" aria-hidden="true">{label}</span>
 	{/if}
 </div>
 
 <style>
 	.thinking-dot {
 		animation: thinking-bounce 1.2s ease-in-out infinite;
-	}
-
-	.thinking-shimmer {
-		background: linear-gradient(
-			90deg,
-			var(--muted-foreground) 0%,
-			var(--muted-foreground) 35%,
-			var(--foreground) 50%,
-			var(--muted-foreground) 65%,
-			var(--muted-foreground) 100%
-		);
-		background-size: 200% 100%;
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
-		animation: thinking-sweep 2s linear infinite;
 	}
 
 	@keyframes thinking-bounce {
@@ -78,18 +62,8 @@
 		}
 	}
 
-	@keyframes thinking-sweep {
-		from {
-			background-position: 200% 0;
-		}
-		to {
-			background-position: -200% 0;
-		}
-	}
-
 	@media (prefers-reduced-motion: reduce) {
-		.thinking-dot,
-		.thinking-shimmer {
+		.thinking-dot {
 			animation: none;
 		}
 	}

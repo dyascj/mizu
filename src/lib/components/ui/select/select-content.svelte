@@ -29,7 +29,7 @@
 		aria-label="Options"
 		{sideOffset}
 		class={cn(
-			'bg-popover text-popover-foreground z-50 max-h-72 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl p-1 shadow-lg transition-[opacity,transform] duration-200 data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
+			'bg-popover text-popover-foreground z-50 max-h-72 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl p-1 shadow-lg transition-[opacity,transform] duration-(--duration-base) data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
 			className
 		)}
 		{...restProps}

@@ -5,6 +5,11 @@
 
 	// Styled single-select segmented group (the common case). For multi-select,
 	// use bits-ui's ToggleGroup directly.
+	type SingleRootProps = Omit<
+		Extract<ToggleGroupPrimitive.RootProps, { type: 'single' }>,
+		'type' | 'value' | 'child' | 'children' | 'ref'
+	>;
+
 	let {
 		ref = $bindable(null),
 		value = $bindable(''),
@@ -12,11 +17,10 @@
 		class: className,
 		children,
 		...restProps
-	}: {
+	}: SingleRootProps & {
 		ref?: HTMLElement | null;
 		value?: string;
 		type?: 'single';
-		disabled?: boolean;
 		class?: string;
 		children?: Snippet;
 	} = $props();

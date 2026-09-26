@@ -13,7 +13,7 @@
 <DatePickerPrimitive.Input
 	bind:ref
 	class={cn(
-		'bg-control text-foreground focus-within:ring-ring data-[invalid]:border-destructive data-[invalid]:ring-destructive flex h-10 w-full items-center rounded-full pr-1.5 pl-3.5 text-base transition-[box-shadow,border-color] duration-200 outline-none select-none focus-within:ring-2 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 sm:text-sm',
+		'bg-control text-foreground focus-within:ring-ring data-[invalid]:border-destructive data-[invalid]:ring-destructive flex h-10 w-full items-center rounded-full pr-1.5 pl-3.5 text-base transition-[box-shadow,border-color] duration-(--duration-base) outline-none select-none focus-within:ring-2 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 sm:text-sm',
 		className
 	)}
 	{...restProps}
@@ -28,7 +28,7 @@
 				{:else}
 					<DatePickerPrimitive.Segment
 						{part}
-						class="hover:bg-accent focus:bg-accent focus:text-accent-foreground aria-[valuetext=Empty]:text-muted-foreground rounded-md px-1 py-0.5 transition-colors duration-200 outline-none"
+						class="hover:bg-accent focus:bg-accent focus:text-accent-foreground aria-[valuetext=Empty]:text-muted-foreground rounded-md px-1 py-0.5 transition-colors duration-(--duration-fast) outline-none"
 					>
 						{value}
 					</DatePickerPrimitive.Segment>

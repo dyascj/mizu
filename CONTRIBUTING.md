@@ -33,7 +33,7 @@ Mizu is a design system for AI products. Every contribution has to speak the sam
 - Component, gallery, and block preview canvases use the page background in both themes. Keep gray fills inside the components themselves.
 - Use sentence case for UI labels and headings. No all-caps eyebrows or `uppercase` text styling. Preserve established acronyms and code identifiers.
 - **Nothing heavier than semibold.** Titles are semibold with tight tracking, labels are medium, body is regular. Controls are pills; multi-line fields are `rounded-2xl`.
-- **Motion is quiet and honest.** 200-320ms ease-out entrances, 2s shimmer sweeps for working states, and everything respects `prefers-reduced-motion`.
+- **Motion is quick to respond and soft to settle.** Use the duration, easing, and spring tokens in `src/app.css` instead of literal values. Enter with `ease-out` or a spring, exit faster with `ease-in`, keep springs to scale and position, reserve looping motion for AI activity, and respect `prefers-reduced-motion`. The rationale lives in `docs/decisions/0006-motion-system.md` and `/docs/motion`.
 
 ## Adding a component
 

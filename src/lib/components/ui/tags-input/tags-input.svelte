@@ -77,7 +77,7 @@
 
 <div
 	class={cn(
-		'bg-control focus-within:ring-ring flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-2xl px-2.5 py-2 text-sm transition-[box-shadow,border-color] duration-200 outline-none focus-within:ring-2',
+		'bg-control focus-within:ring-ring flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-2xl px-2.5 py-2 text-sm transition-[box-shadow,border-color] duration-(--duration-base) outline-none focus-within:ring-2',
 		!placeholder && !value.length && !draft && 'ring-input ring-1',
 		disabled && 'cursor-not-allowed opacity-50',
 		className
@@ -97,7 +97,7 @@
 					type="button"
 					{disabled}
 					onclick={() => removeAt(i)}
-					class="text-primary-foreground/80 hover:text-primary-foreground inline-grid size-6 shrink-0 place-items-center rounded-full transition-[background-color,color] duration-200 outline-none hover:bg-white/25 focus-visible:ring-2 focus-visible:ring-white/70 disabled:pointer-events-none"
+					class="text-primary-foreground/80 hover:text-primary-foreground inline-grid size-6 shrink-0 place-items-center rounded-full transition-[background-color,color] duration-(--duration-base) outline-none hover:bg-white/25 focus-visible:ring-2 focus-visible:ring-white/70 disabled:pointer-events-none"
 				>
 					<XIcon class="size-3" />
 					<span class="sr-only">Remove {tag}</span>

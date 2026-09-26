@@ -62,7 +62,7 @@
 		{#if children && state !== 'running'}
 			<ChevronDown
 				class={cn(
-					'text-muted-foreground size-3.5 shrink-0 transition-transform duration-200',
+					'text-muted-foreground size-3.5 shrink-0 transition-transform duration-(--duration-base)',
 					open && 'rotate-180'
 				)}
 			/>
@@ -95,7 +95,7 @@
 	}
 
 	.tool-result {
-		animation: tool-open 200ms ease-out both;
+		animation: tool-open var(--duration-base) var(--ease-out) both;
 	}
 
 	@keyframes tool-sweep {

@@ -53,6 +53,16 @@ const staticRoutes: PublicRoute[] = [
 		pager: true
 	},
 	{
+		path: '/docs/motion',
+		title: 'Motion',
+		description: 'Use the duration, easing, spring, and animation tokens.',
+		section: 'getting-started',
+		navigation: true,
+		searchable: true,
+		sitemap: true,
+		pager: true
+	},
+	{
 		path: '/docs/usage',
 		title: 'Usage',
 		description: 'Apply Mizu composition and interface conventions.',

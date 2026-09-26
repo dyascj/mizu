@@ -24,7 +24,7 @@
 	{#each steps as step (step.label)}
 		<li
 			class={cn(
-				'flex items-center gap-2.5 rounded-lg py-1 transition-colors duration-300',
+				'flex items-center gap-2.5 rounded-lg py-1 transition-colors duration-(--duration-slow)',
 				step.state === 'pending' && 'text-muted-foreground'
 			)}
 		>
@@ -55,7 +55,7 @@
 
 <style>
 	.plan-check {
-		animation: plan-pop 240ms ease-out both;
+		animation: plan-pop var(--duration-base) var(--ease-out) both;
 	}
 
 	.plan-shimmer {

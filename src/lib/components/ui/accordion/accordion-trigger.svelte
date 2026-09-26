@@ -19,12 +19,12 @@
 	<AccordionPrimitive.Trigger
 		bind:ref
 		class={cn(
-			'hover:text-primary focus-visible:text-primary flex w-full items-center justify-between py-4 text-left font-semibold transition-colors duration-200 outline-none [&[data-state=open]>svg]:rotate-180',
+			'hover:text-primary focus-visible:text-primary flex w-full items-center justify-between py-4 text-left font-semibold transition-colors duration-(--duration-fast) outline-none [&[data-state=open]>svg]:rotate-180',
 			className
 		)}
 		{...restProps}
 	>
 		{@render children?.()}
-		<ChevronDown class="size-4 shrink-0 transition-transform duration-200" />
+		<ChevronDown class="size-4 shrink-0 transition-transform duration-(--duration-base)" />
 	</AccordionPrimitive.Trigger>
 </AccordionPrimitive.Header>

@@ -42,7 +42,7 @@ Guidance for AI coding agents working in a project that uses Mizu, ${tagline} ($
 - One accent: \`--primary\`. Active states are \`bg-primary-muted text-primary\`. Everything else stays quiet gray.
 - The \`orb-*\` and \`aurora-*\` pastel washes mark AI moments (voice, generation, presence), never chrome.
 - No font weight heavier than semibold. Single-line controls are pills; multi-line fields use \`rounded-2xl\`.
-- Motion is 200-320ms ease-out, shimmer sweeps are 2s, and everything must respect \`prefers-reduced-motion\`.
+- Motion uses the theme tokens: \`duration-(--duration-base)\`, \`ease-out\` for entrances, \`ease-in\` for faster exits, \`ease-spring\` for scale and position, and \`animate-rise-in\`, \`animate-blur-in\`, or \`animate-shimmer\` for shared animations. Loops mark AI activity only, and everything must respect \`prefers-reduced-motion\`. The Motion registry item provides Svelte transitions and scroll reveals.
 - Theme through the tokens in \`src/app.css\`, never hex values in markup. The whole system recolors from \`--primary\`.
 
 ## Conventions

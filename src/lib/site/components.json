@@ -513,5 +513,11 @@
 		"name": "Thinking",
 		"category": "AI",
 		"description": "Shimmer and typing-dot indicators for a working assistant."
+	},
+	{
+		"slug": "motion",
+		"name": "Motion",
+		"category": "Motion",
+		"description": "Easing, springs, transitions, and scroll reveals that share the theme's motion tokens."
 	}
 ]

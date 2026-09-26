@@ -26,6 +26,12 @@ npx shadcn-svelte@latest add https://mizu-ui.com/r/latest/button.json
 
 The current stable release is `0.3.1`. Earlier stable and candidate directories remain available at their original pinned URLs.
 
+The current candidate is available through its pinned channel:
+
+```bash
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.4.0-rc.1/button.json
+```
+
 During a candidate release, docs use the candidate's versioned URL, and `stableVersion` in `registry-release.json` keeps `/r/latest` and the compatibility aliases on the last stable version. The isolated consumer check always tests the version recorded in `registry-release.json`.
 
 The legacy `/r/<item>.json` path remains as a compatibility alias. New documentation and generated agent guidance use pinned URLs.

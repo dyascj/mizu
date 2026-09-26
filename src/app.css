@@ -184,13 +184,33 @@
 }
 
 /* ----------------------------------------------------------------------------
+   Motion: one vocabulary for every transition, entrance, and ambient loop.
+   Durations are theme-independent. Easing curves live in @theme below so the
+   Tailwind `ease-*` utilities and plain CSS share them. See /docs/motion.
+---------------------------------------------------------------------------- */
+:root {
+	--duration-instant: 100ms; /* press feedback */
+	--duration-fast: 160ms; /* hover, color, and small toggles */
+	--duration-base: 240ms; /* component state changes and popovers */
+	--duration-slow: 360ms; /* sheets, dialogs, and layout shifts */
+	--duration-deliberate: 560ms; /* editorial reveals and first paint */
+	--duration-ambient: 2000ms; /* shimmer sweeps and breathing loops */
+	--stagger: 60ms; /* delay between siblings in a sequence */
+
+	/* Spring settling times, generated with their curves by scripts/motion-curves.mjs */
+	--duration-spring: 520ms;
+	--duration-spring-snappy: 410ms;
+	--duration-spring-bouncy: 730ms;
+}
+
+/* ----------------------------------------------------------------------------
    Map tokens to Tailwind utilities (reactive via `inline`):
    bg-primary, text-muted-foreground, border-border, shadow-md, rounded-lg,
    text-mizu-500, etc.
 ---------------------------------------------------------------------------- */
 @theme inline {
-	--default-transition-duration: 200ms;
-	--default-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+	--default-transition-duration: var(--duration-base);
+	--default-transition-timing-function: var(--ease-out);
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--color-card: var(--card);
@@ -267,12 +287,84 @@
 	--shadow-glow: var(--elevation-glow);
 }
 
-/* Accordion open/close animation. Keyframes (not a height transition) so bits-ui
-   can measure the content's natural height; a forced h-0 would measure to zero. */
+/* Easing curves and the shared animation library: animate-fade-in,
+   animate-rise-in, animate-blur-in, animate-scale-in, animate-shimmer,
+   animate-breathe, and animate-float. Pair entrances with `stagger`. */
 @theme {
-	--animate-accordion-down: accordion-down 0.2s ease-out;
-	--animate-accordion-up: accordion-up 0.2s ease-out;
+	/* Easing. `ease-out` is the house curve: a quick start that settles softly.
+	   Enter with ease-out or a spring, exit with ease-in, and move between two
+	   resting states with ease-in-out. Springs overshoot slightly, so reserve
+	   them for scale and position, never color or opacity. */
+	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+	--ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+	--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+	/* prettier-ignore */
+	--ease-spring: linear(0, 0.0206, 0.0725, 0.1439, 0.2259, 0.3118, 0.3972, 0.4789, 0.555, 0.6241, 0.686, 0.7404, 0.7877, 0.8282, 0.8625, 0.8913, 0.9152, 0.9348, 0.9508, 0.9636, 0.9737, 0.9817, 0.9878, 0.9925, 0.996, 0.9985, 1.0003, 1.0015, 1.0023, 1.0027, 1.0029, 1.003, 1.0029, 1.0027, 1.0024, 1.0022, 1);
+	/* prettier-ignore */
+	--ease-spring-snappy: linear(0, 0.0243, 0.0833, 0.1612, 0.2474, 0.3347, 0.4189, 0.4973, 0.5686, 0.6323, 0.6883, 0.7372, 0.7793, 0.8154, 0.8461, 0.8721, 0.894, 0.9124, 0.9277, 0.9405, 0.9511, 0.9599, 0.9671, 0.9731, 0.978, 0.9821, 0.9854, 0.9881, 0.9903, 0.9922, 0.9936, 0.9948, 0.9958, 0.9966, 0.9973, 0.9978, 1);
+	/* prettier-ignore */
+	--ease-spring-bouncy: linear(0, 0.0288, 0.1017, 0.2015, 0.3147, 0.4312, 0.5437, 0.6471, 0.7387, 0.817, 0.8818, 0.9335, 0.9734, 1.0027, 1.0231, 1.0361, 1.0432, 1.0459, 1.0452, 1.0423, 1.038, 1.0329, 1.0276, 1.0223, 1.0174, 1.0131, 1.0093, 1.0062, 1.0036, 1.0017, 1.0002, 0.9992, 0.9985, 0.9981, 0.9979, 0.9979, 1);
 
+	--animate-fade-in: fade-in var(--duration-base) var(--ease-out) both;
+	--animate-fade-out: fade-out var(--duration-fast) var(--ease-in) both;
+	--animate-rise-in: rise-in var(--duration-deliberate) var(--ease-out) both;
+	--animate-blur-in: blur-in var(--duration-deliberate) var(--ease-out) both;
+	--animate-scale-in: scale-in var(--duration-spring) var(--ease-spring) both;
+	--animate-shimmer: shimmer var(--duration-ambient) linear infinite;
+	--animate-breathe: breathe 4s var(--ease-in-out) infinite;
+	--animate-float: float 6s var(--ease-in-out) infinite;
+	--animate-accordion-down: accordion-down var(--duration-base) var(--ease-out);
+	--animate-accordion-up: accordion-up var(--duration-fast) var(--ease-in);
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+	}
+	@keyframes fade-out {
+		to {
+			opacity: 0;
+		}
+	}
+	@keyframes rise-in {
+		from {
+			opacity: 0;
+			translate: 0 var(--rise-distance, 0.75rem);
+		}
+	}
+	@keyframes blur-in {
+		from {
+			opacity: 0;
+			filter: blur(var(--blur-distance, 0.5rem));
+			translate: 0 0.25rem;
+		}
+	}
+	@keyframes scale-in {
+		from {
+			opacity: 0;
+			scale: 0.94;
+		}
+	}
+	@keyframes shimmer {
+		from {
+			background-position: 200% 0;
+		}
+		to {
+			background-position: -200% 0;
+		}
+	}
+	@keyframes breathe {
+		50% {
+			scale: 1.035;
+		}
+	}
+	@keyframes float {
+		50% {
+			translate: 0 -0.375rem;
+		}
+	}
+	/* Accordion keyframes (not a height transition) so bits-ui can measure the
+	   content's natural height; a forced h-0 would measure to zero. */
 	@keyframes accordion-down {
 		from {
 			height: 0;
@@ -335,6 +427,29 @@
 }
 @utility aurora-mint {
 	background-image: var(--aurora-mint);
+}
+
+/* Sequence siblings: set `--index` per item (style="--index: 2") and every
+   animation on the element waits index × --stagger before it starts. */
+@utility stagger {
+	animation-delay: calc(var(--index, 0) * var(--stagger));
+}
+
+/* Working-state label: a highlight sweeps across muted text. Pair with
+   animate-shimmer. Reduced motion leaves the text static and readable. */
+@utility text-shimmer {
+	background-image: linear-gradient(
+		90deg,
+		var(--muted-foreground) 0%,
+		var(--muted-foreground) 35%,
+		var(--foreground) 50%,
+		var(--muted-foreground) 65%,
+		var(--muted-foreground) 100%
+	);
+	background-size: 200% 100%;
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
 }
 
 /* ----------------------------------------------------------------------------

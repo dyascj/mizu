@@ -21,7 +21,7 @@
 	{...restProps}
 >
 	<div
-		class="bg-primary relative h-full overflow-hidden rounded-full transition-[width] duration-300 ease-out"
+		class="bg-primary relative h-full overflow-hidden rounded-full transition-[width] duration-(--duration-slow) ease-out"
 		style="width: {pct}%"
 	></div>
 </ProgressPrimitive.Root>

@@ -25,7 +25,7 @@
 		aria-label="Choose a date"
 		{sideOffset}
 		class={cn(
-			' text-popover-foreground bg-popover z-50 max-h-[calc(100dvh-2rem)] w-fit max-w-[calc(100vw-2rem)] overflow-auto rounded-2xl p-3 shadow-xl transition-[opacity,transform] duration-200 outline-none data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
+			' text-popover-foreground bg-popover z-50 max-h-[calc(100dvh-2rem)] w-fit max-w-[calc(100vw-2rem)] overflow-auto rounded-2xl p-3 shadow-xl transition-[opacity,transform] duration-(--duration-base) outline-none data-[state=closed]:scale-95 data-[state=closed]:opacity-0 data-[state=open]:scale-100 data-[state=open]:opacity-100',
 			className
 		)}
 		{...restProps}

@@ -2,6 +2,41 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.4.0-rc.1] - 2026-09-25
+
+This candidate introduces the motion system. The stable registry remains on 0.3.1. Representative VoiceOver review is required before a stable 0.4.0 release.
+
+### Added
+
+- Motion tokens in the theme: six durations, a stagger step, house easing curves, and three springs sampled into CSS `linear()` curves with paired settling durations.
+- Shared animations `animate-fade-in`, `animate-rise-in`, `animate-blur-in`, `animate-scale-in`, `animate-shimmer`, `animate-breathe`, and `animate-float`, plus the `stagger` and `text-shimmer` utilities.
+- The Motion registry item: TypeScript copies of every token, `rise`, `blurIn`, and `pop` transitions, a `reveal` scroll attachment, and `pointerPosition` and `magnetic` pointer attachments.
+- A motion guide at `/docs/motion` and ADR 0006.
+
+### Changed
+
+- Tailwind's `ease-out`, `ease-in`, and `ease-in-out` resolve to the Mizu curves. Components use duration tokens instead of literal values.
+- Switch, Radio Group, Dock, and Nudge move on springs. Rating stars use the bouncy spring.
+- Thinking and Reasoning share the theme's shimmer utility.
+- ToggleGroup accepts ARIA and other root attributes, so groups can carry an accessible name.
+- **Theme migration:** reinstall `app.css` before installing 0.4 components. Components reference `--duration-*` and `ease-spring*`; without the new theme their transitions complete instantly.
+
+### Deprecated
+
+- No APIs deprecated.
+
+### Removed
+
+- No components removed.
+
+### Fixed
+
+- Sidebar width changes ease between states instead of moving linearly.
+
+### Security
+
+- No security changes.
+
 ## [0.3.1] - 2026-09-25
 
 This patch release refreshes the runtime dependencies that installable components declare. Component source and public APIs are unchanged. The versioned registry, `/r/latest`, and compatibility install aliases now provide 0.3.1. Earlier version directories remain unchanged.

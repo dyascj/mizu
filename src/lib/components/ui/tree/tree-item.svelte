@@ -35,7 +35,7 @@
 	onfocus={() => tree.onFocus(node.id)}
 	onkeydown={(e) => tree.onKeydown(e, node.id, hasChildren, depth)}
 	class={cn(
-		'flex h-9 cursor-pointer items-center gap-1.5 rounded-lg pr-2 transition-[background,box-shadow,color] duration-200 ease-out outline-none select-none',
+		'flex h-9 cursor-pointer items-center gap-1.5 rounded-lg pr-2 transition-[background,box-shadow,color] duration-(--duration-base) ease-out outline-none select-none',
 		'hover:bg-accent focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2',
 		selected ? 'bg-primary-muted text-primary font-medium' : 'text-foreground/90'
 	)}
@@ -44,7 +44,7 @@
 	{#if hasChildren}
 		<ChevronRight
 			class={cn(
-				'text-muted-foreground size-4 shrink-0 transition-transform duration-200 ease-out',
+				'text-muted-foreground size-4 shrink-0 transition-transform duration-(--duration-base) ease-out',
 				expanded && 'rotate-90'
 			)}
 		/>
@@ -64,7 +64,7 @@
 		id={groupId}
 		aria-hidden={!expanded}
 		inert={!expanded}
-		class="mizu-tree-group grid transition-[grid-template-rows] duration-200 ease-out"
+		class="mizu-tree-group grid transition-[grid-template-rows] duration-(--duration-base) ease-out"
 		class:mizu-tree-open={expanded}
 		style="grid-template-rows: {expanded ? '1fr' : '0fr'};"
 	>
