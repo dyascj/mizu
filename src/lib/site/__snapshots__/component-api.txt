@@ -278,6 +278,9 @@ resizable-pane.svelte extends PaneProps | ref?: unknown = null bindable
 # scroll-area
 scroll-area-scrollbar.svelte extends WithoutChild<ScrollArea.ScrollbarProps> | ref?: unknown = null bindable, class?: string, orientation?: unknown = 'vertical'
 scroll-area.svelte extends WithoutChild<ScrollArea.RootProps> | ref?: unknown = null bindable, class?: string, orientation?: 'vertical' | 'horizontal' | 'both' = 'vertical', viewportClass?: string, children: Snippet
+# segmented-control
+segmented-control-item.svelte extends WithoutChildrenOrChild<RadioGroup.ItemProps> | value: string, disabled?: boolean = false, ref?: HTMLElement | null = null bindable, class?: string, children: Snippet
+segmented-control.svelte extends Omit<RadioGroup.RootProps, 'orientation' | 'child' | 'children'> | value?: string = '' bindable, onValueChange?: (value: string) => void, size?: 'sm' | 'md' = 'md', fullWidth?: boolean = false, disabled?: boolean = false, ref?: HTMLElement | null = null bindable, class?: string, children: Snippet
 # select
 select-content.svelte extends WithoutChildrenOrChild<Select.ContentProps> | id?: unknown = `mizu-select-${uid}`, ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 6, children: Snippet
 select-group.svelte extends Select.GroupProps | ref?: unknown = null bindable, class?: string

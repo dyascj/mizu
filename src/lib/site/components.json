@@ -519,5 +519,12 @@
 		"name": "Motion",
 		"category": "Motion",
 		"description": "Easing, springs, transitions, and scroll reveals that share the theme's motion tokens."
+	},
+	{
+		"slug": "segmented-control",
+		"name": "Segmented Control",
+		"category": "Forms",
+		"description": "A pill track of mutually exclusive options with a thumb that springs to the selection.",
+		"bits": true
 	}
 ]
