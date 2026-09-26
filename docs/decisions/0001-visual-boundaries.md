@@ -17,7 +17,7 @@ Strokes remain appropriate when they communicate structure or state:
 
 These boundaries use semantic theme tokens. They are not a substitute for layout or elevation.
 
-Hardcoded component colors are limited to the documented AI aura palette in Aurora, Aura Tile, and Voice Orb. General-purpose feedback and control components derive color from semantic tokens, including `--primary`.
+Hardcoded component colors are limited to the documented AI aura palette in Aurora, Aura Tile, Voice Orb, and Presence. Presence also offers a `mono` tone derived from the theme foreground. General-purpose feedback and control components derive color from semantic tokens, including `--primary`.
 
 ## Enforcement
 

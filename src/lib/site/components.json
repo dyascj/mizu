@@ -519,5 +519,11 @@
 		"name": "Motion",
 		"category": "Motion",
 		"description": "Easing, springs, transitions, and scroll reveals that share the theme's motion tokens."
+	},
+	{
+		"slug": "presence",
+		"name": "Presence",
+		"category": "AI",
+		"description": "An expressive companion that shows when an assistant is listening, thinking, speaking, or done."
 	}
 ]
