@@ -1,49 +1,51 @@
 <div align="center">
 
-<img src="./static/brand/github-social.png" width="720" alt="Mizu. Build a better conversation. Svelte components for AI products." />
+<picture>
+	<source media="(prefers-color-scheme: dark)" srcset="./static/brand/mizu-lockup-inverse.svg" />
+	<img src="./static/brand/mizu-lockup.svg" width="180" alt="Mizu" />
+</picture>
 
-# Mizu 水
+### The design system for AI products.
 
-**The design system for AI products.**
-
-Clean, airy components for AI products and the designers building them. Chat, voice, reasoning, and streaming for Svelte 5 and Tailwind v4. Copy in what you need.
+Conversation, voice, motion, and app components for Svelte 5 and Tailwind v4.<br />
+Copy the source. Make it yours.
 
 <p>
 	<img alt="Svelte 5" src="https://img.shields.io/badge/Svelte-5-FF3E00?logo=svelte&logoColor=white" />
 	<img alt="Tailwind CSS v4" src="https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white" />
-	<img alt="bits-ui" src="https://img.shields.io/badge/bits--ui-headless-0EA5E9" />
-	<img alt="79 components" src="https://img.shields.io/badge/components-79-00B2FF" />
+	<img alt="bits-ui" src="https://img.shields.io/badge/bits--ui-headless-171717" />
+	<img alt="91 components" src="https://img.shields.io/badge/components-91-626AFB" />
 	<img alt="MIT" src="https://img.shields.io/badge/license-MIT-22C55E" />
 </p>
+
+<img src="./static/brand/github-social.png" width="720" alt="Mizu. Build a better conversation. 91 components, a motion system, and complete screens for AI products, apps, and websites." />
+
+[Website](https://mizu-ui.com) · [Docs](https://mizu-ui.com/docs) · [Components](https://mizu-ui.com/docs/components) · [Blocks](https://mizu-ui.com/blocks) · [Motion](https://mizu-ui.com/docs/motion) · [Brand](https://mizu-ui.com/brand)
 
 </div>
 
 ---
 
-Mizu provides Svelte components for chat, voice, forms, and application layouts. The default theme uses black, white, and neutral grays. Color marks AI activity and status. Components ship as source, with their styles and behavior available to edit in your project.
+Mizu is a design system for products with intelligence inside. It starts with the conversation (streaming answers, visible reasoning, tool calls, voice) and carries the same language into installable apps and the websites that launch them. Black, white, and neutral grays hold the structure. Color and motion mark the moments when an AI is at work.
 
 ## Highlights
 
-- **91 components**, from buttons and dialogs to streaming text, visible reasoning, tool calls, a voice orb, and a drifting pastel aurora.
-- **Recolor from one token.** Accent states, primary-derived effects, and the focus ring follow `--primary`.
-- **Quiet by default.** Hierarchy comes from space, tonal surfaces, and type. The accent and the glow are reserved for what matters.
-- **Svelte 5 native.** Runes and snippets throughout, with [bits-ui](https://bits-ui.com) handling accessible behavior under the quiet skin.
-- **Light and dark themes.** White and pure-black page backgrounds, neutral card and control fills, and contrasting text.
-- **Copy in, own it.** A shadcn-svelte-compatible registry, plus full source on every component page.
+- **91 components** for AI, motion, apps, forms, overlays, navigation, and data, from a chat composer and a voice orb to a tab bar and a segmented control.
+- **Presence.** A companion that shows whether the assistant is listening, thinking, speaking, or done, in five tones.
+- **A motion system.** Duration, easing, and spring tokens in the theme. Springs are sampled from real physics into CSS `linear()` curves, so they cost nothing at runtime.
+- **Apps and PWAs.** Tab bars, install prompts, offline status, and safe-area utilities for web apps people install.
+- **Complete screens.** Assistant chat, voice mode, agent workflows, a mobile assistant, a product landing page, and more, each one file you own.
+- **Accessible by default.** bits-ui behavior underneath, axe checks on every component in both themes, and reduced motion respected everywhere.
+- **Recolor from one token.** Accent states, selection fills, and the focus ring follow `--primary`.
+- **Copy in, own it.** A shadcn-svelte-compatible registry with immutable versioned releases.
 
-The current stable release is `0.3.1`. Pin it for reproducible installs:
-
-```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.1/button.json
-```
-
-The `0.4.0-rc.2` candidate adds the motion system, Presence, and app, text, and control components. Install it explicitly for testing:
+The current stable release is `0.4.0`. Pin it for reproducible installs:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.4.0-rc.2/button.json https://mizu-ui.com/r/v0.4.0-rc.2/presence.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.4.0/button.json
 ```
 
-Upgrading copied components from 0.2.x requires the migrations in the [changelog](./CHANGELOG.md#030---2026-09-07).
+Upgrading copied components from 0.3.x requires reinstalling the theme. See the [0.4.0 migration notes](./CHANGELOG.md#040---2026-09-25).
 
 ## Quick start
 
@@ -75,12 +77,12 @@ npx sv add tailwindcss
 }
 ```
 
-**3. Add the theme:** paste Mizu's `src/app.css` (this repo's) into that same Tailwind entry file, right after `@import 'tailwindcss';`.
+**3. Add the theme:** paste Mizu's `src/app.css` (this repo's) into that same Tailwind entry file, right after `@import 'tailwindcss';`. It holds the color, elevation, and motion tokens every component reads.
 
 **4. Add components** with the one-liner. It pulls the component, installs its npm dependencies, and adds the shared `cn` helper automatically:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.1/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.4.0/button.json
 ```
 
 You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.
@@ -91,24 +93,42 @@ You can also open any component page in the docs and copy its source straight in
 
 ```svelte
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import * as Card from '$lib/components/ui/card';
+	import { ChatInput } from '$lib/components/ui/chat-input';
+	import { Presence } from '$lib/components/ui/presence';
+	import { TextReveal } from '$lib/components/ui/text-reveal';
+
+	let answer = $state('');
+	let thinking = $state(false);
+
+	async function ask(message: string) {
+		thinking = true;
+		answer = await yourModel(message);
+		thinking = false;
+	}
 </script>
 
-<Card.Root class="max-w-sm">
-	<Card.Header>
-		<Card.Title>Clear morning</Card.Title>
-		<Card.Description>A quiet white surface with a soft shadow.</Card.Description>
-	</Card.Header>
-	<Card.Footer>
-		<Button class="w-full">Continue</Button>
-	</Card.Footer>
-</Card.Root>
+<div class="flex items-start gap-3">
+	<Presence state={thinking ? 'thinking' : answer ? 'speaking' : 'idle'} size={36} />
+	{#if answer}<TextReveal text={answer} />{/if}
+</div>
+<ChatInput onSubmit={ask} placeholder="Ask anything" />
 ```
+
+## Motion
+
+Motion is quick to respond and soft to settle. Use the tokens instead of literal values:
+
+```svelte
+<div class="transition-[scale] duration-(--duration-spring) ease-spring hover:scale-[1.02]">
+<li class="animate-rise-in stagger" style="--index: {index}">...</li>
+<span class="text-shimmer animate-shimmer">Searching the web</span>
+```
+
+The Motion registry item adds `rise`, `blurIn`, and `pop` transitions and `reveal` and `magnetic` attachments. Read the [motion guide](https://mizu-ui.com/docs/motion).
 
 ## Theming
 
-The default primary is black in light mode and white in dark mode. Custom themes should set the primary color and its foreground together:
+The default primary is black in light mode and white in dark mode. Custom themes set the primary color and its foreground together:
 
 ```css
 :root {
@@ -122,7 +142,7 @@ The default primary is black in light mode and white in dark mode. Custom themes
 }
 ```
 
-CSS variables also define card, popover, and control fills. Reinstall the theme with updated components to receive the `--control` token, and check custom colors against each containing background. See the [theming guide](https://mizu-ui.com/docs/theming).
+CSS variables also define card, popover, and control fills, elevation, and motion. See the [theming guide](https://mizu-ui.com/docs/theming).
 
 ## Components
 
@@ -132,17 +152,19 @@ Mizu currently includes 91 components across AI, motion, app, actions, forms, su
 
 ```bash
 pnpm install
-pnpm dev              # docs site + live previews
-pnpm check            # type-check
-pnpm registry:build   # regenerate compatibility, latest, and versioned registry output
+pnpm dev               # docs site and live previews
+pnpm check             # type-check
+pnpm test              # contract and unit tests
+pnpm test:browser      # Playwright and axe across every page
+pnpm registry:build    # regenerate compatibility, latest, and versioned registry output
 pnpm registry:validate # verify schemas, dependency parity, inventory, and integrity
 ```
 
-The docs site lives in `src/routes`, components in `src/lib/components/ui`, the design tokens in `src/app.css`, and the site chrome (landing showcase, theming, command palette) in `src/lib/site`. To add a component: build it, list it in `src/lib/site/components.json`, write a demo in `src/lib/site/demos`, and re-run the registry build.
+Components live in `src/lib/components/ui`, the design tokens in `src/app.css`, and the site in `src/routes` and `src/lib/site`. `pnpm new:component` scaffolds a component, demo, and catalog entry. The design rules are in [AGENTS.md](./AGENTS.md) and [CONTRIBUTING.md](./CONTRIBUTING.md), and the decisions behind them in [docs/decisions](./docs/decisions).
 
 ## Built with
 
-Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide icons. Inspired by shadcn-svelte and the quiet confidence of modern AI interfaces.
+Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide icons. The voice orb's cloud renderer is adapted from [Orb UI](https://orb-ui.com/) under the MIT license.
 
 ## Community
 
@@ -155,4 +177,4 @@ Svelte 5, SvelteKit, Tailwind CSS v4, bits-ui, tailwind-variants, and Lucide ico
 
 ## License
 
-[MIT](./LICENSE)
+[MIT](./LICENSE). Designed and built by [CJ Dyas](https://www.cjdyas.design).

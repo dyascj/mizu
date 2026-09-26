@@ -2,6 +2,57 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.4.0] - 2026-09-25
+
+Mizu grows from a chat component library into a design system for AI products, the apps people install, and the websites that launch them. This stable release promotes the 0.4.0-rc.2 components with review fixes, and adds a new brand, site, and documentation. The versioned registry, `/r/latest`, and compatibility install aliases now provide 0.4.0. Earlier version directories remain unchanged.
+
+CJ directed this release with representative manual VoiceOver review still outstanding, an exception to ADR 0003 for this release, as with 0.3.0. Automated accessibility, keyboard, and reduced-motion checks passed on every page in both themes; they do not replace that review.
+
+### Added
+
+- **Motion system.** Six duration tokens, a stagger step, house easing curves, and three springs sampled into CSS `linear()` curves with paired settling durations. Shared `animate-fade-in`, `animate-rise-in`, `animate-blur-in`, `animate-scale-in`, `animate-shimmer`, `animate-breathe`, and `animate-float` animations, plus `stagger` and `text-shimmer` utilities. ADR 0006 records the decision.
+- **Motion item.** TypeScript copies of every token, `rise`, `blurIn`, and `pop` transitions, a `reveal` scroll attachment, and `pointerPosition` and `magnetic` attachments.
+- **Presence**, an expressive companion for idle, listening, thinking, speaking, happy, and sleeping states, in five tones.
+- **Motion components:** TextReveal, TextRotate, NumberTicker, and Marquee.
+- **App components:** TabBar, InstallPrompt, and NetworkStatus, plus `pt-safe`, `pb-safe`, `pl-safe`, `pr-safe`, `px-safe`, and `py-safe` utilities.
+- **Interaction components:** SegmentedControl, HoldButton, and CopyButton.
+- **Blocks:** Mobile assistant and Product landing, in new Mobile and Websites categories.
+- **Brand:** the vessel mark, a custom wordmark, an adaptive favicon, app icons, a web manifest, and a `/brand` page with downloads.
+- **Docs:** a motion guide, an Apps and PWAs guide, and app and motion guidance in the generated consumer AGENTS.md.
+
+### Changed
+
+- Tailwind's `ease-out`, `ease-in`, and `ease-in-out` resolve to the Mizu curves, and components use duration tokens instead of literal values. Switch, Radio Group, Dock, and Nudge move on springs; Rating uses the bouncy spring.
+- Tabs slide a raised indicator between triggers. Thinking and Reasoning share the theme's shimmer utility. ToggleGroup accepts ARIA and other root attributes.
+- The site is redesigned around live components: a companion hero, a playground operated by scripted cursors, a showcase of conversation, mobile, and website blocks, and a motion band.
+- **Theme migration:** reinstall `app.css` before installing 0.4 components. Components reference the `--duration-*` tokens and `ease-spring*` curves; without them their transitions complete instantly. Edge-to-edge apps also need `viewport-fit=cover` for the safe-area utilities to receive device insets.
+- **Tabs migration:** reinstall `tabs-list.svelte` and `tabs-trigger.svelte` together. The list now owns the active fill.
+
+### Deprecated
+
+- No APIs deprecated.
+
+### Removed
+
+- The gradient orb mark and its PNG favicon. No components removed.
+
+### Fixed
+
+- The landing playground no longer writes over or sends a reader's draft, touches the clipboard, or completes a scripted hold after the reader takes over, and it rests after three rounds.
+- InstallPrompt catches the install event even when the card mounts later in the visit.
+- HoldButton confirms a click from assistive technology and keeps its accessible name while confirmed.
+- TextRotate shows the same final word to every reader under reduced motion.
+- TabBar and NetworkStatus apply device safe areas only when pinned to the screen edge.
+- Reduced motion cancels animation start delays, `scale-in` keeps opacity off the spring, and `pointerPosition` stays inactive for touch.
+- The header search no longer covers the navigation between 1024 and 1280 pixels, and the homepage fits a 375 pixel viewport.
+- The Apps and PWAs guide's service worker serves prerendered pages offline.
+- Sidebar width changes ease between states instead of moving linearly.
+- A reduced-motion Marquee is focusable, so keyboard users can scroll it.
+
+### Security
+
+- The dependency audit reports no known vulnerabilities.
+
 ## [0.4.0-rc.2] - 2026-09-25
 
 This candidate adds Presence, eleven components for motion, apps, and interaction, and two blocks. It includes everything in 0.4.0-rc.1. The stable registry remains on 0.3.1. Representative VoiceOver review is required before a stable 0.4.0 release.
