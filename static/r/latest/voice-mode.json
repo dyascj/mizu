@@ -5,7 +5,7 @@
   "title": "Voice mode",
   "description": "A voice session with a cloud orb, waveform, mute, and end-session controls.",
   "dependencies": [
-    "@lucide/svelte@^1.39.0"
+    "@lucide/svelte@^1.48.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/latest/aurora.json",

@@ -31,10 +31,10 @@ Mizu provides Svelte components for chat, voice, forms, and application layouts.
 - **Light and dark themes.** White and pure-black page backgrounds, neutral card and control fills, and contrasting text.
 - **Copy in, own it.** A shadcn-svelte-compatible registry, plus full source on every component page.
 
-The current stable release is `0.3.0`. Pin it for reproducible installs:
+The current stable release is `0.3.1`. Pin it for reproducible installs:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.0/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.1/button.json
 ```
 
 Upgrading copied components from 0.2.x requires the migrations in the [changelog](./CHANGELOG.md#030---2026-09-07).
@@ -74,7 +74,7 @@ npx sv add tailwindcss
 **4. Add components** with the one-liner. It pulls the component, installs its npm dependencies, and adds the shared `cn` helper automatically:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.0/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.3.1/button.json
 ```
 
 You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.

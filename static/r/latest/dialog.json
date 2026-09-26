@@ -5,8 +5,8 @@
   "title": "Dialog",
   "description": "A clean modal floating over a blurred scrim.",
   "dependencies": [
-    "@lucide/svelte@^1.39.0",
-    "bits-ui@^2.19.0"
+    "@lucide/svelte@^1.48.0",
+    "bits-ui@^2.19.3"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/latest/utils.json"

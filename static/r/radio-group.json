@@ -5,7 +5,7 @@
   "title": "Radio Group",
   "description": "A single choice with a visible selection and keyboard navigation.",
   "dependencies": [
-    "bits-ui@^2.19.0"
+    "bits-ui@^2.19.3"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

@@ -5,7 +5,7 @@
   "title": "Sign up",
   "description": "An account form with validation, password autofill, and a required terms agreement.",
   "dependencies": [
-    "@lucide/svelte@^1.39.0"
+    "@lucide/svelte@^1.48.0"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/latest/button.json",
