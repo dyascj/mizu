@@ -170,6 +170,8 @@ field-label.svelte extends HTMLLabelAttributes | class?: string, children?: Snip
 field-legend.svelte extends HTMLAttributes<HTMLLegendElement> | class?: string, children?: Snippet
 field-set.svelte extends HTMLFieldsetAttributes | class?: string, children?: Snippet
 field.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
+# hold-button
+hold-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick'> | duration?: number = 1200, onConfirm: () => void, variant?: 'destructive' | 'primary' = 'destructive', size?: 'sm' | 'md' | 'lg' = 'md', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string, children: Snippet
 # hover-card
 hover-card-content.svelte extends WithoutChildrenOrChild<LinkPreview.ContentProps> | ref?: unknown = null bindable, class?: string, side?: unknown = 'bottom', sideOffset?: unknown = 8, align?: unknown = 'center', portalProps?: LinkPreview.PortalProps, children: Snippet
 hover-card-trigger.svelte extends WithoutChildrenOrChild<LinkPreview.TriggerProps> | ref?: unknown = null bindable, class?: string, children?: Snippet

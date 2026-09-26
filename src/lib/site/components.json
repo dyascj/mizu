@@ -526,5 +526,11 @@
 		"category": "Forms",
 		"description": "A pill track of mutually exclusive options with a thumb that springs to the selection.",
 		"bits": true
+	},
+	{
+		"slug": "hold-button",
+		"name": "Hold Button",
+		"category": "Actions",
+		"description": "Press and hold to confirm a destructive or consequential action as a fill sweeps across the pill."
 	}
 ]
