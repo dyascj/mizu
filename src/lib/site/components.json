@@ -114,7 +114,7 @@
 		"slug": "tabs",
 		"name": "Tabs",
 		"category": "Navigation",
-		"description": "A segmented pill switcher with a raised active tab.",
+		"description": "A segmented pill switcher whose raised active tab slides between triggers.",
 		"bits": true
 	},
 	{
@@ -569,5 +569,24 @@
 		"name": "Network Status",
 		"category": "App",
 		"description": "An online and offline indicator that reassures people their changes will sync."
+	},
+	{
+		"slug": "segmented-control",
+		"name": "Segmented Control",
+		"category": "Forms",
+		"description": "A pill track of mutually exclusive options with a thumb that springs to the selection.",
+		"bits": true
+	},
+	{
+		"slug": "hold-button",
+		"name": "Hold Button",
+		"category": "Actions",
+		"description": "Press and hold to confirm a destructive or consequential action as a fill sweeps across the pill."
+	},
+	{
+		"slug": "copy-button",
+		"name": "Copy Button",
+		"category": "Actions",
+		"description": "An icon button that copies text to the clipboard and morphs into a check on success."
 	}
 ]

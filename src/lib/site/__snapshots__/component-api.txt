@@ -113,6 +113,8 @@ context-menu-separator.svelte extends ContextMenu.SeparatorProps | ref?: unknown
 context-menu-shortcut.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTMLSpanElement | null = null bindable, class: unknown
 context-menu-sub-content.svelte extends ContextMenu.SubContentProps | ref?: unknown = null bindable, class: unknown
 context-menu-sub-trigger.svelte extends WithoutChild<ContextMenu.SubTriggerProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean, children: unknown
+# copy-button
+copy-button.svelte extends Omit<HTMLButtonAttributes, 'value' | 'children' | 'onclick'> | value: string, label?: string = 'Copy', timeout?: number = 1600, onCopy?: (value: string) => void, variant?: 'ghost' | 'secondary' = 'ghost', size?: 'sm' | 'md' = 'md', ref?: HTMLButtonElement | null = null bindable, class?: string
 # data-table
 # date-picker
 date-picker-content.svelte extends WithoutChildrenOrChild<DatePicker.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 8, portalProps?: DatePicker.PortalProps
@@ -170,6 +172,8 @@ field-label.svelte extends HTMLLabelAttributes | class?: string, children?: Snip
 field-legend.svelte extends HTMLAttributes<HTMLLegendElement> | class?: string, children?: Snippet
 field-set.svelte extends HTMLFieldsetAttributes | class?: string, children?: Snippet
 field.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
+# hold-button
+hold-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick'> | duration?: number = 1200, onConfirm: () => void, variant?: 'destructive' | 'primary' = 'destructive', size?: 'sm' | 'md' | 'lg' = 'md', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string, children: Snippet
 # hover-card
 hover-card-content.svelte extends WithoutChildrenOrChild<LinkPreview.ContentProps> | ref?: unknown = null bindable, class?: string, side?: unknown = 'bottom', sideOffset?: unknown = 8, align?: unknown = 'center', portalProps?: LinkPreview.PortalProps, children: Snippet
 hover-card-trigger.svelte extends WithoutChildrenOrChild<LinkPreview.TriggerProps> | ref?: unknown = null bindable, class?: string, children?: Snippet
@@ -288,6 +292,9 @@ resizable-pane.svelte extends PaneProps | ref?: unknown = null bindable
 # scroll-area
 scroll-area-scrollbar.svelte extends WithoutChild<ScrollArea.ScrollbarProps> | ref?: unknown = null bindable, class?: string, orientation?: unknown = 'vertical'
 scroll-area.svelte extends WithoutChild<ScrollArea.RootProps> | ref?: unknown = null bindable, class?: string, orientation?: 'vertical' | 'horizontal' | 'both' = 'vertical', viewportClass?: string, children: Snippet
+# segmented-control
+segmented-control-item.svelte extends WithoutChildrenOrChild<RadioGroup.ItemProps> | value: string, disabled?: boolean = false, ref?: HTMLElement | null = null bindable, class?: string, children: Snippet
+segmented-control.svelte extends Omit<RadioGroup.RootProps, 'orientation' | 'child' | 'children'> | value?: string = '' bindable, onValueChange?: (value: string) => void, size?: 'sm' | 'md' = 'md', fullWidth?: boolean = false, disabled?: boolean = false, ref?: HTMLElement | null = null bindable, class?: string, children: Snippet
 # select
 select-content.svelte extends WithoutChildrenOrChild<Select.ContentProps> | id?: unknown = `mizu-select-${uid}`, ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 6, children: Snippet
 select-group.svelte extends Select.GroupProps | ref?: unknown = null bindable, class?: string
