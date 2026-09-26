@@ -531,5 +531,11 @@
 		"name": "Install Prompt",
 		"category": "App",
 		"description": "A card that offers to install your PWA, with Add to Home Screen steps on iOS."
+	},
+	{
+		"slug": "network-status",
+		"name": "Network Status",
+		"category": "App",
+		"description": "An online and offline indicator that reassures people their changes will sync."
 	}
 ]

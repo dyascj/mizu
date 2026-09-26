@@ -226,6 +226,8 @@ navigation-menu-list.svelte extends WithoutChild<NavigationMenu.ListProps> | ref
 navigation-menu-trigger.svelte extends WithoutChildrenOrChild<NavigationMenu.TriggerProps> | ref?: unknown = null bindable, class?: string, children: Snippet
 navigation-menu-viewport.svelte extends WithoutChild<NavigationMenu.ViewportProps> | ref?: unknown = null bindable, class?: string
 navigation-menu.svelte extends WithoutChild<NavigationMenu.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, class?: string, viewport?: boolean = true, children: Snippet
+# network-status
+network-status.svelte | variant?: 'pill' | 'inline' = 'pill', fixed?: boolean = false, offlineLabel?: string = "You're offline. Changes will sync when you reconnect.", onlineLabel?: string = 'Back online', resetAfter?: number = 3000, forceStatus?: 'online' | 'offline', class?: string
 # nudge
 nudge.svelte | title: string, description?: string, onDismiss?: () => void, icon?: Snippet, actions?: Snippet, class?: string
 # pagination
