@@ -531,5 +531,11 @@
 		"name": "Text Rotate",
 		"category": "Motion",
 		"description": "Cycles a word in place while the line around it eases to fit."
+	},
+	{
+		"slug": "number-ticker",
+		"name": "Number Ticker",
+		"category": "Motion",
+		"description": "A formatted number whose digits roll into place when the value changes."
 	}
 ]

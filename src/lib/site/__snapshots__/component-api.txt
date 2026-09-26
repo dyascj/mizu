@@ -226,6 +226,8 @@ navigation-menu-viewport.svelte extends WithoutChild<NavigationMenu.ViewportProp
 navigation-menu.svelte extends WithoutChild<NavigationMenu.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, class?: string, viewport?: boolean = true, children: Snippet
 # nudge
 nudge.svelte | title: string, description?: string, onDismiss?: () => void, icon?: Snippet, actions?: Snippet, class?: string
+# number-ticker
+number-ticker.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | value: number, locale?: string, format?: Intl.NumberFormatOptions, class?: string, ref?: HTMLSpanElement | null = null bindable
 # pagination
 pagination-content.svelte extends HTMLAttributes<HTMLUListElement> | ref?: HTMLUListElement | null = null bindable, class?: string, children: Snippet
 pagination-ellipsis.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTMLSpanElement | null = null bindable, class?: string
