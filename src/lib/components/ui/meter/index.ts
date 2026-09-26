@@ -1,1 +1,1 @@
-export { default as Meter } from './meter.svelte';
+export { default as Meter, type MeterSegment } from './meter.svelte';

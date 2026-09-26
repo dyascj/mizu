@@ -1,59 +1,76 @@
 <script lang="ts">
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { buttonVariants } from '$lib/components/ui/button';
-	import Droplets from '@lucide/svelte/icons/droplets';
-	import Settings from '@lucide/svelte/icons/settings';
-	import WavesLadder from '@lucide/svelte/icons/waves-ladder';
-	import LogOut from '@lucide/svelte/icons/log-out';
+	import { blurIn, duration } from '$lib/components/ui/motion';
+	import { cn } from '$lib/utils.js';
+	import ChevronDown from '@lucide/svelte/icons/chevron-down';
+	import Copy from '@lucide/svelte/icons/copy';
+	import FolderInput from '@lucide/svelte/icons/folder-input';
+	import Pencil from '@lucide/svelte/icons/pencil';
+	import Share2 from '@lucide/svelte/icons/share-2';
+	import Trash2 from '@lucide/svelte/icons/trash-2';
 
-	let showRipples = $state(true);
-	let showFoam = $state(false);
-	let clarity = $state('clear');
+	let memory = $state(true);
+	let webSearch = $state(false);
+	let picked = $state<{ n: number; text: string } | null>(null);
+
+	// Counted, so picking the same action twice still replays the confirmation.
+	const pick = (text: string) => (picked = { n: (picked?.n ?? 0) + 1, text });
 </script>
 
-<DropdownMenu.Root>
-	<DropdownMenu.Trigger class={buttonVariants({ variant: 'secondary' })}>
-		Project actions
-	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-56" align="start">
-		<DropdownMenu.Label>Project</DropdownMenu.Label>
-		<DropdownMenu.Group>
-			<DropdownMenu.Item>
-				<Droplets />
-				New file
+<div class="flex flex-col items-center gap-3">
+	<DropdownMenu.Root>
+		<DropdownMenu.Trigger class={cn(buttonVariants({ variant: 'secondary' }), 'group pr-4')}>
+			Chat options
+			<ChevronDown
+				class="text-muted-foreground size-4 transition-[rotate] duration-(--duration-base) ease-out group-data-[state=open]:rotate-180 motion-reduce:transition-none"
+			/>
+		</DropdownMenu.Trigger>
+		<DropdownMenu.Content class="w-56" align="start">
+			<DropdownMenu.Label>Kyoto trip planning</DropdownMenu.Label>
+			<DropdownMenu.Item onSelect={() => pick('Renaming the chat')}>
+				<Pencil />
+				Rename
+			</DropdownMenu.Item>
+			<DropdownMenu.Item onSelect={() => pick('Duplicated into a new chat')}>
+				<Copy />
+				Duplicate
 				<DropdownMenu.Shortcut>⌘D</DropdownMenu.Shortcut>
 			</DropdownMenu.Item>
-			<DropdownMenu.Item>
-				<Settings />
-				Project settings
-				<DropdownMenu.Shortcut>⌘F</DropdownMenu.Shortcut>
+			<DropdownMenu.Item onSelect={() => pick('Share link copied')}>
+				<Share2 />
+				Share
 			</DropdownMenu.Item>
-		</DropdownMenu.Group>
-		<DropdownMenu.Separator />
-		<DropdownMenu.CheckboxItem bind:checked={showRipples}>Show previews</DropdownMenu.CheckboxItem>
-		<DropdownMenu.CheckboxItem bind:checked={showFoam}>Show archived</DropdownMenu.CheckboxItem>
-		<DropdownMenu.Separator />
-		<DropdownMenu.Label>View</DropdownMenu.Label>
-		<DropdownMenu.RadioGroup bind:value={clarity}>
-			<DropdownMenu.RadioItem value="clear">Comfortable</DropdownMenu.RadioItem>
-			<DropdownMenu.RadioItem value="murky">Compact</DropdownMenu.RadioItem>
-		</DropdownMenu.RadioGroup>
-		<DropdownMenu.Separator />
-		<DropdownMenu.Sub>
-			<DropdownMenu.SubTrigger>
-				<WavesLadder />
-				Move to
-			</DropdownMenu.SubTrigger>
-			<DropdownMenu.SubContent>
-				<DropdownMenu.Item>Drafts</DropdownMenu.Item>
-				<DropdownMenu.Item>In review</DropdownMenu.Item>
-				<DropdownMenu.Item>Archive</DropdownMenu.Item>
-			</DropdownMenu.SubContent>
-		</DropdownMenu.Sub>
-		<DropdownMenu.Separator />
-		<DropdownMenu.Item>
-			<LogOut />
-			Leave project
-		</DropdownMenu.Item>
-	</DropdownMenu.Content>
-</DropdownMenu.Root>
+			<DropdownMenu.Sub>
+				<DropdownMenu.SubTrigger>
+					<FolderInput />
+					Move to project
+				</DropdownMenu.SubTrigger>
+				<DropdownMenu.SubContent>
+					<DropdownMenu.Item onSelect={() => pick('Moved to Travel')}>Travel</DropdownMenu.Item>
+					<DropdownMenu.Item onSelect={() => pick('Moved to Research')}>Research</DropdownMenu.Item>
+					<DropdownMenu.Item onSelect={() => pick('Moved to Personal')}>Personal</DropdownMenu.Item>
+				</DropdownMenu.SubContent>
+			</DropdownMenu.Sub>
+			<DropdownMenu.Separator />
+			<DropdownMenu.CheckboxItem bind:checked={memory}>Use memory</DropdownMenu.CheckboxItem>
+			<DropdownMenu.CheckboxItem bind:checked={webSearch}>Search the web</DropdownMenu.CheckboxItem>
+			<DropdownMenu.Separator />
+			<DropdownMenu.Item variant="destructive" onSelect={() => pick('Chat deleted')}>
+				<Trash2 />
+				Delete chat
+				<DropdownMenu.Shortcut class="text-current opacity-70">⌘⌫</DropdownMenu.Shortcut>
+			</DropdownMenu.Item>
+		</DropdownMenu.Content>
+	</DropdownMenu.Root>
+	<!-- Height reserved up front, so the confirmation never shifts the trigger. -->
+	<p class="text-muted-foreground h-5 text-sm" aria-live="polite">
+		{#if picked}
+			{#key picked.n}
+				<span class="block" in:blurIn={{ duration: duration.base, blur: 4, y: 2 }}
+					>{picked.text}</span
+				>
+			{/key}
+		{/if}
+	</p>
+</div>

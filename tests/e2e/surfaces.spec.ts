@@ -55,7 +55,7 @@ for (const theme of ['light', 'dark'] as const) {
 			const toggle = surface.getByRole('switch');
 			const colors = await toggle.evaluate((el) => ({
 				track: getComputedStyle(el).backgroundColor,
-				thumb: getComputedStyle(el.firstElementChild!).backgroundColor
+				thumb: getComputedStyle(el.querySelector('[data-switch-thumb]')!).backgroundColor
 			}));
 			expect(contrast(colors.track, colors.thumb)).toBeGreaterThanOrEqual(3);
 		}

@@ -11,7 +11,8 @@
 <div class="flex w-full max-w-lg flex-col items-center gap-6">
 	<h3 class="font-display text-center text-2xl font-semibold tracking-tight sm:text-3xl">
 		What should we <TextRotate
-			words={['explore', 'build', 'write', 'ship', 'learn']}
+			words={['explain', 'explore', 'plan', 'learn', 'create']}
+			effect="morph"
 			{paused}
 			class="text-muted-foreground"
 		/>?

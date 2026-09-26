@@ -1,11 +1,28 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 
-const overlays = [
+type Target = string | ((scope: Locator | Page) => Locator);
+
+const find = (scope: Locator | Page, target: Target) =>
+	typeof target === 'string' ? scope.locator(target) : target(scope);
+
+const overlays: (readonly [string, Target, Target, 'click' | 'hover' | 'right'])[] = [
 	['dialog', '[data-dialog-trigger]', '[role="dialog"]', 'click'],
 	['popover', '[data-popover-trigger]', '[data-popover-content]', 'click'],
-	['tooltip', '[data-tooltip-trigger]', '[data-tooltip-content]', 'hover'],
-	['hover-card', '[data-link-preview-trigger]', '[data-link-preview-content]', 'hover'],
+	[
+		'tooltip',
+		(demo) => demo.getByRole('button', { name: 'Copy' }),
+		// The shared bubble is a visual copy kept out of the accessibility tree;
+		// each trigger describes itself with its own hidden text.
+		'[aria-hidden="true"][data-side][data-state="open"]',
+		'hover'
+	],
+	[
+		'hover-card',
+		(demo) => demo.getByRole('button', { name: '@ava' }),
+		(page) => page.getByRole('group', { name: 'Ava Chen, @ava' }),
+		'hover'
+	],
 	['context-menu', '[data-context-menu-trigger]', '[role="menu"]', 'right'],
 	['dropdown-menu', '[data-dropdown-menu-trigger]', '[role="menu"]', 'click'],
 	['menubar', '[role="menuitem"]', '[role="menu"]', 'click'],
@@ -16,7 +33,7 @@ const overlays = [
 	['sheet', '[data-dialog-trigger]', '[role="dialog"]', 'click'],
 	['alert-dialog', '[data-alert-dialog-trigger]', '[role="alertdialog"]', 'click'],
 	['drawer', '[data-dialog-trigger]', '[role="dialog"]', 'click']
-] as const;
+];
 
 for (const theme of ['light', 'dark'] as const) {
 	for (const [slug, triggerSelector, contentSelector, action] of overlays) {
@@ -29,10 +46,10 @@ for (const theme of ['light', 'dark'] as const) {
 			await page.addInitScript((t) => localStorage.setItem('mizu-theme', t), theme);
 			await page.goto(`/docs/components/${slug}`);
 			await page.waitForLoadState('networkidle');
-			const trigger = page.locator('[data-no-toc]').first().locator(triggerSelector).first();
+			const trigger = find(page.locator('[data-no-toc]').first(), triggerSelector).first();
 			if (action === 'hover') await trigger.hover();
 			else await trigger.click({ button: action === 'right' ? 'right' : 'left' });
-			const content = page.locator(contentSelector).last();
+			const content = find(page, contentSelector).last();
 			await expect(content).toBeVisible();
 			await expect
 				.poll(async () =>
@@ -66,7 +83,10 @@ test('Select and Combobox keep selection, focus, and list relationships in sync'
 	for (const slug of ['select', 'combobox']) {
 		await page.goto(`/docs/components/${slug}`);
 		await page.waitForLoadState('networkidle');
-		const control = page.locator('[data-no-toc]').first().getByRole('combobox');
+		const control = page
+			.locator('[data-no-toc]')
+			.first()
+			.getByRole('combobox', { name: slug === 'select' ? /^Model/ : 'Delegate to' });
 		await control.focus();
 		await page.keyboard.press('ArrowDown');
 		const list = page.getByRole('listbox');
@@ -76,8 +96,8 @@ test('Select and Combobox keep selection, focus, and list relationships in sync'
 		await page.keyboard.press('Enter');
 		await expect(list).toBeHidden();
 		await expect(control).toBeFocused();
-		if (slug === 'select') await expect(control).toContainText('Lake');
-		else await expect(control).toHaveValue('Ocean');
+		if (slug === 'select') await expect(control).toContainText('Deep reasoning');
+		else await expect(control).toHaveValue('Support triage');
 	}
 });
 
@@ -89,15 +109,15 @@ test('nested menus stay reachable in a narrow, short viewport', async ({ page })
 		await page.waitForLoadState('networkidle');
 		const demo = page.locator('[data-no-toc]').first();
 		const trigger =
-			slug === 'context-menu'
-				? demo.locator('[data-context-menu-trigger]')
-				: slug === 'menubar'
-					? demo.getByRole('menuitem', { name: 'File' })
-					: demo.getByRole('button', { name: 'Project actions' });
+			slug === 'menubar'
+				? demo.getByRole('menuitem', { name: 'File' })
+				: slug === 'context-menu'
+					? demo.locator('[data-context-menu-trigger]')
+					: demo.getByRole('button', { name: 'Chat options' });
 		await trigger.click({ button: slug === 'context-menu' ? 'right' : 'left' });
 		if (slug === 'menubar') await expect(page.getByRole('menu')).toBeFocused();
 		const parent = page.getByRole('menuitem', {
-			name: slug === 'menubar' ? 'Export as' : 'Move to'
+			name: slug === 'menubar' ? 'Export as' : 'Move to project'
 		});
 		await parent.focus();
 		await expect(parent).toBeFocused();

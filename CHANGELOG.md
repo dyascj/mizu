@@ -2,6 +2,68 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.5.0] - 2026-09-26
+
+Mizu's biggest release: 78 new components and interaction upgrades to 45 existing ones. Buttons answer with motion, fields and menus move the way native controls do, and a new Data category charts usage, latency, and uptime. Everything follows the 0.4 motion tokens, respects reduced motion, and passes the automated accessibility checks in both themes. The versioned registry, `/r/latest`, and compatibility install aliases now provide 0.5.0. Earlier version directories remain unchanged.
+
+CJ directed this release with representative manual VoiceOver review still outstanding, an exception to ADR 0003 for this release, as with 0.3.0 and 0.4.0. Automated accessibility, keyboard, and reduced-motion checks passed on every page in both themes, and an independent review of the full change raised 89 findings, all resolved before release; neither replaces that review.
+
+### Added
+
+- **Actions (13):** UploadButton, DownloadButton, AsyncButton, SendButton, SlideToConfirm, ShareButton, LikeButton, StarButton, BookmarkButton, FollowButton, Reactions, NotificationBell, and ThemeToggle.
+- **Forms (11):** NumberInput, PasswordInput, FloatingLabel, EmailInput, ExpandingSearch, InlineEdit, FileDropzone, ColorSwatches, ColorPicker, WheelPicker, and ShortcutRecorder.
+- **Surfaces (9):** SwipeDeck, ExpandingCard, Sortable, Kanban, DragSelect, CompareSlider, CodeBlock, ImageHotspots, and AvatarStack.
+- **Data (8), a new category:** Sparkline, BarChart, DonutChart, Heatmap, Stat, Leaderboard, UptimeBar, and RelativeTime. Every chart carries a text or table alternative.
+- **AI (5):** Conversation, FeedbackPrompt, CallControls, AudioPlayer, and Greeting.
+- **Motion (16):** TextScramble, Typewriter, WaveText, Spoiler, Highlight, CodeMorph, IconMorph, Confetti, TiltCard, SpotlightCard, FlipCard, Lens, StickyStack, Carousel3D, LogoOrbit, and DotGrid.
+- **Navigation (5):** Link, PageDots, BackToTop, ReadingProgress, and ScrollSpine.
+- **Overlays (4):** ConfirmPopover, SelectionToolbar, LinkPreview, and ShortcutSheet.
+- **Feedback (4):** Banner, Checklist, SaveStatus, and LiveIndicator.
+- **App (3):** DynamicIsland, PullToRefresh, and StoryProgress.
+- **Motion item:** `SpringValue`, a velocity-preserving spring that works in SSR and jsdom tests, `springOptions`, and the `edgeIndicator` attachment shared by Tabs and SegmentedControl.
+- **New parts and props on existing components:** `HoldButtonTrash` and `confirmedLabel`; CopyButton `mode="text"`; NumberTicker `odometer`; Tabs.List `variant="underline"` and `overflow="scroll"`; TabBar `labels="active"` and item `fill`; `Pagination.Pages`; `Breadcrumb.Trail`; Kbd `match`; `CheckboxGroup` with Shift-click ranges; `RadioGroup.Card`; Slider `elastic`, `showValue`, `format`, and `thumbLabels`; InputOTP `onVerify` and `status`; Spinner `variant` (`dots`, `bar`, `pixel`) and `done`; `SkeletonSwap`; Stepper `complete`; CircularGauge `variant="ticks"`, `threshold`, and `peak`; Meter `segments`; `Calendar.Slide`; `Command.Match` and `Command.Dialog` `shortcut`; `ContextMenu.Trigger`; menu Item `variant="destructive"`; `Tooltip.Group` and `HoverCard.Group`; toast `undo`, `promise`, and `loading`; Dialog nested step-back; Drawer rubber band and nested dimming; the DataTable body, row, sort button, and bulk bar parts; Timeline `animated`; Carousel `effect="focus"`; Avatar `status` and `frameClass`; VoiceOrb `variant="mist"`, `analyser`, `paused`, and `openMicrophone()`; TextReveal `trigger="scroll"`; TextRotate `effect="morph"`; Marquee `lens`; Dock `running` and `onLaunch`.
+
+### Changed
+
+- **Interactions:** Switch leans, springs, and squashes. Checkbox draws its check. SegmentedControl stretches like an inchworm and recolors labels as its edge crosses them. Tabs, Sidebar, Tree, RadioGroup cards, Command, and Combobox glide their selection. Select opens with the current choice on the trigger. Dropdown and context menus grow from their trigger or pointer. The navigation menu reshapes one panel between items. Accordion unfolds like a flap. Calendars slide months in the direction of travel, and RangeCalendar paints the range on hover. Dock magnifies and bounces. Pagination and NumberTicker roll their digits. Rating previews and pops. TagsInput forms chips around typed words. The magnetic attachment stretches like soft rubber.
+- **Toaster migration:** toasts now stack and fan out on hover. Pass `expand` for the previous always-open list. `visibleToasts` (default 3) hides older toasts.
+- **Select migration:** Content defaults to item-aligned positioning. `sideOffset`, `avoidCollisions`, and the other floating options apply only with `position="popper"` or when `side` or `align` is set.
+- **Magnetic migration:** the attachment reacts from 96 pixels away and listens on the window. Defaults move from strength 0.3 and limit 8 to 0.5 and 16, and it writes inline `translate` and `transform` while moving. New `field`, `stretch`, and `content` options.
+- **Markup migrations:** reinstall these items together with the 0.5 Motion item.
+  - Tabs: reinstall all four parts together. Content and Trigger read context from Root and List.
+  - Switch: the track contains a fill span and the thumb is absolutely positioned, so classes that translate the thumb no longer apply. Root background overrides still work.
+  - Checkbox: the check and dash are one inline SVG, and the root no longer clips.
+  - Sidebar: the Provider's tooltip delay is 400ms, and SidebarMenu draws its highlight with `::before`.
+  - NavigationMenu: `delayDuration` defaults to 80, and Content's `class` applies to the inner measured box.
+  - Dock items sit in a `span.mizu-dock-slot`. SegmentedControl labels sit in a `display: contents` span with an inert highlighted copy beside them.
+  - CopyButton icons are inline SVG inside a span, so use `[&_svg]` rather than `[&>svg]` selectors.
+  - Spinner, VoiceOrb, and Avatar with `status` gain a wrapper element. Timeline items are a single-row grid, so a `flex` or `block` class on an item disables its entrance.
+  - Calendar days draw the selection with an inner `[data-day-fill]` span; `data-[selected]:bg-*` overrides keep working. RangeCalendar and DatePicker now depend on the Calendar item.
+  - Popover.Content drops its open-state opacity and scale classes so starting styles can fade in.
+- Skeleton shimmers by default; `animation="pulse"` restores the previous look. Stepper replaces the active ring with a gliding halo. InputOTP replaces per-slot rings with one gliding ring. Command.Dialog sits near the top of the screen. Marquee's `pauseOnHover` eases to a stop and no longer reacts to touch. CircularGauge sweeps in when first seen while server HTML shows the final value. Timeline animates items added after the first render.
+- StarButton celebrates only after its own press. RangeCalendar's Escape clears a half-picked range before it closes a popover. Rating reports the committed score in `aria-valuenow`. VoiceOrb's `volume` defaults to unset, which the cloud treats as silence.
+- The site's command palette uses `Command.Dialog` `shortcut`, and the client bundle budget grows to 4.8 MB for the larger catalog. The largest single chunk stays under 100 KB.
+
+### Deprecated
+
+- No APIs deprecated.
+
+### Removed
+
+- No components removed.
+
+### Fixed
+
+- Command never showed its highlighted item, because bits-ui sets an empty `data-selected` attribute. InputOTP's active slot ring had the same problem.
+- The dropdown menu's height cap and the navigation menu's hidden panel on item switch.
+- Dialog.Root's `open` is bindable, and the dialog scrim fades in.
+- StreamingText no longer renders a leading space from template whitespace.
+- The generated component API reference no longer garbles props when a JSDoc comment contains an apostrophe, and test fixtures stay out of it.
+
+### Security
+
+- The dependency audit reports no known vulnerabilities.
+
 ## [0.4.0] - 2026-09-25
 
 Mizu grows from a chat component library into a design system for AI products, the apps people install, and the websites that launch them. This stable release promotes the 0.4.0-rc.2 components with review fixes, and adds a new brand, site, and documentation. The versioned registry, `/r/latest`, and compatibility install aliases now provide 0.4.0. Earlier version directories remain unchanged.

@@ -137,6 +137,20 @@ describe('TabBar', () => {
 		expect(indicator()).toHaveClass('ease-spring');
 	});
 
+	test('keeps the indicator when the selection moves back to an earlier item', async () => {
+		for (const labels of ['visible', 'active'] as const) {
+			const { rerender, unmount } = render(TabBarFixture, { labels });
+			await flushFrames();
+			await rerender({ labels, active: 'alerts' });
+			await flushFrames();
+			await rerender({ labels, active: 'home' });
+			await flushFrames();
+			expect(indicator()).not.toBeNull();
+			expect(indicator()?.style.translate).toBe('4px 0px');
+			unmount();
+		}
+	});
+
 	test('jumps without motion when the bar resizes', async () => {
 		render(TabBarFixture);
 		await flushFrames();
@@ -163,5 +177,54 @@ describe('TabBar', () => {
 		expect(indicator()).not.toBeNull();
 		unmount();
 		expect(observers[0].disconnect).toHaveBeenCalled();
+	});
+
+	test('shows only the active label, beside its icon, and keeps every item named', () => {
+		render(TabBarFixture, { labels: 'active' });
+		expect(screen.getByRole('navigation')).toHaveAttribute('data-labels', 'active');
+		const home = screen.getByRole('button', { name: 'Home' });
+		expect(within(home).getByText('Home')).not.toHaveClass('sr-only');
+		expect(within(home).getByText('Home')).toHaveClass('opacity-100');
+		// Collapsed, not removed: the label still names the item.
+		const alerts = screen.getByRole('button', { name: 'Alerts, 120 new' });
+		expect(within(alerts).getByText('Alerts')).toHaveClass('opacity-0');
+	});
+
+	test('with active labels, the highlight chases the widening item on a spring', async () => {
+		vi.spyOn(performance, 'now').mockReturnValue(0);
+		const { rerender } = render(TabBarFixture, { labels: 'active' });
+		expect(indicator()?.style.translate).toBe('4px 0px');
+
+		await rerender({ labels: 'active', active: 'alerts' });
+		let time = 0;
+		const seen: string[] = [];
+		for (let i = 0; i < 120 && frames.length; i++) {
+			const pending = frames;
+			frames = [];
+			time += 16;
+			await act(() => pending.forEach((callback) => callback(time)));
+			seen.push(indicator()?.style.translate ?? '');
+		}
+		// It glides through the space between rather than jumping there.
+		expect(seen.some((value) => value !== '4px 0px' && value !== '140px 0px')).toBe(true);
+		expect(indicator()?.style.translate).toBe('140px 0px');
+		expect(indicator()).not.toHaveClass('ease-spring');
+	});
+
+	test('with active labels and reduced motion, the highlight jumps', async () => {
+		stubReducedMotion(true);
+		const { rerender } = render(TabBarFixture, { labels: 'active' });
+		await rerender({ labels: 'active', active: 'inbox' });
+		expect(indicator()?.style.translate).toBe('72px 0px');
+	});
+
+	test('can flood the active icon with a fill', async () => {
+		const { rerender } = render(TabBarFixture, { fill: true });
+		const icons = () => screen.getByRole('button', { name: 'Home' }).querySelectorAll('svg');
+		expect(icons()).toHaveLength(2);
+		expect(icons()[1]).toHaveAttribute('fill', 'currentColor');
+		expect(icons()[1]).toHaveClass('opacity-100');
+		await rerender({ fill: true, active: 'inbox' });
+		expect(icons()[1]).toHaveClass('opacity-0');
 	});
 });

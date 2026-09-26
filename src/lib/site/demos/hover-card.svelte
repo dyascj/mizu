@@ -1,31 +1,90 @@
 <script lang="ts">
 	import * as HoverCard from '$lib/components/ui/hover-card';
-	import * as Avatar from '$lib/components/ui/avatar';
-	import Droplets from '@lucide/svelte/icons/droplets';
+	import { FollowButton } from '$lib/components/ui/follow-button';
+
+	type Person = {
+		id: string;
+		name: string;
+		handle: string;
+		initials: string;
+		bio: string;
+		prompts: number;
+		followers: number;
+	};
+
+	const people: Record<string, Person> = {
+		ava: {
+			id: 'ava',
+			name: 'Ava Chen',
+			handle: '@ava',
+			initials: 'AC',
+			bio: 'Builds eval harnesses. Believes every prompt deserves a regression test.',
+			prompts: 48,
+			followers: 1284
+		},
+		ben: {
+			id: 'ben',
+			name: 'Ben Ortiz',
+			handle: '@ben',
+			initials: 'BO',
+			bio: 'Tunes retrieval. Currently teaching the support agent to cite its sources.',
+			prompts: 31,
+			followers: 902
+		},
+		cara: {
+			id: 'cara',
+			name: 'Cara Nwosu',
+			handle: '@cara',
+			initials: 'CN',
+			bio: 'Docs and developer experience. If it needs a paragraph, it needs a better API.',
+			prompts: 67,
+			followers: 2731
+		}
+	};
+
+	let following = $state<Record<string, boolean>>({});
 </script>
 
-<HoverCard.Root>
-	<HoverCard.Trigger
-		href="/docs"
-		class="text-primary focus-visible:ring-ring focus-visible:ring-offset-background rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-offset-2"
-	>
-		@rivers
-	</HoverCard.Trigger>
-	<HoverCard.Content>
-		<div class="flex gap-3">
-			<Avatar.Root>
-				<Avatar.Fallback>RV</Avatar.Fallback>
-			</Avatar.Root>
-			<div class="flex flex-col gap-1">
-				<h4 class="font-display text-foreground text-sm font-semibold">River Vale</h4>
-				<p class="text-muted-foreground text-sm">
-					Product designer. Working on tools for better collaboration.
-				</p>
-				<div class="text-muted-foreground flex items-center gap-1.5 pt-1 text-xs">
-					<Droplets class="text-primary size-3.5" />
-					Member since 2021
-				</div>
-			</div>
-		</div>
-	</HoverCard.Content>
-</HoverCard.Root>
+{#snippet mention(person: Person)}
+	<HoverCard.GroupTrigger label="{person.name}, {person.handle}">
+		{person.handle}
+		{#snippet card()}
+			<span class="flex items-start justify-between gap-3">
+				<span
+					aria-hidden="true"
+					class="bg-secondary text-muted-foreground grid size-11 shrink-0 place-items-center rounded-full text-sm font-semibold"
+				>
+					{person.initials}
+				</span>
+				<FollowButton
+					name={person.name}
+					bind:following={
+						() => following[person.id] ?? false, (value) => (following[person.id] = value)
+					}
+				/>
+			</span>
+			<span class="mt-3 block font-semibold tracking-tight">{person.name}</span>
+			<span class="text-muted-foreground block">{person.handle}</span>
+			<span class="mt-2 block text-pretty">{person.bio}</span>
+			<span class="text-muted-foreground mt-3 flex gap-4">
+				<span
+					><span class="text-foreground font-semibold tabular-nums">{person.prompts}</span> prompts</span
+				>
+				<span>
+					<span class="text-foreground font-semibold tabular-nums">
+						{(person.followers + (following[person.id] ? 1 : 0)).toLocaleString('en-US')}
+					</span>
+					followers
+				</span>
+			</span>
+		{/snippet}
+	</HoverCard.GroupTrigger>
+{/snippet}
+
+<HoverCard.Group>
+	<p class="w-full max-w-md text-[15px] leading-7 text-pretty">
+		Last week {@render mention(people.ava)} shipped the eval harness, {@render mention(people.ben)}
+		retuned the retrieval agent, and {@render mention(people.cara)} is already writing the prompt guide.
+		<span class="text-muted-foreground">Hover a name to meet them.</span>
+	</p>
+</HoverCard.Group>

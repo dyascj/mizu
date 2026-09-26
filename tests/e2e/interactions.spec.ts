@@ -55,16 +55,22 @@ test('Rating exposes its complete keyboard range', async ({ page }) => {
 test('Tree supports roving focus, expansion, and keyboard selection', async ({ page }) => {
 	await page.goto('/docs/components/tree');
 
-	const source = page.getByRole('treeitem', { name: 'src' });
-	const selected = page.getByRole('treeitem', { name: 'button.svelte' });
-	await source.focus();
-	await expect(source).toBeFocused();
+	const agents = page.getByRole('treeitem', { name: 'agents', exact: true });
+	await agents.focus();
+	await expect(agents).toBeFocused();
 	await page.keyboard.press('ArrowRight');
-	const components = page.getByRole('treeitem', { name: 'components' });
-	await expect(components).toBeFocused();
+	const research = page.getByRole('treeitem', { name: 'research', exact: true });
+	await expect(research).toBeFocused();
+	await page.keyboard.press('ArrowLeft');
+	await expect(research).toHaveAttribute('aria-expanded', 'false');
+	await page.keyboard.press('ArrowDown');
+	const support = page.getByRole('treeitem', { name: 'support', exact: true });
+	await expect(support).toBeFocused();
 	await page.keyboard.press('ArrowRight');
-	await expect(components).toHaveAttribute('aria-expanded', 'true');
+	await expect(support).toHaveAttribute('aria-expanded', 'true');
 	await page.keyboard.press('ArrowRight');
+	const supportGroup = page.locator(`[id="${await support.getAttribute('aria-owns')}"]`);
+	const selected = supportGroup.getByRole('treeitem', { name: 'system-prompt.md', exact: true });
 	await expect(selected).toBeFocused();
 	await page.keyboard.press('Enter');
 	await expect(selected).toHaveAttribute('aria-selected', 'true');
@@ -75,13 +81,14 @@ test('Dialog opens and dismisses from the keyboard without accessibility violati
 }) => {
 	await page.goto('/docs/components/dialog');
 
-	const trigger = page.getByRole('button', { name: 'Clear cache', exact: true });
+	const trigger = page.getByRole('button', { name: 'Settings', exact: true });
 	await trigger.focus();
 	await page.keyboard.press('Enter');
-	await expect(page.getByRole('dialog', { name: 'Clear your cache?' })).toBeVisible();
+	const dialog = page.getByRole('dialog', { name: 'Assistant settings' });
+	await expect(dialog).toBeVisible();
 	await expectNoAccessibilityViolations(page);
 	await page.keyboard.press('Escape');
-	await expect(page.getByRole('dialog', { name: 'Clear your cache?' })).toBeHidden();
+	await expect(dialog).toBeHidden();
 	await expect(trigger).toBeFocused();
 });
 
@@ -90,10 +97,10 @@ test('Drawer opens and dismisses from the keyboard without accessibility violati
 }) => {
 	await page.goto('/docs/components/drawer');
 
-	const trigger = page.getByRole('button', { name: 'Ask anything' });
+	const trigger = page.getByRole('button', { name: 'Share chat' });
 	await trigger.focus();
 	await page.keyboard.press('Enter');
-	const drawer = page.getByRole('dialog', { name: 'What can I help with?' });
+	const drawer = page.getByRole('dialog', { name: 'Share “Kyoto trip itinerary”' });
 	await expect(drawer).toBeVisible();
 	await expectNoAccessibilityViolations(page);
 	await page.keyboard.press('Escape');
@@ -103,15 +110,23 @@ test('Drawer opens and dismisses from the keyboard without accessibility violati
 test('Toast action is keyboard operable and announces the result', async ({ page }) => {
 	await page.goto('/docs/components/toast');
 
-	const trigger = page.getByRole('button', { name: 'With action' });
+	const prompts = page.getByRole('list', { name: 'Saved prompts' });
+	const prompt = prompts.getByRole('listitem').filter({ hasText: 'Support triage' });
+	const trigger = page.getByRole('button', { name: 'Delete Support triage' });
 	await trigger.focus();
 	await page.keyboard.press('Enter');
-	const undo = page.getByRole('button', { name: 'Undo' });
+	await expect(prompt).toBeHidden();
+	const toast = page.getByRole('status').filter({ hasText: 'Deleted ‘Support triage’' });
+	const undo = toast.getByRole('button', { name: 'Undo' });
 	await expect(undo).toBeVisible();
 	await expectNoAccessibilityViolations(page);
 	await undo.focus();
 	await page.keyboard.press('Enter');
-	await expect(page.getByRole('status').filter({ hasText: 'Restored to inbox' })).toBeVisible();
+	await expect(prompt).toBeVisible();
+	const announcer = page
+		.getByRole('region', { name: 'Notifications' })
+		.locator(':scope > [aria-live="polite"]');
+	await expect(announcer).toHaveText('Restored');
 });
 
 test('Chat Input submits trimmed content and clears from the keyboard', async ({ page }) => {

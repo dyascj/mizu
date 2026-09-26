@@ -11,20 +11,48 @@
 		value = $bindable(''),
 		title = 'Command menu',
 		description = 'Search for a command to run.',
+		shortcut,
 		class: className,
 		children,
 		...restProps
 	}: WithoutChildrenOrChild<CommandPrimitive.RootProps> & {
+		/** Whether the palette is showing. */
 		open?: boolean;
+		/** Accessible title, read when the palette opens. */
 		title?: string;
+		/** Accessible description, read after the title. */
 		description?: string;
+		/**
+		 * A letter that toggles the palette with Command (macOS) or Control
+		 * (elsewhere), such as `"k"`. The press is marked handled, so the
+		 * browser's own binding for it stands aside.
+		 */
+		shortcut?: string;
+		/** Classes for the command surface inside the dialog. */
 		class?: string;
+		/** `Command.Input`, `Command.List`, and the rest. */
 		children: Snippet;
 	} = $props();
+
+	function toggleFromKeyboard(event: KeyboardEvent) {
+		if (!shortcut || event.key.toLowerCase() !== shortcut.toLowerCase()) return;
+		if (!(event.metaKey || event.ctrlKey) || event.altKey || event.shiftKey || event.repeat) return;
+		event.preventDefault();
+		open = !open;
+	}
 </script>
 
+<svelte:window onkeydown={toggleFromKeyboard} />
+
 <Dialog.Root {open} onOpenChange={(o) => (open = o)}>
-	<Dialog.Content class="max-w-xl overflow-hidden p-0" closeButton={false}>
+	<!-- Opened many times a day, so it barely animates: it arrives in a blink,
+	     grows from its top edge where the eye already is, and leaves faster
+	     still. Pinned near the top rather than centered, so the input stays put
+	     while filtering resizes the list below it. -->
+	<Dialog.Content
+		class="top-[max(1rem,15vh)] max-h-[calc(100dvh-max(1rem,15vh)-1rem)] max-w-xl origin-top translate-y-0 overflow-hidden p-0 transition-[opacity,scale] duration-(--duration-fast) ease-out data-[starting-style]:opacity-0 data-[state=closed]:scale-100 data-[state=closed]:duration-(--duration-instant) data-[state=closed]:ease-in motion-safe:data-[starting-style]:scale-[0.98] motion-safe:data-[state=closed]:scale-[0.98]"
+		closeButton={false}
+	>
 		<Dialog.Header class="sr-only">
 			<Dialog.Title>{title}</Dialog.Title>
 			<Dialog.Description>{description}</Dialog.Description>

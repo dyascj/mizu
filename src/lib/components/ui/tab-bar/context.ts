@@ -1,7 +1,7 @@
 import { getContext, hasContext, setContext } from 'svelte';
 
 export type TabBarVariant = 'floating' | 'docked';
-export type TabBarLabels = 'visible' | 'hidden';
+export type TabBarLabels = 'visible' | 'hidden' | 'active';
 
 export type TabBarState = {
 	readonly variant: TabBarVariant;

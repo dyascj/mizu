@@ -76,17 +76,13 @@
 	});
 </script>
 
-<span bind:this={ref} class={cn('whitespace-pre-wrap', className)} {...rest}>
-	<span class="sr-only">{text}</span>
-	<span aria-hidden="true">
-		{#each words.slice(0, shown) as word, i (i)}
-			<span class="stream-word">{word}</span>
-		{/each}
-		{#if cursor && !done && !paused}
-			<span class="stream-caret"></span>
-		{/if}
-	</span>
-</span>
+<!-- Tags touch so template whitespace never renders under pre-wrap. -->
+<span bind:this={ref} class={cn('whitespace-pre-wrap', className)} {...rest}
+	><span class="sr-only">{text}</span><span aria-hidden="true"
+		>{#each words.slice(0, shown) as word, i (i)}<span class="stream-word">{word}</span
+			>{/each}{#if cursor && !done && !paused}<span class="stream-caret"></span>{/if}</span
+	></span
+>
 
 <style>
 	.stream-word {

@@ -61,19 +61,11 @@ function thumb() {
 	return el;
 }
 
-/** Every inline style the thumb passes through from now on. */
-function recordStyles(el: HTMLElement) {
-	const seen: string[] = [];
-	const observer = new MutationObserver((records) => {
-		for (const record of records) if (record.oldValue) seen.push(record.oldValue);
-	});
-	observer.observe(el, { attributeFilter: ['style'], attributeOldValue: true });
-	return async () => {
-		await tick();
-		observer.takeRecords().forEach((record) => record.oldValue && seen.push(record.oldValue));
-		observer.disconnect();
-		return [...seen, el.getAttribute('style') ?? ''];
-	};
+/** The thumb's edges and box, read from the variables on the track. */
+function edges() {
+	const style = screen.getByRole('radiogroup').style;
+	const read = (name: string) => parseFloat(style.getPropertyValue(`--edge-${name}`));
+	return { left: read('left'), right: read('right'), top: read('top'), height: read('height') };
 }
 
 describe('SegmentedControl', () => {
@@ -89,38 +81,62 @@ describe('SegmentedControl', () => {
 	test('places the thumb under the checked item and hands off the fallback fill', () => {
 		render(Harness);
 		expect(thumb()).not.toHaveAttribute('hidden');
-		expect(thumb().style.translate).toBe('64px 4px');
-		expect(thumb().style.width).toBe('90px');
-		expect(thumb().style.height).toBe('32px');
-		expect(thumb().style.transition).toBe('');
+		expect(edges()).toEqual({ left: 64, right: 154, top: 4, height: 32 });
 		expect(screen.getByRole('radiogroup')).toHaveAttribute('data-indicator');
 	});
 
-	test('selects on click and slides the thumb with its transition', async () => {
+	test('gives every item its offset so its highlighted label can follow the thumb', () => {
+		render(Harness);
+		expect(radio('Thorough').style.getPropertyValue('--edge-x')).toBe('154px');
+		const copy = radio('Balanced').querySelector('[aria-hidden="true"]');
+		expect(copy).toHaveTextContent('Balanced');
+		// The copy is decoration: the item keeps a single accessible name.
+		expect(radio('Balanced')).toHaveAccessibleName('Balanced');
+	});
+
+	test('the highlighted copy is a clone, so ids and children are not repeated', async () => {
+		const { rerender } = render(Harness);
+		expect(document.querySelectorAll('#fast-label')).toHaveLength(1);
+		const copy = radio('Fast').querySelector('[data-slot="segmented-control-highlight"]');
+		expect(copy).toHaveTextContent('Fast');
+		expect(copy?.querySelector('[id]')).toBeNull();
+		expect(copy).toHaveAttribute('inert');
+
+		await rerender({ fastLabel: 'Quick' });
+		await vi.waitFor(() => expect(copy).toHaveTextContent('Quick'));
+		expect(radio('Quick')).toBeInTheDocument();
+	});
+
+	test('selects on click and inches the thumb over, leading edge first', async () => {
 		const onValueChange = vi.fn();
 		render(Harness, { onValueChange });
-		const history = recordStyles(thumb());
+		const widths: number[] = [];
+		const group = screen.getByRole('radiogroup');
+		const observer = new MutationObserver(() => {
+			const { left, right } = edges();
+			widths.push(right - left);
+		});
+		observer.observe(group, { attributeFilter: ['style'] });
 
+		await fireEvent.pointerDown(radio('Fast'));
 		await fireEvent.click(radio('Fast'));
 		expect(radio('Fast')).toHaveAttribute('aria-checked', 'true');
 		expect(onValueChange).toHaveBeenCalledWith('fast');
 
-		const styles = await history();
-		expect(styles.at(-1)).toContain('translate: 4px 4px');
-		expect(styles.some((style) => style.includes('transition: none'))).toBe(false);
+		await vi.waitFor(() => expect(edges()).toMatchObject({ left: 4, right: 64 }));
+		observer.disconnect();
+		// Moving left, the left edge leaves first, so the thumb stretches past
+		// its resting width before the right edge catches up.
+		expect(Math.max(...widths)).toBeGreaterThan(90);
 	});
 
 	test('follows layout changes instantly', async () => {
 		render(Harness);
-		const history = recordStyles(thumb());
 		boxes.balanced.width = 120;
 		resize?.();
-		const styles = await history();
+		await tick();
 		boxes.balanced.width = 90;
-
-		expect(styles.some((style) => style.includes('transition: none'))).toBe(true);
-		expect(thumb().style.width).toBe('120px');
-		expect(thumb().style.transition).toBe('');
+		expect(edges()).toMatchObject({ left: 64, right: 184 });
 	});
 
 	test('moves the selection with arrow keys, looping and skipping disabled items', async () => {

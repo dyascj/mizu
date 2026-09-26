@@ -7,22 +7,13 @@
 
 	const groups = componentsByCategory();
 
-	function onWindowKeydown(e: KeyboardEvent) {
-		if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-			e.preventDefault();
-			search.open = !search.open;
-		}
-	}
-
 	function go(href: string) {
 		search.open = false;
 		void goto(href);
 	}
 </script>
 
-<svelte:window onkeydown={onWindowKeydown} />
-
-<Command.Dialog bind:open={search.open}>
+<Command.Dialog bind:open={search.open} shortcut="k">
 	<Command.Input placeholder="Search components and docs" />
 	<Command.List>
 		<Command.Empty>No results found.</Command.Empty>

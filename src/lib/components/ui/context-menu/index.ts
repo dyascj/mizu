@@ -8,9 +8,9 @@ import Label from './context-menu-label.svelte';
 import SubTrigger from './context-menu-sub-trigger.svelte';
 import SubContent from './context-menu-sub-content.svelte';
 import Shortcut from './context-menu-shortcut.svelte';
+import Trigger from './context-menu-trigger.svelte';
 
 const Root = ContextMenuPrimitive.Root;
-const Trigger = ContextMenuPrimitive.Trigger;
 const Group = ContextMenuPrimitive.Group;
 const Sub = ContextMenuPrimitive.Sub;
 const RadioGroup = ContextMenuPrimitive.RadioGroup;

@@ -4,6 +4,7 @@
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import { duration as durations, prefersReducedMotion, springs } from '$lib/components/ui/motion';
 	import { cn } from '$lib/utils.js';
+	import { setHoldButtonState, type HoldPhase } from './context.js';
 
 	type Props = Omit<HTMLButtonAttributes, 'children' | 'onclick'> & {
 		/** How long the press must last before it confirms, in milliseconds. */
@@ -14,6 +15,12 @@
 		 * mode, confirms without holding.
 		 */
 		onConfirm: () => void;
+		/**
+		 * Words that join the check once the hold confirms, such as "Deleted".
+		 * Also announced to screen readers. Without it the check shows alone and
+		 * "Confirmed" is announced.
+		 */
+		confirmedLabel?: string;
 		/** Colors for the resting pill and the fill that sweeps across it. */
 		variant?: 'destructive' | 'primary';
 		/** Pill height and label size. */
@@ -24,13 +31,17 @@
 		ref?: HTMLButtonElement | null;
 		/** Classes for the button. */
 		class?: string;
-		/** The label, such as "Hold to delete". */
+		/**
+		 * The label, such as "Hold to delete". Put a `HoldButtonTrash` first for
+		 * a bin whose lid opens as the fill sweeps and slams shut on confirm.
+		 */
 		children: Snippet;
 	};
 
 	let {
 		duration = 1200,
 		onConfirm,
+		confirmedLabel,
 		variant = 'destructive',
 		size = 'md',
 		disabled = false,
@@ -63,11 +74,31 @@
 	const hintId = `${uid}-hint`;
 
 	let progress = $state(0);
-	let phase = $state<'idle' | 'holding' | 'retracting' | 'done'>('idle');
+	let phase = $state<HoldPhase>('idle');
+	/** True from confirmation until the fill is fully back, so a retracting fill never reopens a lid. */
+	let confirmed = $state(false);
+	/** Animated icons inside the label that the label swap waits for. */
+	let lids = $state(0);
 	let frame = 0;
 	let resetTimer: ReturnType<typeof setTimeout> | undefined;
 	let pointerId: number | null = null;
 	let heldKey: string | null = null;
+
+	setHoldButtonState({
+		get phase() {
+			return phase;
+		},
+		get progress() {
+			return progress;
+		},
+		get confirmed() {
+			return confirmed;
+		},
+		register() {
+			untrack(() => (lids += 1));
+			return () => untrack(() => (lids -= 1));
+		}
+	});
 
 	/** Runs `step` every frame until it returns false. Replaces any running loop. */
 	function animate(step: (elapsed: number) => boolean) {
@@ -83,6 +114,7 @@
 	function press() {
 		if (disabled || phase === 'holding' || phase === 'done') return;
 		phase = 'holding';
+		confirmed = false;
 		// Resume from wherever a retracting fill currently is.
 		const from = progress * duration;
 		animate((elapsed) => {
@@ -97,7 +129,10 @@
 		cancelAnimationFrame(frame);
 		progress = 1;
 		phase = 'done';
+		confirmed = true;
 		resetTimer = setTimeout(retract, confirmation);
+		// A tap of haptics where the device has them, like a lid landing.
+		if (typeof navigator !== 'undefined') navigator.vibrate?.(10);
 		onConfirm();
 	}
 
@@ -123,6 +158,7 @@
 			cancelAnimationFrame(frame);
 			progress = 0;
 			phase = 'idle';
+			confirmed = false;
 			return;
 		}
 		const from = progress;
@@ -132,6 +168,7 @@
 			progress = Math.max(0, from * (1 - easing(t)));
 			if (t < 1) return true;
 			phase = 'idle';
+			confirmed = false;
 			return false;
 		});
 	}
@@ -182,7 +219,32 @@
 		cancelAnimationFrame(frame);
 		clearTimeout(resetTimer);
 	});
+
+	const done = $derived(phase === 'done');
+
+	// Arriving layers resolve out of a blur; the confirmation waits for any lid
+	// to land first. Leaving layers drop away faster, with no wait, so the way
+	// back reads as instant.
+	const textShown =
+		'opacity-100 blur-none [transition:opacity_var(--duration-base)_var(--ease-out)_var(--hold-swap-delay),filter_var(--duration-base)_var(--ease-out)_var(--hold-swap-delay)]';
+	const restShown =
+		'opacity-100 blur-none transition-[opacity,filter] duration-(--duration-base) ease-out';
+	const textHidden =
+		'opacity-0 blur-[4px] transition-[opacity,filter] duration-(--duration-fast) ease-in';
+	const iconShown =
+		'scale-100 opacity-100 blur-none [transition:scale_var(--duration-spring-snappy)_var(--ease-spring-snappy)_var(--hold-swap-delay),opacity_var(--duration-base)_var(--ease-out)_var(--hold-swap-delay),filter_var(--duration-base)_var(--ease-out)_var(--hold-swap-delay)]';
+	const iconHidden =
+		'scale-25 opacity-0 blur-[4px] transition-[scale,opacity,filter] duration-(--duration-fast) ease-in';
 </script>
+
+{#snippet confirmedContent(shown: boolean)}
+	<span class="col-start-1 row-start-1 inline-flex items-center justify-center gap-2">
+		<Check class={cn('shrink-0', shown ? iconShown : iconHidden)} />
+		{#if confirmedLabel}
+			<span class={shown ? textShown : textHidden}>{confirmedLabel}</span>
+		{/if}
+	</span>
+{/snippet}
 
 <button
 	{...restProps}
@@ -191,6 +253,7 @@
 	{disabled}
 	aria-describedby={[restProps['aria-describedby'], hintId].filter(Boolean).join(' ')}
 	data-phase={phase}
+	style:--hold-swap-delay={lids > 0 ? 'var(--duration-base)' : '0ms'}
 	class={cn(
 		'focus-visible:ring-ring focus-visible:ring-offset-background relative isolate inline-flex max-w-full shrink-0 touch-manipulation items-center justify-center overflow-hidden rounded-full font-medium whitespace-nowrap transition-[background-color,scale] duration-(--duration-fast) ease-out outline-none select-none [-webkit-touch-callout:none] focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[phase=holding]:scale-[0.97]',
 		tones[variant].rest,
@@ -211,27 +274,65 @@
 		if (phase === 'holding') event.preventDefault();
 	}}
 >
-	<!-- Transparent rather than invisible while done, so the button keeps its name. -->
-	<span class={cn('inline-flex items-center gap-2', phase === 'done' && 'opacity-0')}>
-		{@render children()}
-	</span>
+	<!-- The fill: a second copy of the label in the fill colors, clipped to the
+	     progress. Positioned, so it paints over the resting label. -->
 	<span
 		aria-hidden="true"
 		class={cn(
-			'absolute inset-0 flex items-center justify-center gap-2',
+			'absolute inset-0 flex items-center justify-center',
 			tones[variant].fill,
 			sizes[size]
 		)}
 		style:clip-path="inset(0 {(1 - progress) * 100}% 0 0 round 9999px)"
 	>
-		{#if phase === 'done'}
-			<Check
-				class="[transition:scale_var(--duration-spring-bouncy)_var(--ease-spring-bouncy),opacity_var(--duration-fast)_var(--ease-out)] starting:scale-50 starting:opacity-0"
-			/>
-		{:else}
+		<span class="grid">
+			<span
+				class={cn(
+					'col-start-1 row-start-1 inline-flex items-center justify-center gap-2',
+					done ? cn(textHidden, 'delay-(--hold-swap-delay)') : restShown
+				)}
+			>
+				{@render children()}
+			</span>
+			{@render confirmedContent(done)}
+		</span>
+	</span>
+	<!-- Both states share one grid cell, so the pill keeps the wider one's width
+	     and never jumps when they swap. The label is transparent rather than
+	     invisible while done, so the button keeps its name. -->
+	<span class="grid">
+		<span
+			class={cn(
+				'col-start-1 row-start-1 inline-flex items-center justify-center gap-2',
+				done && 'opacity-0'
+			)}
+		>
 			{@render children()}
-		{/if}
+		</span>
+		<!-- Only holds the width. -->
+		<span aria-hidden="true" class="invisible col-start-1 row-start-1 grid">
+			{@render confirmedContent(false)}
+		</span>
 	</span>
 </button>
 <span id={hintId} class="sr-only">Press and hold to confirm</span>
-<span class="sr-only" aria-live="polite">{phase === 'done' ? 'Confirmed' : ''}</span>
+<span class="sr-only" aria-live="polite">{done ? (confirmedLabel ?? 'Confirmed') : ''}</span>
+
+<style>
+	/* A small gulp as the hold lands, the way a bin jolts when its lid drops. */
+	button[data-phase='done'] {
+		animation: hold-gulp var(--duration-slow) var(--ease-out) var(--duration-instant);
+	}
+
+	@keyframes hold-gulp {
+		35% {
+			scale: 0.97;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		button[data-phase='done'] {
+			animation: none;
+		}
+	}
+</style>

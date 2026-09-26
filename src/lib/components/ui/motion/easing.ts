@@ -100,14 +100,24 @@ export function spring(options: SpringOptions): { duration: number; easing: Easi
 	};
 }
 
+/**
+ * The physical parameters behind the theme springs, for code that integrates
+ * a spring itself, such as a drag release that must keep its velocity.
+ */
+export const springOptions = {
+	smooth: { duration: 0.42, bounce: 0.12 },
+	snappy: { duration: 0.3, bounce: 0 },
+	bouncy: { duration: 0.5, bounce: 0.3 }
+} as const satisfies Record<string, SpringOptions>;
+
 /** The three springs in the theme: --ease-spring, -snappy, and -bouncy. */
 export const springs = {
 	/** Default for scale and position: a whisper of overshoot. */
-	smooth: spring({ duration: 0.42, bounce: 0.12 }),
+	smooth: spring(springOptions.smooth),
 	/** Critically damped and fast. For toggles, thumbs, and indicators. */
-	snappy: spring({ duration: 0.3, bounce: 0 }),
+	snappy: spring(springOptions.snappy),
 	/** Visible overshoot. For playful, celebratory, or tactile moments. */
-	bouncy: spring({ duration: 0.5, bounce: 0.3 })
+	bouncy: spring(springOptions.bouncy)
 };
 
 /** Physics presets for Svelte's `Spring` class from `svelte/motion`. */

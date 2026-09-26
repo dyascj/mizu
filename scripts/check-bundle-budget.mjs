@@ -4,10 +4,12 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 // The largest file bounds what any single page downloads. The total counts
 // every lazily loaded demo and block chunk, so it grows with the catalog and
-// guards against runaway duplication rather than page weight.
+// guards against runaway duplication rather than page weight. 0.5.0 measured
+// 4.3 MB across 169 components (0.4.0: 2.05 MB across 91), leaving about 12%
+// headroom before the budget needs another look.
 export const defaultBudget = {
 	largestFileBytes: 100_000,
-	totalBytes: 2_400_000
+	totalBytes: 4_800_000
 };
 
 function javascriptFiles(directory) {

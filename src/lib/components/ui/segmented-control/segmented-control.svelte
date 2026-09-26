@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { RadioGroup as RadioGroupPrimitive } from 'bits-ui';
 	import type { Snippet } from 'svelte';
+	import { edgeIndicator } from '$lib/components/ui/motion';
 	import { cn } from '$lib/utils.js';
-	import { slidingIndicator } from './sliding-indicator.js';
 
 	type Props = Omit<RadioGroupPrimitive.RootProps, 'orientation' | 'child' | 'children'> & {
 		/** The value of the selected item. */
@@ -36,6 +36,11 @@
 		children,
 		...restProps
 	}: Props = $props();
+
+	const thumb = edgeIndicator({
+		item: '[data-radio-group-item]',
+		active: '[data-state="checked"]'
+	});
 </script>
 
 <RadioGroupPrimitive.Root
@@ -52,12 +57,23 @@
 		className
 	)}
 	{...restProps}
+	onpointerdown={(event: PointerEvent & { currentTarget: HTMLDivElement }) => {
+		thumb.cause = 'pointer';
+		restProps.onpointerdown?.(event);
+	}}
+	onkeydown={(event: KeyboardEvent & { currentTarget: HTMLDivElement }) => {
+		thumb.cause = 'key';
+		restProps.onkeydown?.(event);
+	}}
 >
+	<!-- Two edges on their own springs: the edge facing the move leaves first and
+	     lands first, the trailing edge follows softer, like an inchworm. -->
 	<span
 		aria-hidden="true"
 		hidden
-		class="bg-card dark:bg-control ease-spring pointer-events-none absolute top-0 left-0 rounded-full shadow-sm transition-[translate,width,height] duration-(--duration-spring) motion-reduce:transition-none"
-		{@attach slidingIndicator('[data-radio-group-item][data-state="checked"]')}
+		class="bg-card dark:bg-control pointer-events-none absolute top-0 left-0 rounded-full shadow-sm"
+		style="translate: var(--edge-left) var(--edge-top); width: calc(var(--edge-right) - var(--edge-left)); height: var(--edge-height);"
+		{@attach thumb.attach}
 	></span>
 	{@render children()}
 </RadioGroupPrimitive.Root>

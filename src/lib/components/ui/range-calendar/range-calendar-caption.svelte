@@ -4,6 +4,7 @@
 	import RangeCalendarMonthSelect from './range-calendar-month-select.svelte';
 	import RangeCalendarYearSelect from './range-calendar-year-select.svelte';
 	import { DateFormatter, getLocalTimeZone, type DateValue } from '@internationalized/date';
+	import { titleFade } from '$lib/components/ui/calendar/calendar-motion.js';
 
 	let {
 		captionLayout,
@@ -72,5 +73,13 @@
 	{/if}
 	{@render YearSelect()}
 {:else}
-	{formatMonth(month)} {formatYear(month)}
+	<!-- The old and new titles share one cell and crossfade, so the header never jumps. -->
+	<span class="grid justify-items-center">
+		{#key `${formatMonth(month)} ${formatYear(month)}`}
+			<span class="col-start-1 row-start-1 whitespace-nowrap" in:titleFade out:titleFade>
+				{formatMonth(month)}
+				{formatYear(month)}
+			</span>
+		{/key}
+	</span>
 {/if}

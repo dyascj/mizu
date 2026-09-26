@@ -8,6 +8,19 @@
 	import LibraryIcon from '@lucide/svelte/icons/library';
 	import SettingsIcon from '@lucide/svelte/icons/settings';
 	import ChevronRightIcon from '@lucide/svelte/icons/chevron-right';
+
+	let active = $state('home');
+
+	const pages: Record<string, { title: string; stat: [string, string]; focus: [string, string] }> =
+		{
+			home: { title: 'Home', stat: ['Tasks done', '84%'], focus: ['Focus', '72'] },
+			era: { title: 'Era, trip plan', stat: ['Steps run', '18'], focus: ['Tools used', '5'] },
+			fjord: { title: 'Fjord, blog draft', stat: ['Drafts', '3'], focus: ['Words', '1.2k'] },
+			super: { title: 'Super, inbox watch', stat: ['Emails read', '146'], focus: ['Flagged', '4'] },
+			library: { title: 'Library', stat: ['Documents', '12'], focus: ['Indexed', '100%'] },
+			settings: { title: 'Settings', stat: ['Members', '6'], focus: ['Plan', 'Team'] }
+		};
+	const page = $derived(pages[active]);
 </script>
 
 <Tooltip.Provider>
@@ -17,9 +30,11 @@
 		<Sidebar.Provider class="h-full min-h-0">
 			<Sidebar.Root collapsible="icon" class="h-full">
 				<Sidebar.Header>
-					<div class="flex items-center gap-2 px-1 py-0.5">
+					<div class="flex items-center gap-2 overflow-hidden px-1 py-0.5">
 						<AuraTile seed="Mizu" class="size-7 shrink-0 rounded-full" />
-						<span class="text-sm font-semibold tracking-tight group-data-[collapsible=icon]:hidden">
+						<span
+							class="text-sm font-semibold tracking-tight whitespace-nowrap transition-[opacity,filter] delay-(--duration-instant) duration-(--duration-base) ease-out group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:blur-[4px] group-data-[collapsible=icon]:delay-0 group-data-[collapsible=icon]:duration-(--duration-instant) group-data-[collapsible=icon]:ease-in motion-reduce:blur-none"
+						>
 							Mizu
 						</span>
 					</div>
@@ -31,7 +46,11 @@
 						<Sidebar.GroupContent>
 							<Sidebar.Menu>
 								<Sidebar.MenuItem>
-									<Sidebar.MenuButton isActive tooltipContent="Home">
+									<Sidebar.MenuButton
+										isActive={active === 'home'}
+										onclick={() => (active = 'home')}
+										tooltipContent="Home"
+									>
 										<HouseIcon />
 										<span>Home</span>
 									</Sidebar.MenuButton>
@@ -45,35 +64,56 @@
 													<BotIcon />
 													<span>Agents</span>
 													<ChevronRightIcon
-														class="ms-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
+														class="ms-auto transition-[rotate] duration-(--duration-base) ease-out group-data-[state=open]/collapsible:rotate-90"
 													/>
 												</Sidebar.MenuButton>
 											{/snippet}
 										</Collapsible.Trigger>
-										<Collapsible.Content>
-											<Sidebar.MenuSub>
-												<Sidebar.MenuSubItem>
-													<Sidebar.MenuSubButton isActive>
-														<span>Era, trip plan</span>
-													</Sidebar.MenuSubButton>
-												</Sidebar.MenuSubItem>
-												<Sidebar.MenuSubItem>
-													<Sidebar.MenuSubButton>
-														<span>Fjord, blog draft</span>
-													</Sidebar.MenuSubButton>
-												</Sidebar.MenuSubItem>
-												<Sidebar.MenuSubItem>
-													<Sidebar.MenuSubButton>
-														<span>Super, inbox watch</span>
-													</Sidebar.MenuSubButton>
-												</Sidebar.MenuSubItem>
-											</Sidebar.MenuSub>
-										</Collapsible.Content>
+										<!-- The rail has no room for sub-items: they fold away with the rail and
+										     return when it opens. -->
+										<div
+											class="grid grid-rows-[1fr] transition-[grid-template-rows] duration-(--duration-spring-snappy) ease-(--ease-spring-snappy) group-data-[collapsible=icon]:grid-rows-[0fr] motion-reduce:transition-none"
+										>
+											<div class="min-h-0 overflow-hidden">
+												<Collapsible.Content>
+													<Sidebar.MenuSub>
+														<Sidebar.MenuSubItem>
+															<Sidebar.MenuSubButton
+																isActive={active === 'era'}
+																onclick={() => (active = 'era')}
+															>
+																<span>Era, trip plan</span>
+															</Sidebar.MenuSubButton>
+														</Sidebar.MenuSubItem>
+														<Sidebar.MenuSubItem>
+															<Sidebar.MenuSubButton
+																isActive={active === 'fjord'}
+																onclick={() => (active = 'fjord')}
+															>
+																<span>Fjord, blog draft</span>
+															</Sidebar.MenuSubButton>
+														</Sidebar.MenuSubItem>
+														<Sidebar.MenuSubItem>
+															<Sidebar.MenuSubButton
+																isActive={active === 'super'}
+																onclick={() => (active = 'super')}
+															>
+																<span>Super, inbox watch</span>
+															</Sidebar.MenuSubButton>
+														</Sidebar.MenuSubItem>
+													</Sidebar.MenuSub>
+												</Collapsible.Content>
+											</div>
+										</div>
 									</Collapsible.Root>
 								</Sidebar.MenuItem>
 
 								<Sidebar.MenuItem>
-									<Sidebar.MenuButton tooltipContent="Library">
+									<Sidebar.MenuButton
+										isActive={active === 'library'}
+										onclick={() => (active = 'library')}
+										tooltipContent="Library"
+									>
 										<LibraryIcon />
 										<span>Library</span>
 									</Sidebar.MenuButton>
@@ -81,7 +121,11 @@
 								</Sidebar.MenuItem>
 
 								<Sidebar.MenuItem>
-									<Sidebar.MenuButton tooltipContent="Settings">
+									<Sidebar.MenuButton
+										isActive={active === 'settings'}
+										onclick={() => (active = 'settings')}
+										tooltipContent="Settings"
+									>
 										<SettingsIcon />
 										<span>Settings</span>
 									</Sidebar.MenuButton>
@@ -92,13 +136,15 @@
 				</Sidebar.Content>
 
 				<Sidebar.Footer>
-					<div class="flex items-center gap-2 px-1 py-0.5">
+					<div class="flex items-center gap-2 overflow-hidden px-1 py-0.5">
 						<span
 							class="bg-secondary text-foreground flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold"
 						>
 							A
 						</span>
-						<div class="min-w-0 group-data-[collapsible=icon]:hidden">
+						<div
+							class="min-w-0 transition-[opacity,filter] delay-(--duration-instant) duration-(--duration-base) ease-out group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:blur-[4px] group-data-[collapsible=icon]:delay-0 group-data-[collapsible=icon]:duration-(--duration-instant) group-data-[collapsible=icon]:ease-in motion-reduce:blur-none"
+						>
 							<p class="text-foreground truncate text-xs font-medium">Ada Rivers</p>
 							<p class="text-muted-foreground truncate text-[0.6875rem]">ada@mizu.dev</p>
 						</div>
@@ -111,17 +157,17 @@
 			<Sidebar.Inset class="min-h-0">
 				<header class="flex h-12 shrink-0 items-center gap-2 px-4">
 					<Sidebar.Trigger />
-					<h2 class="text-sm font-semibold tracking-tight">Home</h2>
+					<h2 class="truncate text-sm font-semibold tracking-tight">{page.title}</h2>
 				</header>
 				<div class="flex-1 overflow-auto px-4 pb-4">
 					<div class="grid grid-cols-2 gap-3">
 						<div class="bg-secondary/60 rounded-xl p-3">
-							<p class="text-muted-foreground text-xs">Tasks done</p>
-							<p class="mt-1 text-2xl font-semibold tabular-nums">84%</p>
+							<p class="text-muted-foreground text-xs">{page.stat[0]}</p>
+							<p class="mt-1 text-2xl font-semibold tabular-nums">{page.stat[1]}</p>
 						</div>
 						<div class="bg-secondary/60 rounded-xl p-3">
-							<p class="text-muted-foreground text-xs">Focus</p>
-							<p class="mt-1 text-2xl font-semibold tabular-nums">72</p>
+							<p class="text-muted-foreground text-xs">{page.focus[0]}</p>
+							<p class="mt-1 text-2xl font-semibold tabular-nums">{page.focus[1]}</p>
 						</div>
 					</div>
 					<div class="mt-3 space-y-2">

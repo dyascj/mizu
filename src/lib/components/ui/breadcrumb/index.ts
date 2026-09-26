@@ -5,6 +5,7 @@ import Link from './breadcrumb-link.svelte';
 import Page from './breadcrumb-page.svelte';
 import Separator from './breadcrumb-separator.svelte';
 import Ellipsis from './breadcrumb-ellipsis.svelte';
+import Trail from './breadcrumb-trail.svelte';
 
 export {
 	Root,
@@ -14,6 +15,7 @@ export {
 	Page,
 	Separator,
 	Ellipsis,
+	Trail,
 	//
 	Root as Breadcrumb,
 	List as BreadcrumbList,
@@ -21,5 +23,8 @@ export {
 	Link as BreadcrumbLink,
 	Page as BreadcrumbPage,
 	Separator as BreadcrumbSeparator,
-	Ellipsis as BreadcrumbEllipsis
+	Ellipsis as BreadcrumbEllipsis,
+	Trail as BreadcrumbTrail
 };
+
+export type { BreadcrumbCrumb } from './breadcrumb-trail.svelte';

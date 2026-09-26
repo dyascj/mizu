@@ -104,7 +104,25 @@
 
 	const svelteExample = `<script lang="ts">
   import { fade } from 'svelte/transition';
-  import { blurIn, pop, reveal, magnetic, duration, stagger } from '$lib/components/ui/motion';
+  import {
+    blurIn,
+    pop,
+    reveal,
+    magnetic,
+    duration,
+    stagger,
+    springPresets,
+    SpringValue
+  } from '$lib/components/ui/motion';
+
+  // A value that follows its target on a spring and keeps its velocity when
+  // the target changes mid-flight. Safe in SSR and jsdom tests.
+  let thumb = $state<HTMLDivElement>();
+  let velocity = 0; // pixels per frame, measured while dragging
+  const x = new SpringValue(0, {
+    preset: springPresets.snappy,
+    onUpdate: (value) => thumb?.style.setProperty('translate', \`\${value}px 0\`)
+  });
 <\/script>
 
 <!-- Svelte transitions that fall back to a crossfade for reduced motion -->
@@ -118,8 +136,13 @@
 <!-- Reveal children in sequence the first time they scroll into view -->
 <ul {@attach reveal({ children: true, stagger })}>...</ul>
 
-<!-- Lean toward a fine pointer -->
-<button {@attach magnetic({ strength: 0.3 })}>Generate</button>`;
+<!-- Stretch toward a nearby fine pointer and wobble home; the marked label keeps its shape -->
+<button {@attach magnetic({ field: 64 })}>
+  <span data-magnetic-content class="inline-flex">Generate</span>
+</button>
+
+<!-- Throw on release: the spring picks up the drag's velocity -->
+<div bind:this={thumb} onpointerup={() => x.set(240, { velocity })}></div>`;
 </script>
 
 <Seo
@@ -217,7 +240,9 @@
 		Install the <a
 			class="text-foreground underline underline-offset-4"
 			href="/docs/components/motion">Motion</a
-		> item for transitions, scroll reveals, pointer effects, and JavaScript copies of every token.
+		>
+		item for transitions, scroll reveals, pointer effects, a velocity-preserving
+		<code>SpringValue</code>, and JavaScript copies of every token.
 	</p>
 	<CodeBlock code={svelteExample} />
 

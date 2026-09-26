@@ -27,6 +27,12 @@ export type TreeState = {
 	onKeydown: (event: KeyboardEvent, id: string, hasChildren: boolean, depth: number) => void;
 	/** Make a row the roving-tabindex target on focus. */
 	onFocus: (id: string) => void;
+	/**
+	 * Register the selected row's highlight. When the selection just moved,
+	 * the highlight glides over from where the previous one sat. Returns a
+	 * teardown.
+	 */
+	registerHighlight: (el: HTMLElement) => () => void;
 };
 
 const TREE_KEY = Symbol('mizu-tree');
