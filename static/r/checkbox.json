@@ -5,8 +5,8 @@
   "title": "Checkbox",
   "description": "A compact checkbox with clear checked, disabled, and focus states.",
   "dependencies": [
-    "@lucide/svelte@^1.39.0",
-    "bits-ui@^2.19.0"
+    "@lucide/svelte@^1.48.0",
+    "bits-ui@^2.19.3"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

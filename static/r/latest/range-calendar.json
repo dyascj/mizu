@@ -6,8 +6,8 @@
   "description": "Pick a span of dates with a clean month grid.",
   "dependencies": [
     "@internationalized/date@^3.12.4",
-    "@lucide/svelte@^1.39.0",
-    "bits-ui@^2.19.0"
+    "@lucide/svelte@^1.48.0",
+    "bits-ui@^2.19.3"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/latest/button.json",

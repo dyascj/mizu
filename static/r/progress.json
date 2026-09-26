@@ -5,7 +5,7 @@
   "title": "Progress",
   "description": "A neutral track with a contrasting progress indicator.",
   "dependencies": [
-    "bits-ui@^2.19.0"
+    "bits-ui@^2.19.3"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

@@ -5,7 +5,7 @@
   "title": "Aspect Ratio",
   "description": "Hold content to a fixed ratio.",
   "dependencies": [
-    "bits-ui@^2.19.0"
+    "bits-ui@^2.19.3"
   ],
   "registryDependencies": [],
   "files": [
