@@ -335,6 +335,9 @@ stepper.svelte extends Omit<HTMLAttributes<HTMLOListElement>, 'children'> | step
 streaming-text.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | text: string, speed?: number = 60, cursor?: boolean = true, paused?: boolean = false, onComplete?: () => void, class?: string, ref?: HTMLSpanElement | null = null bindable
 # switch
 switch.svelte extends WithoutChildrenOrChild<Switch.RootProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, class?: string
+# tab-bar
+tab-bar-item.svelte extends Omit<HTMLButtonAttributes & HTMLAnchorAttributes, 'children'> | label: string, icon?: Component<{ class?: string; strokeWidth?: number }>, active?: boolean = false, href?: string = undefined, badge?: number = 0, badgeLabel?: string, class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
+tab-bar.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | variant?: 'floating' | 'docked' = 'floating', fixed?: boolean = false, labels?: 'visible' | 'hidden' = 'visible', label?: string = 'Main', class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
 # table
 table-body.svelte extends HTMLAttributes<HTMLTableSectionElement> | class?: string, children?: Snippet
 table-caption.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?: Snippet

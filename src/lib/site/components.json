@@ -519,5 +519,11 @@
 		"name": "Motion",
 		"category": "Motion",
 		"description": "Easing, springs, transitions, and scroll reveals that share the theme's motion tokens."
+	},
+	{
+		"slug": "tab-bar",
+		"name": "Tab Bar",
+		"category": "App",
+		"description": "Bottom navigation for mobile apps and PWAs, with a sliding indicator and unread badges."
 	}
 ]
