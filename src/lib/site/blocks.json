@@ -52,5 +52,17 @@
 		"name": "Verify code",
 		"category": "Auth",
 		"description": "Six-digit email verification with resend."
+	},
+	{
+		"slug": "mobile-assistant",
+		"name": "Mobile assistant",
+		"category": "Mobile",
+		"description": "An installable assistant app: a companion greeting, starters, recent chats, a composer, offline status, and bottom navigation."
+	},
+	{
+		"slug": "product-landing",
+		"name": "Product landing",
+		"category": "Websites",
+		"description": "A launch page for an AI product: a rotating headline, questions in motion, live numbers, and features."
 	}
 ]
