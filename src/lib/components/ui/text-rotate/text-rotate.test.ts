@@ -40,6 +40,14 @@ afterEach(() => {
 });
 
 describe('TextRotate', () => {
+	test('settles on the last word when it does not loop', async () => {
+		const { container } = render(TextRotate, { words, interval: 1000, loop: false });
+		expect(container.querySelector('.sr-only')).toHaveTextContent('ship');
+		await act(() => vi.advanceTimersByTimeAsync(5000));
+		expect(current(container)).toBe('ship');
+		expect(vi.getTimerCount()).toBe(0);
+	});
+
 	test('gives assistive technology the first word and hides the rotation', () => {
 		const { container } = render(TextRotate, { words });
 		expect(container.querySelector('.sr-only')).toHaveTextContent('explore');

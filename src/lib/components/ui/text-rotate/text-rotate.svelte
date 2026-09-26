@@ -5,7 +5,7 @@
 	import { cn } from '$lib/utils.js';
 
 	type Props = Omit<HTMLAttributes<HTMLSpanElement>, 'children'> & {
-		/** Words to cycle through. Assistive technology reads only the first one. */
+		/** Words to cycle through. Assistive technology reads the first one, or the last when `loop` is false. */
 		words: string[];
 		/** Milliseconds each word stays on screen. */
 		interval?: number;
@@ -18,6 +18,8 @@
 		 * so readers can stop it (WCAG 2.2.2).
 		 */
 		paused?: boolean;
+		/** Keep cycling. When false, rotation stops on the last word. */
+		loop?: boolean;
 		class?: string;
 		ref?: HTMLSpanElement | null;
 	};
@@ -27,6 +29,7 @@
 		interval = 2400,
 		effect: effectName = 'blur',
 		paused = false,
+		loop = true,
 		class: className,
 		ref = $bindable(null),
 		...rest
@@ -65,7 +68,7 @@
 	});
 
 	$effect(() => {
-		if (!running) return;
+		if (!running || (!loop && index >= words.length - 1)) return;
 		const next = (index + 1) % words.length;
 		const timer = setTimeout(() => (index = next), Math.max(duration.deliberate, interval));
 		return () => clearTimeout(timer);
@@ -125,7 +128,7 @@
 	onfocusout={() => (focused = false)}
 	{...rest}
 >
-	<span class="sr-only">{words[0] ?? ''}</span>
+	<span class="sr-only">{(loop ? words[0] : words.at(-1)) ?? ''}</span>
 	<span bind:this={sizer} class="invisible inline-block" aria-hidden="true">{word}</span>
 	{#key index}
 		<span class="absolute top-0 left-0" aria-hidden="true" in:enter out:exit>{word}</span>
