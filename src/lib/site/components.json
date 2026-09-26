@@ -519,5 +519,11 @@
 		"name": "Motion",
 		"category": "Motion",
 		"description": "Easing, springs, transitions, and scroll reveals that share the theme's motion tokens."
+	},
+	{
+		"slug": "text-reveal",
+		"name": "Text Reveal",
+		"category": "Motion",
+		"description": "Reveals a line or an answer word by word or character by character, on mount or on scroll."
 	}
 ]

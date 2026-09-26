@@ -351,6 +351,8 @@ tabs-trigger.svelte extends WithoutChildrenOrChild<Tabs.TriggerProps> | ref?: un
 tabs.svelte extends WithoutChildrenOrChild<Tabs.RootProps> | ref?: unknown = null bindable, value: unknown bindable, class?: string, children: Snippet
 # tags-input
 tags-input.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'onchange'> | value?: string[] = [] bindable, placeholder?: string, disabled?: boolean = false, max?: number, name?: string, dedupe?: boolean = true, validate?: (tag: string) => boolean, class?: string, onValueChange?: (value: string[]) => void
+# text-reveal
+text-reveal.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | text: string, by?: 'word' | 'character' = 'word', effect?: 'blur' | 'rise' | 'fade' = 'blur', trigger?: 'mount' | 'view' = 'mount', delay?: number = 0, stagger?: number, as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' = 'span', class?: string, ref?: HTMLElement | null = null bindable
 # textarea
 textarea.svelte extends HTMLTextareaAttributes | class?: string, ref?: HTMLTextAreaElement | null = null bindable, value?: string | null bindable
 # thinking
