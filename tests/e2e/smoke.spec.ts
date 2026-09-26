@@ -7,12 +7,17 @@ const routes = [
 	'/docs/installation',
 	'/docs/usage',
 	'/docs/theming',
+	'/docs/motion',
+	'/docs/apps',
 	'/docs/compatibility',
 	'/docs/components',
 	'/docs/components/button',
 	'/docs/build-a-chat',
 	'/docs/agents',
-	'/blocks'
+	'/blocks',
+	'/blocks?category=mobile',
+	'/blocks?category=websites',
+	'/brand'
 ];
 
 for (const theme of ['light', 'dark'] as const) {
