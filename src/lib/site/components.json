@@ -532,5 +532,11 @@
 		"name": "Hold Button",
 		"category": "Actions",
 		"description": "Press and hold to confirm a destructive or consequential action as a fill sweeps across the pill."
+	},
+	{
+		"slug": "copy-button",
+		"name": "Copy Button",
+		"category": "Actions",
+		"description": "An icon button that copies text to the clipboard and morphs into a check on success."
 	}
 ]
