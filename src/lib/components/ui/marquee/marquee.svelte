@@ -74,6 +74,8 @@
 	);
 </script>
 
+<!-- Focusable only when reduced motion turns it into a scrollable row. -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div
 	bind:this={ref}
 	class={cn('marquee flex', vertical ? 'flex-col' : 'flex-row', className)}
@@ -83,6 +85,7 @@
 	data-paused={paused || undefined}
 	data-pause-on-hover={pauseOnHover || undefined}
 	data-reduced-motion={reducedMotion || undefined}
+	tabindex={reducedMotion ? 0 : undefined}
 	style:--marquee-gap={gap}
 	style:--marquee-duration={loop}
 	{...rest}
@@ -139,7 +142,8 @@
 		animation-play-state: paused;
 	}
 
-	/* Without motion, the content becomes an ordinary scrollable row or column. */
+	/* Without motion, the content becomes an ordinary scrollable row or column
+	   that keyboard users can focus and scroll. */
 	.marquee[data-reduced-motion] {
 		overflow: auto;
 	}

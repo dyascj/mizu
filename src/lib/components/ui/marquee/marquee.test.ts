@@ -105,6 +105,7 @@ describe('Marquee', () => {
 		expect(root).toHaveAttribute('data-reduced-motion');
 		expect(root).not.toHaveAttribute('data-running');
 		expect(root).not.toHaveAttribute('data-fade');
+		expect(root).toHaveAttribute('tabindex', '0');
 		expect(observers).toHaveLength(0);
 	});
 });
