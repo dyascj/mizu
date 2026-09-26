@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { Button } from '$lib/components/ui/button';
-	import OrbMark from '$lib/site/orb-mark.svelte';
+	import MizuMark from '$lib/site/mizu-mark.svelte';
 </script>
 
 <svelte:head>
@@ -9,7 +9,7 @@
 </svelte:head>
 
 <div class="flex min-h-[70dvh] flex-col items-center justify-center gap-6 px-6 text-center">
-	<OrbMark class="size-20 opacity-80" />
+	<MizuMark tone="water" flow="always" class="size-20" />
 	<div>
 		<p class="text-muted-foreground text-sm font-medium tabular-nums">{page.status}</p>
 		<h1 class="mt-1 text-2xl font-semibold tracking-tight">

@@ -18,15 +18,15 @@
 
 <Seo
 	title="Blocks · {siteConfig.name}"
-	description="Prebuilt AI screens and flows for SvelteKit: assistant chat, voice mode, agent dashboards and runs, an app shell, and auth. Every block ships its full source to copy and own."
+	description="Prebuilt AI screens and flows for SvelteKit: assistant chat, voice mode, agent dashboards and runs, a mobile assistant app, a product landing page, an app shell, and auth. Every block ships its full source to copy and own."
 />
 
 <main id="main-content" tabindex="-1" class="mx-auto w-full max-w-5xl px-5 py-12 sm:px-6">
 	<header class="mx-auto max-w-2xl text-center">
 		<h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Blocks</h1>
 		<p class="text-muted-foreground mt-3 text-lg text-balance">
-			Conversation screens, agent workflows, and account forms. Try each preview, then copy the
-			source and connect your services.
+			Conversation screens, agent workflows, mobile apps, and launch pages. Try each preview, then
+			copy the source and connect your services.
 		</p>
 	</header>
 

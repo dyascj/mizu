@@ -2,9 +2,12 @@ import { existsSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
+// The largest file bounds what any single page downloads. The total counts
+// every lazily loaded demo and block chunk, so it grows with the catalog and
+// guards against runaway duplication rather than page weight.
 export const defaultBudget = {
 	largestFileBytes: 100_000,
-	totalBytes: 2_100_000
+	totalBytes: 2_400_000
 };
 
 function javascriptFiles(directory) {

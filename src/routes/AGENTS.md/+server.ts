@@ -13,6 +13,10 @@ export function GET() {
 	const base = siteConfig.url.replace(/\/$/, '');
 	const reg = registryPinnedBase.replace(/\/$/, '');
 	const ai = components.filter((c) => c.category === 'AI').map((c) => c.name);
+	const app = components.filter((c) => c.category === 'App').map((c) => c.name);
+	const motion = components.filter((c) => c.category === 'Motion').map((c) => c.name);
+	const appsPath = getPublicRoute('/docs/apps')?.path ?? '/docs/apps';
+	const motionPath = getPublicRoute('/docs/motion')?.path ?? '/docs/motion';
 	const buildChatPath = getPublicRoute('/docs/build-a-chat')?.path ?? '/docs/build-a-chat';
 	const docsPath = getPublicRoute('/docs')?.path ?? '/docs';
 	const blocksPath = getPublicRoute('/blocks')?.path ?? '/blocks';
@@ -35,6 +39,20 @@ Guidance for AI coding agents working in a project that uses Mizu, ${tagline} ($
 - The AI set: ${ai.join(', ')}.
 - A complete assistant screen stacks in this order: ChatBubble (user) -> Reasoning -> ToolCall -> ChatBubble (assistant) wrapping StreamingText -> Sources -> MessageActions -> PromptSuggestions -> ChatInput. Follow ${base}${buildChatPath}.
 - Prefer installing the assistant-chat block over rebuilding that anatomy by hand.
+- Use Presence to show what the assistant is doing (idle, listening, thinking, speaking, happy, sleeping). Use VoiceOrb for full-screen voice sessions.
+
+## Apps and PWAs
+
+- The app set: ${app.join(', ')}.
+- Use \`viewport-fit=cover\` and pad fixed chrome with \`pt-safe\`, \`pb-safe\`, and \`px-safe\`. Reserve bottom padding for a fixed TabBar.
+- Show InstallPrompt with a \`storageKey\` after someone has found value, never on first load. Pair NetworkStatus with a service worker that caches only the app shell.
+- Guide: ${base}${appsPath}
+
+## Motion
+
+- The motion set: ${motion.join(', ')}. The Motion item exports \`rise\`, \`blurIn\`, and \`pop\` transitions and the \`reveal\` and \`magnetic\` attachments.
+- Continuous motion (TextRotate, Marquee) needs a way to pause. Keep ambient loops for AI activity.
+- Guide: ${base}${motionPath}
 
 ## Design rules (do not violate)
 

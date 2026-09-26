@@ -23,6 +23,16 @@ const staticRoutes: PublicRoute[] = [
 		pager: false
 	},
 	{
+		path: '/brand',
+		title: 'Brand',
+		description: 'The Mizu mark, wordmark, color, type, voice, and downloads.',
+		section: 'site',
+		navigation: false,
+		searchable: true,
+		sitemap: true,
+		pager: false
+	},
+	{
 		path: '/docs',
 		title: 'Introduction',
 		description: 'Start with the Mizu design language and component system.',
@@ -86,6 +96,16 @@ const staticRoutes: PublicRoute[] = [
 		path: '/docs/build-a-chat',
 		title: 'Build a chat',
 		description: 'Compose the AI components into a complete assistant screen.',
+		section: 'getting-started',
+		navigation: true,
+		searchable: true,
+		sitemap: true,
+		pager: true
+	},
+	{
+		path: '/docs/apps',
+		title: 'Apps and PWAs',
+		description: 'Build installable, offline-aware web apps with safe areas and a tab bar.',
 		section: 'getting-started',
 		navigation: true,
 		searchable: true,
