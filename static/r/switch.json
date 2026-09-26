@@ -5,7 +5,7 @@
   "title": "Switch",
   "description": "A pill switch for an immediate on or off choice.",
   "dependencies": [
-    "bits-ui@^2.19.0"
+    "bits-ui@^2.19.3"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

@@ -5,8 +5,8 @@
   "title": "Dropdown Menu",
   "description": "A crisp menu of actions, with submenus and checks.",
   "dependencies": [
-    "@lucide/svelte@^1.39.0",
-    "bits-ui@^2.19.0"
+    "@lucide/svelte@^1.48.0",
+    "bits-ui@^2.19.3"
   ],
   "registryDependencies": [
     "https://mizu-ui.com/r/utils.json"

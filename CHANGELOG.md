@@ -2,6 +2,35 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.3.1] - 2026-09-25
+
+This patch release refreshes the runtime dependencies that installable components declare. Component source and public APIs are unchanged. The versioned registry, `/r/latest`, and compatibility install aliases now provide 0.3.1. Earlier version directories remain unchanged.
+
+### Added
+
+- No additions.
+
+### Changed
+
+- Registry items now declare `bits-ui@^2.19.3`, `@lucide/svelte@^1.48.0`, and `tailwind-merge@^3.7.0`.
+- Development tooling moved to Vitest 5, Vite 8.3, Playwright 1.63, ESLint 10.11, and Svelte 5.57.1. These do not affect installed components.
+
+### Deprecated
+
+- No APIs deprecated.
+
+### Removed
+
+- No components removed.
+
+### Fixed
+
+- Upstream fixes from bits-ui 2.19.1 through 2.19.3 reach consumers who install from the 0.3.1 registry.
+
+### Security
+
+- The dependency audit reports no known vulnerabilities.
+
 ## [0.3.0] - 2026-09-07
 
 This stable release promotes the audited 0.3.0-rc.2 component source. The versioned registry, `/r/latest`, and compatibility install aliases now provide 0.3.0. Earlier version directories remain unchanged.
