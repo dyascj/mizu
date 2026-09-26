@@ -91,7 +91,7 @@
 
 	<button
 		type="button"
-		class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute top-2.5 right-2.5 z-20 inline-flex size-7 items-center justify-center rounded-lg transition-[scale,background-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]"
+		class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute top-2.5 right-2.5 z-20 inline-flex size-7 items-center justify-center rounded-lg transition-[scale,background-color] duration-(--duration-base) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]"
 		onclick={() => toaster.dismiss(toast.id)}
 	>
 		<XIcon class="size-3.5" />

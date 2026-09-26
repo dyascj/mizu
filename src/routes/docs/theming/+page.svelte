@@ -115,10 +115,9 @@
 			in your app and apply it before the first paint to avoid a flash.
 		</p>
 		<p>
-			Transitions take 200 to 320 milliseconds. Components respect <code
-				>prefers-reduced-motion</code
-			>. The cloud orb stops drawing animation frames when motion is reduced or the orb is
-			offscreen.
+			Durations, easing curves, and springs are theme tokens too. The
+			<a class="text-foreground underline underline-offset-4" href="/docs/motion">motion guide</a>
+			covers when to use each one and how components respond to <code>prefers-reduced-motion</code>.
 		</p>
 	</div>
 </article>

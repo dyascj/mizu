@@ -95,7 +95,7 @@
 	>
 		<div
 			class={cn(
-				' relative h-full overflow-hidden rounded-full transition-[width] duration-300 ease-out',
+				' relative h-full overflow-hidden rounded-full transition-[width] duration-(--duration-slow) ease-out',
 				fillGradient
 			)}
 			style="width: {pct}%"

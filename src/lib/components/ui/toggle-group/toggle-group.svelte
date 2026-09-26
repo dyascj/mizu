@@ -12,11 +12,13 @@
 		class: className,
 		children,
 		...restProps
-	}: {
+	}: Omit<
+		Extract<ToggleGroupPrimitive.RootProps, { type: 'single' }>,
+		'type' | 'value' | 'child' | 'children' | 'ref'
+	> & {
 		ref?: HTMLElement | null;
 		value?: string;
 		type?: 'single';
-		disabled?: boolean;
 		class?: string;
 		children?: Snippet;
 	} = $props();

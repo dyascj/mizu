@@ -12,7 +12,7 @@
 <SheetPrimitive.Overlay
 	bind:ref
 	class={cn(
-		'fixed inset-0 z-50 bg-black/45 backdrop-blur-sm transition-[opacity] duration-200 data-[state=closed]:opacity-0 data-[state=open]:opacity-100',
+		'fixed inset-0 z-50 bg-black/45 backdrop-blur-sm transition-[opacity] duration-(--duration-base) data-[state=closed]:opacity-0 data-[state=open]:opacity-100',
 		className
 	)}
 	{...restProps}

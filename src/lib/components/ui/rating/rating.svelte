@@ -141,7 +141,7 @@
 			data-rating-index={i}
 			aria-hidden="true"
 			class={cn(
-				'relative inline-grid place-items-center transition-[scale] duration-200 ease-out',
+				'ease-spring-bouncy relative inline-grid place-items-center transition-[scale] duration-(--duration-spring-bouncy)',
 				interactive && 'hover:scale-110 active:scale-[0.96]'
 			)}
 			style="width: {normalizedSize}px; height: {normalizedSize}px;"

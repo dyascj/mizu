@@ -47,7 +47,7 @@
 					? `${restProps['aria-label']}${thumbItems.length > 1 ? ` ${index + 1}` : ''}`
 					: undefined}
 				aria-labelledby={restProps['aria-labelledby']}
-				class="focus-visible:ring-ring focus-visible:ring-offset-background border-input bg-control block size-5 shrink-0 rounded-full border shadow-sm transition-[scale] duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none"
+				class="focus-visible:ring-ring focus-visible:ring-offset-background border-input bg-control block size-5 shrink-0 rounded-full border shadow-sm transition-[scale] duration-(--duration-base) ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none"
 			/>
 		{/each}
 	{/snippet}

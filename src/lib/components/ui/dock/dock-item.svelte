@@ -75,7 +75,7 @@
 			// tile surface
 			'bg-secondary shadow-lg',
 			// springy settle when the pointer leaves; magnify itself stays pointer-reactive
-			'transition-[scale,translate,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]',
+			'transition-[scale,translate,box-shadow] duration-(--duration-spring) ease-spring',
 			'hover:shadow-sm active:scale-[0.96]',
 			'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
 			className
@@ -93,7 +93,7 @@
 	{#if label}
 		<!-- caption bubble; appears on hover/focus, lifts with the tile -->
 		<span
-			class="mizu-dock-label bg-popover text-popover-foreground pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 translate-y-1 scale-95 rounded-lg px-2.5 py-1 text-xs font-medium whitespace-nowrap opacity-0 shadow-lg transition-[opacity,scale,translate] duration-200 ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:scale-100 group-focus-visible:opacity-100"
+			class="mizu-dock-label bg-popover text-popover-foreground pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 translate-y-1 scale-95 rounded-lg px-2.5 py-1 text-xs font-medium whitespace-nowrap opacity-0 shadow-lg transition-[opacity,scale,translate] duration-(--duration-base) ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:scale-100 group-focus-visible:opacity-100"
 		>
 			{label}
 		</span>

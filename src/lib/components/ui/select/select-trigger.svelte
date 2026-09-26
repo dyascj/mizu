@@ -22,7 +22,7 @@
 	role="combobox"
 	aria-controls={context?.open ? context.contentId : undefined}
 	class={cn(
-		'bg-control focus-visible:ring-ring data-[placeholder]:text-muted-foreground flex h-10 w-full items-center justify-between rounded-full px-3.5 py-2 text-base transition-[box-shadow,border-color] duration-200 outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm',
+		'bg-control focus-visible:ring-ring data-[placeholder]:text-muted-foreground flex h-10 w-full items-center justify-between rounded-full px-3.5 py-2 text-base transition-[box-shadow,border-color] duration-(--duration-base) outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm',
 		className
 	)}
 	{...restProps}

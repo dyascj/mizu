@@ -36,10 +36,12 @@
 	>
 		<Sparkles class="size-3.5" />
 		{#if streaming}
-			<span class="reasoning-shimmer">{label}</span>
+			<span class="text-shimmer animate-shimmer">{label}</span>
 		{:else}
 			<span>{summary}</span>
-			<ChevronDown class={cn('size-3.5 transition-transform duration-200', open && 'rotate-180')} />
+			<ChevronDown
+				class={cn('size-3.5 transition-transform duration-(--duration-base)', open && 'rotate-180')}
+			/>
 		{/if}
 	</button>
 	{#if open && !streaming}
@@ -52,33 +54,8 @@
 </div>
 
 <style>
-	.reasoning-shimmer {
-		background: linear-gradient(
-			90deg,
-			var(--muted-foreground) 0%,
-			var(--muted-foreground) 35%,
-			var(--foreground) 50%,
-			var(--muted-foreground) 65%,
-			var(--muted-foreground) 100%
-		);
-		background-size: 200% 100%;
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
-		animation: reasoning-sweep 2s linear infinite;
-	}
-
 	.reasoning-body {
-		animation: reasoning-open 200ms ease-out both;
-	}
-
-	@keyframes reasoning-sweep {
-		from {
-			background-position: 200% 0;
-		}
-		to {
-			background-position: -200% 0;
-		}
+		animation: reasoning-open var(--duration-base) var(--ease-out) both;
 	}
 
 	@keyframes reasoning-open {
@@ -93,7 +70,6 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.reasoning-shimmer,
 		.reasoning-body {
 			animation: none;
 		}

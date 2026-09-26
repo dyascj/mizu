@@ -12,7 +12,7 @@
 <NavigationMenuPrimitive.Indicator
 	bind:ref
 	class={cn(
-		'top-full z-[1] flex h-2 items-end justify-center overflow-hidden transition-[opacity,transform] duration-200 data-[state=hidden]:opacity-0 data-[state=visible]:opacity-100',
+		'top-full z-[1] flex h-2 items-end justify-center overflow-hidden transition-[opacity,transform] duration-(--duration-base) data-[state=hidden]:opacity-0 data-[state=visible]:opacity-100',
 		className
 	)}
 	{...restProps}

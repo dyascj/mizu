@@ -34,7 +34,7 @@ Always run `pnpm registry:build` after touching components, blocks, or the catal
 - Component, gallery, and block preview canvases use the page background in both themes. Keep gray fills inside the components themselves.
 - Use sentence case for UI labels and headings. No all-caps eyebrows or `uppercase` text styling. Preserve established acronyms and code identifiers.
 - Nothing heavier than `font-semibold`. Titles semibold with tight tracking, labels medium, body regular. Single-line controls are pills; multi-line fields are `rounded-2xl`.
-- Motion is 200-320ms ease-out, shimmer sweeps are 2s, everything respects `prefers-reduced-motion`.
+- Motion comes from the tokens in `src/app.css` (see `docs/decisions/0006-motion-system.md`). Enter with `ease-out` or a spring, exit faster with `ease-in`, never overshoot color or opacity, reserve looping motion for AI activity, and respect `prefers-reduced-motion`. Never hardcode a duration or cubic-bezier in a component.
 
 ## Structure
 

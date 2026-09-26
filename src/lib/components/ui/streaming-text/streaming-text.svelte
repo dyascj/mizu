@@ -90,7 +90,7 @@
 
 <style>
 	.stream-word {
-		animation: stream-in 240ms ease-out both;
+		animation: stream-in var(--duration-base) var(--ease-out) both;
 	}
 
 	.stream-caret {

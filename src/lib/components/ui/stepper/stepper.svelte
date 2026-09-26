@@ -64,7 +64,7 @@
 				<span
 					aria-hidden="true"
 					class={cn(
-						'pointer-events-none absolute transition-[background] duration-300 ease-out',
+						'pointer-events-none absolute transition-[background] duration-(--duration-slow) ease-out',
 						completed ? 'bg-primary' : 'bg-border',
 						isVertical
 							? 'top-10 bottom-1 left-[1.125rem] w-0.5 -translate-x-1/2'
@@ -81,7 +81,7 @@
 						onclick={() => go(i)}
 						aria-label={step.label}
 						class={cn(
-							'focus-visible:ring-ring focus-visible:ring-offset-background relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm font-semibold transition-[background,color,box-shadow] duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]',
+							'focus-visible:ring-ring focus-visible:ring-offset-background relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm font-semibold transition-[background,color,box-shadow] duration-(--duration-base) ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]',
 							completed && 'bg-primary text-primary-foreground shadow-sm',
 							active &&
 								'bg-primary text-primary-foreground ring-offset-background ring-2 ring-[color:var(--primary)] ring-offset-2',
@@ -98,7 +98,7 @@
 					<span
 						aria-hidden="true"
 						class={cn(
-							'relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm font-semibold transition-[background,color,box-shadow] duration-200 ease-out',
+							'relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm font-semibold transition-[background,color,box-shadow] duration-(--duration-base) ease-out',
 							completed && 'bg-primary text-primary-foreground shadow-sm',
 							active &&
 								'bg-primary text-primary-foreground ring-offset-background ring-2 ring-[color:var(--primary)] ring-offset-2',
@@ -122,7 +122,7 @@
 			>
 				<span
 					class={cn(
-						'block text-sm font-semibold transition-colors duration-200',
+						'block text-sm font-semibold transition-colors duration-(--duration-fast)',
 						active ? 'text-foreground' : completed ? 'text-foreground' : 'text-muted-foreground'
 					)}
 				>

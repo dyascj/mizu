@@ -16,7 +16,7 @@
 
 <CollapsiblePrimitive.Content
 	bind:ref
-	class="overflow-hidden text-sm transition-[height] duration-200 ease-out data-[state=closed]:h-0 data-[state=open]:h-[var(--bits-collapsible-content-height)]"
+	class="overflow-hidden text-sm transition-[height] duration-(--duration-base) ease-out data-[state=closed]:h-0 data-[state=open]:h-[var(--bits-collapsible-content-height)]"
 	{...restProps}
 >
 	<div class={cn('pt-2', className)}>

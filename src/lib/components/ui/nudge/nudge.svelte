@@ -62,7 +62,7 @@
 
 <style>
 	:global(.nudge-in) {
-		animation: nudge-in 320ms cubic-bezier(0.21, 1.02, 0.73, 1) both;
+		animation: nudge-in var(--duration-spring) var(--ease-spring) both;
 	}
 
 	@keyframes nudge-in {

@@ -49,7 +49,7 @@
 
 <style>
 	:global(.bubble-in) {
-		animation: bubble-in 220ms ease-out both;
+		animation: bubble-in var(--duration-base) var(--ease-out) both;
 	}
 
 	@keyframes bubble-in {
