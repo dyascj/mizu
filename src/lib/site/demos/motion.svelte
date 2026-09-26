@@ -54,10 +54,14 @@
 			style="background: radial-gradient(18rem circle at var(--pointer-x) var(--pointer-y), color-mix(in oklab, var(--foreground) 7%, transparent), transparent 70%)"
 		></div>
 		<span {@attach magnetic()} class="relative inline-flex">
-			<Button size="lg"><Sparkles class="size-4" /> Generate</Button>
+			<Button size="lg">
+				<span data-magnetic-content class="inline-flex items-center gap-2">
+					<Sparkles class="size-4" /> Generate
+				</span>
+			</Button>
 		</span>
 		<p class="text-muted-foreground relative text-center text-sm">
-			The light follows your pointer.<br />The button leans toward it.
+			The light follows your pointer.<br />The button stretches toward it.
 		</p>
 	</div>
 </div>

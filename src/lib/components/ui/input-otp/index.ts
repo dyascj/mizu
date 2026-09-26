@@ -2,6 +2,7 @@ import Root from './input-otp.svelte';
 import Slot from './input-otp-slot.svelte';
 import Separator from './input-otp-separator.svelte';
 
+export type { InputOTPStatus } from './context.js';
 export {
 	Root,
 	Slot,

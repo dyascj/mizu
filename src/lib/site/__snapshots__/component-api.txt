@@ -19,6 +19,10 @@ alert-dialog-trigger.svelte extends WithoutChild<AlertDialog.TriggerProps> | ref
 alert-dialog.svelte extends AlertDialog.RootProps | 
 # aspect-ratio
 aspect-ratio.svelte extends AspectRatio.RootProps | ref?: unknown = null bindable, ratio?: unknown = 1, children: unknown
+# async-button
+async-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick'> | action: () => Promise<unknown> | unknown, onSuccess?: (result: unknown) => void, onError?: (error: unknown) => void, retryLabel?: string = 'Try again', pendingLabel?: string = 'Working', successLabel?: string = 'Done', errorLabel?: string = "Couldn't finish. Try again.", timeout?: number = 1500, variant?: 'primary' | 'secondary' = 'primary', size?: 'sm' | 'md' | 'lg' = 'md', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string, children: Snippet
+# audio-player
+audio-player.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'title'> | title: string, subtitle?: string, src?: string, duration: number, chapters?: AudioChapter[], peaks?: number[], cover?: Snippet, class?: string, ref?: HTMLDivElement | null = null bindable
 # aura-tile
 aura-tile.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | seed: string, selected?: boolean = false, class?: string, ref?: HTMLDivElement | null = null bindable
 # aurora
@@ -26,9 +30,20 @@ aurora.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | colors?
 # avatar
 avatar-fallback.svelte extends Avatar.FallbackProps | ref?: unknown = null bindable, class: unknown, children: unknown
 avatar-image.svelte extends Avatar.ImageProps | ref?: unknown = null bindable, class: unknown
-avatar.svelte extends Avatar.RootProps | ref?: unknown = null bindable, class: unknown, loadingStatus?: unknown = 'loading' bindable, children: unknown
+avatar-status.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | status: AvatarPresence, label?: string, ref?: HTMLSpanElement | null = null bindable, class?: string
+avatar.svelte extends Avatar.RootProps | ref?: unknown = null bindable, class: unknown, loadingStatus?: unknown = 'loading' bindable, status?: AvatarPresence, statusLabel?: string, frameClass?: string, children: unknown
+# avatar-stack
+avatar-stack.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | people: AvatarStackPerson[], max?: number = 5, size?: number = 40, label?: string = 'Members', onSelect?: (person: AvatarStackPerson) => void, onMore?: (hidden: AvatarStackPerson[]) => void, ref?: HTMLDivElement | null = null bindable, class?: string, onpointerenter: unknown, onpointerleave: unknown, onfocusin: unknown, onfocusout: unknown, onkeydown: unknown
+# back-to-top
+back-to-top.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick'> | target?: HTMLElement | null, showAfter?: number = 0.12, label?: string = 'Back to top', onArrive?: () => void, ref?: HTMLButtonElement | null = null bindable, class?: string
 # badge
 badge.svelte extends HTMLAttributes<HTMLSpanElement> | variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'destructive' | 'info' | 'outline' = 'primary', class?: string, children?: Snippet
+# banner
+banner.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | open?: boolean = true bindable, onDismiss?: () => void, returnFocus?: HTMLElement | string, dismissible?: boolean = true, label?: string = 'Announcement', dismissLabel?: string = 'Dismiss announcement', variant?: 'primary' | 'secondary' = 'primary', icon?: Snippet, action?: Snippet, children: Snippet, ref?: HTMLElement | null = null bindable, class?: string
+# bar-chart
+bar-chart.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | data: BarChartDatum[], label: string, max?: number, ticks?: number[], format?: (value: number) => string = (value)=> String(value), unit?: string, height?: number = 180, ref?: HTMLDivElement | null = null bindable, class?: string
+# bookmark-button
+bookmark-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick' | 'value'> | saved?: boolean = false bindable, onSavedChange?: (saved: boolean) => void, count?: number, label?: string = 'Save', savedLabel?: string = 'Saved', locale?: string, format?: Intl.NumberFormatOptions, variant?: 'secondary' | 'ghost' = 'secondary', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string
 # breadcrumb
 breadcrumb-ellipsis.svelte extends HTMLAttributes<HTMLSpanElement> | class?: string
 breadcrumb-item.svelte extends HTMLAttributes<HTMLLIElement> | class?: string, children?: Snippet
@@ -36,6 +51,7 @@ breadcrumb-link.svelte extends HTMLAnchorAttributes | class?: string, ref?: HTML
 breadcrumb-list.svelte extends HTMLAttributes<HTMLOListElement> | class?: string, children?: Snippet
 breadcrumb-page.svelte extends HTMLAttributes<HTMLSpanElement> | class?: string, children?: Snippet
 breadcrumb-separator.svelte extends HTMLAttributes<HTMLLIElement> | class?: string, children?: Snippet
+breadcrumb-trail.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | items: BreadcrumbCrumb[], onNavigate?: (item: BreadcrumbCrumb, index: number) => void, ref?: HTMLDivElement | null = null bindable, class?: string
 breadcrumb.svelte extends HTMLAttributes<HTMLElement> | class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
 # button
 button.svelte extends HTMLButtonAttributes & HTMLAnchorAttributes | variant?: 'primary' | 'secondary' | 'destructive' | 'success' | 'outline' | 'ghost' | 'ai' | 'link' = 'primary', size?: 'sm' | 'md' | 'lg' | 'icon' = 'md', class?: string, href?: string = undefined, ref?: HTMLElement | null = null bindable, children?: Snippet, disabled?: boolean = false
@@ -45,7 +61,7 @@ button-group.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, ref
 # calendar
 calendar-caption.svelte | captionLayout: ComponentProps<typeof Calendar>['captionLayout'], months: ComponentProps<typeof CalendarMonthSelect>['months'], monthFormat: ComponentProps<typeof CalendarMonthSelect>['monthFormat'], years: ComponentProps<typeof CalendarYearSelect>['years'], yearFormat: ComponentProps<typeof CalendarYearSelect>['yearFormat'], month: DateValue, locale: string, placeholder: DateValue | undefined bindable, monthIndex: number = 0
 calendar-cell.svelte extends Calendar.CellProps | ref?: unknown = null bindable, class: unknown
-calendar-day.svelte extends Calendar.DayProps | ref?: unknown = null bindable, class: unknown
+calendar-day.svelte extends Calendar.DayProps | ref?: unknown = null bindable, class: unknown, children: unknown
 calendar-grid-body.svelte extends Calendar.GridBodyProps | ref?: unknown = null bindable, class: unknown
 calendar-grid-head.svelte extends Calendar.GridHeadProps | ref?: unknown = null bindable, class: unknown
 calendar-grid-row.svelte extends Calendar.GridRowProps | ref?: unknown = null bindable, class: unknown
@@ -59,8 +75,11 @@ calendar-months.svelte extends WithElementRef<HTMLAttributes<HTMLDivElement>> | 
 calendar-nav.svelte extends WithElementRef<HTMLAttributes<HTMLElement>> | ref?: unknown = null bindable, class: unknown, children: unknown
 calendar-next-button.svelte extends Calendar.NextButtonProps | ref?: unknown = null bindable, class: unknown, children: unknown, variant?: ButtonVariant = 'ghost'
 calendar-prev-button.svelte extends Calendar.PrevButtonProps | ref?: unknown = null bindable, class: unknown, children: unknown, variant?: ButtonVariant = 'ghost'
+calendar-slide.svelte extends WithElementRef<HTMLAttributes<HTMLDivElement>> | ref?: unknown = null bindable, month: DateValue, class?: string, children: Snippet
 calendar-year-select.svelte extends WithoutChildrenOrChild<Calendar.YearSelectProps> | ref?: unknown = null bindable, class: unknown, value: unknown
-calendar.svelte | ref?: unknown = null bindable, value: unknown bindable, placeholder: unknown bindable, class: unknown, weekdayFormat?: unknown = 'short', buttonVariant?: unknown = 'ghost', captionLayout?: unknown = 'label', locale?: unknown = 'en-US', months: unknown, years: unknown, monthFormat: unknown, yearFormat?: unknown = 'numeric', day: unknown, disableDaysOutsideMonth?: unknown = false, type?: unknown = 'single'
+calendar.svelte extends Record<string, unknown> | ref?: HTMLElement | null = null bindable, value?: DateValue | DateValue[] bindable, placeholder?: DateValue bindable, class?: string, weekdayFormat?: 'narrow' | 'short' | 'long' = 'short', buttonVariant?: ButtonVariant = 'ghost', captionLayout?: 'dropdown' | 'dropdown-months' | 'dropdown-years' | 'label' = 'label', locale?: string = 'en-US', months?: Calendar.MonthSelectProps['months'], years?: Calendar.YearSelectProps['years'], monthFormat?: Calendar.MonthSelectProps['monthFormat'], yearFormat?: Calendar.YearSelectProps['yearFormat'] = 'numeric', day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>, disableDaysOutsideMonth?: boolean = false, type?: 'single' | 'multiple' = 'single'
+# call-controls
+call-controls.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | name: string, phase?: CallPhase = 'incoming' bindable, onPhaseChange?: (phase: CallPhase) => void, muted?: boolean = false bindable, speaker?: boolean = false bindable, seconds?: number, incomingLabel?: string = 'Incoming voice call', avatar?: Snippet, class?: string, ref?: HTMLDivElement | null = null bindable
 # card
 card-content.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
 card-description.svelte extends HTMLAttributes<HTMLParagraphElement> | class?: string, children?: Snippet
@@ -73,18 +92,32 @@ carousel-content.svelte extends HTMLAttributes<HTMLDivElement> | class?: string,
 carousel-item.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
 carousel-next.svelte extends HTMLButtonAttributes | variant?: ButtonVariant = 'secondary', class?: string, ref?: HTMLButtonElement | null = null bindable
 carousel-previous.svelte extends HTMLButtonAttributes | variant?: ButtonVariant = 'secondary', class?: string, ref?: HTMLButtonElement | null = null bindable
-carousel.svelte extends HTMLAttributes<HTMLDivElement> | opts?: CarouselOptions = {}, plugins?: CarouselPlugins[] = [], orientation?: CarouselOrientation = 'horizontal', setApi?: (api: CarouselApi | undefined) => void = ()=> {}, class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
+carousel.svelte extends HTMLAttributes<HTMLDivElement> | opts?: CarouselOptions = {}, plugins?: CarouselPlugins[] = [], orientation?: CarouselOrientation = 'horizontal', setApi?: (api: CarouselApi | undefined) => void = ()=> {}, effect?: 'none' | 'focus' = 'none', class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
+# carousel-3d
+carousel-3d.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | items: Carousel3dItem[], label: string, index?: number = 0 bindable, onIndexChange?: (index: number) => void, previousLabel?: string = 'Previous card', nextLabel?: string = 'Next card', ref?: HTMLDivElement | null = null bindable, class?: string
 # chat-bubble
 chat-bubble.svelte extends HTMLAttributes<HTMLDivElement> | role?: 'user' | 'assistant' = 'assistant', animate?: boolean = true, class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
 # chat-input
 chat-input.svelte | value?: string = '' bindable, placeholder?: string = 'Type a message...', label?: string = 'Message', onAttach?: () => void, onVoice?: () => void, disabled?: boolean = false, onSubmit?: (message: string) => void, leading?: Snippet, trailing?: Snippet, class?: string, ref?: HTMLInputElement | null = null bindable
 # checkbox
+checkbox-group.svelte extends WithoutChildrenOrChild<Checkbox.GroupProps> | ref?: HTMLElement | null = null bindable, value?: string[] = [] bindable, onValueChange?: (value: string[]) => void, rangeSelect?: boolean = true, class?: string, children?: Snippet
 checkbox.svelte extends WithoutChildrenOrChild<Checkbox.RootProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, indeterminate?: unknown = false bindable, class?: string
+# checklist
+checklist.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children' | 'title'> | tasks: ChecklistTask[], done?: string[] = [] bindable, open?: string[] = [] bindable, title?: string = 'Get started', progressLabel?: string = 'Setup progress', level?: 2 | 3 | 4 | 5 = 3, onAction?: (task: ChecklistTask) => void, onToggle?: (task: ChecklistTask, done: boolean) => void, onComplete?: () => void, onDismiss?: () => void, finishedTitle?: string = "You're all set", finishedDescription?: string = 'Everything is ready. You can find these steps again in settings.', dismissLabel?: string = 'Dismiss', finished?: Snippet, ref?: HTMLElement | null = null bindable, class?: string
 # circular-gauge
-circular-gauge.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | value: number, size?: number = 120, strokeWidth?: number = 10, label?: string, showValue?: boolean = true, class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
+circular-gauge.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | value: number, variant?: 'ring' | 'ticks' = 'ring', size?: number, strokeWidth?: number = 10, label?: string, showValue?: boolean = true, threshold?: number, highLabel?: string = 'High', peak?: boolean = true, class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
+# code-block
+code-block.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | files: CodeFile[], value?: string bindable, onValueChange?: (name: string) => void, label?: string = 'Files', lineNumbers?: boolean = true, ref?: HTMLDivElement | null = null bindable, class?: string
+# code-morph
+code-morph.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | steps: CodeMorphStep[], step?: number = 0 bindable, onStepChange?: (step: number) => void, label?: string = 'Code steps', ref?: HTMLDivElement | null = null bindable, class?: string
 # collapsible
 collapsible-content.svelte extends WithoutChildrenOrChild<Collapsible.ContentProps> | ref?: unknown = null bindable, class?: string, children: Snippet
 collapsible-trigger.svelte extends Collapsible.TriggerProps | ref?: unknown = null bindable
+# color-picker
+color-picker.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | value?: string = '#5B8DEF' bindable, onValueChange?: (hex: string) => void, onValueCommit?: (hex: string) => void, recent?: string[] bindable, maxRecent?: number = 8, alpha?: boolean = true, ref?: HTMLDivElement | null = null bindable, class?: string
+# color-swatches
+color-swatches-flood.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children' | 'color'> | color: string, origin?: number = 0.5, order?: number = 0, ref?: HTMLSpanElement | null = null bindable, class?: string, children?: Snippet
+color-swatches.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | swatches: Swatch[], value?: string bindable, onValueChange?: (name: string) => void, label?: string, name?: string, disabled?: boolean = false, ref?: HTMLDivElement | null = null bindable, class?: string
 # combobox
 combobox-content.svelte extends WithoutChildrenOrChild<Combobox.ContentProps> | id?: unknown = `mizu-combobox-${uid}`, ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 6, portalProps?: Combobox.PortalProps, children: Snippet
 combobox-group-heading.svelte extends Combobox.GroupHeadingProps | ref?: unknown = null bindable, class?: string
@@ -94,28 +127,44 @@ combobox-item.svelte extends WithoutChild<Combobox.ItemProps> | ref?: unknown = 
 combobox-trigger.svelte extends WithoutChildrenOrChild<Combobox.TriggerProps> | ref?: unknown = null bindable, class?: string
 combobox.svelte extends Combobox.RootProps | value: unknown bindable, open?: unknown = false bindable
 # command
-command-dialog.svelte extends WithoutChildrenOrChild<Command.RootProps> | open?: boolean = false bindable, value?: unknown = '' bindable, title?: string = 'Command menu', description?: string = 'Search for a command to run.', class?: string, children: Snippet
+command-dialog.svelte extends WithoutChildrenOrChild<Command.RootProps> | open?: boolean = false bindable, value?: unknown = '' bindable, title?: string = 'Command menu', description?: string = 'Search for a command to run.', shortcut?: string, class?: string, children: Snippet
 command-empty.svelte extends WithoutChildrenOrChild<Command.EmptyProps> | ref?: unknown = null bindable, class?: string, children: Snippet
 command-group.svelte extends WithoutChildrenOrChild<Command.GroupProps> | ref?: unknown = null bindable, class?: string, heading?: string, children: Snippet
 command-input.svelte extends WithoutChildrenOrChild<Command.InputProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, class?: string
 command-item.svelte extends WithoutChildrenOrChild<Command.ItemProps> | ref?: unknown = null bindable, class?: string, children: Snippet
 command-list.svelte extends WithoutChildrenOrChild<Command.ListProps> | ref?: unknown = null bindable, class?: string, children: Snippet
+command-match.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | text: string, class?: string
 command-separator.svelte extends Command.SeparatorProps | ref?: unknown = null bindable, class?: string
 command-shortcut.svelte extends HTMLAttributes<HTMLSpanElement> | class?: string, children: Snippet
 command.svelte extends WithoutChildrenOrChild<Command.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, class?: string, children: Snippet
+# compare-slider
+compare-slider.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | before: Snippet, after: Snippet, value?: number = 50 bindable, onValueChange?: (value: number) => void, step?: number = 5, label?: string = 'Comparison position', beforeLabel?: string = 'Before', afterLabel?: string = 'After', showLabels?: boolean = true, ref?: HTMLDivElement | null = null bindable, class?: string
+# confetti
+confetti-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick'> | onCelebrate?: (kind: 'pop' | 'blast') => void, hold?: boolean = true, duration?: number = 1500, colors?: string[], celebratedLabel?: string = 'Celebrated', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string, children: Snippet
+# confirm-popover
+confirm-popover.svelte extends TriggerProps | title: string, description?: string, confirmLabel?: string = 'Delete', cancelLabel?: string = 'Cancel', doneLabel?: string, announcement?: string, onConfirm: () => void, variant?: 'destructive' | 'primary' = 'destructive', resetAfter?: number = durations.ambient, side?: 'top' | 'bottom' = 'bottom', align?: 'start' | 'center' | 'end' = 'center', open?: boolean = false bindable, disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string, contentClass?: string, children?: Snippet
 # context-menu
 context-menu-checkbox-item.svelte extends WithoutChildrenOrChild<ContextMenu.CheckboxItemProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, indeterminate?: unknown = false bindable, class: unknown, children?: Snippet
 context-menu-content.svelte extends WithoutChild<ContextMenu.ContentProps> | ref?: unknown = null bindable, class: unknown, portalProps?: ContextMenu.PortalProps
-context-menu-item.svelte extends WithoutChild<ContextMenu.ItemProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean
+context-menu-item.svelte extends WithoutChild<ContextMenu.ItemProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean, variant?: 'default' | 'destructive' = 'default'
 context-menu-label.svelte extends HTMLAttributes<HTMLDivElement> | ref?: HTMLDivElement | null = null bindable, class: unknown, inset?: boolean, children?: Snippet
 context-menu-radio-item.svelte extends WithoutChildrenOrChild<ContextMenu.RadioItemProps> | ref?: unknown = null bindable, class: unknown, children?: Snippet
 context-menu-separator.svelte extends ContextMenu.SeparatorProps | ref?: unknown = null bindable, class: unknown
 context-menu-shortcut.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTMLSpanElement | null = null bindable, class: unknown
 context-menu-sub-content.svelte extends ContextMenu.SubContentProps | ref?: unknown = null bindable, class: unknown
 context-menu-sub-trigger.svelte extends WithoutChild<ContextMenu.SubTriggerProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean, children: unknown
+context-menu-trigger.svelte extends ContextMenu.TriggerProps | ref?: unknown = null bindable
+# conversation
+conversation-message.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'role'> | role: 'user' | 'assistant', grouped?: boolean = false, author?: string, class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
+conversation.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | label?: string = 'Conversation', typing?: boolean = false, typingLabel?: string = 'Assistant is typing', jumpLabel?: string = 'New message', class?: string, ref?: HTMLDivElement | null = null bindable, viewport?: HTMLDivElement | null = null bindable, children?: Snippet
 # copy-button
-copy-button.svelte extends Omit<HTMLButtonAttributes, 'value' | 'children' | 'onclick'> | value: string, label?: string = 'Copy', timeout?: number = 1600, onCopy?: (value: string) => void, variant?: 'ghost' | 'secondary' = 'ghost', size?: 'sm' | 'md' = 'md', ref?: HTMLButtonElement | null = null bindable, class?: string
+copy-button.svelte extends Omit<HTMLButtonAttributes, 'value' | 'children' | 'onclick'> | value: string, label?: string = 'Copy', timeout?: number = 1600, onCopy?: (value: string) => void, variant?: 'ghost' | 'secondary' = 'ghost', size?: 'sm' | 'md' = 'md', mode?: 'icon' | 'text' = 'icon', text?: string, copiedText?: string = 'Copied', failedText?: string = 'Copy failed', ref?: HTMLButtonElement | null = null bindable, class?: string
 # data-table
+data-table-body.svelte extends HTMLAttributes<HTMLTableSectionElement> | ref?: HTMLTableSectionElement | null = null bindable, class?: string, children?: Snippet
+data-table-bulk-action.svelte extends HTMLButtonAttributes | icon?: Component<LucideProps>, doneLabel?: string, ref?: HTMLButtonElement | null = null bindable, class?: string, children?: Snippet, onclick: unknown
+data-table-bulk-bar.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | count: number, countLabel?: (count: number) => string = (n)=> `${n} selected`, onClear?: () => void, label?: string = 'Bulk actions', ref?: HTMLDivElement | null = null bindable, class?: string, children?: Snippet
+data-table-row.svelte extends HTMLAttributes<HTMLTableRowElement> | selected?: boolean = false, onSelect?: () => void, class?: string, children?: Snippet, onclick: unknown
+data-table-sort-button.svelte extends Omit<HTMLButtonAttributes, 'children'> | column: SortableColumn, align?: 'start' | 'end' = 'start', ref?: HTMLButtonElement | null = null bindable, class?: string, children: Snippet, onclick: unknown
 # date-picker
 date-picker-content.svelte extends WithoutChildrenOrChild<DatePicker.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 8, portalProps?: DatePicker.PortalProps
 date-picker-day.svelte extends WithoutChild<DatePicker.DayProps> | ref?: unknown = null bindable, class?: string
@@ -132,17 +181,25 @@ dialog-header.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, re
 dialog-overlay.svelte extends WithoutChild<Dialog.OverlayProps> | ref?: unknown = null bindable, class?: string
 dialog-title.svelte extends WithoutChild<Dialog.TitleProps> | ref?: unknown = null bindable, class?: string
 dialog-trigger.svelte extends WithoutChild<Dialog.TriggerProps> | ref?: unknown = null bindable, class?: string
-dialog.svelte extends Dialog.RootProps | 
+dialog.svelte extends Dialog.RootProps | open?: unknown = false bindable
 # dock
-dock-item.svelte extends HTMLButtonAttributes & HTMLAnchorAttributes | label?: string, href?: string = undefined, class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
+dock-item.svelte extends HTMLButtonAttributes & HTMLAnchorAttributes | label?: string, href?: string = undefined, running?: boolean bindable, onLaunch?: () => void, class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
 dock.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | magnification?: number = 1.6, distance?: number = 110, class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
+# donut-chart
+donut-chart.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | data: DonutSlice[], label: string, totalLabel?: string = 'Total', format?: (value: number) => string, locale?: string, ref?: HTMLDivElement | null = null bindable, class?: string
+# dot-grid
+dot-grid.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | children?: Snippet, spacing?: number = 16, ref?: HTMLDivElement | null = null bindable, class?: string
+# download-button
+download-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick'> | status: DownloadStatus, progress: number, onStart: () => void, onCancel: () => void, onReset: () => void, label?: string = 'Download', doneLabel?: string = 'Done', cancelLabel?: string = 'Cancel', timeout?: number = 1800, ref?: HTMLButtonElement | null = null bindable, class?: string
+# drag-select
+drag-select.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | items: T[], selected?: string[] = [] bindable, onSelectionChange?: (selected: string[]) => void, label: string, children: Snippet<[T, { selected: boolean }]>, actions?: Snippet<[string[]]>, tileWidth?: string = '6.5rem', ref?: HTMLDivElement | null = null bindable, class?: string
 # drawer
 drawer-close.svelte extends DrawerPrimitive.CloseProps | ref?: unknown = null bindable
 drawer-content.svelte extends DrawerPrimitive.ContentProps | ref?: unknown = null bindable, class: unknown, portalProps?: WithoutChildrenOrChild<ComponentProps<typeof DrawerPortal>>, children: unknown
 drawer-description.svelte extends DrawerPrimitive.DescriptionProps | ref?: unknown = null bindable, class: unknown
 drawer-footer.svelte extends WithElementRef<HTMLAttributes<HTMLDivElement>> | ref?: unknown = null bindable, class: unknown, children: unknown
 drawer-header.svelte extends WithElementRef<HTMLAttributes<HTMLDivElement>> | ref?: unknown = null bindable, class: unknown, children: unknown
-drawer-nested.svelte extends DrawerPrimitive.RootProps | shouldScaleBackground?: unknown = true, open?: unknown = false bindable, activeSnapPoint?: unknown = null bindable
+drawer-nested.svelte extends DrawerPrimitive.RootProps | shouldScaleBackground?: unknown = true, open?: unknown = false bindable, activeSnapPoint?: unknown = null bindable, onDrag: unknown
 drawer-overlay.svelte extends DrawerPrimitive.OverlayProps | ref?: unknown = null bindable, class: unknown
 drawer-portal.svelte extends DrawerPrimitive.PortalProps | 
 drawer-title.svelte extends DrawerPrimitive.TitleProps | ref?: unknown = null bindable, class: unknown
@@ -151,19 +208,30 @@ drawer.svelte extends DrawerPrimitive.RootProps | shouldScaleBackground?: unknow
 # dropdown-menu
 dropdown-menu-checkbox-item.svelte extends WithoutChildrenOrChild<DropdownMenu.CheckboxItemProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, indeterminate?: unknown = false bindable, class: unknown, children?: Snippet
 dropdown-menu-content.svelte extends WithoutChild<DropdownMenu.ContentProps> | ref?: unknown = null bindable, class: unknown, sideOffset?: unknown = 6, portalProps?: DropdownMenu.PortalProps
-dropdown-menu-item.svelte extends WithoutChild<DropdownMenu.ItemProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean
+dropdown-menu-item.svelte extends WithoutChild<DropdownMenu.ItemProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean, variant?: 'default' | 'destructive' = 'default'
 dropdown-menu-label.svelte extends HTMLAttributes<HTMLDivElement> | ref?: HTMLDivElement | null = null bindable, class: unknown, inset?: boolean, children?: Snippet
 dropdown-menu-radio-item.svelte extends WithoutChildrenOrChild<DropdownMenu.RadioItemProps> | ref?: unknown = null bindable, class: unknown, children?: Snippet
 dropdown-menu-separator.svelte extends DropdownMenu.SeparatorProps | ref?: unknown = null bindable, class: unknown
 dropdown-menu-shortcut.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTMLSpanElement | null = null bindable, class: unknown
 dropdown-menu-sub-content.svelte extends DropdownMenu.SubContentProps | ref?: unknown = null bindable, class: unknown
 dropdown-menu-sub-trigger.svelte extends WithoutChild<DropdownMenu.SubTriggerProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean, children: unknown
+# dynamic-island
+dynamic-island-activity.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | name: string, shape?: IslandShape = 'pill', label?: string, ref?: HTMLDivElement | null = null bindable, class?: string, children: Snippet
+dynamic-island.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | activity: string, paused?: boolean = false, reserve?: number, ref?: HTMLDivElement | null = null bindable, class?: string, children: Snippet
+# email-input
+email-input.svelte extends Omit<HTMLInputAttributes, 'type' | 'value' | 'children' | 'class'> | value?: string = '' bindable, onValueChange?: (value: string) => void, hint?: string, domains?: string[], invalid?: boolean = false, ref?: HTMLInputElement | null = null bindable, id: unknown, placeholder?: unknown = 'you@company.com', class?: string
 # empty
 empty-content.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
 empty-description.svelte extends HTMLAttributes<HTMLParagraphElement> | class?: string, children?: Snippet
 empty-media.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
 empty-title.svelte extends HTMLAttributes<HTMLHeadingElement> | class?: string, children?: Snippet
 empty.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
+# expanding-card
+expanding-card.svelte extends Omit<HTMLButtonAttributes, 'children' | 'title'> | title: string, meta?: string, summary?: string, open?: boolean = false bindable, onOpenChange?: (open: boolean) => void, closeLabel?: string = 'Close', ref?: HTMLButtonElement | null = null bindable, class?: string, dialogClass?: string, children?: Snippet, onclick: unknown
+# expanding-search
+expanding-search.svelte extends Omit<HTMLAttributes<HTMLFormElement>, 'onsubmit' | 'children'> | value?: string = '' bindable, open?: boolean = false bindable, label?: string = 'Search', placeholder?: string = 'Search', width?: number = 280, shortcut?: string | null = '/', onSearch?: (query: string) => void, onOpenChange?: (open: boolean) => void, ref?: HTMLFormElement | null = null bindable, class?: string
+# feedback-prompt
+feedback-prompt.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | question?: string = 'Was this helpful?', placeholder?: string = 'What was missing?', onAnswer?: (helpful: boolean, note?: string) => void, onUndo?: () => void, maxLength?: number = 200, class?: string, ref?: HTMLDivElement | null = null bindable
 # field
 field-description.svelte extends HTMLAttributes<HTMLParagraphElement> | class?: string, children?: Snippet
 field-error.svelte extends HTMLAttributes<HTMLParagraphElement> | class?: string, children?: Snippet
@@ -172,12 +240,36 @@ field-label.svelte extends HTMLLabelAttributes | class?: string, children?: Snip
 field-legend.svelte extends HTMLAttributes<HTMLLegendElement> | class?: string, children?: Snippet
 field-set.svelte extends HTMLFieldsetAttributes | class?: string, children?: Snippet
 field.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
+# file-dropzone
+file-dropzone.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | files?: File[] = [] bindable, onFilesAdded?: (files: File[]) => void, onFilesRejected?: (files: File[]) => void, onFileRemove?: (file: File) => void, accept?: string, multiple?: boolean = true, progress?: (file: File) => number | undefined, label?: string = 'Drop files here or click to browse', releaseLabel?: string = 'Release to add', hint?: string, disabled?: boolean = false, ref?: HTMLDivElement | null = null bindable, class?: string, zoneClass?: string
+# flip-card
+flip-card.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | front: Snippet, back: Snippet, flipped?: boolean = false bindable, onFlippedChange?: (flipped: boolean) => void, frontLabel?: string = 'Show back', backLabel?: string = 'Show front', maxTilt?: number = 6, ref?: HTMLDivElement | null = null bindable, class?: string
+# floating-label
+floating-label.svelte extends Omit<HTMLInputAttributes, 'value' | 'children' | 'class' | 'placeholder'> | label: string, value?: string = '' bindable, type?: 'text' | 'email' | 'tel' | 'url' | 'search' = 'text', validate?: (value: string) => string | null, error?: string | null = null, onValueChange?: (value: string) => void, ref?: HTMLInputElement | null = null bindable, id: unknown, class?: string
+# follow-button
+follow-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick' | 'value'> | following?: boolean = false bindable, onFollowingChange?: (following: boolean) => void, name?: string, label?: string = 'Follow', followingLabel?: string = 'Following', unfollowLabel?: string = 'Unfollow', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string, onpointerenter: unknown, onpointerleave: unknown
+# greeting
+greeting.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | name?: string, date?: Date, words?: Partial<GreetingWords>, as?: 'p' | 'h1' | 'h2' | 'h3' = 'p', class?: string, ref?: HTMLElement | null = null bindable
+# heatmap
+heatmap.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | data: HeatmapDay[], label?: string, thresholds?: number[] = [1, 4, 7, 10], unit?: string = 'contribution', units?: string, legend?: boolean = true, locale?: string, ref?: HTMLDivElement | null = null bindable, class?: string
+# highlight
+highlight.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | children: Snippet, tone?: 'primary' | 'aurora' | 'aurora-cool' | 'aurora-iris' | 'aurora-mint' = 'primary', trigger?: 'view' | 'mount' = 'view', delay?: number = duration.slow, onDrawn?: () => void, ref?: HTMLElement | null = null bindable, class?: string
 # hold-button
-hold-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick'> | duration?: number = 1200, onConfirm: () => void, variant?: 'destructive' | 'primary' = 'destructive', size?: 'sm' | 'md' | 'lg' = 'md', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string, children: Snippet
+hold-button-trash.svelte extends Omit<SVGAttributes<SVGSVGElement>, 'children'> | class?: string
+hold-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick'> | duration?: number = 1200, onConfirm: () => void, confirmedLabel?: string, variant?: 'destructive' | 'primary' = 'destructive', size?: 'sm' | 'md' | 'lg' = 'md', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string, children: Snippet
 # hover-card
 hover-card-content.svelte extends WithoutChildrenOrChild<LinkPreview.ContentProps> | ref?: unknown = null bindable, class?: string, side?: unknown = 'bottom', sideOffset?: unknown = 8, align?: unknown = 'center', portalProps?: LinkPreview.PortalProps, children: Snippet
+hover-card-group-trigger.svelte extends Omit<HTMLButtonAttributes, 'children'> | label: string, card: Snippet, children: Snippet, cardClass?: string, ref?: HTMLButtonElement | null = null bindable, class?: string, onclick: unknown, onpointerdown: unknown
+hover-card-group.svelte | openDelay?: number = 500, closeDelay?: number = 150, skipDelayDuration?: number = 300, width?: number = 288, children?: Snippet
 hover-card-trigger.svelte extends WithoutChildrenOrChild<LinkPreview.TriggerProps> | ref?: unknown = null bindable, class?: string, children?: Snippet
 hover-card.svelte extends LinkPreview.RootProps | 
+# icon-morph
+icon-morph-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick' | 'value'> | shape: MorphShapeName | MorphShape, label: string, captions?: [off: string, on: string], pressed?: boolean = false bindable, onPressedChange?: (pressed: boolean) => void, variant?: 'secondary' | 'ghost' = 'secondary', size?: 'sm' | 'md' | 'lg' = 'md', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string
+icon-morph.svelte extends Omit<SVGAttributes<SVGSVGElement>, 'children'> | shape: MorphShapeName | MorphShape, morphed?: boolean = false, strokeWidth?: number = 2, class?: string
+# image-hotspots
+image-hotspots.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | hotspots: Hotspot[], image: Snippet, label: string, aspect?: number = 3 / 4, subject?: HotspotRegion, active?: number | null = null bindable, onActiveChange?: (index: number | null) => void, ref?: HTMLDivElement | null = null bindable, class?: string, onkeydown: unknown
+# inline-edit
+inline-edit.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | value?: string = '' bindable, onSave?: (value: string) => void, label: string, placeholder?: string = '', multiline?: boolean = false, disabled?: boolean = false, savedDuration?: number = 1600, ref?: HTMLDivElement | null = null bindable, class?: string
 # input
 input.svelte extends HTMLInputAttributes | class?: string, ref?: HTMLInputElement | null = null bindable, value?: string | number | null bindable
 # input-group
@@ -187,7 +279,7 @@ input-group.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, ref?
 # input-otp
 input-otp-separator.svelte | class?: string
 input-otp-slot.svelte extends WithoutChildrenOrChild<PinInput.CellProps> | ref?: unknown = null bindable, cell: unknown, class?: string
-input-otp.svelte extends WithoutChildren<PinInput.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, maxlength?: unknown = 6, class?: string, children: NonNullable<PinInput.RootProps['children']>
+input-otp.svelte extends WithoutChildren<PinInput.RootProps> | ref?: unknown = null bindable, inputRef?: unknown = null bindable, value?: unknown = '' bindable, maxlength?: unknown = 6, status?: InputOTPStatus = 'idle' bindable, onVerify?: (code: string) => boolean | Promise<boolean>, errorText?: string = 'Wrong code, try again', successText?: string = 'Code verified', onComplete: unknown, onValueChange: unknown, readonly: unknown, 'aria-invalid': unknown, class?: string, children: NonNullable<PinInput.RootProps['children']>
 # install-prompt
 install-prompt.svelte | title?: string = 'Install the app', description?: string = 'Open it from your home screen, like any other app.', icon?: Snippet, storageKey?: string, onInstall?: (outcome: 'accepted' | 'dismissed') => void, onDismiss?: () => void, forceVisible?: boolean = false, class?: string
 # item
@@ -197,13 +289,29 @@ item-description.svelte extends HTMLAttributes<HTMLParagraphElement> | class?: s
 item-media.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
 item-title.svelte extends HTMLAttributes<HTMLParagraphElement> | class?: string, children?: Snippet
 item.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
+# kanban
+kanban.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onchange'> | columns: KanbanColumn<T>[] bindable, onChange?: (columns: KanbanColumn<T>[]) => void, label: string, getLabel?: (card: T) => string = (card)=> card.id, children: Snippet<[T, KanbanColumn<T>]>, ref?: HTMLDivElement | null = null bindable, class?: string
 # kbd
 kbd-group.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?: Snippet
-kbd.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?: Snippet
+kbd.svelte extends HTMLAttributes<HTMLElement> | match?: string, pressed?: boolean = false, ref?: HTMLElement | null = null bindable, class?: string, children?: Snippet
 # label
 label.svelte extends HTMLLabelAttributes | class?: string, children?: Snippet
+# leaderboard
+leaderboard.svelte extends Omit<HTMLOlAttributes, 'children'> | items: LeaderboardItem[], moves?: Record<string, number> = {}, label?: string = 'Leaderboard', unit?: string = 'points', format?: Intl.NumberFormatOptions, locale?: string, ref?: HTMLOListElement | null = null bindable, class?: string
+# lens
+lens.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | children: Snippet, reveal: Snippet, label: string, description: string, radius?: number = 72, largeRadius?: number = 118, large?: boolean = false bindable, ref?: HTMLDivElement | null = null bindable, class?: string
+# like-button
+like-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick' | 'value'> | liked?: boolean = false bindable, count?: number, onLikedChange?: (liked: boolean) => void, label?: string = 'Like', locale?: string, format?: Intl.NumberFormatOptions, variant?: 'secondary' | 'ghost' = 'secondary', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string
+# link
+link.svelte extends HTMLAnchorAttributes | underline?: 'hover' | 'always' = 'hover', ref?: HTMLAnchorElement | null = null bindable, class?: string, children: Snippet, href?: string
+# link-preview
+link-preview.svelte extends Omit<HTMLAnchorAttributes, 'title'> | href: string, title: string, source?: string, description?: string, image?: Snippet, ref?: HTMLAnchorElement | null = null bindable, class?: string, cardClass?: string, children: Snippet
+# live-indicator
+live-indicator.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | viewers?: number, reconnecting?: boolean = false, label?: string = 'Live', reconnectingLabel?: string = 'Reconnecting', format?: (viewers: number) => string = group, viewersLabel?: (formatted: string) => string = (formatted)=> `about ${formatted} watching`, tone?: 'destructive' | 'success' = 'destructive', paused?: boolean = false, ref?: HTMLSpanElement | null = null bindable, class?: string
+# logo-orbit
+logo-orbit.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | rings: OrbitRing[], children?: Snippet, paused?: boolean = false, onSelect?: (logo: OrbitLogo) => void, ref?: HTMLDivElement | null = null bindable, class?: string
 # marquee
-marquee.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | children: Snippet, direction?: 'left' | 'right' | 'up' | 'down' = 'left', speed?: number = 40, gap?: string = '1rem', pauseOnHover?: boolean = true, paused?: boolean = false, fade?: boolean = true, class?: string, ref?: HTMLDivElement | null = null bindable
+marquee.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | children: Snippet, direction?: 'left' | 'right' | 'up' | 'down' = 'left', speed?: number = 40, gap?: string = '1rem', pauseOnHover?: boolean = true, paused?: boolean = false, fade?: boolean = true, lens?: boolean = false, class?: string, ref?: HTMLDivElement | null = null bindable
 # menubar
 menubar-checkbox-item.svelte extends WithoutChildrenOrChild<Menubar.CheckboxItemProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, indeterminate?: unknown = false bindable, class: unknown, children?: Snippet
 menubar-content.svelte extends WithoutChild<Menubar.ContentProps> | ref?: unknown = null bindable, class: unknown, sideOffset?: unknown = 8, align?: unknown = 'start', portalProps?: Menubar.PortalProps
@@ -219,35 +327,45 @@ menubar.svelte extends Menubar.RootProps | ref?: unknown = null bindable, value?
 # message-actions
 message-actions.svelte | text?: string, onRegenerate?: () => void, onFeedback?: (feedback: 'up' | 'down' | null) => void, class?: string
 # meter
-meter.svelte extends HTMLAttributes<HTMLDivElement> | value: number, min?: number = 0, max?: number = 100, low?: number, high?: number, optimum?: number, label?: string, showValue?: boolean = false, format?: (v: number) => string, class?: string
+meter.svelte extends HTMLAttributes<HTMLDivElement> | value?: number = 0, min?: number = 0, max?: number = 100, low?: number, high?: number, optimum?: number, label?: string, showValue?: boolean = false, format?: (v: number) => string, segments?: MeterSegment[], active?: string | null = null bindable, class?: string
 # motion
 # native-select
 native-select.svelte extends HTMLSelectAttributes | class?: string, ref?: HTMLSelectElement | null = null bindable, value?: string | number | string[] | null bindable, children?: Snippet
 # navigation-menu
-navigation-menu-content.svelte extends WithoutChild<NavigationMenu.ContentProps> | ref?: unknown = null bindable, class?: string
+navigation-menu-content.svelte extends WithoutChild<NavigationMenu.ContentProps> | ref?: unknown = null bindable, class?: string, children: unknown
 navigation-menu-indicator.svelte extends WithoutChildrenOrChild<NavigationMenu.IndicatorProps> | ref?: unknown = null bindable, class?: string
 navigation-menu-item.svelte extends NavigationMenu.ItemProps | ref?: unknown = null bindable, class?: string
 navigation-menu-link.svelte extends NavigationMenu.LinkProps | ref?: unknown = null bindable, class?: string
 navigation-menu-list.svelte extends WithoutChild<NavigationMenu.ListProps> | ref?: unknown = null bindable, class?: string
 navigation-menu-trigger.svelte extends WithoutChildrenOrChild<NavigationMenu.TriggerProps> | ref?: unknown = null bindable, class?: string, children: Snippet
 navigation-menu-viewport.svelte extends WithoutChild<NavigationMenu.ViewportProps> | ref?: unknown = null bindable, class?: string
-navigation-menu.svelte extends WithoutChild<NavigationMenu.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, class?: string, viewport?: boolean = true, children: Snippet
+navigation-menu.svelte extends WithoutChild<NavigationMenu.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, delayDuration?: number = 80, class?: string, viewport?: boolean = true, children: Snippet
 # network-status
 network-status.svelte | variant?: 'pill' | 'inline' = 'pill', fixed?: boolean = false, offlineLabel?: string = "You're offline. Changes will sync when you reconnect.", onlineLabel?: string = 'Back online', resetAfter?: number = 3000, forceStatus?: 'online' | 'offline', class?: string
+# notification-bell
+notification-bell.svelte extends Omit<WithoutChildrenOrChild<PopoverPrimitive.TriggerProps>, 'ref' | 'class'> | notifications: BellNotification[], readId?: string bindable, open?: boolean = false bindable, onOpenChange?: (open: boolean) => void, label?: string = 'Notifications', max?: number = 9, empty?: string = 'You are all caught up.', item?: Snippet<[notification: BellNotification, unread: boolean]>, contentProps?: Partial<ComponentProps<typeof Popover.Content>>, ref?: HTMLButtonElement | null = null bindable, class?: string
 # nudge
 nudge.svelte | title: string, description?: string, onDismiss?: () => void, icon?: Snippet, actions?: Snippet, class?: string
+# number-input
+number-input.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onchange' | 'oninput'> | min?: number = 0, max?: number = Infinity, value?: number = Number.isFinite(min) ? min : 0 bindable, step?: number = 1, label?: string, id?: string, name?: string, disabled?: boolean = false, locale?: string, format?: Intl.NumberFormatOptions, size?: 'sm' | 'md' = 'md', onValueChange?: (value: number) => void, ref?: HTMLDivElement | null = null bindable, inputRef?: HTMLInputElement | null = null bindable, class?: string
 # number-ticker
-number-ticker.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | value: number, locale?: string, format?: Intl.NumberFormatOptions, class?: string, ref?: HTMLSpanElement | null = null bindable
+number-ticker.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | value: number, locale?: string, format?: Intl.NumberFormatOptions, odometer?: number, class?: string, ref?: HTMLSpanElement | null = null bindable
+# page-dots
+page-dots.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | count: number, index?: number = 0 bindable, progress?: number, onIndexChange?: (index: number) => void, duration?: number, playing?: boolean = false, onElapsed?: () => void, label?: string = 'Pages', ref?: HTMLDivElement | null = null bindable, class?: string
 # pagination
 pagination-content.svelte extends HTMLAttributes<HTMLUListElement> | ref?: HTMLUListElement | null = null bindable, class?: string, children: Snippet
 pagination-ellipsis.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTMLSpanElement | null = null bindable, class?: string
 pagination-item.svelte extends HTMLLiAttributes | ref?: HTMLLIElement | null = null bindable, class?: string, children: Snippet
 pagination-next-button.svelte extends WithoutChild<Pagination.NextButtonProps> | ref?: unknown = null bindable, class?: string, children?: Snippet
 pagination-page.svelte extends WithoutChild<Pagination.PageProps> | ref?: unknown = null bindable, class?: string, page: unknown, children: unknown
+pagination-pages.svelte | slots?: number = 7, class?: string
 pagination-prev-button.svelte extends WithoutChild<Pagination.PrevButtonProps> | ref?: unknown = null bindable, class?: string, children?: Snippet
 pagination.svelte extends Pagination.RootProps | ref?: unknown = null bindable, page?: unknown = 1 bindable, class?: string
+# password-input
+password-input-eye.svelte | open: boolean, input: HTMLInputElement | null
+password-input.svelte extends Omit<HTMLInputAttributes, 'type' | 'value' | 'children' | 'class'> | value?: string = '' bindable, revealed?: boolean = false bindable, onRevealedChange?: (revealed: boolean) => void, onValueChange?: (value: string) => void, strength?: boolean = false, requirements?: Requirement[], capsLockWarning?: boolean = true, invalid?: boolean = false, ref?: HTMLInputElement | null = null bindable, id: unknown, disabled: unknown, autocomplete: unknown, class?: string
 # plan
-plan.svelte | steps: PlanStep[], class?: string, color: transparent, animation: plan-sweep 2s linear infinite
+plan.svelte | steps: PlanStep[], class?: string
 # popover
 popover-close.svelte extends WithoutChild<Popover.CloseProps> | ref?: unknown = null bindable, class?: string
 popover-content.svelte extends WithoutChildrenOrChild<Popover.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 8, portalProps?: Popover.PortalProps, children: Snippet
@@ -259,12 +377,15 @@ presence.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | state
 progress.svelte extends WithoutChildrenOrChild<Progress.RootProps> | ref?: unknown = null bindable, value?: unknown = 0 bindable, max?: unknown = 100, class?: string
 # prompt-suggestions
 prompt-suggestions.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | items: string[], onSelect?: (item: string) => void, class?: string, ref?: HTMLDivElement | null = null bindable
+# pull-to-refresh
+pull-to-refresh.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | onRefresh: () => unknown, threshold?: number = 64, label?: string = 'Feed', refreshLabel?: string = 'Refresh', refreshedLabel?: string = 'Updated', failedLabel?: string = 'Could not refresh', disabled?: boolean = false, refreshing?: boolean = false bindable, ref?: HTMLDivElement | null = null bindable, class?: string, children: Snippet
 # radio-group
+radio-group-card.svelte extends WithoutChildrenOrChild<RadioGroup.ItemProps> | ref?: HTMLElement | null = null bindable, class?: string, children?: Snippet
 radio-group-item.svelte extends WithoutChildrenOrChild<RadioGroup.ItemProps> | ref?: unknown = null bindable, class?: string
 radio-group.svelte extends RadioGroup.RootProps | ref?: unknown = null bindable, value?: unknown = '' bindable, class?: string, children?: Snippet
 # range-calendar
 range-calendar-caption.svelte | captionLayout: ComponentProps<typeof RangeCalendar>['captionLayout'], months: ComponentProps<typeof RangeCalendarMonthSelect>['months'], monthFormat: ComponentProps<typeof RangeCalendarMonthSelect>['monthFormat'], years: ComponentProps<typeof RangeCalendarYearSelect>['years'], yearFormat: ComponentProps<typeof RangeCalendarYearSelect>['yearFormat'], month: DateValue, locale: string, placeholder: DateValue | undefined bindable, monthIndex: number = 0
-range-calendar-cell.svelte extends RangeCalendar.CellProps | ref?: unknown = null bindable, class: unknown
+range-calendar-cell.svelte extends RangeCalendar.CellProps | ref?: unknown = null bindable, class: unknown, date: unknown, children: unknown
 range-calendar-day.svelte extends RangeCalendar.DayProps | ref?: unknown = null bindable, class: unknown
 range-calendar-grid-body.svelte extends RangeCalendar.GridBodyProps | ref?: unknown = null bindable
 range-calendar-grid-head.svelte extends RangeCalendar.GridHeadProps | ref?: unknown = null bindable
@@ -280,30 +401,48 @@ range-calendar-nav.svelte extends WithElementRef<HTMLAttributes<HTMLElement>> | 
 range-calendar-next-button.svelte extends RangeCalendar.NextButtonProps | ref?: unknown = null bindable, class: unknown, children: unknown, variant?: ButtonVariant = 'ghost'
 range-calendar-prev-button.svelte extends RangeCalendar.PrevButtonProps | ref?: unknown = null bindable, class: unknown, children: unknown, variant?: ButtonVariant = 'ghost'
 range-calendar-year-select.svelte extends WithoutChildrenOrChild<RangeCalendar.YearSelectProps> | ref?: unknown = null bindable, class: unknown, value: unknown
-range-calendar.svelte extends WithoutChildrenOrChild<RangeCalendar.RootProps> | ref?: unknown = null bindable, value: unknown bindable, placeholder: unknown bindable, weekdayFormat?: unknown = 'short', class: unknown, buttonVariant?: ButtonVariant = 'ghost', captionLayout?: 'dropdown' | 'dropdown-months' | 'dropdown-years' | 'label' = 'label', locale?: unknown = 'en-US', months?: RangeCalendar.MonthSelectProps['months'], years?: RangeCalendar.YearSelectProps['years'], monthFormat?: RangeCalendar.MonthSelectProps['monthFormat'], yearFormat?: RangeCalendar.YearSelectProps['yearFormat'] = 'numeric', day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>, disableDaysOutsideMonth?: unknown = false
+range-calendar.svelte extends WithoutChildrenOrChild<RangeCalendar.RootProps> | ref?: unknown = null bindable, value: unknown bindable, placeholder: unknown bindable, weekdayFormat?: unknown = 'short', class: unknown, buttonVariant?: ButtonVariant = 'ghost', captionLayout?: 'dropdown' | 'dropdown-months' | 'dropdown-years' | 'label' = 'label', locale?: unknown = 'en-US', months?: RangeCalendar.MonthSelectProps['months'], years?: RangeCalendar.YearSelectProps['years'], monthFormat?: RangeCalendar.MonthSelectProps['monthFormat'], yearFormat?: RangeCalendar.YearSelectProps['yearFormat'] = 'numeric', day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>, disableDaysOutsideMonth?: unknown = false, onpointerover: unknown, onpointerleave: unknown, onfocusin: unknown, onkeydown: unknown, onValueChange: unknown
 # rating
 rating.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'onchange'> | value?: number = 0 bindable, max?: number = 5, readonly?: boolean = false, disabled?: boolean = false, size?: number = 24, name?: string, allowHalf?: boolean = false, class?: string, onValueChange?: (value: number) => void
+# reactions
+reactions.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | reactions?: Reaction[] = [] bindable, choices: ReactionChoice[], onReact?: (emoji: string, mine: boolean) => void, open?: boolean = false bindable, label?: string = 'Add reaction', ref?: HTMLDivElement | null = null bindable, class?: string
+# reading-progress
+reading-progress.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | target?: HTMLElement | null, words?: number, wordsPerMinute?: number = 220, remainingLabel?: (minutes: number) => string = (minutes: number)=> `${minutes} min left`, finishedLabel?: string = 'Finished', hideLabel?: boolean = false, ref?: HTMLDivElement | null = null bindable, class?: string, children?: Snippet
 # reasoning
 reasoning.svelte | streaming?: boolean = false, label?: string = 'Thinking...', summary?: string = 'Thought about it', open?: boolean = false bindable, class?: string, children?: Snippet
+# relative-time
+relative-time.svelte extends Omit<HTMLTimeAttributes, 'children'> | date: Date | number | string | null, now?: number, locale?: string, ref?: HTMLElement | null = null bindable, class?: string
 # resizable
 resizable-handle.svelte extends PaneResizerProps | ref?: unknown = null bindable, class: unknown, withHandle?: boolean = false
 resizable-pane-group.svelte extends PaneGroupProps | ref?: unknown = null bindable, class: unknown
 resizable-pane.svelte extends PaneProps | ref?: unknown = null bindable
+# save-status
+save-status.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | state: SaveState, savedAt?: Date | number | null = null, now?: number, locale?: string, savingLabel?: string = 'Saving', unsavedLabel?: string = 'Unsaved changes', savedAnnouncement?: string = 'All changes saved', ref?: HTMLDivElement | null = null bindable, class?: string
 # scroll-area
 scroll-area-scrollbar.svelte extends WithoutChild<ScrollArea.ScrollbarProps> | ref?: unknown = null bindable, class?: string, orientation?: unknown = 'vertical'
 scroll-area.svelte extends WithoutChild<ScrollArea.RootProps> | ref?: unknown = null bindable, class?: string, orientation?: 'vertical' | 'horizontal' | 'both' = 'vertical', viewportClass?: string, children: Snippet
+# scroll-spine
+scroll-spine.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | items: ScrollSpineItem[], target?: HTMLElement | null, height?: number = 320, readLine?: number = 0.3, label?: string = 'On this page', onSectionChange?: (id: string) => void, ref?: HTMLElement | null = null bindable, class?: string
 # segmented-control
 segmented-control-item.svelte extends WithoutChildrenOrChild<RadioGroup.ItemProps> | value: string, disabled?: boolean = false, ref?: HTMLElement | null = null bindable, class?: string, children: Snippet
 segmented-control.svelte extends Omit<RadioGroup.RootProps, 'orientation' | 'child' | 'children'> | value?: string = '' bindable, onValueChange?: (value: string) => void, size?: 'sm' | 'md' = 'md', fullWidth?: boolean = false, disabled?: boolean = false, ref?: HTMLElement | null = null bindable, class?: string, children: Snippet
 # select
-select-content.svelte extends WithoutChildrenOrChild<Select.ContentProps> | id?: unknown = `mizu-select-${uid}`, ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 6, children: Snippet
+select-content.svelte extends WithoutChildrenOrChild<Select.ContentProps> | id?: unknown = `mizu-select-${uid}`, ref?: unknown = null bindable, class?: string, position?: 'item-aligned' | 'popper', sideOffset?: unknown = 6, children: Snippet
 select-group.svelte extends Select.GroupProps | ref?: unknown = null bindable, class?: string
 select-item.svelte extends WithoutChild<Select.ItemProps> | ref?: unknown = null bindable, class?: string, value: unknown, label: unknown, children?: Snippet
 select-label.svelte extends Select.GroupHeadingProps | ref?: unknown = null bindable, class?: string
 select-trigger.svelte extends WithoutChildrenOrChild<Select.TriggerProps> | ref?: unknown = null bindable, class?: string, children: Snippet
 select.svelte extends Select.RootProps | value: unknown bindable, open?: unknown = false bindable
+# selection-toolbar
+selection-toolbar-button.svelte extends Omit<HTMLButtonAttributes, 'children'> | label?: string, pressed?: boolean, ref?: HTMLButtonElement | null = null bindable, class?: string, children: Snippet
+selection-toolbar-separator.svelte extends HTMLAttributes<HTMLSpanElement> | class: unknown
+selection-toolbar.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | label?: string = 'Selection actions', actions: Snippet<[SelectionToolbarState]>, children: Snippet, ref?: HTMLDivElement | null = null bindable, class?: string, toolbarClass?: string
+# send-button
+send-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick' | 'type'> | onSend?: () => void, type?: 'button' | 'submit' = 'button', label?: string = 'Send', sentLabel?: string = 'Sent', iconOnly?: boolean = false, variant?: 'primary' | 'secondary' = 'primary', size?: 'sm' | 'md' | 'lg' = 'md', timeout?: number = 1600, disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string
 # separator
 separator.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, orientation?: 'horizontal' | 'vertical' = 'horizontal', decorative?: boolean = true
+# share-button
+share-button.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | url: string, title: string, label?: string = 'Share', open?: boolean = false bindable, onCopy?: (url: string) => void, timeout?: number = 1800, groupLabel?: string, copyLabel?: string = 'Copy link', copiedLabel?: string = 'Link copied', copiedText?: string = 'Copied', failedLabel?: string = "Couldn't copy the link", postLabel?: string = 'Post on X', emailLabel?: string = 'Email', moreLabel?: string = 'More ways to share', closeLabel?: string = 'Close', ref?: HTMLDivElement | null = null bindable, class?: string
 # sheet
 sheet-close.svelte extends WithoutChild<Dialog.CloseProps> | ref?: unknown = null bindable, class?: string
 sheet-content.svelte extends WithoutChildrenOrChild<Dialog.ContentProps> | ref?: unknown = null bindable, class?: string, side?: 'top' | 'right' | 'bottom' | 'left' = 'right', portalProps?: Dialog.PortalProps, children: Snippet
@@ -314,6 +453,10 @@ sheet-overlay.svelte extends WithoutChild<Dialog.OverlayProps> | ref?: unknown =
 sheet-title.svelte extends WithoutChild<Dialog.TitleProps> | ref?: unknown = null bindable, class?: string
 sheet-trigger.svelte extends WithoutChild<Dialog.TriggerProps> | ref?: unknown = null bindable, class?: string
 sheet.svelte extends Dialog.RootProps | 
+# shortcut-recorder
+shortcut-recorder.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | label: string, value?: string[] = [] bindable, onChange?: (value: string[]) => void, taken?: (combo: string[]) => string | null, disabled?: boolean = false, ref?: HTMLDivElement | null = null bindable, class?: string
+# shortcut-sheet
+shortcut-sheet.svelte | shortcuts: Shortcut[], open?: boolean = false bindable, onOpenChange?: (open: boolean) => void, hotkey?: string | null = '?', onPress?: (shortcut: Shortcut) => void, title?: string = 'Keyboard shortcuts', trigger?: boolean = true, ref?: HTMLButtonElement | null = null bindable, class?: string, children?: Snippet
 # sidebar
 sidebar-content.svelte extends WithElementRef<HTMLAttributes<HTMLElement>> | ref?: unknown = null bindable, class: unknown, children: unknown
 sidebar-footer.svelte extends WithElementRef<HTMLAttributes<HTMLElement>> | ref?: unknown = null bindable, class: unknown, children: unknown
@@ -339,22 +482,44 @@ sidebar-separator.svelte extends HTMLAttributes<HTMLDivElement> | ref?: HTMLDivE
 sidebar-trigger.svelte extends ComponentProps<typeof Button> | ref?: unknown = null bindable, class: unknown, onclick?: (e: MouseEvent) => void
 sidebar.svelte extends WithElementRef<HTMLAttributes<HTMLDivElement>> | ref?: unknown = null bindable, side?: 'left' | 'right' = 'left', variant?: 'sidebar' | 'floating' | 'inset' = 'sidebar', collapsible?: 'offcanvas' | 'icon' | 'none' = 'offcanvas', class: unknown, children: unknown
 # skeleton
-skeleton.svelte extends HTMLAttributes<HTMLDivElement> | ref?: HTMLDivElement | null = null bindable, class?: string
+skeleton-swap.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | loading: boolean, index?: number = 0, skeleton: Snippet, children: Snippet, ref?: HTMLDivElement | null = null bindable, class?: string
+skeleton.svelte extends HTMLAttributes<HTMLDivElement> | animation?: 'shimmer' | 'pulse' | 'none' = 'shimmer', ref?: HTMLDivElement | null = null bindable, class?: string
+# slide-to-confirm
+slide-to-confirm.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | onConfirm: () => void, label?: string = 'Slide to confirm', confirmedLabel?: string = 'Confirmed', timeout?: number = 2000, disabled?: boolean = false, ref?: HTMLDivElement | null = null bindable, class?: string
 # slider
-slider.svelte extends WithoutChildrenOrChild<Slider.RootProps> | ref?: unknown = null bindable, value: unknown bindable, type: unknown, min?: unknown = 0, max?: unknown = 100, step?: unknown = 1, class?: string
+slider.svelte extends WithoutChildrenOrChild<Slider.RootProps> | ref?: unknown = null bindable, value: unknown bindable, type: unknown, min?: unknown = 0, max?: unknown = 100, step?: unknown = 1, orientation?: unknown = 'horizontal', dir?: unknown = 'ltr', disabled?: unknown = false, autoSort?: boolean = true, elastic?: boolean = false, onStretch?: (offset: number) => void, showValue?: boolean = false, format?: (value: number) => string, thumbLabels?: string[], onValueChange: unknown, onpointerdown: unknown, onkeydowncapture: unknown, class?: string
+# sortable
+sortable.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | items: T[] bindable, onReorder?: (items: T[]) => void, label: string, getLabel?: (item: T) => string = (item)=> item.id, layout?: 'list' | 'grid' = 'list', columns?: number = 3, children: Snippet<[T]>, ref?: HTMLDivElement | null = null bindable, class?: string
 # sources
 sources.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | items: Source[], class?: string, ref?: HTMLDivElement | null = null bindable
+# sparkline
+sparkline.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | data: SparklinePoint[], label: string, format?: (value: number) => string = (value)=> String(value), summary?: boolean = true, ref?: HTMLDivElement | null = null bindable, class?: string
 # spinner
-spinner.svelte extends HTMLAttributes<HTMLDivElement> | size?: number = 20, class?: string
+spinner.svelte extends HTMLAttributes<HTMLDivElement> | size?: number = 20, variant?: 'ring' | 'dots' | 'bar' | 'pixel' = 'ring', done?: boolean = false, label?: string = 'Loading', doneLabel?: string = 'Done', paused?: boolean = false, grid?: 3 | 4 = 3, patterns?: PixelPattern[] = ['spiral', 'snake', 'pulse', 'checker'], shape?: 'square' | 'round' = 'square', ref?: HTMLDivElement | null = null bindable, class?: string
+# spoiler
+spoiler.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | children: Snippet, revealed?: boolean = false bindable, onRevealedChange?: (revealed: boolean) => void, label?: string = 'Spoiler', ref?: HTMLSpanElement | null = null bindable, class?: string
+# spotlight-card
+spotlight-card.svelte extends HTMLAttributes<HTMLDivElement> | icon?: Snippet, ref?: HTMLDivElement | null = null bindable, class?: string, children?: Snippet, onpointermove: unknown, onpointerleave: unknown
+spotlight-group.svelte extends HTMLAttributes<HTMLDivElement> | ref?: HTMLDivElement | null = null bindable, class?: string, children?: Snippet, onpointermove: unknown, onpointerleave: unknown
+# star-button
+star-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick' | 'value'> | starred?: boolean = false bindable, count?: number, onStarredChange?: (starred: boolean) => void, label?: string = 'Star', starredLabel?: string = 'Starred', locale?: string, format?: Intl.NumberFormatOptions, disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string
+# stat
+stat.svelte extends Omit<HTMLAttributes<HTMLDListElement>, 'children'> | label: string, value: number, format?: Intl.NumberFormatOptions, locale?: string, trend?: number, goodWhen?: 'up' | 'down' = 'up', series?: number[] = [], labels?: string[], index?: number = 0, ref?: HTMLDListElement | null = null bindable, class?: string
 # stepper
-stepper.svelte extends Omit<HTMLAttributes<HTMLOListElement>, 'children'> | steps: Step[], current?: number = 0 bindable, orientation?: 'horizontal' | 'vertical' = 'horizontal', clickable?: boolean = false, onStepChange?: (i: number) => void, class?: string, ref?: HTMLOListElement | null = null bindable
+stepper.svelte extends Omit<HTMLAttributes<HTMLOListElement>, 'children'> | steps: Step[], current?: number = 0 bindable, orientation?: 'horizontal' | 'vertical' = 'horizontal', clickable?: boolean = false, onStepChange?: (i: number) => void, complete?: boolean = false, class?: string, ref?: HTMLOListElement | null = null bindable
+# sticky-stack
+sticky-stack.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | items: StickyStackItem[], label: string, heading?: Snippet, navLabel?: string = 'Jump to card', ref?: HTMLDivElement | null = null bindable, class?: string
+# story-progress
+story-progress.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | count: number, index?: number = 0 bindable, duration?: number = 4000, paused?: boolean = false bindable, loop?: boolean = true, onIndexChange?: (index: number) => void, onComplete?: () => void, label?: string = 'Stories', ref?: HTMLDivElement | null = null bindable, class?: string, children: Snippet<[number]>
 # streaming-text
 streaming-text.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | text: string, speed?: number = 60, cursor?: boolean = true, paused?: boolean = false, onComplete?: () => void, class?: string, ref?: HTMLSpanElement | null = null bindable
+# swipe-deck
+swipe-deck.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | items: T[], children: Snippet<[T]>, label: string, getLabel?: (item: T) => string = (item)=> item.id, onSwipe?: (item: T, direction: Direction) => void, loop?: boolean = false, rejectLabel?: string = 'Reject', acceptLabel?: string = 'Accept', buttons?: boolean = true, empty?: Snippet, ref?: HTMLDivElement | null = null bindable, class?: string
 # switch
-switch.svelte extends WithoutChildrenOrChild<Switch.RootProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, class?: string
+switch.svelte extends WithoutChildrenOrChild<Switch.RootProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, disabled?: unknown = false, onCheckedChange: unknown, onclick: unknown, onpointerdown: unknown, onpointermove: unknown, onpointerup: unknown, onpointercancel: unknown, onkeydown: unknown, class?: string
 # tab-bar
-tab-bar-item.svelte extends Omit<HTMLButtonAttributes & HTMLAnchorAttributes, 'children'> | label: string, icon?: Component<{ class?: string; strokeWidth?: number }>, active?: boolean = false, href?: string = undefined, badge?: number = 0, badgeLabel?: string, class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
-tab-bar.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | variant?: 'floating' | 'docked' = 'floating', fixed?: boolean = false, labels?: 'visible' | 'hidden' = 'visible', label?: string = 'Main', class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
+tab-bar-item.svelte extends Omit<HTMLButtonAttributes & HTMLAnchorAttributes, 'children'> | label: string, icon?: Component<{ class?: string; strokeWidth?: number; fill?: string }>, fill?: boolean = false, active?: boolean = false, href?: string = undefined, badge?: number = 0, badgeLabel?: string, class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
+tab-bar.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | variant?: 'floating' | 'docked' = 'floating', fixed?: boolean = false, labels?: 'visible' | 'hidden' | 'active' = 'visible', label?: string = 'Main', class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
 # table
 table-body.svelte extends HTMLAttributes<HTMLTableSectionElement> | class?: string, children?: Snippet
 table-caption.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?: Snippet
@@ -366,29 +531,35 @@ table-row.svelte extends HTMLAttributes<HTMLTableRowElement> | class?: string, c
 table.svelte extends HTMLAttributes<HTMLTableElement> | class?: string, ref?: HTMLTableElement | null = null bindable, children?: Snippet
 # tabs
 tabs-content.svelte extends WithoutChildrenOrChild<Tabs.ContentProps> | ref?: unknown = null bindable, class?: string, children: Snippet
-tabs-list.svelte extends WithoutChildrenOrChild<Tabs.ListProps> | ref?: unknown = null bindable, class?: string, children: Snippet
+tabs-list.svelte extends WithoutChildrenOrChild<Tabs.ListProps> | ref?: HTMLElement | null = null bindable, variant?: TabsListVariant = 'pill', overflow?: 'wrap' | 'scroll' = 'wrap', class?: string, children: Snippet
 tabs-trigger.svelte extends WithoutChildrenOrChild<Tabs.TriggerProps> | ref?: unknown = null bindable, class?: string, children: Snippet
 tabs.svelte extends WithoutChildrenOrChild<Tabs.RootProps> | ref?: unknown = null bindable, value: unknown bindable, class?: string, children: Snippet
 # tags-input
 tags-input.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'onchange'> | value?: string[] = [] bindable, placeholder?: string, disabled?: boolean = false, max?: number, name?: string, dedupe?: boolean = true, validate?: (tag: string) => boolean, class?: string, onValueChange?: (value: string[]) => void
 # text-reveal
-text-reveal.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | text: string, by?: 'word' | 'character' = 'word', effect?: 'blur' | 'rise' | 'fade' = 'blur', trigger?: 'mount' | 'view' = 'mount', delay?: number = 0, stagger?: number, as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' = 'span', class?: string, ref?: HTMLElement | null = null bindable
+text-reveal.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | text: string, by?: 'word' | 'character' = 'word', effect?: 'blur' | 'rise' | 'fade' = 'blur', trigger?: 'mount' | 'view' | 'scroll' = 'mount', delay?: number = 0, stagger?: number, as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' = 'span', class?: string, ref?: HTMLElement | null = null bindable
 # text-rotate
-text-rotate.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | words: string[], interval?: number = 2400, effect?: 'blur' | 'slide' = 'blur', paused?: boolean = false, loop?: boolean = true, class?: string, ref?: HTMLSpanElement | null = null bindable
+text-rotate.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | words: string[], interval?: number = 2400, effect?: 'blur' | 'slide' | 'morph' = 'blur', paused?: boolean = false, loop?: boolean = true, class?: string, ref?: HTMLSpanElement | null = null bindable
+# text-scramble
+text-scramble.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | text: string, trigger?: 'hover' | 'mount' = 'hover', ref?: HTMLSpanElement | null = null bindable, class?: string
 # textarea
 textarea.svelte extends HTMLTextareaAttributes | class?: string, ref?: HTMLTextAreaElement | null = null bindable, value?: string | null bindable
+# theme-toggle
+theme-toggle.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick' | 'value'> | mode?: 'light' | 'dark' = 'light' bindable, onModeChange?: (mode: 'light' | 'dark') => void, label?: string = 'Dark mode', variant?: 'secondary' | 'ghost' = 'secondary', size?: 'sm' | 'md' | 'lg' = 'md', disabled?: boolean = false, ref?: HTMLButtonElement | null = null bindable, class?: string
 # thinking
 thinking.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | label?: string = 'Thinking...', variant?: 'shimmer' | 'dots' = 'shimmer', class?: string, ref?: HTMLDivElement | null = null bindable
+# tilt-card
+tilt-card.svelte extends HTMLAttributes<HTMLDivElement> | maxTilt?: number = 12, glare?: boolean = true, ref?: HTMLDivElement | null = null bindable, class?: string, children?: Snippet
 # timeline
 timeline-description.svelte extends HTMLAttributes<HTMLParagraphElement> | ref?: HTMLParagraphElement | null = null bindable, class?: string, children?: Snippet
 timeline-item.svelte extends HTMLLiAttributes | ref?: HTMLLIElement | null = null bindable, class?: string, icon?: Component<LucideProps>, last?: boolean = false, children?: Snippet
 timeline-marker.svelte | class?: string, icon?: Component<LucideProps>
 timeline-time.svelte extends HTMLTimeAttributes | ref?: HTMLTimeElement | null = null bindable, class?: string, children?: Snippet
 timeline-title.svelte extends HTMLAttributes<HTMLParagraphElement> | ref?: HTMLParagraphElement | null = null bindable, class?: string, children?: Snippet
-timeline.svelte extends HTMLOlAttributes | ref?: HTMLOListElement | null = null bindable, class?: string, children?: Snippet
+timeline.svelte extends HTMLOlAttributes | ref?: HTMLOListElement | null = null bindable, class?: string, animated?: boolean = true, children?: Snippet
 # toast
-toast.svelte | toast: ToastData
-toaster.svelte | position?: Position = 'bottom-right', class?: string
+toast.svelte | toast: ToastData, height?: number, behind?: boolean = false, onHeight?: (height: number) => void, class?: string
+toaster.svelte | position?: Position = 'bottom-right', expand?: boolean = false, visibleToasts?: number = 3, class?: string
 # toggle
 toggle.svelte extends WithoutChildrenOrChild<Toggle.RootProps> | ref?: unknown = null bindable, pressed?: unknown = false bindable, variant?: 'default' | 'outline' = 'default', size?: 'sm' | 'md' | 'lg' = 'md', class?: string, children?: Snippet
 # toggle-group
@@ -398,13 +569,26 @@ toggle-group.svelte extends SingleRootProps | ref?: HTMLElement | null = null bi
 tool-call.svelte | name: string, state?: 'running' | 'done' | 'error' = 'running', detail?: string, open?: boolean = false bindable, class?: string, children?: Snippet
 # tooltip
 tooltip-content.svelte extends WithoutChildrenOrChild<Tooltip.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 6, portalProps?: Tooltip.PortalProps, children: Snippet
+tooltip-group-trigger.svelte extends HTMLButtonAttributes | content: string | Snippet, shortcut?: string, child?: Snippet<[{ props: TriggerProps }]>, children?: Snippet, ref?: HTMLElement | null = null bindable, class?: string, onpointerenter: unknown, onpointerleave: unknown, onpointerdown: unknown, onfocus: unknown, onblur: unknown
+tooltip-group.svelte extends HTMLAttributes<HTMLDivElement> | delayDuration?: number = 200, skipDelayDuration?: number = 300, side?: 'top' | 'bottom' = 'top', sideOffset?: number = 6, children?: Snippet, ref?: HTMLDivElement | null = null bindable, class?: string
 tooltip-provider.svelte extends Tooltip.ProviderProps | delayDuration?: unknown = 200
 tooltip-trigger.svelte extends Tooltip.TriggerProps | ref?: unknown = null bindable, class?: string
 tooltip.svelte extends Tooltip.RootProps | 
 # tree
 tree-item.svelte | node: TreeNode, depth: number
 tree.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | items: TreeNode[], selected?: string | undefined = undefined bindable, expanded?: string[] = undefined bindable, defaultExpanded?: string[] = [], onSelect?: (id: string) => void, class?: string, ref?: HTMLDivElement | null = null bindable
+# typewriter
+typewriter.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | words: string[], prefix?: string = '', hold?: number = duration.ambient, paused?: boolean = false, label?: string, ref?: HTMLSpanElement | null = null bindable, class?: string
+# upload-button
+upload-button.svelte extends Omit<HTMLButtonAttributes, 'children' | 'onclick'> | status: UploadStatus, progress: number, onStart: () => void, onCancel: () => void, onReset: () => void, label?: string = 'Upload', cancelLabel?: string = 'Cancel upload', completeLabel?: string = 'Upload complete', timeout?: number = 1500, ref?: HTMLButtonElement | null = null bindable, class?: string
+# uptime-bar
+uptime-bar.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | services: UptimeService[], days?: number = 60, ref?: HTMLDivElement | null = null bindable, class?: string
 # voice-orb
-voice-orb.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | state?: 'idle' | 'listening' | 'thinking' | 'speaking' = 'idle', size?: number = 96, volume?: number = 0, class?: string, ref?: HTMLDivElement | null = null bindable
+voice-orb.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | state?: 'idle' | 'listening' | 'thinking' | 'speaking' = 'idle', size?: number = 96, volume?: number, analyser?: AnalyserNode | null = null, variant?: 'cloud' | 'mist' = 'cloud', paused?: boolean = false, class?: string, ref?: HTMLDivElement | null = null bindable
+# wave-text
+wave-text.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | text: string, as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' = 'span', ref?: HTMLElement | null = null bindable, class?: string
 # waveform
 waveform.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | active?: boolean = true, bars?: number = 5, class?: string, ref?: HTMLDivElement | null = null bindable
+# wheel-picker
+wheel-picker-column.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | options: string[], value?: string bindable, onValueChange?: (value: string) => void, label: string, disabled?: boolean = false, ref?: HTMLDivElement | null = null bindable, class?: string
+wheel-picker.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | label?: string, ref?: HTMLDivElement | null = null bindable, class?: string, children: Snippet

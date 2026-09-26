@@ -12,6 +12,9 @@
 		get open() {
 			return open;
 		},
+		get value() {
+			return value;
+		},
 		get contentId() {
 			return contentId;
 		},

@@ -2,6 +2,7 @@
 	import { Command as CommandPrimitive, type WithoutChildrenOrChild } from 'bits-ui';
 	import Search from '@lucide/svelte/icons/search';
 	import { cn } from '$lib/utils.js';
+	import { getCommandContext } from './context.js';
 
 	let {
 		ref = $bindable(null),
@@ -11,6 +12,11 @@
 	}: WithoutChildrenOrChild<CommandPrimitive.InputProps> & {
 		class?: string;
 	} = $props();
+
+	const context = getCommandContext();
+	$effect(() => {
+		if (context) context.search = value;
+	});
 </script>
 
 <div class="border-border flex items-center gap-2 border-b px-3">

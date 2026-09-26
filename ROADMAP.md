@@ -6,7 +6,7 @@ Mizu uses milestones and labeled issues for committed work. This file describes 
 
 - Keep every registry item installable in a clean supported SvelteKit project.
 - Grow deterministic visual coverage for canonical component and block states, starting with Presence, Tabs, and the App components.
-- Complete periodic keyboard and screen-reader review of custom interactions, including the 0.4 motion and app components.
+- Complete periodic keyboard and screen-reader review of custom interactions, including the 0.4 motion and app components and the 0.5 interaction components.
 - Improve generated component API metadata without increasing client payload.
 - Maintain reproducible registry releases, dependency hygiene, and incident readiness.
 

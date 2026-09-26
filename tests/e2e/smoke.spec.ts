@@ -68,11 +68,12 @@ test('Circular Gauge derives its progress color from a custom primary token', as
 		document.documentElement.style.setProperty('--primary', '#ff0066');
 	});
 
-	const stopColor = await page
-		.locator('stop[offset="100%"]')
-		.first()
-		.evaluate((stop) => {
-			return getComputedStyle(stop).stopColor;
-		});
-	expect(stopColor).toBe('rgb(255, 0, 102)');
+	// The first tick sits below the demo's limit, so it lights in the primary color.
+	const lit = page
+		.getByRole('meter', { name: 'Context used' })
+		.locator('line[data-lit="true"]')
+		.first();
+	await expect
+		.poll(() => lit.evaluate((tick) => getComputedStyle(tick).stroke))
+		.toBe('rgb(255, 0, 102)');
 });

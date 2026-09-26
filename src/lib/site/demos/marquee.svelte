@@ -41,7 +41,14 @@
 	</div>
 	<div class="flex flex-col gap-1">
 		{#each rows as row, i (i)}
-			<Marquee direction={i ? 'right' : 'left'} gap="0.5rem" speed={28} {paused} class="py-1.5">
+			<Marquee
+				direction={i ? 'right' : 'left'}
+				gap="0.5rem"
+				speed={i ? 20 : 28}
+				lens={i === 0}
+				{paused}
+				class="py-1.5"
+			>
 				{#each row as prompt (prompt)}
 					<button
 						type="button"

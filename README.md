@@ -14,11 +14,11 @@ Copy the source. Make it yours.
 	<img alt="Svelte 5" src="https://img.shields.io/badge/Svelte-5-FF3E00?logo=svelte&logoColor=white" />
 	<img alt="Tailwind CSS v4" src="https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white" />
 	<img alt="bits-ui" src="https://img.shields.io/badge/bits--ui-headless-171717" />
-	<img alt="91 components" src="https://img.shields.io/badge/components-91-626AFB" />
+	<img alt="169 components" src="https://img.shields.io/badge/components-169-626AFB" />
 	<img alt="MIT" src="https://img.shields.io/badge/license-MIT-22C55E" />
 </p>
 
-<img src="./static/brand/github-social.png" width="720" alt="Mizu. Build a better conversation. 91 components, a motion system, and complete screens for AI products, apps, and websites." />
+<img src="./static/brand/github-social.png" width="720" alt="Mizu. Build a better conversation. 169 components, a motion system, and complete screens for AI products, apps, and websites." />
 
 [Website](https://mizu-ui.com) · [Docs](https://mizu-ui.com/docs) · [Components](https://mizu-ui.com/docs/components) · [Blocks](https://mizu-ui.com/blocks) · [Motion](https://mizu-ui.com/docs/motion) · [Brand](https://mizu-ui.com/brand)
 
@@ -30,7 +30,7 @@ Mizu is a design system for products with intelligence inside. It starts with th
 
 ## Highlights
 
-- **91 components** for AI, motion, apps, forms, overlays, navigation, and data, from a chat composer and a voice orb to a tab bar and a segmented control.
+- **169 components** for AI, motion, apps, forms, overlays, navigation, and data, from a chat composer and a voice orb to a kanban board, a color picker, and a dynamic island.
 - **Presence.** A companion that shows whether the assistant is listening, thinking, speaking, or done, in five tones.
 - **A motion system.** Duration, easing, and spring tokens in the theme. Springs are sampled from real physics into CSS `linear()` curves, so they cost nothing at runtime.
 - **Apps and PWAs.** Tab bars, install prompts, offline status, and safe-area utilities for web apps people install.
@@ -39,13 +39,13 @@ Mizu is a design system for products with intelligence inside. It starts with th
 - **Recolor from one token.** Accent states, selection fills, and the focus ring follow `--primary`.
 - **Copy in, own it.** A shadcn-svelte-compatible registry with immutable versioned releases.
 
-The current stable release is `0.4.0`. Pin it for reproducible installs:
+The current stable release is `0.5.0`. Pin it for reproducible installs:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.4.0/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.5.0/button.json
 ```
 
-Upgrading copied components from 0.3.x requires reinstalling the theme. See the [0.4.0 migration notes](./CHANGELOG.md#040---2026-09-25).
+Upgrading copied components from 0.4.x means reinstalling them with the 0.5 Motion item. See the [0.5.0 migration notes](./CHANGELOG.md#050---2026-09-26). From 0.3.x, reinstall the theme first, as described in the [0.4.0 notes](./CHANGELOG.md#040---2026-09-25).
 
 ## Quick start
 
@@ -82,7 +82,7 @@ npx sv add tailwindcss
 **4. Add components** with the one-liner. It pulls the component, installs its npm dependencies, and adds the shared `cn` helper automatically:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.4.0/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.5.0/button.json
 ```
 
 You can also open any component page in the docs and copy its source straight into `src/lib/components/ui/`.
@@ -124,7 +124,7 @@ Motion is quick to respond and soft to settle. Use the tokens instead of literal
 <span class="text-shimmer animate-shimmer">Searching the web</span>
 ```
 
-The Motion registry item adds `rise`, `blurIn`, and `pop` transitions and `reveal` and `magnetic` attachments. Read the [motion guide](https://mizu-ui.com/docs/motion).
+The Motion registry item adds `rise`, `blurIn`, and `pop` transitions, `reveal` and `magnetic` attachments, and `SpringValue`, a velocity-preserving spring that is safe in SSR and tests. Read the [motion guide](https://mizu-ui.com/docs/motion).
 
 ## Theming
 
@@ -146,7 +146,7 @@ CSS variables also define card, popover, and control fills, elevation, and motio
 
 ## Components
 
-Mizu currently includes 91 components across AI, motion, app, actions, forms, surfaces, overlays, menus, navigation, and feedback. Browse the complete, source-backed [component catalog](https://mizu-ui.com/docs/components).
+Mizu currently includes 169 components across AI, motion, app, actions, forms, surfaces, data, overlays, menus, navigation, and feedback. Browse the complete, source-backed [component catalog](https://mizu-ui.com/docs/components).
 
 ## Develop
 

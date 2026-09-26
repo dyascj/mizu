@@ -2,6 +2,7 @@
 	import { CopyButton } from '$lib/components/ui/copy-button';
 
 	const key = 'sk-mizu-live-7f3a9c21e84b4d06b5f2a1c9e3d87b60';
+	const requestId = 'req_01j8z3k4m7';
 	const snippet = `curl https://api.example.com/v1/responses \\
   -H "Authorization: Bearer $API_KEY" \\
   -d '{"input": "Hello"}'`;
@@ -17,6 +18,10 @@
 		<p class="text-muted-foreground text-sm">
 			Store this somewhere safe. You won't be able to see it again.
 		</p>
+	</div>
+	<div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+		<p class="text-muted-foreground text-sm">Request ID</p>
+		<CopyButton mode="text" value={requestId} label="Copy request ID" size="sm" />
 	</div>
 	<div class="bg-secondary rounded-2xl">
 		<div class="flex items-center justify-between py-1.5 pr-1.5 pl-4">

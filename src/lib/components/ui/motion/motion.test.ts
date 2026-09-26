@@ -5,6 +5,7 @@ import {
 	cubicBezier,
 	duration,
 	easeOut,
+	magnetic,
 	pointerPosition,
 	pop,
 	reveal,
@@ -187,6 +188,136 @@ describe('pointerPosition', () => {
 			expect(node.style.getPropertyValue('--pointer-active')).toBe('0');
 			expect(node.style.getPropertyValue('--pointer-x')).toBe('');
 			if (typeof cleanup === 'function') cleanup();
+		}
+	});
+});
+
+describe('magnetic', () => {
+	/** Queues animation frames so the test can step through them. */
+	function stubFrames() {
+		let queue: FrameRequestCallback[] = [];
+		let now = 0;
+		vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
+			queue.push(callback);
+			return queue.length;
+		});
+		vi.stubGlobal('cancelAnimationFrame', () => {});
+		return (frames: number) => {
+			for (let i = 0; i < frames; i++) {
+				const run = queue;
+				queue = [];
+				now += 1000 / 60;
+				for (const callback of run) callback(now);
+			}
+		};
+	}
+
+	function setup(options?: Parameters<typeof magnetic>[0]) {
+		const node = document.createElement('span');
+		node.innerHTML = '<span data-magnetic-content>Generate</span>';
+		const layer = node.firstElementChild as HTMLElement;
+		// A 100 by 40 pill centered at (100, 100), wherever the springs put it.
+		node.getBoundingClientRect = () => {
+			const x = Number.parseFloat(node.style.translate) || 0;
+			const y = Number.parseFloat(node.style.translate.split(' ')[1] ?? '') || 0;
+			return { left: 50 + x, top: 80 + y, width: 100, height: 40 } as DOMRect;
+		};
+		document.body.append(node);
+		const cleanup = magnetic(options)(node);
+		const point = (clientX: number, clientY: number, pointerType = 'mouse') =>
+			window.dispatchEvent(new PointerEvent('pointermove', { clientX, clientY, pointerType }));
+		// Cleared at rest, which reads as no offset.
+		const offset = () =>
+			(node.style.translate || '0px 0px').split(' ').map((value) => Number.parseFloat(value));
+		return {
+			node,
+			layer,
+			point,
+			offset,
+			cleanup: () => typeof cleanup === 'function' && cleanup()
+		};
+	}
+
+	test('pulls toward a nearby pointer, stretches along the pull, and keeps the label upright', () => {
+		stubReducedMotion(false);
+		const frames = stubFrames();
+		const { node, layer, point, offset, cleanup } = setup();
+
+		// 60px right of center: inside the field, past the pill's edge.
+		point(160, 100);
+		frames(30);
+		const [x, y] = offset();
+		expect(x).toBeGreaterThan(4);
+		expect(Math.abs(y)).toBeLessThan(0.01);
+		const stretch = node.style.transform.match(/scale\(([\d.]+), ([\d.]+)\)/);
+		expect(Number(stretch?.[1])).toBeGreaterThan(1);
+		expect(Number(stretch?.[2])).toBeLessThan(1);
+		// The label travels half again as far and undoes the stretch exactly.
+		expect(Number.parseFloat(layer.style.translate)).toBeCloseTo(x / 2, 1);
+		const inverse = layer.style.transform.match(/scale\(([\d.]+), ([\d.]+)\)/);
+		expect(Number(inverse?.[1]) * Number(stretch?.[1])).toBeCloseTo(1, 5);
+
+		cleanup();
+		expect(node.style.translate).toBe('');
+		expect(node.style.transform).toBe('');
+		expect(layer.style.transform).toBe('');
+	});
+
+	test('never travels past the limit and lets go outside the field', () => {
+		stubReducedMotion(false);
+		const frames = stubFrames();
+		const { point, offset, cleanup } = setup({ strength: 1, limit: 6 });
+
+		point(140, 140);
+		frames(40);
+		expect(Math.hypot(...offset())).toBeLessThanOrEqual(6.01);
+
+		// Past half the pill plus the 96px field, the pull fades to nothing.
+		point(400, 100);
+		frames(120);
+		const [x, y] = offset();
+		expect(Math.abs(x)).toBeLessThan(0.05);
+		expect(Math.abs(y)).toBeLessThan(0.05);
+		cleanup();
+	});
+
+	test('hands the element its own translate and transform back once it comes to rest', () => {
+		stubReducedMotion(false);
+		const frames = stubFrames();
+		const { node, layer, point, cleanup } = setup();
+
+		point(160, 100);
+		frames(30);
+		expect(node.style.translate).not.toBe('');
+
+		point(400, 100);
+		frames(400);
+		expect(node.style.translate).toBe('');
+		expect(node.style.transform).toBe('');
+		expect(layer.style.translate).toBe('');
+		expect(layer.style.transform).toBe('');
+		cleanup();
+	});
+
+	test('ignores touch, coarse pointers, and reduced motion', () => {
+		stubReducedMotion(false);
+		const frames = stubFrames();
+		const touch = setup();
+		touch.point(160, 100, 'touch');
+		frames(10);
+		expect(touch.node.style.translate).toBe('');
+		touch.cleanup();
+
+		for (const [reduce, fine] of [
+			[false, false],
+			[true, true]
+		]) {
+			stubReducedMotion(reduce, fine);
+			const { node, point, cleanup } = setup();
+			point(160, 100);
+			frames(10);
+			expect(node.style.translate).toBe('');
+			cleanup();
 		}
 	});
 });

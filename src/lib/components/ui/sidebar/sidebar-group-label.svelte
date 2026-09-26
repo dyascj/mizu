@@ -15,8 +15,9 @@
 
 	const mergedProps = $derived({
 		class: cn(
-			'text-sidebar-foreground/70 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-(--duration-base) ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',
-			'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',
+			'text-sidebar-foreground/70 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity,filter] delay-(--duration-instant) duration-(--duration-base) ease-out focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',
+			// Like the item labels, it is gone before the closing edge reaches it.
+			'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:blur-[4px] group-data-[collapsible=icon]:delay-0 group-data-[collapsible=icon]:duration-(--duration-instant) group-data-[collapsible=icon]:ease-in motion-reduce:blur-none',
 			className
 		),
 		'data-slot': 'sidebar-group-label',

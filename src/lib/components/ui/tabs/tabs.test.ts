@@ -73,3 +73,106 @@ describe('Tabs', () => {
 		await vi.waitFor(() => expect(indicator().style.translate).toBe('96px 4px'));
 	});
 });
+
+describe('Tabs underline variant', () => {
+	const tablist = () => screen.getByRole('tablist');
+	const edge = (name: string) => parseFloat(tablist().style.getPropertyValue(`--edge-${name}`));
+
+	test('draws the underline under the active tab from two edges', () => {
+		render(Harness, { variant: 'underline' });
+		expect(tablist()).toHaveAttribute('data-variant', 'underline');
+		expect(tablist()).toHaveAttribute('data-indicator');
+		expect(edge('left')).toBe(4);
+		expect(edge('right')).toBe(92);
+	});
+
+	test('stretches toward the picked tab, then gathers under it', async () => {
+		render(Harness, { variant: 'underline' });
+		const widths: number[] = [];
+		const observer = new MutationObserver(() => widths.push(edge('right') - edge('left')));
+		observer.observe(tablist(), { attributeFilter: ['style'] });
+
+		await fireEvent.click(screen.getByRole('tab', { name: 'Activity' }));
+		await vi.waitFor(() => expect(edge('left')).toBe(96));
+		observer.disconnect();
+		expect(edge('right')).toBe(172);
+		// Moving right, the right edge leads, so the line grows past both tabs' widths.
+		expect(Math.max(...widths)).toBeGreaterThan(88);
+	});
+
+	test('jumps when the next tab sits on another row', async () => {
+		render(Harness, { variant: 'underline' });
+		await fireEvent.click(screen.getByRole('tab', { name: 'Settings' }));
+		await vi.waitFor(() => expect(edge('top')).toBe(44));
+		expect(edge('left')).toBe(4);
+		expect(edge('right')).toBe(84);
+	});
+
+	test('floats a hover pill over the tab under a mouse, never a finger', async () => {
+		render(Harness, { variant: 'underline' });
+		const pill = tablist().querySelector<HTMLElement>('[data-slot="tabs-hover"]')!;
+		await fireEvent.pointerOver(screen.getByRole('tab', { name: 'Activity' }), {
+			pointerType: 'touch'
+		});
+		expect(pill).not.toHaveAttribute('data-visible');
+
+		await fireEvent.pointerOver(screen.getByRole('tab', { name: 'Activity' }), {
+			pointerType: 'mouse'
+		});
+		expect(pill).toHaveAttribute('data-visible');
+		expect(pill.style.translate).toBe('96px 8px');
+		expect(pill.style.height).toBe('24px');
+		expect(pill.style.width).toBe('76px');
+
+		await fireEvent.pointerLeave(tablist());
+		expect(pill).not.toHaveAttribute('data-visible');
+	});
+
+	test('panels enter from the side the reader moved toward', async () => {
+		render(Harness, { variant: 'underline' });
+		const panel = () => screen.getByRole('tabpanel');
+		expect(panel().className).not.toContain('mizu-tab-enter');
+
+		await fireEvent.click(screen.getByRole('tab', { name: 'Settings' }));
+		await vi.waitFor(() => expect(panel()).toHaveTextContent('Settings panel'));
+		await vi.waitFor(() => expect(panel().className).toContain('mizu-tab-enter'));
+		expect(panel().className).toContain('[--tab-direction:1]');
+
+		await fireEvent.click(screen.getByRole('tab', { name: 'Overview' }));
+		await vi.waitFor(() =>
+			expect(screen.getByRole('tabpanel').className).toContain('[--tab-direction:-1]')
+		);
+	});
+
+	test("a panel's own style survives the entrance direction", async () => {
+		render(Harness, { panelStyle: 'color: red' });
+		await fireEvent.click(screen.getByRole('tab', { name: 'Settings' }));
+		await vi.waitFor(() =>
+			expect(screen.getByRole('tabpanel').className).toContain('[--tab-direction:1]')
+		);
+		expect(screen.getByRole('tabpanel').style.color).toBe('red');
+	});
+});
+
+describe('Tabs scroll overflow', () => {
+	test('wraps the list in a scrolling frame with pointer-only page buttons', () => {
+		const { container } = render(Harness, { variant: 'underline', overflow: 'scroll' });
+		const frame = container.querySelector('[data-slot="tabs-scroll-frame"]');
+		expect(frame).not.toBeNull();
+		expect(frame?.querySelector('[data-slot="tabs-scroller"] [role="tablist"]')).not.toBeNull();
+		const arrows = container.querySelectorAll('[data-slot^="tabs-scroll-"][aria-hidden="true"]');
+		expect(arrows).toHaveLength(2);
+		for (const arrow of arrows) expect(arrow).toHaveAttribute('tabindex', '-1');
+		// Only tabs are reachable as buttons.
+		expect(screen.queryAllByRole('button')).toHaveLength(0);
+	});
+
+	test('keeps tab semantics and keyboard support inside the frame', async () => {
+		render(Harness, { overflow: 'scroll' });
+		const overview = screen.getByRole('tab', { name: 'Overview' });
+		overview.focus();
+		await fireEvent.keyDown(overview, { key: 'ArrowRight' });
+		expect(screen.getByRole('tab', { name: 'Activity' })).toHaveAttribute('aria-selected', 'true');
+		expect(screen.getByRole('tab', { name: 'Activity' })).toHaveFocus();
+	});
+});

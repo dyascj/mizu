@@ -2,13 +2,13 @@
 	import * as DatePicker from '$lib/components/ui/date-picker';
 	import { type DateValue, getLocalTimeZone, today } from '@internationalized/date';
 
-	let value = $state<DateValue>(today(getLocalTimeZone()));
+	let value = $state<DateValue>(today(getLocalTimeZone()).add({ months: 1 }));
 </script>
 
 <div class="flex justify-center">
 	<DatePicker.Root bind:value>
 		<div class="flex w-64 flex-col gap-2">
-			<DatePicker.Label>Review date</DatePicker.Label>
+			<DatePicker.Label>Retire the old model on</DatePicker.Label>
 			<DatePicker.Input />
 			<DatePicker.Content />
 		</div>

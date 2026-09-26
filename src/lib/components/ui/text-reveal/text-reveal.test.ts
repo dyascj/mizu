@@ -141,4 +141,55 @@ describe('TextReveal', () => {
 		unmount();
 		expect(observers[0].disconnect).toHaveBeenCalled();
 	});
+
+	test('scroll mode spreads the units across the reveal and never hides them up front', () => {
+		const { container } = render(TextReveal, { text: 'Read me as you go', trigger: 'scroll' });
+		const scrubbed = Array.from(container.querySelectorAll<HTMLElement>('.scrub-unit'));
+
+		expect(units(container)).toHaveLength(0);
+		expect(scrubbed.map((unit) => unit.textContent)).toEqual(['Read', 'me', 'as', 'you', 'go']);
+		expect(scrubbed[0].style.getPropertyValue('--from')).toBe('0');
+		expect(Number(scrubbed[0].style.getPropertyValue('--to'))).toBeCloseTo(0.14);
+		expect(Number(scrubbed.at(-1)?.style.getPropertyValue('--to'))).toBeCloseTo(1);
+		for (const unit of scrubbed) {
+			expect(unit).not.toHaveClass('opacity-0');
+			expect(unit).not.toHaveClass('animate-blur-in');
+		}
+		// A view timeline needs a block box to follow.
+		expect(container.firstElementChild).toHaveClass('block');
+		expect(screen.getByText('Read me as you go')).toHaveClass('sr-only');
+	});
+
+	test('scroll mode waits for timeline support before it measures', () => {
+		stubReducedMotion(false);
+		const observers: { callback: ResizeObserverCallback; disconnect: () => void }[] = [];
+		vi.stubGlobal(
+			'ResizeObserver',
+			class {
+				disconnect = vi.fn();
+				observe = vi.fn();
+				constructor(callback: ResizeObserverCallback) {
+					observers.push({ callback, disconnect: this.disconnect });
+				}
+			}
+		);
+
+		vi.stubGlobal('CSS', { supports: () => false });
+		const unsupported = render(TextReveal, { text: 'Plain text', trigger: 'scroll' });
+		expect(unsupported.container.firstElementChild).not.toHaveAttribute('data-scrub');
+		expect(observers).toHaveLength(0);
+		unsupported.unmount();
+
+		vi.stubGlobal('CSS', { supports: () => true });
+		const supported = render(TextReveal, { text: 'Scrubbed text', trigger: 'scroll' });
+		const root = supported.container.firstElementChild as HTMLElement;
+		expect(root).toHaveAttribute('data-scrub');
+		expect(root.style.getPropertyValue('--reveal-span')).toMatch(/px$/);
+		supported.unmount();
+		expect(observers[0].disconnect).toHaveBeenCalled();
+
+		stubReducedMotion(true);
+		const reduced = render(TextReveal, { text: 'Still text', trigger: 'scroll' });
+		expect(reduced.container.firstElementChild).not.toHaveAttribute('data-scrub');
+	});
 });

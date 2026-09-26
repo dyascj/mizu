@@ -3,6 +3,7 @@ import { createRawSnippet } from 'svelte';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
 import HoldButton from './hold-button.svelte';
+import TrashFixture from './trash-fixture.test.svelte';
 
 const children = createRawSnippet(() => ({ render: () => '<span>Hold to delete</span>' }));
 
@@ -186,5 +187,58 @@ describe('HoldButton', () => {
 
 		unmount();
 		expect(vi.getTimerCount()).toBe(0);
+	});
+
+	test('names the confirmation when given a confirmed label, without renaming the button', async () => {
+		const onConfirm = vi.fn();
+		const { container } = render(HoldButton, {
+			onConfirm,
+			children,
+			confirmedLabel: 'Deleted',
+			duration: 400
+		});
+		const button = screen.getByRole('button', { name: 'Hold to delete' });
+		await fireEvent.pointerDown(button, { button: 0, pointerId: 1 });
+		await advance(500);
+		expect(onConfirm).toHaveBeenCalledTimes(1);
+		expect(container.querySelector('[aria-live="polite"]')?.textContent).toBe('Deleted');
+		expect(button).toHaveAccessibleName('Hold to delete');
+	});
+
+	test('opens the bin lid as the fill sweeps and shuts it on confirm', async () => {
+		const onConfirm = vi.fn();
+		const { container } = render(TrashFixture, { onConfirm, duration: 1000 });
+		const button = screen.getByRole('button', { name: 'Hold to delete' });
+		const lid = () => container.querySelector<SVGGElement>('svg g');
+		const angle = () => parseFloat(lid()?.style.rotate ?? '0') || 0;
+
+		expect(angle()).toBe(0);
+		await fireEvent.pointerDown(button, { button: 0, pointerId: 1 });
+		await advance(300);
+		expect(angle()).toBeGreaterThan(10);
+
+		// The swap to the confirmation waits for the lid to land.
+		expect(button.style.getPropertyValue('--hold-swap-delay')).toBe('var(--duration-base)');
+
+		await advance(800);
+		expect(onConfirm).toHaveBeenCalledTimes(1);
+		expect(angle()).toBe(0);
+
+		// Retracting after a confirmation never swings the lid open again.
+		await advance(2000);
+		expect(button).toHaveAttribute('data-phase', 'retracting');
+		await advance(16);
+		expect(angle()).toBe(0);
+	});
+
+	test('keeps the lid still under reduced motion', async () => {
+		vi.stubGlobal('matchMedia', (query: string) => ({ matches: query.includes('reduce') }));
+		const { container } = render(TrashFixture, { onConfirm: vi.fn(), duration: 1000 });
+		const button = screen.getByRole('button', { name: 'Hold to delete' });
+		await fireEvent.pointerDown(button, { button: 0, pointerId: 1 });
+		await advance(500);
+		expect(
+			parseFloat(container.querySelector<SVGGElement>('svg g')?.style.rotate ?? '0') || 0
+		).toBe(0);
 	});
 });

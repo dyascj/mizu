@@ -9,12 +9,14 @@
 		labels = 'visible',
 		variant = 'floating',
 		links = false,
+		fill = false,
 		onselect
 	}: {
 		active?: string;
 		labels?: TabBarLabels;
 		variant?: TabBarVariant;
 		links?: boolean;
+		fill?: boolean;
 		onselect?: (id: string) => void;
 	} = $props();
 </script>
@@ -23,6 +25,7 @@
 	<TabBarItem
 		label="Home"
 		icon={House}
+		{fill}
 		href={links ? '/home' : undefined}
 		active={active === 'home'}
 		onclick={() => onselect?.('home')}

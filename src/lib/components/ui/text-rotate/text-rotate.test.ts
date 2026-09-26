@@ -14,6 +14,7 @@ function stubReducedMotion(reduce: boolean) {
 
 // jsdom has no Web Animations API; Svelte transitions finish on the next microtask.
 const nativeAnimate = Element.prototype.animate;
+const nativeGetAnimations = Element.prototype.getAnimations;
 function fakeAnimate() {
 	return {
 		cancel() {},
@@ -28,12 +29,14 @@ const current = (container: HTMLElement) => container.querySelector('.invisible'
 
 beforeEach(() => {
 	Element.prototype.animate = fakeAnimate;
+	Element.prototype.getAnimations = () => [];
 	stubReducedMotion(false);
 	vi.useFakeTimers();
 });
 
 afterEach(() => {
 	Element.prototype.animate = nativeAnimate;
+	Element.prototype.getAnimations = nativeGetAnimations;
 	vi.useRealTimers();
 	vi.restoreAllMocks();
 	vi.unstubAllGlobals();
@@ -136,5 +139,52 @@ describe('TextRotate', () => {
 		unmount();
 		expect(vi.getTimerCount()).toBe(0);
 		expect(observers[0].disconnect).toHaveBeenCalled();
+	});
+
+	test('morph keeps the letters two words share and trades out the rest', async () => {
+		// Hold every transition open until the test lets them finish.
+		const pending: (() => void)[] = [];
+		Element.prototype.animate = () =>
+			({
+				cancel() {},
+				set onfinish(done: () => void) {
+					pending.push(done);
+				}
+			}) as unknown as Animation;
+		const { container } = render(TextRotate, {
+			words: ['calm', 'clear', 'alive'],
+			interval: 1000,
+			effect: 'morph'
+		});
+		const box = () => container.querySelector<HTMLElement>('[data-word]');
+		const letters = () => Array.from(box()?.querySelectorAll<HTMLElement>('[data-letter]') ?? []);
+
+		expect(box()).toHaveAttribute('aria-hidden', 'true');
+		expect(box()?.dataset.word).toBe('calm');
+		const [c, a, l] = letters();
+
+		await act(() => vi.advanceTimersByTimeAsync(1000));
+		expect(box()?.dataset.word).toBe('clear');
+		// "c" and "l" survive into "clear" in order; "a" and "m" trade out.
+		const next = letters();
+		expect(next.map((node) => node.textContent).join('')).toBe('clear');
+		expect(next[0]).toBe(c);
+		expect(next[1]).toBe(l);
+		expect(next).not.toContain(a);
+		// The leaving letters fade from where they stood, then are gone.
+		const ghosts = () => container.querySelectorAll('[data-word] + span > span');
+		expect(Array.from(ghosts(), (node) => node.textContent)).toEqual(['a', 'm']);
+		// Each transition waits out its delay, then runs, so finish twice over.
+		for (let round = 0; round < 3; round++)
+			await act(() => pending.splice(0).forEach((done) => done()));
+		expect(ghosts()).toHaveLength(0);
+		expect(container.querySelector('.sr-only')).toHaveTextContent('calm');
+	});
+
+	test('morph never rotates for reduced motion', async () => {
+		stubReducedMotion(true);
+		const { container } = render(TextRotate, { words, interval: 1000, effect: 'morph' });
+		await act(() => vi.advanceTimersByTimeAsync(5000));
+		expect(container.querySelector('[data-word]')?.textContent).toBe('explore');
 	});
 });

@@ -4,6 +4,8 @@
 	import ChevronRightIcon from '@lucide/svelte/icons/chevron-right';
 	import DatePickerDay from './date-picker-day.svelte';
 	import { buttonVariants } from '$lib/components/ui/button';
+	import CalendarSlide from '$lib/components/ui/calendar/calendar-slide.svelte';
+	import { titleFade } from '$lib/components/ui/calendar/calendar-motion.js';
 	import { cn } from '$lib/utils.js';
 
 	let {
@@ -44,8 +46,21 @@
 							<span class="sr-only">Previous month</span>
 						</DatePickerPrimitive.PrevButton>
 						<DatePickerPrimitive.Heading
-							class="font-display text-foreground text-sm font-semibold tabular-nums"
-						/>
+							class="font-display text-foreground grid justify-items-center text-sm font-semibold tabular-nums"
+						>
+							{#snippet children({ headingValue })}
+								<!-- Old and new titles share one cell and crossfade. -->
+								{#key headingValue}
+									<span
+										class="col-start-1 row-start-1 whitespace-nowrap"
+										in:titleFade
+										out:titleFade
+									>
+										{headingValue}
+									</span>
+								{/key}
+							{/snippet}
+						</DatePickerPrimitive.Heading>
 						<DatePickerPrimitive.NextButton
 							class={cn(
 								buttonVariants({ variant: 'ghost', size: 'icon' }),
@@ -58,35 +73,37 @@
 					</DatePickerPrimitive.Header>
 
 					<div class="flex flex-col gap-4 sm:flex-row">
-						{#each months as month (month.value)}
-							<DatePickerPrimitive.Grid class="w-full border-collapse space-y-1 select-none">
-								<DatePickerPrimitive.GridHead>
-									<DatePickerPrimitive.GridRow class="flex">
-										{#each weekdays as weekday, i (i)}
-											<DatePickerPrimitive.HeadCell
-												class="text-muted-foreground w-9 text-xs font-medium"
-											>
-												{weekday.slice(0, 2)}
-											</DatePickerPrimitive.HeadCell>
-										{/each}
-									</DatePickerPrimitive.GridRow>
-								</DatePickerPrimitive.GridHead>
-								<DatePickerPrimitive.GridBody>
-									{#each month.weeks as weekDates, weekIndex (weekIndex)}
-										<DatePickerPrimitive.GridRow class="mt-1 flex w-full">
-											{#each weekDates as date (date)}
-												<DatePickerPrimitive.Cell
-													{date}
-													month={month.value}
-													class="p-0 text-center text-sm"
+						{#each months as month, index (index)}
+							<CalendarSlide month={month.value}>
+								<DatePickerPrimitive.Grid class="w-full border-collapse space-y-1 select-none">
+									<DatePickerPrimitive.GridHead>
+										<DatePickerPrimitive.GridRow class="flex">
+											{#each weekdays as weekday, i (i)}
+												<DatePickerPrimitive.HeadCell
+													class="text-muted-foreground w-9 text-xs font-medium"
 												>
-													<DatePickerDay />
-												</DatePickerPrimitive.Cell>
+													{weekday.slice(0, 2)}
+												</DatePickerPrimitive.HeadCell>
 											{/each}
 										</DatePickerPrimitive.GridRow>
-									{/each}
-								</DatePickerPrimitive.GridBody>
-							</DatePickerPrimitive.Grid>
+									</DatePickerPrimitive.GridHead>
+									<DatePickerPrimitive.GridBody>
+										{#each month.weeks as weekDates, weekIndex (weekIndex)}
+											<DatePickerPrimitive.GridRow class="mt-1 flex w-full">
+												{#each weekDates as date (date)}
+													<DatePickerPrimitive.Cell
+														{date}
+														month={month.value}
+														class="p-0 text-center text-sm"
+													>
+														<DatePickerDay />
+													</DatePickerPrimitive.Cell>
+												{/each}
+											</DatePickerPrimitive.GridRow>
+										{/each}
+									</DatePickerPrimitive.GridBody>
+								</DatePickerPrimitive.Grid>
+							</CalendarSlide>
 						{/each}
 					</div>
 				</div>

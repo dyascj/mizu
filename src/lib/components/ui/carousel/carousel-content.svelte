@@ -6,8 +6,11 @@
 	import { getCarouselContext } from './context.js';
 
 	type Props = HTMLAttributes<HTMLDivElement> & {
+		/** Classes for the track that holds the items. */
 		class?: string;
+		/** The track element. */
 		ref?: HTMLDivElement | null;
+		/** The items. */
 		children?: Snippet;
 	};
 
@@ -17,7 +20,17 @@
 </script>
 
 <div
-	class="overflow-hidden"
+	class={cn(
+		'overflow-hidden',
+		// The focus effect fades the edges to hint at more, pads the viewport so
+		// the cards' shadows are not clipped, and shows that it can be dragged.
+		ctx.effect === 'focus' && 'cursor-grab data-dragging:cursor-grabbing data-dragging:select-none',
+		ctx.effect === 'focus' &&
+			(ctx.orientation === 'horizontal'
+				? '-my-4 [mask-image:linear-gradient(to_right,transparent,black_2rem,black_calc(100%-2rem),transparent)] py-4'
+				: '-mx-4 [mask-image:linear-gradient(to_bottom,transparent,black_2rem,black_calc(100%-2rem),transparent)] px-4')
+	)}
+	data-slot="carousel-viewport"
 	use:emblaCarouselSvelte={{ options: ctx.options, plugins: ctx.plugins }}
 	onemblaInit={ctx.onInit}
 >

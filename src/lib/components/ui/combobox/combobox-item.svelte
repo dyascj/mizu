@@ -17,22 +17,29 @@
 	} = $props();
 </script>
 
+<!-- Inside Combobox.Content one gliding pill draws the highlight, so the item
+     keeps its own fill only for use outside it. -->
 <ComboboxPrimitive.Item
 	bind:ref
 	{value}
 	{label}
 	class={cn(
-		'data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-pointer items-center rounded-lg py-1.5 pr-2 pl-8 text-sm transition-colors duration-(--duration-fast) outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+		'data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-pointer items-center rounded-lg py-1.5 pr-2 pl-8 text-sm outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 in-data-[highlight-glide]:data-[highlighted]:bg-transparent',
 		className
 	)}
 	{...restProps}
 >
 	{#snippet children({ selected })}
-		{#if selected}
-			<span class="absolute left-2 flex size-4 items-center justify-center">
-				<Check class="text-primary size-4" />
-			</span>
-		{/if}
+		<span aria-hidden="true" class="absolute left-2 flex size-4 items-center justify-center">
+			<Check
+				class={cn(
+					'text-primary size-4 transition-[scale,opacity,filter] motion-reduce:scale-100 motion-reduce:blur-none',
+					selected
+						? 'blur-none duration-(--duration-spring-snappy) ease-(--ease-spring-snappy)'
+						: 'scale-25 opacity-0 blur-[4px] duration-(--duration-fast) ease-in'
+				)}
+			/>
+		</span>
 		{#if childrenProp}
 			{@render childrenProp()}
 		{:else}

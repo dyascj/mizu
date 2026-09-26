@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
+	import { duration, easeInOut, easeOut } from '$lib/components/ui/motion';
 	import { cn } from '$lib/utils.js';
 
 	type Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
@@ -12,12 +13,21 @@
 		speed?: number;
 		/** Any CSS length between items and between the two copies. */
 		gap?: string;
-		/** Hold still while the pointer rests on it. Focus inside always pauses it. */
+		/**
+		 * Brake to a gentle stop while the pointer rests on it, and ease back up
+		 * to speed when it leaves. Focus inside always stops it at once.
+		 */
 		pauseOnHover?: boolean;
 		/** Hold still. Offer a control bound to this prop so readers can stop the motion (WCAG 2.2.2). */
 		paused?: boolean;
 		/** Feather the leading and trailing edges. */
 		fade?: boolean;
+		/**
+		 * Let the content sit back except in a soft reading window at the
+		 * center, where items brighten as they drift through. Braking on hover
+		 * leaves one resting in the lens. Use one lens per stack of rows.
+		 */
+		lens?: boolean;
 		class?: string;
 		ref?: HTMLDivElement | null;
 	};
@@ -30,6 +40,7 @@
 		pauseOnHover = true,
 		paused = false,
 		fade = true,
+		lens = false,
 		class: className,
 		ref = $bindable(null),
 		...rest
@@ -66,6 +77,54 @@
 		return () => observer.disconnect();
 	});
 
+	// animation-play-state can only snap, so the hover brake eases the
+	// playback rate of the running loops by hand instead. Starting from the
+	// current rate means re-entering mid-resume brakes from wherever it got to.
+	let rate = 1;
+	let frame = 0;
+
+	/** The scrolling loops only, never a transition on the content inside. */
+	function loops(): Animation[] {
+		if (!ref) return [];
+		return Array.from(ref.querySelectorAll<HTMLElement>('.marquee-copy')).flatMap((copy) =>
+			typeof copy.getAnimations === 'function' ? copy.getAnimations() : []
+		);
+	}
+
+	function rampTo(target: number) {
+		if (typeof requestAnimationFrame === 'undefined') return;
+		cancelAnimationFrame(frame);
+		const from = rate;
+		// Braking answers the pointer, so it bites quickly and coasts to rest.
+		// Picking back up is ambient, so it builds slowly, like momentum, and
+		// never lurches away from the cursor. A partial ramp takes its share.
+		const total = (target === 0 ? duration.slow : duration.deliberate) * Math.abs(target - from);
+		const ease = target === 0 ? easeOut : easeInOut;
+		let start: number | undefined;
+		const tick = (now: number) => {
+			start ??= now;
+			const t = total > 0 ? Math.min(1, (now - start) / total) : 1;
+			rate = from + (target - from) * ease(t);
+			for (const loop of loops()) loop.playbackRate = rate;
+			frame = t < 1 ? requestAnimationFrame(tick) : 0;
+		};
+		frame = requestAnimationFrame(tick);
+	}
+
+	$effect(() => () => cancelAnimationFrame(frame));
+
+	const showLens = $derived(lens && !reducedMotion);
+
+	// The lens copies start with the row, but one added later joins in step.
+	$effect(() => {
+		if (!showLens || !loop) return;
+		const [lead, ...others] = loops();
+		for (const other of others) {
+			other.currentTime = lead.currentTime;
+			other.playbackRate = rate;
+		}
+	});
+
 	const copyClass = $derived(
 		cn('marquee-copy flex shrink-0', vertical ? 'min-h-full flex-col' : 'min-w-full')
 	);
@@ -78,17 +137,27 @@
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div
 	bind:this={ref}
-	class={cn('marquee flex', vertical ? 'flex-col' : 'flex-row', className)}
+	class={cn('marquee relative flex', vertical ? 'flex-col' : 'flex-row', className)}
 	data-direction={direction}
 	data-fade={(fade && !reducedMotion) || undefined}
 	data-running={(loop && !reducedMotion) || undefined}
 	data-paused={paused || undefined}
 	data-pause-on-hover={pauseOnHover || undefined}
 	data-reduced-motion={reducedMotion || undefined}
+	data-lens={showLens || undefined}
 	tabindex={reducedMotion ? 0 : undefined}
 	style:--marquee-gap={gap}
 	style:--marquee-duration={loop}
 	{...rest}
+	onpointerenter={(event) => {
+		// After the spread, so a consumer's own handler runs as well rather than replacing the brake.
+		rest.onpointerenter?.(event);
+		if (pauseOnHover && event.pointerType !== 'touch') rampTo(0);
+	}}
+	onpointerleave={(event) => {
+		rest.onpointerleave?.(event);
+		if (event.pointerType !== 'touch') rampTo(1);
+	}}
 >
 	<div bind:this={content} class={copyClass}>
 		{@render children()}
@@ -96,6 +165,18 @@
 	{#if !reducedMotion}
 		<div class={copyClass} aria-hidden="true" inert>
 			{@render children()}
+		</div>
+	{/if}
+	{#if showLens}
+		<!-- The row again at full strength, seen only through a soft window in
+		     the middle, running the same loop in step with the row below. -->
+		<div
+			class={cn('marquee-lens pointer-events-none absolute inset-0 flex', vertical && 'flex-col')}
+			aria-hidden="true"
+			inert
+		>
+			<div class={copyClass}>{@render children()}</div>
+			<div class={copyClass}>{@render children()}</div>
 		</div>
 	{/if}
 </div>
@@ -137,9 +218,26 @@
 	}
 
 	.marquee[data-paused] .marquee-copy,
-	.marquee[data-pause-on-hover]:hover .marquee-copy,
 	.marquee:focus-within .marquee-copy {
 		animation-play-state: paused;
+	}
+
+	/* Outside the lens the row sits back, so the lit copy is the only thing at
+	   full strength. The lens shares the row's padding, so the copies line up. */
+	.marquee[data-lens] > .marquee-copy {
+		opacity: 0.4;
+	}
+
+	.marquee-lens {
+		gap: var(--marquee-gap);
+		padding: inherit;
+		overflow: hidden;
+		mask-image: linear-gradient(to right, transparent 28%, black 40%, black 60%, transparent 72%);
+	}
+
+	.marquee[data-direction='up'] .marquee-lens,
+	.marquee[data-direction='down'] .marquee-lens {
+		mask-image: linear-gradient(to bottom, transparent 28%, black 40%, black 60%, transparent 72%);
 	}
 
 	/* Without motion, the content becomes an ordinary scrollable row or column

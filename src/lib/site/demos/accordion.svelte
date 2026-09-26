@@ -2,25 +2,34 @@
 	import * as Accordion from '$lib/components/ui/accordion';
 </script>
 
-<Accordion.Root type="single" class="w-full max-w-md">
-	<Accordion.Item value="clarity">
-		<Accordion.Trigger>Can I use this in a commercial project?</Accordion.Trigger>
+<!-- Multiple panels open independently, so opening one never shifts the row that
+     was just clicked; it can be closed again without moving the pointer. -->
+<Accordion.Root type="multiple" class="w-full max-w-md">
+	<Accordion.Item value="memory">
+		<Accordion.Trigger>Does the assistant remember past chats?</Accordion.Trigger>
 		<Accordion.Content>
-			Yes. Mizu is MIT licensed. Keep the license notice with the source you distribute.
+			Only when memory is on. It keeps short notes about your preferences, and you can review or
+			delete each one in settings.
 		</Accordion.Content>
 	</Accordion.Item>
-	<Accordion.Item value="theming">
-		<Accordion.Trigger>How do I change the theme?</Accordion.Trigger>
+	<Accordion.Item value="files">
+		<Accordion.Trigger>Can it read files I upload?</Accordion.Trigger>
 		<Accordion.Content>
-			Edit the tokens in your Tailwind stylesheet. Primary actions and focus indicators follow your
-			primary color.
+			Yes. PDFs, spreadsheets, and images stay attached to the chat they were shared in, and are
+			never used to train models.
 		</Accordion.Content>
 	</Accordion.Item>
-	<Accordion.Item value="motion">
-		<Accordion.Trigger>Does it support reduced motion?</Accordion.Trigger>
+	<Accordion.Item value="models">
+		<Accordion.Trigger>Which model answers my prompts?</Accordion.Trigger>
 		<Accordion.Content>
-			The components respect your device preference. Animated effects pause or resolve to a static
-			state.
+			The fastest model handles quick replies. Long reasoning, code, and research switch to the
+			larger model automatically.
+		</Accordion.Content>
+	</Accordion.Item>
+	<Accordion.Item value="limits">
+		<Accordion.Trigger>What happens when I hit my usage limit?</Accordion.Trigger>
+		<Accordion.Content>
+			Replies continue on the smaller model until your limit resets at midnight in your time zone.
 		</Accordion.Content>
 	</Accordion.Item>
 </Accordion.Root>

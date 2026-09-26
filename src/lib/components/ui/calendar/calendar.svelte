@@ -75,7 +75,7 @@ Bits UI couples the selection type with its value type. Both are forwarded toget
 				<Calendar.PrevButton variant={buttonVariant} />
 				<Calendar.NextButton variant={buttonVariant} />
 			</Calendar.Nav>
-			{#each months as month, monthIndex (month)}
+			{#each months as month, monthIndex (monthIndex)}
 				<Calendar.Month>
 					<Calendar.Header>
 						<Calendar.Caption
@@ -90,35 +90,37 @@ Bits UI couples the selection type with its value type. Both are forwarded toget
 							{monthIndex}
 						/>
 					</Calendar.Header>
-					<Calendar.Grid>
-						<Calendar.GridHead>
-							<Calendar.GridRow class="select-none">
-								{#each weekdays as weekday (weekday)}
-									<Calendar.HeadCell>
-										{weekday.slice(0, 2)}
-									</Calendar.HeadCell>
-								{/each}
-							</Calendar.GridRow>
-						</Calendar.GridHead>
-						<Calendar.GridBody>
-							{#each month.weeks as weekDates (weekDates)}
-								<Calendar.GridRow class="mt-2 w-full">
-									{#each weekDates as date (date)}
-										<Calendar.Cell {date} month={month.value}>
-											{#if day}
-												{@render day({
-													day: date,
-													outsideMonth: !isEqualMonth(date, month.value)
-												})}
-											{:else}
-												<Calendar.Day />
-											{/if}
-										</Calendar.Cell>
+					<Calendar.Slide month={month.value}>
+						<Calendar.Grid>
+							<Calendar.GridHead>
+								<Calendar.GridRow class="select-none">
+									{#each weekdays as weekday (weekday)}
+										<Calendar.HeadCell>
+											{weekday.slice(0, 2)}
+										</Calendar.HeadCell>
 									{/each}
 								</Calendar.GridRow>
-							{/each}
-						</Calendar.GridBody>
-					</Calendar.Grid>
+							</Calendar.GridHead>
+							<Calendar.GridBody>
+								{#each month.weeks as weekDates (weekDates)}
+									<Calendar.GridRow class="mt-2 w-full">
+										{#each weekDates as date (date)}
+											<Calendar.Cell {date} month={month.value}>
+												{#if day}
+													{@render day({
+														day: date,
+														outsideMonth: !isEqualMonth(date, month.value)
+													})}
+												{:else}
+													<Calendar.Day />
+												{/if}
+											</Calendar.Cell>
+										{/each}
+									</Calendar.GridRow>
+								{/each}
+							</Calendar.GridBody>
+						</Calendar.Grid>
+					</Calendar.Slide>
 				</Calendar.Month>
 			{/each}
 		</Calendar.Months>

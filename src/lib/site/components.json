@@ -33,14 +33,14 @@
 		"slug": "checkbox",
 		"name": "Checkbox",
 		"category": "Forms",
-		"description": "A compact checkbox with clear checked, disabled, and focus states.",
+		"description": "A compact checkbox whose check draws itself in, with Shift-click range selection in a group.",
 		"bits": true
 	},
 	{
 		"slug": "radio-group",
 		"name": "Radio Group",
 		"category": "Forms",
-		"description": "A single choice with a visible selection and keyboard navigation.",
+		"description": "A single choice with keyboard navigation, as rows or cards with a gliding selection ring.",
 		"bits": true
 	},
 	{
@@ -54,7 +54,7 @@
 		"slug": "slider",
 		"name": "Slider",
 		"category": "Forms",
-		"description": "A neutral track with a contrasting range and a draggable thumb.",
+		"description": "A track with a contrasting range, springy thumbs, value bubbles, and an optional elastic pull past the ends.",
 		"bits": true
 	},
 	{
@@ -86,14 +86,14 @@
 		"slug": "avatar",
 		"name": "Avatar",
 		"category": "Surfaces",
-		"description": "A rounded image with a graceful fallback.",
+		"description": "A rounded image with a graceful fallback and a status badge that morphs between presences.",
 		"bits": true
 	},
 	{
 		"slug": "dialog",
 		"name": "Dialog",
 		"category": "Overlays",
-		"description": "A clean modal floating over a blurred scrim.",
+		"description": "A clean modal over a blurred scrim that steps back when a confirmation opens on top.",
 		"bits": true
 	},
 	{
@@ -107,7 +107,7 @@
 		"slug": "tooltip",
 		"name": "Tooltip",
 		"category": "Overlays",
-		"description": "A small hint shown on hover or focus.",
+		"description": "A small hint on hover or focus. In a group, one bubble slides between triggers.",
 		"bits": true
 	},
 	{
@@ -135,19 +135,19 @@
 		"slug": "skeleton",
 		"name": "Skeleton",
 		"category": "Feedback",
-		"description": "A pulsing placeholder for loading content."
+		"description": "A shimmering placeholder that swaps into content top to bottom."
 	},
 	{
 		"slug": "spinner",
 		"name": "Spinner",
 		"category": "Feedback",
-		"description": "A minimal loading spinner."
+		"description": "A loading indicator in four styles that finishes with a check."
 	},
 	{
 		"slug": "circular-gauge",
 		"name": "Circular Gauge",
 		"category": "Feedback",
-		"description": "An animated ring gauge with a soft glow."
+		"description": "A ring or tick dial that sweeps to its value and holds a peak."
 	},
 	{
 		"slug": "alert-dialog",
@@ -167,7 +167,7 @@
 		"slug": "drawer",
 		"name": "Drawer",
 		"category": "Overlays",
-		"description": "A bottom sheet that slides up for quick actions, vaul under the hood.",
+		"description": "A bottom sheet you drag or flick away, with nested drawers that push the one behind back.",
 		"bits": false,
 		"npmDependencies": ["bits-ui"]
 	},
@@ -175,8 +175,34 @@
 		"slug": "hover-card",
 		"name": "Hover Card",
 		"category": "Overlays",
-		"description": "A card revealed on hover or focus.",
+		"description": "A card revealed on hover or focus. In a group, one card travels between names.",
 		"bits": true
+	},
+	{
+		"slug": "confirm-popover",
+		"name": "Confirm Popover",
+		"category": "Overlays",
+		"description": "Asks before a destructive action, from a popover that grows out of its button.",
+		"bits": true
+	},
+	{
+		"slug": "selection-toolbar",
+		"name": "Selection Toolbar",
+		"category": "Overlays",
+		"description": "A toolbar that grows out of whatever text you select."
+	},
+	{
+		"slug": "link-preview",
+		"name": "Link Preview",
+		"category": "Overlays",
+		"description": "A preview card that trails your cursor over a link and leans as it moves. Keyboard focus shows it too, so it suits citations.",
+		"bits": true
+	},
+	{
+		"slug": "shortcut-sheet",
+		"name": "Shortcut Sheet",
+		"category": "Overlays",
+		"description": "Press ? to see every shortcut, then press one to watch it light up."
 	},
 	{
 		"slug": "dropdown-menu",
@@ -238,7 +264,7 @@
 		"slug": "input-otp",
 		"name": "Input OTP",
 		"category": "Forms",
-		"description": "Minimal one-time-code cells.",
+		"description": "One-time-code slots with a gliding focus ring, a blinking caret, and a shake on a wrong code.",
 		"bits": true
 	},
 	{
@@ -270,7 +296,8 @@
 		"slug": "breadcrumb",
 		"name": "Breadcrumb",
 		"category": "Navigation",
-		"description": "A path trail back to the top."
+		"description": "A path trail back to the top.",
+		"bits": true
 	},
 	{
 		"slug": "pagination",
@@ -327,13 +354,37 @@
 		"slug": "toast",
 		"name": "Toast",
 		"category": "Feedback",
-		"description": "Transient notifications that slide in and stack."
+		"description": "Notifications that stack, fan out on hover, and drain their edge as a timer, with undo and promise toasts."
 	},
 	{
 		"slug": "meter",
 		"name": "Meter",
 		"category": "Feedback",
-		"description": "A semantic gauge whose fill shifts across thresholds."
+		"description": "A semantic gauge whose fill shifts across thresholds, or a segmented breakdown you can point at."
+	},
+	{
+		"slug": "banner",
+		"name": "Banner",
+		"category": "Feedback",
+		"description": "An announcement bar that folds away on dismiss while the page slides up to fill the gap."
+	},
+	{
+		"slug": "checklist",
+		"name": "Checklist",
+		"category": "Feedback",
+		"description": "A setup checklist that counts up as you go and celebrates the finish."
+	},
+	{
+		"slug": "save-status",
+		"name": "Save Status",
+		"category": "Feedback",
+		"description": "A dot for unsaved changes splits into three while saving, then gathers into a check."
+	},
+	{
+		"slug": "live-indicator",
+		"name": "Live Indicator",
+		"category": "Feedback",
+		"description": "Breathes while live and blinks hollow while reconnecting."
 	},
 	{
 		"slug": "calendar",
@@ -346,7 +397,8 @@
 		"slug": "range-calendar",
 		"name": "Range Calendar",
 		"category": "Forms",
-		"description": "Pick a span of dates with a clean month grid."
+		"description": "Pick a span of dates with a clean month grid.",
+		"bits": true
 	},
 	{
 		"slug": "date-picker",
@@ -359,19 +411,19 @@
 		"slug": "rating",
 		"name": "Rating",
 		"category": "Forms",
-		"description": "Fillable symbols for a quick score."
+		"description": "Fillable symbols that preview on hover and pop when chosen."
 	},
 	{
 		"slug": "tags-input",
 		"name": "Tags Input",
 		"category": "Forms",
-		"description": "A field that collects entries as soft pill chips."
+		"description": "A field whose typed words become chips right where they are."
 	},
 	{
 		"slug": "carousel",
 		"name": "Carousel",
 		"category": "Surfaces",
-		"description": "A swipeable slider with pill prev/next controls."
+		"description": "A swipeable slider with pill controls, and a focus mode where neighbors shrink and fade."
 	},
 	{
 		"slug": "resizable",
@@ -383,13 +435,67 @@
 		"slug": "data-table",
 		"name": "Data Table",
 		"category": "Surfaces",
-		"description": "TanStack-powered tables: sorting, filtering, and pagination you own."
+		"description": "TanStack-powered tables whose rows glide when sorted, with a bulk action bar that rises for selections."
 	},
 	{
 		"slug": "timeline",
 		"name": "Timeline",
 		"category": "Surfaces",
-		"description": "A vertical history with softly glowing markers."
+		"description": "A vertical history whose line grows down to meet each new event."
+	},
+	{
+		"slug": "swipe-deck",
+		"name": "Swipe Deck",
+		"category": "Surfaces",
+		"description": "Fling a card away and the rest of the deck steps forward."
+	},
+	{
+		"slug": "expanding-card",
+		"name": "Expanding Card",
+		"category": "Surfaces",
+		"description": "Grows from its slot into a detail view and folds back when you are done."
+	},
+	{
+		"slug": "sortable",
+		"name": "Sortable",
+		"category": "Surfaces",
+		"description": "Pick up a row or tile and the rest slide out of its way."
+	},
+	{
+		"slug": "kanban",
+		"name": "Kanban",
+		"category": "Surfaces",
+		"description": "Lift a card between columns and the others make room for it."
+	},
+	{
+		"slug": "drag-select",
+		"name": "Drag Select",
+		"category": "Surfaces",
+		"description": "Draw a box across items to select them, like a desktop."
+	},
+	{
+		"slug": "compare-slider",
+		"name": "Compare Slider",
+		"category": "Surfaces",
+		"description": "Drag the divider to compare a before and after."
+	},
+	{
+		"slug": "code-block",
+		"name": "Code Block",
+		"category": "Surfaces",
+		"description": "Switch files with a sliding underline and copy with one click."
+	},
+	{
+		"slug": "image-hotspots",
+		"name": "Image Hotspots",
+		"category": "Surfaces",
+		"description": "A leader line travels between labeled points on an image without covering it."
+	},
+	{
+		"slug": "avatar-stack",
+		"name": "Avatar Stack",
+		"category": "Surfaces",
+		"description": "A row of faces that fans open when you reach for it, with a name above each."
 	},
 	{
 		"slug": "sidebar",
@@ -423,6 +529,36 @@
 		"name": "Dock",
 		"category": "Navigation",
 		"description": "A dock that magnifies icons under the cursor."
+	},
+	{
+		"slug": "link",
+		"name": "Link",
+		"category": "Navigation",
+		"description": "An underline that enters from the side your cursor came in and leaves the way it left."
+	},
+	{
+		"slug": "page-dots",
+		"name": "Page Dots",
+		"category": "Navigation",
+		"description": "A pill that inches between pages like a worm and counts down to the next."
+	},
+	{
+		"slug": "back-to-top",
+		"name": "Back to Top",
+		"category": "Navigation",
+		"description": "Fills its ring as you read, then lifts the page back up."
+	},
+	{
+		"slug": "reading-progress",
+		"name": "Reading Progress",
+		"category": "Navigation",
+		"description": "A bar that fills as you read while the time left counts down."
+	},
+	{
+		"slug": "scroll-spine",
+		"name": "Scroll Spine",
+		"category": "Navigation",
+		"description": "Maps a document as a spine of bands sized to each section, filling as you read."
 	},
 	{
 		"slug": "aurora",
@@ -494,7 +630,7 @@
 		"slug": "voice-orb",
 		"name": "Voice Orb",
 		"category": "AI",
-		"description": "An audio-reactive cloud orb, adapted from orb-ui for Svelte."
+		"description": "A voice orb in two styles: a folded cloud, or glassy mist that listens to a live mic, swirls while thinking, and breathes while speaking."
 	},
 	{
 		"slug": "waveform",
@@ -527,6 +663,36 @@
 		"description": "An expressive companion that shows when an assistant is listening, thinking, speaking, or done."
 	},
 	{
+		"slug": "conversation",
+		"name": "Conversation",
+		"category": "AI",
+		"description": "A message thread that follows new replies only while you are at the bottom."
+	},
+	{
+		"slug": "feedback-prompt",
+		"name": "Feedback Prompt",
+		"category": "AI",
+		"description": "Asks whether a response helped, and opens into a field right where the question was."
+	},
+	{
+		"slug": "call-controls",
+		"name": "Call Controls",
+		"category": "AI",
+		"description": "Accept turns into hang up as the call controls unfold out of it."
+	},
+	{
+		"slug": "audio-player",
+		"name": "Audio Player",
+		"category": "AI",
+		"description": "Inks in a voice note waveform with chapter markers and a ghost playhead."
+	},
+	{
+		"slug": "greeting",
+		"name": "Greeting",
+		"category": "AI",
+		"description": "Greets by time of day as a sun or moon rises into place along an arc."
+	},
+	{
 		"slug": "text-reveal",
 		"name": "Text Reveal",
 		"category": "Motion",
@@ -551,6 +717,102 @@
 		"description": "An endless, pausable scroller for logos, testimonials, and prompt chips."
 	},
 	{
+		"slug": "text-scramble",
+		"name": "Text Scramble",
+		"category": "Motion",
+		"description": "A block cursor reads a word in, one letter at a time."
+	},
+	{
+		"slug": "typewriter",
+		"name": "Typewriter",
+		"category": "Motion",
+		"description": "Types, pauses, and rewrites the last word with a human rhythm."
+	},
+	{
+		"slug": "wave-text",
+		"name": "Wave Text",
+		"category": "Motion",
+		"description": "Letters rise in a wave that follows your cursor."
+	},
+	{
+		"slug": "spoiler",
+		"name": "Spoiler",
+		"category": "Motion",
+		"description": "Hides text under shimmering grain that blows away from your click."
+	},
+	{
+		"slug": "highlight",
+		"name": "Highlight",
+		"category": "Motion",
+		"description": "Swipes a highlighter across a line when it comes into view."
+	},
+	{
+		"slug": "code-morph",
+		"name": "Code Morph",
+		"category": "Motion",
+		"description": "Glides every surviving token to its new spot as code changes."
+	},
+	{
+		"slug": "icon-morph",
+		"name": "Icon Morph",
+		"category": "Motion",
+		"description": "Icons reshape between states instead of swapping."
+	},
+	{
+		"slug": "confetti",
+		"name": "Confetti",
+		"category": "Motion",
+		"description": "A burst of confetti for moments worth celebrating, as a button or a confetti() call."
+	},
+	{
+		"slug": "tilt-card",
+		"name": "Tilt Card",
+		"category": "Motion",
+		"description": "Leans toward your cursor with a glare that follows the light."
+	},
+	{
+		"slug": "spotlight-card",
+		"name": "Spotlight Card",
+		"category": "Motion",
+		"description": "Cards catch the glow of a cursor lamp."
+	},
+	{
+		"slug": "flip-card",
+		"name": "Flip Card",
+		"category": "Motion",
+		"description": "Turns over in 3D to show what is on the back."
+	},
+	{
+		"slug": "lens",
+		"name": "Lens",
+		"category": "Motion",
+		"description": "A lens follows your cursor and reveals what is hidden underneath."
+	},
+	{
+		"slug": "sticky-stack",
+		"name": "Sticky Stack",
+		"category": "Motion",
+		"description": "Cards pile up and sink back as you scroll."
+	},
+	{
+		"slug": "carousel-3d",
+		"name": "Carousel 3D",
+		"category": "Motion",
+		"description": "Spin a ring of cards and flick it to land on the one you want."
+	},
+	{
+		"slug": "logo-orbit",
+		"name": "Logo Orbit",
+		"category": "Motion",
+		"description": "Logos orbit a heading on tilted rings and brake when you point."
+	},
+	{
+		"slug": "dot-grid",
+		"name": "Dot Grid",
+		"category": "Motion",
+		"description": "Dots swell and part around your cursor, and a click sends a shockwave."
+	},
+	{
 		"slug": "tab-bar",
 		"name": "Tab Bar",
 		"category": "App",
@@ -569,6 +831,24 @@
 		"description": "An online and offline indicator that reassures people their changes will sync."
 	},
 	{
+		"slug": "dynamic-island",
+		"name": "Dynamic Island",
+		"category": "App",
+		"description": "A pill that morphs between live activities with a springy bounce."
+	},
+	{
+		"slug": "pull-to-refresh",
+		"name": "Pull to Refresh",
+		"category": "App",
+		"description": "Pull a feed down and new items slide in at the top."
+	},
+	{
+		"slug": "story-progress",
+		"name": "Story Progress",
+		"category": "App",
+		"description": "Tap through stories, and hold to pause."
+	},
+	{
 		"slug": "segmented-control",
 		"name": "Segmented Control",
 		"category": "Forms",
@@ -576,15 +856,208 @@
 		"bits": true
 	},
 	{
+		"slug": "number-input",
+		"name": "Number Input",
+		"category": "Forms",
+		"description": "Rolls each digit the way the count moves, and speeds up the longer you hold."
+	},
+	{
+		"slug": "password-input",
+		"name": "Password Input",
+		"category": "Forms",
+		"description": "Reveals with a wave of dots turning into letters, warns about caps lock, and meters strength."
+	},
+	{
+		"slug": "floating-label",
+		"name": "Floating Label",
+		"category": "Forms",
+		"description": "A field whose label lifts out of the way letter by letter and never covers your text."
+	},
+	{
+		"slug": "email-input",
+		"name": "Email Input",
+		"category": "Forms",
+		"description": "Catches a mistyped domain and fixes it by moving only the letters that were wrong."
+	},
+	{
+		"slug": "expanding-search",
+		"name": "Expanding Search",
+		"category": "Forms",
+		"description": "Opens from a circle into a search field, and closes faster than it opens."
+	},
+	{
+		"slug": "inline-edit",
+		"name": "Inline Edit",
+		"category": "Forms",
+		"description": "Edits text in place without moving a pixel."
+	},
+	{
+		"slug": "file-dropzone",
+		"name": "File Dropzone",
+		"category": "Forms",
+		"description": "Its dashed edge marches when a file enters the window and seals solid when it is overhead."
+	},
+	{
+		"slug": "color-swatches",
+		"name": "Color Swatches",
+		"category": "Forms",
+		"description": "A ring glides to the color you pick while the choice floods the preview."
+	},
+	{
+		"slug": "color-picker",
+		"name": "Color Picker",
+		"category": "Forms",
+		"description": "Drag a color out of the square, then fine-tune hue and opacity."
+	},
+	{
+		"slug": "wheel-picker",
+		"name": "Wheel Picker",
+		"category": "Forms",
+		"description": "Spins through values on a curved drum, like the iOS time picker."
+	},
+	{
+		"slug": "shortcut-recorder",
+		"name": "Shortcut Recorder",
+		"category": "Forms",
+		"description": "Press keys to set a shortcut; keycaps appear as you hold them and conflicts are flagged."
+	},
+	{
 		"slug": "hold-button",
 		"name": "Hold Button",
 		"category": "Actions",
-		"description": "Press and hold to confirm a destructive or consequential action as a fill sweeps across the pill."
+		"description": "A pill you press and hold to confirm, with a fill that sweeps across and an optional bin lid that slams shut."
 	},
 	{
 		"slug": "copy-button",
 		"name": "Copy Button",
 		"category": "Actions",
-		"description": "An icon button that copies text to the clipboard and morphs into a check on success."
+		"description": "Copies a value as its two pages merge and a check draws in, or flips its letters into a confirmation."
+	},
+	{
+		"slug": "upload-button",
+		"name": "Upload Button",
+		"category": "Actions",
+		"description": "Shrinks into a progress ring while a file uploads, then checks off."
+	},
+	{
+		"slug": "download-button",
+		"name": "Download Button",
+		"category": "Actions",
+		"description": "The arrow drops into the tray while the pill fills with progress."
+	},
+	{
+		"slug": "async-button",
+		"name": "Async Button",
+		"category": "Actions",
+		"description": "Shrinks into a spinner while it works, then answers with a check or a shake."
+	},
+	{
+		"slug": "send-button",
+		"name": "Send Button",
+		"category": "Actions",
+		"description": "The plane lifts off along a curve and a check lands in its place. Pairs with chat composers."
+	},
+	{
+		"slug": "slide-to-confirm",
+		"name": "Slide to Confirm",
+		"category": "Actions",
+		"description": "Drag the knob across to confirm a consequential action."
+	},
+	{
+		"slug": "share-button",
+		"name": "Share Button",
+		"category": "Actions",
+		"description": "Opens in place into share targets, and the link turns into a check once copied."
+	},
+	{
+		"slug": "like-button",
+		"name": "Like Button",
+		"category": "Actions",
+		"description": "Pops, bursts, and rolls its count when liked."
+	},
+	{
+		"slug": "star-button",
+		"name": "Star Button",
+		"category": "Actions",
+		"description": "Spins once, throws off sparks, and rolls the count."
+	},
+	{
+		"slug": "bookmark-button",
+		"name": "Bookmark Button",
+		"category": "Actions",
+		"description": "Fills from the bottom up and lands with a small squash."
+	},
+	{
+		"slug": "follow-button",
+		"name": "Follow Button",
+		"category": "Actions",
+		"description": "Turns its plus into a check, and asks before unfollowing."
+	},
+	{
+		"slug": "reactions",
+		"name": "Reactions",
+		"category": "Actions",
+		"description": "Add a reaction and watch it fly into its pill as the count rolls."
+	},
+	{
+		"slug": "notification-bell",
+		"name": "Notification Bell",
+		"category": "Actions",
+		"description": "Rings when something arrives while its badge rolls up.",
+		"bits": true
+	},
+	{
+		"slug": "theme-toggle",
+		"name": "Theme Toggle",
+		"category": "Actions",
+		"description": "A sun that folds its rays away into a crescent moon."
+	},
+	{
+		"slug": "sparkline",
+		"name": "Sparkline",
+		"category": "Data",
+		"description": "Draws itself in, then scrubs to the nearest point under your cursor."
+	},
+	{
+		"slug": "bar-chart",
+		"name": "Bar Chart",
+		"category": "Data",
+		"description": "Grows its bars from the baseline and springs between series."
+	},
+	{
+		"slug": "donut-chart",
+		"name": "Donut Chart",
+		"category": "Data",
+		"description": "Draws itself in, then lifts whichever slice you point at."
+	},
+	{
+		"slug": "heatmap",
+		"name": "Heatmap",
+		"category": "Data",
+		"description": "A year of activity at a glance, sweeping in week by week."
+	},
+	{
+		"slug": "stat",
+		"name": "Stat",
+		"category": "Data",
+		"description": "A figure that counts up, and rolls back through its history as you scrub the trend."
+	},
+	{
+		"slug": "leaderboard",
+		"name": "Leaderboard",
+		"category": "Data",
+		"description": "Rows glide past each other to their new ranks."
+	},
+	{
+		"slug": "uptime-bar",
+		"name": "Uptime Bar",
+		"category": "Data",
+		"description": "Point at any day and the caption tells you what happened."
+	},
+	{
+		"slug": "relative-time",
+		"name": "Relative Time",
+		"category": "Data",
+		"description": "A timestamp that says how long ago in words and keeps itself current."
 	}
 ]

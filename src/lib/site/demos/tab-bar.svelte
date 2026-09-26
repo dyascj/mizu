@@ -1,20 +1,17 @@
 <script lang="ts">
-	import AudioLines from '@lucide/svelte/icons/audio-lines';
-	import CircleUser from '@lucide/svelte/icons/circle-user';
 	import House from '@lucide/svelte/icons/house';
-	import LibraryBig from '@lucide/svelte/icons/library-big';
 	import MessageCircle from '@lucide/svelte/icons/message-circle';
-	import { Label } from '$lib/components/ui/label';
-	import { Switch } from '$lib/components/ui/switch';
+	import Mic from '@lucide/svelte/icons/mic';
+	import User from '@lucide/svelte/icons/user';
+	import { blurIn, duration } from '$lib/components/ui/motion';
 	import * as TabBar from '$lib/components/ui/tab-bar';
 	import * as ToggleGroup from '$lib/components/ui/toggle-group';
 
 	const tabs = [
 		{ id: 'home', label: 'Home', icon: House },
 		{ id: 'chats', label: 'Chats', icon: MessageCircle, badge: 3 },
-		{ id: 'voice', label: 'Voice', icon: AudioLines },
-		{ id: 'library', label: 'Library', icon: LibraryBig },
-		{ id: 'profile', label: 'Profile', icon: CircleUser }
+		{ id: 'voice', label: 'Voice', icon: Mic },
+		{ id: 'profile', label: 'Profile', icon: User }
 	];
 
 	const screens: Record<string, { title: string; rows: { title: string; meta: string }[] }> = {
@@ -44,14 +41,6 @@
 				{ title: 'Spanish conversation', meta: '9 min · Sunday' }
 			]
 		},
-		library: {
-			title: 'Library',
-			rows: [
-				{ title: 'Saved answers', meta: '24 items' },
-				{ title: 'Files and images', meta: '138 items' },
-				{ title: 'Shared with you', meta: '6 items' }
-			]
-		},
 		profile: {
 			title: 'Profile',
 			rows: [
@@ -64,7 +53,7 @@
 
 	let current = $state('home');
 	let variant = $state<'floating' | 'docked'>('floating');
-	let showLabels = $state(true);
+	let labels = $state<'active' | 'visible' | 'hidden'>('active');
 	const screen = $derived(screens[current]);
 </script>
 
@@ -72,27 +61,31 @@
 	<div
 		class="bg-card relative flex h-80 w-[calc(100%+1.5rem)] max-w-[22rem] flex-col overflow-hidden rounded-[2.5rem] shadow-xl max-sm:-mx-3"
 	>
-		<div class="min-h-0 flex-1 px-5 pt-8">
-			<h3 class="text-xl font-semibold tracking-tight">{screen.title}</h3>
-			<ul class="mt-4 flex flex-col gap-2">
-				{#each screen.rows as row (row.title)}
-					<li class="bg-secondary rounded-2xl px-4 py-3">
-						<p class="truncate text-sm font-medium">{row.title}</p>
-						<p class="text-muted-foreground mt-0.5 truncate text-xs">{row.meta}</p>
-					</li>
-				{/each}
-			</ul>
-		</div>
+		<!-- Each screen resolves in place, so the outgoing one never competes. -->
+		{#key current}
+			<div class="min-h-0 flex-1 px-5 pt-8" in:blurIn={{ duration: duration.base, blur: 4, y: 6 }}>
+				<h3 class="text-xl font-semibold tracking-tight">{screen.title}</h3>
+				<ul class="mt-4 flex flex-col gap-2">
+					{#each screen.rows as row (row.title)}
+						<li class="bg-secondary rounded-2xl px-4 py-3">
+							<p class="truncate text-sm font-medium">{row.title}</p>
+							<p class="text-muted-foreground mt-0.5 truncate text-xs">{row.meta}</p>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		{/key}
 
 		<TabBar.Root
 			{variant}
-			labels={showLabels ? 'visible' : 'hidden'}
+			{labels}
 			class={variant === 'floating' ? 'absolute inset-x-0 bottom-2' : undefined}
 		>
 			{#each tabs as tab (tab.id)}
 				<TabBar.Item
 					label={tab.label}
 					icon={tab.icon}
+					fill
 					badge={tab.badge}
 					active={current === tab.id}
 					onclick={() => (current = tab.id)}
@@ -110,9 +103,14 @@
 			<ToggleGroup.Item size="sm" value="floating">Floating</ToggleGroup.Item>
 			<ToggleGroup.Item size="sm" value="docked">Docked</ToggleGroup.Item>
 		</ToggleGroup.Root>
-		<div class="flex items-center gap-2">
-			<Switch id="tab-bar-labels" bind:checked={showLabels} />
-			<Label for="tab-bar-labels">Labels</Label>
-		</div>
+		<ToggleGroup.Root
+			type="single"
+			aria-label="Labels"
+			bind:value={() => labels, (value) => value && (labels = value as typeof labels)}
+		>
+			<ToggleGroup.Item size="sm" value="active">Active</ToggleGroup.Item>
+			<ToggleGroup.Item size="sm" value="visible">All</ToggleGroup.Item>
+			<ToggleGroup.Item size="sm" value="hidden">None</ToggleGroup.Item>
+		</ToggleGroup.Root>
 	</div>
 </div>

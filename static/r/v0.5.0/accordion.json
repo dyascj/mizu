@@ -1,0 +1,36 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "title": "Accordion",
+  "description": "Collapsible sections with a smooth height transition.",
+  "dependencies": [
+    "@lucide/svelte@^1.48.0",
+    "bits-ui@^2.19.3"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.5.0/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "accordion/accordion-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<AccordionPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n\n\t/**\n\t * Whether this item has changed since it first rendered. An answer that is\n\t * open on arrival is simply there; only a reader's click unfolds it.\n\t */\n\tlet toggled = $state(false);\n\tlet initial: boolean | undefined;\n\n\tfunction track(open: boolean) {\n\t\tif (initial === undefined) initial = open;\n\t\telse if (open !== initial) toggled = true;\n\t}\n</script>\n\n<AccordionPrimitive.Content bind:ref {...restProps}>\n\t{#snippet child({ props, open })}\n\t\t<div\n\t\t\t{...props}\n\t\t\t{@attach () => track(open)}\n\t\t\tclass=\"data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm\"\n\t\t>\n\t\t\t<!-- The answer is a flap folded up under its question. It swings down on\n\t\t\t     a hinge along the question's bottom edge while the row parts, so the\n\t\t\t     motion says where the text came from. -->\n\t\t\t<div class=\"mizu-accordion-flap\" data-flap={toggled ? '' : undefined}>\n\t\t\t\t<div class={cn('text-muted-foreground pb-4', className)}>\n\t\t\t\t\t{@render children?.()}\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t{/snippet}\n</AccordionPrimitive.Content>\n\n<style>\n\t.mizu-accordion-flap {\n\t\ttransform-origin: top;\n\t}\n\n\t/* Unfolding falls fast and settles flat. Text nearest the hinge stays veiled\n\t   until the flap lies down, so the answer reads as unfolding out of the\n\t   question rather than sliding in. */\n\t:global([data-state='open']) > .mizu-accordion-flap[data-flap] {\n\t\tanimation:\n\t\t\tmizu-accordion-unfold var(--duration-slow) var(--ease-out) both,\n\t\t\tmizu-accordion-crease var(--duration-slow) var(--ease-out) both,\n\t\t\tfade-in var(--duration-base) var(--ease-out) both;\n\t}\n\n\t/* Folding back goes only partway and fades out quicker than the row closes,\n\t   so the text is gone before the row finishes shutting and is never seen\n\t   being clipped. */\n\t:global([data-state='closed']) > .mizu-accordion-flap {\n\t\tanimation:\n\t\t\tmizu-accordion-fold var(--duration-instant) var(--ease-in) both,\n\t\t\tfade-out var(--duration-instant) var(--ease-in) both;\n\t}\n\n\t@keyframes mizu-accordion-unfold {\n\t\tfrom {\n\t\t\ttransform: perspective(40rem) rotateX(-72deg);\n\t\t}\n\t}\n\n\t@keyframes mizu-accordion-fold {\n\t\tto {\n\t\t\ttransform: perspective(40rem) rotateX(-40deg);\n\t\t}\n\t}\n\n\t/* A mask twice the flap's height slides up: the top half veils the text\n\t   near the hinge, the bottom half shows everything. */\n\t@keyframes mizu-accordion-crease {\n\t\tfrom {\n\t\t\tmask-image: linear-gradient(to bottom, transparent, black 40%);\n\t\t\tmask-size: 100% 200%;\n\t\t\tmask-position: 0 0;\n\t\t}\n\t\tto {\n\t\t\tmask-image: linear-gradient(to bottom, transparent, black 40%);\n\t\t\tmask-size: 100% 200%;\n\t\t\tmask-position: 0 100%;\n\t\t}\n\t}\n\n\t@keyframes fade-in {\n\t\tfrom {\n\t\t\topacity: 0;\n\t\t}\n\t}\n\n\t@keyframes fade-out {\n\t\tto {\n\t\t\topacity: 0;\n\t\t}\n\t}\n\n\t@media (prefers-reduced-motion: reduce) {\n\t\t:global([data-state='open']) > .mizu-accordion-flap[data-flap] {\n\t\t\tanimation: fade-in var(--duration-fast) var(--ease-out) both;\n\t\t}\n\t\t:global([data-state='closed']) > .mizu-accordion-flap {\n\t\t\tanimation: fade-out var(--duration-fast) var(--ease-in) both;\n\t\t}\n\t}\n</style>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "accordion/accordion-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AccordionPrimitive.ItemProps & { class?: string } = $props();\n</script>\n\n<AccordionPrimitive.Item bind:ref class={cn(className)} {...restProps} />\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "accordion/accordion-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport type { Snippet } from 'svelte';\n\timport ChevronDown from '@lucide/svelte/icons/chevron-down';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<AccordionPrimitive.TriggerProps> & {\n\t\tclass?: string;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<AccordionPrimitive.Header class=\"flex\">\n\t<AccordionPrimitive.Trigger\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t'group/accordion-trigger hover:text-primary focus-visible:text-primary focus-visible:ring-ring focus-visible:ring-offset-background flex w-full items-center justify-between gap-5 rounded-lg py-4 text-left font-semibold transition-colors duration-(--duration-fast) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 [&[data-state=open]>svg]:rotate-180',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t\t<ChevronDown\n\t\t\tclass=\"text-muted-foreground group-hover/accordion-trigger:text-foreground group-data-[state=open]/accordion-trigger:text-foreground size-4 shrink-0 transition-[rotate,color] duration-(--duration-base) ease-out motion-reduce:transition-[color]\"\n\t\t\taria-hidden=\"true\"\n\t\t/>\n\t</AccordionPrimitive.Trigger>\n</AccordionPrimitive.Header>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "accordion/index.ts",
+      "content": "import { Accordion as AccordionPrimitive } from 'bits-ui';\nimport Item from './accordion-item.svelte';\nimport Trigger from './accordion-trigger.svelte';\nimport Content from './accordion-content.svelte';\n\nconst Root = AccordionPrimitive.Root;\n\nexport {\n\tRoot,\n\tItem,\n\tTrigger,\n\tContent,\n\t//\n\tRoot as Accordion,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n\tContent as AccordionContent\n};\n"
+    }
+  ]
+}

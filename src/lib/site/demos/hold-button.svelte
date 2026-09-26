@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { HoldButton } from '$lib/components/ui/hold-button';
+	import { HoldButton, HoldButtonTrash } from '$lib/components/ui/hold-button';
 	import MessageSquare from '@lucide/svelte/icons/message-square';
-	import Trash2 from '@lucide/svelte/icons/trash-2';
 
 	let deleted = $state(false);
 </script>
@@ -25,8 +24,8 @@
 		Deleting removes the conversation, its uploaded files, and any shared links from every device.
 	</p>
 	<div class="flex flex-wrap items-center gap-2">
-		<HoldButton onConfirm={() => (deleted = true)}>
-			<Trash2 />
+		<HoldButton onConfirm={() => (deleted = true)} confirmedLabel="Deleted">
+			<HoldButtonTrash />
 			Hold to delete
 		</HoldButton>
 		{#if deleted}

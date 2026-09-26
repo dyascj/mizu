@@ -7,6 +7,7 @@ export const categories = [
 	'Actions',
 	'Forms',
 	'Surfaces',
+	'Data',
 	'Overlays',
 	'Menus',
 	'Navigation',

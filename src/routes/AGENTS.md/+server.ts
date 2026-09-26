@@ -50,7 +50,7 @@ Guidance for AI coding agents working in a project that uses Mizu, ${tagline} ($
 
 ## Motion
 
-- The motion set: ${motion.join(', ')}. The Motion item exports \`rise\`, \`blurIn\`, and \`pop\` transitions and the \`reveal\` and \`magnetic\` attachments.
+- The motion set: ${motion.join(', ')}. The Motion item exports \`rise\`, \`blurIn\`, and \`pop\` transitions, the \`reveal\` and \`magnetic\` attachments, and \`SpringValue\`, a velocity-preserving spring that is safe in SSR and jsdom tests (prefer it to \`svelte/motion\`).
 - Continuous motion (TextRotate, Marquee) needs a way to pause. Keep ambient loops for AI activity.
 - Guide: ${base}${motionPath}
 

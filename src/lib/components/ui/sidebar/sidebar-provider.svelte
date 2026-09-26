@@ -10,6 +10,9 @@
 	} from './constants.js';
 	import { setSidebar } from './context.svelte.js';
 
+	/** Hover intent for the icon rail's tooltips, in milliseconds. */
+	const TOOLTIP_DELAY = 400;
+
 	let {
 		ref = $bindable(null),
 		open = $bindable(true),
@@ -37,7 +40,9 @@
 
 <svelte:window onkeydown={sidebar.handleShortcutKeydown} />
 
-<Tooltip.Provider delayDuration={0}>
+<!-- The first rail tooltip waits a beat, so sweeping the pointer across the
+     rail never flashes labels. Once one is up, neighbors open at once. -->
+<Tooltip.Provider delayDuration={TOOLTIP_DELAY}>
 	<div
 		data-slot="sidebar-wrapper"
 		style="--sidebar-width: {SIDEBAR_WIDTH}; --sidebar-width-icon: {SIDEBAR_WIDTH_ICON}; {style}"

@@ -1,4 +1,6 @@
 <script lang="ts">
+	// Folding to the icon rail is a width spring with no bounce: an overshooting
+	// sidebar would shove the content beside it back and forth.
 	import * as Sheet from '$lib/components/ui/sheet/index.js';
 	import { cn, type WithElementRef } from '$lib/utils.js';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -74,7 +76,7 @@
 		<div
 			data-slot="sidebar-gap"
 			class={cn(
-				'relative w-(--sidebar-width) bg-transparent transition-[width] duration-(--duration-base) ease-in-out',
+				'relative w-(--sidebar-width) bg-transparent transition-[width] duration-(--duration-spring-snappy) ease-(--ease-spring-snappy) motion-reduce:transition-none',
 				'group-data-[collapsible=offcanvas]:w-0',
 				'group-data-[side=right]:rotate-180',
 				variant === 'floating' || variant === 'inset'
@@ -85,7 +87,7 @@
 		<div
 			data-slot="sidebar-container"
 			class={cn(
-				'fixed inset-y-0 z-10 hidden w-(--sidebar-width) transition-[left,right,width] duration-(--duration-base) ease-in-out md:flex',
+				'fixed inset-y-0 z-10 hidden w-(--sidebar-width) transition-[left,right,width] duration-(--duration-spring-snappy) ease-(--ease-spring-snappy) motion-reduce:transition-none md:flex',
 				side === 'left'
 					? 'start-0 group-data-[collapsible=offcanvas]:start-[calc(var(--sidebar-width)*-1)]'
 					: 'end-0 group-data-[collapsible=offcanvas]:end-[calc(var(--sidebar-width)*-1)]',

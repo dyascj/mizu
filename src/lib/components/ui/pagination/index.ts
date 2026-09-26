@@ -5,6 +5,7 @@ import Page from './pagination-page.svelte';
 import PrevButton from './pagination-prev-button.svelte';
 import NextButton from './pagination-next-button.svelte';
 import Ellipsis from './pagination-ellipsis.svelte';
+import Pages from './pagination-pages.svelte';
 
 export {
 	Root,
@@ -14,6 +15,7 @@ export {
 	PrevButton,
 	NextButton,
 	Ellipsis,
+	Pages,
 	//
 	Root as Pagination,
 	Content as PaginationContent,
@@ -21,5 +23,6 @@ export {
 	Page as PaginationPage,
 	PrevButton as PaginationPrevButton,
 	NextButton as PaginationNextButton,
-	Ellipsis as PaginationEllipsis
+	Ellipsis as PaginationEllipsis,
+	Pages as PaginationPages
 };

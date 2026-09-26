@@ -19,6 +19,7 @@ export type CarouselState = {
 	handleKeyDown: (e: KeyboardEvent) => void;
 	options: CarouselOptions;
 	plugins: CarouselPlugins[];
+	effect: 'none' | 'focus';
 	onInit: (event: CustomEvent<CarouselApi>) => void;
 	scrollSnaps: number[];
 	selectedIndex: number;

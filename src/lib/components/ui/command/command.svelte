@@ -2,6 +2,7 @@
 	import { Command as CommandPrimitive, type WithoutChildrenOrChild } from 'bits-ui';
 	import type { Snippet } from 'svelte';
 	import { cn } from '$lib/utils.js';
+	import { setCommandContext } from './context.js';
 
 	let {
 		ref = $bindable(null),
@@ -13,6 +14,16 @@
 		class?: string;
 		children: Snippet;
 	} = $props();
+
+	let search = $state('');
+	setCommandContext({
+		get search() {
+			return search;
+		},
+		set search(text) {
+			search = text;
+		}
+	});
 </script>
 
 <CommandPrimitive.Root
