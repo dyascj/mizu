@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
-	import OrbMark from './orb-mark.svelte';
+	import MizuMark from './mizu-mark.svelte';
+	import MizuWordmark from './mizu-wordmark.svelte';
 
 	let { class: className, wordmark = true }: { class?: string; wordmark?: boolean } = $props();
 </script>
 
-<!-- The Mizu lockup: glow orb + wordmark. -->
-<span class={cn('inline-flex items-center gap-2 select-none', className)}>
-	<OrbMark class="size-7" />
+<!-- The Mizu lockup. The wave drifts while the lockup is hovered. -->
+<span class={cn('group text-foreground inline-flex items-center gap-2 select-none', className)}>
+	<MizuMark class="size-7" />
 	{#if wordmark}
-		<span class="text-foreground text-lg font-semibold tracking-tight">Mizu</span>
+		<MizuWordmark class="h-[1.125rem]" />
+		<span class="sr-only">Mizu</span>
 	{/if}
 </span>

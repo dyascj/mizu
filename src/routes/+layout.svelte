@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.css';
+	import '$lib/site/site.css';
 	import SiteHeader from '$lib/site/site-header.svelte';
 	import { siteConfig } from '$lib/site/config';
 
@@ -20,8 +20,10 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/brand/mizu-icon.png" />
-	<link rel="apple-touch-icon" href="/brand/mizu-icon.png" />
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link rel="manifest" href="/manifest.webmanifest" />
 	<meta name="author" content={siteConfig.author} />
 
 	<!-- Global Open Graph / Twitter. Per-page title, description, url, and image

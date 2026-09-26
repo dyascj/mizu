@@ -1,0 +1,8 @@
+/* Documentation site extensions. The distributable theme lives in app.css;
+   nothing here is required by installed components. */
+@import '../../app.css';
+
+@theme {
+	/* Editorial accent for marketing headlines. Never used inside components. */
+	--font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+}
