@@ -176,8 +176,12 @@ test('generated output declares audited dependencies and has exact versioned inv
 	assert.equal(manifest.version, release.version);
 	assert.match(manifest.generationCommit, /^[0-9a-f]{40}$/);
 	assert.equal(manifest.files.length, itemFiles.length);
-	assertExactInventory(outDir, [...generatedFiles, 'latest', ...versionDirectories]);
-	assertExactInventory(join(outDir, 'latest'), generatedFiles);
+	// Candidates may add items; the stable aliases keep the stable inventory.
+	const aliasFiles = JSON.parse(
+		readFileSync(join(outDir, `v${aliasVersion(release)}`, 'manifest.json'), 'utf8')
+	).files.map(({ path }) => path);
+	assertExactInventory(outDir, [...aliasFiles, 'manifest.json', 'latest', ...versionDirectories]);
+	assertExactInventory(join(outDir, 'latest'), [...aliasFiles, 'manifest.json']);
 	for (const versionDirectory of versionDirectories) {
 		const historical = JSON.parse(
 			readFileSync(join(outDir, versionDirectory, 'manifest.json'), 'utf8')
