@@ -184,6 +184,8 @@ input-group.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, ref?
 input-otp-separator.svelte | class?: string
 input-otp-slot.svelte extends WithoutChildrenOrChild<PinInput.CellProps> | ref?: unknown = null bindable, cell: unknown, class?: string
 input-otp.svelte extends WithoutChildren<PinInput.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, maxlength?: unknown = 6, class?: string, children: NonNullable<PinInput.RootProps['children']>
+# install-prompt
+install-prompt.svelte | title?: string = 'Install the app', description?: string = 'Open it from your home screen, like any other app.', icon?: Snippet, storageKey?: string, onInstall?: (outcome: 'accepted' | 'dismissed') => void, onDismiss?: () => void, forceVisible?: boolean = false, class?: string
 # item
 item-actions.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
 item-content.svelte extends HTMLAttributes<HTMLDivElement> | class?: string, children?: Snippet
@@ -226,6 +228,8 @@ navigation-menu-list.svelte extends WithoutChild<NavigationMenu.ListProps> | ref
 navigation-menu-trigger.svelte extends WithoutChildrenOrChild<NavigationMenu.TriggerProps> | ref?: unknown = null bindable, class?: string, children: Snippet
 navigation-menu-viewport.svelte extends WithoutChild<NavigationMenu.ViewportProps> | ref?: unknown = null bindable, class?: string
 navigation-menu.svelte extends WithoutChild<NavigationMenu.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, class?: string, viewport?: boolean = true, children: Snippet
+# network-status
+network-status.svelte | variant?: 'pill' | 'inline' = 'pill', fixed?: boolean = false, offlineLabel?: string = "You're offline. Changes will sync when you reconnect.", onlineLabel?: string = 'Back online', resetAfter?: number = 3000, forceStatus?: 'online' | 'offline', class?: string
 # nudge
 nudge.svelte | title: string, description?: string, onDismiss?: () => void, icon?: Snippet, actions?: Snippet, class?: string
 # number-ticker
@@ -339,6 +343,9 @@ stepper.svelte extends Omit<HTMLAttributes<HTMLOListElement>, 'children'> | step
 streaming-text.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | text: string, speed?: number = 60, cursor?: boolean = true, paused?: boolean = false, onComplete?: () => void, class?: string, ref?: HTMLSpanElement | null = null bindable
 # switch
 switch.svelte extends WithoutChildrenOrChild<Switch.RootProps> | ref?: unknown = null bindable, checked?: unknown = false bindable, class?: string
+# tab-bar
+tab-bar-item.svelte extends Omit<HTMLButtonAttributes & HTMLAnchorAttributes, 'children'> | label: string, icon?: Component<{ class?: string; strokeWidth?: number }>, active?: boolean = false, href?: string = undefined, badge?: number = 0, badgeLabel?: string, class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
+tab-bar.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | variant?: 'floating' | 'docked' = 'floating', fixed?: boolean = false, labels?: 'visible' | 'hidden' = 'visible', label?: string = 'Main', class?: string, ref?: HTMLElement | null = null bindable, children?: Snippet
 # table
 table-body.svelte extends HTMLAttributes<HTMLTableSectionElement> | class?: string, children?: Snippet
 table-caption.svelte extends HTMLAttributes<HTMLElement> | class?: string, children?: Snippet

@@ -429,6 +429,32 @@
 	background-image: var(--aurora-mint);
 }
 
+/* Safe areas for edge-to-edge apps and installed PWAs (requires
+   viewport-fit=cover): pt-safe, pb-safe, pl-safe, pr-safe, px-safe, py-safe.
+   Each side pads by the device inset (notch, home indicator, rounded corners)
+   or 0.75rem, whichever is larger, so bars clear the hardware on phones and
+   still breathe on screens without insets. */
+@utility pt-safe {
+	padding-top: max(0.75rem, env(safe-area-inset-top));
+}
+@utility pb-safe {
+	padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+@utility pl-safe {
+	padding-left: max(0.75rem, env(safe-area-inset-left));
+}
+@utility pr-safe {
+	padding-right: max(0.75rem, env(safe-area-inset-right));
+}
+@utility px-safe {
+	padding-left: max(0.75rem, env(safe-area-inset-left));
+	padding-right: max(0.75rem, env(safe-area-inset-right));
+}
+@utility py-safe {
+	padding-top: max(0.75rem, env(safe-area-inset-top));
+	padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
 /* Sequence siblings: set `--index` per item (style="--index: 2") and every
    animation on the element waits index × --stagger before it starts. */
 @utility stagger {
