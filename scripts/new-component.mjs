@@ -11,16 +11,12 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const [slug, name, category, description] = process.argv.slice(2);
 
+// The catalog owns the category list; read it so the scaffolder never drifts.
 const CATEGORIES = [
-	'AI',
-	'Actions',
-	'Forms',
-	'Surfaces',
-	'Overlays',
-	'Menus',
-	'Navigation',
-	'Feedback'
-];
+	...readFileSync(join(root, 'src/lib/site/catalog.ts'), 'utf8')
+		.match(/export const categories = \[([^\]]*)\]/)[1]
+		.matchAll(/'([^']+)'/g)
+].map(([, category]) => category);
 
 if (!slug || !name || !category || !description) {
 	console.error('Usage: pnpm new:component <slug> <Name> <Category> "<description>"');

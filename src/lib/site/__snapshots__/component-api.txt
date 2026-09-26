@@ -249,6 +249,8 @@ popover-close.svelte extends WithoutChild<Popover.CloseProps> | ref?: unknown = 
 popover-content.svelte extends WithoutChildrenOrChild<Popover.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 8, portalProps?: Popover.PortalProps, children: Snippet
 popover-trigger.svelte extends WithoutChild<Popover.TriggerProps> | ref?: unknown = null bindable, class?: string
 popover.svelte extends Popover.RootProps | 
+# presence
+presence.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | state?: PresenceState = 'idle', tone?: PresenceTone = 'water', size?: number = 96, volume?: number = 0, interactive?: boolean = true, label?: string, class?: string, ref?: HTMLDivElement | null = null bindable
 # progress
 progress.svelte extends WithoutChildrenOrChild<Progress.RootProps> | ref?: unknown = null bindable, value?: unknown = 0 bindable, max?: unknown = 100, class?: string
 # prompt-suggestions
@@ -365,7 +367,7 @@ tags-input.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'onchange'> | val
 # text-reveal
 text-reveal.svelte extends Omit<HTMLAttributes<HTMLElement>, 'children'> | text: string, by?: 'word' | 'character' = 'word', effect?: 'blur' | 'rise' | 'fade' = 'blur', trigger?: 'mount' | 'view' = 'mount', delay?: number = 0, stagger?: number, as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' = 'span', class?: string, ref?: HTMLElement | null = null bindable
 # text-rotate
-text-rotate.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | words: string[], interval?: number = 2400, effect?: 'blur' | 'slide' = 'blur', paused?: boolean = false, class?: string, ref?: HTMLSpanElement | null = null bindable
+text-rotate.svelte extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> | words: string[], interval?: number = 2400, effect?: 'blur' | 'slide' = 'blur', paused?: boolean = false, loop?: boolean = true, class?: string, ref?: HTMLSpanElement | null = null bindable
 # textarea
 textarea.svelte extends HTMLTextareaAttributes | class?: string, ref?: HTMLTextAreaElement | null = null bindable, value?: string | null bindable
 # thinking
