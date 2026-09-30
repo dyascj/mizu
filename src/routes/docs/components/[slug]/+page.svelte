@@ -5,19 +5,21 @@
 	import CopyCommand from '$lib/site/copy-command.svelte';
 	import CodeBlock from '$lib/site/code-block.svelte';
 	import { getDemo } from '$lib/site/demos';
-	import { getComponentApi, getComponentSource } from '$lib/site/component-api';
 	import { registryPinnedBase, siteConfig } from '$lib/site/config';
 	import Seo from '$lib/site/seo.svelte';
 
 	let { data } = $props();
 
 	const meta = $derived(data.component);
+	// The API module carries a lazy map of every component file, so it loads
+	// in its own chunk instead of weighing down this page's.
 	const componentDocs = $derived(
 		Promise.all([
 			getDemo(meta.slug),
-			getComponentApi(meta.slug),
-			getComponentSource(meta.slug)
-		]).then(([demo, api, source]) => ({ demo, api, source }))
+			import('$lib/site/component-api').then((m) =>
+				Promise.all([m.getComponentApi(meta.slug), m.getComponentSource(meta.slug)])
+			)
+		]).then(([demo, [api, source]]) => ({ demo, api, source }))
 	);
 	const installCmd = $derived(
 		`npx shadcn-svelte@latest add ${registryPinnedBase}/${meta.slug}.json`
