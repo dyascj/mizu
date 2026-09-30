@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Check from '@lucide/svelte/icons/check';
 	import Copy from '@lucide/svelte/icons/copy';
-	import Terminal from '@lucide/svelte/icons/terminal';
 	import { cn } from '$lib/utils.js';
 
 	let { command, class: className }: { command: string; class?: string } = $props();
@@ -26,12 +25,14 @@
 
 <div
 	class={cn(
-		'bg-secondary dark:bg-popover relative flex items-center gap-3 rounded-xl px-4 py-2.5 shadow-xs',
+		'border-border bg-secondary/50 dark:bg-popover relative flex w-fit max-w-full items-center gap-2.5 rounded-xl border py-1.5 pr-1.5 pl-3.5',
 		className
 	)}
 >
-	<Terminal class="size-4 shrink-0 text-[color:var(--primary)]" />
-	<code class="flex-1 truncate font-mono text-sm">{command}</code>
+	<span class="text-muted-foreground font-mono text-[0.8125rem] select-none" aria-hidden="true"
+		>$</span
+	>
+	<code class="min-w-0 flex-1 truncate font-mono text-[0.8125rem]">{command}</code>
 	<button
 		onclick={copy}
 		aria-label={failed ? 'Copy failed, try again' : copied ? 'Command copied' : 'Copy command'}

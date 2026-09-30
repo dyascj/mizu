@@ -1,66 +1,38 @@
 <script lang="ts">
 	import Menu from '@lucide/svelte/icons/menu';
+	import X from '@lucide/svelte/icons/x';
 	import { afterNavigate } from '$app/navigation';
-	import { page } from '$app/state';
-	import * as Sheet from '$lib/components/ui/sheet';
+	import * as Drawer from '$lib/components/ui/drawer';
 	import { buttonVariants } from '$lib/components/ui/button';
-	import { componentsByCategory } from './catalog';
-	import { primaryNavigationRoutes } from './routes';
-	import MizuLogo from './mizu-logo.svelte';
+	import DocsSidebar from './docs-sidebar.svelte';
 	import { cn } from '$lib/utils.js';
 
 	let open = $state(false);
 
-	// Close the drawer whenever a navigation finishes (i.e. a link was tapped).
+	// Close the sheet whenever a navigation finishes (i.e. a link was tapped).
 	afterNavigate(() => (open = false));
-
-	const groups = componentsByCategory();
-
-	const active = (href: string) => page.url.pathname === href;
-	const linkClass = (isActive: boolean) =>
-		cn(
-			'rounded-md px-2 py-1.5 text-sm leading-snug transition-colors',
-			isActive
-				? 'bg-primary-muted font-medium text-primary'
-				: 'text-muted-foreground hover:text-foreground'
-		);
 </script>
 
-<Sheet.Root {open} onOpenChange={(v) => (open = v)}>
-	<Sheet.Trigger
-		class={cn(buttonVariants({ variant: 'ghost', size: 'icon' }), 'lg:hidden')}
+<Drawer.Root bind:open shouldScaleBackground={false}>
+	<Drawer.Trigger
+		class={cn(buttonVariants({ variant: 'ghost', size: 'icon' }), 'size-9 lg:hidden')}
 		aria-label="Open navigation menu"
 	>
 		<Menu class="size-5" />
-	</Sheet.Trigger>
-	<Sheet.Content
-		side="left"
-		class="flex w-[19rem] max-w-[85vw] [scrollbar-width:none] flex-col gap-0 overflow-y-auto [mask-image:linear-gradient(to_bottom,black_calc(100%-3rem),transparent_100%)] [&::-webkit-scrollbar]:hidden"
-	>
-		<Sheet.Header class="pb-2">
-			<Sheet.Title class="flex items-center">
-				<MizuLogo />
-			</Sheet.Title>
-		</Sheet.Header>
-
-		<nav class="flex flex-col gap-5 py-2 pb-10">
-			<div class="flex flex-col gap-px">
-				{#each primaryNavigationRoutes as route (route.path)}
-					<a href={route.path} class={linkClass(active(route.path))}>{route.title}</a>
-				{/each}
-			</div>
-
-			{#each groups as group (group.category)}
-				<div class="flex flex-col gap-px">
-					<p class="text-muted-foreground px-2 pb-1 text-xs font-medium">
-						{group.category}
-					</p>
-					{#each group.items as item (item.slug)}
-						{@const href = `/docs/components/${item.slug}`}
-						<a {href} class={linkClass(active(href))}>{item.name}</a>
-					{/each}
-				</div>
-			{/each}
-		</nav>
-	</Sheet.Content>
-</Sheet.Root>
+	</Drawer.Trigger>
+	<Drawer.Content class="h-[88dvh] max-h-[88dvh]! pb-[env(safe-area-inset-bottom)]">
+		<Drawer.Title class="sr-only">Navigation</Drawer.Title>
+		<div class="min-h-0 flex-1">
+			<DocsSidebar>
+				{#snippet close()}
+					<Drawer.Close
+						aria-label="Close navigation menu"
+						class="bg-secondary text-foreground hover:bg-accent focus-visible:ring-ring inline-flex size-9 shrink-0 items-center justify-center rounded-xl outline-none focus-visible:ring-2"
+					>
+						<X class="size-4" />
+					</Drawer.Close>
+				{/snippet}
+			</DocsSidebar>
+		</div>
+	</Drawer.Content>
+</Drawer.Root>

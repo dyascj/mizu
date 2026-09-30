@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 	import { afterNavigate } from '$app/navigation';
+	import ArrowUp from '@lucide/svelte/icons/arrow-up';
 	import { cn } from '$lib/utils.js';
 
 	type Item = { id: string; text: string; level: number };
@@ -81,19 +82,20 @@
 </script>
 
 {#if items.length >= 2}
-	<nav aria-label="On this page" class="sticky top-24 text-[0.8125rem]">
-		<p class="text-muted-foreground mb-3 px-3 font-semibold">On this page</p>
-		<ul class="flex flex-col gap-0.5">
+	<nav aria-label="On this page" class="sticky top-28 text-[0.8125rem]">
+		<p class="text-foreground mb-3 font-medium">On this page</p>
+		<ul class="border-border flex flex-col border-l">
 			{#each items as item (item.id)}
 				<li>
 					<a
 						href={`#${item.id}`}
+						aria-current={activeId === item.id ? 'location' : undefined}
 						class={cn(
-							'block rounded-md px-3 py-1.5 leading-snug [overflow-wrap:anywhere] transition-colors',
+							'-ml-px block border-l py-1 pl-3.5 leading-5 [overflow-wrap:anywhere] transition-colors',
 							item.level === 3 && 'pl-6',
 							activeId === item.id
-								? 'bg-muted text-foreground font-medium'
-								: 'text-muted-foreground hover:text-foreground'
+								? 'border-foreground text-foreground'
+								: 'text-muted-foreground hover:text-foreground border-transparent'
 						)}
 					>
 						{item.text}
@@ -101,5 +103,14 @@
 				</li>
 			{/each}
 		</ul>
+		<div class="border-border mt-6 border-t pt-4">
+			<button
+				type="button"
+				onclick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+				class="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 transition-colors"
+			>
+				Back to top <ArrowUp class="size-3.5" aria-hidden="true" />
+			</button>
+		</div>
 	</nav>
 {/if}
