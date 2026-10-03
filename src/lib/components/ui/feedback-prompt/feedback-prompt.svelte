@@ -144,7 +144,7 @@
 		const element = node as HTMLElement;
 		element.dataset.leaving = '';
 		element.style.position = 'absolute';
-		element.style.left = '0';
+		element.style.insetInlineStart = '0';
 		element.style.top = '0';
 		element.style.pointerEvents = 'none';
 		if (prefersReducedMotion()) return { duration: durations.instant, css: (t) => `opacity: ${t}` };
@@ -175,8 +175,8 @@
 	{#key step}
 		<div data-content class="flex h-12 max-w-full min-w-0 items-center" in:enter out:leave>
 			{#if step === 'ask'}
-				<div class="flex min-w-0 items-center gap-1 pr-1.5 pl-5">
-					<span class="text-foreground mr-2 line-clamp-2 min-w-0 text-sm leading-tight"
+				<div class="flex min-w-0 items-center gap-1 ps-5 pe-1.5">
+					<span class="text-foreground me-2 line-clamp-2 min-w-0 text-sm leading-tight"
 						>{question}</span
 					>
 					<button
@@ -202,7 +202,7 @@
 					</button>
 				</div>
 			{:else if step === 'why'}
-				<form class="flex min-w-0 items-center gap-1 pr-1.5 pl-5" onsubmit={send}>
+				<form class="flex min-w-0 items-center gap-1 ps-5 pe-1.5" onsubmit={send}>
 					<label for="{uid}-note" class="sr-only">{placeholder}</label>
 					<input
 						bind:this={noteInput}
@@ -243,7 +243,7 @@
 					</button>
 				</form>
 			{:else}
-				<div class="flex min-w-0 items-center gap-2 pr-1.5 pl-4">
+				<div class="flex min-w-0 items-center gap-2 ps-4 pe-1.5">
 					<svg
 						viewBox="0 0 16 16"
 						fill="none"
@@ -268,7 +268,7 @@
 						type="button"
 						class={cn(
 							control,
-							'text-muted-foreground hover:text-foreground hover:bg-secondary ml-1 px-3 text-sm'
+							'text-muted-foreground hover:text-foreground hover:bg-secondary ms-1 px-3 text-sm'
 						)}
 						onclick={undo}
 					>

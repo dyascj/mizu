@@ -25,11 +25,11 @@ function setup(props: Partial<{ duration: number; disabled: boolean }> = {}) {
 
 const advance = (ms: number) => act(() => vi.advanceTimersByTimeAsync(ms));
 
-/** The share of the pill the fill covers, read from its clip-path. */
+/** The share of the pill the fill covers, read from the inset its clip-path leaves. */
 function fillProgress(button: HTMLElement) {
 	const fill = button.querySelector<HTMLElement>('[aria-hidden="true"]');
-	const right = fill?.style.clipPath.match(/inset\(0(?:px)? ([\d.]+)%/)?.[1];
-	return 1 - Number(right) / 100;
+	const rest = fill?.style.getPropertyValue('--hold-rest').match(/([\d.]+)%/)?.[1];
+	return 1 - Number(rest) / 100;
 }
 
 describe('HoldButton', () => {

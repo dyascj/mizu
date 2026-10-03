@@ -231,7 +231,9 @@
 </script>
 
 <div class={cn('flex w-full flex-col', className)}>
-	<div class="relative">
+	<!-- Addresses read left to right in any language, and the morph overlay lays
+	     its letters out the same way the field draws them. -->
+	<div class="relative" dir="ltr">
 		<!-- Text, not email: email inputs refuse setSelectionRange, and the caret
 		     has to land at the end after a fix. -->
 		<input
@@ -303,7 +305,7 @@
 				{#if hint}
 					<p
 						class={cn(
-							'text-muted-foreground col-start-1 row-start-1 truncate pl-4 text-sm transition-opacity ease-out',
+							'text-muted-foreground col-start-1 row-start-1 truncate ps-4 text-sm transition-opacity ease-out',
 							suggestion
 								? 'invisible opacity-0 duration-(--duration-instant)'
 								: 'opacity-100 duration-(--duration-base)'
@@ -321,7 +323,7 @@
 						<button
 							type="button"
 							onclick={accept}
-							class="text-muted-foreground hover:bg-foreground/8 focus-visible:ring-ring flex min-h-9 min-w-0 flex-1 items-center rounded-full px-4 py-1.5 text-left text-sm transition-[background-color,scale] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 active:scale-[0.98]"
+							class="text-muted-foreground hover:bg-foreground/8 focus-visible:ring-ring flex min-h-9 min-w-0 flex-1 items-center rounded-full px-4 py-1.5 text-start text-sm transition-[background-color,scale] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 active:scale-[0.98]"
 						>
 							<!-- Wraps on a phone rather than cutting off the one part that matters. -->
 							<span class="[overflow-wrap:anywhere]">

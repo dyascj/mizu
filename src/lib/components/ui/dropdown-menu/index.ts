@@ -8,9 +8,9 @@ import Label from './dropdown-menu-label.svelte';
 import SubTrigger from './dropdown-menu-sub-trigger.svelte';
 import SubContent from './dropdown-menu-sub-content.svelte';
 import Shortcut from './dropdown-menu-shortcut.svelte';
+import Trigger from './dropdown-menu-trigger.svelte';
+import Root from './dropdown-menu.svelte';
 
-const Root = DropdownMenuPrimitive.Root;
-const Trigger = DropdownMenuPrimitive.Trigger;
 const Group = DropdownMenuPrimitive.Group;
 const Sub = DropdownMenuPrimitive.Sub;
 const RadioGroup = DropdownMenuPrimitive.RadioGroup;

@@ -64,6 +64,8 @@
 	let fill = $state<HTMLElement | null>(null);
 	let prompt = $state<HTMLElement | null>(null);
 	let x = 0;
+	/** -1 right to left, where the knob travels leftward. Read as each move starts. */
+	let sign = 1;
 	let frame = 0;
 	let resetTimer: ReturnType<typeof setTimeout> | undefined;
 	let drag: {
@@ -74,12 +76,15 @@
 	} | null = null;
 
 	const maxX = () => Math.max((ref?.clientWidth ?? 0) - KNOB - INSET * 2, 1);
+	const readDirection = () => {
+		sign = ref && getComputedStyle(ref).direction === 'rtl' ? -1 : 1;
+	};
 
 	function paint() {
-		if (knob) knob.style.translate = `${x}px 0`;
-		// A track-wide pill whose right end rides just behind the knob. Moving it
+		if (knob) knob.style.translate = `${sign * x}px 0`;
+		// A track-wide pill whose far end rides just behind the knob. Moving it
 		// is a transform, where growing a width would relayout every frame.
-		if (fill) fill.style.translate = `calc(${x}px - 100% + ${KNOB}px) 0`;
+		if (fill) fill.style.translate = `calc((${x}px - 100% + ${KNOB}px) * ${sign}) 0`;
 		// The instruction is gone by 60% of the way, so it never sits under the knob.
 		if (prompt) prompt.style.opacity = `${Math.min(Math.max(1 - x / (maxX() * 0.6), 0), 1)}`;
 	}
@@ -88,6 +93,7 @@
 	function springTo(target: number, spring: SpringOptions, velocity = 0) {
 		cancelAnimationFrame(frame);
 		frame = 0;
+		readDirection();
 		if (prefersReducedMotion()) {
 			x = target;
 			paint();
@@ -144,23 +150,26 @@
 		if (drag) return;
 		cancelAnimationFrame(frame);
 		frame = 0;
+		readDirection();
 		event.currentTarget.setPointerCapture?.(event.pointerId);
+		// Pointer positions measured along the slide, so right to left mirrors them.
+		const along = sign * event.clientX;
 		drag = {
 			id: event.pointerId,
 			// Keeps the knob under the exact point it was grabbed, even mid-spring.
-			offset: event.clientX - x,
+			offset: along - x,
 			max: maxX(),
-			samples: [{ x: event.clientX, t: event.timeStamp }]
+			samples: [{ x: along, t: event.timeStamp }]
 		};
 	}
 
 	function onpointermove(event: PointerEvent) {
 		if (!drag || event.pointerId !== drag.id) return;
-		const now = { x: event.clientX, t: event.timeStamp };
+		const now = { x: sign * event.clientX, t: event.timeStamp };
 		drag.samples.push(now);
 		// Only the last 100ms say how fast the hand is moving now.
 		while (drag.samples.length > 2 && now.t - drag.samples[0].t > 100) drag.samples.shift();
-		const raw = event.clientX - drag.offset;
+		const raw = now.x - drag.offset;
 		if (raw >= drag.max) {
 			confirm(velocityOf(drag.samples, now));
 			return;
@@ -186,7 +195,9 @@
 	}
 
 	function onkeydown(event: KeyboardEvent) {
-		if (event.key === 'ArrowRight' || event.key === 'End') {
+		// The arrow that points toward the end, which is left in right to left.
+		const rtl = getComputedStyle(event.currentTarget as Element).direction === 'rtl';
+		if (event.key === (rtl ? 'ArrowLeft' : 'ArrowRight') || event.key === 'End') {
 			event.preventDefault();
 			confirm();
 		}
@@ -209,6 +220,7 @@
 			if (!done || drag) return;
 			cancelAnimationFrame(frame);
 			frame = 0;
+			readDirection();
 			x = maxX();
 			paint();
 		});
@@ -236,17 +248,16 @@
 		<div
 			bind:this={fill}
 			class={cn(
-				'bg-primary h-full w-full rounded-full transition-opacity duration-(--duration-base) ease-out',
+				'bg-primary h-full w-full -translate-x-[calc(100%-56px)] rounded-full transition-opacity duration-(--duration-base) ease-out rtl:translate-x-[calc(100%-56px)]',
 				done ? 'opacity-100' : 'opacity-8'
 			)}
-			style="translate: calc(-100% + {KNOB}px) 0"
 		></div>
 	</div>
 
 	<span
 		bind:this={prompt}
 		aria-hidden="true"
-		class="absolute inset-y-0 right-0 left-16 flex items-center justify-center pr-4 text-sm font-medium"
+		class="absolute inset-y-0 start-16 end-0 flex items-center justify-center pe-4 text-sm font-medium"
 	>
 		<span class="slide-prompt truncate">{label}</span>
 	</span>
@@ -255,7 +266,7 @@
 	<span
 		aria-hidden="true"
 		class={cn(
-			'text-primary-foreground absolute inset-y-0 right-16 left-0 flex items-center justify-center gap-2 pl-4 text-sm font-medium transition-[opacity,filter]',
+			'text-primary-foreground absolute inset-y-0 start-0 end-16 flex items-center justify-center gap-2 ps-4 text-sm font-medium transition-[opacity,filter]',
 			done
 				? 'opacity-100 blur-none duration-(--duration-base) ease-out'
 				: 'opacity-0 blur-[4px] duration-(--duration-fast) ease-in'
@@ -279,7 +290,7 @@
 		aria-describedby={hintId}
 		aria-disabled={done || disabled || undefined}
 		class={cn(
-			'bg-card text-foreground focus-visible:ring-ring focus-visible:ring-offset-background dark:bg-control absolute top-1 left-1 flex size-14 touch-none items-center justify-center rounded-full shadow-sm transition-[scale] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+			'bg-card text-foreground focus-visible:ring-ring focus-visible:ring-offset-background dark:bg-control absolute start-1 top-1 flex size-14 touch-none items-center justify-center rounded-full shadow-sm transition-[scale] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
 			done || disabled ? 'cursor-default' : 'cursor-grab active:scale-[0.96] active:cursor-grabbing'
 		)}
 		{onpointerdown}
@@ -289,7 +300,10 @@
 		{onclick}
 		{onkeydown}
 	>
-		<ChevronRight aria-hidden="true" class="size-5 translate-x-px" />
+		<ChevronRight
+			aria-hidden="true"
+			class="size-5 translate-x-px rtl:-translate-x-px rtl:rotate-180"
+		/>
 	</button>
 
 	<span id={hintId} class="sr-only">Drag to the end, or press Enter</span>
@@ -309,7 +323,10 @@
 			var(--muted-foreground) 100%
 		);
 		background-size: 250% 100%;
-		background-position: 100% 0;
+		background-position: var(--sweep-from) 0;
+		/* The highlight crosses the way the line reads. */
+		--sweep-from: 100%;
+		--sweep-to: 0%;
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
@@ -320,9 +337,14 @@
 		animation: slide-sweep var(--duration-ambient) var(--ease-in-out);
 	}
 
+	.slide-prompt:dir(rtl) {
+		--sweep-from: 0%;
+		--sweep-to: 100%;
+	}
+
 	@keyframes slide-sweep {
 		to {
-			background-position: 0 0;
+			background-position: var(--sweep-to) 0;
 		}
 	}
 

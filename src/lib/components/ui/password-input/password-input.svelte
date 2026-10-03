@@ -99,9 +99,11 @@
 		const chars = [...value];
 		// The overlay only knows where characters sit when the field starts at
 		// its first one and nothing is scrolled out of view.
+		// Right-to-left fields skip it: placing the overlay there would mean measuring bidi runs.
 		if (
 			!input ||
 			prefersReducedMotion() ||
+			getComputedStyle(input).direction === 'rtl' ||
 			chars.length === 0 ||
 			input.scrollWidth > input.clientWidth ||
 			input.scrollLeft > 0
@@ -232,10 +234,10 @@
 				restProps.onblur?.(event);
 			}}
 			class={cn(
-				'bg-control text-foreground placeholder:text-muted-foreground focus-visible:ring-ring aria-invalid:ring-destructive caret-foreground flex h-10 w-full rounded-full pl-4 text-base transition-[box-shadow] duration-(--duration-base) outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-2 sm:text-sm',
+				'bg-control text-foreground placeholder:text-muted-foreground focus-visible:ring-ring aria-invalid:ring-destructive caret-foreground flex h-10 w-full rounded-full ps-4 text-base transition-[box-shadow] duration-(--duration-base) outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-2 sm:text-sm',
 				// Room for the eye, and the keycap when it can appear, so the text
 				// never shifts when the keycap arrives.
-				capsLockWarning ? 'pr-[4.75rem]' : 'pr-11',
+				capsLockWarning ? 'pe-[4.75rem]' : 'pe-11',
 				// The overlay draws the characters while it runs; the caret stays.
 				morph && 'text-transparent'
 			)}
@@ -246,8 +248,8 @@
 				<span
 					aria-hidden="true"
 					class={cn(
-						'text-foreground pointer-events-none absolute inset-y-0 left-4 overflow-hidden text-base whitespace-pre sm:text-sm',
-						capsLockWarning ? 'right-[4.75rem]' : 'right-11'
+						'text-foreground pointer-events-none absolute inset-y-0 start-4 overflow-hidden text-base whitespace-pre sm:text-sm',
+						capsLockWarning ? 'end-[4.75rem]' : 'end-11'
 					)}
 				>
 					{#each morph.chars as char, index (index)}
@@ -273,10 +275,10 @@
 			<span
 				aria-hidden="true"
 				class={cn(
-					'bg-muted pointer-events-none absolute top-1/2 right-10 flex h-[1.375rem] w-[1.875rem] -translate-y-1/2 flex-col justify-between rounded-[0.3125rem] px-1 py-[0.1875rem] shadow-[0_1.5px_0_0_var(--border-strong)]',
+					'bg-muted pointer-events-none absolute end-10 top-1/2 flex h-[1.375rem] w-[1.875rem] -translate-y-1/2 flex-col justify-between rounded-[0.3125rem] px-1 py-[0.1875rem] shadow-[0_1.5px_0_0_var(--border-strong)]',
 					warnCaps
 						? 'translate-x-0 opacity-100 blur-none [transition:translate_var(--duration-spring)_var(--ease-spring),opacity_var(--duration-fast)_var(--ease-out),filter_var(--duration-fast)_var(--ease-out)]'
-						: 'translate-x-2 opacity-0 blur-[3px] transition-[translate,opacity,filter] duration-(--duration-fast) ease-in motion-reduce:translate-x-0 motion-reduce:blur-none'
+						: 'opacity-0 blur-[3px] transition-[translate,opacity,filter] duration-(--duration-fast) ease-in motion-safe:translate-x-2 motion-reduce:blur-none rtl:motion-safe:-translate-x-2'
 				)}
 			>
 				<span
@@ -313,7 +315,7 @@
 			}}
 			onclick={toggle}
 			class={cn(
-				'text-muted-foreground hover:text-foreground hover:bg-foreground/8 focus-visible:ring-ring absolute top-1 right-1 inline-grid size-8 touch-manipulation place-items-center rounded-full transition-[background-color,color,scale] duration-(--duration-fast) ease-out outline-none select-none focus-visible:ring-2 active:scale-[0.92] disabled:pointer-events-none motion-reduce:transition-[background-color,color]',
+				'text-muted-foreground hover:text-foreground hover:bg-foreground/8 focus-visible:ring-ring absolute end-1 top-1 inline-grid size-8 touch-manipulation place-items-center rounded-full transition-[background-color,color,scale] duration-(--duration-fast) ease-out outline-none select-none focus-visible:ring-2 active:scale-[0.92] disabled:pointer-events-none motion-reduce:transition-[background-color,color]',
 				revealed && 'text-foreground'
 			)}
 		>
@@ -335,7 +337,7 @@
 				<p
 					id={capsId}
 					class={cn(
-						'text-muted-foreground pt-1.5 pl-4 text-xs transition-[opacity,translate] ease-out motion-reduce:transition-opacity',
+						'text-muted-foreground ps-4 pt-1.5 text-xs transition-[opacity,translate] ease-out motion-reduce:transition-opacity',
 						warnCaps
 							? 'translate-y-0 opacity-100 duration-(--duration-base)'
 							: '-translate-y-0.5 opacity-0 duration-(--duration-fast) motion-reduce:translate-y-0'
@@ -356,7 +358,7 @@
 						<span
 							style:transition-delay={prefersReducedMotion() ? '0ms' : `${segmentDelay(segment)}ms`}
 							class={cn(
-								'block h-full origin-left rounded-full transition-[scale,opacity,background-color] duration-(--duration-base) ease-out motion-reduce:transition-[opacity,background-color]',
+								'block h-full origin-left rounded-full transition-[scale,opacity,background-color] duration-(--duration-base) ease-out motion-reduce:transition-[opacity,background-color] rtl:origin-right',
 								segment <= score
 									? cn('scale-x-100 opacity-100', levelColors[score])
 									: 'scale-x-0 opacity-0 motion-reduce:scale-x-100'
@@ -367,7 +369,7 @@
 			</div>
 			<!-- Every verdict shares one cell, so the row keeps the width of the
 			     longest and never jumps. -->
-			<span class="grid w-14 text-right text-sm font-medium">
+			<span class="grid w-14 text-end text-sm font-medium">
 				{#each verdicts as word (word)}
 					<span
 						class={cn(

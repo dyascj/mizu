@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { Tabs } from 'bits-ui';
+	import { BitsConfig, Tabs, ToggleGroup } from 'bits-ui';
 	import CodeXml from '@lucide/svelte/icons/code-xml';
 	import Eye from '@lucide/svelte/icons/eye';
 	import Maximize2 from '@lucide/svelte/icons/maximize-2';
@@ -25,7 +25,17 @@
 
 	let tab = $state('preview');
 	let size = $state<'fit' | 'mobile'>('fit');
+	let dir = $state<'ltr' | 'rtl'>('ltr');
 	let frame = $state<HTMLElement>();
+	let canFullscreen = $state(false);
+	let fullscreen = $state(false);
+
+	$effect(() => {
+		canFullscreen = document.fullscreenEnabled;
+		const sync = () => (fullscreen = document.fullscreenElement === frame);
+		document.addEventListener('fullscreenchange', sync);
+		return () => document.removeEventListener('fullscreenchange', sync);
+	});
 
 	const tabs = [
 		{ value: 'preview', label: 'Preview', icon: Eye },
@@ -35,6 +45,15 @@
 		{ value: 'fit', label: 'Fit', icon: Scan },
 		{ value: 'mobile', label: 'Mobile', icon: Smartphone }
 	] as const;
+	const dirs = [
+		{ value: 'ltr', label: 'Left to right' },
+		{ value: 'rtl', label: 'Right to left' }
+	] as const;
+
+	const toggleGroup =
+		'border-border bg-secondary/60 hidden items-center rounded-lg border p-0.5 sm:flex';
+	const toggleItem =
+		'text-muted-foreground hover:text-foreground data-[state=on]:bg-background data-[state=on]:text-foreground focus-visible:ring-ring inline-flex h-7 min-w-7 items-center justify-center rounded-md text-[0.6875rem] font-medium transition-colors outline-none focus-visible:ring-2 data-[state=on]:shadow-xs';
 </script>
 
 <Tabs.Root bind:value={tab} class={cn('w-full', className)}>
@@ -53,34 +72,54 @@
 
 		{#if tab === 'preview'}
 			<div class="flex items-center gap-1.5">
-				<div
-					role="radiogroup"
+				<!-- Single-choice groups: arrow keys move between options, a click can never clear one. -->
+				<ToggleGroup.Root
+					type="single"
+					value={size}
+					onValueChange={(v) => v && (size = v as typeof size)}
 					aria-label="Preview size"
-					class="border-border bg-secondary/60 hidden items-center rounded-lg border p-0.5 sm:flex"
+					class={toggleGroup}
 				>
 					{#each sizes as s (s.value)}
-						<button
-							type="button"
-							role="radio"
-							aria-checked={size === s.value}
+						<ToggleGroup.Item
+							value={s.value}
 							aria-label={s.label}
 							title={s.label}
-							onclick={() => (size = s.value)}
-							class="text-muted-foreground hover:text-foreground aria-checked:bg-background aria-checked:text-foreground focus-visible:ring-ring inline-flex size-7 items-center justify-center rounded-md transition-colors outline-none focus-visible:ring-2 aria-checked:shadow-xs"
+							class={toggleItem}
 						>
 							<s.icon class="size-3.5" aria-hidden="true" />
-						</button>
+						</ToggleGroup.Item>
 					{/each}
-				</div>
-				<button
-					type="button"
-					aria-label="Fullscreen preview"
-					title="Fullscreen"
-					onclick={() => frame?.requestFullscreen?.()}
-					class="text-muted-foreground hover:text-foreground focus-visible:ring-ring inline-flex size-8 items-center justify-center rounded-lg transition-colors outline-none focus-visible:ring-2"
+				</ToggleGroup.Root>
+				<ToggleGroup.Root
+					type="single"
+					value={dir}
+					onValueChange={(v) => v && (dir = v as typeof dir)}
+					aria-label="Text direction"
+					class={toggleGroup}
 				>
-					<Maximize2 class="size-3.5" />
-				</button>
+					{#each dirs as d (d.value)}
+						<ToggleGroup.Item
+							value={d.value}
+							aria-label={d.label}
+							title={d.label}
+							class={cn(toggleItem, 'px-1.5')}
+						>
+							{d.value.toUpperCase()}
+						</ToggleGroup.Item>
+					{/each}
+				</ToggleGroup.Root>
+				{#if canFullscreen}
+					<button
+						type="button"
+						aria-label="Fullscreen preview"
+						title="Fullscreen"
+						onclick={() => frame?.requestFullscreen().catch(() => {})}
+						class="text-muted-foreground hover:text-foreground focus-visible:ring-ring inline-flex size-8 items-center justify-center rounded-lg transition-colors outline-none focus-visible:ring-2"
+					>
+						<Maximize2 class="size-3.5" />
+					</button>
+				{/if}
 			</div>
 		{/if}
 	</div>
@@ -91,19 +130,27 @@
 	>
 		<div
 			bind:this={frame}
+			{dir}
 			data-no-toc
 			class="border-border bg-secondary/40 flex min-h-80 min-w-0 items-center justify-center overflow-hidden rounded-[1.75rem] border p-4 sm:min-h-[30rem] sm:p-8 [&:fullscreen]:rounded-none [&:fullscreen]:bg-[var(--background)]"
 		>
-			<div
-				class={cn(
-					'flex w-full min-w-0 flex-wrap items-center gap-5 [&>*]:min-w-0',
-					center && 'justify-center',
-					size === 'mobile' &&
-						'border-border bg-background max-w-[24.375rem] self-stretch rounded-[1.5rem] border p-4 shadow-xs'
-				)}
-			>
-				{@render children()}
-			</div>
+			<!-- Overlays portal into the frame when they must inherit its direction, or
+			     when it is fullscreen and nothing outside it paints. -->
+			<BitsConfig defaultPortalTo={fullscreen || dir === 'rtl' ? frame : undefined}>
+				<div
+					class={cn(
+						'flex w-full min-w-0 flex-wrap items-center gap-5 [&>*]:min-w-0',
+						center && 'justify-center',
+						size === 'mobile' &&
+							'border-border bg-background max-w-[24.375rem] self-stretch rounded-[1.5rem] border p-4 shadow-xs'
+					)}
+				>
+					<!-- Remount on a direction change: components read it when they mount. -->
+					{#key dir}
+						{@render children()}
+					{/key}
+				</div>
+			</BitsConfig>
 		</div>
 	</Tabs.Content>
 	<Tabs.Content

@@ -8,6 +8,7 @@
 		ref = $bindable(null),
 		value = $bindable(''),
 		delayDuration = 80,
+		dir,
 		class: className,
 		viewport = true,
 		children,
@@ -26,12 +27,21 @@
 		/** The list, and anything else in the bar. */
 		children: Snippet;
 	} = $props();
+
+	// bits-ui stamps left to right on the menu unless told otherwise, which
+	// would override the page, so the menu reads the direction it sits in.
+	let inherited = $state<'ltr' | 'rtl'>('ltr');
+	$effect(() => {
+		const parent = ref?.parentElement;
+		if (parent) inherited = getComputedStyle(parent).direction === 'rtl' ? 'rtl' : 'ltr';
+	});
 </script>
 
 <NavigationMenuPrimitive.Root
 	bind:ref
 	bind:value
 	{delayDuration}
+	dir={dir ?? inherited}
 	class={cn('relative z-10 flex max-w-max flex-1 items-center justify-center', className)}
 	{...restProps}
 >

@@ -89,6 +89,31 @@ describe('Carousel3d', () => {
 		expect(onIndexChange).toHaveBeenLastCalledWith(2);
 	});
 
+	test('right to left, the ring mirrors for layout, arrow keys, and drags', async () => {
+		const target = document.body.appendChild(document.createElement('div'));
+		target.dir = 'rtl';
+		target.style.direction = 'rtl';
+		const onIndexChange = vi.fn();
+		render(Carousel3d, { target, props: { items, label: 'Models', onIndexChange } });
+		const stage = screen.getByRole('group', { name: 'Models' });
+		const cards = Array.from(stage.querySelectorAll<HTMLElement>('[data-carousel-card]'));
+		expect(cards[1].style.transform).toBe('translateX(-192.00px)');
+
+		await fireEvent.keyDown(stage, { key: 'ArrowLeft' });
+		expect(onIndexChange).toHaveBeenLastCalledWith(1);
+		await fireEvent.keyDown(stage, { key: 'ArrowRight' });
+		expect(onIndexChange).toHaveBeenLastCalledWith(0);
+
+		// Dragging right pulls the cards on the left, which come next, forward.
+		await fireEvent.pointerDown(stage, { button: 0, pointerId: 1, clientX: 100 });
+		await fireEvent.pointerMove(stage, { pointerId: 1, clientX: 110 });
+		await fireEvent.pointerMove(stage, { pointerId: 1, clientX: 110 + 360 });
+		await new Promise((resolve) => setTimeout(resolve, 150));
+		await fireEvent.pointerUp(stage, { pointerId: 1, clientX: 110 + 360 });
+		expect(onIndexChange).toHaveBeenLastCalledWith(2);
+		target.remove();
+	});
+
 	test('follows an index set from outside and lays out flat for reduced motion', async () => {
 		const { cards, rerender } = setup();
 		expect(cards[1].style.transform).toBe('translateX(192.00px)');

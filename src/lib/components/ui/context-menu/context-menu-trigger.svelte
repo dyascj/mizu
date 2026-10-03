@@ -1,8 +1,15 @@
 <script lang="ts">
 	import { ContextMenu as ContextMenuPrimitive } from 'bits-ui';
+	import { getMenuDirection } from './context-menu.svelte';
 	import { openPoint } from './origin.js';
 
 	let { ref = $bindable(null), ...restProps }: ContextMenuPrimitive.TriggerProps = $props();
+
+	// The menu reads its direction from here when it opens.
+	const direction = getMenuDirection();
+	$effect(() => {
+		if (direction) direction.trigger = ref;
+	});
 
 	// Pointers open the menu where they click. Give the trigger `tabindex={0}`
 	// and Shift F10 or the menu key opens it from the middle of the area, so

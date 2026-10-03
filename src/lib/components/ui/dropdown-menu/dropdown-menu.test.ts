@@ -65,6 +65,36 @@ describe('DropdownMenu', () => {
 		expect(onPick).toHaveBeenCalledWith('Delete');
 	});
 
+	test('mirrors in right-to-left text, where ArrowLeft opens a submenu', async () => {
+		document.body.style.direction = 'rtl';
+		vi.stubGlobal('matchMedia', (query: string) => ({
+			matches: false,
+			media: query,
+			addEventListener() {},
+			removeEventListener() {}
+		}));
+		try {
+			render(Harness, { onPick: vi.fn(), sub: true });
+			const trigger = screen.getByRole('button', { name: 'Chat options' });
+			trigger.focus();
+			await fireEvent.keyDown(trigger, { key: 'Enter' });
+			expect((await screen.findByRole('menu')).closest('[dir]')).toHaveAttribute('dir', 'rtl');
+
+			const subTrigger = screen.getByRole('menuitem', { name: 'Move to project' });
+			subTrigger.focus();
+			await fireEvent.keyDown(subTrigger, { key: 'ArrowLeft' });
+			expect(await screen.findByRole('menuitem', { name: 'Travel' })).toBeInTheDocument();
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
+	test('stays left to right by default', async () => {
+		render(Harness, { onPick: vi.fn() });
+		await fireEvent.pointerDown(screen.getByRole('button', { name: 'Chat options' }), pointer);
+		expect((await screen.findByRole('menu')).closest('[dir]')).toHaveAttribute('dir', 'ltr');
+	});
+
 	test('grows out of the trigger from the placed corner', async () => {
 		render(Harness, { onPick: vi.fn() });
 		await fireEvent.pointerDown(screen.getByRole('button', { name: 'Chat options' }), pointer);

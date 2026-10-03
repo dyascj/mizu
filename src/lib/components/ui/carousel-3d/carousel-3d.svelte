@@ -77,11 +77,15 @@
 
 	let stage = $state<HTMLDivElement | null>(null);
 	let reduce = $state(false);
+	/** Right to left, the next card sits to the left; read on every paint. */
+	let rtl = false;
 	/** Where the ring is heading, counted in cards and never wrapped. */
 	let target = untrack(() => index);
 	let drag: {
 		id: number;
 		x: number;
+		/** -1 when the ring is mirrored, so a drag still pulls the card under the finger. */
+		sign: 1 | -1;
 		from: number;
 		card: number | null;
 		moved: boolean;
@@ -107,9 +111,11 @@
 		const d = (((i - r) % count) + count) % count;
 		// Signed distance from the front in cards, wrapped the short way round.
 		const o = d > count / 2 ? d - count : d;
+		// Mirrored for right to left, so the next card waits on the left.
+		const x = rtl ? -o : o;
 		if (reduce) {
 			return {
-				transform: `translateX(${(o * (CARD_W + GAP)).toFixed(2)}px)`,
+				transform: `translateX(${(x * (CARD_W + GAP)).toFixed(2)}px)`,
 				opacity: Math.abs(o) < 0.5 ? 1 : ROW_OPACITY,
 				// Neighbours peek in blank, like the back of the ring.
 				text: Math.abs(o) < 0.5 ? 1 : 0
@@ -119,7 +125,7 @@
 		const facing = Math.cos((o / count) * Math.PI * 2);
 		const near = (facing + 1) / 2;
 		return {
-			transform: `rotateY(${((o / count) * 360).toFixed(3)}deg) translateZ(${radius.toFixed(2)}px) scale(${(BACK_SCALE + (1 - BACK_SCALE) * near).toFixed(4)})`,
+			transform: `rotateY(${((x / count) * 360).toFixed(3)}deg) translateZ(${radius.toFixed(2)}px) scale(${(BACK_SCALE + (1 - BACK_SCALE) * near).toFixed(4)})`,
 			opacity: BACK_OPACITY + (1 - BACK_OPACITY) * near,
 			// Text is gone before a card turns side on, so nobody reads a card
 			// mirrored through the ring; the back half shows blank faces.
@@ -129,6 +135,7 @@
 
 	function paint(r: number = rotation.current) {
 		if (!stage || count === 0) return;
+		rtl = getComputedStyle(stage).direction === 'rtl';
 		const cards = stage.querySelectorAll<HTMLElement>('[data-carousel-card]');
 		cards.forEach((card, i) => {
 			const { transform, opacity, text } = place(i, r);
@@ -156,7 +163,9 @@
 	function onkeydown(event: KeyboardEvent) {
 		if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
 		event.preventDefault();
-		step(event.key === 'ArrowLeft' ? -1 : 1);
+		// Mirrored, the previous card sits to the right, so the arrows swap.
+		const mirrored = getComputedStyle(event.currentTarget as HTMLElement).direction === 'rtl';
+		step((event.key === 'ArrowLeft') !== mirrored ? -1 : 1);
 	}
 
 	function onpointerdown(event: PointerEvent & { currentTarget: HTMLDivElement }) {
@@ -168,6 +177,7 @@
 		drag = {
 			id: event.pointerId,
 			x: event.clientX,
+			sign: getComputedStyle(event.currentTarget).direction === 'rtl' ? -1 : 1,
 			from: rotation.current,
 			card: card ? Number(card.dataset.carouselCard) : null,
 			moved: false,
@@ -187,7 +197,7 @@
 			return;
 		}
 		// Dragging right brings the card on the left forward.
-		const value = drag.from - dx / PX_PER_CARD;
+		const value = drag.from - (drag.sign * dx) / PX_PER_CARD;
 		const now = performance.now();
 		drag.samples = [...drag.samples.filter((s) => now - s.t < SAMPLE_WINDOW), { t: now, value }];
 		rotation.jump(value);
@@ -339,7 +349,7 @@
 
 	<div class="flex items-center gap-3">
 		<Button variant="secondary" size="icon" aria-label={previousLabel} onclick={() => step(-1)}>
-			<ChevronLeft class="size-4" />
+			<ChevronLeft class="size-4 rtl:rotate-180" />
 		</Button>
 		<p
 			class="text-muted-foreground w-16 text-center font-mono text-sm tabular-nums"
@@ -350,7 +360,7 @@
 			<span aria-hidden="true">{pad(index + 1)} / {pad(count)}</span>
 		</p>
 		<Button variant="secondary" size="icon" aria-label={nextLabel} onclick={() => step(1)}>
-			<ChevronRight class="size-4" />
+			<ChevronRight class="size-4 rtl:rotate-180" />
 		</Button>
 	</div>
 </div>

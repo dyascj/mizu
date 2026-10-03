@@ -38,7 +38,7 @@
 						><span class="whitespace-nowrap"
 							><span class="relative inline-block size-0"
 								><span
-									class="absolute bottom-[1.05rem] left-0 font-mono text-[10px] leading-none whitespace-nowrap opacity-70"
+									class="absolute start-0 bottom-[1.05rem] font-mono text-[10px] leading-none whitespace-nowrap opacity-70"
 									>{sources[part.source - 1]}</span
 								></span
 							>{first}</span

@@ -98,9 +98,11 @@
 
 	function onkeydown(event: KeyboardEvent) {
 		const page = pagination.page;
+		// The row mirrors in right-to-left text, so the arrows follow what they point at.
+		const forward = getComputedStyle(event.currentTarget as Element).direction === 'rtl' ? -1 : 1;
 		const target = {
-			ArrowLeft: page - 1,
-			ArrowRight: page + 1,
+			ArrowLeft: page - forward,
+			ArrowRight: page + forward,
 			Home: 1,
 			End: pagination.totalPages
 		}[event.key];

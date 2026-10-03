@@ -106,8 +106,12 @@
 			const style = getComputedStyle(field);
 			const upto = field.value.slice(0, field.selectionEnd ?? field.value.length);
 			const box = field.getBoundingClientRect();
-			const x = box.left + parseFloat(style.paddingLeft) + measure(upto) - field.scrollLeft;
-			lookAt(Math.min(x, box.right), box.top + box.height / 2);
+			// Right to left, the text hugs the right edge, so its start sits one text-width in from there.
+			const x =
+				style.direction === 'rtl'
+					? box.right - parseFloat(style.paddingRight) - measure(field.value) + measure(upto)
+					: box.left + parseFloat(style.paddingLeft) + measure(upto) - field.scrollLeft;
+			lookAt(Math.max(box.left, Math.min(x, box.right)), box.top + box.height / 2);
 		};
 		const events = ['input', 'keyup', 'click', 'select', 'focus'] as const;
 		for (const type of events) field.addEventListener(type, follow);

@@ -7,7 +7,10 @@
 	type Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
 		/** The content to scroll. It renders twice; the copy is hidden from assistive technology and focus. */
 		children: Snippet;
-		/** The direction the content travels. */
+		/**
+		 * The direction the content travels. In right-to-left text `left` and
+		 * `right` mirror, so `left` always travels toward the start of the line.
+		 */
 		direction?: 'left' | 'right' | 'up' | 'down';
 		/** Travel speed in pixels per second, so long and short content move at the same pace. */
 		speed?: number;
@@ -217,6 +220,12 @@
 		animation-direction: reverse;
 	}
 
+	/* Right to left, the second copy sits on the left, so the row travels the
+	   other way to loop seamlessly. */
+	.marquee:dir(rtl):is([data-direction='left'], [data-direction='right']) .marquee-copy {
+		animation-name: marquee-x-rtl;
+	}
+
 	.marquee[data-paused] .marquee-copy,
 	.marquee:focus-within .marquee-copy {
 		animation-play-state: paused;
@@ -249,6 +258,12 @@
 	@keyframes marquee-x {
 		to {
 			translate: calc(-100% - var(--marquee-gap)) 0;
+		}
+	}
+
+	@keyframes marquee-x-rtl {
+		to {
+			translate: calc(100% + var(--marquee-gap)) 0;
 		}
 	}
 

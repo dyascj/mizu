@@ -36,6 +36,17 @@
 		if (context) context.contentId = ref?.id;
 	});
 
+	// Portaled to the body, the list would lose a right-to-left page's
+	// direction. Without a `dir` prop it takes the trigger's.
+	const dir = $derived(
+		restProps.dir ??
+			(context?.open && context.trigger
+				? getComputedStyle(context.trigger).direction === 'rtl'
+					? 'rtl'
+					: 'ltr'
+				: undefined)
+	);
+
 	const itemAligned = $derived(
 		(position ?? (restProps.side || restProps.align ? 'popper' : 'item-aligned')) === 'item-aligned'
 	);
@@ -89,13 +100,16 @@
 			const padTop = px(panelStyle.paddingTop);
 			const itemTop = item?.offsetTop ?? 0;
 			const itemHeight = item?.offsetHeight ?? box.height;
+			// Text starts on the right in a right-to-left list.
+			const rtl = panelStyle.direction === 'rtl';
+			const start = rtl ? 'paddingRight' : 'paddingLeft';
 
 			// Text columns: the option's label starts after the panel padding and
 			// the item's check gutter; the trigger's after its own padding.
 			const textShift =
-				px(panelStyle.paddingLeft) +
-				(item ? px(getComputedStyle(item).paddingLeft) : 0) -
-				px(getComputedStyle(trigger).paddingLeft);
+				px(panelStyle[start]) +
+				(item ? px(getComputedStyle(item)[start]) : 0) -
+				px(getComputedStyle(trigger)[start]);
 			// Measured at the width it will open with.
 			panel.style.minWidth = `${box.width + textShift}px`;
 
@@ -125,7 +139,10 @@
 
 			const left = Math.max(
 				MARGIN,
-				Math.min(box.left - textShift, window.innerWidth - MARGIN - width)
+				Math.min(
+					rtl ? box.right + textShift - width : box.left - textShift,
+					window.innerWidth - MARGIN - width
+				)
 			);
 
 			viewport.scrollTop = scroll;
@@ -211,6 +228,7 @@
 				<div
 					{...props}
 					{id}
+					{dir}
 					style:top={placement ? `${placement.top}px` : undefined}
 					style:left={placement ? `${placement.left}px` : undefined}
 					style:min-width={placement ? `${placement.minWidth}px` : undefined}
@@ -230,6 +248,7 @@
 			{sideOffset}
 			class={cn(surface, 'origin-(--bits-select-content-transform-origin)', className)}
 			{...restProps}
+			{dir}
 		>
 			{#snippet child({ props, wrapperProps })}
 				<div {...wrapperProps}>

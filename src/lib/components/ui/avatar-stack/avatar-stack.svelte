@@ -98,9 +98,11 @@
 
 	function place(value: number) {
 		if (!ref) return;
+		// Right to left, the first face sits on the right.
+		const sign = getComputedStyle(ref).direction === 'rtl' ? -1 : 1;
 		const slots = ref.querySelectorAll<HTMLElement>(':scope > [data-slot="avatar-stack-item"]');
 		slots.forEach((slot, index) => {
-			slot.style.transform = `translateX(${((index - mid) * value).toFixed(2)}px)`;
+			slot.style.transform = `translateX(${(sign * (index - mid) * value).toFixed(2)}px)`;
 		});
 	}
 
@@ -147,10 +149,14 @@
 
 	function onkeydown(event: KeyboardEvent) {
 		const last = count - 1;
+		// Mirrored, the next face is to the left, so the arrows swap.
+		const rtl = getComputedStyle(event.currentTarget as HTMLElement).direction === 'rtl';
+		const forward = rtl ? 'ArrowLeft' : 'ArrowRight';
+		const back = rtl ? 'ArrowRight' : 'ArrowLeft';
 		const next =
-			event.key === 'ArrowRight'
+			event.key === forward
 				? Math.min(active + 1, last)
-				: event.key === 'ArrowLeft'
+				: event.key === back
 					? Math.max(active - 1, 0)
 					: event.key === 'Home'
 						? 0
@@ -170,8 +176,8 @@
 	 * they line up with its outer edge so a long name never spills past it.
 	 */
 	function tagPlacement(index: number) {
-		if (count > 1 && index === 0) return 'left-0 origin-bottom-left';
-		if (count > 1 && index === count - 1) return 'right-0 origin-bottom-right';
+		if (count > 1 && index === 0) return 'start-0 origin-bottom-left rtl:origin-bottom-right';
+		if (count > 1 && index === count - 1) return 'end-0 origin-bottom-right rtl:origin-bottom-left';
 		return 'left-1/2 -translate-x-1/2 origin-bottom';
 	}
 

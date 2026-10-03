@@ -97,6 +97,22 @@ describe('Pagination.Pages', () => {
 		expect(pageButton(1)).toHaveFocus();
 	});
 
+	test('arrow keys swap in right-to-left text, where the row mirrors', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			render(Harness, { page: 10 });
+			pageButton(10).focus();
+			await fireEvent.keyDown(pageButton(10), { key: 'ArrowLeft' });
+			await tick();
+			expect(pageButton(11)).toHaveAttribute('aria-current', 'page');
+			await fireEvent.keyDown(pageButton(11), { key: 'ArrowRight' });
+			await tick();
+			expect(pageButton(10)).toHaveAttribute('aria-current', 'page');
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('a key that cannot move the page leaves later changes alone', async () => {
 		render(Harness, { page: 20 });
 		pageButton(20).focus();

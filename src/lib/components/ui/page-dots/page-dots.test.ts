@@ -48,6 +48,21 @@ describe('PageDots', () => {
 		expect(dot(5)).toHaveFocus();
 	});
 
+	test('swaps the arrow keys in right-to-left text, where the row mirrors', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const onIndexChange = vi.fn();
+			render(PageDots, { props: { count: 5, progress: 2, onIndexChange } });
+			const group = screen.getByRole('group');
+			await fireEvent.keyDown(group, { key: 'ArrowLeft' });
+			expect(onIndexChange).toHaveBeenLastCalledWith(3);
+			await fireEvent.keyDown(group, { key: 'ArrowRight' });
+			expect(onIndexChange).toHaveBeenLastCalledWith(1);
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('with progress driving it, a dot reports even when it was the last one picked', async () => {
 		const onIndexChange = vi.fn();
 		const { rerender } = render(PageDots, { props: { count: 5, progress: 0, onIndexChange } });

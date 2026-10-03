@@ -14,6 +14,10 @@
 	let active = $state('Trip to Tokyo');
 	let value = $state('');
 	let submitted = $state('');
+	let query = $state('');
+	const shownChats = $derived(
+		chats.filter((c) => c.toLowerCase().includes(query.trim().toLowerCase()))
+	);
 </script>
 
 <Tooltip.Provider>
@@ -22,13 +26,14 @@
 	>
 		<Sidebar.Provider class="h-full min-h-0">
 			<Sidebar.Root collapsible="icon" class="h-full">
-				<Sidebar.Header>
+				<Sidebar.Header class="gap-3">
 					<div class="flex items-center gap-2 px-1 py-0.5">
 						<AuraTile seed="Mizu" class="size-7 shrink-0 rounded-full" />
 						<span class="text-sm font-semibold tracking-tight group-data-[collapsible=icon]:hidden">
 							Mizu
 						</span>
 					</div>
+					<Sidebar.Input bind:value={query} placeholder="Search chats" aria-label="Search chats" />
 				</Sidebar.Header>
 
 				<Sidebar.Content>
@@ -36,19 +41,31 @@
 						<Sidebar.GroupContent>
 							<Sidebar.Menu>
 								<Sidebar.MenuItem>
-									<Sidebar.MenuButton tooltipContent="Home" onclick={() => (active = 'Home')}>
+									<Sidebar.MenuButton
+										isActive={active === 'Home'}
+										tooltipContent="Home"
+										onclick={() => (active = 'Home')}
+									>
 										<HouseIcon />
 										<span>Home</span>
 									</Sidebar.MenuButton>
 								</Sidebar.MenuItem>
 								<Sidebar.MenuItem>
-									<Sidebar.MenuButton tooltipContent="Agents" onclick={() => (active = 'Agents')}>
+									<Sidebar.MenuButton
+										isActive={active === 'Agents'}
+										tooltipContent="Agents"
+										onclick={() => (active = 'Agents')}
+									>
 										<BotIcon />
 										<span>Agents</span>
 									</Sidebar.MenuButton>
 								</Sidebar.MenuItem>
 								<Sidebar.MenuItem>
-									<Sidebar.MenuButton tooltipContent="Library" onclick={() => (active = 'Library')}>
+									<Sidebar.MenuButton
+										isActive={active === 'Library'}
+										tooltipContent="Library"
+										onclick={() => (active = 'Library')}
+									>
 										<LibraryIcon />
 										<span>Library</span>
 									</Sidebar.MenuButton>
@@ -66,13 +83,14 @@
 								chats = [...chats, title];
 								active = title;
 								submitted = '';
+								query = '';
 							}}
 						>
 							<PlusIcon />
 						</Sidebar.GroupAction>
 						<Sidebar.GroupContent>
 							<Sidebar.Menu>
-								{#each chats as chat (chat)}
+								{#each shownChats as chat (chat)}
 									<Sidebar.MenuItem>
 										<Sidebar.MenuButton
 											isActive={active === chat}
@@ -91,7 +109,11 @@
 				<Sidebar.Footer>
 					<Sidebar.Menu>
 						<Sidebar.MenuItem>
-							<Sidebar.MenuButton tooltipContent="Settings" onclick={() => (active = 'Settings')}>
+							<Sidebar.MenuButton
+								isActive={active === 'Settings'}
+								tooltipContent="Settings"
+								onclick={() => (active = 'Settings')}
+							>
 								<SettingsIcon />
 								<span>Settings</span>
 							</Sidebar.MenuButton>
@@ -109,18 +131,18 @@
 				</header>
 				<div class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-5 pb-5">
 					<div
-						class="bg-primary text-primary-foreground ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md px-4 py-2.5 text-sm"
+						class="bg-primary text-primary-foreground ms-auto w-fit max-w-[85%] rounded-2xl rounded-ee-md px-4 py-2.5 text-sm"
 					>
 						{submitted || 'Four nights in October. Keep it slow.'}
 					</div>
 					<div
-						class="bg-secondary mr-auto w-fit max-w-[85%] rounded-2xl rounded-bl-md px-4 py-2.5 text-sm leading-relaxed"
+						class="bg-secondary me-auto w-fit max-w-[85%] rounded-2xl rounded-es-md px-4 py-2.5 text-sm leading-relaxed"
 					>
 						{submitted
 							? 'Message received in this local preview.'
 							: 'I suggest two neighborhoods and a free afternoon between activities.'}
 					</div>
-					<Thinking variant="dots" label="Typing" class="pl-3" />
+					<Thinking variant="dots" label="Typing" class="ps-3" />
 					<ChatInput
 						bind:value
 						placeholder="Message Era..."

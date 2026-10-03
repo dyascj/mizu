@@ -11,6 +11,6 @@
 	let { class: className, ref = $bindable(null), children, ...rest }: Props = $props();
 </script>
 
-<div bind:this={ref} class={cn('flex flex-col gap-1.5 text-left', className)} {...rest}>
+<div bind:this={ref} class={cn('flex flex-col gap-1.5 text-start', className)} {...rest}>
 	{@render children?.()}
 </div>

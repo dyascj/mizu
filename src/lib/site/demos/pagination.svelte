@@ -50,7 +50,7 @@
 						<span class="min-w-0 flex-1 truncate text-sm">{row.task}</span>
 						<span class="text-muted-foreground hidden font-mono text-xs sm:inline">{row.id}</span>
 						<span
-							class="w-14 text-right text-sm tabular-nums {row.failed
+							class="w-14 text-end text-sm tabular-nums {row.failed
 								? 'text-destructive'
 								: 'text-muted-foreground'}"
 						>
@@ -66,13 +66,13 @@
 		<Pagination.Content class="flex-nowrap gap-0.5 sm:gap-1">
 			<Pagination.Item>
 				<Pagination.PrevButton aria-label="Previous page" class={arrow}>
-					<ChevronLeft class="size-4" aria-hidden="true" />
+					<ChevronLeft class="size-4 rtl:rotate-180" aria-hidden="true" />
 				</Pagination.PrevButton>
 			</Pagination.Item>
 			<Pagination.Pages slots={wide.current ? 7 : 5} />
 			<Pagination.Item>
 				<Pagination.NextButton aria-label="Next page" class={arrow}>
-					<ChevronRight class="size-4" aria-hidden="true" />
+					<ChevronRight class="size-4 rtl:rotate-180" aria-hidden="true" />
 				</Pagination.NextButton>
 			</Pagination.Item>
 		</Pagination.Content>

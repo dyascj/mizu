@@ -90,7 +90,7 @@
 	</div>
 	<ul bind:this={list} aria-label="Saved prompts" class="flex min-h-42 flex-col">
 		{#each visible as prompt (prompt.id)}
-			<li class="hover:bg-secondary flex items-center gap-3 rounded-xl py-2 pr-2 pl-3">
+			<li class="hover:bg-secondary flex items-center gap-3 rounded-xl py-2 ps-3 pe-2">
 				<div class="min-w-0 flex-1">
 					<p class="truncate text-sm font-medium">{prompt.title}</p>
 					<p class="text-muted-foreground truncate text-sm">{prompt.meta}</p>

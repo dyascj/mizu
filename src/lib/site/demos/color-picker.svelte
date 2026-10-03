@@ -12,7 +12,7 @@
 	<div class="flex w-full items-center justify-between gap-3 px-1">
 		<div class="min-w-0">
 			<p class="truncate text-sm font-medium">Chat widget launcher</p>
-			<p class="text-muted-foreground font-mono text-xs">{value}</p>
+			<p class="text-muted-foreground font-mono text-xs"><span dir="ltr">{value}</span></p>
 		</div>
 		<!-- A preview of the embed; the picker already names the color. -->
 		<span

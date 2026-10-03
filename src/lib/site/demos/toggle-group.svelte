@@ -7,7 +7,7 @@
 	let value = $state('center');
 </script>
 
-<ToggleGroup.Root type="single" bind:value>
+<ToggleGroup.Root type="single" aria-label="Text alignment" bind:value>
 	<ToggleGroup.Item value="left" aria-label="Align left">
 		<AlignLeft class="size-5" />
 	</ToggleGroup.Item>

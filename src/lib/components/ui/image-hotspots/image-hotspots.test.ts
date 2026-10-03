@@ -98,6 +98,21 @@ describe('ImageHotspots', () => {
 		expect(buttons[0]).toHaveFocus();
 	});
 
+	test('right to left, ArrowLeft moves on through the reading order', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			render(ImageHotspots, { ...props, active: 0 });
+			const buttons = screen.getAllByRole('button');
+			buttons[0].focus();
+			await fireEvent.keyDown(buttons[0], { key: 'ArrowLeft' });
+			expect(buttons[1]).toHaveFocus();
+			await fireEvent.keyDown(buttons[1], { key: 'ArrowRight' });
+			expect(buttons[0]).toHaveFocus();
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('keeps a tab stop when the points shrink under the focused one', async () => {
 		const { rerender } = render(ImageHotspots, props);
 		await fireEvent.focus(screen.getByRole('button', { name: 'Voice mode' }));

@@ -103,6 +103,23 @@ describe('SelectionToolbar', () => {
 		expect(toolbar()).toHaveAttribute('data-state', 'closed');
 	});
 
+	test('right to left, ArrowLeft moves to the next button', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			render(Harness);
+			await selectIn('text', 4, 14);
+			await waitFor(() => expect(toolbar()).toHaveAttribute('data-state', 'open'));
+			const [ask, explain] = screen.getAllByRole('button');
+			ask.focus();
+			await fireEvent.keyDown(ask, { key: 'ArrowLeft' });
+			expect(explain).toHaveFocus();
+			await fireEvent.keyDown(explain, { key: 'ArrowRight' });
+			expect(ask).toHaveFocus();
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('announces what actions report', async () => {
 		const { container } = render(Harness);
 		await selectIn('text', 4, 14);

@@ -200,7 +200,9 @@
 		const at = list.indexOf(document.activeElement as HTMLButtonElement);
 		if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
 			event.preventDefault();
-			focusButton(at + (event.key === 'ArrowRight' ? 1 : -1));
+			// The row mirrors right to left, so each arrow still moves the way it points.
+			const rtl = getComputedStyle(event.currentTarget as Element).direction === 'rtl';
+			focusButton(at + ((event.key === 'ArrowRight') !== rtl ? 1 : -1));
 		} else if (event.key === 'Home' || event.key === 'End') {
 			event.preventDefault();
 			focusButton(event.key === 'Home' ? 0 : -1);

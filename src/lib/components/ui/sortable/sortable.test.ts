@@ -102,3 +102,25 @@ describe('Sortable', () => {
 		expect(names()).toBe('Search Draft Review Plan');
 	});
 });
+
+describe('Sortable right to left', () => {
+	test('in a mirrored grid, ArrowLeft moves toward the end of the row', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const { names } = setup('grid');
+			const tile = screen.getByRole('button', { name: 'Plan, row 1, column 1' });
+			tile.focus();
+			await fireEvent.keyDown(tile, { key: 'ArrowLeft' });
+			expect(document.activeElement).toBe(
+				screen.getByRole('button', { name: 'Search, row 1, column 2' })
+			);
+			await fireEvent.keyDown(tile, { key: ' ' });
+			await fireEvent.keyDown(tile, { key: 'ArrowLeft' });
+			expect(names()).toBe('Search Plan Draft Review');
+			await fireEvent.keyDown(tile, { key: 'ArrowRight' });
+			expect(names()).toBe('Plan Search Draft Review');
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+});

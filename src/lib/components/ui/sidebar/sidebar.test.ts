@@ -1,6 +1,8 @@
 import { fireEvent, render, screen, within } from '@testing-library/svelte';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
+import { createRawSnippet } from 'svelte';
+import MenuSubButton from './sidebar-menu-sub-button.svelte';
 import SidebarFixture from './sidebar.test.svelte';
 
 beforeEach(() => {
@@ -88,5 +90,18 @@ describe('Sidebar', () => {
 		expect(observed).toContain(screen.getByRole('button', { name: 'Runs' }));
 		// That first report must not cancel the glide.
 		expect(glide()).toContain('translate');
+	});
+
+	test('a sub-button without a destination is a keyboard-reachable button', async () => {
+		const label = createRawSnippet(() => ({ render: () => '<span>Era</span>' }));
+		const onclick = vi.fn();
+		const { rerender } = render(MenuSubButton, { props: { children: label, onclick } });
+		const button = screen.getByRole('button', { name: 'Era' });
+		expect(button).toHaveAttribute('type', 'button');
+		await fireEvent.click(button);
+		expect(onclick).toHaveBeenCalledOnce();
+
+		await rerender({ children: label, href: '/era' });
+		expect(screen.getByRole('link', { name: 'Era' })).toHaveAttribute('href', '/era');
 	});
 });

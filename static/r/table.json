@@ -27,7 +27,7 @@
     {
       "type": "registry:file",
       "target": "table/table-cell.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLTdAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLTdAttributes & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<td class={cn('p-3 align-middle [&:has([role=checkbox])]:pr-0', className)} {...rest}>\n\t{@render children?.()}\n</td>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLTdAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLTdAttributes & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<td class={cn('p-3 align-middle [&:has([role=checkbox])]:pe-0', className)} {...rest}>\n\t{@render children?.()}\n</td>\n"
     },
     {
       "type": "registry:file",
@@ -37,7 +37,7 @@
     {
       "type": "registry:file",
       "target": "table/table-head.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLThAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLThAttributes & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<th\n\tclass={cn(\n\t\t'text-muted-foreground h-10 px-3 text-left align-middle font-semibold [&:has([role=checkbox])]:pr-0',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</th>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLThAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLThAttributes & { class?: string; children?: Snippet };\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<th\n\tclass={cn(\n\t\t'text-muted-foreground h-10 px-3 text-start align-middle font-semibold [&:has([role=checkbox])]:pe-0',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</th>\n"
     },
     {
       "type": "registry:file",

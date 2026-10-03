@@ -128,19 +128,19 @@
 				// The top padding clears the floated label, so typed text and label
 				// never share a pixel. A fixed line height keeps that math
 				// independent of the page's leading.
-				'peer bg-control text-foreground focus-visible:ring-ring floating-autofill h-13 w-full rounded-full pt-[1.4375rem] pr-11 pb-[0.5625rem] pl-5 text-base/5 transition-[box-shadow] duration-(--duration-base) outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm/5',
+				'peer bg-control text-foreground focus-visible:ring-ring floating-autofill h-13 w-full rounded-full ps-5 pe-11 pt-[1.4375rem] pb-[0.5625rem] text-base/5 transition-[box-shadow] duration-(--duration-base) outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm/5',
 				invalid && 'ring-destructive focus-visible:ring-destructive ring-2'
 			)}
 		/>
 		<!-- The label peels off the line one letter at a time, first letter first,
 		     and settles back last letter first, like a sticker lifted from its
-		     corner. The word scales from its top left corner while each letter
-		     rises on its own delay, so nothing reflows. -->
+		     corner. The word scales from its top corner on the reading side while
+		     each letter rises on its own delay, so nothing reflows. -->
 		<label
 			for={inputId}
 			data-floated={floated || undefined}
 			class={cn(
-				'group/label pointer-events-none absolute top-4 left-5 origin-top-left text-base/5 whitespace-nowrap select-none sm:text-sm/5',
+				'group/label pointer-events-none absolute start-5 top-4 origin-top-left text-base/5 whitespace-nowrap select-none sm:text-sm/5 rtl:origin-top-right',
 				'transition-[scale,color] duration-(--duration-fast) ease-out motion-reduce:transition-colors',
 				'data-floated:scale-[0.8] data-floated:duration-(--duration-base)',
 				invalid ? 'text-destructive' : 'text-muted-foreground peer-focus:text-foreground'
@@ -160,7 +160,7 @@
 		<Check
 			aria-hidden="true"
 			class={cn(
-				'text-foreground pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2',
+				'text-foreground pointer-events-none absolute end-4 top-1/2 size-4 -translate-y-1/2',
 				status === 'valid' && !invalid
 					? 'scale-100 opacity-100 blur-none [transition:scale_var(--duration-spring-snappy)_var(--ease-spring-snappy),opacity_var(--duration-fast)_var(--ease-out),filter_var(--duration-fast)_var(--ease-out)]'
 					: 'scale-25 opacity-0 blur-[4px] transition-[scale,opacity,filter] duration-(--duration-instant) ease-in motion-reduce:scale-100 motion-reduce:blur-none'
@@ -182,7 +182,7 @@
 				id={errorId}
 				aria-hidden={!invalid}
 				class={cn(
-					'text-destructive pt-1.5 pl-5 text-sm transition-[opacity,translate] ease-out motion-reduce:transition-opacity',
+					'text-destructive ps-5 pt-1.5 text-sm transition-[opacity,translate] ease-out motion-reduce:transition-opacity',
 					invalid
 						? 'translate-y-0 opacity-100 duration-(--duration-base)'
 						: '-translate-y-1 opacity-0 duration-(--duration-fast) motion-reduce:translate-y-0'

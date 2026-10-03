@@ -54,7 +54,7 @@
 <form
 	onsubmit={submit}
 	class={cn(
-		'bg-control focus-within:ring-ring flex w-full items-center gap-1 rounded-full p-1.5 pl-2 transition-[border-color,box-shadow] duration-(--duration-base) focus-within:ring-2',
+		'bg-control focus-within:ring-ring flex w-full items-center gap-1 rounded-full p-1.5 ps-2 transition-[border-color,box-shadow] duration-(--duration-base) focus-within:ring-2',
 		className
 	)}
 >

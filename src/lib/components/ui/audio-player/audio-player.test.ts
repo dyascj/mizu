@@ -138,6 +138,27 @@ describe('AudioPlayer', () => {
 		expect(screen.getByRole('button', { name: 'Playback speed 2x' })).toBeInTheDocument();
 	});
 
+	test('right to left, the timeline mirrors for arrow keys and the pointer', async () => {
+		const target = document.body.appendChild(document.createElement('div'));
+		target.dir = 'rtl';
+		target.style.direction = 'rtl';
+		render(AudioPlayer, { target, props: { title: 'Weekly briefing', duration: 300, chapters } });
+		const slider = screen.getByRole('slider', { name: 'Seek' });
+		await fireEvent.keyDown(slider, { key: 'ArrowLeft' });
+		expect(slider).toHaveAttribute('aria-valuenow', '5');
+		await fireEvent.keyDown(slider, { key: 'ArrowRight' });
+		expect(slider).toHaveAttribute('aria-valuenow', '0');
+
+		// A press a quarter of the way in from the right edge lands a quarter through.
+		vi.spyOn(slider, 'getBoundingClientRect').mockReturnValue(
+			DOMRect.fromRect({ x: 0, y: 0, width: 400, height: 56 })
+		);
+		await fireEvent.pointerDown(slider, { button: 0, pointerId: 1, clientX: 300 });
+		await fireEvent.pointerUp(slider, { pointerId: 1, clientX: 300 });
+		expect(slider).toHaveAttribute('aria-valuenow', '75');
+		target.remove();
+	});
+
 	test('hides the chapter track when there is only one chapter', () => {
 		setup({ chapters: undefined });
 		expect(screen.queryByRole('button', { name: /Chapter/ })).toBeNull();

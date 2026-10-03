@@ -173,6 +173,30 @@ describe('NumberInput', () => {
 		expect(nudges()).toHaveLength(1);
 	});
 
+	test('nudges toward the wall it hit, mirrored in right-to-left text', async () => {
+		const animate = vi.fn<Element['animate']>(fakeAnimate);
+		Element.prototype.animate = animate;
+		const nudge = () =>
+			(
+				animate.mock.calls
+					.map(([frames]) => frames as PropertyIndexedKeyframes)
+					.filter((frames) => !Array.isArray(frames) && 'translate' in frames)
+					.at(-1)?.translate as string[]
+			)?.[1];
+		document.body.style.direction = 'rtl';
+		try {
+			const { input } = setup({ value: 2, max: 2 });
+			await fireEvent.keyDown(input, { key: 'ArrowUp' });
+			expect(nudge()).toBe('-3px');
+			await fireEvent.keyDown(input, { key: 'End' });
+			await fireEvent.keyDown(input, { key: 'Home' });
+			await fireEvent.keyDown(input, { key: 'ArrowDown' });
+			expect(nudge()).toBe('3px');
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('reads the locale decimal mark when typing', async () => {
 		const { input, onValueChange } = setup({ value: 1, step: 0.1, max: 10, locale: 'de-DE' });
 		await fireEvent.input(input, { target: { value: '3,5' } });

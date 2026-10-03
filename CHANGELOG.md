@@ -2,6 +2,58 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.6.0] - 2026-10-03
+
+Mizu now works in right-to-left languages, and the Sidebar wears the shell from the docs site. Every component follows reading direction, so an app with `<html dir="rtl">` mirrors without overrides. Alongside that I audited every interactive component, demo, block, and docs page by mouse, touch, and keyboard, and fixed what turned up. The versioned registry, `/r/latest`, and compatibility install aliases now provide 0.6.0. Earlier version directories stay exactly as they were.
+
+As with 0.3.0 through 0.5.0, this release ships with representative manual VoiceOver review still outstanding, an exception to ADR 0003. Automated accessibility, keyboard, and reduced-motion checks pass on every page in both themes.
+
+### Added
+
+- Right-to-left support across the library. Spacing and positions use logical utilities, directional icons mirror, and custom arrow-key and pointer handling swaps in RTL wherever the layout mirrors (sliders built by hand, ratings, carousels, kanban, tree, heatmap, audio scrubbing, slide-to-confirm, story progress, page dots, pagination, and more).
+- Menus, popovers, selects, the date picker, and scroll areas read the direction they sit in. bits-ui defaults these to left to right and stamps `dir="ltr"` on portaled content; Mizu's wrappers now pass the surrounding direction unless you set `dir`. Dropdown menu and context menu gain thin Root wrappers to do this.
+- Code, hex values, email addresses, OTP slots, number tickers, and key caps keep their own reading order inside RTL text.
+- The component preview has an LTR/RTL toggle. Overlays portal into the preview frame in RTL and in fullscreen, so they inherit its direction and stay visible.
+- `Sidebar.Input` accepts trailing children, such as a `Kbd` hint.
+
+### Changed
+
+- **Sidebar** matches the docs sidebar: the default variant sits on the page background with a panel edge, items are muted with a quiet `bg-secondary` highlight for the current page, `MenuSub` draws a guide line with a tick beside the active item, `GroupLabel` reads as a section header and works as a collapsible trigger, and badges are muted counts. Floating and inset variants keep `bg-sidebar`.
+- **Sidebar** rail tooltips open away from the rail and the mobile sheet opens from the reading-start edge in RTL.
+- `Marquee` `direction="left"` now means toward the start of the line, so it reverses in RTL.
+- The Sidebar block gains a chat search and marks every nav item active when selected.
+
+### Migration
+
+- **Sidebar.Input** (registry item `sidebar`): it is now a search well (`<label>` with an icon around an `<input type="search">`) instead of the `Input` component. `class` styles the well; pass input attributes as before. If you targeted the input itself with `class`, move those styles to the well or use `ref`.
+- **Sidebar.MenuSubButton**: without `href` it renders a `<button type="button">` instead of an `<a>`, so it is keyboard reachable. Add `href` to keep a link. `ref` is now `HTMLAnchorElement | HTMLButtonElement`.
+- Reinstall `dropdown-menu` and `context-menu` to pick up their new Root files.
+
+### Deprecated
+
+- No APIs deprecated.
+
+### Removed
+
+- No components removed.
+
+### Fixed
+
+- Sheet never slid in or out: it transitioned `transform` while Tailwind v4 moves it with `translate`. Its backdrop now fades too.
+- Calendar, range calendar, and date picker arrow keys moved the wrong way in RTL, because bits-ui moves days by key name.
+- Audio player kept its playhead animation running after unmount.
+- Dialog and Collapsible ignored reduced motion; Theme toggle kept animating its icon under reduced motion.
+- Scroll area and Combobox trigger had no visible focus ring.
+- Tool call claimed `aria-expanded` with nothing to expand and showed status only by icon; Plan steps showed state only visually.
+- Code block fired `onValueChange` when the current tab was clicked; Command dialog let typed text run under its close button.
+- Live indicator, number ticker, copy button, and email input reversed digits or letters in RTL.
+- Dead or broken demo controls in kbd, file dropzone, tooltip, motion, and presence, plus a toggle group that could be cleared to nothing in the Personalize block and mislabeled pressed states in the Product landing and Voice mode blocks.
+- Docs: the command palette selected two "Motion" results at once, copy buttons announced unreliably, the table of contents jumped back to the top after page updates and leaked a frame callback, Back to top ignored reduced motion, error pages had no skip-link target, and the blocks filter dropped keyboard focus.
+
+### Security
+
+- No security changes.
+
 ## [0.5.1] - 2026-10-03
 
 I'm cutting this patch to clear eight new dependency advisories and to roll in the Dependabot updates that were stuck behind them. Component source and public APIs are the same as 0.5.0, so there's nothing to reinstall. The versioned registry, `/r/latest`, and compatibility install aliases now point at 0.5.1, and earlier version directories stay exactly as they were.

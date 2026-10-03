@@ -275,15 +275,16 @@
 	}}
 >
 	<!-- The fill: a second copy of the label in the fill colors, clipped to the
-	     progress. Positioned, so it paints over the resting label. -->
+	     progress. Positioned, so it paints over the resting label. It sweeps
+	     from the reading start, so right to left it fills from the right. -->
 	<span
 		aria-hidden="true"
 		class={cn(
-			'absolute inset-0 flex items-center justify-center',
+			'absolute inset-0 flex items-center justify-center [clip-path:inset(0_var(--hold-rest)_0_0_round_9999px)] rtl:[clip-path:inset(0_0_0_var(--hold-rest)_round_9999px)]',
 			tones[variant].fill,
 			sizes[size]
 		)}
-		style:clip-path="inset(0 {(1 - progress) * 100}% 0 0 round 9999px)"
+		style:--hold-rest="{(1 - progress) * 100}%"
 	>
 		<span class="grid">
 			<span

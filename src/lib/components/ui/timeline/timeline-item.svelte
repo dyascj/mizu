@@ -34,7 +34,7 @@
      content's and the rail inside it grows down to meet the item below. -->
 <li
 	bind:this={ref}
-	class={cn('relative grid grid-rows-[1fr] pb-6 pl-9 last:pb-0', className)}
+	class={cn('relative grid grid-rows-[1fr] ps-9 pb-6 last:pb-0', className)}
 	class:timeline-enter={entering}
 	{...rest}
 	onanimationend={(event) => {
@@ -46,7 +46,7 @@
 	{#if !last}
 		<span
 			aria-hidden="true"
-			class="bg-border pointer-events-none absolute top-3 bottom-0 left-[0.4375rem] w-px -translate-x-1/2"
+			class="bg-border pointer-events-none absolute start-[0.4375rem] top-3 bottom-0 w-px -translate-x-1/2 rtl:translate-x-1/2"
 		></span>
 	{/if}
 	<Marker {icon} />

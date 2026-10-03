@@ -9,7 +9,7 @@
 	let submitted = $state<Record<string, string>>({});
 </script>
 
-<div class="grid gap-4 sm:grid-cols-2" data-surface-preview>
+<div class="grid gap-4 sm:grid-cols-2" data-surface-preview data-no-toc>
 	{#each surfaces as surface (surface)}
 		<section
 			class="min-w-0 space-y-5 rounded-2xl p-5 shadow-sm"

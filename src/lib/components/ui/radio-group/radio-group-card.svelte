@@ -52,7 +52,7 @@
 <RadioGroupPrimitive.Item
 	bind:ref
 	class={cn(
-		'group/card bg-card text-card-foreground focus-visible:ring-ring focus-visible:ring-offset-background relative flex w-full touch-manipulation items-center gap-4 rounded-2xl p-4 text-left shadow-sm outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+		'group/card bg-card text-card-foreground focus-visible:ring-ring focus-visible:ring-offset-background relative flex w-full touch-manipulation items-center gap-4 rounded-2xl p-4 text-start shadow-sm outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
 		// 0.98 rather than 0.96: on a card this wide, 4% moves its edges far enough to read as a lurch.
 		'hover:bg-secondary transition-[scale,background-color] duration-(--duration-fast) ease-out active:scale-[0.98] disabled:active:scale-100 motion-reduce:transition-[background-color]',
 		// The ring lives in the picked card, so lifting that card keeps the ring

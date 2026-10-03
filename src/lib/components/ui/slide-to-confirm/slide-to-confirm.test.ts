@@ -139,6 +139,44 @@ describe('SlideToConfirm', () => {
 		expect(offset(knob)).toBe(300 - 56 - 8);
 	});
 
+	describe('right to left', () => {
+		beforeEach(() => {
+			document.body.style.direction = 'rtl';
+		});
+		afterEach(() => {
+			document.body.style.direction = '';
+		});
+
+		test('slides leftward: a drag to the left confirms, one to the right does not', async () => {
+			const { knob, onConfirm } = setup();
+			await drag(knob, 150);
+			expect(onConfirm).not.toHaveBeenCalled();
+			// Past the start, which is now on the right, it only gives a little.
+			expect(offset(knob)).toBeGreaterThan(0);
+			expect(offset(knob)).toBeLessThanOrEqual(6);
+			await fireEvent.pointerUp(knob, { pointerId: 1 });
+			await advance(1500);
+
+			await drag(knob, -150, { steps: 10, stepMs: 60 });
+			expect(offset(knob)).toBeCloseTo(-150, 0);
+			await fireEvent.pointerUp(knob, { pointerId: 1 });
+			await advance(1500);
+
+			await drag(knob, -(MAX + 10));
+			expect(onConfirm).toHaveBeenCalledTimes(1);
+			await advance(600);
+			expect(offset(knob)).toBeCloseTo(-MAX, 0);
+		});
+
+		test('ArrowLeft confirms and ArrowRight does not', async () => {
+			const { knob, onConfirm } = setup();
+			await fireEvent.keyDown(knob, { key: 'ArrowRight' });
+			expect(onConfirm).not.toHaveBeenCalled();
+			await fireEvent.keyDown(knob, { key: 'ArrowLeft' });
+			expect(onConfirm).toHaveBeenCalledTimes(1);
+		});
+	});
+
 	test('stops its frame loop and timer when destroyed', async () => {
 		const { knob, unmount } = setup();
 		await fireEvent.keyDown(knob, { key: 'ArrowRight' });

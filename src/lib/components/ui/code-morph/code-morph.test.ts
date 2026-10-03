@@ -96,6 +96,20 @@ describe('CodeMorph', () => {
 		expect(third).toHaveAttribute('tabindex', '-1');
 	});
 
+	test('arrow keys follow the mirrored tabs in right-to-left text', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			render(CodeMorph, { steps });
+			const [first, second] = screen.getAllByRole('tab');
+			await fireEvent.keyDown(first, { key: 'ArrowLeft' });
+			expect(second).toHaveFocus();
+			await fireEvent.keyDown(second, { key: 'ArrowRight' });
+			expect(first).toHaveFocus();
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('follows the step prop from outside', async () => {
 		const { rerender } = render(CodeMorph, { steps, step: 0 });
 		await rerender({ step: 2 });

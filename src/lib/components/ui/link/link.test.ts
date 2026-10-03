@@ -86,6 +86,20 @@ describe('Link', () => {
 		expect(insets(link)).toEqual(['100%', '0%']);
 	});
 
+	test('right to left, focus draws from the right and blur erases to the left', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const link = setup();
+			vi.spyOn(link, 'matches').mockReturnValue(true);
+			await fireEvent.focus(link);
+			expect(link).toHaveAttribute('data-drawn');
+			await fireEvent.blur(link);
+			expect(insets(link)).toEqual(['0%', '100%']);
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('can keep a resting line for prose, and wraps with the sentence', () => {
 		const link = setup({ underline: 'always' });
 		expect(link).toHaveAttribute('data-underline', 'always');

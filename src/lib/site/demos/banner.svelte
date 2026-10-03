@@ -46,7 +46,7 @@
 		<span class="font-semibold tracking-tight">Acme Assist</span>
 		<span>Overview</span>
 		<span class="text-muted-foreground hidden sm:inline">Settings</span>
-		<span aria-hidden="true" class="bg-secondary ml-auto size-7 shrink-0 rounded-full"></span>
+		<span aria-hidden="true" class="bg-secondary ms-auto size-7 shrink-0 rounded-full"></span>
 	</div>
 	<div class="px-5 pt-2">
 		<p class="text-lg font-semibold tracking-tight">This week</p>
@@ -69,7 +69,7 @@
 		onclick={restore}
 		inert={open || !settled}
 		class={cn(
-			'bg-secondary text-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute right-3 bottom-3 inline-flex h-9 items-center rounded-full px-4 text-sm font-medium shadow-sm outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]',
+			'bg-secondary text-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute end-3 bottom-3 inline-flex h-9 items-center rounded-full px-4 text-sm font-medium shadow-sm outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]',
 			'transition-[opacity,filter,translate,scale] motion-reduce:translate-y-0 motion-reduce:blur-none',
 			open || !settled
 				? 'translate-y-1 opacity-0 blur-[2px] duration-(--duration-instant) ease-in'

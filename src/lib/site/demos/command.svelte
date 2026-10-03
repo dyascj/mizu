@@ -59,7 +59,7 @@
 		class="bg-control text-muted-foreground hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background flex h-10 w-64 max-w-full items-center gap-2 rounded-full px-3.5 text-sm transition-[scale,color] duration-(--duration-fast) ease-out outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] motion-reduce:transition-colors"
 	>
 		<Search class="size-4 shrink-0" />
-		<span class="flex-1 truncate text-left">Ask or search</span>
+		<span class="flex-1 truncate text-start">Ask or search</span>
 	</button>
 	<!-- Height reserved up front, so the confirmation never shifts the trigger. -->
 	<p class="text-muted-foreground h-5 text-sm" aria-live="polite">

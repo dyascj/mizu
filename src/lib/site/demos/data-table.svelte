@@ -92,10 +92,7 @@
 						{#each headerGroup.headers as header (header.id)}
 							{@const numeric = header.column.id === 'tokens'}
 							<Table.Head
-								class={cn(
-									header.column.id === 'select' && 'w-12 pl-4',
-									numeric && 'pr-5 text-right'
-								)}
+								class={cn(header.column.id === 'select' && 'w-12 ps-4', numeric && 'pe-5 text-end')}
 							>
 								{#if header.column.id === 'select'}
 									<Checkbox
@@ -119,7 +116,7 @@
 				{#each rows as row (row.id)}
 					{@const run = row.original}
 					<DataTableRow selected={row.getIsSelected()} onSelect={() => row.toggleSelected()}>
-						<Table.Cell class="w-12 pl-4">
+						<Table.Cell class="w-12 ps-4">
 							<Checkbox
 								aria-label="Select {run.task}"
 								checked={row.getIsSelected()}
@@ -145,7 +142,7 @@
 								{statusLabel[run.status]}
 							</span>
 						</Table.Cell>
-						<Table.Cell class="text-muted-foreground pr-5 text-right tabular-nums">
+						<Table.Cell class="text-muted-foreground pe-5 text-end tabular-nums">
 							{run.tokens ? run.tokens.toLocaleString('en-US') : '·'}
 						</Table.Cell>
 					</DataTableRow>

@@ -140,4 +140,19 @@ describe('NotificationBell', () => {
 		expect(onOpenChange).toHaveBeenLastCalledWith(false);
 		expect(bell).toHaveAccessibleName('Notifications');
 	});
+
+	test('the panel reads in the direction its bell sits in', async () => {
+		const rtl = document.body.appendChild(document.createElement('div'));
+		rtl.style.direction = 'rtl';
+		try {
+			render(NotificationBell, { target: rtl, props: { notifications: inbox } });
+			await fireEvent.click(screen.getByRole('button', { name: /Notifications/ }));
+			const panel = await screen.findByRole('dialog', { name: 'Notifications' });
+			await waitFor(() =>
+				expect(panel.closest('[data-bits-floating-content-wrapper]')).toHaveAttribute('dir', 'rtl')
+			);
+		} finally {
+			rtl.remove();
+		}
+	});
 });

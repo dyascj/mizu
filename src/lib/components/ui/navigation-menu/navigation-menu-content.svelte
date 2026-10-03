@@ -23,7 +23,7 @@
      mid-morph. -->
 <NavigationMenuPrimitive.Content
 	bind:ref
-	class="mizu-nav-content bg-popover text-popover-foreground absolute top-0 left-0 w-max max-w-[calc(100vw-2rem)] rounded-xl"
+	class="mizu-nav-content bg-popover text-popover-foreground absolute start-0 top-0 w-max max-w-[calc(100vw-2rem)] rounded-xl"
 	{...restProps}
 >
 	<!-- The panel sizes itself to this element, so the padding, and any class

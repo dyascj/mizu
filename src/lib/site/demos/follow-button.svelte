@@ -33,7 +33,7 @@
 			<ul class="flex" aria-label="Followers you know">
 				{#each people as person (person.name)}
 					<li
-						class="-ml-2 first:ml-0"
+						class="-ms-2 first:ms-0"
 						in:pop={{ scale: 0.6, spring: springs.bouncy }}
 						out:fade={{ duration: duration.instant }}
 					>

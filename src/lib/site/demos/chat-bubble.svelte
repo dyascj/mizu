@@ -8,7 +8,7 @@
 	<ChatBubble role="assistant"
 		>Something cozy. Miso-glazed salmon over rice, twenty minutes.</ChatBubble
 	>
-	<div class="pl-4">
+	<div class="ps-4">
 		<Thinking variant="dots" label="Typing" />
 	</div>
 </div>

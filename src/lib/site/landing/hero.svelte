@@ -66,7 +66,9 @@
 			variant="secondary"
 			size="lg"
 			onpointerenter={() => (mood = 'thinking')}
-			onpointerleave={() => (mood = 'idle')}>Browse components</Button
+			onpointerleave={() => (mood = 'idle')}
+			onfocus={() => (mood = 'thinking')}
+			onblur={() => (mood = 'idle')}>Browse components</Button
 		>
 	</div>
 	<div class="animate-rise-in stagger mt-8" style:--index="8">

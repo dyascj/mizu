@@ -409,7 +409,7 @@
 			{#each files as file (idOf(file))}
 				{@const amount = progress?.(file)}
 				<li
-					class="bg-secondary flex h-9 max-w-full min-w-0 items-center gap-2 rounded-full pr-1 pl-3 text-sm transition-[translate] duration-(--duration-spring) ease-(--ease-spring)"
+					class="bg-secondary flex h-9 max-w-full min-w-0 items-center gap-2 rounded-full ps-3 pe-1 text-sm transition-[translate] duration-(--duration-spring) ease-(--ease-spring)"
 					in:arrive
 					out:leave
 				>

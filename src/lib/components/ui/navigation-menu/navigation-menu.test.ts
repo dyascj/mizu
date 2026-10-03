@@ -20,6 +20,17 @@ afterEach(() => {
 });
 
 describe('NavigationMenu', () => {
+	test('reads the direction it sits in instead of forcing left to right', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			render(NavigationMenuFixture);
+			await tick();
+			expect(document.querySelector('[data-navigation-menu-root]')).toHaveAttribute('dir', 'rtl');
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('a trigger opens its panel into the shared viewport and reports it', async () => {
 		render(NavigationMenuFixture);
 		const product = screen.getByRole('button', { name: 'Product' });

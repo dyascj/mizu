@@ -20,11 +20,30 @@
 		{ key: 'retry', label: 'Regenerate', icon: Refresh }
 	];
 
+	const reply =
+		'Twenty minutes, one pan: miso-glazed salmon over rice with charred scallions and a squeeze of lime.';
+
 	let pressed = $state<Record<string, boolean>>({});
 	let active = $state(0);
+	let copied = $state(false);
+	let copiedTimer: ReturnType<typeof setTimeout> | undefined;
 	const buttons: HTMLElement[] = [];
 
+	$effect(() => () => clearTimeout(copiedTimer));
+
 	function toggle(action: Action) {
+		if (action.key === 'copy') {
+			// The tooltip turns into Copied while it shows, once the clipboard accepts.
+			navigator.clipboard?.writeText(reply).then(
+				() => {
+					copied = true;
+					clearTimeout(copiedTimer);
+					copiedTimer = setTimeout(() => (copied = false), 1500);
+				},
+				() => {}
+			);
+			return;
+		}
 		if (!action.toggle) return;
 		const next = !pressed[action.key];
 		pressed[action.key] = next;
@@ -34,11 +53,15 @@
 	}
 
 	// One tab stop for the whole toolbar; arrows move within it.
-	function onkeydown(event: KeyboardEvent) {
+	function onkeydown(event: KeyboardEvent & { currentTarget: HTMLElement }) {
 		const last = actions.length - 1;
+		const forward = active === last ? 0 : active + 1;
+		const back = active === 0 ? last : active - 1;
+		// The row mirrors in RTL, so each arrow keeps moving the way it points.
+		const rtl = getComputedStyle(event.currentTarget).direction === 'rtl';
 		const moves: Record<string, number> = {
-			ArrowRight: active === last ? 0 : active + 1,
-			ArrowLeft: active === 0 ? last : active - 1,
+			ArrowRight: rtl ? back : forward,
+			ArrowLeft: rtl ? forward : back,
 			Home: 0,
 			End: last
 		};
@@ -52,8 +75,7 @@
 
 <div class="flex w-full max-w-sm flex-col items-start gap-10">
 	<p class="text-sm leading-relaxed">
-		Twenty minutes, one pan: miso-glazed salmon over rice with charred scallions and a squeeze of
-		lime.
+		{reply}
 	</p>
 	<Tooltip.Group>
 		<div
@@ -65,7 +87,7 @@
 		>
 			{#each actions as action, index (action.key)}
 				<Tooltip.GroupTrigger
-					content={action.label}
+					content={action.key === 'copy' && copied ? 'Copied' : action.label}
 					bind:ref={() => buttons[index] ?? null, (el) => el && (buttons[index] = el)}
 					aria-label={action.label}
 					aria-pressed={action.toggle ? Boolean(pressed[action.key]) : undefined}

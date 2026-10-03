@@ -25,6 +25,15 @@ for (const theme of ['light', 'dark'] as const) {
 			expect(
 				await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)
 			).toBe(true);
+			// Contrast is judged on settled frames, not halfway through an entrance fade.
+			await page.evaluate(() =>
+				Promise.all(
+					document
+						.getAnimations()
+						.filter((a) => a.effect?.getComputedTiming().iterations !== Infinity)
+						.map((a) => a.finished.catch(() => {}))
+				)
+			);
 			const results = await new AxeBuilder({ page })
 				.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
 				.analyze();

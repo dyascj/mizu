@@ -53,7 +53,7 @@
 				id="{uid}-input"
 				oninput={(e) => (search = e.currentTarget.value)}
 				placeholder="Search agents"
-				class="pr-9"
+				class="pe-9"
 			/>
 			<Combobox.Trigger aria-label="Show agents" />
 		</div>

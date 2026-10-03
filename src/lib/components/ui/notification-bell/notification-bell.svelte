@@ -170,7 +170,7 @@
 				aria-hidden="true"
 				in:pop={{ scale: 0.6, spring: springs.bouncy }}
 				out:shrink
-				class="bg-primary text-primary-foreground absolute -top-1 left-[calc(100%-1.125rem)] flex h-5 min-w-5 origin-bottom-left items-center justify-center rounded-full px-1.5 text-xs leading-none font-semibold shadow-xs"
+				class="bg-primary text-primary-foreground absolute start-[calc(100%-1.125rem)] -top-1 flex h-5 min-w-5 origin-bottom-left items-center justify-center rounded-full px-1.5 text-xs leading-none font-semibold shadow-xs rtl:origin-bottom-right"
 			>
 				<NumberTicker value={Math.min(badge, max)} />{#if badge > max}+{/if}
 			</span>

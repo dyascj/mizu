@@ -59,9 +59,9 @@
 		secondary: 'bg-secondary text-secondary-foreground hover:bg-control'
 	};
 	const sizes = {
-		sm: { icon: 'size-8', text: 'h-8 gap-1.5 pr-4 pl-3 text-sm', svg: '[&_svg]:size-4' },
-		md: { icon: 'size-9', text: 'h-9 gap-2 pr-4 pl-3.5 text-sm', svg: '[&_svg]:size-4' },
-		lg: { icon: 'size-11', text: 'h-11 gap-2 pr-5 pl-4 text-base', svg: '[&_svg]:size-5' }
+		sm: { icon: 'size-8', text: 'h-8 gap-1.5 ps-3 pe-4 text-sm', svg: '[&_svg]:size-4' },
+		md: { icon: 'size-9', text: 'h-9 gap-2 ps-3.5 pe-4 text-sm', svg: '[&_svg]:size-4' },
+		lg: { icon: 'size-11', text: 'h-11 gap-2 ps-4 pe-5 text-base', svg: '[&_svg]:size-5' }
 	};
 
 	let status = $state<'idle' | 'sending' | 'sent'>('idle');
@@ -105,6 +105,8 @@
 		const node = plane;
 		if (!node) return;
 		cancelAnimationFrame(frame);
+		// Right to left, the plane is mirrored and flies the other way.
+		const sign = getComputedStyle(node).direction === 'rtl' ? -1 : 1;
 		let start: number | undefined;
 		const tick = (now: number) => {
 			start ??= now;
@@ -114,8 +116,8 @@
 			const t = easeIn(p);
 			const back = p < crouch ? -3 * Math.sin((Math.PI * p) / crouch) : 0;
 			const { x, y, angle } = along(t);
-			node.style.translate = `${x + back}px ${y}px`;
-			node.style.rotate = `${angle}deg`;
+			node.style.translate = `${sign * (x + back)}px ${y}px`;
+			node.style.rotate = `${sign * angle}deg`;
 			// Shrinks a little with distance, and fades over the last stretch.
 			node.style.scale = `${1 - 0.25 * t}`;
 			node.style.opacity = `${Math.min(1, (1 - p) / 0.45)}`;
@@ -183,8 +185,8 @@
 		className
 	)}
 >
-	<!-- The plane's mass sits left of its box center, so it gets a pixel of nudge. -->
-	<span aria-hidden="true" class={cn('grid', iconOnly && 'translate-x-px')}>
+	<!-- The plane's mass sits behind its box center, so it gets a pixel of nudge. -->
+	<span aria-hidden="true" class={cn('grid', iconOnly && 'translate-x-px rtl:-translate-x-px')}>
 		<span
 			class={cn(
 				'col-start-1 row-start-1 flex',
@@ -192,17 +194,17 @@
 			)}
 		>
 			<span bind:this={plane} class="flex">
-				<SendHorizontal />
+				<SendHorizontal class="rtl:-scale-x-100" />
 			</span>
 		</span>
-		<!-- Slides in rightward, the way the plane left, so the check reads as the
-		     same motion finishing. -->
+		<!-- Slides in the way the plane left, so the check reads as the same
+		     motion finishing. -->
 		<span
 			class={cn(
 				'col-start-1 row-start-1 flex',
 				status === 'sent'
 					? 'translate-x-0 opacity-100 blur-none [transition:translate_var(--duration-spring-snappy)_var(--ease-spring-snappy),opacity_var(--duration-base)_var(--ease-out),filter_var(--duration-base)_var(--ease-out)]'
-					: '-translate-x-2 opacity-0 blur-[4px] transition-[translate,opacity,filter] duration-(--duration-fast) ease-in'
+					: '-translate-x-2 opacity-0 blur-[4px] transition-[translate,opacity,filter] duration-(--duration-fast) ease-in rtl:translate-x-2'
 			)}
 		>
 			<Check />
@@ -216,7 +218,7 @@
 					'col-start-1 row-start-1',
 					status === 'idle'
 						? 'translate-x-0 opacity-100 blur-none transition-[translate,opacity,filter] duration-(--duration-base) ease-out'
-						: '-translate-x-1 opacity-0 blur-[4px] transition-[translate,opacity,filter] duration-(--duration-instant) ease-in'
+						: '-translate-x-1 opacity-0 blur-[4px] transition-[translate,opacity,filter] duration-(--duration-instant) ease-in rtl:translate-x-1'
 				)}
 			>
 				{label}
@@ -226,7 +228,7 @@
 					'col-start-1 row-start-1',
 					status === 'sent'
 						? 'translate-x-0 opacity-100 blur-none transition-[translate,opacity,filter] duration-(--duration-base) ease-out'
-						: '-translate-x-1 opacity-0 blur-[4px] transition-[translate,opacity,filter] duration-(--duration-instant) ease-in'
+						: '-translate-x-1 opacity-0 blur-[4px] transition-[translate,opacity,filter] duration-(--duration-instant) ease-in rtl:translate-x-1'
 				)}
 			>
 				{sentLabel}

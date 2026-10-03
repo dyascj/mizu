@@ -179,7 +179,7 @@
 	function wordOut(node: Element): TransitionConfig {
 		const element = node as HTMLElement;
 		element.style.position = 'absolute';
-		element.style.left = '0';
+		element.style.insetInlineStart = '0';
 		element.style.top = '0';
 		const lift = prefersReducedMotion() ? 0 : -4;
 		return {

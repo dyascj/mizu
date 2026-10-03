@@ -184,7 +184,8 @@
 			)}
 		>
 			<Eye class="size-3.5" />
-			<span class="flex">
+			<!-- Digits keep their order inside right-to-left text. -->
+			<span dir="ltr" class="flex">
 				{#each characters as { char, place } (place)}
 					<span class="inline-grid overflow-hidden">
 						{#key char}

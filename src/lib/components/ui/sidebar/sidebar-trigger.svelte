@@ -31,6 +31,6 @@
 	}}
 	{...restProps}
 >
-	<PanelLeftIcon />
+	<PanelLeftIcon class="rtl:-scale-x-100" />
 	<span class="sr-only">Toggle Sidebar</span>
 </Button>

@@ -70,7 +70,7 @@
 			<ColorSwatchesFlood
 				{...flood}
 				order={1}
-				class="max-w-[85%] self-end rounded-2xl rounded-br-md px-3 py-2"
+				class="max-w-[85%] self-end rounded-2xl rounded-ee-md px-3 py-2"
 			>
 				<span
 					class="relative transition-[color] delay-(--stagger) duration-(--duration-base) ease-out"
@@ -79,7 +79,7 @@
 					Summarize the launch notes
 				</span>
 			</ColorSwatchesFlood>
-			<p class="bg-secondary max-w-[85%] self-start rounded-2xl rounded-bl-md px-3 py-2">
+			<p class="bg-secondary max-w-[85%] self-start rounded-2xl rounded-es-md px-3 py-2">
 				Three changes matter most: pricing, the new API, and the migration window.
 			</p>
 		</div>

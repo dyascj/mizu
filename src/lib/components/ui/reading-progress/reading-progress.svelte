@@ -142,14 +142,14 @@
 	<div
 		bind:this={bar}
 		aria-hidden="true"
-		class="bg-primary absolute inset-x-0 top-0 h-0.5 origin-left"
+		class="bg-primary absolute inset-x-0 top-0 h-0.5 origin-left rtl:origin-right"
 		style:scale="0 1"
 	></div>
 	{#if children}
 		<span class="min-w-0 truncate">{@render children()}</span>
 	{/if}
 	{#if !hideLabel}
-		<span class="ml-auto grid justify-items-end whitespace-nowrap tabular-nums">
+		<span class="ms-auto grid justify-items-end whitespace-nowrap tabular-nums">
 			{#key text}
 				<span
 					class="col-start-1 row-start-1"

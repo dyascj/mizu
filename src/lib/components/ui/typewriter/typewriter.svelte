@@ -161,11 +161,11 @@
 >
 	<span class="sr-only">{spoken}</span>
 	<!-- Reserves the widest state, so the line is laid out once and the prefix
-	     never moves as the word grows to the right. -->
+	     never moves as the word grows toward the end of the line. -->
 	<span aria-hidden="true" class="invisible col-start-1 row-start-1"
 		>{prefix ? `${prefix} ` : ''}{longest}{@render caret()}</span
 	>
-	<span aria-hidden="true" class="col-start-1 row-start-1 text-left"
+	<span aria-hidden="true" class="col-start-1 row-start-1 text-start"
 		>{prefix ? `${prefix} ` : ''}{#if reduced}<span class="inline-grid"
 				>{#each words as option, i (i)}<span
 						class={cn(
@@ -219,6 +219,10 @@
 		background-color: color-mix(in srgb, currentColor 22%, transparent);
 		scale: 0 1;
 		transform-origin: right;
+	}
+
+	.typewriter-selection:dir(rtl) {
+		transform-origin: left;
 	}
 
 	[data-selecting='true'] .typewriter-selection {

@@ -20,7 +20,7 @@
 
 <div class="flex flex-col items-center gap-3">
 	<DropdownMenu.Root>
-		<DropdownMenu.Trigger class={cn(buttonVariants({ variant: 'secondary' }), 'group pr-4')}>
+		<DropdownMenu.Trigger class={cn(buttonVariants({ variant: 'secondary' }), 'group pe-4')}>
 			Chat options
 			<ChevronDown
 				class="text-muted-foreground size-4 transition-[rotate] duration-(--duration-base) ease-out group-data-[state=open]:rotate-180 motion-reduce:transition-none"

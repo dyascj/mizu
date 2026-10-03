@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Pause from '@lucide/svelte/icons/pause';
+	import Play from '@lucide/svelte/icons/play';
 	import Square from '@lucide/svelte/icons/square';
 	import { Button } from '$lib/components/ui/button';
 	import { Plan, type PlanStep } from '$lib/components/ui/plan';
@@ -52,7 +53,7 @@
 					clearTimeout(replayTimer);
 				}}
 			>
-				<Pause class="size-4" />
+				{#if paused}<Play class="size-4" />{:else}<Pause class="size-4" />{/if}
 			</Button>
 			<Button
 				variant="ghost"

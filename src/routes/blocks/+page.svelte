@@ -35,6 +35,7 @@
 			<a
 				href={`?category=${c.toLowerCase().replaceAll(' ', '-')}`}
 				data-sveltekit-noscroll
+				data-sveltekit-keepfocus
 				aria-current={category === c ? 'page' : undefined}
 				class={cn(
 					'focus-visible:ring-ring rounded-full px-4 py-1.5 text-sm transition-colors outline-none focus-visible:ring-2',

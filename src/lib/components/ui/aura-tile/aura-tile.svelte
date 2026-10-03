@@ -58,7 +58,7 @@
 >
 	{#if selected}
 		<span
-			class="bg-primary text-primary-foreground absolute right-1.5 bottom-1.5 grid size-5 place-items-center rounded-full shadow-sm"
+			class="bg-primary text-primary-foreground absolute end-1.5 bottom-1.5 grid size-5 place-items-center rounded-full shadow-sm"
 		>
 			<Check class="size-3" strokeWidth={3} />
 		</span>

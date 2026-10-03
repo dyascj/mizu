@@ -102,7 +102,7 @@
 
 	const labelClass = (visible: boolean) =>
 		cn(
-			'col-start-1 row-start-1 text-left whitespace-nowrap transition-[opacity,filter,translate] ease-out',
+			'col-start-1 row-start-1 text-start whitespace-nowrap transition-[opacity,filter,translate] ease-out',
 			visible
 				? 'translate-y-0 opacity-100 blur-none duration-(--duration-base)'
 				: 'translate-y-0.5 opacity-0 blur-[4px] duration-(--duration-instant) motion-reduce:translate-y-0 motion-reduce:blur-none'
@@ -117,7 +117,7 @@
 	{disabled}
 	data-state={saved ? 'on' : 'off'}
 	class={cn(
-		'focus-visible:ring-ring focus-visible:ring-offset-background inline-flex h-9 shrink-0 touch-manipulation items-center gap-1.5 rounded-full pr-3.5 pl-2.5 text-sm font-medium outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+		'focus-visible:ring-ring focus-visible:ring-offset-background inline-flex h-9 shrink-0 touch-manipulation items-center gap-1.5 rounded-full ps-2.5 pe-3.5 text-sm font-medium outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
 		'transition-[background-color,color,scale] duration-(--duration-fast) ease-out active:scale-[0.96] motion-reduce:transition-[background-color,color]',
 		saved
 			? 'bg-primary-muted text-primary'
@@ -171,10 +171,13 @@
 		>
 			<span class={labelClass(!saved)}>{label}</span>
 			<span class={labelClass(saved)}>{savedLabel}</span>
-			<span bind:offsetWidth={restWidth} class="invisible absolute top-0 left-0 whitespace-nowrap">
+			<span bind:offsetWidth={restWidth} class="invisible absolute start-0 top-0 whitespace-nowrap">
 				{label}
 			</span>
-			<span bind:offsetWidth={savedWidth} class="invisible absolute top-0 left-0 whitespace-nowrap">
+			<span
+				bind:offsetWidth={savedWidth}
+				class="invisible absolute start-0 top-0 whitespace-nowrap"
+			>
 				{savedLabel}
 			</span>
 		</span>

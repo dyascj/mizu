@@ -4,7 +4,7 @@
 	// The icon tint + bar color all derive from one `--toast` channel per variant,
 	// mirroring how alert.svelte themes itself from `--alert`.
 	export const toastVariants = tv({
-		base: 'group bg-popover pointer-events-auto relative flex w-full items-start gap-3 overflow-hidden rounded-2xl py-3.5 pl-4 pr-10 shadow-xl',
+		base: 'group bg-popover pointer-events-auto relative flex w-full items-start gap-3 overflow-hidden rounded-2xl py-3.5 ps-4 pe-10 shadow-xl',
 		variants: {
 			variant: {
 				info: '[--toast:var(--info)]',
@@ -225,8 +225,8 @@
 				in:develop
 				out:fadeAway
 				class={cn(
-					'col-start-1 row-start-1 flex items-start gap-3 py-3.5 pl-4',
-					toast.undo ? 'items-center py-2 pr-2' : 'pr-10'
+					'col-start-1 row-start-1 flex items-start gap-3 py-3.5 ps-4',
+					toast.undo ? 'items-center py-2 pe-2' : 'pe-10'
 				)}
 			>
 				<span
@@ -321,7 +321,7 @@
 	{#if !toast.undo}
 		<button
 			type="button"
-			class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute top-2.5 right-2.5 z-20 inline-flex size-7 items-center justify-center rounded-full transition-[scale,background-color] duration-(--duration-base) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]"
+			class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute end-2.5 top-2.5 z-20 inline-flex size-7 items-center justify-center rounded-full transition-[scale,background-color] duration-(--duration-base) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96]"
 			onclick={() => toaster.dismiss(toast.id)}
 		>
 			<XIcon class="size-3.5" />

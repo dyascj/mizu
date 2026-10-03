@@ -67,6 +67,8 @@
 		place(el, hiddenAt[toward]);
 	}
 
+	const rtl = (el: HTMLElement) => getComputedStyle(el).direction === 'rtl';
+
 	function sideOf(el: HTMLElement, clientX: number): Side {
 		const box = el.getBoundingClientRect();
 		return clientX < box.left + box.width / 2 ? 'left' : 'right';
@@ -94,11 +96,12 @@
 	onfocus={(event) => {
 		restProps.onfocus?.(event);
 		// Reading order: a focused link underlines from the start of its text.
-		if (event.currentTarget.matches(':focus-visible')) draw(event.currentTarget, 'left');
+		if (event.currentTarget.matches(':focus-visible'))
+			draw(event.currentTarget, rtl(event.currentTarget) ? 'right' : 'left');
 	}}
 	onblur={(event) => {
 		restProps.onblur?.(event);
-		if (!hovered) erase(event.currentTarget, 'right');
+		if (!hovered) erase(event.currentTarget, rtl(event.currentTarget) ? 'left' : 'right');
 	}}
 	ontransitionend={(event) => {
 		restProps.ontransitionend?.(event);

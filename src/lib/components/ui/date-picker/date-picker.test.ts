@@ -43,4 +43,28 @@ describe('DatePicker', () => {
 		const fill = selected.querySelector('[data-day-fill]')!;
 		expect([...fill.classList].filter((name) => /^bg-/.test(name))).toEqual(['bg-inherit']);
 	});
+
+	test('right to left, day and segment arrows move the way they point', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			render(Harness, { value: september });
+			const segments = screen.getAllByRole('spinbutton');
+			segments[0].focus();
+			await fireEvent.keyDown(segments[0], { key: 'ArrowLeft' });
+			expect(segments[1]).toHaveFocus();
+			await fireEvent.keyDown(segments[1], { key: 'ArrowRight' });
+			expect(segments[0]).toHaveFocus();
+
+			const dialog = await open();
+			expect(dialog.closest('[dir]')).toHaveAttribute('dir', 'rtl');
+			const start = dialog.querySelector<HTMLElement>('[data-bits-day][data-value="2026-09-15"]')!;
+			start.focus();
+			await fireEvent.keyDown(start, { key: 'ArrowLeft' });
+			await vi.waitFor(() =>
+				expect(document.activeElement).toHaveAttribute('data-value', '2026-09-16')
+			);
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
 });

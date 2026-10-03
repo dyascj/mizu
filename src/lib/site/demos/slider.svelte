@@ -7,11 +7,20 @@
 	let price = $state([2, 15]);
 	let quiet = $state<HTMLSpanElement | null>(null);
 	let loud = $state<HTMLSpanElement | null>(null);
+	// Sliders take their direction as a prop; pass the page's, as an app would.
+	let dir = $state<'ltr' | 'rtl'>('ltr');
+	$effect(() => {
+		if (quiet) dir = getComputedStyle(quiet).direction === 'rtl' ? 'rtl' : 'ltr';
+	});
 
 	/** The speaker icons ride the ends of the track as it stretches. */
 	function carryIcons(offset: number) {
-		if (quiet) quiet.style.translate = `${Math.min(offset, 0)}px 0`;
-		if (loud) loud.style.translate = `${Math.max(offset, 0)}px 0`;
+		// `offset` is on screen, negative to the left, where the quiet end sits
+		// unless the page reads right to left.
+		const left = `${Math.min(offset, 0)}px 0`;
+		const right = `${Math.max(offset, 0)}px 0`;
+		if (quiet) quiet.style.translate = dir === 'rtl' ? right : left;
+		if (loud) loud.style.translate = dir === 'rtl' ? left : right;
 	}
 
 	const usd = (value: number) => `$${value}`;
@@ -28,6 +37,7 @@
 			<Slider
 				aria-label="Voice volume"
 				type="single"
+				{dir}
 				bind:value={volume}
 				elastic
 				onStretch={carryIcons}
@@ -45,6 +55,7 @@
 		<Slider
 			thumbLabels={['Minimum price', 'Maximum price']}
 			type="multiple"
+			{dir}
 			bind:value={price}
 			min={0}
 			max={30}

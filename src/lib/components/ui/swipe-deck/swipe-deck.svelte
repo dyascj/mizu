@@ -399,7 +399,8 @@
 		{/if}
 	</div>
 	{#if buttons}
-		<div bind:this={controls} class="flex gap-3">
+		<!-- Throws are physical, so each button stays on the side it throws toward. -->
+		<div bind:this={controls} class="flex gap-3 rtl:flex-row-reverse">
 			<button
 				type="button"
 				aria-label={rejectLabel}

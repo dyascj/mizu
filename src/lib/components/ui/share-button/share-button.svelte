@@ -168,7 +168,7 @@
 	const faceShown =
 		'relative opacity-100 blur-none transition-[opacity,filter] delay-(--stagger) duration-(--duration-base) ease-out';
 	const faceHidden =
-		'pointer-events-none absolute top-0 left-0 opacity-0 blur-[4px] transition-[opacity,filter] duration-(--duration-instant) ease-in';
+		'pointer-events-none absolute top-0 start-0 opacity-0 blur-[4px] transition-[opacity,filter] duration-(--duration-instant) ease-in';
 	const target =
 		'text-foreground hover:bg-control focus-visible:ring-ring inline-flex h-9 min-w-9 shrink-0 items-center justify-center rounded-full transition-[background-color,color,scale] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 focus-visible:ring-inset active:scale-[0.96] [&_svg]:size-4';
 </script>
@@ -239,7 +239,7 @@
 				)}
 			>
 				<span class="min-w-0 overflow-hidden text-sm font-medium whitespace-nowrap">
-					<span class="pl-1.5">{copiedText}</span>
+					<span class="ps-1.5">{copiedText}</span>
 				</span>
 			</span>
 		</button>
@@ -269,7 +269,7 @@
 			type="button"
 			aria-label={closeLabel}
 			onclick={() => toggle(false)}
-			class={cn(target, 'text-muted-foreground hover:text-foreground ml-1')}
+			class={cn(target, 'text-muted-foreground hover:text-foreground ms-1')}
 		>
 			<X aria-hidden="true" />
 		</button>

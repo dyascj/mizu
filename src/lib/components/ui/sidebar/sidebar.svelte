@@ -22,12 +22,14 @@
 	} = $props();
 
 	const sidebar = useSidebar();
+	// `side` names the reading-direction edge, like the desktop rail's logical insets.
+	const sheetSide = $derived(sidebar.rtl ? (side === 'left' ? 'right' : 'left') : side);
 </script>
 
 {#if collapsible === 'none'}
 	<div
 		class={cn(
-			'bg-sidebar text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col',
+			'bg-background text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col',
 			className
 		)}
 		bind:this={ref}
@@ -47,11 +49,11 @@
 			data-slot="sidebar"
 			data-mobile="true"
 			class={cn(
-				'bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden',
+				'bg-background text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden',
 				className
 			)}
 			style="--sidebar-width: {SIDEBAR_WIDTH_MOBILE};"
-			{side}
+			side={sheetSide}
 		>
 			<Sheet.Header class="sr-only">
 				<Sheet.Title>Sidebar</Sheet.Title>
@@ -102,7 +104,7 @@
 			<div
 				data-sidebar="sidebar"
 				data-slot="sidebar-inner"
-				class="bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
+				class="bg-sidebar group-data-[variant=sidebar]:bg-background group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
 			>
 				{@render children?.()}
 			</div>

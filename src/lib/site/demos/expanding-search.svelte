@@ -26,7 +26,7 @@
 			<span
 				aria-hidden={open}
 				class={cn(
-					'pointer-events-none absolute left-3 text-sm font-semibold tracking-tight transition-opacity duration-(--duration-fast) ease-out',
+					'pointer-events-none absolute start-3 text-sm font-semibold tracking-tight transition-opacity duration-(--duration-fast) ease-out',
 					open && 'opacity-0'
 				)}
 			>

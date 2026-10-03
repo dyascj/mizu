@@ -34,6 +34,7 @@
 		bind:ref
 		{id}
 		aria-label="Suggestions"
+		dir={context?.rtl ? 'rtl' : 'ltr'}
 		{sideOffset}
 		class={cn(
 			'bg-popover text-popover-foreground z-50 max-h-80 w-[var(--bits-combobox-anchor-width)] min-w-[var(--bits-combobox-anchor-width)] origin-(--bits-combobox-content-transform-origin) overflow-hidden rounded-xl p-1 shadow-lg transition-[opacity,scale] duration-(--duration-fast) ease-out outline-none data-[starting-style]:opacity-0 data-[state=closed]:pointer-events-none data-[state=closed]:opacity-0 data-[state=closed]:duration-(--duration-instant) data-[state=closed]:ease-in motion-safe:data-[starting-style]:scale-[0.97] motion-safe:data-[state=closed]:scale-[0.97]',

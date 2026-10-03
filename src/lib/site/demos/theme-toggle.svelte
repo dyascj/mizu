@@ -7,7 +7,7 @@
 </script>
 
 <div class="flex w-full max-w-sm flex-col gap-4">
-	<div class="bg-card flex items-center gap-3 rounded-full py-1.5 pr-1.5 pl-4 shadow-sm">
+	<div class="bg-card flex items-center gap-3 rounded-full py-1.5 ps-4 pe-1.5 shadow-sm">
 		<Sparkles class="text-muted-foreground size-4 shrink-0" />
 		<p class="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">Assistant</p>
 		<ThemeToggle bind:mode variant="ghost" size="sm" />

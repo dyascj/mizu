@@ -217,7 +217,7 @@
 			<span
 				class={cn(
 					layer,
-					'gap-2 pr-4 pl-3.5 whitespace-nowrap [&_svg]:size-4',
+					'gap-2 ps-3.5 pe-4 whitespace-nowrap [&_svg]:size-4',
 					status === 'idle' ? cn(layerShown, 'delay-(--duration-instant)') : layerHidden
 				)}
 			>

@@ -53,6 +53,19 @@
 		}
 	}
 
+	/* Right to left, it crawls the way the line reads. */
+	.skeleton-shimmer:dir(rtl)::after {
+		translate: 100% 0;
+		animation-name: skeleton-shimmer-rtl;
+	}
+
+	@keyframes skeleton-shimmer-rtl {
+		70%,
+		100% {
+			translate: -100% 0;
+		}
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.skeleton-shimmer::after {
 			display: none;

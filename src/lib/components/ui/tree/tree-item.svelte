@@ -58,12 +58,12 @@
 	onfocus={() => tree.onFocus(node.id)}
 	onkeydown={(e) => tree.onKeydown(e, node.id, hasChildren, depth)}
 	class={cn(
-		'relative flex h-9 cursor-pointer items-center gap-1.5 rounded-lg pr-2 transition-[background,box-shadow,color] duration-(--duration-base) ease-out outline-none select-none',
+		'relative flex h-9 cursor-pointer items-center gap-1.5 rounded-lg pe-2 transition-[background,box-shadow,color] duration-(--duration-base) ease-out outline-none select-none',
 		!selected && 'hover:bg-accent',
 		'focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2',
 		selected ? 'text-primary font-medium' : 'text-foreground/90'
 	)}
-	style="padding-left: calc(0.5rem + {depth} * 1.125rem);"
+	style="padding-inline-start: calc(0.5rem + {depth} * 1.125rem);"
 >
 	{#if selected}
 		<span
@@ -77,7 +77,8 @@
 		<ChevronRight
 			class={cn(
 				'text-muted-foreground relative size-4 shrink-0 transition-[rotate] duration-(--duration-base) ease-out motion-reduce:transition-none',
-				expanded && 'rotate-90'
+				// Collapsed, it points toward the children, which is leftward in RTL.
+				expanded ? 'rotate-90' : 'rtl:rotate-180'
 			)}
 		/>
 	{:else}

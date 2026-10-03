@@ -74,7 +74,7 @@
 	// No overshoot anywhere: an icon that overshoots its own outline reads as a
 	// wobble, not a morph.
 	const morph =
-		'[transform-box:view-box] origin-[12px_12px] transition-[scale,translate,rotate] duration-(--duration-spring-snappy) ease-(--ease-spring-snappy)';
+		'[transform-box:view-box] origin-[12px_12px] transition-[scale,translate,rotate] duration-(--duration-spring-snappy) ease-(--ease-spring-snappy) motion-reduce:transition-none';
 </script>
 
 <button
@@ -100,7 +100,7 @@
 		viewBox="0 0 24 24"
 		aria-hidden="true"
 		class={cn(
-			'transition-[rotate] duration-(--duration-spring-snappy) ease-(--ease-spring-snappy)',
+			'transition-[rotate] duration-(--duration-spring-snappy) ease-(--ease-spring-snappy) motion-reduce:transition-none',
 			dark ? '-rotate-40' : 'rotate-0'
 		)}
 	>
@@ -163,10 +163,11 @@
 			opacity var(--ray-fade) var(--ease-out) var(--ray-delay);
 	}
 
-	/* Reduced motion lands each shape at once and drops the sweep across the dial. */
+	/* Reduced motion lands each shape at once and drops the sweep across the
+	   dial; only the rays' fade is left. */
 	@media (prefers-reduced-motion: reduce) {
 		.theme-ray {
-			--ray-delay: 0ms !important;
+			transition: opacity var(--ray-fade) var(--ease-out);
 		}
 	}
 </style>

@@ -19,8 +19,8 @@
 			</p>
 		</div>
 	</div>
-	<!-- Left aligned, so starring grows the button rightward and never slides it
-	     out from under the pointer. -->
+	<!-- Start aligned, so starring grows the button toward the end and never
+	     slides it out from under the pointer. -->
 	<div class="flex flex-wrap items-center gap-3">
 		<StarButton bind:starred count={starred ? 1300 : 1299} locale="en-US" />
 		<span class="text-muted-foreground text-xs">Updated 2 days ago</span>

@@ -19,7 +19,7 @@
 	<AccordionPrimitive.Trigger
 		bind:ref
 		class={cn(
-			'group/accordion-trigger hover:text-primary focus-visible:text-primary focus-visible:ring-ring focus-visible:ring-offset-background flex w-full items-center justify-between gap-5 rounded-lg py-4 text-left font-semibold transition-colors duration-(--duration-fast) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 [&[data-state=open]>svg]:rotate-180',
+			'group/accordion-trigger hover:text-primary focus-visible:text-primary focus-visible:ring-ring focus-visible:ring-offset-background flex w-full items-center justify-between gap-5 rounded-lg py-4 text-start font-semibold transition-colors duration-(--duration-fast) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 [&[data-state=open]>svg]:rotate-180',
 			className
 		)}
 		{...restProps}

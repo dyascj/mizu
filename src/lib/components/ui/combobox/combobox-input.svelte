@@ -13,6 +13,9 @@
 		class?: string;
 	} = $props();
 	const context = getComboboxContext();
+	$effect(() => {
+		if (context) context.input = ref;
+	});
 
 	/** True while a picked label is flying in; the field's own text waits for it. */
 	let landing = $state(false);
@@ -34,8 +37,10 @@
 			if (rect) return rect;
 		}
 		const box = item.getBoundingClientRect();
-		const pad = Number.parseFloat(getComputedStyle(item).paddingLeft) || 0;
-		return new DOMRect(box.left + pad, box.top, box.width - pad, box.height);
+		const style = getComputedStyle(item);
+		const pad = Number.parseFloat(style.paddingInlineStart) || 0;
+		const left = style.direction === 'rtl' ? box.left : box.left + pad;
+		return new DOMRect(left, box.top, box.width - pad, box.height);
 	}
 
 	/**
@@ -54,10 +59,16 @@
 		const itemSize = Number.parseFloat(getComputedStyle(item).fontSize) || 14;
 		const fieldSize = Number.parseFloat(style.fontSize) || 14;
 		const lineHeight = Number.parseFloat(style.lineHeight) || fieldSize * 1.5;
-		const toX = box.left + (Number.parseFloat(style.paddingLeft) || 0);
+		// Text starts at the right in right-to-left fields, so the label is
+		// pinned and scaled from that edge instead.
+		const rtl = style.direction === 'rtl';
+		const toX = rtl
+			? box.right - (Number.parseFloat(style.paddingRight) || 0)
+			: box.left + (Number.parseFloat(style.paddingLeft) || 0);
+		const fromX = rtl ? from.right : from.left;
 		const toY = box.top + box.height / 2 - lineHeight / 2;
 		const fromY = from.top + from.height / 2 - lineHeight / 2;
-		if (Math.hypot(from.left - toX, fromY - toY) < 2) return;
+		if (Math.hypot(fromX - toX, fromY - toY) < 2) return;
 
 		// While an earlier pick is landing the field's text is transparent, so
 		// the color comes from before it went.
@@ -67,7 +78,9 @@
 		carried.setAttribute('aria-hidden', 'true');
 		Object.assign(carried.style, {
 			position: 'fixed',
-			left: `${toX}px`,
+			...(rtl
+				? { right: `${document.documentElement.clientWidth - toX}px` }
+				: { left: `${toX}px` }),
 			top: `${toY}px`,
 			zIndex: '60',
 			pointerEvents: 'none',
@@ -78,7 +91,7 @@
 			letterSpacing: style.letterSpacing,
 			lineHeight: `${lineHeight}px`,
 			color: ink,
-			transformOrigin: '0 50%'
+			transformOrigin: rtl ? '100% 50%' : '0 50%'
 		});
 		document.body.append(carried);
 		ghost = carried;
@@ -86,7 +99,7 @@
 
 		// Position rides the snappy spring, sampled into keyframes so the curve
 		// comes from the motion tokens rather than a hand-tuned bezier.
-		const dx = from.left - toX;
+		const dx = fromX - toX;
 		const dy = fromY - toY;
 		const scale = itemSize / fieldSize;
 		const { duration, easing } = springs.snappy;

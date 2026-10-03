@@ -41,7 +41,12 @@
 
 	<div class="flex flex-col gap-2.5">
 		<p class="text-sm font-medium">Conversation style</p>
-		<ToggleGroup.Root type="single" bind:value={tone} class="w-fit max-w-full flex-wrap">
+		<ToggleGroup.Root
+			type="single"
+			aria-label="Conversation style"
+			bind:value={() => tone, (value) => value && (tone = value)}
+			class="w-fit max-w-full flex-wrap"
+		>
 			<ToggleGroup.Item value="creative">Creative</ToggleGroup.Item>
 			<ToggleGroup.Item value="balanced">Balanced</ToggleGroup.Item>
 			<ToggleGroup.Item value="precise">Precise</ToggleGroup.Item>
@@ -70,6 +75,6 @@
 		Create my companion
 	</Button>
 	{#if created}<p role="status" class="text-muted-foreground text-sm">
-			Preview saved. Your companion uses {style} with a {tone || 'balanced'} tone.
+			Preview saved. Your companion uses {style} with a {tone} tone.
 		</p>{/if}
 </div>

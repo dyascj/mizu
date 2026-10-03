@@ -60,6 +60,21 @@ describe('Heatmap', () => {
 		expect(byIndex(13).tabIndex).toBe(-1);
 	});
 
+	test('right to left, the weeks mirror and the arrows follow them', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const { cells } = setup();
+			const byIndex = (i: number) => cells.find((c) => c.dataset.i === String(i)) as HTMLElement;
+			byIndex(13).focus();
+			await fireEvent.keyDown(byIndex(13), { key: 'ArrowRight' });
+			expect(document.activeElement).toBe(byIndex(6));
+			await fireEvent.keyDown(byIndex(6), { key: 'ArrowLeft' });
+			expect(document.activeElement).toBe(byIndex(13));
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('shows a tooltip for the focused day and hides it on Escape', async () => {
 		const { cells, tip } = setup();
 		await fireEvent.focusIn(cells[2]);

@@ -54,7 +54,7 @@
 			style="background: radial-gradient(18rem circle at var(--pointer-x) var(--pointer-y), color-mix(in oklab, var(--foreground) 7%, transparent), transparent 70%)"
 		></div>
 		<span {@attach magnetic()} class="relative inline-flex">
-			<Button size="lg">
+			<Button size="lg" onclick={() => run++}>
 				<span data-magnetic-content class="inline-flex items-center gap-2">
 					<Sparkles class="size-4" /> Generate
 				</span>

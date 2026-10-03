@@ -49,7 +49,7 @@
 	}
 </script>
 
-<div class="bg-card flex w-full max-w-md items-center gap-3 rounded-full p-1.5 pl-5 shadow-sm">
+<div class="bg-card flex w-full max-w-md items-center gap-3 rounded-full p-1.5 ps-5 shadow-sm">
 	<div class="min-w-0 flex-1">
 		<p class="truncate text-sm font-medium">eval-run-0412.jsonl</p>
 		<p class="text-muted-foreground truncate text-xs tabular-nums">1,200 answers · 24.8 MB</p>

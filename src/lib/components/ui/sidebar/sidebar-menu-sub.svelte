@@ -10,12 +10,13 @@
 	}: WithElementRef<HTMLAttributes<HTMLUListElement>> = $props();
 </script>
 
+<!-- A guide line under the parent's icon; the active item marks its spot on it. -->
 <ul
 	bind:this={ref}
 	data-slot="sidebar-menu-sub"
 	data-sidebar="menu-sub"
 	class={cn(
-		'mx-3.5 flex min-w-0 flex-col gap-1 px-2.5 py-0.5',
+		'border-border ms-4 flex min-w-0 flex-col border-s py-0.5 ps-1.5',
 		'group-data-[collapsible=icon]:hidden',
 		className
 	)}

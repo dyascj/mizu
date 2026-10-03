@@ -179,7 +179,7 @@
 			{@render children?.()}
 			{#if typing}
 				<div
-					class="mt-3 origin-bottom-left first:mt-0"
+					class="mt-3 origin-bottom-left first:mt-0 rtl:origin-bottom-right"
 					data-conversation-typing
 					in:typingIn
 					out:typingOut
@@ -197,7 +197,7 @@
 		inert={!unseen}
 		aria-hidden={!unseen}
 		class={cn(
-			'bg-card text-foreground focus-visible:ring-ring absolute bottom-3 left-1/2 flex h-8 -translate-x-1/2 touch-manipulation items-center gap-1.5 rounded-full pr-3 pl-2.5 text-xs font-medium shadow-md outline-none select-none focus-visible:ring-2 active:scale-[0.96]',
+			'bg-card text-foreground focus-visible:ring-ring absolute bottom-3 left-1/2 flex h-8 -translate-x-1/2 touch-manipulation items-center gap-1.5 rounded-full ps-2.5 pe-3 text-xs font-medium shadow-md outline-none select-none focus-visible:ring-2 active:scale-[0.96]',
 			'transition-[opacity,translate,scale] ease-out motion-reduce:transition-opacity',
 			unseen
 				? 'translate-y-0 opacity-100 duration-(--duration-base)'

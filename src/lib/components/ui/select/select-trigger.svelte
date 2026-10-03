@@ -56,7 +56,7 @@
 	{...restProps}
 	onpointerdown={rememberPress}
 	class={cn(
-		'bg-control focus-visible:ring-ring data-[placeholder]:text-muted-foreground flex h-10 w-full items-center justify-between gap-2 rounded-full px-3.5 py-2 text-left text-base transition-[box-shadow,border-color,scale] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-[box-shadow,border-color] sm:text-sm [&>span]:truncate',
+		'bg-control focus-visible:ring-ring data-[placeholder]:text-muted-foreground flex h-10 w-full items-center justify-between gap-2 rounded-full px-3.5 py-2 text-start text-base transition-[box-shadow,border-color,scale] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-[box-shadow,border-color] sm:text-sm [&>span]:truncate',
 		className
 	)}
 >

@@ -28,7 +28,7 @@
 				prefix="Ask me to"
 				words={['summarize a PDF', 'plan a weekend', 'fix my SQL', 'draft a reply']}
 				paused={paused || focused}
-				class="text-muted-foreground pointer-events-none absolute top-1/2 right-14 left-[1.125rem] -translate-y-1/2 overflow-hidden text-base whitespace-pre sm:text-sm"
+				class="text-muted-foreground pointer-events-none absolute start-[1.125rem] end-14 top-1/2 -translate-y-1/2 overflow-hidden text-base whitespace-pre sm:text-sm"
 			/>
 		{/if}
 	</div>

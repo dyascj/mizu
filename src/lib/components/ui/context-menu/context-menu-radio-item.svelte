@@ -17,13 +17,13 @@
 <ContextMenuPrimitive.RadioItem
 	bind:ref
 	class={cn(
-		'data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-pointer items-center rounded-lg py-1.5 pr-2 pl-8 text-sm outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+		'data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-pointer items-center rounded-lg py-1.5 ps-8 pe-2 text-sm outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
 		className
 	)}
 	{...restProps}
 >
 	{#snippet children({ checked })}
-		<span class="absolute left-2 flex size-4 items-center justify-center">
+		<span class="absolute start-2 flex size-4 items-center justify-center">
 			{#if checked}
 				<Circle class="fill-primary text-primary size-2" />
 			{/if}

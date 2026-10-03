@@ -131,9 +131,11 @@
 	}
 
 	function onkeydown(event: KeyboardEvent) {
+		// The row mirrors in right-to-left text, so the arrows follow what they point at.
+		const forward = getComputedStyle(event.currentTarget as Element).direction === 'rtl' ? -1 : 1;
 		const target = {
-			ArrowRight: current + 1,
-			ArrowLeft: current - 1,
+			ArrowRight: current + forward,
+			ArrowLeft: current - forward,
 			Home: 0,
 			End: last
 		}[event.key];
@@ -184,7 +186,7 @@
 	bind:this={ref}
 	role="group"
 	aria-label={label}
-	class={cn('relative h-8 shrink-0 [contain:layout]', className)}
+	class={cn('relative h-8 shrink-0 [contain:layout] rtl:-scale-x-100', className)}
 	style:width="{last * step + pill}px"
 	{onkeydown}
 >

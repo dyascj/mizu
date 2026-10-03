@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
+	import { tick, type Snippet } from 'svelte';
 	import { Popover as PopoverPrimitive, type WithoutChildrenOrChild } from 'bits-ui';
 	import { cn } from '$lib/utils.js';
 
@@ -7,6 +7,7 @@
 		ref = $bindable(null),
 		class: className,
 		sideOffset = 8,
+		dir,
 		portalProps,
 		children,
 		...restProps
@@ -15,12 +16,28 @@
 		portalProps?: PopoverPrimitive.PortalProps;
 		children: Snippet;
 	} = $props();
+
+	// bits-ui stamps left to right on the portaled panel unless told otherwise,
+	// so the panel takes the direction its trigger reads in.
+	let inherited = $state<'ltr' | 'rtl'>('ltr');
+	$effect(() => {
+		const id = ref?.id;
+		if (!id) return;
+		// The trigger names the panel once it has rendered.
+		void tick().then(() => {
+			const trigger = Array.from(document.querySelectorAll('[aria-controls]')).find(
+				(node) => node.getAttribute('aria-controls') === id
+			);
+			inherited = getComputedStyle(trigger ?? document.body).direction === 'rtl' ? 'rtl' : 'ltr';
+		});
+	});
 </script>
 
 <PopoverPrimitive.Portal {...portalProps}>
 	<PopoverPrimitive.Content
 		bind:ref
 		{sideOffset}
+		dir={dir ?? inherited}
 		class={cn(
 			// Open rests at full opacity and scale by default. Open-state rules here
 			// would outrank a starting style passed through `class` and skip its fade.

@@ -257,9 +257,12 @@
 		const inCard = card !== null && card.contains(event.target as Node);
 		let next: number | null = null;
 		if (inCard && event.key !== 'Escape') return;
-		if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (from + 1) % count;
-		else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp')
-			next = (from - 1 + count) % count;
+		// The points are in reading order, so right to left the side arrows swap.
+		const rtl = ref !== null && getComputedStyle(ref).direction === 'rtl';
+		const forward = rtl ? 'ArrowLeft' : 'ArrowRight';
+		const back = rtl ? 'ArrowRight' : 'ArrowLeft';
+		if (event.key === forward || event.key === 'ArrowDown') next = (from + 1) % count;
+		else if (event.key === back || event.key === 'ArrowUp') next = (from - 1 + count) % count;
 		else if (event.key === 'Home') next = 0;
 		else if (event.key === 'End') next = count - 1;
 		else if (event.key === 'Escape' && active !== null) {

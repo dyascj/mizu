@@ -15,6 +15,8 @@ export type MorphShape = {
 	rotate?: number;
 	/** Fill the path instead of stroking it. */
 	filled?: boolean;
+	/** Flip the drawing in right-to-left text, for icons that point the reading way. */
+	mirror?: boolean;
 };
 
 export const morphShapes = {
@@ -46,7 +48,8 @@ export const morphShapes = {
 	/** The arrow's shaft shrinks into the short leg of a check that its head traces. */
 	sendSent: {
 		off: 'M5 12L19 12 M13 6L19 12L13 18',
-		on: 'M5 12.5L9.5 17 M5 12.5L9.5 17L19 7'
+		on: 'M5 12.5L9.5 17 M5 12.5L9.5 17L19 7',
+		mirror: true
 	},
 	/** The chevron flattens into a line and bends back the other way. */
 	expandCollapse: {

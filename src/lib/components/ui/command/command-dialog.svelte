@@ -57,12 +57,17 @@
 			<Dialog.Title>{title}</Dialog.Title>
 			<Dialog.Description>{description}</Dialog.Description>
 		</Dialog.Header>
-		<Command bind:value class={cn('rounded-none', className)} {...restProps}>
+		<!-- The input stops short of the close button, so long searches never run under it. -->
+		<Command
+			bind:value
+			class={cn('rounded-none [&_[data-command-input]]:pe-8', className)}
+			{...restProps}
+		>
 			{@render children?.()}
 		</Command>
 		<!-- Close lives in the search row so it lines up with the input text -->
 		<Dialog.Close
-			class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring absolute top-2 right-3 z-20 inline-flex size-7 items-center justify-center rounded-lg transition-[scale,background-color] duration-(--duration-base) outline-none focus-visible:ring-2 active:scale-[0.96]"
+			class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring absolute end-3 top-2 z-20 inline-flex size-7 items-center justify-center rounded-lg transition-[scale,background-color] duration-(--duration-base) outline-none focus-visible:ring-2 active:scale-[0.96]"
 		>
 			<XIcon class="size-4" />
 			<span class="sr-only">Close</span>

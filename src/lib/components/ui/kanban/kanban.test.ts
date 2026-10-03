@@ -53,6 +53,22 @@ describe('Kanban', () => {
 		expect(document.activeElement).toBe(card('Pricing scan'));
 	});
 
+	test('right to left, the side arrows follow the mirrored columns', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const { column } = setup();
+			card('Fare watch').focus();
+			await fireEvent.keyDown(card('Fare watch'), { key: 'ArrowLeft' });
+			expect(document.activeElement).toBe(card('Pricing scan'));
+
+			await fireEvent.keyDown(card('Pricing scan'), { key: ' ' });
+			await fireEvent.keyDown(card('Pricing scan'), { key: 'ArrowRight' });
+			expect(column('Queued')).toContain('Pricing scan');
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('moves a held card between columns, keeps focus, and announces', async () => {
 		const { column, onChange, live } = setup();
 		card('Inbox digest').focus();

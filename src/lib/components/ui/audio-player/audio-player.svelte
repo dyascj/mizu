@@ -154,9 +154,8 @@
 
 	let audio = $state<HTMLAudioElement | null>(null);
 	let wave = $state<HTMLDivElement | null>(null);
-	let ink = $state<HTMLDivElement | null>(null);
-	let chapterInk = $state<HTMLDivElement | null>(null);
-	let head = $state<HTMLDivElement | null>(null);
+	/** Holds `--p`, the played share, which the ink clips and the playhead read. */
+	let timeline = $state<HTMLDivElement | null>(null);
 	let ghost = $state<HTMLDivElement | null>(null);
 	let tip = $state<HTMLDivElement | null>(null);
 	let tipTime = $state('');
@@ -190,17 +189,14 @@
 	/** Every visual that follows the position, written straight to the page. */
 	function draw(t: number) {
 		const p = Math.min(Math.max(t / duration, 0), 1);
-		const clip = `inset(0 ${(1 - p) * 100}% 0 0)`;
-		if (ink) ink.style.clipPath = clip;
-		if (chapterInk) chapterInk.style.clipPath = clip;
-		if (head) head.style.left = `${p * 100}%`;
+		timeline?.style.setProperty('--p', String(p));
 		const whole = Math.floor(Math.min(t, duration));
 		if (whole !== second) second = whole;
 	}
 
 	// Paint once the layers exist, and again whenever the duration changes.
 	$effect(() => {
-		if (!ink || !head) return;
+		if (!timeline) return;
 		void duration;
 		untrack(() => draw(shown.current));
 	});
@@ -254,7 +250,10 @@
 		return () => observer.disconnect();
 	});
 
-	$effect(() => () => cancelAnimationFrame(frame));
+	$effect(() => () => {
+		cancelAnimationFrame(frame);
+		shown.stop();
+	});
 
 	function toggle() {
 		const next = !playing;
@@ -294,7 +293,7 @@
 		const width = wave.offsetWidth;
 		const half = tip.offsetWidth / 2;
 		const cx = Math.min(Math.max(x, half), width - half);
-		tip.style.translate = `calc(${cx}px - 50%) 0`;
+		tip.style.insetInlineStart = `${cx}px`;
 		tip.style.opacity = '1';
 	}
 
@@ -304,16 +303,18 @@
 		hoverChapter = -1;
 	}
 
+	/** Distance from the start of the wave, which is its right edge when mirrored. */
 	function timeAt(clientX: number) {
 		const box = wave!.getBoundingClientRect();
-		const x = Math.min(Math.max(clientX - box.left, 0), box.width);
+		const rtl = getComputedStyle(wave!).direction === 'rtl';
+		const x = Math.min(Math.max(rtl ? box.right - clientX : clientX - box.left, 0), box.width);
 		return { x, t: (x / box.width) * duration };
 	}
 
 	function hover(clientX: number) {
 		const { x, t } = timeAt(clientX);
 		if (ghost) {
-			ghost.style.translate = `${x}px 0`;
+			ghost.style.insetInlineStart = `${x}px`;
 			ghost.style.opacity = '1';
 		}
 		const index = chapterAt(t);
@@ -346,10 +347,13 @@
 	function onkeydown(event: KeyboardEvent) {
 		const t = clock();
 		position = t;
+		// The timeline mirrors right to left, so the side arrows swap.
+		const forward =
+			getComputedStyle(event.currentTarget as HTMLElement).direction === 'rtl' ? -5 : 5;
 		const steps: Record<string, number> = {
-			ArrowRight: 5,
+			ArrowRight: forward,
 			ArrowUp: 5,
-			ArrowLeft: -5,
+			ArrowLeft: -forward,
 			ArrowDown: -5,
 			PageUp: 30,
 			PageDown: -30
@@ -430,6 +434,10 @@
 		};
 	}
 
+	// Played ink: a clip from the far end, which is the left one when mirrored.
+	const played =
+		'[clip-path:inset(0_calc(100%_-_var(--p,0)_*_100%)_0_0)] rtl:[clip-path:inset(0_0_0_calc(100%_-_var(--p,0)_*_100%))]';
+
 	const focusRing =
 		'outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card';
 </script>
@@ -459,7 +467,7 @@
 					className,
 					hoverChapter === i && 'scale-y-200'
 				)}
-				style:left="{segment.left}%"
+				style:inset-inline-start="{segment.left}%"
 				style:width="calc({segment.width}% - {segment.last ? 0 : 3}px)"
 			></span>
 		{/each}
@@ -516,11 +524,11 @@
 	{/if}
 
 	<!-- Room above the wave for the time preview. -->
-	<div class={cn('relative', hasChapters ? 'mt-9' : 'mt-11')}>
+	<div bind:this={timeline} class={cn('relative', hasChapters ? 'mt-9' : 'mt-11')}>
 		<div
 			bind:this={tip}
 			aria-hidden="true"
-			class="bg-primary text-primary-foreground pointer-events-none absolute bottom-full left-0 mb-2 flex items-baseline gap-1.5 rounded-lg px-2 py-1 text-xs whitespace-nowrap opacity-0 transition-opacity duration-(--duration-fast) ease-out"
+			class="bg-primary text-primary-foreground pointer-events-none absolute start-0 bottom-full mb-2 flex -translate-x-1/2 items-baseline gap-1.5 rounded-lg px-2 py-1 text-xs whitespace-nowrap opacity-0 transition-opacity duration-(--duration-fast) ease-out rtl:translate-x-1/2"
 		>
 			<span class="font-medium tabular-nums">{tipTime}</span>
 			{#if tipLabel}<span class="max-w-40 truncate opacity-70">{tipLabel}</span>{/if}
@@ -548,18 +556,17 @@
 			{onkeydown}
 		>
 			{@render bars('text-foreground', true)}
-			<div bind:this={ink} class="absolute inset-0" style:clip-path="inset(0 100% 0 0)">
+			<div class={cn('absolute inset-0', played)}>
 				{@render bars('text-foreground', false)}
 			</div>
 			<div
 				bind:this={ghost}
 				aria-hidden="true"
-				class="bg-foreground/35 pointer-events-none absolute inset-y-0 left-0 w-px opacity-0 transition-opacity duration-(--duration-fast) ease-out"
+				class="bg-foreground/35 pointer-events-none absolute inset-y-0 start-0 w-px opacity-0 transition-opacity duration-(--duration-fast) ease-out"
 			></div>
 			<div
-				bind:this={head}
 				aria-hidden="true"
-				class="bg-foreground pointer-events-none absolute -inset-y-1 left-0 w-0.5 -translate-x-1/2 rounded-full"
+				class="bg-foreground pointer-events-none absolute -inset-y-1 start-[calc(var(--p,0)*100%)] w-0.5 -translate-x-1/2 rounded-full rtl:translate-x-1/2"
 			></div>
 		</div>
 
@@ -572,7 +579,7 @@
 						type="button"
 						aria-label="Chapter {i + 1}: {item.title}, {formatAudioTime(item.start)}"
 						class={cn('absolute top-0 h-6 rounded-sm', focusRing)}
-						style:left="{segments[i].left}%"
+						style:inset-inline-start="{segments[i].left}%"
 						style:width="{segments[i].width}%"
 						onclick={() => seek(item.start)}
 						onpointerenter={(event) => showChapter(i, event)}
@@ -582,11 +589,7 @@
 					></button>
 				{/each}
 				{@render track('bg-foreground/20')}
-				<div
-					bind:this={chapterInk}
-					class="pointer-events-none absolute inset-0"
-					style:clip-path="inset(0 100% 0 0)"
-				>
+				<div class={cn('pointer-events-none absolute inset-0', played)}>
 					{@render track('bg-foreground')}
 				</div>
 			</div>
@@ -609,7 +612,7 @@
 				)}
 				onclick={() => seek(clock() - 15)}
 			>
-				<RotateCcw aria-hidden="true" class="size-4" />
+				<RotateCcw aria-hidden="true" class="size-4 rtl:-scale-x-100" />
 				<span aria-hidden="true" class="text-xs font-medium tabular-nums">15</span>
 			</button>
 			<button
@@ -642,7 +645,7 @@
 				onclick={() => seek(clock() + 30)}
 			>
 				<span aria-hidden="true" class="text-xs font-medium tabular-nums">30</span>
-				<RotateCw aria-hidden="true" class="size-4" />
+				<RotateCw aria-hidden="true" class="size-4 rtl:-scale-x-100" />
 			</button>
 		</div>
 		<div class="flex justify-end">

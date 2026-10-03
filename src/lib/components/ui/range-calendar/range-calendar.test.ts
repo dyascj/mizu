@@ -105,6 +105,21 @@ describe('RangeCalendar', () => {
 		expect(container.querySelectorAll('[data-bits-day][data-selected]')).toHaveLength(0);
 	});
 
+	test('arrow keys follow the mirrored grid in right-to-left text', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const { container } = render(RangeCalendar, { placeholder: september });
+			day(container, '2026-09-09').focus();
+			await fireEvent.keyDown(day(container, '2026-09-09'), { key: 'ArrowLeft' });
+			expect(day(container, '2026-09-10')).toHaveFocus();
+			await fireEvent.keyDown(day(container, '2026-09-10'), { key: 'ArrowRight' });
+			await fireEvent.keyDown(day(container, '2026-09-09'), { key: 'ArrowRight' });
+			expect(day(container, '2026-09-08')).toHaveFocus();
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('rounds the band where a week breaks it', async () => {
 		const { container } = render(RangeCalendar, {
 			placeholder: september,

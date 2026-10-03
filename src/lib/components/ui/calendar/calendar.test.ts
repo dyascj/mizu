@@ -139,6 +139,28 @@ describe('Calendar', () => {
 		expect(screen.getByText('August 2026')).toBeInTheDocument();
 	});
 
+	test('right to left, ArrowLeft moves to the next day and ArrowRight to the previous', async () => {
+		const target = document.body.appendChild(document.createElement('div'));
+		target.dir = 'rtl';
+		target.style.direction = 'rtl';
+		const { container } = render(Calendar, {
+			target,
+			props: { type: 'single', placeholder: september }
+		});
+		const start = day(container, '2026-09-15');
+		start.focus();
+		await fireEvent.keyDown(start, { key: 'ArrowLeft' });
+		await vi.waitFor(() =>
+			expect(document.activeElement).toHaveAttribute('data-value', '2026-09-16')
+		);
+		await fireEvent.keyDown(document.activeElement!, { key: 'ArrowRight' });
+		await fireEvent.keyDown(document.activeElement!, { key: 'ArrowRight' });
+		await vi.waitFor(() =>
+			expect(document.activeElement).toHaveAttribute('data-value', '2026-09-14')
+		);
+		target.remove();
+	});
+
 	test('keeps the existing caption dropdowns working', () => {
 		render(Calendar, { type: 'single', placeholder: september, captionLayout: 'dropdown' });
 		expect(screen.getAllByRole('combobox').length).toBeGreaterThan(0);

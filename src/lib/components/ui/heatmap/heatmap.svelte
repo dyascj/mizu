@@ -125,8 +125,11 @@
 	const focusIndex = $derived(Math.min(focused ?? data.length - 1, data.length - 1));
 
 	// On a narrow screen, open on the most recent weeks, the part people look at.
+	// Right to left, the weeks run the other way and scrollLeft counts down from 0.
 	$effect(() => {
-		if (scroller) scroller.scrollLeft = scroller.scrollWidth;
+		if (!scroller) return;
+		const rtl = getComputedStyle(scroller).direction === 'rtl';
+		scroller.scrollLeft = rtl ? -scroller.scrollWidth : scroller.scrollWidth;
 	});
 
 	/** Sweeps the grid in the first time it scrolls into view. */
@@ -188,11 +191,13 @@
 		if (event.key === 'Escape') return hide();
 		const i = Number(el.dataset.i);
 		const day = i % 7;
+		// Weeks mirror right to left, so each arrow still moves the way it points.
+		const week = getComputedStyle(el).direction === 'rtl' ? -7 : 7;
 		const next = {
 			ArrowUp: day > 0 ? i - 1 : i,
 			ArrowDown: day < 6 ? i + 1 : i,
-			ArrowLeft: i - 7,
-			ArrowRight: i + 7,
+			ArrowLeft: i - week,
+			ArrowRight: i + week,
 			Home: day,
 			End: (weeks - 1) * 7 + day
 		}[event.key];
@@ -212,7 +217,7 @@
 		class="text-muted-foreground relative flex max-w-full text-xs"
 	>
 		<!-- Stays put while the weeks scroll, so rows keep their names. -->
-		<div aria-hidden="true" class="mt-[23px] mr-[5px] flex shrink-0 flex-col">
+		<div aria-hidden="true" class="me-[5px] mt-[23px] flex shrink-0 flex-col">
 			{#each dayNames as day, i (i)}
 				<span style:height="{PITCH}px" style:line-height="{CELL}px">{day}</span>
 			{/each}
@@ -227,7 +232,9 @@
 			<div style:width="{weeks * PITCH - (PITCH - CELL)}px">
 				<div aria-hidden="true" class="relative h-5">
 					{#each months as m (m.col)}
-						<span class="absolute top-0 leading-none" style:left="{m.col * PITCH}px">{m.name}</span>
+						<span class="absolute top-0 leading-none" style:inset-inline-start="{m.col * PITCH}px"
+							>{m.name}</span
+						>
 					{/each}
 				</div>
 
@@ -316,12 +323,12 @@
 	{#if legend}
 		<!-- Hidden from assistive technology: every cell already names its count. -->
 		<div aria-hidden="true" class="text-muted-foreground flex items-center gap-1 self-end text-xs">
-			<span class="mr-1">Less</span>
+			<span class="me-1">Less</span>
 			{#each LEVELS as level (level)}
 				<span class={cn('rounded-[2px]', level)} style:width="{CELL}px" style:height="{CELL}px"
 				></span>
 			{/each}
-			<span class="ml-1">More</span>
+			<span class="ms-1">More</span>
 		</div>
 	{/if}
 </div>

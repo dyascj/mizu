@@ -67,6 +67,20 @@ describe('DownloadButton', () => {
 		expect(fillShare(button)).toBe(0);
 	});
 
+	test('fills from the right in right-to-left text', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const { rerender } = setup();
+			await rerender({ status: 'downloading', progress: 0.6 });
+			await advance(1000);
+			const button = screen.getByRole('button', { name: 'Cancel download' });
+			const clip = button.querySelector<HTMLElement>('.bg-primary')!.style.clipPath;
+			expect(clip).toMatch(/^inset\(0(px)? 0(px)? 0(px)? 40/);
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('checks off once the fill reaches the end, then asks to reset', async () => {
 		const { container, onReset, rerender } = setup({ timeout: 1000 });
 		await rerender({ status: 'downloading', progress: 0.5 });

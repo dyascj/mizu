@@ -407,8 +407,10 @@
 		if (session?.started) return;
 		const index = items.findIndex((item) => item.id === id);
 		const isHeld = held?.id === id;
+		// A right-to-left grid fills from the right, so each arrow still moves the way it points.
+		const forward = getComputedStyle(event.currentTarget as Element).direction === 'rtl' ? -1 : 1;
 		const step: Record<string, number> = grid
-			? { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -columns, ArrowDown: columns }
+			? { ArrowLeft: -forward, ArrowRight: forward, ArrowUp: -columns, ArrowDown: columns }
 			: { ArrowUp: -1, ArrowDown: 1 };
 
 		if (event.key === ' ' || event.key === 'Enter') {
@@ -479,7 +481,7 @@
 				data-lifted={lifted || undefined}
 				class={cn(
 					'bg-card text-card-foreground group dark:data-lifted:bg-popover relative rounded-2xl shadow-sm transition-[background-color] duration-(--duration-fast) ease-out',
-					grid ? 'aspect-square' : 'flex items-center gap-3 p-1.5 pr-4'
+					grid ? 'aspect-square' : 'flex items-center gap-3 p-1.5 pe-4'
 				)}
 			>
 				<!-- The lifted shadow fades on its own layer, which is cheap to animate. -->

@@ -36,6 +36,11 @@
 			document.cookie = `${SIDEBAR_COOKIE_NAME}=${open}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
 		}
 	});
+
+	// ponytail: read once on mount; an app that flips `dir` live should remount the provider.
+	$effect(() => {
+		if (ref) sidebar.rtl = getComputedStyle(ref).direction === 'rtl';
+	});
 </script>
 
 <svelte:window onkeydown={sidebar.handleShortcutKeydown} />

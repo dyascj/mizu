@@ -208,7 +208,7 @@
 	{disabled}
 	data-state={mode}
 	class={cn(
-		'focus-visible:ring-ring focus-visible:ring-offset-background inline-flex h-9 shrink-0 touch-manipulation items-center gap-1.5 rounded-full pr-4 pl-3 text-sm font-medium outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+		'focus-visible:ring-ring focus-visible:ring-offset-background inline-flex h-9 shrink-0 touch-manipulation items-center gap-1.5 rounded-full ps-3 pe-4 text-sm font-medium outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
 		// Text color is left out on purpose: it flips with the word swap, which
 		// the blur already covers, so a word never fades through a middle gray.
 		'transition-[background-color,scale] duration-(--duration-fast) ease-out active:scale-[0.96] motion-reduce:transition-[background-color]',
@@ -251,19 +251,19 @@
 		{/key}
 		<span
 			bind:offsetWidth={widths.follow}
-			class="invisible absolute top-0 left-0 whitespace-nowrap"
+			class="invisible absolute start-0 top-0 whitespace-nowrap"
 		>
 			{label}
 		</span>
 		<span
 			bind:offsetWidth={widths.following}
-			class="invisible absolute top-0 left-0 whitespace-nowrap"
+			class="invisible absolute start-0 top-0 whitespace-nowrap"
 		>
 			{followingLabel}
 		</span>
 		<span
 			bind:offsetWidth={widths.unfollow}
-			class="invisible absolute top-0 left-0 whitespace-nowrap"
+			class="invisible absolute start-0 top-0 whitespace-nowrap"
 		>
 			{unfollowLabel}
 		</span>
