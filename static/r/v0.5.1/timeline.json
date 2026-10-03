@@ -1,0 +1,56 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "timeline",
+  "type": "registry:ui",
+  "title": "Timeline",
+  "description": "A vertical history whose line grows down to meet each new event.",
+  "dependencies": [
+    "@lucide/svelte@^1.48.0"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.5.1/motion.json",
+    "https://mizu-ui.com/r/v0.5.1/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "timeline/context.ts",
+      "content": "import { getContext, setContext } from 'svelte';\n\nconst key = Symbol('timeline');\n\nexport type TimelineState = {\n\t/** True once the timeline has mounted and `animated` is on: items added now slide in. */\n\treadonly animateNewItems: boolean;\n};\n\nexport function setTimelineState(state: TimelineState) {\n\tsetContext(key, state);\n}\n\nexport function getTimelineState(): TimelineState | undefined {\n\treturn getContext<TimelineState | undefined>(key);\n}\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/index.ts",
+      "content": "import Root from './timeline.svelte';\nimport Item from './timeline-item.svelte';\nimport Marker from './timeline-marker.svelte';\nimport Title from './timeline-title.svelte';\nimport Description from './timeline-description.svelte';\nimport Time from './timeline-time.svelte';\n\nexport {\n\tRoot,\n\tItem,\n\tMarker,\n\tTitle,\n\tDescription,\n\tTime,\n\t//\n\tRoot as Timeline,\n\tItem as TimelineItem,\n\tMarker as TimelineMarker,\n\tTitle as TimelineTitle,\n\tDescription as TimelineDescription,\n\tTime as TimelineTime\n};\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline-description.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...rest\n\t}: HTMLAttributes<HTMLParagraphElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLParagraphElement | null;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<p bind:this={ref} class={cn('text-muted-foreground text-sm', className)} {...rest}>\n\t{@render children?.()}\n</p>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLLiAttributes } from 'svelte/elements';\n\timport type { Component } from 'svelte';\n\timport type { LucideProps } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\timport { prefersReducedMotion } from '$lib/components/ui/motion';\n\timport Marker from './timeline-marker.svelte';\n\timport { getTimelineState } from './context.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\ticon,\n\t\tlast = false,\n\t\tchildren,\n\t\t...rest\n\t}: HTMLLiAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLLIElement | null;\n\t\t/** Optional lucide icon shown inside a card node instead of the plain dot. */\n\t\ticon?: Component<LucideProps>;\n\t\t/** Hide the connector line below this item (set on the final event). */\n\t\tlast?: boolean;\n\t\tchildren?: Snippet;\n\t} = $props();\n\n\tconst timeline = getTimelineState();\n\t/** Only items that arrive after the first render open in; read once, at mount. */\n\tlet entering = $state(!!timeline?.animateNewItems && !prefersReducedMotion());\n</script>\n\n<!-- A single-row grid, so an arriving item can open from zero height to its\n     content's and the rail inside it grows down to meet the item below. -->\n<li\n\tbind:this={ref}\n\tclass={cn('relative grid grid-rows-[1fr] pb-6 pl-9 last:pb-0', className)}\n\tclass:timeline-enter={entering}\n\t{...rest}\n\tonanimationend={(event) => {\n\t\trest.onanimationend?.(event);\n\t\tif (event.target === event.currentTarget) entering = false;\n\t}}\n>\n\t<!-- The vertical rail this item's marker sits on. -->\n\t{#if !last}\n\t\t<span\n\t\t\taria-hidden=\"true\"\n\t\t\tclass=\"bg-border pointer-events-none absolute top-3 bottom-0 left-[0.4375rem] w-px -translate-x-1/2\"\n\t\t></span>\n\t{/if}\n\t<Marker {icon} />\n\t<div class=\"flex min-h-0 flex-col gap-0.5\" class:timeline-reveal={entering}>\n\t\t{@render children?.()}\n\t</div>\n</li>\n\n<style>\n\t/* The row opens its own height while the words resolve just behind it, so\n\t   the space is there before they arrive. */\n\t.timeline-enter {\n\t\toverflow: clip;\n\t\tanimation: timeline-open var(--duration-base) var(--ease-out) both;\n\t}\n\n\t.timeline-reveal {\n\t\tanimation: timeline-reveal var(--duration-base) var(--ease-out) var(--stagger) both;\n\t}\n\n\t@keyframes timeline-open {\n\t\tfrom {\n\t\t\tgrid-template-rows: 0fr;\n\t\t\tpadding-bottom: 0;\n\t\t\topacity: 0;\n\t\t}\n\t}\n\n\t@keyframes timeline-reveal {\n\t\tfrom {\n\t\t\topacity: 0;\n\t\t\tfilter: blur(4px);\n\t\t\ttranslate: 0 -6px;\n\t\t}\n\t}\n</style>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline-marker.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Component } from 'svelte';\n\timport type { LucideProps } from '@lucide/svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tclass: className,\n\t\ticon\n\t}: {\n\t\tclass?: string;\n\t\t/** When set, renders a slightly larger card node holding the icon. */\n\t\ticon?: Component<LucideProps>;\n\t} = $props();\n</script>\n\n{#if icon}\n\t{@const Icon = icon}\n\t<span\n\t\taria-hidden=\"true\"\n\t\tclass={cn(\n\t\t\t'bg-card text-primary shadow-glow ring-background absolute top-0.5 left-[0.4375rem] z-10 flex size-[1.375rem] -translate-x-1/2 items-center justify-center rounded-full ring-4',\n\t\t\tclassName\n\t\t)}\n\t>\n\t\t<Icon class=\"size-3\" />\n\t</span>\n{:else}\n\t<span\n\t\taria-hidden=\"true\"\n\t\tclass={cn(\n\t\t\t'bg-primary shadow-glow ring-background absolute top-1 left-[0.4375rem] z-10 size-3 -translate-x-1/2 rounded-full ring-4',\n\t\t\tclassName\n\t\t)}\n\t></span>\n{/if}\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline-time.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLTimeAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...rest\n\t}: HTMLTimeAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLTimeElement | null;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<time\n\tbind:this={ref}\n\tclass={cn('text-muted-foreground text-xs font-medium tracking-wide tabular-nums', className)}\n\t{...rest}\n>\n\t{@render children?.()}\n</time>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline-title.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...rest\n\t}: HTMLAttributes<HTMLParagraphElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLParagraphElement | null;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<p bind:this={ref} class={cn('text-foreground text-sm font-semibold', className)} {...rest}>\n\t{@render children?.()}\n</p>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "timeline/timeline.svelte",
+      "content": "<script lang=\"ts\">\n\timport { onMount, type Snippet } from 'svelte';\n\timport type { HTMLOlAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\timport { setTimelineState } from './context.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tanimated = true,\n\t\tchildren,\n\t\t...rest\n\t}: HTMLOlAttributes & {\n\t\tclass?: string;\n\t\tref?: HTMLOListElement | null;\n\t\t/**\n\t\t * Items added after the timeline first renders open their own height\n\t\t * and come into focus, so the line grows down to meet them. Items\n\t\t * present on first render never animate.\n\t\t */\n\t\tanimated?: boolean;\n\t\tchildren?: Snippet;\n\t} = $props();\n\n\tlet mounted = $state(false);\n\tonMount(() => {\n\t\tmounted = true;\n\t});\n\n\tsetTimelineState({\n\t\tget animateNewItems() {\n\t\t\treturn mounted && animated;\n\t\t}\n\t});\n</script>\n\n<ol bind:this={ref} class={cn('relative flex flex-col', className)} {...rest}>\n\t{@render children?.()}\n</ol>\n"
+    }
+  ]
+}

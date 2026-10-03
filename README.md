@@ -154,10 +154,10 @@ A few favorites, recorded live from [mizu-ui.com](https://mizu-ui.com). Each one
 - **Recolor from one token.** Accent states, selection fills, and the focus ring follow `--primary`.
 - **Copy in, own it.** A shadcn-svelte-compatible registry with immutable versioned releases.
 
-The current stable release is `0.5.0`. Pin it for reproducible installs:
+The current stable release is `0.5.1`. Pin it for reproducible installs:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.5.0/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.5.1/button.json
 ```
 
 Upgrading copied components from 0.4.x means reinstalling them with the 0.5 Motion item. See the [0.5.0 migration notes](./CHANGELOG.md#050---2026-09-26). From 0.3.x, reinstall the theme first, as described in the [0.4.0 notes](./CHANGELOG.md#040---2026-09-25).
@@ -203,7 +203,7 @@ npx sv add tailwindcss
 **4. Add components** with the one-liner. It pulls the component, installs its npm dependencies, and adds the shared `cn` helper automatically:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.5.0/button.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.5.1/button.json
 ```
 
 > Versioned registry URLs are immutable. Use `/r/latest/<item>.json` only when you intentionally want the newest release. See the [compatibility policy](./docs/compatibility.md). If you fork Mizu, point `repo` and `registryBase` in `src/lib/site/config.ts` at your own deployment and re-run `pnpm registry:build`.
@@ -272,7 +272,7 @@ CSS variables also define card, popover, and control fills, elevation, and motio
 Mizu currently includes 169 components across AI, motion, app, actions, forms, surfaces, data, overlays, menus, navigation, and feedback. Click a name for the live preview, code, and API reference. Install any of them by slug:
 
 ```bash
-npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.5.0/<slug>.json
+npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.5.1/<slug>.json
 ```
 
 [AI](#ai) (21) · [Motion](#motion) (21) · [App](#app) (6) · [Actions](#actions) (18) · [Forms](#forms) (32) · [Surfaces](#surfaces) (23) · [Data](#data) (8) · [Overlays](#overlays) (11) · [Menus](#menus) (5) · [Navigation](#navigation) (14) · [Feedback](#feedback) (10)
@@ -503,7 +503,7 @@ npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.5.0/<slug>.json
 
 ## Blocks
 
-11 blocks: complete screens and flows built from Mizu components, each one file you own. They install from the same registry, for example `npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.5.0/assistant-chat.json`.
+11 blocks: complete screens and flows built from Mizu components, each one file you own. They install from the same registry, for example `npx shadcn-svelte@latest add https://mizu-ui.com/r/v0.5.1/assistant-chat.json`.
 
 ### Featured
 

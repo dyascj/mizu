@@ -1,0 +1,66 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "dialog",
+  "type": "registry:ui",
+  "title": "Dialog",
+  "description": "A clean modal over a blurred scrim that steps back when a confirmation opens on top.",
+  "dependencies": [
+    "@lucide/svelte@^1.48.0",
+    "bits-ui@^2.19.3"
+  ],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.5.1/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "dialog/dialog-close.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<DialogPrimitive.CloseProps> & { class?: string } = $props();\n</script>\n\n<DialogPrimitive.Close bind:ref class={cn(className)} {...restProps} />\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "dialog/dialog-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { Dialog as DialogPrimitive, type WithoutChildrenOrChild } from 'bits-ui';\n\timport XIcon from '@lucide/svelte/icons/x';\n\timport DialogOverlay from './dialog-overlay.svelte';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tportalProps,\n\t\tcloseButton = true,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<DialogPrimitive.ContentProps> & {\n\t\tclass?: string;\n\t\tportalProps?: DialogPrimitive.PortalProps;\n\t\tcloseButton?: boolean;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<DialogPrimitive.Portal {...portalProps}>\n\t<DialogOverlay />\n\t<DialogPrimitive.Content\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t'bg-popover fixed top-1/2 left-1/2 z-50 max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl p-6 shadow-xl outline-none',\n\t\t\t// Modals scale from the center: they belong to the viewport, not to the\n\t\t\t// button that opened them. Scale rides the spring, opacity a plain curve.\n\t\t\t'[transition:opacity_var(--duration-base)_var(--ease-out),scale_var(--duration-spring)_var(--ease-spring)]',\n\t\t\t'data-starting-style:scale-[0.96] data-starting-style:opacity-0',\n\t\t\t// Leaving is softer and quicker: a smaller shrink, gone before it holds\n\t\t\t// up the next interaction, and clicks already pass through.\n\t\t\t'data-ending-style:pointer-events-none data-ending-style:scale-[0.98] data-ending-style:[transition:opacity_var(--duration-fast)_var(--ease-in),scale_var(--duration-fast)_var(--ease-in)] data-[state=closed]:opacity-0',\n\t\t\t// A dialog opened on top of this one pushes it a small step back, so the\n\t\t\t// new one reads as in front. It returns when the one on top closes.\n\t\t\t'data-nested-open:scale-[0.97]',\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t<div class=\"flex flex-col gap-4\">\n\t\t\t{@render children?.()}\n\t\t</div>\n\t\t{#if closeButton}\n\t\t\t<DialogPrimitive.Close\n\t\t\t\tclass=\"text-muted-foreground hover:bg-secondary hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute top-4 right-4 inline-flex size-7 items-center justify-center rounded-full transition-[scale,background-color] duration-(--duration-base) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none\"\n\t\t\t>\n\t\t\t\t<XIcon class=\"size-4\" />\n\t\t\t\t<span class=\"sr-only\">Close</span>\n\t\t\t</DialogPrimitive.Close>\n\t\t{/if}\n\t</DialogPrimitive.Content>\n</DialogPrimitive.Portal>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "dialog/dialog-description.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<DialogPrimitive.DescriptionProps> & { class?: string } = $props();\n</script>\n\n<DialogPrimitive.Description\n\tbind:ref\n\tclass={cn('text-muted-foreground text-sm', className)}\n\t{...restProps}\n/>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "dialog/dialog-footer.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn('flex flex-col-reverse gap-3 sm:flex-row sm:justify-end', className)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "dialog/dialog-header.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div bind:this={ref} class={cn('flex flex-col gap-1.5 text-left', className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "dialog/dialog-overlay.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<DialogPrimitive.OverlayProps> & { class?: string } = $props();\n</script>\n\n<DialogPrimitive.Overlay\n\tbind:ref\n\tclass={cn(\n\t\t// Open needs no opacity of its own: a `data-[state=open]` rule is emitted\n\t\t// after the starting style and would win, skipping the fade in.\n\t\t'fixed inset-0 z-50 bg-black/45 backdrop-blur-sm transition-[opacity] duration-(--duration-base) ease-out data-ending-style:duration-(--duration-fast) data-ending-style:ease-in data-starting-style:opacity-0 data-[state=closed]:opacity-0',\n\t\t// A nested dialog's scrim stacks on this one, which is what dims the\n\t\t// dialog behind. Lighter, so two layers never turn the page black.\n\t\t'data-nested:bg-black/25 data-nested:backdrop-blur-none',\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "dialog/dialog-title.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<DialogPrimitive.TitleProps> & { class?: string } = $props();\n</script>\n\n<DialogPrimitive.Title\n\tbind:ref\n\tclass={cn('font-display text-foreground text-lg font-semibold', className)}\n\t{...restProps}\n/>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "dialog/dialog-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive, type WithoutChild } from 'bits-ui';\n\timport { cn } from '$lib/utils.js';\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<DialogPrimitive.TriggerProps> & { class?: string } = $props();\n</script>\n\n<DialogPrimitive.Trigger bind:ref class={cn(className)} {...restProps} />\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "dialog/dialog.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from 'bits-ui';\n\n\tlet { open = $bindable(false), ...restProps }: DialogPrimitive.RootProps = $props();\n</script>\n\n<DialogPrimitive.Root bind:open {...restProps} />\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "dialog/index.ts",
+      "content": "import { Dialog as DialogPrimitive } from 'bits-ui';\n\nimport Root from './dialog.svelte';\nimport Trigger from './dialog-trigger.svelte';\nimport Overlay from './dialog-overlay.svelte';\nimport Content from './dialog-content.svelte';\nimport Close from './dialog-close.svelte';\nimport Header from './dialog-header.svelte';\nimport Footer from './dialog-footer.svelte';\nimport Title from './dialog-title.svelte';\nimport Description from './dialog-description.svelte';\n\nconst Portal = DialogPrimitive.Portal;\n\nexport {\n\tRoot,\n\tTrigger,\n\tPortal,\n\tOverlay,\n\tContent,\n\tClose,\n\tHeader,\n\tFooter,\n\tTitle,\n\tDescription,\n\t//\n\tRoot as Dialog,\n\tTrigger as DialogTrigger,\n\tPortal as DialogPortal,\n\tOverlay as DialogOverlay,\n\tContent as DialogContent,\n\tClose as DialogClose,\n\tHeader as DialogHeader,\n\tFooter as DialogFooter,\n\tTitle as DialogTitle,\n\tDescription as DialogDescription\n};\n"
+    }
+  ]
+}
