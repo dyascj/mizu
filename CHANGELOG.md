@@ -2,6 +2,37 @@
 
 All notable changes to Mizu are documented here. The project follows the compatibility policy in `docs/compatibility.md`.
 
+## [0.5.1] - 2026-10-03
+
+I'm cutting this patch to clear eight new dependency advisories and to roll in the Dependabot updates that were stuck behind them. Component source and public APIs are the same as 0.5.0, so there's nothing to reinstall. The versioned registry, `/r/latest`, and compatibility install aliases now point at 0.5.1, and earlier version directories stay exactly as they were.
+
+### Added
+
+- Nothing new in this one.
+
+### Changed
+
+- I moved the dev tooling to Vite 8.3.1, `@sveltejs/vite-plugin-svelte` 7.3.1, typescript-eslint 8.71.0, Prettier 3.9.9, and `@types/node` 26.6.3, and the CodeQL actions to 4.38.2. None of this reaches installed components.
+
+### Deprecated
+
+- No APIs deprecated.
+
+### Removed
+
+- No components removed.
+
+### Fixed
+
+- No component fixes this time.
+
+### Security
+
+- devalue goes to 5.9.4 (through SvelteKit) for GHSA-j22f-vq7h-c4qm, GHSA-mcm9-63f2-9j32, GHSA-x5rw-q4pp-hg5g, GHSA-hx4r-w6wj-j8fg, GHSA-4q55-j62x-fr9h, and GHSA-wf3x-273g-mvxv.
+- fast-uri goes to 3.1.8 (through ajv) for GHSA-hrr3-gc8f-f4qj.
+- I bumped my brace-expansion override to 5.0.12 for GHSA-q2hr-2g5m-vwhr.
+- These packages run the docs site and tooling, not the components you copy in. The dependency audit is clean again.
+
 ## [0.5.0] - 2026-09-26
 
 Mizu's biggest release: 78 new components and interaction upgrades to 45 existing ones. Buttons answer with motion, fields and menus move the way native controls do, and a new Data category charts usage, latency, and uptime. Everything follows the 0.4 motion tokens, respects reduced motion, and passes the automated accessibility checks in both themes. The versioned registry, `/r/latest`, and compatibility install aliases now provide 0.5.0. Earlier version directories remain unchanged.
