@@ -17,7 +17,7 @@
     {
       "type": "registry:file",
       "target": "button-group/button-group.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\trole=\"group\"\n\tclass={cn(\n\t\t'inline-flex items-center [&>*]:rounded-none [&>*:first-child]:rounded-l-xl [&>*:last-child]:rounded-r-xl [&>*:not(:first-child)]:-ml-px',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\trole=\"group\"\n\tclass={cn(\n\t\t'inline-flex items-center [&>*]:rounded-none [&>*:first-child]:rounded-s-xl [&>*:last-child]:rounded-e-xl [&>*:not(:first-child)]:-ms-px',\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render children?.()}\n</div>\n"
     },
     {
       "type": "registry:file",

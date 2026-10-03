@@ -40,7 +40,7 @@
     {
       "type": "registry:file",
       "target": "alert-dialog/alert-dialog-header.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div bind:this={ref} class={cn('flex flex-col gap-1.5 text-left', className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\tclass?: string;\n\t\tref?: HTMLDivElement | null;\n\t\tchildren?: Snippet;\n\t};\n\tlet { class: className, ref = $bindable(null), children, ...rest }: Props = $props();\n</script>\n\n<div bind:this={ref} class={cn('flex flex-col gap-1.5 text-start', className)} {...rest}>\n\t{@render children?.()}\n</div>\n"
     },
     {
       "type": "registry:file",

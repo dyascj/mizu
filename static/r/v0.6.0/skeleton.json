@@ -1,0 +1,29 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "title": "Skeleton",
+  "description": "A shimmering placeholder that swaps into content top to bottom.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://mizu-ui.com/r/v0.6.0/motion.json",
+    "https://mizu-ui.com/r/v0.6.0/utils.json"
+  ],
+  "files": [
+    {
+      "type": "registry:file",
+      "target": "skeleton/index.ts",
+      "content": "export { default as Skeleton } from './skeleton.svelte';\nexport { default as SkeletonSwap } from './skeleton-swap.svelte';\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "skeleton/skeleton-swap.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { blurIn, duration, stagger } from '$lib/components/ui/motion';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {\n\t\t/** True while the data is on its way. False swaps the skeleton for the content. */\n\t\tloading: boolean;\n\t\t/**\n\t\t * Place in a sequence of swaps. Each waits one stagger step longer, so a\n\t\t * card resolves top to bottom, the order it is read in.\n\t\t */\n\t\tindex?: number;\n\t\t/**\n\t\t * The placeholder, built from `Skeleton` blocks sized to the exact box\n\t\t * the content will fill. Both share one grid cell, so if they ever\n\t\t * disagreed the layout would jump when the data arrives.\n\t\t */\n\t\tskeleton: Snippet;\n\t\t/** The loaded content. */\n\t\tchildren: Snippet;\n\t\t/** The wrapper element. */\n\t\tref?: HTMLDivElement | null;\n\t\tclass?: string;\n\t};\n\n\tlet {\n\t\tloading,\n\t\tindex = 0,\n\t\tskeleton,\n\t\tchildren,\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...rest\n\t}: Props = $props();\n\n\tconst delay = $derived(Math.max(0, index) * stagger);\n\n\t/** The skeleton fades out under the arriving content. */\n\tfunction leave(_node: Element, { delay }: { delay: number }) {\n\t\treturn { delay, duration: duration.fast, css: (t: number) => `opacity: ${t}` };\n\t}\n</script>\n\n<div bind:this={ref} aria-busy={loading} class={cn('grid', className)} {...rest}>\n\t<!-- Coming back on reload, the skeleton appears at once: the old content\n\t     is already gone, and a slow fade would leave a blank card for a beat. -->\n\t{#if loading}\n\t\t<div aria-hidden=\"true\" class=\"col-start-1 row-start-1\" out:leave={{ delay }}>\n\t\t\t{@render skeleton()}\n\t\t</div>\n\t{:else}\n\t\t<div\n\t\t\tclass=\"col-start-1 row-start-1\"\n\t\t\tin:blurIn={{ delay, duration: duration.base, blur: 4, y: 2 }}\n\t\t>\n\t\t\t{@render children()}\n\t\t</div>\n\t{/if}\n</div>\n"
+    },
+    {
+      "type": "registry:file",
+      "target": "skeleton/skeleton.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from 'svelte/elements';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = HTMLAttributes<HTMLDivElement> & {\n\t\t/**\n\t\t * How the placeholder shows it is still waiting. `shimmer` passes a faint\n\t\t * highlight across and then rests for a beat, so it reads as calm rather\n\t\t * than busy. `pulse` fades in and out. `none` holds still.\n\t\t */\n\t\tanimation?: 'shimmer' | 'pulse' | 'none';\n\t\t/** The placeholder element. */\n\t\tref?: HTMLDivElement | null;\n\t\tclass?: string;\n\t};\n\n\tlet { animation = 'shimmer', ref = $bindable(null), class: className, ...rest }: Props = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-animation={animation}\n\tclass={cn(\n\t\t'bg-muted/70 rounded-md',\n\t\tanimation === 'pulse' && 'animate-pulse',\n\t\tanimation === 'shimmer' && 'skeleton-shimmer relative overflow-hidden',\n\t\tclassName\n\t)}\n\t{...rest}\n></div>\n\n<style>\n\t/* The highlight is barely darker than the bone and crawls across it, then\n\t   rests for the last 30% of each loop. */\n\t.skeleton-shimmer::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tinset: 0;\n\t\tbackground: linear-gradient(\n\t\t\t90deg,\n\t\t\ttransparent,\n\t\t\tcolor-mix(in oklab, var(--foreground) 6%, transparent),\n\t\t\ttransparent\n\t\t);\n\t\ttranslate: -100% 0;\n\t\tanimation: skeleton-shimmer calc(var(--duration-ambient) * 0.9) var(--ease-in-out) infinite;\n\t}\n\n\t@keyframes skeleton-shimmer {\n\t\t70%,\n\t\t100% {\n\t\t\ttranslate: 100% 0;\n\t\t}\n\t}\n\n\t/* Right to left, it crawls the way the line reads. */\n\t.skeleton-shimmer:dir(rtl)::after {\n\t\ttranslate: 100% 0;\n\t\tanimation-name: skeleton-shimmer-rtl;\n\t}\n\n\t@keyframes skeleton-shimmer-rtl {\n\t\t70%,\n\t\t100% {\n\t\t\ttranslate: -100% 0;\n\t\t}\n\t}\n\n\t@media (prefers-reduced-motion: reduce) {\n\t\t.skeleton-shimmer::after {\n\t\t\tdisplay: none;\n\t\t}\n\t}\n</style>\n"
+    }
+  ]
+}
