@@ -195,7 +195,7 @@
 			const fill = slices[segment.id]?.firstElementChild;
 			burst = {
 				key: ++bursts,
-				left: (offset / range) * 100,
+				start: (offset / range) * 100,
 				width: (was / range) * 100,
 				color: fill ? getComputedStyle(fill).backgroundColor : 'currentColor',
 				above: 48,

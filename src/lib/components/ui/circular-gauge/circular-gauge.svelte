@@ -310,7 +310,7 @@
 					style:font-size="{Math.round(normalizedSize * 0.19)}px"
 				>
 					<span {@attach counting}>{Math.round(initial)}</span><span
-						class="text-muted-foreground ml-1 font-medium"
+						class="text-muted-foreground ms-1 font-medium"
 						style:font-size="{Math.round(normalizedSize * 0.075)}px">%</span
 					>
 				</span>

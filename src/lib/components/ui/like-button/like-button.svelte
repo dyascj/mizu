@@ -150,7 +150,7 @@
 	class={cn(
 		'group/like focus-visible:ring-ring focus-visible:ring-offset-background inline-flex h-9 shrink-0 touch-manipulation items-center gap-1.5 rounded-full text-sm font-medium outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
 		'transition-[background-color,color,scale] duration-(--duration-fast) ease-out active:scale-[0.96] motion-reduce:transition-[background-color,color]',
-		count === undefined ? 'w-9 justify-center' : 'pr-3.5 pl-3',
+		count === undefined ? 'w-9 justify-center' : 'ps-3 pe-3.5',
 		liked
 			? 'bg-primary-muted text-primary'
 			: variant === 'ghost'

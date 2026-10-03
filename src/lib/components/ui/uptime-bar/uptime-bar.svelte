@@ -87,19 +87,23 @@
 		const el = event.currentTarget;
 		const rect = el.getBoundingClientRect();
 		if (!rect.width) return;
-		const index = Math.min(
-			days - 1,
-			Math.max(0, Math.floor(((event.clientX - rect.left) / rect.width) * days))
-		);
+		// The row mirrors in RTL, so the oldest day sits at the right edge.
+		const x =
+			getComputedStyle(el).direction === 'rtl'
+				? rect.right - event.clientX
+				: event.clientX - rect.left;
+		const index = Math.min(days - 1, Math.max(0, Math.floor((x / rect.width) * days)));
 		const day = days - 1 - index;
 		if (spot?.row !== row || spot.day !== day) spot = { row, day };
 	}
 
-	function onkeydown(row: number, event: KeyboardEvent) {
+	function onkeydown(row: number, event: KeyboardEvent & { currentTarget: HTMLElement }) {
 		const current = spot?.row === row ? spot.day : 0;
+		// Each arrow moves the way it points: toward today is rightward, or leftward in RTL.
+		const rtl = getComputedStyle(event.currentTarget).direction === 'rtl';
 		const next = {
-			ArrowLeft: current + 1,
-			ArrowRight: current - 1,
+			ArrowLeft: rtl ? current - 1 : current + 1,
+			ArrowRight: rtl ? current + 1 : current - 1,
 			Home: days - 1,
 			End: 0
 		}[event.key];

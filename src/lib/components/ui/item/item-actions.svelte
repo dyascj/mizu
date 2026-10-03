@@ -7,6 +7,6 @@
 	let { class: className, children, ...rest }: Props = $props();
 </script>
 
-<div class={cn('ml-auto flex items-center gap-2', className)} {...rest}>
+<div class={cn('ms-auto flex items-center gap-2', className)} {...rest}>
 	{@render children?.()}
 </div>

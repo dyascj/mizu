@@ -19,7 +19,7 @@
 </script>
 
 <div class="bg-card w-full max-w-sm rounded-2xl p-1.5 shadow-sm">
-	<div class="flex items-center gap-3 pr-3">
+	<div class="flex items-center gap-3 pe-3">
 		<label class="{row} min-w-0 flex-1 items-center">
 			<Checkbox
 				checked={all}

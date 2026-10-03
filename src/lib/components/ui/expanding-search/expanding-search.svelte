@@ -130,7 +130,7 @@
 			'has-[>button[data-trigger]:active]:scale-[0.96]'
 		)}
 	>
-		<!-- Pinned to the left edge, so it rides the growing edge across instead of
+		<!-- Pinned to the start edge, so it rides the growing edge across instead of
 		     needing an animation of its own. -->
 		<svg
 			viewBox="0 0 16 16"
@@ -141,7 +141,7 @@
 			stroke-linejoin="round"
 			aria-hidden="true"
 			class={cn(
-				'pointer-events-none absolute top-3 left-3 size-4 transition-colors duration-(--duration-fast) ease-out',
+				'pointer-events-none absolute start-3 top-3 size-4 transition-colors duration-(--duration-fast) ease-out',
 				open && 'text-muted-foreground'
 			)}
 		>
@@ -182,7 +182,7 @@
 				trigger?.focus();
 			}}
 			class={cn(
-				'absolute inset-y-0 left-0 w-[100cqw] bg-transparent pr-10 pl-9 text-base outline-none sm:text-sm [&::-webkit-search-cancel-button]:appearance-none',
+				'absolute inset-y-0 start-0 w-[100cqw] bg-transparent ps-9 pe-10 text-base outline-none sm:text-sm [&::-webkit-search-cancel-button]:appearance-none',
 				!open && 'invisible'
 			)}
 		/>
@@ -192,7 +192,7 @@
 		<span
 			aria-hidden="true"
 			class={cn(
-				'text-muted-foreground pointer-events-none absolute top-1/2 left-9 -translate-y-1/2 text-base whitespace-nowrap sm:text-sm',
+				'text-muted-foreground pointer-events-none absolute start-9 top-1/2 -translate-y-1/2 text-base whitespace-nowrap sm:text-sm',
 				open && value === ''
 					? 'opacity-100 transition-opacity delay-(--duration-fast) duration-(--duration-fast) ease-out motion-reduce:delay-0'
 					: value !== ''
@@ -209,7 +209,7 @@
 			inert={!(open && value !== '')}
 			onclick={clear}
 			class={cn(
-				'text-muted-foreground hover:text-foreground focus-visible:ring-ring absolute top-1.5 right-1.5 inline-grid size-7 place-items-center rounded-full outline-none focus-visible:ring-2',
+				'text-muted-foreground hover:text-foreground focus-visible:ring-ring absolute end-1.5 top-1.5 inline-grid size-7 place-items-center rounded-full outline-none focus-visible:ring-2',
 				open && value !== ''
 					? 'scale-100 opacity-100 blur-none [transition:scale_var(--duration-spring-snappy)_var(--ease-spring-snappy),opacity_var(--duration-fast)_var(--ease-out),filter_var(--duration-fast)_var(--ease-out),color_var(--duration-fast)_var(--ease-out)]'
 					: 'pointer-events-none scale-25 opacity-0 blur-[4px] transition-[scale,opacity,filter] duration-(--duration-instant) ease-in motion-reduce:scale-100 motion-reduce:blur-none'

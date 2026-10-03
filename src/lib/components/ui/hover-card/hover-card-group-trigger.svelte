@@ -205,7 +205,7 @@
 			role="group"
 			aria-label={label}
 			class={cn(
-				'bg-popover text-popover-foreground absolute z-50 block max-w-[calc(100vw-1.5rem)] rounded-2xl p-4 text-left text-sm font-normal whitespace-normal shadow-lg',
+				'bg-popover text-popover-foreground absolute z-50 block max-w-[calc(100vw-1.5rem)] rounded-2xl p-4 text-start text-sm font-normal whitespace-normal shadow-lg',
 				// An invisible strip across the gap keeps the pointer inside while it
 				// travels from the trigger to the card.
 				"before:absolute before:inset-x-0 before:h-3 before:content-['']",

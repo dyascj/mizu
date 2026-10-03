@@ -109,4 +109,25 @@ describe('UptimeBar', () => {
 		expect(chat.children[8]).toHaveClass('bg-warning');
 		expect(chat.children[9]).toHaveClass('bg-success/40');
 	});
+
+	test('in RTL the row mirrors, and the arrows and pointer follow it', async () => {
+		const target = document.body.appendChild(document.createElement('div'));
+		target.style.direction = 'rtl';
+		const { container } = render(UptimeBar, { props: { services, days: 10 }, target });
+		const live = container.querySelector('[aria-live="polite"]') as HTMLElement;
+		const [chat] = screen.getAllByRole('group');
+
+		await fireEvent.focus(chat);
+		await fireEvent.keyDown(chat, { key: 'ArrowRight' });
+		expect(live).toHaveTextContent('Chat API, Yesterday: Slow first tokens, 30m');
+		await fireEvent.keyDown(chat, { key: 'ArrowLeft' });
+		expect(live).toHaveTextContent('Chat API, Today: no downtime');
+
+		// Two days ago is the 8th bar from the right.
+		chat.getBoundingClientRect = () => DOMRect.fromRect({ x: 0, y: 0, width: 100, height: 28 });
+		await fireEvent.pointerMove(chat, { clientX: 25 });
+		expect(chat.children[7]).not.toHaveClass('opacity-35');
+		expect(chat.children[6]).toHaveClass('opacity-35');
+		target.remove();
+	});
 });

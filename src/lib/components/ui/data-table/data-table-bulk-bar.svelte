@@ -96,7 +96,7 @@
 		if (from && !ref?.contains(from)) returnTo = from;
 	}}
 	class={cn(
-		'bg-primary text-primary-foreground absolute inset-x-0 bottom-3 z-10 mx-auto flex h-11 w-fit max-w-[calc(100%-1.5rem)] items-center gap-0.5 rounded-full py-1 pr-1 pl-4 text-sm shadow-lg',
+		'bg-primary text-primary-foreground absolute inset-x-0 bottom-3 z-10 mx-auto flex h-11 w-fit max-w-[calc(100%-1.5rem)] items-center gap-0.5 rounded-full py-1 ps-4 pe-1 text-sm shadow-lg',
 		'transition-[translate,opacity] motion-reduce:transition-opacity',
 		open
 			? 'translate-y-0 opacity-100 duration-(--duration-base) ease-out'
@@ -104,8 +104,8 @@
 		className
 	)}
 >
-	<span class="pr-2 whitespace-nowrap tabular-nums">{countLabel(shown)}</span>
-	<span aria-hidden="true" class="bg-primary-foreground/20 mr-1 h-4 w-px shrink-0"></span>
+	<span class="pe-2 whitespace-nowrap tabular-nums">{countLabel(shown)}</span>
+	<span aria-hidden="true" class="bg-primary-foreground/20 me-1 h-4 w-px shrink-0"></span>
 	{@render children?.()}
 	{#if onClear}
 		<button

@@ -95,4 +95,23 @@ describe('Tree', () => {
 		expect(group.inert).toBe(true);
 		expect(group).toHaveAttribute('aria-hidden', 'true');
 	});
+
+	test('in RTL the left arrow opens a folder and the right arrow closes it', async () => {
+		const target = document.body.appendChild(document.createElement('div'));
+		target.style.direction = 'rtl';
+		render(Tree, { props: { items }, target });
+		const projects = screen.getByRole('treeitem', { name: 'Projects' });
+		projects.focus();
+
+		await fireEvent.keyDown(projects, { key: 'ArrowLeft' });
+		expect(projects).toHaveAttribute('aria-expanded', 'true');
+		await fireEvent.keyDown(projects, { key: 'ArrowLeft' });
+		const mizu = screen.getByRole('treeitem', { name: 'Mizu' });
+		expect(mizu).toHaveFocus();
+		await fireEvent.keyDown(mizu, { key: 'ArrowRight' });
+		expect(projects).toHaveFocus();
+		await fireEvent.keyDown(projects, { key: 'ArrowRight' });
+		expect(projects).toHaveAttribute('aria-expanded', 'false');
+		target.remove();
+	});
 });

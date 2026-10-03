@@ -15,8 +15,9 @@
 		color: string;
 		/**
 		 * Where the new color pours in from, as a fraction of the width: 0 is
-		 * the left edge and 1 the right. Pass the picked swatch's position in
-		 * its row so the color arrives from the side the swatch sits on.
+		 * the start edge and 1 the end, so it mirrors in right-to-left text.
+		 * Pass the picked swatch's position in its row so the color arrives
+		 * from the side the swatch sits on.
 		 */
 		origin?: number;
 		/**
@@ -81,7 +82,8 @@
 		if (prefersReducedMotion()) {
 			return { delay, duration: duration.fast, css: (t) => `opacity: ${t}` };
 		}
-		const at = `${layer.origin * 100}% 50%`;
+		const rtl = getComputedStyle(node).direction === 'rtl';
+		const at = `${(rtl ? 1 - layer.origin : layer.origin) * 100}% 50%`;
 		// 150% of the reference radius clears the far corner of any of these
 		// shapes, even from an edge.
 		return {

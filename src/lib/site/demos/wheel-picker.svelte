@@ -23,6 +23,6 @@
 		<WheelPickerColumn label="AM or PM" options={periods} bind:value={period} />
 	</WheelPicker>
 	<output aria-label="Briefing time" class="text-4xl font-semibold tracking-tight tabular-nums">
-		{hour}:{minute}<span class="text-muted-foreground ml-2 text-xl font-medium">{period}</span>
+		{hour}:{minute}<span class="text-muted-foreground ms-2 text-xl font-medium">{period}</span>
 	</output>
 </div>

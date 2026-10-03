@@ -212,9 +212,10 @@
 	{...rest}
 >
 	{#if variant === 'dots'}
+		<!-- Mirrored right to left, so the leapfrog travels the way the line reads. -->
 		<span
 			aria-hidden="true"
-			class="relative block shrink-0"
+			class="relative block shrink-0 rtl:-scale-x-100"
 			style:width="calc(var(--spinner-pitch) * 2 + var(--spinner-dot))"
 			style:height="var(--spinner-dot)"
 		>
@@ -239,9 +240,10 @@
 			{/each}
 		</span>
 	{:else if variant === 'bar'}
+		<!-- Mirrored right to left, so the worm crawls the way the line reads. -->
 		<span
 			aria-hidden="true"
-			class="block w-full overflow-hidden rounded-full bg-current/15"
+			class="block w-full overflow-hidden rounded-full bg-current/15 rtl:-scale-x-100"
 			style:height="{Math.max(2, round(px / 5))}px"
 		>
 			<span

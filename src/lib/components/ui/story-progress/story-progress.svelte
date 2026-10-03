@@ -166,12 +166,16 @@
 		}
 		if (!navigate) return;
 		const box = event.currentTarget.getBoundingClientRect();
-		go(event.clientX < box.left + box.width / 2 ? -1 : 1);
+		// The start half goes back, which is the right half right to left.
+		const rtl = getComputedStyle(event.currentTarget).direction === 'rtl';
+		go(event.clientX < box.left + box.width / 2 !== rtl ? -1 : 1);
 	}
 
 	function onkeydown(event: KeyboardEvent) {
-		if (event.key === 'ArrowRight') go(1);
-		else if (event.key === 'ArrowLeft') go(-1);
+		// The bars fill right to left in a right-to-left page, so the arrows swap.
+		const rtl = getComputedStyle(event.currentTarget as Element).direction === 'rtl';
+		if (event.key === (rtl ? 'ArrowLeft' : 'ArrowRight')) go(1);
+		else if (event.key === (rtl ? 'ArrowRight' : 'ArrowLeft')) go(-1);
 		else if (event.key === ' ') {
 			if (!event.repeat) paused = !paused;
 		} else return;
@@ -219,7 +223,7 @@
 			<span class="bg-control h-[3px] flex-1 overflow-hidden rounded-full">
 				<span
 					{@attach collect(fills, i)}
-					class="bg-primary block h-full origin-left rounded-full"
+					class="bg-primary block h-full origin-left rounded-full rtl:origin-right"
 					style:scale="{i < shown ? 1 : 0} 1"
 				></span>
 			</span>
@@ -232,7 +236,7 @@
 		<button
 			type="button"
 			aria-label={paused ? 'Play stories' : 'Pause stories'}
-			class="text-muted-foreground hover:text-foreground focus-visible:ring-ring relative z-10 -mr-2 grid size-10 place-items-center rounded-full transition-[scale,color] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 active:scale-[0.96] motion-reduce:transition-[color]"
+			class="text-muted-foreground hover:text-foreground focus-visible:ring-ring relative z-10 -me-2 grid size-10 place-items-center rounded-full transition-[scale,color] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 active:scale-[0.96] motion-reduce:transition-[color]"
 			onpointerdown={(event) => event.stopPropagation()}
 			onpointerup={(event) => event.stopPropagation()}
 			onkeydown={(event) => {

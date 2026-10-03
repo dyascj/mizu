@@ -158,7 +158,17 @@
 		const index = visible.findIndex((v) => v.id === id);
 		if (index === -1) return;
 
-		switch (event.key) {
+		// Rows mirror in RTL, so the arrow that points toward the children opens.
+		let key = event.key;
+		if (
+			(key === 'ArrowLeft' || key === 'ArrowRight') &&
+			event.currentTarget instanceof Element &&
+			getComputedStyle(event.currentTarget).direction === 'rtl'
+		) {
+			key = key === 'ArrowLeft' ? 'ArrowRight' : 'ArrowLeft';
+		}
+
+		switch (key) {
 			case 'ArrowDown': {
 				event.preventDefault();
 				const next = visible[index + 1];

@@ -41,19 +41,20 @@ export function monthSlide(
 	if (prefersReducedMotion()) {
 		return leaving ? {} : { duration: duration.fast, css: (t) => `opacity: ${t}` };
 	}
+	// Right to left, later months lie to the left, so the travel mirrors.
+	const way = getComputedStyle(node).direction === 'rtl' ? -direction : direction;
 	if (leaving) {
 		return {
 			duration: duration.fast,
 			easing: easeIn,
 			css: (t, u) =>
-				`opacity: ${t}; translate: ${-direction * DISTANCE * 0.6 * u}px 0; filter: blur(${u * 2}px)`
+				`opacity: ${t}; translate: ${-way * DISTANCE * 0.6 * u}px 0; filter: blur(${u * 2}px)`
 		};
 	}
 	return {
 		duration: duration.base,
 		easing: easeOut,
-		css: (t, u) =>
-			`opacity: ${t}; translate: ${direction * DISTANCE * u}px 0; filter: blur(${u * 4}px)`
+		css: (t, u) => `opacity: ${t}; translate: ${way * DISTANCE * u}px 0; filter: blur(${u * 4}px)`
 	};
 }
 

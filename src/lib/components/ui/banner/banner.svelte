@@ -158,7 +158,7 @@
 			inert={!open}
 			tabindex="-1"
 			class={cn(
-				'flex min-h-11 items-center gap-2.5 py-1.5 pr-1.5 pl-4 text-sm outline-none',
+				'flex min-h-11 items-center gap-2.5 py-1.5 ps-4 pe-1.5 text-sm outline-none',
 				variant === 'primary'
 					? 'bg-primary text-primary-foreground'
 					: 'bg-secondary text-secondary-foreground',
@@ -192,7 +192,7 @@
 					aria-label={dismissLabel}
 					onclick={dismiss}
 					class={cn(
-						'relative ml-auto inline-flex size-8 shrink-0 touch-manipulation items-center justify-center rounded-full outline-none select-none',
+						'relative ms-auto inline-flex size-8 shrink-0 touch-manipulation items-center justify-center rounded-full outline-none select-none',
 						'transition-[scale,color,background-color] duration-(--duration-fast) ease-out active:scale-[0.96]',
 						'focus-visible:outline-2 focus-visible:outline-current',
 						// Grows the hit area to 40px without growing the circle.

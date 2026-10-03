@@ -47,7 +47,8 @@
 		const read = () => {
 			frame = 0;
 			const max = el.scrollWidth - el.clientWidth;
-			progress = max > 0 ? (el.scrollLeft / max) * (slides.length - 1) : 0;
+			// Right to left, scrollLeft runs from 0 down to -max.
+			progress = max > 0 ? (Math.abs(el.scrollLeft) / max) * (slides.length - 1) : 0;
 		};
 
 		// Only wheel and touch mark a scroll as the reader's, so autoplay's own
@@ -105,8 +106,9 @@
 	function goTo(index: number) {
 		if (!scroller) return;
 		const max = scroller.scrollWidth - scroller.clientWidth;
+		const sign = getComputedStyle(scroller).direction === 'rtl' ? -1 : 1;
 		scroller.scrollTo({
-			left: (index / (slides.length - 1)) * max,
+			left: sign * (index / (slides.length - 1)) * max,
 			behavior: prefersReducedMotion() ? 'auto' : 'smooth'
 		});
 	}

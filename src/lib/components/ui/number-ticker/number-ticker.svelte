@@ -208,7 +208,9 @@
 	{...rest}
 >
 	<span class="sr-only">{formatted}</span>
-	<span aria-hidden="true">
+	<!-- Each glyph is its own box, which right-to-left text would lay out in
+	     reverse, so the boxes keep the order a number reads in. -->
+	<span aria-hidden="true" dir="ltr">
 		{#each characters as character (character.key)}
 			<span
 				class="inline-block"

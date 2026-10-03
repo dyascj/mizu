@@ -154,6 +154,7 @@ context-menu-shortcut.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTM
 context-menu-sub-content.svelte extends ContextMenu.SubContentProps | ref?: unknown = null bindable, class: unknown
 context-menu-sub-trigger.svelte extends WithoutChild<ContextMenu.SubTriggerProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean, children: unknown
 context-menu-trigger.svelte extends ContextMenu.TriggerProps | ref?: unknown = null bindable
+context-menu.svelte extends ContextMenu.RootProps | open?: unknown = false bindable, dir: unknown
 # conversation
 conversation-message.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'role'> | role: 'user' | 'assistant', grouped?: boolean = false, author?: string, class?: string, ref?: HTMLDivElement | null = null bindable, children?: Snippet
 conversation.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | label?: string = 'Conversation', typing?: boolean = false, typingLabel?: string = 'Assistant is typing', jumpLabel?: string = 'New message', class?: string, ref?: HTMLDivElement | null = null bindable, viewport?: HTMLDivElement | null = null bindable, children?: Snippet
@@ -215,6 +216,8 @@ dropdown-menu-separator.svelte extends DropdownMenu.SeparatorProps | ref?: unkno
 dropdown-menu-shortcut.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTMLSpanElement | null = null bindable, class: unknown
 dropdown-menu-sub-content.svelte extends DropdownMenu.SubContentProps | ref?: unknown = null bindable, class: unknown
 dropdown-menu-sub-trigger.svelte extends WithoutChild<DropdownMenu.SubTriggerProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean, children: unknown
+dropdown-menu-trigger.svelte extends DropdownMenu.TriggerProps | ref?: unknown = null bindable
+dropdown-menu.svelte extends DropdownMenu.RootProps | open?: unknown = false bindable, dir: unknown
 # dynamic-island
 dynamic-island-activity.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | name: string, shape?: IslandShape = 'pill', label?: string, ref?: HTMLDivElement | null = null bindable, class?: string, children: Snippet
 dynamic-island.svelte extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> | activity: string, paused?: boolean = false, reserve?: number, ref?: HTMLDivElement | null = null bindable, class?: string, children: Snippet
@@ -323,7 +326,7 @@ menubar-shortcut.svelte extends HTMLAttributes<HTMLSpanElement> | ref?: HTMLSpan
 menubar-sub-content.svelte extends Menubar.SubContentProps | ref?: unknown = null bindable, class: unknown
 menubar-sub-trigger.svelte extends WithoutChild<Menubar.SubTriggerProps> | ref?: unknown = null bindable, class: unknown, inset?: boolean, children: unknown
 menubar-trigger.svelte extends Menubar.TriggerProps | ref?: unknown = null bindable, class: unknown
-menubar.svelte extends Menubar.RootProps | ref?: unknown = null bindable, value?: unknown = '' bindable, class: unknown
+menubar.svelte extends Menubar.RootProps | ref?: unknown = null bindable, value?: unknown = '' bindable, dir: unknown, class: unknown
 # message-actions
 message-actions.svelte | text?: string, onRegenerate?: () => void, onFeedback?: (feedback: 'up' | 'down' | null) => void, class?: string
 # meter
@@ -339,7 +342,7 @@ navigation-menu-link.svelte extends NavigationMenu.LinkProps | ref?: unknown = n
 navigation-menu-list.svelte extends WithoutChild<NavigationMenu.ListProps> | ref?: unknown = null bindable, class?: string
 navigation-menu-trigger.svelte extends WithoutChildrenOrChild<NavigationMenu.TriggerProps> | ref?: unknown = null bindable, class?: string, children: Snippet
 navigation-menu-viewport.svelte extends WithoutChild<NavigationMenu.ViewportProps> | ref?: unknown = null bindable, class?: string
-navigation-menu.svelte extends WithoutChild<NavigationMenu.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, delayDuration?: number = 80, class?: string, viewport?: boolean = true, children: Snippet
+navigation-menu.svelte extends WithoutChild<NavigationMenu.RootProps> | ref?: unknown = null bindable, value?: unknown = '' bindable, delayDuration?: number = 80, dir: unknown, class?: string, viewport?: boolean = true, children: Snippet
 # network-status
 network-status.svelte | variant?: 'pill' | 'inline' = 'pill', fixed?: boolean = false, offlineLabel?: string = "You're offline. Changes will sync when you reconnect.", onlineLabel?: string = 'Back online', resetAfter?: number = 3000, forceStatus?: 'online' | 'offline', class?: string
 # notification-bell
@@ -368,7 +371,7 @@ password-input.svelte extends Omit<HTMLInputAttributes, 'type' | 'value' | 'chil
 plan.svelte | steps: PlanStep[], class?: string
 # popover
 popover-close.svelte extends WithoutChild<Popover.CloseProps> | ref?: unknown = null bindable, class?: string
-popover-content.svelte extends WithoutChildrenOrChild<Popover.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 8, portalProps?: Popover.PortalProps, children: Snippet
+popover-content.svelte extends WithoutChildrenOrChild<Popover.ContentProps> | ref?: unknown = null bindable, class?: string, sideOffset?: unknown = 8, dir: unknown, portalProps?: Popover.PortalProps, children: Snippet
 popover-trigger.svelte extends WithoutChild<Popover.TriggerProps> | ref?: unknown = null bindable, class?: string
 popover.svelte extends Popover.RootProps | 
 # presence
@@ -465,14 +468,14 @@ sidebar-group-content.svelte extends WithElementRef<HTMLAttributes<HTMLDivElemen
 sidebar-group-label.svelte extends WithElementRef<HTMLAttributes<HTMLElement>> | ref?: unknown = null bindable, children: unknown, child?: Snippet<[{ props: Record<string, unknown> }]>, class: unknown
 sidebar-group.svelte extends WithElementRef<HTMLAttributes<HTMLElement>> | ref?: unknown = null bindable, class: unknown, children: unknown
 sidebar-header.svelte extends WithElementRef<HTMLAttributes<HTMLElement>> | ref?: unknown = null bindable, class: unknown, children: unknown
-sidebar-input.svelte extends ComponentProps<typeof Input> | ref?: unknown = null bindable, value?: unknown = '' bindable, class: unknown
+sidebar-input.svelte extends Omit<HTMLInputAttributes, 'children'> | ref?: HTMLInputElement | null = null bindable, value?: string | null = '' bindable, class: unknown, children?: Snippet
 sidebar-inset.svelte extends WithElementRef<HTMLAttributes<HTMLElement>> | ref?: unknown = null bindable, class: unknown, children: unknown
 sidebar-menu-action.svelte extends WithElementRef<HTMLButtonAttributes> | ref?: unknown = null bindable, class: unknown, showOnHover?: boolean = false, children: unknown, child?: Snippet<[{ props: Record<string, unknown> }]>
 sidebar-menu-badge.svelte extends WithElementRef<HTMLAttributes<HTMLElement>> | ref?: unknown = null bindable, class: unknown, children: unknown
 sidebar-menu-button.svelte extends WithElementRef<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> | ref?: unknown = null bindable, class: unknown, children: unknown, child?: Snippet<[{ props: Record<string, unknown> }]>, variant?: 'default' | 'outline' = 'default', size?: 'default' | 'sm' | 'lg' = 'default', isActive?: boolean = false, tooltipContent?: Snippet | string, tooltipContentProps?: WithoutChildrenOrChild<ComponentProps<typeof Tooltip.Content>>
 sidebar-menu-item.svelte extends WithElementRef<HTMLAttributes<HTMLLIElement>, HTMLLIElement> | ref?: unknown = null bindable, class: unknown, children: unknown
 sidebar-menu-skeleton.svelte extends WithElementRef<HTMLAttributes<HTMLElement>> | ref?: unknown = null bindable, class: unknown, showIcon?: boolean = false, children: unknown
-sidebar-menu-sub-button.svelte extends WithElementRef<HTMLAnchorAttributes> | ref?: unknown = null bindable, children: unknown, child?: Snippet<[{ props: Record<string, unknown> }]>, class: unknown, size?: 'sm' | 'md' = 'md', isActive?: boolean = false
+sidebar-menu-sub-button.svelte extends WithElementRef<HTMLAnchorAttributes, HTMLAnchorElement | HTMLButtonElement> | ref?: unknown = null bindable, children: unknown, child?: Snippet<[{ props: Record<string, unknown> }]>, class: unknown, size?: 'sm' | 'md' = 'md', isActive?: boolean = false
 sidebar-menu-sub-item.svelte extends WithElementRef<HTMLAttributes<HTMLLIElement>> | ref?: unknown = null bindable, children: unknown, class: unknown
 sidebar-menu-sub.svelte extends WithElementRef<HTMLAttributes<HTMLUListElement>> | ref?: unknown = null bindable, class: unknown, children: unknown
 sidebar-menu.svelte extends WithElementRef<HTMLAttributes<HTMLUListElement>, HTMLUListElement> | ref?: unknown = null bindable, class: unknown, children: unknown

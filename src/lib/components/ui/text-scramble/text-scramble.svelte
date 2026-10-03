@@ -91,7 +91,7 @@
 			const refresh = now - lastTick >= TICK;
 			if (refresh) lastTick = now;
 
-			// Characters settle strictly left to right, so everything before the
+			// Characters settle strictly in reading order, so everything before the
 			// first unsettled one is final.
 			let head = chars.length;
 			for (let i = 0; i < chars.length; i++) {

@@ -52,6 +52,26 @@ describe('AvatarStack', () => {
 		expect(buttons[0]).toHaveFocus();
 	});
 
+	test('right to left, the first face sits on the right and ArrowLeft moves on', async () => {
+		vi.stubGlobal('matchMedia', (query: string) => ({
+			matches: query.includes('reduce'),
+			addEventListener() {},
+			removeEventListener() {}
+		}));
+		const target = document.body.appendChild(document.createElement('div'));
+		target.dir = 'rtl';
+		target.style.direction = 'rtl';
+		render(AvatarStack, { target, props: { people: team.slice(0, 3), size: 40 } });
+		const buttons = screen.getAllByRole('button');
+		expect(offset(buttons[0])).toBe('translateX(27.20px)');
+		buttons[0].focus();
+		await fireEvent.keyDown(buttons[0], { key: 'ArrowLeft' });
+		expect(buttons[1]).toHaveFocus();
+		await fireEvent.keyDown(buttons[1], { key: 'ArrowRight' });
+		expect(buttons[0]).toHaveFocus();
+		target.remove();
+	});
+
 	test('fans open under a mouse and closes when it leaves', async () => {
 		// Reduced motion makes the spring jump, so offsets are exact at once.
 		vi.stubGlobal('matchMedia', (query: string) => ({

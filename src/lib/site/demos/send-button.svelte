@@ -23,7 +23,7 @@
 		</div>
 		<form
 			onsubmit={submit}
-			class="bg-control focus-within:ring-ring flex w-full items-center gap-1 rounded-full p-1.5 pl-2 focus-within:ring-2"
+			class="bg-control focus-within:ring-ring flex w-full items-center gap-1 rounded-full p-1.5 ps-2 focus-within:ring-2"
 		>
 			<input
 				bind:value

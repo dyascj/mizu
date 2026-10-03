@@ -133,6 +133,20 @@ describe('ConfettiButton', () => {
 		await advance(4000);
 	});
 
+	test('the fuse burns from the right in right-to-left text', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const { button } = setup();
+			await fireEvent.pointerDown(button, { button: 0, pointerId: 1 });
+			await advance(600);
+			expect(fuse(button)).toMatch(/^inset\(0 0 0 [1-9]/);
+			await fireEvent.pointerUp(button, { pointerId: 1 });
+			await advance(4000);
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('letting go early still pops', async () => {
 		const { button, onCelebrate } = setup();
 		await fireEvent.pointerDown(button, { button: 0, pointerId: 1 });

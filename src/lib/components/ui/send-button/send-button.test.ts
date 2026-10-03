@@ -53,6 +53,25 @@ describe('SendButton', () => {
 		expect(liveRegion(container)).toBe('');
 	});
 
+	test('flies toward the reading direction', async () => {
+		const flight = async () => {
+			const { container, unmount } = render(SendButton, {});
+			const plane = container.querySelector<HTMLElement>('button > span > span > span');
+			await fireEvent.click(screen.getByRole('button', { name: 'Send' }));
+			await advance(300);
+			const x = parseFloat(plane?.style.translate ?? '');
+			unmount();
+			return x;
+		};
+		expect(await flight()).toBeGreaterThan(0);
+		document.body.style.direction = 'rtl';
+		try {
+			expect(await flight()).toBeLessThan(0);
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('submits its form once and holds back a second submission mid-flight', async () => {
 		const onsubmit = vi.fn((event: SubmitEvent) => event.preventDefault());
 		const form = document.createElement('form');

@@ -26,6 +26,28 @@ describe('Rating', () => {
 		expect(slider).toHaveAttribute('aria-valuenow', '1.5');
 	});
 
+	test('mirrors arrow keys and the half-point side in right-to-left text', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			render(Rating, { value: 2, max: 5, allowHalf: true });
+			const slider = screen.getByRole('slider');
+			await fireEvent.keyDown(slider, { key: 'ArrowLeft' });
+			expect(slider).toHaveAttribute('aria-valuenow', '2.5');
+			await fireEvent.keyDown(slider, { key: 'ArrowRight' });
+			expect(slider).toHaveAttribute('aria-valuenow', '2');
+
+			const mark = slider.querySelectorAll<HTMLElement>('[data-rating-index]')[3];
+			mark.getBoundingClientRect = () => ({ left: 100, width: 24 }) as DOMRect;
+			// The right half leads, so it scores the half point.
+			await fireEvent.click(mark, { clientX: 120 });
+			expect(slider).toHaveAttribute('aria-valuenow', '3.5');
+			await fireEvent.click(mark, { clientX: 104 });
+			expect(slider).toHaveAttribute('aria-valuenow', '4');
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('normalizes max and size boundaries', () => {
 		render(Rating, { value: Number.NaN, max: 0, size: -20 });
 		const slider = screen.getByRole('slider');

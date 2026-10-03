@@ -24,13 +24,13 @@
 	{value}
 	{label}
 	class={cn(
-		'data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-pointer items-center rounded-lg py-1.5 pr-2 pl-8 text-sm outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 in-data-[highlight-glide]:data-[highlighted]:bg-transparent',
+		'data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-pointer items-center rounded-lg py-1.5 ps-8 pe-2 text-sm outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 in-data-[highlight-glide]:data-[highlighted]:bg-transparent',
 		className
 	)}
 	{...restProps}
 >
 	{#snippet children({ selected })}
-		<span aria-hidden="true" class="absolute left-2 flex size-4 items-center justify-center">
+		<span aria-hidden="true" class="absolute start-2 flex size-4 items-center justify-center">
 			<Check
 				class={cn(
 					'text-primary size-4 transition-[scale,opacity,filter] motion-reduce:scale-100 motion-reduce:blur-none',

@@ -11,7 +11,7 @@
 </script>
 
 <div
-	class="bg-card flex w-full max-w-sm items-center gap-3 rounded-full py-2 pr-2 pl-5 shadow-sm sm:pl-3"
+	class="bg-card flex w-full max-w-sm items-center gap-3 rounded-full py-2 ps-5 pe-2 shadow-sm sm:ps-3"
 >
 	<span
 		class="bg-secondary text-muted-foreground grid size-10 shrink-0 place-items-center rounded-full max-sm:hidden"

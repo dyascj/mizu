@@ -39,7 +39,7 @@
 	<div
 		class="from-card pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t to-transparent"
 	></div>
-	<div class="absolute right-4 bottom-4">
+	<div class="absolute end-4 bottom-4">
 		<BackToTop target={scroller} />
 	</div>
 </div>

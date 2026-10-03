@@ -39,6 +39,68 @@ test('command palette filters and closes from the keyboard', async ({ page }) =>
 	await expect(input).toBeHidden();
 });
 
+test('command palette opens from the shortcut and keeps same-named results apart', async ({
+	page
+}) => {
+	await page.goto('/docs');
+	await page.waitForLoadState('networkidle');
+	await page.keyboard.press('ControlOrMeta+k');
+
+	const input = page.getByPlaceholder('Search components and docs');
+	await expect(input).toBeFocused();
+	await input.fill('Motion');
+	await expect(page.getByRole('option', { name: 'Motion', exact: true })).toHaveCount(2);
+	await expect(page.getByRole('option', { selected: true })).toHaveCount(1);
+	await page.keyboard.press('ArrowDown');
+	await expect(page.getByRole('option', { selected: true })).toHaveCount(1);
+	await page.keyboard.press('Enter');
+	await expect(page).toHaveURL(/\/docs\/(components\/)?motion$/);
+	await expect(input).toBeHidden();
+});
+
+test('block category filters keep keyboard focus', async ({ page }) => {
+	await page.goto('/blocks');
+	await page.waitForLoadState('networkidle');
+	const agents = page
+		.getByRole('navigation', { name: 'Block categories' })
+		.getByRole('link', { name: 'Agents' });
+	await agents.focus();
+	await page.keyboard.press('Enter');
+	await expect(page).toHaveURL(/\?category=agents$/);
+	await expect(agents).toHaveAttribute('aria-current', 'page');
+	await expect(agents).toBeFocused();
+});
+
+test('copy feedback is announced and the table of contents keeps its place', async ({
+	page
+}, testInfo) => {
+	test.skip(testInfo.project.name === 'mobile-chromium', 'The table of contents is desktop-only.');
+	await page.setViewportSize({ width: 1440, height: 900 });
+	await page.goto('/docs/theming');
+	await page.waitForLoadState('networkidle');
+	const tokens = page
+		.getByRole('navigation', { name: 'On this page' })
+		.getByRole('link', { name: 'Theme tokens' });
+	await tokens.click();
+	await expect(tokens).toHaveAttribute('aria-current', 'location');
+	// Leave the heading just above the spy band, with its code sample in view.
+	await page.mouse.wheel(0, 180);
+	await page.waitForTimeout(200);
+	await expect(tokens).toHaveAttribute('aria-current', 'location');
+
+	const sample = page.locator('#theme-tokens + p + div');
+	await sample.getByRole('button', { name: 'Copy code' }).click();
+	await expect(sample.locator('[aria-live="polite"]')).toHaveText(/Code copied|Copy failed/);
+	await page.waitForTimeout(200);
+	await expect(tokens).toHaveAttribute('aria-current', 'location');
+});
+
+test('the error page offers a skip link target', async ({ page }) => {
+	const response = await page.goto('/docs/components/not-a-component');
+	expect(response?.status()).toBe(404);
+	await expect(page.locator('main#main-content')).toHaveCount(1);
+});
+
 test('Rating exposes its complete keyboard range', async ({ page }) => {
 	await page.goto('/docs/components/rating');
 

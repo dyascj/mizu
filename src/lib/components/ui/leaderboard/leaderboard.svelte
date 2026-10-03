@@ -190,7 +190,7 @@
 			</span>
 			<span
 				aria-hidden="true"
-				class="text-foreground min-w-12 shrink-0 text-right text-sm font-medium"
+				class="text-foreground min-w-12 shrink-0 text-end text-sm font-medium"
 			>
 				<NumberTicker value={row.score} {locale} {format} />
 			</span>

@@ -89,6 +89,7 @@
 	let reducedMotion = $state(false);
 	let width = $state<number>();
 	let sizer = $state<HTMLSpanElement>();
+	let layer = $state<HTMLSpanElement>();
 
 	const word = $derived(words[index % Math.max(1, words.length)] ?? '');
 	const running = $derived(
@@ -159,7 +160,7 @@
 
 	/**
 	 * New letters wait a beat for the leaving ones to clear, then rise out of a
-	 * blur in a small left to right cascade.
+	 * blur in a small cascade in reading order.
 	 */
 	function letterIn(_node: Element, { order }: { order: number }): TransitionConfig {
 		if (reducedMotion) return {};
@@ -197,13 +198,16 @@
 			const kept = new Set(next.map((letter) => letter.id));
 			const leaving = shown.filter((letter) => !kept.has(letter.id));
 			shown = next;
-			if (!leaving.length || !sizer) return;
+			if (!leaving.length || !sizer || !layer) return;
 			const box = sizer.getBoundingClientRect();
 			// Rects are after transforms; a scaled ancestor would double every offset.
 			const scale = box.width / sizer.offsetWidth || 1;
+			// Measured from the ghost layer itself, so the ghosts land where the
+			// letters stood however the word is aligned or whichever way it reads.
+			const origin = layer.getBoundingClientRect().left;
 			ghosts = leaving.map((letter) => {
 				const node = sizer?.querySelector(`[data-letter="${letter.id}"]`);
-				const left = node ? (node.getBoundingClientRect().left - box.left) / scale : 0;
+				const left = node ? (node.getBoundingClientRect().left - origin) / scale : 0;
 				return { ...letter, left };
 			});
 		});
@@ -262,7 +266,7 @@
 		     letters are pinned where they stood while they fade. -->
 		<span
 			bind:this={sizer}
-			class="relative inline-block text-left whitespace-pre"
+			class="relative inline-block text-start whitespace-pre"
 			aria-hidden="true"
 			data-word={word}
 		>
@@ -275,7 +279,7 @@
 				>
 			{/each}
 		</span>
-		<span class="pointer-events-none absolute top-0 left-0" aria-hidden="true">
+		<span bind:this={layer} class="pointer-events-none absolute top-0 left-0" aria-hidden="true">
 			{#each ghosts as ghost (ghost.id)}
 				<span
 					class="absolute top-0 inline-block"
@@ -288,7 +292,7 @@
 	{:else}
 		<span bind:this={sizer} class="invisible inline-block" aria-hidden="true">{word}</span>
 		{#key index}
-			<span class="absolute top-0 left-0" aria-hidden="true" in:enter out:exit>{word}</span>
+			<span class="absolute start-0 top-0" aria-hidden="true" in:enter out:exit>{word}</span>
 		{/key}
 	{/if}
 </span>

@@ -67,7 +67,7 @@
 			Find somewhere quiet for dinner Saturday and book it.
 		</ChatBubble>
 
-		<Reasoning summary="Thought for 4 seconds" class="pl-1">
+		<Reasoning summary="Thought for 4 seconds" class="ps-1">
 			Quiet matters more than fancy here. They loved the corner table at Verde in March, so I will
 			check availability there first before widening the search.
 		</Reasoning>
@@ -87,10 +87,10 @@
 		</ChatBubble>
 
 		<Sources
-			class="pl-1"
+			class="ps-1"
 			items={[{ label: 'verde.rest', url: 'https://example.com' }, { label: 'maps' }]}
 		/>
-		<MessageActions text={reply} class="pl-1" />
+		<MessageActions text={reply} class="ps-1" />
 		{#if submitted}<ChatBubble role="user" animate={false}>{submitted}</ChatBubble>
 			<p role="status" class="text-muted-foreground text-xs">
 				Message received in this local preview.

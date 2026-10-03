@@ -215,9 +215,13 @@
 
 	function onkeydown(event: KeyboardEvent) {
 		const last = steps.length - 1;
+		const next = view.step === last ? 0 : view.step + 1;
+		const back = view.step === 0 ? last : view.step - 1;
+		// The tabs mirror in right-to-left text, so the arrows follow what is on screen.
+		const rtl = getComputedStyle(event.currentTarget as Element).direction === 'rtl';
 		const target = {
-			ArrowRight: view.step === last ? 0 : view.step + 1,
-			ArrowLeft: view.step === 0 ? last : view.step - 1,
+			ArrowRight: rtl ? back : next,
+			ArrowLeft: rtl ? next : back,
 			Home: 0,
 			End: last
 		}[event.key];
@@ -285,8 +289,10 @@
 		<CopyButton value={code} label="Copy code" size="sm" />
 	</div>
 
+	<!-- Code reads left to right in any language. -->
 	<div
 		role="tabpanel"
+		dir="ltr"
 		id="{uid}-panel"
 		aria-labelledby="{uid}-tab-{view.step}"
 		tabindex="0"

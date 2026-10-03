@@ -10,6 +10,8 @@
 	let items = $state<Item[]>([]);
 	let activeId = $state('');
 	let observer: IntersectionObserver | null = null;
+	let frame = 0;
+	let builtFor = '';
 
 	function slugify(text: string) {
 		return text
@@ -51,12 +53,14 @@
 			{ rootMargin: '-88px 0px -70% 0px', threshold: 0 }
 		);
 		for (const h of headings) observer.observe(h);
-		if (headings.length) activeId = headings[0].id;
+		// A new page starts at the first heading. A rebuild on the same page (a
+		// copy button swapping its icon, a demo replaying) keeps the reader's place.
+		const fresh = builtFor !== location.pathname;
+		builtFor = location.pathname;
+		if (fresh || !next.some((item) => item.id === activeId)) activeId = next[0]?.id ?? '';
 	}
 
 	onMount(() => {
-		build();
-		let frame = 0;
 		const mutation = new MutationObserver((records) => {
 			if (
 				records.every((record) =>
@@ -78,7 +82,11 @@
 		};
 	});
 
-	afterNavigate(() => requestAnimationFrame(build));
+	// Also runs once on mount. Shares `frame` so unmounting cancels it.
+	afterNavigate(() => {
+		cancelAnimationFrame(frame);
+		frame = requestAnimationFrame(build);
+	});
 </script>
 
 {#if items.length >= 2}
@@ -106,7 +114,11 @@
 		<div class="border-border mt-6 border-t pt-4">
 			<button
 				type="button"
-				onclick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+				onclick={() =>
+					window.scrollTo({
+						top: 0,
+						behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+					})}
 				class="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 transition-colors"
 			>
 				Back to top <ArrowUp class="size-3.5" aria-hidden="true" />

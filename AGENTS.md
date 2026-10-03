@@ -29,11 +29,12 @@ Always run `pnpm registry:build` after touching components, blocks, or the catal
 ## Design rules (every change must follow these)
 
 - No decorative strokes. Depth comes from shadows and gray fills in light mode and tonal surface rungs in dark mode. Semantic strokes are reserved for control outlines, focus and invalid states, dashed empty states, dense-content dividers, and panel edges that must remain distinct over arbitrary content.
-- Neutral first. `--primary` is black in light mode and white in dark mode. Keep color for AI visuals and semantic status. Active states are `bg-primary-muted text-primary`; everything else stays quiet gray.
+- Neutral first. `--primary` is black in light mode and white in dark mode. Keep color for AI visuals and semantic status. Active states are `bg-primary-muted text-primary`; everything else stays quiet gray. The Sidebar is the exception: it matches the docs sidebar (muted items, `bg-secondary` current page, guide-line tick).
 - `orb-*` and `aurora-*` washes mark AI moments only, never chrome.
 - Component, gallery, and block preview canvases use the page background in both themes. Keep gray fills inside the components themselves.
 - Use sentence case for UI labels and headings. No all-caps eyebrows or `uppercase` text styling. Preserve established acronyms and code identifiers.
 - Nothing heavier than `font-semibold`. Titles semibold with tight tracking, labels medium, body regular. Single-line controls are pills; multi-line fields are `rounded-2xl`.
+- Layout follows reading direction. Use logical utilities (`ps-`/`pe-`, `ms-`/`me-`, `start-`/`end-`, `text-start`, `rounded-s`, `border-s`) instead of left and right, give directional icons `rtl:rotate-180`, and swap ArrowLeft and ArrowRight in custom key handlers when `getComputedStyle(el).direction` is `rtl`. Keep physical sides only for physical geometry and explicit API sides such as `Sheet side`. Check new work with the RTL toggle in the component preview.
 - Motion comes from the tokens in `src/app.css` (see `docs/decisions/0006-motion-system.md`). Enter with `ease-out` or a spring, exit faster with `ease-in`, never overshoot color or opacity, reserve looping motion for AI activity, and respect `prefers-reduced-motion`. Never hardcode a duration or cubic-bezier in a component.
 
 ## Structure

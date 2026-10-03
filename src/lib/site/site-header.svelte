@@ -57,6 +57,7 @@
 				type="button"
 				onclick={() => (search.open = true)}
 				aria-label="Search pages and components"
+				aria-keyshortcuts="Meta+K Control+K"
 				class="border-border text-muted-foreground hover:text-foreground hover:bg-secondary/50 focus-visible:ring-ring flex h-9 items-center gap-2 rounded-xl border px-2.5 text-sm transition-colors outline-none focus-visible:ring-2 sm:px-3"
 			>
 				<SearchIcon class="size-4 shrink-0" />

@@ -55,10 +55,17 @@
 	let canScrollNext = $state(false);
 	let scrollSnaps = $state<number[]>([]);
 	let selectedIndex = $state(0);
+	// Embla needs the reading direction up front to scroll a mirrored track.
+	// Read once the region mounts; `opts.direction` still wins.
+	let direction = $state<'ltr' | 'rtl'>('ltr');
+	$effect(() => {
+		if (ref) direction = getComputedStyle(ref).direction === 'rtl' ? 'rtl' : 'ltr';
+	});
 
 	// Focus centers every slide, the first and last included.
 	const options = $derived<CarouselOptions>({
 		...(effectMode === 'focus' ? { align: 'center', containScroll: false } : {}),
+		direction,
 		...opts,
 		axis: orientation === 'horizontal' ? 'x' : 'y'
 	});
@@ -222,8 +229,10 @@
 				e.target.closest('input, textarea, select, [contenteditable]'))
 		)
 			return;
-		const previousKey = orientation === 'vertical' ? 'ArrowUp' : 'ArrowLeft';
-		const nextKey = orientation === 'vertical' ? 'ArrowDown' : 'ArrowRight';
+		// A mirrored track puts the next slide on the left, so the arrows swap.
+		const rtl = getComputedStyle(e.currentTarget as HTMLElement).direction === 'rtl';
+		const previousKey = orientation === 'vertical' ? 'ArrowUp' : rtl ? 'ArrowRight' : 'ArrowLeft';
+		const nextKey = orientation === 'vertical' ? 'ArrowDown' : rtl ? 'ArrowLeft' : 'ArrowRight';
 		if (e.key === previousKey) {
 			e.preventDefault();
 			scrollPrev();

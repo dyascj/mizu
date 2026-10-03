@@ -253,7 +253,7 @@
 					onblur={() => (hovered = null)}
 					onclick={() => toggle(i)}
 					class={cn(
-						'focus-visible:ring-ring flex h-9 w-full touch-manipulation items-center gap-2.5 rounded-full px-3 text-left text-sm transition-[scale,opacity,background-color] duration-(--duration-fast) ease-out outline-none select-none focus-visible:ring-2 active:scale-[0.97] motion-reduce:transition-[opacity,background-color]',
+						'focus-visible:ring-ring flex h-9 w-full touch-manipulation items-center gap-2.5 rounded-full px-3 text-start text-sm transition-[scale,opacity,background-color] duration-(--duration-fast) ease-out outline-none select-none focus-visible:ring-2 active:scale-[0.97] motion-reduce:transition-[opacity,background-color]',
 						active !== null && active !== i ? 'opacity-50' : 'opacity-100',
 						pinned === i ? 'bg-primary-muted' : 'hover:bg-secondary'
 					)}
@@ -267,7 +267,7 @@
 					<span class="text-foreground tabular-nums">{show(d.value)}</span>
 					<span
 						class={cn(
-							'w-9 text-right tabular-nums',
+							'w-9 text-end tabular-nums',
 							pinned === i ? 'text-foreground' : 'text-muted-foreground'
 						)}
 					>

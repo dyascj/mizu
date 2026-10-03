@@ -120,7 +120,10 @@
 </script>
 
 {#snippet separator()}
-	<ChevronRight aria-hidden="true" class="text-muted-foreground/70 mx-0.5 size-3.5 shrink-0" />
+	<ChevronRight
+		aria-hidden="true"
+		class="text-muted-foreground/70 mx-0.5 size-3.5 shrink-0 rtl:rotate-180"
+	/>
 {/snippet}
 
 <div {...restProps} bind:this={ref} class={cn('relative w-full min-w-0', className)}>
@@ -129,7 +132,7 @@
 	<div
 		aria-hidden="true"
 		inert
-		class="pointer-events-none invisible absolute top-0 left-0 size-0 overflow-hidden"
+		class="pointer-events-none invisible absolute start-0 top-0 size-0 overflow-hidden"
 	>
 		<ol bind:this={ruler} class="flex w-max items-center text-sm whitespace-nowrap">
 			{#each items as item, index (index)}

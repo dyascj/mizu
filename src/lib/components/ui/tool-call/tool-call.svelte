@@ -33,8 +33,8 @@
 		type="button"
 		disabled={!children || state === 'running'}
 		onclick={() => (open = !open)}
-		aria-expanded={open}
-		class="bg-secondary/60 enabled:hover:bg-secondary focus-visible:ring-ring flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left transition-colors outline-none focus-visible:ring-2 disabled:cursor-default"
+		aria-expanded={children ? open : undefined}
+		class="bg-secondary/60 enabled:hover:bg-secondary focus-visible:ring-ring flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-start transition-colors outline-none focus-visible:ring-2 disabled:cursor-default"
 	>
 		{#if state === 'running'}
 			<Spinner size={16} />
@@ -58,6 +58,10 @@
 			{#if detail}
 				<span class="text-muted-foreground block truncate text-xs">{detail}</span>
 			{/if}
+			<!-- The icon alone shows the state, so it is spoken too. -->
+			<span class="sr-only"
+				>{state === 'running' ? 'Running' : state === 'done' ? 'Done' : 'Failed'}</span
+			>
 		</span>
 		{#if children && state !== 'running'}
 			<ChevronDown
@@ -92,6 +96,11 @@
 		background-clip: text;
 		color: transparent;
 		animation: tool-sweep 2s linear infinite;
+	}
+
+	/* The light sweeps in reading order. */
+	.tool-shimmer:dir(rtl) {
+		animation-direction: reverse;
 	}
 
 	.tool-result {

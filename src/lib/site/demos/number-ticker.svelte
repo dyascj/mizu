@@ -55,10 +55,10 @@
 			disabled={runs.length === 0}
 			onclick={() => (runs = runs.slice(0, -1))}
 		>
-			<Undo2 class="size-3.5" />
+			<Undo2 class="size-3.5 rtl:-scale-x-100" />
 			Undo
 		</Button>
-		<span class="text-muted-foreground ml-auto text-xs">
+		<span class="text-muted-foreground ms-auto text-xs">
 			Run <NumberTicker value={412 + runs.length} odometer={4} class="text-foreground" />
 		</span>
 	</div>

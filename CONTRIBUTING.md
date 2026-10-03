@@ -28,11 +28,12 @@ pnpm registry:consumer-check # isolated install and build of all registry items
 Mizu is a design system for AI products. Every contribution has to speak the same language:
 
 - **No decorative strokes.** Depth comes from the surface ladder. Light mode uses white surfaces with soft ambient shadows and gray fills. Dark mode uses tonal rungs (`#000` page, card, popover, hover). Semantic strokes are reserved for control outlines, focus and invalid states, dashed empty states, dense-content dividers, and panel edges that must remain distinct over arbitrary content. See `docs/decisions/0001-visual-boundaries.md`.
-- **Neutral first.** `--primary` is black in light mode and white in dark mode; active states are `bg-primary-muted text-primary`. Everything else is quiet gray.
+- **Neutral first.** `--primary` is black in light mode and white in dark mode; active states are `bg-primary-muted text-primary`. Everything else is quiet gray. App-shell navigation is the one exception: the Sidebar matches the docs sidebar, with muted items and a `bg-secondary` current page.
 - **Auras are for AI moments.** The `orb-*` and `aurora-*` washes mark where intelligence lives (voice, generation, presence), never chrome.
 - Component, gallery, and block preview canvases use the page background in both themes. Keep gray fills inside the components themselves.
 - Use sentence case for UI labels and headings. No all-caps eyebrows or `uppercase` text styling. Preserve established acronyms and code identifiers.
 - **Nothing heavier than semibold.** Titles are semibold with tight tracking, labels are medium, body is regular. Controls are pills; multi-line fields are `rounded-2xl`.
+- **Layout follows reading direction.** Use logical utilities (`ps-`/`pe-`, `ms-`/`me-`, `start-`/`end-`, `text-start`, `rounded-s`, `border-s`) rather than left and right. Directional icons get `rtl:rotate-180`. Custom key handlers swap ArrowLeft and ArrowRight when `getComputedStyle(el).direction` is `rtl`, and pointer math that maps `clientX` to a value mirrors too. Physical sides stay only for physical geometry (charts, image coordinates) and explicit API sides such as `Sheet side`. Check every change with the RTL toggle in the component preview.
 - **Motion is quick to respond and soft to settle.** Use the duration, easing, and spring tokens in `src/app.css` instead of literal values. Enter with `ease-out` or a spring, exit faster with `ease-in`, keep springs to scale and position, reserve looping motion for AI activity, and respect `prefers-reduced-motion`. The rationale lives in `docs/decisions/0006-motion-system.md` and `/docs/motion`.
 
 ## Adding a component

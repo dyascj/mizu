@@ -105,7 +105,7 @@
 	const slots = $derived(
 		Math.max(...[resting, copiedText, failedText].map((text) => Array.from(text).length))
 	);
-	/** Each letter starts a beat after its left neighbour, so the change reads as a wave. */
+	/** Each letter starts a beat after the one before, so the change reads as a wave. */
 	const letterStagger = stagger / 3;
 
 	function flip(direction: 1 | -1) {
@@ -225,9 +225,11 @@
 >
 	{#if mode === 'text'}
 		{#if perLetter}
-			<!-- Width, not scale, so the neighbours reflow as the text grows or shrinks. -->
+			<!-- Width, not scale, so the neighbours reflow as the text grows or shrinks.
+			     Only left-to-right scripts flip per letter, so the cells keep that order. -->
 			<span
 				aria-hidden="true"
+				dir="ltr"
 				class="flex overflow-hidden whitespace-pre transition-[width] duration-(--duration-slow) ease-in-out [perspective:15rem]"
 				style:width="{letters.length}ch"
 			>

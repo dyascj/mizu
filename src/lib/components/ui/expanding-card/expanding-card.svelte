@@ -146,8 +146,12 @@
 		closing = false;
 	}
 
-	/** Moves the detail view to the body, clear of any transformed or clipped ancestor. */
+	/**
+	 * Moves the detail view to the body, clear of any transformed or clipped
+	 * ancestor, keeping the direction the card reads in.
+	 */
 	const portal: Attachment<HTMLElement> = (node) => {
+		if (ref) node.dir = getComputedStyle(ref).direction;
 		document.body.appendChild(node);
 		return () => node.remove();
 	};
@@ -166,6 +170,7 @@
 		const target = toBox(final);
 		const dialogText = { title: rel(dialogTitle, final), meta: rel(dialogMeta, final) };
 		const dialogTitleWidth = dialogTitle?.getBoundingClientRect().width ?? 0;
+		const rtl = !!ref && getComputedStyle(ref).direction === 'rtl';
 
 		const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 		paint = () => {
@@ -185,7 +190,8 @@
 			// back, so it never runs under the meta that lands beside it.
 			if (dialogTitle && slotText && slotText.titleWidth < dialogTitleWidth) {
 				const cut = (dialogTitleWidth - slotText.titleWidth) * (1 - t);
-				dialogTitle.style.clipPath = cut > 0.5 ? `inset(-4px ${cut}px -4px -4px)` : '';
+				const edges = rtl ? `-4px -4px -4px ${cut}px` : `-4px ${cut}px -4px -4px`;
+				dialogTitle.style.clipPath = cut > 0.5 ? `inset(${edges})` : '';
 			}
 			if (returning) {
 				returning.style.left = `${text.summary.x}px`;
@@ -284,7 +290,7 @@
 	inert={shown && !closing}
 	data-state={shown ? 'open' : 'closed'}
 	class={cn(
-		'bg-card text-card-foreground focus-visible:ring-ring focus-visible:ring-offset-background relative block w-full touch-manipulation rounded-2xl text-left shadow-sm transition-[scale,background-color,box-shadow] duration-(--duration-fast) ease-out outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] motion-reduce:transition-[background-color,box-shadow]',
+		'bg-card text-card-foreground focus-visible:ring-ring focus-visible:ring-offset-background relative block w-full touch-manipulation rounded-2xl text-start shadow-sm transition-[scale,background-color,box-shadow] duration-(--duration-fast) ease-out outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] motion-reduce:transition-[background-color,box-shadow]',
 		// Holds the slot at the card's exact size and marks where it returns to.
 		'data-[state=open]:bg-secondary data-[state=open]:shadow-none',
 		className
@@ -363,7 +369,7 @@
 						type="button"
 						aria-label={closeLabel}
 						class={cn(
-							'text-muted-foreground hover:bg-secondary hover:text-foreground focus-visible:ring-ring relative -mt-1.5 -mr-1.5 inline-flex size-8 shrink-0 items-center justify-center rounded-full transition-[scale,background-color,color] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 active:scale-[0.96]',
+							'text-muted-foreground hover:bg-secondary hover:text-foreground focus-visible:ring-ring relative -me-1.5 -mt-1.5 inline-flex size-8 shrink-0 items-center justify-center rounded-full transition-[scale,background-color,color] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 active:scale-[0.96]',
 							// Grows the hit area to 44px around the 32px circle.
 							'after:absolute after:-inset-1.5 after:rounded-full',
 							closing ? 'invisible' : 'expanding-card-arrive'

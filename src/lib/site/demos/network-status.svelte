@@ -35,7 +35,7 @@
 		<ChatBubble role="user">Move my 3pm with Priya to Thursday.</ChatBubble>
 		<ChatBubble role="assistant">Done. I also let her know the new time.</ChatBubble>
 		<ChatBubble role="user">And draft the agenda for it.</ChatBubble>
-		<p class="text-muted-foreground mt-1 text-right text-xs">
+		<p class="text-muted-foreground mt-1 text-end text-xs">
 			{offline ? 'Queued on this device' : 'Delivered'}
 		</p>
 		{#if variant === 'inline'}

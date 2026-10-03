@@ -72,8 +72,10 @@
 	const waiting = $derived(!children && !!match && isPlatformKey(match) && mac === null);
 </script>
 
+<!-- A key reads in its own direction, so a cap like ⌘K keeps its order inside right-to-left text. -->
 <kbd
 	bind:this={ref}
+	dir="auto"
 	data-pressed={down ? '' : undefined}
 	class={cn(
 		'bg-muted text-muted-foreground inline-flex h-5 min-w-5 items-center justify-center rounded-xs px-1.5 font-mono text-xs font-medium shadow-xs',

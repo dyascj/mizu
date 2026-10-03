@@ -11,8 +11,8 @@ describe('Dialog', () => {
 		await fireEvent.click(screen.getByRole('button', { name: 'Settings' }));
 		const content = await screen.findByRole('dialog', { name: 'Assistant settings' });
 		expect(content).toHaveAttribute('aria-modal', 'true');
-		expect(content.className).toContain('data-starting-style:scale-[0.96]');
-		expect(content.className).toContain('data-ending-style:scale-[0.98]');
+		expect(content.className).toContain('motion-safe:data-starting-style:scale-[0.96]');
+		expect(content.className).toContain('motion-safe:data-ending-style:scale-[0.98]');
 	});
 
 	test('the scrim fades in from its starting style, with no open-state rule to outrank it', async () => {

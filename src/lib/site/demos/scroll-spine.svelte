@@ -85,7 +85,7 @@
 	<!-- Headings beside the bands when there is room; bands alone on a phone,
 	     where each heading shows on hover or focus. -->
 	<div
-		class="flex w-12 shrink-0 flex-col items-center pt-6 @min-[32rem]:w-52 @min-[32rem]:items-stretch @min-[32rem]:pr-5 @min-[32rem]:pl-6"
+		class="flex w-12 shrink-0 flex-col items-center pt-6 @min-[32rem]:w-52 @min-[32rem]:items-stretch @min-[32rem]:ps-6 @min-[32rem]:pe-5"
 	>
 		<p class="text-muted-foreground mb-4 hidden text-xs font-medium @min-[32rem]:block">
 			On this page

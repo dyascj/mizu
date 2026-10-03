@@ -17,7 +17,7 @@
 		size?: number;
 		/** Form field name. Renders a hidden input with the score. */
 		name?: string;
-		/** Lets the left half of a mark score a half point. */
+		/** Lets the leading half of a mark (the left, or the right in right-to-left text) score a half point. */
 		allowHalf?: boolean;
 		/** Classes for the row of marks. */
 		class?: string;
@@ -121,7 +121,10 @@
 		const i = Number(el.dataset.ratingIndex);
 		if (!allowHalf) return i;
 		const { left, width } = el.getBoundingClientRect();
-		return e.clientX - left < width / 2 ? i - 0.5 : i;
+		// The row mirrors in right-to-left text, so the leading half is the right one.
+		const leading =
+			getComputedStyle(el).direction === 'rtl' ? left + width - e.clientX : e.clientX - left;
+		return leading < width / 2 ? i - 0.5 : i;
 	}
 
 	function handleMove(e: PointerEvent) {
@@ -139,13 +142,19 @@
 
 	function onkeydown(e: KeyboardEvent) {
 		if (!interactive) return;
+		// The row mirrors in right-to-left text, so the arrows follow what they point at.
+		const rtl = getComputedStyle(e.currentTarget as Element).direction === 'rtl';
 		let next: number;
 		switch (e.key) {
 			case 'ArrowRight':
+				next = committed + (rtl ? -step : step);
+				break;
+			case 'ArrowLeft':
+				next = committed + (rtl ? step : -step);
+				break;
 			case 'ArrowUp':
 				next = committed + step;
 				break;
-			case 'ArrowLeft':
 			case 'ArrowDown':
 				next = committed - step;
 				break;
@@ -220,16 +229,16 @@
 			<!-- Filled overlay, clipped to the fill fraction. It glides rather than
 			     snaps, so sweeping across the marks fills them like a pour, and a
 			     fast sweep retargets mid-flight instead of lagging. The inner icon
-			     keeps the full droplet's position so a half clip reveals its left
+			     keeps the full droplet's position so a half clip reveals its leading
 			     half. A preview reads lighter than a committed score. -->
 			<span
-				class="absolute top-0 left-0 h-full overflow-hidden transition-[width] duration-(--duration-base) ease-out motion-reduce:transition-none"
+				class="absolute start-0 top-0 h-full overflow-hidden transition-[width] duration-(--duration-base) ease-out motion-reduce:transition-none"
 				style="width: {fill * normalizedSize}px;"
 				aria-hidden="true"
 			>
 				<DropletIcon
 					class={cn(
-						'absolute top-0 left-0 transition-colors duration-(--duration-fast) ease-out',
+						'absolute start-0 top-0 transition-colors duration-(--duration-fast) ease-out',
 						previewing ? 'text-primary/55' : 'text-primary'
 					)}
 					size={normalizedSize}

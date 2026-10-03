@@ -13,7 +13,7 @@
 	let cancel = $state<HTMLElement | null>(null);
 </script>
 
-<div class="bg-card flex w-full max-w-sm items-center gap-3 rounded-full py-2 pr-2 pl-2 shadow-sm">
+<div class="bg-card flex w-full max-w-sm items-center gap-3 rounded-full p-2 shadow-sm">
 	<span
 		class="bg-secondary text-muted-foreground grid size-10 shrink-0 place-items-center rounded-full"
 	>
@@ -46,7 +46,7 @@
 					<Label for="assistant-name">Name</Label>
 					<Input id="assistant-name" bind:value={draft} autocomplete="off" spellcheck={false} />
 				</div>
-				<div class="bg-secondary flex flex-wrap items-center gap-3 rounded-2xl py-2.5 pr-2.5 pl-4">
+				<div class="bg-secondary flex flex-wrap items-center gap-3 rounded-2xl py-2.5 ps-4 pe-2.5">
 					<p class="text-muted-foreground min-w-0 flex-1 text-sm text-pretty">
 						Delete this assistant and its 1,240 conversations.
 					</p>

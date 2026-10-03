@@ -15,5 +15,5 @@
 		onAnswer={(helpful, note) => (saved = helpful ? 'Saved: helpful' : `Saved: "${note}"`)}
 		onUndo={() => (saved = '')}
 	/>
-	<p class="text-muted-foreground min-h-5 pl-1 text-xs">{saved}</p>
+	<p class="text-muted-foreground min-h-5 ps-1 text-xs">{saved}</p>
 </div>

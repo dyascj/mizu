@@ -2,8 +2,8 @@ import type { Attachment } from 'svelte/attachments';
 import { duration } from '$lib/components/ui/motion';
 
 export type ShatterOptions = {
-	/** Where the cleared slice sat, as a percentage of the bar's width. */
-	left: number;
+	/** Where the cleared slice began, as a percentage of the bar's width from its start edge. */
+	start: number;
 	/** The slice's width, as a percentage of the bar's width. */
 	width: number;
 	/** Any CSS color; the slice's own resolved fill. */
@@ -58,8 +58,12 @@ export function shatter(options: ShatterOptions): Attachment<HTMLCanvasElement> 
 		const rand = Math.random;
 		// The slice squashes to under half its height before it breaks.
 		const squashed = bar * 0.45;
-		const x0 = (options.left / 100) * W;
-		const w = Math.max(6, (options.width / 100) * W - 2);
+		// The slice keeps its 2px gap at its end edge, which is the left in right-to-left text.
+		const span = (options.width / 100) * W;
+		const offset = (options.start / 100) * W;
+		const rtl = getComputedStyle(canvas).direction === 'rtl';
+		const x0 = rtl ? W - offset - span + 2 : offset;
+		const w = Math.max(6, span - 2);
 		const y0 = above + (bar - squashed) / 2;
 		const cx = x0 + w / 2;
 		const floor = above + bar + shelf;

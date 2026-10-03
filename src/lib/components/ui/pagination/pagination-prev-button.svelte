@@ -26,7 +26,7 @@
 	{#if children}
 		{@render children()}
 	{:else}
-		<ChevronLeft class="size-4" aria-hidden="true" />
+		<ChevronLeft class="size-4 rtl:rotate-180" aria-hidden="true" />
 		<span>Previous</span>
 	{/if}
 </PaginationPrimitive.PrevButton>

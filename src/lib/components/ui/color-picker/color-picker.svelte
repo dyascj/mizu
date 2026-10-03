@@ -384,8 +384,10 @@
 	</div>
 
 	<div class="flex gap-2">
+		<!-- Hex reads left to right in any language, with its # in front. -->
 		<label
 			for="{uid}-hex"
+			dir="ltr"
 			class={cn(
 				'bg-control flex h-9 min-w-0 flex-1 cursor-text items-center rounded-full px-3 font-mono text-sm transition-[box-shadow] duration-(--duration-fast) ease-out focus-within:ring-2',
 				invalid ? 'ring-destructive ring-2' : 'focus-within:ring-ring'
@@ -409,7 +411,7 @@
 				spellcheck={false}
 				autocomplete="off"
 				autocapitalize="characters"
-				class="text-foreground min-w-0 flex-1 bg-transparent pl-0.5 outline-none"
+				class="text-foreground min-w-0 flex-1 bg-transparent ps-0.5 outline-none"
 				onfocus={(event) => {
 					draft = hex.slice(1);
 					event.currentTarget.select();

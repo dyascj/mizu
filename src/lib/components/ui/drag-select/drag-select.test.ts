@@ -53,6 +53,20 @@ describe('DragSelect', () => {
 		expect(picked()).toEqual([]);
 	});
 
+	test('arrow keys follow the mirrored grid in right-to-left text', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const { listbox, option } = setup();
+			option('Roadmap').focus();
+			await fireEvent.keyDown(listbox, { key: 'ArrowLeft' });
+			expect(document.activeElement).toBe(option('Pricing'));
+			await fireEvent.keyDown(listbox, { key: 'ArrowRight' });
+			expect(document.activeElement).toBe(option('Roadmap'));
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('announces the count and swaps Select all for Clear', async () => {
 		const { container, picked } = setup();
 		const live = container.querySelector('[aria-live="polite"]');

@@ -108,8 +108,8 @@
 	data-slot="sidebar-menu"
 	data-sidebar="menu"
 	class={cn(
-		'relative flex w-full min-w-0 flex-col gap-1',
-		'before:bg-primary-muted before:pointer-events-none before:absolute before:top-0 before:left-0 before:hidden before:h-(--menu-glide-height) before:w-(--menu-glide-width) before:[translate:var(--menu-glide-x)_var(--menu-glide-y)] before:rounded-md before:[transition:var(--menu-glide-transition,none)] data-glide:before:block',
+		'relative flex w-full min-w-0 flex-col gap-0.5',
+		'before:bg-secondary before:pointer-events-none before:absolute before:top-0 before:left-0 before:hidden before:h-(--menu-glide-height) before:w-(--menu-glide-width) before:[translate:var(--menu-glide-x)_var(--menu-glide-y)] before:rounded-lg before:[transition:var(--menu-glide-transition,none)] data-glide:before:block',
 		className
 	)}
 	{...restProps}

@@ -64,7 +64,7 @@
 			{/each}
 		</article>
 	</div>
-	<div class="absolute right-4 bottom-4">
+	<div class="absolute end-4 bottom-4">
 		<BackToTop target={scroller} showAfter={0.3} />
 	</div>
 </div>

@@ -38,7 +38,7 @@
 		buttonVariants({ variant, size: 'icon' }),
 		'absolute z-20 size-9 rounded-full disabled:pointer-events-none disabled:opacity-50',
 		ctx.orientation === 'horizontal'
-			? 'top-1/2 -left-4 -translate-y-1/2'
+			? '-start-4 top-1/2 -translate-y-1/2'
 			: '-top-4 left-1/2 -translate-x-1/2 rotate-90',
 		className
 	)}
@@ -46,6 +46,8 @@
 	onclick={ctx.scrollPrev}
 	{...rest}
 >
-	<ArrowLeftIcon class="relative z-10 size-4" />
+	<ArrowLeftIcon
+		class={cn('relative z-10 size-4', ctx.orientation === 'horizontal' && 'rtl:rotate-180')}
+	/>
 	<span class="sr-only">Previous slide</span>
 </button>

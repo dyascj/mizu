@@ -3,13 +3,18 @@
 	import * as Collapsible from '$lib/components/ui/collapsible';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { AuraTile } from '$lib/components/ui/aura-tile';
+	import { Kbd } from '$lib/components/ui/kbd';
 	import HouseIcon from '@lucide/svelte/icons/house';
 	import BotIcon from '@lucide/svelte/icons/bot';
 	import LibraryIcon from '@lucide/svelte/icons/library';
 	import SettingsIcon from '@lucide/svelte/icons/settings';
+	import ChevronDownIcon from '@lucide/svelte/icons/chevron-down';
 	import ChevronRightIcon from '@lucide/svelte/icons/chevron-right';
 
 	let active = $state('home');
+	let query = $state('');
+	let sectionOpen = $state(true);
+	let agentsOpen = $state(true);
 
 	const pages: Record<string, { title: string; stat: [string, string]; focus: [string, string] }> =
 		{
@@ -21,16 +26,38 @@
 			settings: { title: 'Settings', stat: ['Members', '6'], focus: ['Plan', 'Team'] }
 		};
 	const page = $derived(pages[active]);
+
+	type Item = { id: string; label: string; icon: typeof HouseIcon; badge?: string };
+	const agents = [
+		{ id: 'era', label: 'Era, trip plan' },
+		{ id: 'fjord', label: 'Fjord, blog draft' },
+		{ id: 'super', label: 'Super, inbox watch' }
+	];
+	const nav: (Item | 'agents')[] = [
+		{ id: 'home', label: 'Home', icon: HouseIcon },
+		'agents',
+		{ id: 'library', label: 'Library', icon: LibraryIcon, badge: '12' },
+		{ id: 'settings', label: 'Settings', icon: SettingsIcon }
+	];
+
+	// Filtering opens every section, like the docs sidebar.
+	const q = $derived(query.trim().toLowerCase());
+	const hit = (label: string) => !q || label.toLowerCase().includes(q);
+	const shownAgents = $derived(agents.filter((a) => hit(a.label) || hit('Agents')));
+	const shown = $derived(nav.filter((i) => (i === 'agents' ? shownAgents.length : hit(i.label))));
+	const matches = $derived(
+		shown.reduce((n, i) => n + (i === 'agents' ? shownAgents.length : 1), 0)
+	);
 </script>
 
 <Tooltip.Provider>
 	<div
-		class="bg-background h-96 w-full [transform:translateZ(0)] overflow-hidden rounded-2xl shadow-md"
+		class="bg-background h-[30rem] w-full [transform:translateZ(0)] overflow-hidden rounded-2xl shadow-md"
 	>
 		<Sidebar.Provider class="h-full min-h-0">
 			<Sidebar.Root collapsible="icon" class="h-full">
-				<Sidebar.Header>
-					<div class="flex items-center gap-2 overflow-hidden px-1 py-0.5">
+				<Sidebar.Header class="gap-3">
+					<div class="flex items-center gap-2 overflow-hidden px-0.5">
 						<AuraTile seed="Mizu" class="size-7 shrink-0 rounded-full" />
 						<span
 							class="text-sm font-semibold tracking-tight whitespace-nowrap transition-[opacity,filter] delay-(--duration-instant) duration-(--duration-base) ease-out group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:blur-[4px] group-data-[collapsible=icon]:delay-0 group-data-[collapsible=icon]:duration-(--duration-instant) group-data-[collapsible=icon]:ease-in motion-reduce:blur-none"
@@ -38,105 +65,106 @@
 							Mizu
 						</span>
 					</div>
+					<Sidebar.Input bind:value={query} placeholder="Search" aria-label="Filter pages">
+						<Kbd>⌘K</Kbd>
+					</Sidebar.Input>
+					<span role="status" class="sr-only">{q ? `${matches} results` : ''}</span>
 				</Sidebar.Header>
 
-				<Sidebar.Content>
-					<Sidebar.Group>
-						<Sidebar.GroupLabel>Workspace</Sidebar.GroupLabel>
-						<Sidebar.GroupContent>
-							<Sidebar.Menu>
-								<Sidebar.MenuItem>
-									<Sidebar.MenuButton
-										isActive={active === 'home'}
-										onclick={() => (active = 'home')}
-										tooltipContent="Home"
-									>
-										<HouseIcon />
-										<span>Home</span>
-									</Sidebar.MenuButton>
-								</Sidebar.MenuItem>
-
-								<Sidebar.MenuItem>
-									<Collapsible.Root open class="group/collapsible">
-										<Collapsible.Trigger>
-											{#snippet child({ props })}
-												<Sidebar.MenuButton {...props} tooltipContent="Agents">
-													<BotIcon />
-													<span>Agents</span>
-													<ChevronRightIcon
-														class="ms-auto transition-[rotate] duration-(--duration-base) ease-out group-data-[state=open]/collapsible:rotate-90"
-													/>
-												</Sidebar.MenuButton>
-											{/snippet}
-										</Collapsible.Trigger>
-										<!-- The rail has no room for sub-items: they fold away with the rail and
-										     return when it opens. -->
-										<div
-											class="grid grid-rows-[1fr] transition-[grid-template-rows] duration-(--duration-spring-snappy) ease-(--ease-spring-snappy) group-data-[collapsible=icon]:grid-rows-[0fr] motion-reduce:transition-none"
-										>
-											<div class="min-h-0 overflow-hidden">
-												<Collapsible.Content>
-													<Sidebar.MenuSub>
-														<Sidebar.MenuSubItem>
-															<Sidebar.MenuSubButton
-																isActive={active === 'era'}
-																onclick={() => (active = 'era')}
-															>
-																<span>Era, trip plan</span>
-															</Sidebar.MenuSubButton>
-														</Sidebar.MenuSubItem>
-														<Sidebar.MenuSubItem>
-															<Sidebar.MenuSubButton
-																isActive={active === 'fjord'}
-																onclick={() => (active = 'fjord')}
-															>
-																<span>Fjord, blog draft</span>
-															</Sidebar.MenuSubButton>
-														</Sidebar.MenuSubItem>
-														<Sidebar.MenuSubItem>
-															<Sidebar.MenuSubButton
-																isActive={active === 'super'}
-																onclick={() => (active = 'super')}
-															>
-																<span>Super, inbox watch</span>
-															</Sidebar.MenuSubButton>
-														</Sidebar.MenuSubItem>
-													</Sidebar.MenuSub>
-												</Collapsible.Content>
-											</div>
-										</div>
-									</Collapsible.Root>
-								</Sidebar.MenuItem>
-
-								<Sidebar.MenuItem>
-									<Sidebar.MenuButton
-										isActive={active === 'library'}
-										onclick={() => (active = 'library')}
-										tooltipContent="Library"
-									>
-										<LibraryIcon />
-										<span>Library</span>
-									</Sidebar.MenuButton>
-									<Sidebar.MenuBadge>12</Sidebar.MenuBadge>
-								</Sidebar.MenuItem>
-
-								<Sidebar.MenuItem>
-									<Sidebar.MenuButton
-										isActive={active === 'settings'}
-										onclick={() => (active = 'settings')}
-										tooltipContent="Settings"
-									>
-										<SettingsIcon />
-										<span>Settings</span>
-									</Sidebar.MenuButton>
-								</Sidebar.MenuItem>
-							</Sidebar.Menu>
-						</Sidebar.GroupContent>
-					</Sidebar.Group>
+				<Sidebar.Content class="px-1">
+					<Collapsible.Root
+						open={sectionOpen || !!q}
+						onOpenChange={(v) => (sectionOpen = v)}
+						class="group/section"
+					>
+						<Sidebar.Group>
+							<Sidebar.GroupLabel>
+								{#snippet child({ props })}
+									<Collapsible.Trigger {...props}>
+										<span class="flex-1">Workspace</span>
+										<span class="text-muted-foreground text-xs font-normal tabular-nums">
+											{matches}
+										</span>
+										<ChevronDownIcon
+											class="size-3.5 transition-transform duration-(--duration-fast) group-data-[state=closed]/section:-rotate-90 rtl:group-data-[state=closed]/section:rotate-90"
+										/>
+									</Collapsible.Trigger>
+								{/snippet}
+							</Sidebar.GroupLabel>
+							<Collapsible.Content>
+								<Sidebar.GroupContent>
+									<Sidebar.Menu>
+										{#each shown as item (item === 'agents' ? item : item.id)}
+											{#if item === 'agents'}
+												<Sidebar.MenuItem>
+													<Collapsible.Root
+														open={agentsOpen || !!q}
+														onOpenChange={(v) => (agentsOpen = v)}
+														class="group/collapsible"
+													>
+														<Collapsible.Trigger>
+															{#snippet child({ props })}
+																<Sidebar.MenuButton {...props} tooltipContent="Agents">
+																	<BotIcon />
+																	<span>Agents</span>
+																	<ChevronRightIcon
+																		class="ms-auto transition-[rotate] duration-(--duration-base) ease-out group-data-[state=open]/collapsible:rotate-90 rtl:rotate-180 rtl:group-data-[state=open]/collapsible:rotate-90"
+																	/>
+																</Sidebar.MenuButton>
+															{/snippet}
+														</Collapsible.Trigger>
+														<!-- The rail has no room for sub-items: they fold away with the rail
+														     and return when it opens. -->
+														<div
+															class="grid grid-rows-[1fr] transition-[grid-template-rows] duration-(--duration-spring-snappy) ease-(--ease-spring-snappy) group-data-[collapsible=icon]:grid-rows-[0fr] motion-reduce:transition-none"
+														>
+															<div class="min-h-0 overflow-hidden">
+																<Collapsible.Content>
+																	<Sidebar.MenuSub>
+																		{#each shownAgents as agent (agent.id)}
+																			<Sidebar.MenuSubItem>
+																				<Sidebar.MenuSubButton
+																					isActive={active === agent.id}
+																					onclick={() => (active = agent.id)}
+																				>
+																					<span>{agent.label}</span>
+																				</Sidebar.MenuSubButton>
+																			</Sidebar.MenuSubItem>
+																		{/each}
+																	</Sidebar.MenuSub>
+																</Collapsible.Content>
+															</div>
+														</div>
+													</Collapsible.Root>
+												</Sidebar.MenuItem>
+											{:else}
+												<Sidebar.MenuItem>
+													<Sidebar.MenuButton
+														isActive={active === item.id}
+														onclick={() => (active = item.id)}
+														tooltipContent={item.label}
+													>
+														<item.icon />
+														<span>{item.label}</span>
+													</Sidebar.MenuButton>
+													{#if item.badge}<Sidebar.MenuBadge>{item.badge}</Sidebar.MenuBadge>{/if}
+												</Sidebar.MenuItem>
+											{/if}
+										{/each}
+									</Sidebar.Menu>
+									{#if !matches}
+										<p class="text-muted-foreground px-2 py-4 text-sm">
+											No matches for “{query.trim()}”.
+										</p>
+									{/if}
+								</Sidebar.GroupContent>
+							</Collapsible.Content>
+						</Sidebar.Group>
+					</Collapsible.Root>
 				</Sidebar.Content>
 
 				<Sidebar.Footer>
-					<div class="flex items-center gap-2 overflow-hidden px-1 py-0.5">
+					<div class="flex items-center gap-2 overflow-hidden px-0.5">
 						<span
 							class="bg-secondary text-foreground flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold"
 						>

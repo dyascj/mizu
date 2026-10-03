@@ -36,7 +36,7 @@
 >
 	<div
 		bind:this={ref}
-		class={cn('flex', ctx.orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col', className)}
+		class={cn('flex', ctx.orientation === 'horizontal' ? '-ms-4' : '-mt-4 flex-col', className)}
 		{...rest}
 	>
 		{@render children?.()}

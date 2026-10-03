@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Mic from '@lucide/svelte/icons/mic';
+	import MicOff from '@lucide/svelte/icons/mic-off';
 	import X from '@lucide/svelte/icons/x';
 	import { Aurora } from '$lib/components/ui/aurora';
 	import { Button } from '$lib/components/ui/button';
@@ -37,11 +38,11 @@
 			<Button
 				variant={muted ? 'primary' : 'outline'}
 				size="icon"
-				aria-label={muted ? 'Unmute' : 'Mute'}
+				aria-label="Mute"
 				aria-pressed={muted}
 				onclick={() => (muted = !muted)}
 			>
-				<Mic class="size-4" />
+				{#if muted}<MicOff class="size-4" />{:else}<Mic class="size-4" />{/if}
 			</Button>
 			<Button variant="secondary" size="lg" onclick={() => (ended = true)}>Done</Button>
 			<Button

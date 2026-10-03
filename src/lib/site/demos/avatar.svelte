@@ -33,7 +33,7 @@
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger
 			aria-label="Maya Ruiz, {current.label}. Change status"
-			class="hover:bg-secondary data-[state=open]:bg-secondary focus-visible:ring-ring focus-visible:ring-offset-background flex items-center gap-3 rounded-2xl py-2 pr-4 pl-2 text-left transition-[background-color,scale] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98]"
+			class="hover:bg-secondary data-[state=open]:bg-secondary focus-visible:ring-ring focus-visible:ring-offset-background flex items-center gap-3 rounded-2xl py-2 ps-2 pe-4 text-start transition-[background-color,scale] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98]"
 		>
 			<Avatar.Root {status}>
 				<Avatar.Fallback>MR</Avatar.Fallback>
@@ -48,7 +48,7 @@
 				{#each presences as presence (presence.value)}
 					<DropdownMenu.RadioItem
 						value={presence.value}
-						class="gap-3 py-2 pl-3 [&>span:first-child]:hidden"
+						class="gap-3 py-2 ps-3 [&>span:first-child]:hidden"
 					>
 						<Avatar.Status status={presence.value} class="size-4" />
 						<span class="min-w-0 flex-1">

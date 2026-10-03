@@ -17,12 +17,29 @@
 		orientation?: 'vertical' | 'horizontal' | 'both';
 		children: Snippet;
 	} = $props();
+
+	// bits-ui writes `dir="ltr"` on the root unless told otherwise, which would
+	// undo a right-to-left page inside the area. Without a `dir` prop, follow
+	// the surrounding direction instead.
+	let inherited = $state<'ltr' | 'rtl'>('ltr');
+	$effect(() => {
+		const parent = ref?.parentElement;
+		if (parent) inherited = getComputedStyle(parent).direction === 'rtl' ? 'rtl' : 'ltr';
+	});
 </script>
 
-<ScrollAreaPrimitive.Root bind:ref class={cn('relative overflow-hidden', className)} {...restProps}>
+<ScrollAreaPrimitive.Root
+	bind:ref
+	class={cn('relative overflow-hidden', className)}
+	{...restProps}
+	dir={restProps.dir ?? inherited}
+>
 	<ScrollAreaPrimitive.Viewport
 		tabindex={0}
-		class={cn('h-full w-full rounded-[inherit]', viewportClass)}
+		class={cn(
+			'focus-visible:ring-ring h-full w-full rounded-[inherit] outline-none focus-visible:ring-2 focus-visible:ring-inset',
+			viewportClass
+		)}
 	>
 		{@render children?.()}
 	</ScrollAreaPrimitive.Viewport>

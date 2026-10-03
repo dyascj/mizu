@@ -22,4 +22,11 @@ describe('ToolCall', () => {
 		expect(screen.getByRole('button', { name: /Searching/ })).toBeDisabled();
 		expect(screen.queryByText('Tool result')).not.toBeInTheDocument();
 	});
+
+	test('speaks its state and only claims to expand when it has a result', () => {
+		render(ToolCall, { name: 'Book the table', state: 'error' });
+		const button = screen.getByRole('button', { name: /Book the table/ });
+		expect(button).toHaveAccessibleName(/Failed/);
+		expect(button).not.toHaveAttribute('aria-expanded');
+	});
 });

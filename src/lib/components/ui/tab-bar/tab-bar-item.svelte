@@ -109,10 +109,10 @@
 			class={cn(
 				'bg-primary text-primary-foreground absolute -top-1 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[0.625rem] leading-none font-semibold tabular-nums shadow-xs',
 				inline
-					? 'left-[calc(100%-0.75rem)]'
+					? 'start-[calc(100%-0.75rem)]'
 					: floating
-						? 'left-[calc(50%+0.375rem)]'
-						: 'left-[calc(50%+0.5rem)]'
+						? 'start-[calc(50%+0.375rem)]'
+						: 'start-[calc(50%+0.5rem)]'
 			)}
 		>
 			{count > 99 ? '99+' : count}
@@ -167,7 +167,7 @@
 			<span class="min-w-0 overflow-hidden">
 				<span
 					class={cn(
-						'block pl-2 text-sm leading-none font-medium tracking-tight whitespace-nowrap transition-[opacity,filter] motion-reduce:blur-none',
+						'block ps-2 text-sm leading-none font-medium tracking-tight whitespace-nowrap transition-[opacity,filter] motion-reduce:blur-none',
 						active
 							? 'opacity-100 blur-none delay-(--stagger) duration-(--duration-base) ease-out'
 							: 'opacity-0 blur-xs duration-(--duration-instant) ease-in'

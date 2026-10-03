@@ -69,7 +69,7 @@
 
 	function select(index: number) {
 		const name = files[index]?.name;
-		if (name === undefined || name === value) return;
+		if (name === undefined || index === active) return;
 		value = name;
 		onValueChange?.(name);
 	}
@@ -100,10 +100,12 @@
 
 	function onkeydown(event: KeyboardEvent, index: number) {
 		const count = files.length;
+		// The tabs mirror in right-to-left text, so the arrows follow what is on screen.
+		const rtl = getComputedStyle(event.currentTarget as Element).direction === 'rtl';
 		const next =
-			event.key === 'ArrowRight'
+			event.key === (rtl ? 'ArrowLeft' : 'ArrowRight')
 				? (index + 1) % count
-				: event.key === 'ArrowLeft'
+				: event.key === (rtl ? 'ArrowRight' : 'ArrowLeft')
 					? (index - 1 + count) % count
 					: event.key === 'Home'
 						? 0
@@ -130,7 +132,7 @@
 	)}
 >
 	<div
-		class="flex h-11 items-stretch justify-between gap-2 pr-1.5 pl-2 shadow-[inset_0_-1px_0_var(--border)]"
+		class="flex h-11 items-stretch justify-between gap-2 ps-2 pe-1.5 shadow-[inset_0_-1px_0_var(--border)]"
 	>
 		<div
 			bind:this={list}
@@ -204,7 +206,7 @@
 						: 'opacity-0 blur-[4px] duration-(--duration-fast) motion-reduce:blur-none'
 				)}
 			>
-				<pre class="min-w-max py-3 font-mono text-[13px] leading-6"><code
+				<pre dir="ltr" class="min-w-max py-3 font-mono text-[13px] leading-6"><code
 						>{#each highlighted[index] as line, number (number)}<span class="flex min-h-6"
 								>{#if lineNumbers}<span
 										aria-hidden="true"

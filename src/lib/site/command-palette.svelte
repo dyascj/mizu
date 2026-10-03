@@ -27,7 +27,11 @@
 		{#each groups as group (group.category)}
 			<Command.Group heading={group.category}>
 				{#each group.items as c (c.slug)}
-					<Command.Item value={c.name} onSelect={() => go(`/docs/components/${c.slug}`)}>
+					<!-- Values must be unique: "Motion" is both a guide and a component. -->
+					<Command.Item
+						value={`${c.name} component`}
+						onSelect={() => go(`/docs/components/${c.slug}`)}
+					>
 						{c.name}
 					</Command.Item>
 				{/each}

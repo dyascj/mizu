@@ -52,6 +52,22 @@ describe('ColorSwatches', () => {
 		expect(screen.getByRole('radio', { name: 'Graphite' })).toHaveFocus();
 	});
 
+	test('arrow keys follow the mirrored row in right-to-left text', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const onValueChange = vi.fn();
+			render(ColorSwatches, { swatches, value: 'Graphite', label: 'Color', onValueChange });
+			await fireEvent.keyDown(screen.getByRole('radio', { name: 'Graphite' }), {
+				key: 'ArrowLeft'
+			});
+			expect(onValueChange).toHaveBeenLastCalledWith('Clay');
+			await fireEvent.keyDown(document.activeElement!, { key: 'ArrowRight' });
+			expect(onValueChange).toHaveBeenLastCalledWith('Graphite');
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('draws a single ring on the checked swatch and uses the given ink', async () => {
 		const { container } = render(ColorSwatches, { swatches, value: 'Clay', label: 'Color' });
 		expect(container.querySelectorAll('[data-slot="color-swatches-ring"]')).toHaveLength(1);

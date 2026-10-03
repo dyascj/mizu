@@ -53,6 +53,20 @@ describe('BarChart', () => {
 		expect(document.activeElement).toBe(bars[0]);
 	});
 
+	test('right to left, ArrowLeft moves to the next bar', async () => {
+		const target = document.body.appendChild(document.createElement('div'));
+		target.dir = 'rtl';
+		target.style.direction = 'rtl';
+		render(BarChart, { target, props: { data, label: 'Tokens per day' } });
+		const bars = screen.getAllByRole('img');
+		bars[0].focus();
+		await fireEvent.keyDown(bars[0], { key: 'ArrowLeft' });
+		expect(document.activeElement).toBe(bars[1]);
+		await fireEvent.keyDown(bars[1], { key: 'ArrowRight' });
+		expect(document.activeElement).toBe(bars[0]);
+		target.remove();
+	});
+
 	test('shows the readout for the focused bar and dims the rest', async () => {
 		const { bars } = setup();
 		const readout = (bar: HTMLElement) => bar.querySelector('.shadow-lg') as HTMLElement;
@@ -69,7 +83,7 @@ describe('BarChart', () => {
 
 	test('rounds the scale up and labels the ticks', () => {
 		const { container } = setup();
-		const labels = Array.from(container.querySelectorAll('.absolute.right-0')).map((tick) =>
+		const labels = Array.from(container.querySelectorAll('.absolute.end-0')).map((tick) =>
 			tick.textContent?.trim()
 		);
 		expect(labels).toEqual(['0M', '5M', '10M']);

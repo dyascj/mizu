@@ -41,10 +41,16 @@ export function scrollFrame(): Attachment<HTMLElement> {
 			toggle(next, hovering && end);
 		};
 
+		// RTL rows scroll from 0 at the start down to -max, so the scroll range
+		// and the vertical wheel flip. Fades and page buttons stay physical.
+		const rtl = () => getComputedStyle(scroller).direction === 'rtl';
+
 		const update = () => {
 			const max = scroller.scrollWidth - scroller.clientWidth;
-			// Clamped at both ends: overscroll on touch can report past the range.
-			const before = Math.min(Math.max(scroller.scrollLeft, 0), Math.max(max, 0));
+			// Hidden past the left edge. Clamped at both ends: overscroll on touch
+			// can report past the range.
+			const left = rtl() ? scroller.scrollLeft + max : scroller.scrollLeft;
+			const before = Math.min(Math.max(left, 0), Math.max(max, 0));
 			const after = Math.max(max - before, 0);
 			scroller.style.setProperty('--fade-start', `${Math.min(before, fade)}px`);
 			scroller.style.setProperty('--fade-end', `${Math.min(after, fade)}px`);
@@ -86,13 +92,17 @@ export function scrollFrame(): Attachment<HTMLElement> {
 			if (precise && !vertical) return;
 
 			const max = scroller.scrollWidth - scroller.clientWidth;
+			const mirrored = rtl();
+			const low = mirrored ? -max : 0;
+			const high = mirrored ? 0 : max;
 			// Pick up from wherever the row is when nothing is gliding, so a click or
 			// scrollbar drag in between is respected.
 			if (!raf) target = position = scroller.scrollLeft;
-			if ((delta < 0 && target <= 0) || (delta > 0 && target >= max - 1)) return;
+			// A vertical wheel moves toward the end of the row, which is leftward in RTL.
+			const px = (event.deltaMode === 1 ? delta * 16 : delta) * (vertical && mirrored ? -1 : 1);
+			if ((px < 0 && target <= low) || (px > 0 && target >= high - 1)) return;
 			event.preventDefault();
-			const px = event.deltaMode === 1 ? delta * 16 : delta;
-			target = Math.min(Math.max(target + px, 0), max);
+			target = Math.min(Math.max(target + px, low), high);
 
 			if (precise || prefersReducedMotion()) {
 				stop();

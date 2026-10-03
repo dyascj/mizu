@@ -82,7 +82,7 @@
 				aria-label="Mute"
 				aria-pressed={muted}
 				onclick={() => (muted = !muted)}
-				class="hover:bg-background/10 focus-visible:ring-background -mr-1.5 grid size-11 shrink-0 touch-manipulation place-items-center rounded-full transition-[scale,background-color] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 active:scale-[0.96] motion-reduce:transition-[background-color]"
+				class="hover:bg-background/10 focus-visible:ring-background -me-1.5 grid size-11 shrink-0 touch-manipulation place-items-center rounded-full transition-[scale,background-color] duration-(--duration-fast) ease-out outline-none focus-visible:ring-2 active:scale-[0.96] motion-reduce:transition-[background-color]"
 			>
 				<Mic class={cn('col-start-1 row-start-1 size-5', muted ? iconHidden : iconShown)} />
 				<MicOff class={cn('col-start-1 row-start-1 size-5', muted ? iconShown : iconHidden)} />

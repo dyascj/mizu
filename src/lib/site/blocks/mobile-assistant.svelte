@@ -76,13 +76,13 @@
 				<button
 					type="button"
 					onclick={reset}
-					class="text-muted-foreground hover:text-foreground -ml-2 inline-flex min-h-11 items-center gap-1 rounded-full px-2 text-sm transition-colors"
+					class="text-muted-foreground hover:text-foreground -ms-2 inline-flex min-h-11 items-center gap-1 rounded-full px-2 text-sm transition-colors"
 				>
-					<ArrowLeft class="size-4" /> Home
+					<ArrowLeft class="size-4 rtl:rotate-180" /> Home
 				</button>
 				<div class="mt-6 flex flex-col gap-5">
 					<p
-						class="bg-secondary animate-rise-in ml-auto max-w-[85%] rounded-3xl px-4 py-2.5 text-sm"
+						class="bg-secondary animate-rise-in ms-auto max-w-[85%] rounded-3xl px-4 py-2.5 text-sm"
 					>
 						{question}
 					</p>
@@ -113,7 +113,7 @@
 						<button
 							type="button"
 							onclick={() => ask(starter.title)}
-							class="bg-secondary hover:bg-accent animate-rise-in stagger flex w-40 shrink-0 snap-start flex-col justify-start rounded-3xl p-4 text-left transition-[background-color,scale] duration-(--duration-fast) active:scale-[0.97]"
+							class="bg-secondary hover:bg-accent animate-rise-in stagger flex w-40 shrink-0 snap-start flex-col justify-start rounded-3xl p-4 text-start transition-[background-color,scale] duration-(--duration-fast) active:scale-[0.97]"
 							style:--index={index}
 						>
 							<span class="block text-sm font-medium">{starter.title}</span>
@@ -129,7 +129,7 @@
 					<button
 						type="button"
 						onclick={() => (offline = !offline)}
-						class="text-muted-foreground hover:text-foreground -mr-2 min-h-11 rounded-full px-2 text-xs transition-colors"
+						class="text-muted-foreground hover:text-foreground -me-2 min-h-11 rounded-full px-2 text-xs transition-colors"
 						>{offline ? 'Go online' : 'Go offline'}</button
 					>
 				</div>
@@ -139,7 +139,7 @@
 							<button
 								type="button"
 								onclick={() => ask(chat.title)}
-								class="hover:bg-secondary -mx-3 flex w-[calc(100%+1.5rem)] flex-col rounded-2xl px-3 py-3 text-left transition-colors"
+								class="hover:bg-secondary -mx-3 flex w-[calc(100%+1.5rem)] flex-col rounded-2xl px-3 py-3 text-start transition-colors"
 							>
 								<span class="truncate text-sm font-medium">{chat.title}</span>
 								<span class="text-muted-foreground mt-0.5 text-xs">{chat.meta}</span>

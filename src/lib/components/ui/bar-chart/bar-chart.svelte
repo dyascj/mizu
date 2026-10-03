@@ -13,7 +13,7 @@
 	import { cn } from '$lib/utils.js';
 
 	type Props = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
-		/** One bar per entry, left to right. */
+		/** One bar per entry, in reading order: left to right, or right to left under `dir="rtl"`. */
 		data: BarChartDatum[];
 		/** Names the chart for assistive technology, such as "Tokens per day, this week". */
 		label: string;
@@ -131,7 +131,7 @@
 				velocity = next.map(() => 0);
 				heights = [...next];
 			} else if (heights.length !== next.length) {
-				// First growth cascades left to right, one stagger step per bar.
+				// First growth cascades in reading order, one stagger step per bar.
 				heights = next.map(() => 0);
 				goals = next.map(() => 0);
 				velocity = next.map(() => 0);
@@ -179,7 +179,7 @@
 	     gridlines can span the plot. -->
 	<div
 		aria-hidden="true"
-		class="text-muted-foreground relative mr-3 grid shrink-0 text-xs tabular-nums"
+		class="text-muted-foreground relative me-3 grid shrink-0 text-xs tabular-nums"
 	>
 		{#each gridlines as tick (tick)}
 			<span class="invisible col-start-1 row-start-1 h-0 leading-none">{format(tick)}</span>
@@ -187,7 +187,7 @@
 		<div class="relative col-start-1 row-start-1" style:height="{height}px">
 			{#each gridlines as tick (tick)}
 				<span
-					class="absolute right-0 -translate-y-1/2 leading-none whitespace-nowrap"
+					class="absolute end-0 -translate-y-1/2 leading-none whitespace-nowrap"
 					style:top="{height - (tick / top) * height}px"
 				>
 					{format(tick)}
@@ -239,9 +239,11 @@
 						if (!plot?.contains(event.relatedTarget as Node | null)) active = null;
 					}}
 					onkeydown={(event) => {
+						// Bars run right to left in a mirrored layout, so the arrows swap.
+						const step = getComputedStyle(event.currentTarget).direction === 'rtl' ? -1 : 1;
 						const next = {
-							ArrowLeft: i - 1,
-							ArrowRight: i + 1,
+							ArrowLeft: i - step,
+							ArrowRight: i + step,
 							Home: 0,
 							End: data.length - 1
 						}[event.key];

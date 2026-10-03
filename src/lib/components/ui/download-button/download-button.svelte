@@ -65,16 +65,20 @@
 	let target = 0;
 	let frame = 0;
 	let fadeTimer: ReturnType<typeof setTimeout> | undefined;
+	/** Read as the fill starts moving, so it fills from the side reading starts on. */
+	let rtl = false;
 	let previous: DownloadStatus = untrack(() => status);
 
 	function paint() {
 		percent = Math.round(fill * 100);
-		if (cover) cover.style.clipPath = `inset(0 ${(1 - fill) * 100}% 0 0)`;
+		const rest = `${(1 - fill) * 100}%`;
+		if (cover) cover.style.clipPath = `inset(0 ${rtl ? 0 : rest} 0 ${rtl ? rest : 0})`;
 		full = fill >= FULL;
 	}
 
 	function follow(tau: number) {
 		cancelAnimationFrame(frame);
+		rtl = !!ref && getComputedStyle(ref).direction === 'rtl';
 		if (prefersReducedMotion()) {
 			frame = 0;
 			fill = target;
@@ -200,7 +204,7 @@
 	const word = 'block whitespace-nowrap transition-[opacity,filter,translate] ease-out';
 	const wordShown = 'relative translate-y-0 opacity-100 blur-none duration-(--duration-base)';
 	const wordHidden =
-		'absolute top-0 left-0 translate-y-0.5 opacity-0 blur-[4px] duration-(--duration-instant)';
+		'absolute start-0 top-0 translate-y-0.5 opacity-0 blur-[4px] duration-(--duration-instant)';
 </script>
 
 {#snippet content()}

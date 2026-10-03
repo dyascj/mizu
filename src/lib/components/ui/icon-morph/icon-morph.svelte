@@ -94,6 +94,7 @@
 	class={cn(
 		// The turn gets a little give, which is what makes it feel physical.
 		'size-5 shrink-0 rotate-(--morph-rotate) transition-[rotate] duration-(--duration-spring-bouncy) ease-(--ease-spring-bouncy) motion-reduce:rotate-0',
+		resolved.mirror && 'rtl:-scale-x-100',
 		className
 	)}
 	style:--morph-rotate="{morphed ? (resolved.rotate ?? 0) : 0}deg"

@@ -12,6 +12,7 @@
 
 	async function copy() {
 		failed = false;
+		copied = false;
 		try {
 			await navigator.clipboard.writeText(command);
 			copied = true;
@@ -35,8 +36,8 @@
 	<code class="min-w-0 flex-1 truncate font-mono text-[0.8125rem]">{command}</code>
 	<button
 		onclick={copy}
-		aria-label={failed ? 'Copy failed, try again' : copied ? 'Command copied' : 'Copy command'}
-		class="text-muted-foreground hover:text-foreground inline-flex size-7 shrink-0 items-center justify-center rounded-lg transition-[scale,color] duration-200 active:scale-[0.96]"
+		aria-label="Copy command"
+		class="text-muted-foreground hover:text-foreground inline-flex size-7 shrink-0 items-center justify-center rounded-lg transition-[scale,color] duration-(--duration-fast) active:scale-[0.96]"
 	>
 		{#if copied}
 			<Check class="size-4 text-[color:var(--success)]" />
@@ -44,8 +45,12 @@
 			<Copy class="size-4" />
 		{/if}
 	</button>
+	<!-- Mounted up front so screen readers hear the change. -->
+	<span class="sr-only" aria-live="polite"
+		>{failed ? 'Copy failed. Select and copy the text.' : copied ? 'Command copied' : ''}</span
+	>
 	{#if failed}<span
-			role="status"
+			aria-hidden="true"
 			class="text-destructive bg-popover absolute right-2 bottom-2 rounded-lg px-2 py-1 text-xs"
 			>Copy failed. Select and copy the text.</span
 		>{/if}

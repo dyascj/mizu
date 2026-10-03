@@ -15,7 +15,7 @@
 		<p class="text-muted-foreground text-sm">Pick up the launch plan, or start something new.</p>
 	</div>
 	<ChatInput placeholder="Ask anything" label="Message the assistant" />
-	<Button variant="ghost" size="sm" class="-ml-2 self-start" onclick={() => (run += 1)}>
+	<Button variant="ghost" size="sm" class="-ms-2 self-start" onclick={() => (run += 1)}>
 		<RotateCcw class="size-3.5" />
 		Replay
 	</Button>

@@ -27,8 +27,9 @@
 		direction !== 0 &&
 			'animate-[mizu-tab-enter_var(--duration-base)_var(--ease-out)_both] motion-reduce:[--tab-blur:0px] motion-reduce:[--tab-distance:0px]',
 		// A class rather than an inline style, so a consumer's `style` stays theirs.
-		direction > 0 && '[--tab-direction:1]',
-		direction < 0 && '[--tab-direction:-1]',
+		// RTL readers move forward toward the left, so the side mirrors.
+		direction > 0 && '[--tab-direction:1] rtl:[--tab-direction:-1]',
+		direction < 0 && '[--tab-direction:-1] rtl:[--tab-direction:1]',
 		className
 	)}
 	{...restProps}

@@ -108,9 +108,12 @@
 	function bump(direction: 1 | -1) {
 		if (!shell?.animate || prefersReducedMotion()) return;
 		nudge?.cancel();
-		const easing = getComputedStyle(shell).getPropertyValue('--ease-out').trim() || 'ease-out';
+		const style = getComputedStyle(shell);
+		const easing = style.getPropertyValue('--ease-out').trim() || 'ease-out';
+		// Right to left, the increase button sits on the left.
+		const x = direction * (style.direction === 'rtl' ? -3 : 3);
 		nudge = shell.animate(
-			{ translate: ['0', `${direction * 3}px`, '0'] },
+			{ translate: ['0', `${x}px`, '0'] },
 			{ duration: durations.base, easing }
 		);
 	}

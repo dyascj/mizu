@@ -15,7 +15,7 @@
 	bind:this={ref}
 	role="group"
 	class={cn(
-		'inline-flex items-center [&>*]:rounded-none [&>*:first-child]:rounded-l-xl [&>*:last-child]:rounded-r-xl [&>*:not(:first-child)]:-ml-px',
+		'inline-flex items-center [&>*]:rounded-none [&>*:first-child]:rounded-s-xl [&>*:last-child]:rounded-e-xl [&>*:not(:first-child)]:-ms-px',
 		className
 	)}
 	{...rest}

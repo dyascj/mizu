@@ -23,6 +23,7 @@
 <ol class={cn('flex w-fit max-w-full flex-col gap-1 text-sm', className)}>
 	{#each steps as step (step.label)}
 		<li
+			aria-current={step.state === 'active' ? 'step' : undefined}
 			class={cn(
 				'flex items-center gap-2.5 rounded-lg py-1 transition-colors duration-(--duration-slow)',
 				step.state === 'pending' && 'text-muted-foreground'
@@ -43,7 +44,8 @@
 			{/if}
 			<span class="min-w-0">
 				<span class={cn('block break-words', step.state === 'active' && 'plan-shimmer font-medium')}
-					>{step.label}</span
+					>{#if step.state === 'done'}<span class="sr-only">Done:&nbsp;</span
+						>{/if}{step.label}</span
 				>
 				{#if step.detail}
 					<span class="text-muted-foreground block text-xs break-words">{step.detail}</span>
@@ -72,6 +74,11 @@
 		background-clip: text;
 		color: transparent;
 		animation: plan-sweep 2s linear infinite;
+	}
+
+	/* The sweep follows the reading direction. */
+	.plan-shimmer:dir(rtl) {
+		animation-direction: reverse;
 	}
 
 	@keyframes plan-pop {

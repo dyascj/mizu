@@ -456,14 +456,16 @@
 			commit(next);
 			announcement = `Moved to ${where(id, next)}.`;
 		};
+		// Columns mirror right to left, so each side arrow still moves the way it points.
+		const side = getComputedStyle(event.currentTarget as Element).direction === 'rtl' ? -1 : 1;
 		const keys: Record<string, (() => void) | undefined> = {
 			' ': () => (isHeld ? drop() : pickUp(id)),
 			Enter: () => (isHeld ? drop() : pickUp(id)),
 			Escape: isHeld ? cancel : undefined,
 			ArrowUp: () => (isHeld ? move(col, index - 1) : focus(columns[col].cards[index - 1])),
 			ArrowDown: () => (isHeld ? move(col, index + 1) : focus(columns[col].cards[index + 1])),
-			ArrowLeft: () => (isHeld ? move(col - 1, index) : focusAcross(-1)),
-			ArrowRight: () => (isHeld ? move(col + 1, index) : focusAcross(1))
+			ArrowLeft: () => (isHeld ? move(col - side, index) : focusAcross(-side)),
+			ArrowRight: () => (isHeld ? move(col + side, index) : focusAcross(side))
 		};
 		const run = keys[event.key];
 		if (!run) return;
@@ -527,13 +529,13 @@
 					{#key count?.value}
 						{#if count?.previous != null}
 							<span
-								class="kanban-count-out col-start-1 row-start-1 text-right leading-4"
+								class="kanban-count-out col-start-1 row-start-1 text-end leading-4"
 								style:--roll="{count.dir * -8}px">{count.previous}</span
 							>
 						{/if}
 						<span
 							class={cn(
-								'col-start-1 row-start-1 text-right leading-4',
+								'col-start-1 row-start-1 text-end leading-4',
 								count?.previous != null && 'kanban-count-in'
 							)}
 							style:--roll="{(count?.dir ?? 1) * 8}px">{column.cards.length}</span
@@ -563,7 +565,7 @@
 							aria-describedby={hintId}
 							aria-pressed={isHeld}
 							class={cn(
-								'bg-card text-card-foreground focus-visible:ring-ring focus-visible:ring-offset-background dark:aria-pressed:bg-popover relative flex w-full cursor-grab touch-none flex-col items-start gap-1 rounded-md px-3 py-2.5 text-left text-sm shadow-sm outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2',
+								'bg-card text-card-foreground focus-visible:ring-ring focus-visible:ring-offset-background dark:aria-pressed:bg-popover relative flex w-full cursor-grab touch-none flex-col items-start gap-1 rounded-md px-3 py-2.5 text-start text-sm shadow-sm outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2',
 								!isHeld &&
 									'transition-[scale] duration-(--duration-fast) ease-out active:scale-[0.96] motion-reduce:transition-none'
 							)}

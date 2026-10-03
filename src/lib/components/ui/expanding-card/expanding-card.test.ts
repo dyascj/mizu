@@ -40,6 +40,21 @@ describe('ExpandingCard', () => {
 		expect(onOpenChange).toHaveBeenCalledWith(true);
 	});
 
+	test('the detail view keeps the direction its card reads in', async () => {
+		const target = document.body.appendChild(document.createElement('div'));
+		target.style.direction = 'rtl';
+		try {
+			render(Fixture, { target, props: { onOpenChange: vi.fn() } });
+			await fireEvent.click(screen.getByRole('button', { name: /Churn interviews/ }));
+			await flush();
+			const dialog = screen.getByRole('dialog', { name: 'Churn interviews' });
+			expect(target.contains(dialog)).toBe(false);
+			expect(dialog.closest('[dir]')).toHaveAttribute('dir', 'rtl');
+		} finally {
+			target.remove();
+		}
+	});
+
 	test('Escape closes and returns focus to the card', async () => {
 		const { card, onOpenChange } = setup();
 		await fireEvent.click(card);

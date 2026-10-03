@@ -69,6 +69,22 @@ describe('Carousel', () => {
 		expect(previous).toHaveBeenCalledTimes(1);
 	});
 
+	test('right to left, Embla scrolls mirrored and ArrowLeft goes to the next slide', async () => {
+		const target = document.body.appendChild(document.createElement('div'));
+		target.dir = 'rtl';
+		target.style.direction = 'rtl';
+		let api: CarouselApi | undefined;
+		render(Fixture, { target, props: { setApi: (value) => (api = value) } });
+		await waitFor(() => expect(api?.internalEngine().options.direction).toBe('rtl'));
+		const next = vi.spyOn(api!, 'scrollNext');
+		const previous = vi.spyOn(api!, 'scrollPrev');
+		await fireEvent.keyDown(screen.getByRole('region'), { key: 'ArrowLeft' });
+		expect(next).toHaveBeenCalledTimes(1);
+		await fireEvent.keyDown(screen.getByRole('region'), { key: 'ArrowRight' });
+		expect(previous).toHaveBeenCalledTimes(1);
+		target.remove();
+	});
+
 	test('marks the centered slide as the selection moves', async () => {
 		const { api } = await ready();
 		// Listeners receive Embla's own object rather than the reactive copy

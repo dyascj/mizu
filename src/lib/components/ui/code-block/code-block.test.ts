@@ -62,6 +62,27 @@ describe('CodeBlock', () => {
 		expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
 	});
 
+	test('arrow keys follow the mirrored tabs in right-to-left text', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			render(CodeBlock, { files });
+			const tabs = screen.getAllByRole('tab');
+			await fireEvent.keyDown(tabs[0], { key: 'ArrowLeft' });
+			expect(tabs[1]).toHaveFocus();
+			await fireEvent.keyDown(tabs[1], { key: 'ArrowRight' });
+			expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
+	test('does not report the tab that is already showing', async () => {
+		const onValueChange = vi.fn();
+		render(CodeBlock, { files, onValueChange });
+		await fireEvent.click(screen.getByRole('tab', { name: 'agent.ts' }));
+		expect(onValueChange).not.toHaveBeenCalled();
+	});
+
 	test('keeps only the showing file reachable', async () => {
 		render(CodeBlock, { files, value: 'response.json' });
 		const panels = screen.getAllByRole('tabpanel', { hidden: true });

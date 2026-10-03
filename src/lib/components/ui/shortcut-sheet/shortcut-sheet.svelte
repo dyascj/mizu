@@ -166,7 +166,7 @@
 			bind:ref
 			aria-keyshortcuts={hotkey ?? undefined}
 			class={cn(
-				'bg-secondary text-secondary-foreground hover:bg-muted focus-visible:ring-ring focus-visible:ring-offset-background inline-flex h-10 max-w-full shrink-0 touch-manipulation items-center gap-2.5 rounded-full pr-2.5 pl-4 text-sm font-medium whitespace-nowrap transition-[background-color,scale] duration-(--duration-fast) ease-out outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] motion-reduce:transition-[background-color]',
+				'bg-secondary text-secondary-foreground hover:bg-muted focus-visible:ring-ring focus-visible:ring-offset-background inline-flex h-10 max-w-full shrink-0 touch-manipulation items-center gap-2.5 rounded-full ps-4 pe-2.5 text-sm font-medium whitespace-nowrap transition-[background-color,scale] duration-(--duration-fast) ease-out outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] motion-reduce:transition-[background-color]',
 				className
 			)}
 		>
@@ -189,7 +189,7 @@
 		)}
 	>
 		<div class="flex flex-col">
-			<div class="flex h-14 shrink-0 items-center pr-14 pl-5">
+			<div class="flex h-14 shrink-0 items-center ps-5 pe-14">
 				<Dialog.Title class="truncate text-base tracking-tight">{title}</Dialog.Title>
 				<Dialog.Description class="sr-only">
 					Press a listed shortcut to see its row light up.
@@ -198,7 +198,7 @@
 
 			<div class="relative mx-3 shrink-0">
 				<Search
-					class="text-muted-foreground pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2"
+					class="text-muted-foreground pointer-events-none absolute start-3.5 top-1/2 size-4 -translate-y-1/2"
 					aria-hidden="true"
 				/>
 				<Input
@@ -209,7 +209,7 @@
 					placeholder="Search shortcuts"
 					spellcheck={false}
 					autocomplete="off"
-					class="pl-10 [&::-webkit-search-cancel-button]:hidden"
+					class="ps-10 [&::-webkit-search-cancel-button]:hidden"
 				/>
 			</div>
 

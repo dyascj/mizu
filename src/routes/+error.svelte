@@ -8,7 +8,11 @@
 	<title>{page.status} · Mizu</title>
 </svelte:head>
 
-<div class="flex min-h-[70dvh] flex-col items-center justify-center gap-6 px-6 text-center">
+<main
+	id="main-content"
+	tabindex="-1"
+	class="flex min-h-[70dvh] flex-col items-center justify-center gap-6 px-6 text-center"
+>
 	<span class="group"><MizuMark tone="water" class="size-20" /></span>
 	<div>
 		<p class="text-muted-foreground text-sm font-medium tabular-nums">{page.status}</p>
@@ -25,4 +29,4 @@
 		<Button href="/">Back home</Button>
 		<Button href="/docs/components" variant="ghost">Browse components</Button>
 	</div>
-</div>
+</main>

@@ -11,6 +11,7 @@
 		type: 'application/pdf'
 	});
 	let files = $state<File[]>([brief]);
+	let message = $state('');
 	const progress = new SvelteMap<File, number>([[brief, 1]]);
 	const timers = new SvelteMap<File, ReturnType<typeof setTimeout>>();
 
@@ -58,8 +59,14 @@
 		onFileRemove={forget}
 		zoneClass="min-h-36"
 	/>
-	<form class="flex items-center gap-2" onsubmit={(event) => event.preventDefault()}>
-		<Input aria-label="Message" placeholder="Ask about these files" />
+	<form
+		class="flex items-center gap-2"
+		onsubmit={(event) => {
+			event.preventDefault();
+			message = '';
+		}}
+	>
+		<Input aria-label="Message" placeholder="Ask about these files" bind:value={message} />
 		<Button type="submit" size="icon" aria-label="Send" class="shrink-0">
 			<ArrowUp class="size-4" />
 		</Button>

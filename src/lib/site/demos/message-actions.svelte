@@ -10,7 +10,7 @@
 	<ChatBubble role="assistant" animate={false}>{reply}</ChatBubble>
 	<MessageActions
 		text={reply}
-		class="pl-1"
+		class="ps-1"
 		onRegenerate={() => toast.info('Regenerating...')}
 		onFeedback={(f) => toast.success(f ? 'Feedback saved' : 'Feedback removed')}
 	/>

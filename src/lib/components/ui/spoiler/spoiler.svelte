@@ -212,8 +212,10 @@
 			}
 			e.grains = grains;
 
+			// The text ends on the left of its last line when it reads right to left.
 			const last = fragments[fragments.length - 1];
-			chipPos = { left: Math.round(last.right - ox), top: Math.round(last.top - oy) };
+			const end = getComputedStyle(text).direction === 'rtl' ? last.left : last.right;
+			chipPos = { left: Math.round(end - ox), top: Math.round(last.top - oy) };
 			draw(performance.now());
 		};
 

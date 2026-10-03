@@ -33,6 +33,17 @@
 		const timer = setInterval(() => (volume = Math.random() * 0.9), 140);
 		return () => clearInterval(timer);
 	});
+
+	// One tab stop for the group; arrows move the pick, mirrored in right-to-left text.
+	function onToneKeydown(event: KeyboardEvent & { currentTarget: HTMLButtonElement }) {
+		const forward = getComputedStyle(event.currentTarget).direction === 'rtl' ? -1 : 1;
+		const step = { ArrowRight: forward, ArrowDown: 1, ArrowLeft: -forward, ArrowUp: -1 }[event.key];
+		if (step === undefined) return;
+		event.preventDefault();
+		const next = (tones.indexOf(tone) + step + tones.length) % tones.length;
+		tone = tones[next];
+		(event.currentTarget.parentElement?.children[next] as HTMLElement | undefined)?.focus();
+	}
 </script>
 
 <div class="flex w-full flex-col items-center gap-6">
@@ -55,7 +66,9 @@
 				role="radio"
 				aria-checked={tone === item}
 				aria-label={item}
+				tabindex={tone === item ? 0 : -1}
 				onclick={() => (tone = item)}
+				onkeydown={onToneKeydown}
 				class="focus-visible:ring-ring aria-checked:bg-secondary rounded-full p-1 transition-[scale] duration-(--duration-fast) outline-none focus-visible:ring-2 active:scale-90"
 			>
 				<Presence tone={item} size={28} interactive={false} state="idle" aria-hidden="true" />

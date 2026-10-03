@@ -158,6 +158,27 @@ describe('Reactions', () => {
 		expect(add).toHaveFocus();
 	});
 
+	test('in right-to-left text the picker arrows swap and it grows from the start edge', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const { add } = setup([]);
+			add.focus();
+			await fireEvent.keyDown(add, { key: 'Enter' });
+			await fireEvent.click(add, { detail: 0 });
+			const picker = screen.getByRole('group', { name: 'Pick a reaction' });
+			expect(picker.style.transformOrigin).toMatch(/^calc\(100% - /);
+			await waitFor(() =>
+				expect(screen.getByRole('button', { name: 'React with thumbs up' })).toHaveFocus()
+			);
+			await fireEvent.keyDown(document.activeElement!, { key: 'ArrowLeft' });
+			expect(screen.getByRole('button', { name: 'React with heart' })).toHaveFocus();
+			await fireEvent.keyDown(document.activeElement!, { key: 'ArrowRight' });
+			expect(screen.getByRole('button', { name: 'React with thumbs up' })).toHaveFocus();
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('a press anywhere else closes the picker', async () => {
 		const { add } = setup([]);
 		await fireEvent.click(add);

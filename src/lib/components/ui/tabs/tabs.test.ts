@@ -30,6 +30,7 @@ beforeEach(() => {
 
 afterEach(() => {
 	vi.restoreAllMocks();
+	vi.unstubAllGlobals();
 });
 
 function indicator() {
@@ -174,5 +175,48 @@ describe('Tabs scroll overflow', () => {
 		await fireEvent.keyDown(overview, { key: 'ArrowRight' });
 		expect(screen.getByRole('tab', { name: 'Activity' })).toHaveAttribute('aria-selected', 'true');
 		expect(screen.getByRole('tab', { name: 'Activity' })).toHaveFocus();
+	});
+
+	test('in RTL the fades, page buttons, and wheel follow the mirrored scroll range', async () => {
+		const target = document.body.appendChild(document.createElement('div'));
+		target.style.direction = 'rtl';
+		const { container } = render(Harness, { props: { overflow: 'scroll' }, target });
+		const scroller = container.querySelector<HTMLElement>('[data-slot="tabs-scroller"]')!;
+		Object.defineProperty(scroller, 'scrollWidth', { value: 300 });
+		Object.defineProperty(scroller, 'clientWidth', { value: 100 });
+		let scrollLeft = 0;
+		Object.defineProperty(scroller, 'scrollLeft', {
+			get: () => scrollLeft,
+			set: (value: number) => (scrollLeft = value)
+		});
+		const wheel = () => {
+			const event = new WheelEvent('wheel', { deltaY: 3, deltaMode: 1, cancelable: true });
+			scroller.dispatchEvent(event);
+			return event.defaultPrevented;
+		};
+
+		// At the start of an RTL row the hidden tabs lie to the left.
+		await fireEvent.scroll(scroller);
+		expect(scroller.style.getPropertyValue('--fade-start')).toBe('48px');
+		expect(scroller.style.getPropertyValue('--fade-end')).toBe('0px');
+		await fireEvent.pointerEnter(container.querySelector('[data-slot="tabs-scroll-frame"]')!);
+		expect(container.querySelector('[data-slot="tabs-scroll-prev"]')).toHaveAttribute(
+			'data-visible'
+		);
+		expect(container.querySelector('[data-slot="tabs-scroll-next"]')).not.toHaveAttribute(
+			'data-visible'
+		);
+		// A wheel turned down heads toward the end, so it scrolls.
+		vi.stubGlobal('matchMedia', () => ({ matches: true }));
+		expect(wheel()).toBe(true);
+		expect(scrollLeft).toBe(-48);
+
+		// At the far end the wheel hands back to the page.
+		scrollLeft = -200;
+		await fireEvent.scroll(scroller);
+		expect(scroller.style.getPropertyValue('--fade-start')).toBe('0px');
+		expect(scroller.style.getPropertyValue('--fade-end')).toBe('48px');
+		expect(wheel()).toBe(false);
+		target.remove();
 	});
 });

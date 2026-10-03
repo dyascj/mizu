@@ -29,13 +29,13 @@
 			// Modals scale from the center: they belong to the viewport, not to the
 			// button that opened them. Scale rides the spring, opacity a plain curve.
 			'[transition:opacity_var(--duration-base)_var(--ease-out),scale_var(--duration-spring)_var(--ease-spring)]',
-			'data-starting-style:scale-[0.96] data-starting-style:opacity-0',
+			'data-starting-style:opacity-0 motion-safe:data-starting-style:scale-[0.96]',
 			// Leaving is softer and quicker: a smaller shrink, gone before it holds
 			// up the next interaction, and clicks already pass through.
-			'data-ending-style:pointer-events-none data-ending-style:scale-[0.98] data-ending-style:[transition:opacity_var(--duration-fast)_var(--ease-in),scale_var(--duration-fast)_var(--ease-in)] data-[state=closed]:opacity-0',
+			'data-ending-style:pointer-events-none data-ending-style:[transition:opacity_var(--duration-fast)_var(--ease-in),scale_var(--duration-fast)_var(--ease-in)] data-[state=closed]:opacity-0 motion-safe:data-ending-style:scale-[0.98]',
 			// A dialog opened on top of this one pushes it a small step back, so the
 			// new one reads as in front. It returns when the one on top closes.
-			'data-nested-open:scale-[0.97]',
+			'motion-safe:data-nested-open:scale-[0.97]',
 			className
 		)}
 		{...restProps}
@@ -45,7 +45,7 @@
 		</div>
 		{#if closeButton}
 			<DialogPrimitive.Close
-				class="text-muted-foreground hover:bg-secondary hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute top-4 right-4 inline-flex size-7 items-center justify-center rounded-full transition-[scale,background-color] duration-(--duration-base) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none"
+				class="text-muted-foreground hover:bg-secondary hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background absolute end-4 top-4 inline-flex size-7 items-center justify-center rounded-full transition-[scale,background-color] duration-(--duration-base) outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.96] disabled:pointer-events-none"
 			>
 				<XIcon class="size-4" />
 				<span class="sr-only">Close</span>

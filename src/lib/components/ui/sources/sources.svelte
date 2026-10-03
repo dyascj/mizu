@@ -32,7 +32,7 @@
 			{href}
 			target={href ? '_blank' : undefined}
 			rel={href ? 'noreferrer' : undefined}
-			class="bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:ring-ring inline-flex max-w-full items-center gap-1.5 rounded-full py-1 pr-2.5 pl-1 text-xs transition-colors outline-none focus-visible:ring-2"
+			class="bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:ring-ring inline-flex max-w-full items-center gap-1.5 rounded-full py-1 ps-1 pe-2.5 text-xs transition-colors outline-none focus-visible:ring-2"
 		>
 			<span
 				class="bg-card text-foreground grid size-5 shrink-0 place-items-center rounded-full text-xs font-medium tabular-nums shadow-xs"

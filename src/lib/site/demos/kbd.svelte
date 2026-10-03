@@ -17,15 +17,21 @@
 	/** Caps held down by a click, pressed one after another like fingers would. */
 	let playing = $state<boolean[]>([false, false]);
 	let timers: ReturnType<typeof setTimeout>[] = [];
+	let sentTimer: ReturnType<typeof setTimeout> | undefined;
 
 	$effect(() => {
 		mac = isApplePlatform();
-		return () => timers.forEach(clearTimeout);
+		return () => {
+			timers.forEach(clearTimeout);
+			clearTimeout(sentTimer);
+		};
 	});
 
+	// A second send restarts the confirmation instead of cutting it short.
 	function send() {
 		sent = true;
-		timers.push(setTimeout(() => (sent = false), duration.ambient));
+		clearTimeout(sentTimer);
+		sentTimer = setTimeout(() => (sent = false), duration.ambient);
 	}
 
 	function play() {

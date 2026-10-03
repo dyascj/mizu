@@ -27,7 +27,7 @@
 					Drag down to close. A quick flick works too, and pulling up pushes back.
 				</Drawer.Description>
 			</Drawer.Header>
-			<div class="bg-secondary flex items-center gap-3 rounded-2xl py-3 pr-3 pl-4">
+			<div class="bg-secondary flex items-center gap-3 rounded-2xl py-3 ps-4 pe-3">
 				<Link class="text-muted-foreground size-4 shrink-0" aria-hidden="true" />
 				<Label for="share-link" class="min-w-0 flex-1 text-sm font-medium">
 					Anyone with the link can read

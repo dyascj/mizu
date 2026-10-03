@@ -276,7 +276,7 @@
 			<li
 				{@attach register(key)}
 				data-forming={forming || undefined}
-				class="relative inline-flex min-h-7 max-w-full items-center gap-1 rounded-full pr-1 pl-2.5"
+				class="relative inline-flex min-h-7 max-w-full items-center gap-1 rounded-full ps-2.5 pe-1"
 				in:chipIn={{ key }}
 				out:chipOut
 				animate:slide

@@ -63,6 +63,8 @@
 	let pointerId: number | null = null;
 	let heldKey: string | null = null;
 	let charge: { start: number; frame: number; buzzed: number } | null = null;
+	/** Read when a press starts, so the fuse burns from the side reading starts on. */
+	let rtl = false;
 	let recoil: Animation | undefined;
 	let shock: Animation | undefined;
 
@@ -75,8 +77,9 @@
 		(ref && getComputedStyle(ref).getPropertyValue(name).trim()) || 'ease-out';
 
 	function burn(progress: number) {
-		// Burns across the button from the left, like a lit fuse.
-		if (fuse) fuse.style.clipPath = `inset(0 ${(1 - progress) * 100}% 0 0 round 9999px)`;
+		// Burns across the button from the start edge, like a lit fuse.
+		const rest = `${(1 - progress) * 100}%`;
+		if (fuse) fuse.style.clipPath = `inset(0 ${rtl ? 0 : rest} 0 ${rtl ? rest : 0} round 9999px)`;
 	}
 
 	function settle() {
@@ -160,7 +163,10 @@
 				if (Math.random() < 0.15 + 0.6 * progress) {
 					const box = ref.getBoundingClientRect();
 					confetti(
-						{ x: box.left + box.width * progress, y: box.top + box.height / 2 },
+						{
+							x: rtl ? box.right - box.width * progress : box.left + box.width * progress,
+							y: box.top + box.height / 2
+						},
 						burst({
 							count: 1 + Math.round(progress * 2),
 							spread: 52,
@@ -190,6 +196,7 @@
 
 	function press() {
 		if (disabled || charge) return;
+		rtl = !!ref && getComputedStyle(ref).direction === 'rtl';
 		if (!holdable || typeof requestAnimationFrame === 'undefined') {
 			charge = { start: 0, frame: 0, buzzed: 0 };
 			return;

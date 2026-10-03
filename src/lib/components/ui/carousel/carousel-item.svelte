@@ -31,7 +31,7 @@
 		// Takes focus only when the selection moves out from under a focused
 		// control; the ring then goes on the card, not the gutter.
 		'focus-visible:*:ring-ring outline-none focus-visible:*:ring-2',
-		ctx.orientation === 'horizontal' ? 'pl-4' : 'pt-4',
+		ctx.orientation === 'horizontal' ? 'ps-4' : 'pt-4',
 		className
 	)}
 	{...rest}

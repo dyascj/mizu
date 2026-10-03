@@ -76,7 +76,9 @@
 	data-role={role}
 	class={cn(
 		'flex first:mt-0',
-		role === 'user' ? 'origin-bottom-right justify-end' : 'origin-bottom-left justify-start',
+		role === 'user'
+			? 'origin-bottom-right justify-end rtl:origin-bottom-left'
+			: 'origin-bottom-left justify-start rtl:origin-bottom-right',
 		grouped ? 'mt-0.5' : 'mt-3'
 	)}
 	in:enter
@@ -86,7 +88,7 @@
 		animate={false}
 		class={cn(
 			'transition-[border-radius] duration-(--duration-base) ease-out',
-			grouped && (role === 'user' ? 'rounded-tr-md' : 'rounded-tl-md'),
+			grouped && (role === 'user' ? 'rounded-se-md' : 'rounded-ss-md'),
 			className
 		)}
 	>

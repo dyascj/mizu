@@ -77,7 +77,7 @@
 		<AvatarStatus
 			{status}
 			label={statusLabel}
-			class="absolute -right-[5%] -bottom-[5%] size-[45%] min-h-3.5 min-w-3.5"
+			class="absolute -end-[5%] -bottom-[5%] size-[45%] min-h-3.5 min-w-3.5"
 		/>
 	</div>
 {:else}

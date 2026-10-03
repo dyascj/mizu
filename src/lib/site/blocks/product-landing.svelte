@@ -68,7 +68,7 @@
 	<section id="top" class="px-5 pt-14 pb-12 text-center sm:px-8 sm:pt-20">
 		<a
 			href="#changelog"
-			class="bg-secondary text-muted-foreground hover:text-foreground animate-rise-in inline-flex items-center gap-2 rounded-full py-1 pr-3 pl-1 text-xs transition-colors"
+			class="bg-secondary text-muted-foreground hover:text-foreground animate-rise-in inline-flex items-center gap-2 rounded-full py-1 ps-1 pe-3 text-xs transition-colors"
 		>
 			<span class="aurora-iris text-foreground rounded-full px-2 py-0.5 font-medium">New</span>
 			Cited answers from your own library
@@ -95,7 +95,7 @@
 			class="animate-rise-in stagger mt-8 flex flex-wrap items-center justify-center gap-3"
 			style:--index="6"
 		>
-			<Button>Start free <ArrowRight class="size-4" /></Button>
+			<Button>Start free <ArrowRight class="size-4 rtl:rotate-180" /></Button>
 			<Button variant="secondary">Watch the demo</Button>
 		</div>
 	</section>
@@ -118,9 +118,9 @@
 		<button
 			type="button"
 			onclick={() => (questionsPaused = !questionsPaused)}
-			aria-label={questionsPaused ? 'Play questions' : 'Pause questions'}
+			aria-label="Pause questions"
 			aria-pressed={questionsPaused}
-			class="bg-background text-muted-foreground hover:text-foreground focus-visible:ring-ring absolute top-1/2 right-3 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full shadow-sm transition-colors outline-none focus-visible:ring-2 sm:right-6"
+			class="bg-background text-muted-foreground hover:text-foreground focus-visible:ring-ring absolute end-3 top-1/2 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full shadow-sm transition-colors outline-none focus-visible:ring-2 sm:end-6"
 		>
 			{#if questionsPaused}<Play class="size-3.5" />{:else}<Pause class="size-3.5" />{/if}
 		</button>

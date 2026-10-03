@@ -204,7 +204,7 @@
 	}
 
 	// One button's width plus the gap, so a control can start tucked exactly
-	// behind the one to its right.
+	// behind the one after it.
 	const STEP = 52;
 
 	/**
@@ -212,11 +212,13 @@
 	 * behind it and slides out to its place on a spring, the nearest first.
 	 */
 	function unfold(
-		_node: Element,
+		node: Element,
 		{ index, count }: { index: number; count: number }
 	): TransitionConfig {
 		if (prefersReducedMotion()) return { duration: durations.fast, css: (t) => `opacity: ${t}` };
-		const behind = (count - index) * STEP;
+		// Right to left, the hang up button is on the left, so they slide out the other way.
+		const sign = getComputedStyle(node).direction === 'rtl' ? -1 : 1;
+		const behind = sign * (count - index) * STEP;
 		const spring = springs.smooth;
 		return {
 			delay: (count - 1 - index) * stagger + durations.instant,
@@ -316,7 +318,7 @@
 		</span>
 	</span>
 
-	<span bind:this={details} class="flex min-w-0 flex-1 flex-col pr-1">
+	<span bind:this={details} class="flex min-w-0 flex-1 flex-col pe-1">
 		<span class="text-foreground truncate text-sm font-medium">{name}</span>
 		<span class="text-muted-foreground relative grid text-xs tabular-nums">
 			{#key over ? phase : ringing ? 'ringing' : 'call'}

@@ -73,6 +73,20 @@ describe('ContextMenu', () => {
 		for (const name of used) expect(menu.style.getPropertyValue(name)).not.toBe('');
 	});
 
+	test('mirrors in right-to-left text', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			render(Harness, { onPick: vi.fn() });
+			await fireEvent.contextMenu(screen.getByRole('group', { name: 'Assistant reply' }), {
+				clientX: 10,
+				clientY: 10
+			});
+			expect((await screen.findByRole('menu')).closest('[dir]')).toHaveAttribute('dir', 'rtl');
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('marks destructive items', async () => {
 		render(Harness, { onPick: vi.fn() });
 		await fireEvent.contextMenu(screen.getByRole('group', { name: 'Assistant reply' }), {

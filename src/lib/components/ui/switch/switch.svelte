@@ -56,6 +56,8 @@
 	let moving = false;
 	let gesture: {
 		pointerId: number;
+		/** -1 when the track mirrors in RTL, so the knob follows the finger. */
+		sign: number;
 		startX: number;
 		startProgress: number;
 		dragging: boolean;
@@ -112,13 +114,14 @@
 		return KNOB + stretch.value * LEAN - squash;
 	}
 
-	// Position follows width, so widening while off grows rightward and
-	// widening while on grows leftward: always into the coming move.
+	// Position follows width, so widening while off grows toward the end side
+	// and widening while on grows toward the start: always into the coming move.
+	// The offset is a custom property so the thumb's classes can mirror it in RTL.
 	function render() {
 		const width = knobWidth();
 		if (thumb) {
 			thumb.style.width = `${width}px`;
-			thumb.style.translate = `${clamp01(progress.value) * (INNER - width)}px 0`;
+			thumb.style.setProperty('--switch-x', `${clamp01(progress.value) * (INNER - width)}px`);
 		}
 		if (fill) fill.style.opacity = String(clamp01(progress.value));
 	}
@@ -217,6 +220,7 @@
 		event.currentTarget.setPointerCapture?.(event.pointerId);
 		gesture = {
 			pointerId: event.pointerId,
+			sign: getComputedStyle(event.currentTarget).direction === 'rtl' ? -1 : 1,
 			startX: event.clientX,
 			startProgress: clamp01(progress.value),
 			dragging: false,
@@ -231,14 +235,14 @@
 		onpointermove?.(event);
 		const g = gesture;
 		if (!g || event.pointerId !== g.pointerId) return;
-		const dx = event.clientX - g.startX;
+		const dx = (event.clientX - g.startX) * g.sign;
 		if (!g.dragging && Math.abs(dx) < DRAG_SLOP) return;
 		g.dragging = true;
 		// Pointer pixels map to knob pixels one to one at the knob's current width.
 		const range = INNER - knobWidth();
 		const next = clamp01(g.startProgress + dx / range);
 		const elapsed = event.timeStamp - g.lastTime;
-		if (elapsed > 0) g.velocity = ((event.clientX - g.lastX) / range / elapsed) * FRAME;
+		if (elapsed > 0) g.velocity = (((event.clientX - g.lastX) * g.sign) / range / elapsed) * FRAME;
 		g.lastX = event.clientX;
 		g.lastTime = event.timeStamp;
 		progress.value = next;
@@ -316,7 +320,7 @@
 	     shrinking it would shift the knob under the finger mid-drag. -->
 	<SwitchPrimitive.Thumb
 		bind:ref={thumb}
-		class="data-[state=checked]:bg-primary-foreground pointer-events-none absolute top-0.5 left-0.5 block h-5 rounded-full bg-white shadow-sm"
-		style="width: {KNOB}px; translate: {start * (INNER - KNOB)}px 0"
+		class="data-[state=checked]:bg-primary-foreground pointer-events-none absolute start-0.5 top-0.5 block h-5 [translate:var(--switch-x)_0] rounded-full bg-white shadow-sm rtl:[translate:calc(var(--switch-x)*-1)_0]"
+		style="width: {KNOB}px; --switch-x: {start * (INNER - KNOB)}px"
 	/>
 </SwitchPrimitive.Root>

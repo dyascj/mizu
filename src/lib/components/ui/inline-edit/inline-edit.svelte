@@ -103,10 +103,10 @@
 	// so the swap does not move a single glyph.
 	const box = $derived(
 		cn(
-			'col-start-1 row-start-1 block w-full py-1 pr-9 text-left',
+			'col-start-1 row-start-1 block w-full py-1 pe-9 text-start',
 			multiline
-				? 'rounded-2xl pl-3 break-words whitespace-pre-wrap'
-				: 'truncate rounded-full pl-3 whitespace-pre',
+				? 'rounded-2xl ps-3 break-words whitespace-pre-wrap'
+				: 'truncate rounded-full ps-3 whitespace-pre',
 			className
 		)
 	);
@@ -184,7 +184,7 @@
 	<span
 		aria-hidden="true"
 		class={cn(
-			'text-muted-foreground pointer-events-none absolute top-1 right-2 grid size-6 place-items-center [&>*]:col-start-1 [&>*]:row-start-1',
+			'text-muted-foreground pointer-events-none absolute end-2 top-1 grid size-6 place-items-center [&>*]:col-start-1 [&>*]:row-start-1',
 			(editing || disabled) && 'invisible'
 		)}
 	>

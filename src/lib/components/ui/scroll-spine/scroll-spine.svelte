@@ -301,7 +301,7 @@
 		aria-hidden="true"
 		class={cn(
 			'bg-primary/6 absolute rounded-lg',
-			inline ? 'right-0 -left-2' : 'left-1/2 w-5 -translate-x-1/2'
+			inline ? '-start-2 end-0' : 'left-1/2 w-5 -translate-x-1/2'
 		)}
 	></div>
 	<ol class="absolute inset-0">
@@ -315,7 +315,7 @@
 						aria-hidden="true"
 						class={cn(
 							'bg-primary/12 absolute inset-y-0 w-[3px] overflow-hidden rounded-full',
-							inline ? 'left-0' : 'left-1/2 -translate-x-1/2'
+							inline ? 'start-0' : 'left-1/2 -translate-x-1/2'
 						)}
 					>
 						<span
@@ -341,8 +341,8 @@
 							if (preview === i) preview = null;
 						}}
 						class={cn(
-							'group/band focus-visible:ring-ring absolute touch-manipulation rounded-md text-left outline-none focus-visible:ring-2 active:scale-[0.96] motion-safe:transition-[scale] motion-safe:duration-(--duration-fast) motion-safe:ease-out',
-							inline ? 'inset-y-0 right-0 -left-2 pl-5' : 'inset-0'
+							'group/band focus-visible:ring-ring absolute touch-manipulation rounded-md text-start outline-none focus-visible:ring-2 active:scale-[0.96] motion-safe:transition-[scale] motion-safe:duration-(--duration-fast) motion-safe:ease-out',
+							inline ? 'inset-y-0 -start-2 end-0 ps-5' : 'inset-0'
 						)}
 					>
 						{#if inline}
@@ -361,14 +361,14 @@
 						{/if}
 					</a>
 					{#if !inline}
-						<!-- The heading, hung off the left of the band while hovered or focused. -->
+						<!-- The heading, hung off the start side of the band while hovered or focused. -->
 						<span
 							aria-hidden="true"
 							class={cn(
-								'bg-primary text-primary-foreground pointer-events-none absolute top-0 right-full z-10 mr-1 rounded-full px-3 py-1.5 text-[0.8125rem] font-medium whitespace-nowrap shadow-md motion-reduce:translate-x-0 motion-reduce:blur-none',
+								'bg-primary text-primary-foreground pointer-events-none absolute end-full top-0 z-10 me-1 rounded-full px-3 py-1.5 text-[0.8125rem] font-medium whitespace-nowrap shadow-md motion-reduce:translate-x-0 motion-reduce:blur-none',
 								preview === i
 									? 'translate-x-0 opacity-100 blur-none transition-[opacity,translate,filter] duration-(--duration-base) ease-out'
-									: 'translate-x-1.5 opacity-0 blur-[2px] transition-[opacity,translate,filter] duration-(--duration-instant) ease-in'
+									: 'translate-x-1.5 opacity-0 blur-[2px] transition-[opacity,translate,filter] duration-(--duration-instant) ease-in rtl:motion-safe:-translate-x-1.5'
 							)}
 						>
 							{item.label}
@@ -384,7 +384,7 @@
 		aria-hidden="true"
 		class={cn(
 			'bg-primary pointer-events-none absolute top-0 -mt-[4.5px] size-[9px] rounded-full ring-[3px] ring-[color:var(--scroll-spine-surface,var(--background))]',
-			inline ? '-left-[3px]' : 'left-1/2 -ml-[4.5px]',
+			inline ? '-start-[3px]' : 'left-1/2 -ml-[4.5px]',
 			!measured && 'opacity-0'
 		)}
 	></div>

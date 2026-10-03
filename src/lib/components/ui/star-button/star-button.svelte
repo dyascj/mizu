@@ -113,7 +113,7 @@
 
 	const labelClass = (visible: boolean) =>
 		cn(
-			'absolute top-0 left-0 whitespace-nowrap transition-[opacity,filter] ease-out',
+			'absolute start-0 top-0 whitespace-nowrap transition-[opacity,filter] ease-out',
 			visible
 				? 'opacity-100 blur-none duration-(--duration-base)'
 				: 'opacity-0 blur-[3px] duration-(--duration-instant) motion-reduce:blur-none'
@@ -128,9 +128,9 @@
 	{disabled}
 	data-state={starred ? 'on' : 'off'}
 	class={cn(
-		'group/star focus-visible:ring-ring focus-visible:ring-offset-background inline-flex h-9 shrink-0 touch-manipulation items-center gap-2 rounded-full pr-1.5 pl-3 text-sm font-medium outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+		'group/star focus-visible:ring-ring focus-visible:ring-offset-background inline-flex h-9 shrink-0 touch-manipulation items-center gap-2 rounded-full ps-3 pe-1.5 text-sm font-medium outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
 		'transition-[background-color,color,scale] duration-(--duration-fast) ease-out active:scale-[0.96] motion-reduce:transition-[background-color,color]',
-		count === undefined && 'pr-3.5',
+		count === undefined && 'pe-3.5',
 		starred
 			? 'bg-primary-muted text-primary'
 			: 'bg-secondary text-secondary-foreground hover:bg-control',
@@ -181,10 +181,13 @@
 		<span class="invisible block whitespace-nowrap">{starred ? starredLabel : label}</span>
 		<span class={labelClass(!starred)}>{label}</span>
 		<span class={labelClass(starred)}>{starredLabel}</span>
-		<span bind:offsetWidth={restWidth} class="invisible absolute top-0 left-0 whitespace-nowrap">
+		<span bind:offsetWidth={restWidth} class="invisible absolute start-0 top-0 whitespace-nowrap">
 			{label}
 		</span>
-		<span bind:offsetWidth={starredWidth} class="invisible absolute top-0 left-0 whitespace-nowrap">
+		<span
+			bind:offsetWidth={starredWidth}
+			class="invisible absolute start-0 top-0 whitespace-nowrap"
+		>
 			{starredLabel}
 		</span>
 	</span>

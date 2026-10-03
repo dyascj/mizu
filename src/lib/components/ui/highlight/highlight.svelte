@@ -266,6 +266,11 @@
 		clip-path: inset(-50% calc(100% + 0.5rem) -50% -0.5rem);
 	}
 
+	/* Right to left, the pen sets down at the right end instead. */
+	.highlight-stroke:dir(rtl) {
+		clip-path: inset(-50% -0.5rem -50% calc(100% + 0.5rem));
+	}
+
 	.highlight[data-drawn] .highlight-stroke {
 		clip-path: inset(-50% -0.5rem -50% -0.5rem);
 		transition: clip-path var(--highlight-duration) var(--highlight-ease) var(--highlight-delay);

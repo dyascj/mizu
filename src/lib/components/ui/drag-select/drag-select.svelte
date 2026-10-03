@@ -237,9 +237,11 @@
 	function onkeydown(event: KeyboardEvent) {
 		const last = items.length - 1;
 		const cols = columns();
+		// The grid mirrors in right-to-left text, so the arrows follow what is on screen.
+		const step = getComputedStyle(event.currentTarget as Element).direction === 'rtl' ? -1 : 1;
 		const moves: Record<string, number> = {
-			ArrowLeft: focusIndex - 1,
-			ArrowRight: focusIndex + 1,
+			ArrowLeft: focusIndex - step,
+			ArrowRight: focusIndex + step,
 			ArrowUp: focusIndex - cols,
 			ArrowDown: focusIndex + cols,
 			Home: 0,
@@ -356,7 +358,7 @@
 	</div>
 
 	<div
-		class="flex min-h-12 shrink-0 flex-wrap items-center justify-between gap-x-2 gap-y-1 py-2 pr-2 pl-4"
+		class="flex min-h-12 shrink-0 flex-wrap items-center justify-between gap-x-2 gap-y-1 py-2 ps-4 pe-2"
 	>
 		<p class="text-muted-foreground text-sm whitespace-nowrap tabular-nums" aria-live="polite">
 			<span class="text-foreground">{count}</span> selected

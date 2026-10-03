@@ -82,11 +82,13 @@
 		const last = swatches.length - 1;
 		const forward = selected === last ? 0 : selected + 1;
 		const back = selected === 0 ? last : selected - 1;
+		// The row mirrors in right-to-left text, so the arrows follow what is on screen.
+		const rtl = getComputedStyle(event.currentTarget as Element).direction === 'rtl';
 		const index = (
 			{
-				ArrowRight: forward,
+				ArrowRight: rtl ? back : forward,
 				ArrowDown: forward,
-				ArrowLeft: back,
+				ArrowLeft: rtl ? forward : back,
 				ArrowUp: back,
 				Home: 0,
 				End: last

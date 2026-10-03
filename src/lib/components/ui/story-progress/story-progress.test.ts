@@ -133,6 +133,25 @@ describe('StoryProgress', () => {
 		expect(screen.getByText('1 / 3')).toBeInTheDocument();
 	});
 
+	test('right to left, the arrows and the tap halves swap', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			const { region } = setup();
+			await fireEvent.keyDown(region, { key: 'ArrowLeft' });
+			expect(screen.getByText('2 / 3')).toBeInTheDocument();
+			await fireEvent.keyDown(region, { key: 'ArrowRight' });
+			expect(screen.getByText('1 / 3')).toBeInTheDocument();
+			await fireEvent.pointerDown(region, { button: 0, pointerId: 1, clientX: 40 });
+			await fireEvent.pointerUp(region, { pointerId: 1, clientX: 40 });
+			expect(screen.getByText('2 / 3')).toBeInTheDocument();
+			await fireEvent.pointerDown(region, { button: 0, pointerId: 2, clientX: 250 });
+			await fireEvent.pointerUp(region, { pointerId: 2, clientX: 250 });
+			expect(screen.getByText('1 / 3')).toBeInTheDocument();
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('offers previous and next buttons to assistive technology only', async () => {
 		setup();
 		const next = screen.getByRole('button', { name: 'Next story' });

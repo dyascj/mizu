@@ -65,7 +65,7 @@
 
 	let add = $state<HTMLButtonElement | null>(null);
 	let picker = $state<HTMLDivElement | null>(null);
-	let origin = $state(0);
+	let origin = $state('0px');
 	let usingKeys = false;
 
 	const names = $derived(new Map(choices.map((choice) => [choice.emoji, choice.label])));
@@ -142,7 +142,14 @@
 
 	async function setOpen(next: boolean, restoreFocus = false) {
 		if (next === open) return;
-		if (next && add) origin = add.offsetLeft + add.offsetWidth / 2;
+		if (next && add) {
+			// The picker hangs from the row's start edge, the right one in right-to-left text.
+			const center = add.offsetLeft + add.offsetWidth / 2;
+			origin =
+				getComputedStyle(add).direction === 'rtl'
+					? `calc(100% - ${(ref?.clientWidth ?? 0) - center}px)`
+					: `${center}px`;
+		}
 		open = next;
 		await tick();
 		if (next && usingKeys) picker?.querySelector<HTMLButtonElement>('button')?.focus();
@@ -152,10 +159,12 @@
 	function onPickerKeydown(event: KeyboardEvent) {
 		const buttons = Array.from(picker?.querySelectorAll<HTMLButtonElement>('button') ?? []);
 		const index = buttons.indexOf(document.activeElement as HTMLButtonElement);
+		// The picker mirrors in right-to-left text, so the arrows follow what they point at.
+		const forward = getComputedStyle(event.currentTarget as Element).direction === 'rtl' ? -1 : 1;
 		const moves: Record<string, number> = {
-			ArrowRight: index + 1,
+			ArrowRight: index + forward,
 			ArrowDown: index + 1,
-			ArrowLeft: index - 1,
+			ArrowLeft: index - forward,
 			ArrowUp: index - 1,
 			Home: 0,
 			End: buttons.length - 1
@@ -284,8 +293,8 @@
 			id={pickerId}
 			role="group"
 			aria-label="Pick a reaction"
-			class="bg-popover text-popover-foreground absolute top-full left-0 z-10 mt-2 flex max-w-[calc(100vw-2rem)] flex-wrap gap-0.5 rounded-3xl p-1 shadow-lg"
-			style:transform-origin="{origin}px 0%"
+			class="bg-popover text-popover-foreground absolute start-0 top-full z-10 mt-2 flex max-w-[calc(100vw-2rem)] flex-wrap gap-0.5 rounded-3xl p-1 shadow-lg"
+			style:transform-origin="{origin} 0%"
 			in:unfold
 			out:unfold={{ exit: true }}
 		>

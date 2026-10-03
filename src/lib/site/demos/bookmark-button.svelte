@@ -22,7 +22,7 @@
 			<BookmarkButton bind:saved={reportSaved} count={reportSaved ? 128 : 127} />
 		</div>
 	</article>
-	<div class="bg-card flex w-full items-center gap-3 rounded-full py-1 pr-1 pl-4 shadow-sm">
+	<div class="bg-card flex w-full items-center gap-3 rounded-full py-1 ps-4 pe-1 shadow-sm">
 		<p class="min-w-0 flex-1 truncate text-sm">Summarize this thread in three bullets</p>
 		<BookmarkButton bind:saved={promptSaved} variant="ghost" />
 	</div>

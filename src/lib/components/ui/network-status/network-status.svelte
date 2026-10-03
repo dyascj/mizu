@@ -91,7 +91,7 @@
 			class={cn(
 				'text-sm',
 				variant === 'pill'
-					? 'glass pointer-events-auto max-w-md rounded-3xl border py-2 pr-4 pl-3 shadow-lg'
+					? 'glass pointer-events-auto max-w-md rounded-3xl border py-2 ps-3 pe-4 shadow-lg'
 					: 'bg-secondary rounded-2xl px-4 py-3'
 			)}
 			in:rise={{ y: variant === 'pill' ? -8 : 4, duration: duration.slow }}

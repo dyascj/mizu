@@ -83,6 +83,29 @@ describe('Combobox', () => {
 		expect(ghost.isConnected).toBe(false);
 	});
 
+	test('in right-to-left text the list mirrors and the pick lands on the right edge of the field', async () => {
+		document.body.style.direction = 'rtl';
+		try {
+			render(Harness);
+			const input = await openList();
+			expect(screen.getByRole('listbox').closest('[dir]')).toHaveAttribute('dir', 'rtl');
+			const scribe = screen.getByRole('option', { name: 'Meeting scribe' });
+			vi.spyOn(scribe, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 120, 200, 32));
+			vi.spyOn(input, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 200, 40));
+			vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(300);
+
+			await fireEvent.pointerUp(scribe, mouse);
+			await waitFor(() => expect(input.value).toBe('Meeting scribe'));
+			const ghost = animate.mock.contexts[0] as HTMLElement;
+			expect(ghost.style.left).toBe('');
+			expect(ghost.style.right).toBe('100px');
+			expect(ghost.style.transformOrigin).toBe('100% 50%');
+			finish?.();
+		} finally {
+			document.body.style.direction = '';
+		}
+	});
+
 	test('a second pick mid-flight leaves no stray copy behind', async () => {
 		// Like browsers, a cancelled animation reports it a moment later.
 		const flights: { onfinish: null | (() => void); oncancel: null | (() => void) }[] = [];

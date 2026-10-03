@@ -24,6 +24,8 @@ class SidebarState {
 	readonly props: SidebarStateProps;
 	open = $derived.by(() => this.props.open());
 	openMobile = $state(false);
+	/** Read from the wrapper, so the rail's tooltips and the mobile sheet follow a right-to-left layout. */
+	rtl = $state(false);
 	setOpen: SidebarStateProps['setOpen'];
 	#isMobile: IsMobile;
 	state = $derived.by(() => (this.open ? 'expanded' : 'collapsed'));

@@ -27,6 +27,6 @@
 		{@render children()}
 	{:else}
 		<span>Next</span>
-		<ChevronRight class="size-4" aria-hidden="true" />
+		<ChevronRight class="size-4 rtl:rotate-180" aria-hidden="true" />
 	{/if}
 </PaginationPrimitive.NextButton>

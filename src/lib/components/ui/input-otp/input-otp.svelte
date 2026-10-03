@@ -170,7 +170,9 @@
 		if (status === 'success') status = 'idle';
 	}}
 	class={cn(
-		'flex max-w-full items-center gap-1.5 disabled:cursor-not-allowed disabled:opacity-50',
+		// Codes read left to right in every language, so the slots, caret, and
+		// typing order stay put inside right-to-left text.
+		'flex max-w-full items-center gap-1.5 [direction:ltr] disabled:cursor-not-allowed disabled:opacity-50',
 		className
 	)}
 	{...restProps}

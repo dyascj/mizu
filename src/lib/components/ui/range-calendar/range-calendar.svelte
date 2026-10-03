@@ -72,6 +72,9 @@
 		return date && !day?.hasAttribute('data-disabled') ? date.slice(0, 10) : null;
 	}
 
+	/** Arrow presses re-sent with the key swapped, so they pass through untouched. */
+	const mirrored = new WeakSet<Event>();
+
 	const monthFormat = $derived.by(() => {
 		if (monthFormatProp) return monthFormatProp;
 		if (captionLayout.startsWith('dropdown')) return 'short';
@@ -109,6 +112,27 @@
 	}}
 	onkeydown={(event) => {
 		onkeydown?.(event);
+		// The grid mirrors in right-to-left text, but bits-ui steps days by the
+		// key's name, so the press is re-sent as the arrow that points that way.
+		const target = event.target as HTMLElement;
+		if (
+			(event.key === 'ArrowLeft' || event.key === 'ArrowRight') &&
+			!event.defaultPrevented &&
+			!mirrored.has(event) &&
+			target.hasAttribute?.('data-bits-day') &&
+			getComputedStyle(event.currentTarget).direction === 'rtl'
+		) {
+			event.preventDefault();
+			event.stopPropagation();
+			const swapped = new KeyboardEvent('keydown', {
+				key: event.key === 'ArrowLeft' ? 'ArrowRight' : 'ArrowLeft',
+				bubbles: true,
+				cancelable: true
+			});
+			mirrored.add(swapped);
+			target.dispatchEvent(swapped);
+			return;
+		}
 		// Escape backs out of a half-picked range, before anything around the
 		// calendar, such as a popover, hears it.
 		if (event.key === 'Escape' && picking && !event.defaultPrevented) {

@@ -21,13 +21,13 @@
 	bind:checked
 	bind:indeterminate
 	class={cn(
-		'data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-pointer items-center rounded-lg py-1.5 pr-2 pl-8 text-sm transition-colors duration-(--duration-fast) outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+		'data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-pointer items-center rounded-lg py-1.5 ps-8 pe-2 text-sm transition-colors duration-(--duration-fast) outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
 		className
 	)}
 	{...restProps}
 >
 	{#snippet children({ checked, indeterminate })}
-		<span class="absolute left-2 flex size-4 items-center justify-center">
+		<span class="absolute start-2 flex size-4 items-center justify-center">
 			{#if indeterminate}
 				<div class="bg-primary size-2 rounded-sm"></div>
 			{:else if checked}

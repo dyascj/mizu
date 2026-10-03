@@ -48,6 +48,28 @@
 		if (captionLayout.startsWith('dropdown')) return 'short';
 		return 'long';
 	});
+
+	/**
+	 * Right to left, the week runs from the right, but bits-ui always reads
+	 * ArrowLeft as the previous day. A mirrored key is swapped for its twin
+	 * before the grid sees it, so a day arrow moves the way it points.
+	 */
+	const swapped = new WeakSet<Event>();
+	function mirrorArrows(event: KeyboardEvent) {
+		if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+		const day = event.target as HTMLElement;
+		if (swapped.has(event) || !day.hasAttribute?.('data-bits-day')) return;
+		if (getComputedStyle(day).direction !== 'rtl') return;
+		event.preventDefault();
+		event.stopPropagation();
+		const twin = new KeyboardEvent('keydown', {
+			key: event.key === 'ArrowLeft' ? 'ArrowRight' : 'ArrowLeft',
+			bubbles: true,
+			cancelable: true
+		});
+		swapped.add(twin);
+		day.dispatchEvent(twin);
+	}
 </script>
 
 <!--
@@ -67,6 +89,7 @@ Bits UI couples the selection type with its value type. Both are forwarded toget
 	{locale}
 	{monthFormat}
 	{yearFormat}
+	onkeydowncapture={mirrorArrows}
 	{...restProps as Record<string, unknown>}
 >
 	{#snippet children({ months, weekdays })}

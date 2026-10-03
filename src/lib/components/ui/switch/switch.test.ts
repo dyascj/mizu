@@ -24,7 +24,7 @@ function setup(props: Record<string, unknown> = {}) {
 	return { ...result, control, thumb, fill, onCheckedChange };
 }
 
-const offset = (thumb: HTMLElement) => parseFloat(thumb.style.translate) || 0;
+const offset = (thumb: HTMLElement) => parseFloat(thumb.style.getPropertyValue('--switch-x')) || 0;
 const width = (thumb: HTMLElement) => parseFloat(thumb.style.width);
 
 describe('Switch', () => {
@@ -89,6 +89,24 @@ describe('Switch', () => {
 		expect(onCheckedChange).toHaveBeenCalledWith(true);
 		await advance(1000);
 		expect(offset(thumb)).toBe(20);
+	});
+
+	test('in RTL a drag toward the left turns it on', async () => {
+		const target = document.body.appendChild(document.createElement('div'));
+		target.style.direction = 'rtl';
+		const onCheckedChange = vi.fn();
+		render(Switch, { props: { 'aria-label': 'Web search', onCheckedChange }, target });
+		const control = screen.getByRole('switch', { name: 'Web search' });
+		const thumb = control.querySelector<HTMLElement>('[data-switch-thumb]')!;
+		await fireEvent.pointerDown(control, { button: 0, pointerId: 1, clientX: 40 });
+		await fireEvent.pointerMove(control, { pointerId: 1, clientX: 32 });
+		expect(offset(thumb)).toBeGreaterThan(0);
+		await fireEvent.pointerMove(control, { pointerId: 1, clientX: 10 });
+		await fireEvent.pointerUp(control, { pointerId: 1, clientX: 10 });
+		await fireEvent.click(control, { detail: 1 });
+		expect(control).toHaveAttribute('aria-checked', 'true');
+		expect(onCheckedChange).toHaveBeenCalledTimes(1);
+		target.remove();
 	});
 
 	test('a drag that ends short of halfway springs back', async () => {

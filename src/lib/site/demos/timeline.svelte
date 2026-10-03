@@ -76,7 +76,7 @@
 </script>
 
 <div class="bg-card w-full max-w-md overflow-hidden rounded-2xl shadow-md">
-	<div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 py-3 pr-3 pl-5">
+	<div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 py-3 ps-5 pe-3">
 		<p class="font-semibold tracking-tight whitespace-nowrap">Run activity</p>
 		<Button variant="secondary" size="sm" onclick={simulate}>Simulate event</Button>
 	</div>

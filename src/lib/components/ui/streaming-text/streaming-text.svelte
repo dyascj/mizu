@@ -93,7 +93,7 @@
 		display: inline-block;
 		width: 2px;
 		height: 1em;
-		margin-left: 1px;
+		margin-inline-start: 1px;
 		vertical-align: text-bottom;
 		border-radius: 1px;
 		background: currentColor;
